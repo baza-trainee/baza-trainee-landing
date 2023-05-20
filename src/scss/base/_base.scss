@@ -1,0 +1,20 @@
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 10px
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+}
+
+ul {
+  list-style: none;
+}
