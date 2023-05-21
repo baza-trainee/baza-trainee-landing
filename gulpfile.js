@@ -18,6 +18,8 @@ import { typescript } from './gulp/tasks/typescript.js';
 import { fonts } from './gulp/tasks/fonts.js';
 import { images } from './gulp/tasks/images.js';
 import { svgicons } from './gulp/tasks/svgicons.js';
+import { jsLibs } from './gulp/tasks/libs.js';
+import { cssLibs } from './gulp/tasks/libs.js';
 
 function watcher() {
   gulp.watch(path.watch.html, html);
@@ -33,7 +35,9 @@ const commonTasks = gulp.parallel(
   scss,
   typescript,
   images,
-  svgicons
+  svgicons,
+  jsLibs,
+  cssLibs
 );
 
 const dev = gulp.series(reset, commonTasks, gulp.parallel(watcher, server));
