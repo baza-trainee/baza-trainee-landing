@@ -1,0 +1,13 @@
+.statistic {
+  background-color: #ffd210;
+  padding-top: 53px;
+  padding-bottom: 53px;
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: #121212;
+  }
+}

@@ -12,7 +12,8 @@ html {
 
 body {
   box-sizing: border-box;
-  padding: 3rem;
+  // padding: 3rem;
+  font-family: 'Exo 2', sans-serif;
 }
 
 ul {
@@ -22,4 +23,10 @@ ul {
 .container {
   max-width: 120rem;
   margin: 0 auto;
+}
+.section-container {
+  width: 1440px;
+  margin: auto;
+  padding-left: 120px;
+  padding-right: 120px;
 }
