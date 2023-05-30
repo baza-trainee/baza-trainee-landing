@@ -1,6 +1,9 @@
 $font-primary-color: #121212;
 $font-secondary-color: #353535;
-$button-background-color: #ffd210;
+$button-primary-bg-color: #ffd210;
+$button-hover-bg-color: #ffbd00;
+$button-active-bg-color: #fd9b00;
+$button-disabled-bg-color: #767676;
 
 .errorPage {
   padding: 100px 0;
@@ -9,7 +12,7 @@ $button-background-color: #ffd210;
 
 .container {
   max-width: 1200px;
-  padding: 0 32px;
+  padding: 0 16px;
   margin: 0 auto;
 }
 
@@ -56,5 +59,14 @@ $button-background-color: #ffd210;
   text-decoration: none;
 
   color: inherit;
-  background-color: $button-background-color;
+  background-color: $button-primary-bg-color;
+
+  &:hover,
+  &:focus {
+    background-color: $button-hover-bg-color;
+  }
+
+  &:active {
+    background-color: $button-active-bg-color;
+  }
 }
