@@ -1,0 +1,36 @@
+.partners_style{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.partner_list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-left: 0;
+}
+
+.partner_item{
+    
+    width: calc((100% - 240px) / 5);
+    margin-right: auto; 
+    margin-left: auto;
+    background-color: grey;
+}
+
+.add_more{
+    height:64px;
+    width:fit-content;
+    border-style: none;
+    background-color: #fff;
+    cursor: pointer;
+
+        
+    &:hover,
+    &:focus {
+        color: blue;
+        background-color:aqua;
+    }
+}
