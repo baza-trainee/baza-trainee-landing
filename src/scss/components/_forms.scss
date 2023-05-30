@@ -8,7 +8,7 @@
     font-weight: 700;
     font-size: 40px;
     line-height: 48px;
-    color: #121212;
+    color: $neutral;
   }
   &__text {
     margin-bottom: 48px;
@@ -35,13 +35,13 @@
     line-height: 29px;
     background-color: $neutral;
     text-align: center;
-    border: 1.5px solid #121212;
+    border: 1.5px solid $neutral;
     border-radius: 4px;
     text-transform: uppercase;
     text-decoration: none;
     &:hover {
       background-color: #fff;
-      color: #121212;
+      color: $neutral;
     }
   }
 }
