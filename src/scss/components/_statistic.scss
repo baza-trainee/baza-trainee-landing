@@ -1,13 +1,13 @@
 .statistic {
-  background-color: $main;
-  padding-top: 53px;
-  padding-bottom: 53px;
+  background-color: $color-main;
+  padding-top: 5.3rem;
+  padding-bottom: 5.3rem;
   &__title {
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
-    color: $neutral;
+    font-size: 3.2rem;
+    line-height: 3.8rem;
+    color: $color-neutral;
   }
 }

@@ -13,7 +13,7 @@ html {
 body {
   box-sizing: border-box;
   // padding: 3rem;
-  font-family: 'Exo 2', sans-serif;
+  font-family: $font-primary;
 }
 
 ul {
@@ -25,8 +25,6 @@ ul {
   margin: 0 auto;
 }
 .section-container {
-  width: 1440px;
+  width: 120rem;
   margin: auto;
-  padding-left: 120px;
-  padding-right: 120px;
 }
