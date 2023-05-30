@@ -4,7 +4,7 @@
   padding-bottom: 5.2rem;
   &__list {
     display: flex;
-    gap: 24rem;
+    justify-content: space-between;
   }
   &__number {
     text-align: center;
