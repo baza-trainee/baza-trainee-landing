@@ -1,0 +1,73 @@
+.footer {
+	background-color: #232323;
+	color: $color-white;
+	padding: 40px 120px 30px 120px ;
+
+}
+
+.footer__wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.footer__section {
+	&:nth-child(n+2) {
+		margin-left: 32px;
+	}
+}
+
+.logo {
+	width: 120px;
+	height: 120px;
+	display: block;
+	background-color: $color-black;
+}
+
+.footer__list {
+	display: block;
+	width: 276px;
+
+	// удалить после нормалайза
+	list-style:none;
+	margin: 0;
+	padding: 0;
+	// ============
+
+	&.social {
+		display: flex;
+	}
+}
+
+.footer__list-item {
+	margin: 8px 0;
+
+}
+
+.footer__list-link {
+	text-decoration: none;
+	color: $color-white;
+
+
+	&:hover	{
+		color: #FFBD00;
+	}
+	&:active {
+		color: #FD9B00;
+	}
+
+
+	&.underline {
+		text-decoration: underline ;
+	}
+}
+
+.footer__social {
+	width: 48px;
+	height: 48px;
+	display: block;
+	background-color: $color-white;
+}
+
+.footer__license {
+	color: #CECECE;
+}
