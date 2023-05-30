@@ -1,0 +1,60 @@
+$font-primary-color: #121212;
+$font-secondary-color: #353535;
+$button-background-color: #ffd210;
+
+.errorPage {
+  padding: 100px 0;
+  color: $font-primary-color;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 32px;
+  margin: 0 auto;
+}
+
+.errorPage__digits {
+  margin: 0 auto 32px;
+  padding: 0;
+  text-align: center;
+  font-size: 128px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.errorPage__title {
+  margin: 0 auto 8px;
+  padding: 0;
+  text-align: center;
+  font-size: 32px;
+  line-height: 1.18;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.errorPage__description {
+  margin: 0 auto 31px;
+  padding: 0;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 500;
+
+  color: $font-secondary-color;
+}
+.errorPage__back-home-link {
+  display: block;
+  max-width: 378px;
+  margin: 0 auto;
+  padding: 16px 56px;
+  border-radius: 4px;
+
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.18;
+  font-weight: 600;
+  text-decoration: none;
+
+  color: inherit;
+  background-color: $button-background-color;
+}
