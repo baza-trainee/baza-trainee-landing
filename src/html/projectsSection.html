@@ -1,0 +1,403 @@
+<section class="projects-section">
+    <div class="container">
+        <h3 class="projects-section__title">Проєкти</h3>
+        <div class="projects-section__form-container">
+            <form class="projects-section__form">
+                <input 
+                type="text"
+                name="search"
+                id="search-input" 
+                class="projects-section__form__input"
+                placeholder="Введіть ключове слово для пошуку" 
+                pattern="[а-яА-Яa-zA-ZҐґЄєІіЇї]{2,50}"
+                title="Поле пошуку приймає ключові слова від 2-х до 50-ти символів. Поле пошуку приймає латиницю і кирилицю"
+                minlength="2" maxlength="50" 
+                required>
+                <button type="submit" class="projects-section__form__button">
+                    <svg class="projects-section__form__icon">
+                    <use href="@img/sprite.svg#magnifier"></use>
+                  </svg>
+                </button>
+            </form>
+        </div>
+        <div>
+            <ul class="projects-section__projects-container">
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container">
+                            <div class="projects-section__projects-item__state completed"></div>
+                            <p class="projects-section__projects-item__state-text">Завершено</p>
+                        </div>
+                        <div class="projects-section__projects-item__container">
+                            <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                            <a href="https:\\murrfecto.site" class="projects-section__projects-item__link" target="_blank">https:\\murrfecto.site</a>
+                        </div>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="projects-section__team">
+                            <button class="projects-section__team__btn">Команда проєкту</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container">
+                            <div class="projects-section__projects-item__state under-development"></div>
+                            <p class="projects-section__projects-item__state-text">В розробці</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container" style="width: 70%;">
+                            <div class="projects-section__projects-item__state formation-of-the-team"></div>
+                            <p class="projects-section__projects-item__state-text">Формування команди</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container">
+                            <div class="projects-section__projects-item__state completed"></div>
+                            <p class="projects-section__projects-item__state-text">Завершено</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="projects-section__team">
+                            <button class="projects-section__team__btn">Команда проєкту</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container">
+                            <div class="projects-section__projects-item__state under-development"></div>
+                            <p class="projects-section__projects-item__state-text">В розробці</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container" style="width: 70%;">
+                            <div class="projects-section__projects-item__state formation-of-the-team"></div>
+                            <p class="projects-section__projects-item__state-text">Формування команди</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container">
+                            <div class="projects-section__projects-item__state completed"></div>
+                            <p class="projects-section__projects-item__state-text">Завершено</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="projects-section__team">
+                            <button class="projects-section__team__btn">Команда проєкту</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container">
+                            <div class="projects-section__projects-item__state under-development"></div>
+                            <p class="projects-section__projects-item__state-text">В розробці</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="projects-section__projects-item" style="background-image: url('@img/var-1.webp')">
+                        <div class="projects-section__projects-item__state-container" style="width: 70%;">
+                            <div class="projects-section__projects-item__state formation-of-the-team"></div>
+                            <p class="projects-section__projects-item__state-text">Формування команди</p>
+                        </div>
+                        <h4 class="projects-section__projects-item__title">Сайт притулку для вуличних тварин Murrfecto</h4>
+                        <div class="projects-section__info">
+                            <ul class="projects-section__info__list">
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#start-icon"></use></svg>
+                                    <p>Старт проєкту</p>
+                                    </div>
+                                    <p>24 квітня 2023</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#time-icon"></use></svg>
+                                    <p>Цикл проєкту</p>
+                                    </div>
+                                    <p>7 тижнів</p>
+                                </li>
+                                <li class="projects-section__info__list-item">
+                                    <div style="display: flex; align-items: center; gap: 4px;">
+                                        <svg class="projects-section__info__list-item__icon"><use href="@img/sprite.svg#level-icon"></use></svg>
+                                    <p>Складність</p>
+                                    </div>
+                                    <div class="projects-section__info__list-item__level-container">
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level active"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                        <div class="projects-section__info__list-item__level"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="projects-section__load-more__container">
+            <button class="projects-section__load-more">Більше проєктів<svg class="header__lang-arrow"><use href="@img/sprite.svg#arrow-bottom"></use></svg></button>
+        </div>
+    </div>
+</section>

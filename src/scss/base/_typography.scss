@@ -1,0 +1,31 @@
+.h1,
+h2 {
+  font-family: $font-primary;
+  font-weight: 700;
+}
+
+.h1 {
+  font-size: 4rem;
+  color: $color-black;
+}
+
+.h2 {
+  font-size: 3.8rem;
+
+  &--white {
+    color: $color-white;
+  }
+
+  &--black {
+    color: $color-black;
+  }
+}
+
+.sub-heading {
+  &--white {
+    font-size: 2rem;
+    color: $color-white;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+}

@@ -1,0 +1,13 @@
+.statistic {
+  background: url(@img/statBg.webp);
+  padding-top: 5.3rem;
+  padding-bottom: 5.3rem;
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 3.8rem;
+    color: $color-black;
+  }
+}

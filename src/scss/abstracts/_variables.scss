@@ -1,2 +1,19 @@
+// COLORS
+$color-white: #fcfcfc;
+$color-black: #121212;
+$color-black-light: #232323;
+$color-accent: #ffd210;
+$color-gray: #767676;
+$color-completed: #74BE4F;
+$color-in-progress: #EBCF3C;
+$color-started: #EB903C;
 
+// FONTS
+$font-primary: 'Exo 2', sans-serif;
+$font-secondary: 'Inter', sans-serif;
 
+// BORDERS
+$border-black: 1px solid $color-black;
+$border-gray: 1px solid $color-gray;
+$border-gray-light: 1px solid rgba(252, 252, 252, 0.5);
+$border-white: 1.5px solid $color-white;

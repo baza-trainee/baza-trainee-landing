@@ -12,9 +12,19 @@ html {
 
 body {
   box-sizing: border-box;
-  padding: 3rem;
+  font-family: $font-primary;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: $color-black;
 }
 
 ul {
   list-style: none;
+}
+
+// TECH CLASSES
+
+.container {
+  max-width: 120rem;
+  margin: auto;
 }
