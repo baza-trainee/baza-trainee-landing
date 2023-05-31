@@ -1,8 +1,7 @@
 .footer {
 	background-color: #232323;
 	color: $color-white;
-	padding: 40px 120px 30px 120px ;
-
+	padding: 40px 120px 30px 120px;
 }
 
 .footer__wrapper {
@@ -20,7 +19,11 @@
 	width: 120px;
 	height: 120px;
 	display: block;
-	background-color: $color-black;
+	
+	&-svg {
+		width: 120px;
+		height: 120px;
+	}
 }
 
 .footer__list {
@@ -33,14 +36,32 @@
 	padding: 0;
 	// ============
 
-	&.social {
+	&-contacts {
+		margin-bottom: 2rem;
+	}
+
+	&-social {
 		display: flex;
 	}
 }
 
 .footer__list-item {
-	margin: 8px 0;
+	margin: 0.5rem 0;
+}
 
+.footer__list-item-svg {
+	width: 25px;
+	height: 22px;
+	margin-right: 0.5rem;
+}
+
+.footer__item-contacts{ 
+	display: flex;
+	align-items: center;
+}
+
+.footer__item-social:nth-child(n+2) {
+	margin-left: 2rem;
 }
 
 .footer__list-link {
@@ -61,11 +82,24 @@
 	}
 }
 
-.footer__social {
+.footer__social-link {
 	width: 48px;
 	height: 48px;
 	display: block;
-	background-color: $color-white;
+
+	&:hover {
+		.footer__social {fill: $color-in-progress;}
+	}
+
+	&:active {
+		.footer__social {fill: $color-started;}
+	}
+}
+
+.footer__social {
+	fill:$color-accent;
+	width: 5rem;
+	height: 5rem;
 }
 
 .footer__license {
