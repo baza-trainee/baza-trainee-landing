@@ -1,12 +1,11 @@
 @import 'abstracts/variables';
+@import 'abstracts/mixins';
 
 @import 'base/typography';
 @import 'base/base';
 
-@import 'components/statistic';
-@import 'components/forms';
-@import 'components/achievements';
-
 @import 'layout/header';
 @import 'layout/slider';
-
+@import 'layout/statistic';
+@import 'layout/forms';
+@import 'layout/achievements';

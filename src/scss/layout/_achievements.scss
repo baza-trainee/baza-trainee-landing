@@ -1,5 +1,5 @@
 .achievements {
-  background: $color-main;
+  background: $color-accent;
   padding-top: 5.2rem;
   padding-bottom: 5.2rem;
   &__list {
@@ -11,7 +11,7 @@
     font-weight: 600;
     font-size: 5.6rem;
     line-height: 6.7rem;
-    color: $color-neutral;
+    color: $color-black;
     margin-bottom: 2.4rem;
   }
   &__text {
@@ -20,6 +20,6 @@
     line-height: 2.4rem;
     text-align: center;
     text-transform: uppercase;
-    color: $color-neutral;
+    color: $color-black;
   }
 }
