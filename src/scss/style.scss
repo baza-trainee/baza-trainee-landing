@@ -1,5 +1,5 @@
-@import 'abstracts/mixins';
 @import 'abstracts/variables';
+@import 'abstracts/mixins';
 
 @import 'base/typography';
 @import 'base/base';
@@ -8,3 +8,12 @@
 @import 'layout/slider';
 
 @import 'projectsSection/projectsSection'
+  
+@import 'layout/statistic';
+@import 'layout/forms';
+@import 'layout/achievements';
+
+
+=======
+@import 'layout/reviews';
+
