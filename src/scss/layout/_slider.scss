@@ -1,0 +1,107 @@
+.slider-section {
+  position: relative;
+
+  &__slide {
+    height: 50.4rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__slide-container {
+    height: 100%;
+    position: relative;
+  }
+
+  &__content {
+    @include center-block;
+    top: 44%;
+    text-align: center;
+    width: 65%;
+
+    & h2 {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120rem;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+
+    & .slick-disabled {
+      visibility: hidden;
+    }
+  }
+
+  &__btn-prev,
+  &__btn-next {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__arrow-img {
+    width: 18px;
+    height: 30px;
+  }
+
+  &__actions {
+    height: 8.8rem;
+    background-color: $color-accent;
+  }
+
+  &__actions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: inherit;
+  }
+
+  &__dots {
+    & .slick-dots {
+      display: flex !important;
+      gap: 8px;
+    }
+
+    & button {
+      color: transparent;
+      border: $border-black;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    & .slick-active button {
+      width: 20px;
+      height: 20px;
+      background-color: $color-black;
+    }
+  }
+
+  &__btn-donate {
+    width: 23.1rem;
+    height: 5.6rem;
+    background-color: $color-black;
+    color: $color-white;
+    font-family: $font-primary;
+    font-size: 2.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      color: $color-black;
+      border: $border-black;
+      background-color: $color-white;
+    }
+  }
+}
