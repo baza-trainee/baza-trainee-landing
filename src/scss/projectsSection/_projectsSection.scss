@@ -1,0 +1,205 @@
+.projects-section{
+    padding-top: 120px;
+    text-align: center;
+    &__title{
+        font-family: $font-primary;
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 1.21052;
+    }
+    &__form-container{
+        padding: 32px 0;
+    }
+    &__form-container:focus-within &__form{
+        border: $border-black;
+    }
+    &__form-container:active &__form{
+        border: 1px solid $color-gray
+    }
+    &__form{
+        position: relative;
+        width: 378px;
+        border: 1px solid $color-gray;
+        border-radius: 4px; 
+        display: flex;
+        justify-content: space-around;
+        // align-items: center;
+        &__input{
+            padding: 18.5px 0 18.5px 0;
+            border: none;
+            outline: none;
+            width: 306px;
+            &::placeholder{
+                font-family: $font-primary;
+                font-size: 16px;
+                line-height: 1.1875;
+            }
+        }
+        &__button{
+            border: none;
+            background: none;
+            // &:hover .projects-section__form-submit__icon{
+            //     fill: red;
+            // }
+        }
+    }
+    &__form-submit{
+        background-color: #f1f1f1;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        &__icon{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            align-self: center;
+            // &:hover{
+            //     fill: red;
+            // }
+        }
+    }
+    // $breakpoint-phone: 320px;
+    // $breakpoint-tablet: 768px;
+    // $breakpoint-laptop: 1200px;
+    &__projects-container{
+        display: grid;
+        // flex-wrap: wrap;
+        gap: 32px;
+        grid-template-columns: repeat(3,1fr);
+        padding-bottom: 32px;
+        // @media (min-width: $breakpoint-phone) {
+        //         grid-template-columns: repeat(1,1fr);
+        //     }
+        // @media (min-width: $breakpoint-tablet) {
+        //     grid-template-columns: repeat(2,1fr);
+        // }
+        // @media (min-width: $breakpoint-laptop) {
+        //     grid-template-columns: repeat(3,1fr);
+        // }
+    }
+    &__projects-item{
+        width: 378px;
+        height: 464px;
+        color: $color-white;
+        position: relative;
+        padding: 24px;
+        &__container{
+            text-align: left;
+        }
+        &__title{
+            width: 330px;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 24px;
+            text-align: left;
+            position: absolute;
+            top: 218px;
+        }
+        &__link{
+            color: $color-white;
+            text-decoration: none;
+            text-align: left;
+            position: absolute;
+            top: 273px;
+        }
+        &__state{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            // background: #74BE4F;
+        }
+        &__state-container{
+            width: 157px;
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border: 1px solid rgba(252, 252, 252, 0.5);
+            border-radius: 4px;
+            
+        }
+    }
+    &__info{
+        &__list{
+            display: flex;
+            position: absolute;
+            top: 313px;
+            flex-direction: column;
+            gap: 8px;
+        }
+        &__list-item{
+            width: 330px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // position: absolute;
+            // top: 313px;
+            &__icon{
+                width: 24px;
+                height: 24px;
+            }
+            &__level-container{
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+            }
+            &__level{
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 1.5px solid $color-white;
+                // background-color: $color-white;
+            }
+        }
+    }
+    &__team{
+        position: absolute;
+        top: 409px;
+        padding: 0px 0px 4px;
+        border-bottom: 1px solid #FCFCFC;
+        cursor: pointer;
+        &__btn{
+            font-family: $font-primary;
+            color: $color-white;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 135%;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    &__load-more{
+        font-family: $font-primary;
+        font-size: 20px;
+        line-height: 24px;
+        background:none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 32px;
+        cursor: pointer;
+        &__container{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+.completed{
+    background: #74BE4F;
+}
+.under-development{
+    background: #EBCF3C;
+}
+.formation-of-the-team{
+    background: #EB903C;
+}
+.active{
+    background-color: $color-white;
+}
+// .projects-section__form__button:hover .projects-section__form-submit__icon {
+//     fill: red;
+//     background-color: rebeccapurple;
+//   }
