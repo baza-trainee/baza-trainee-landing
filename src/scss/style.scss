@@ -5,15 +5,14 @@
 @import 'base/base';
 
 @import 'layout/header';
-@import 'layout/slider';
-
-@import 'projectsSection/projectsSection';
-  
+@import 'layout/slider';  
 @import 'layout/statistic';
 @import 'layout/forms';
 @import 'layout/achievements';
-
-
-
 @import 'layout/reviews';
+
+@import 'projectsSection/projectsSection';
+@import './footer/footer';
+@import 'errorPage/errorPage.scss';
+
 
