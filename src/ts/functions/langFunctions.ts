@@ -10,7 +10,7 @@ export function langMenuToggle(): void {
       activeLangBtn.innerHTML = `<span>${textActiveLangBtn}</span> ${arrowActiveLangBtn}`;
 
       const [arrow] = activeLangBtn.children[1].children;
-      arrow.setAttribute('href', '/img/sprite.svg#arrow-top');
+      arrow.setAttribute('href', 'img/sprite.svg#arrow-top');
 
       langList.classList.add('header__lang-list--visible');
     } else {
@@ -20,7 +20,7 @@ export function langMenuToggle(): void {
       )} ${arrowActiveLangBtn}`;
 
       const [arrow] = activeLangBtn.children[0].children;
-      arrow.setAttribute('href', '/img/sprite.svg#arrow-bottom');
+      arrow.setAttribute('href', 'img/sprite.svg#arrow-bottom');
       
       langList.classList.remove('header__lang-list--visible');
     }
