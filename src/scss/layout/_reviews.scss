@@ -7,23 +7,20 @@
 }
 
 .slider_container {
-  max-width: 1200px;
-  margin: 120px auto;
-  text-align: center;
-
+  margin: 12rem auto;
   h3 {
-    margin-bottom: 32px;
+    margin-bottom: 3.2rem;
     font-family: $font-primary;
     font-style: normal;
     font-weight: 700;
-    font-size: 38px;
-    line-height: 46px;
+    font-size: 3.8rem;
+    line-height: 4.6rem;
     text-align: center;
     color: $color-black;
   }
 
   .user_info {
-    margin: 0 48px;
+    margin: 0 4.8rem;
   }
 
   .user_name,
@@ -33,8 +30,8 @@
     font-family: $font-secondary;
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 2rem;
+    line-height: 2.4rem;
     color: $color-black;
   }
 
@@ -42,7 +39,7 @@
     font-family: $font-secondary;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 140%;
     color: $color-black;
     text-align: left;
@@ -56,18 +53,18 @@
 
 .slider {
   position: relative;
-  padding: 0 170px;
+  padding: 0 17rem;
 
   .slick-arrow {
     position: absolute;
     top: 50%;
     z-index: 10;
     font-size: 0;
-    width: 15px;
-    height: 26px;
+    width: 1.5rem;
+    height: 2.6rem;
     border: none;
     cursor: pointer;
-    margin-top: -50px;
+    margin-top: -5rem;
   }
 
   .slick-arrow.slick-prev {
@@ -87,12 +84,12 @@
 
     li {
       list-style: none;
-      margin: 40px 4px 0 4px;
+      margin: 4rem 0.4rem 0 0.4rem;
 
       button {
         font-size: 0;
-        width: 10px;
-        height: 10px;
+        width: 1rem;
+        height: 1rem;
         background-color: $color-black;
         border-radius: 50%;
         cursor: pointer;
@@ -101,8 +98,8 @@
     }
 
     li.slick-active button {
-      width: 14px;
-      height: 14px;
+      width: 1.4rem;
+      height: 1.4rem;
       background: $color-accent;
       border: none;
     }
@@ -110,8 +107,8 @@
 }
 
 .slider_item img {
-  width: 115px;
-  height: 115px;
+  width: 11.5rem;
+  height: 11.5rem;
   border-radius: 50%;
   object-fit: cover;
   text-align: center;
