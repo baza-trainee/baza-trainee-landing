@@ -1,29 +1,24 @@
-.partners_style{
-    // display: flex;
-    // flex-direction: column;
-    padding-top: 12rem;
-    padding-bottom: 12rem;
-
+.partner{
+    margin-top: 12rem;
 }
 
 .partner_title{
     text-align: center;
-    font-weight: 700;
-    font-size: 38px;
-    margin-bottom: 32px;
+    font-size: 3.8rem;
+    margin-bottom: 3.2rem;
 }
 
 .partner_list{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 32px;
-    margin-bottom: 32px;
+    gap: 3.2rem;
+    margin-bottom: 3.2rem;
 
 }
 
 .partner_item{
-    width: calc((100% - 128px) / 5);
+    width: calc((100% - 12.8rem) / 5);
     height: 100px;
     background-color: #D9D9D9;
 
@@ -32,13 +27,11 @@
 .partner_link{
     display: block;
     width: 100%;
-    height: 100%;
-    background-color: #D9D9D9;
-    
+    height: 100%;  
 }
 
 .add_more{
-    height:64px;
+    height:6.4rem;
     width:fit-content;
     border-style: none;
     background-color: #fff;
@@ -46,8 +39,12 @@
     margin: 0 auto;
     display: block;
     position: relative;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
 
         
     &:hover,
@@ -59,11 +56,11 @@
         content: "";
         display: inline-block;
         width: 100%;
-        height: 1px;
+        height: 0.1rem;
         background-color: #121212;
         position: absolute;
         left: 0;
-        bottom: 15px;
+        bottom: 3.8rem;
         transform: scaleX(0);
         transition: all 0.3s ease-in;
 
