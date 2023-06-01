@@ -1,6 +1,8 @@
-import { langMenuToggle } from './functions/langFunctions';
-import { sliderStart } from './functions/helpers';
+import { langMenuToggle } from './functions/languages';
+import { sliderMainStart, sliderReviewsStart } from './functions/helpers';
 
 langMenuToggle();
 
-sliderStart();
+sliderMainStart();
+
+sliderReviewsStart();

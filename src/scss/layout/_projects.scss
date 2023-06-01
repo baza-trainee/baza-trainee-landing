@@ -1,0 +1,171 @@
+.projects-section{
+    padding-top: 12rem;
+    text-align: center;
+    &__title{
+        font-family: $font-primary;
+        font-weight: 700;
+        font-size: 3.8rem;
+        line-height: 1.21052;
+    }
+    &__form-container{
+        padding: 3.2rem 0;
+    }
+    &__form-container:focus-within &__form{
+        border: $border-black;
+    }
+    &__form-container:active &__form{
+        border: $border-gray;
+    }
+    &__form{
+        position: relative;
+        width: 37.8rem;
+        border: $border-gray;
+        border-radius: 0.4rem; 
+        display: flex;
+        justify-content: space-around;
+        &__input{
+            padding: 1.85rem 0 1.85rem 0;
+            border: none;
+            outline: none;
+            width: 30.6rem;
+            &::placeholder{
+                font-family: $font-primary;
+                font-size: 1.6rem;
+                line-height: 1.1875;
+            }
+        }
+        &__button{
+            border: none;
+            background: none;
+        }
+        &__icon{
+            width: 2.4rem;
+            height: 2.4rem;
+            cursor: pointer;
+            align-self: center;
+        }
+    }
+    &__projects-container{
+        display: grid;
+        gap: 3.2rem;
+        grid-template-columns: repeat(3,1fr);
+        padding-bottom: 3.2rem;
+    }
+    &__projects-item{
+        width: 37.8rem;
+        height: 46.4rem;
+        color: $color-white;
+        position: relative;
+        padding: 2.4rem;
+        &__container{
+            text-align: left;
+        }
+        &__title{
+            width: 33rem;
+            font-weight: 700;
+            font-size: 2.4rem;
+            line-height: 1;
+            text-align: left;
+            position: absolute;
+            top: 21.8rem;
+        }
+        &__link{
+            color: $color-white;
+            text-decoration: none;
+            text-align: left;
+            position: absolute;
+            top: 27.3rem;
+        }
+        &__state{
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+        }
+        &__state-container{
+            width: 15.7rem;
+            padding: 0.8rem 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border: $border-gray-light;
+            border-radius: 0.4rem;
+            
+        }
+    }
+    &__info{
+        &__list{
+            display: flex;
+            position: absolute;
+            top: 31.3rem;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        &__list-item{
+            width: 33rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &__icon{
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+            &__level-container{
+                display: flex;
+                flex-direction: row;
+                gap: 0.4rem;
+            }
+            &__level{
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                border: $border-white;
+            }
+        }
+    }
+    &__team{
+        position: absolute;
+        top: 40.9rem;
+        padding: 0rem 0rem 0.4rem;
+        border-bottom: $border-white;
+        cursor: pointer;
+        &__btn{
+            font-family: $font-primary;
+            color: $color-white;
+            font-weight: 500;
+            font-size: 2rem;
+            line-height: 1.35;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    &__load-more{
+        font-family: $font-primary;
+        font-size: 2rem;
+        line-height: 1.2;
+        background:none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        padding-bottom: 3.2rem;
+        cursor: pointer;
+        &__container{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+.completed{
+    background: $color-completed;
+}
+.under-development{
+    background: $color-in-progress;
+}
+.formation-of-the-team{
+    background: $color-started;
+}
+.active{
+    background-color: $color-white;
+}
