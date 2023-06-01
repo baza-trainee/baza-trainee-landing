@@ -47,6 +47,7 @@
 
 	&-social {
 		display: flex;
+		flex-wrap: wrap;
 	}
 
 	&-link {
@@ -89,6 +90,9 @@
 
 	&-social:nth-child(n+2) {
 		margin-left: 2rem;
+	}
+	&-social:nth-child(4n+1) {
+		margin-left: 0;
 	}
 }
 
