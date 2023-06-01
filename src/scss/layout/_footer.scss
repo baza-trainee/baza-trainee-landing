@@ -1,7 +1,7 @@
 .footer {
 	background-color: $color-black-light;
 	color: $color-white;
-	padding: 4rem 12rem 3rem 12rem;
+	padding: 4rem 0 3rem 0;
 }
 
 .footer__wrapper {
@@ -33,7 +33,6 @@
 
 .footer__list {
 	display: block;
-	width: 27.6rem;
 
 	// удалить после нормалайза
 	list-style:none;
