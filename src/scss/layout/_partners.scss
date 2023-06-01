@@ -15,29 +15,26 @@
 
 .partner_list{
     display: flex;
-    // justify-content: space-between;
-    // flex-wrap: wrap;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 32px;
-    // padding-left: 0;
     margin-bottom: 32px;
 
 }
 
 .partner_item{
-    width: calc((100% - 240px) / 4);
+    width: calc((100% - 128px) / 5);
     height: 100px;
-    // margin-right: auto; 
-    // margin-left: auto;
     background-color: #D9D9D9;
 
 }
 
 .partner_link{
     display: block;
-    // width: 50px;
-    // height: 100px;
-    // width: calc((100% - 240px) / 5);
-
+    width: 100%;
+    height: 100%;
+    background-color: #D9D9D9;
+    
 }
 
 .add_more{
@@ -49,12 +46,13 @@
     margin: 0 auto;
     display: block;
     position: relative;
+    font-size: 20px;
+    line-height: 24px;
 
         
     &:hover,
     &:focus {
-        color: blue;
-        // background-color:aqua;
+        transform: scale(1.05);
     }
 
     &::after{
@@ -65,9 +63,13 @@
         background-color: #121212;
         position: absolute;
         left: 0;
-        bottom: -5px;
+        bottom: 15px;
         transform: scaleX(0);
         transition: all 0.3s ease-in;
+
     }
-    
+
+    &:hover::after {
+        transform: scaleX(1);
+      }
 }
