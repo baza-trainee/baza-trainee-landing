@@ -5,13 +5,13 @@ $button-hover-bg-color: #ffbd00;
 $button-active-bg-color: #fd9b00;
 $button-disabled-bg-color: #767676;
 
-.errorPage {
+.error {
   padding: 10rem 0;
   color: $font-primary-color;
   font-family: $font-primary;
 }
 
-.errorPage__digits {
+.error__digits {
   margin: 0 auto 3.2rem;
   padding: 0;
   text-align: center;
@@ -20,7 +20,7 @@ $button-disabled-bg-color: #767676;
   font-weight: 700;
 }
 
-.errorPage__title {
+.error__title {
   margin: 0 auto 0.8rem;
   padding: 0;
   text-align: center;
@@ -30,7 +30,7 @@ $button-disabled-bg-color: #767676;
   text-transform: uppercase;
 }
 
-.errorPage__description {
+.error__description {
   margin: 0 auto 3.1rem;
   padding: 0;
   text-align: center;
@@ -40,7 +40,7 @@ $button-disabled-bg-color: #767676;
 
   color: $font-secondary-color;
 }
-.errorPage__back-home-link {
+.error__back-home-link {
   display: block;
   max-width: 37.8rem;
   margin: 0 auto;

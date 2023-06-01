@@ -1,7 +1,7 @@
 .footer {
 	background-color: #232323;
 	color: $color-white;
-	padding: 40px 120px 30px 120px;
+	padding: 4rem 12rem 3rem 12rem;
 }
 
 .footer__wrapper {
@@ -11,24 +11,24 @@
 
 .footer__section {
 	&:nth-child(n+2) {
-		margin-left: 32px;
+		margin-left: 3.2rem;
 	}
 }
 
 .logo {
-	width: 120px;
-	height: 120px;
+	width: 12rem;
+	height: 12rem;
 	display: block;
 	
 	&-svg {
-		width: 120px;
-		height: 120px;
+		width: 12rem;
+		height: 12rem;
 	}
 }
 
 .footer__list {
 	display: block;
-	width: 276px;
+	width: 27.6rem;
 
 	// удалить после нормалайза
 	list-style:none;
@@ -50,8 +50,8 @@
 }
 
 .footer__list-item-svg {
-	width: 25px;
-	height: 22px;
+	width: 2.5rem;
+	height: 2.2rem;
 	margin-right: 0.5rem;
 }
 
@@ -83,8 +83,8 @@
 }
 
 .footer__social-link {
-	width: 48px;
-	height: 48px;
+	width: 4.8rem;
+	height: 4.8rem;
 	display: block;
 
 	&:hover {

@@ -3,7 +3,10 @@ export function langMenuToggle(): void {
   const langList = document.querySelector('#lang-list')!;
 
   activeLangBtn.addEventListener('click', () => {
+    console.log(activeLangBtn.innerHTML);
+
     const [textActiveLangBtn, arrowActiveLangBtn] = activeLangBtn.innerHTML
+      .replace(/\s+/g, ' ')
       .trim()
       .split(/\s(.+)/);
     if (!langList.classList.contains('header__lang-list--visible')) {
@@ -21,7 +24,7 @@ export function langMenuToggle(): void {
 
       const [arrow] = activeLangBtn.children[0].children;
       arrow.setAttribute('href', 'img/sprite.svg#arrow-bottom');
-      
+
       langList.classList.remove('header__lang-list--visible');
     }
   });

@@ -1,4 +1,4 @@
-export function sliderStart(): void {
+export function sliderMainStart(): void {
   $('.slider-section__carousel').slick({
     dots: true,
     infinite: false,
@@ -23,4 +23,14 @@ function changeBtnsWidth() {
   } else {
     btnsBlock.css('width', '1200px');
   }
+}
+
+export function sliderReviewsStart(): void {
+  $('.slider').slick({
+    dots: true,
+    adaptiveHeight: true,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 5000,
+  });
 }
