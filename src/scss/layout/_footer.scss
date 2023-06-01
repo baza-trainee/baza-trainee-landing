@@ -4,13 +4,13 @@
 	padding: 4rem 0 3rem 0;
 }
 
-.footer__wrapper {
+.footer-wrapper {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
 
-.footer__section {
+.footer-section {
 	overflow: hidden;
 	flex-wrap: wrap;
 	padding-bottom: 3.2rem;
@@ -20,18 +20,18 @@
 	}
 }
 
-.footer__logo {
+.footer-logo {
 	width: 12rem;
 	height: 12rem;
 	display: block;
 	
-	&-svg {
+	&__svg {
 		width: 12rem;
 		height: 12rem;
 	}
 }
 
-.footer__list {
+.footer-list {
 	display: block;
 
 	// удалить после нормалайза
@@ -40,16 +40,23 @@
 	padding: 0;
 	// ============
 
-	&-contacts {
-		margin-bottom: 2rem;
+	&__item {
+		margin: 0.5rem 0;
+	
+		&--contacts{ 
+			display: flex;
+			align-items: center;
+		}
+	
+		&--social:nth-child(n+2) {
+			margin-left: 2rem;
+		}
+		&--social:nth-child(4n+1) {
+			margin-left: 0;
+		}
 	}
-
-	&-social {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	&-link {
+	
+	&__link {
 		text-decoration: none;
 		color: $color-white;
 	
@@ -67,48 +74,41 @@
 		}
 	}
 
-}
-
-.footer__item {
-	margin: 0.5rem 0;
-
-	&-svg {
+	&__icon {
 		width: 2.5rem;
 		height: 2.2rem;
 		margin-right: 0.5rem;
 	}
 
-	&-span {
+	&__text {
 		width: 100%;
 	}
 
-	&-contacts{ 
-		display: flex;
-		align-items: center;
+	&--contacts {
+		margin-bottom: 2rem;
 	}
 
-	&-social:nth-child(n+2) {
-		margin-left: 2rem;
-	}
-	&-social:nth-child(4n+1) {
-		margin-left: 0;
+	&--social {
+		display: flex;
+		flex-wrap: wrap;
 	}
 }
 
-.footer__social-link {
+
+.footer-social-link {
 	width: 4.8rem;
 	height: 4.8rem;
 	display: block;
 
 	&:hover {
-		.footer__social-link-svg {fill: $color-in-progress;}
+		.footer-social-link__svg {fill: $color-in-progress;}
 	}
 
 	&:active {
-		.footer__social-link-svg {fill: $color-started;}
+		.footer-social-link__svg {fill: $color-started;}
 	}
 
-	&-svg {
+	&__svg {
 		fill:$color-accent;
 		width: 5rem;
 		height: 5rem;
