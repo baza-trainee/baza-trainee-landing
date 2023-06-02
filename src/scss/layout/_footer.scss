@@ -1,34 +1,38 @@
 .footer {
-	background-color: #232323;
+	background-color: $color-black-light;
 	color: $color-white;
-	padding: 4rem 12rem 3rem 12rem;
+	padding: 4rem 0 3rem 0;
 }
 
-.footer__wrapper {
+.footer-wrapper {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
-.footer__section {
+.footer-section {
+	overflow: hidden;
+	flex-wrap: wrap;
+	padding-bottom: 3.2rem;
+
 	&:nth-child(n+2) {
 		margin-left: 3.2rem;
 	}
 }
 
-.logo {
+.footer-logo {
 	width: 12rem;
 	height: 12rem;
 	display: block;
 	
-	&-svg {
+	&__svg {
 		width: 12rem;
 		height: 12rem;
 	}
 }
 
-.footer__list {
+.footer-list {
 	display: block;
-	width: 27.6rem;
 
 	// удалить после нормалайза
 	list-style:none;
@@ -36,72 +40,82 @@
 	padding: 0;
 	// ============
 
-	&-contacts {
+	&__item {
+		margin: 0.5rem 0;
+	
+		&--contacts{ 
+			display: flex;
+			align-items: center;
+		}
+	
+		&--social:nth-child(n+2) {
+			margin-left: 2rem;
+		}
+		&--social:nth-child(4n+1) {
+			margin-left: 0;
+		}
+	}
+	
+	&__link {
+		text-decoration: none;
+		color: $color-white;
+	
+	
+		&:hover	{
+			color: $color-in-progress;
+		}
+		&:active {
+			color: $color-started;
+		}
+	
+	
+		&.underline {
+			text-decoration: underline ;
+		}
+	}
+
+	&__icon {
+		width: 2.5rem;
+		height: 2.2rem;
+		margin-right: 0.5rem;
+	}
+
+	&__text {
+		width: 100%;
+	}
+
+	&--contacts {
 		margin-bottom: 2rem;
 	}
 
-	&-social {
+	&--social {
 		display: flex;
+		flex-wrap: wrap;
 	}
 }
 
-.footer__list-item {
-	margin: 0.5rem 0;
-}
 
-.footer__list-item-svg {
-	width: 2.5rem;
-	height: 2.2rem;
-	margin-right: 0.5rem;
-}
-
-.footer__item-contacts{ 
-	display: flex;
-	align-items: center;
-}
-
-.footer__item-social:nth-child(n+2) {
-	margin-left: 2rem;
-}
-
-.footer__list-link {
-	text-decoration: none;
-	color: $color-white;
-
-
-	&:hover	{
-		color: #FFBD00;
-	}
-	&:active {
-		color: #FD9B00;
-	}
-
-
-	&.underline {
-		text-decoration: underline ;
-	}
-}
-
-.footer__social-link {
+.footer-social-link {
 	width: 4.8rem;
 	height: 4.8rem;
 	display: block;
 
 	&:hover {
-		.footer__social {fill: $color-in-progress;}
+		.footer-social-link__svg {fill: $color-in-progress;}
 	}
 
 	&:active {
-		.footer__social {fill: $color-started;}
+		.footer-social-link__svg {fill: $color-started;}
+	}
+
+	&__svg {
+		fill:$color-accent;
+		width: 5rem;
+		height: 5rem;
+	
 	}
 }
 
-.footer__social {
-	fill:$color-accent;
-	width: 5rem;
-	height: 5rem;
-}
-
 .footer__license {
-	color: #CECECE;
+	color: $color-gray;
 }
