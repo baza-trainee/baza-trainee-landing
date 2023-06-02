@@ -7,17 +7,6 @@ export function achievementsCounters() {
     threshold: 0.5,
   };
 
-  // let observer = new IntersectionObserver((entries, observer) => {
-  //   entries.forEach((entry) => {
-  //     if (entry.isIntersecting) {
-  //       animate(counterProjects, 200);
-  //       animate(counterMembers, 0.1);
-  //       animate(counterEmployed, 1);
-  //       observer.unobserve(entry.target);
-  //     }
-  //   });
-  // }, options);
-
   let observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
