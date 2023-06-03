@@ -11,12 +11,12 @@ teamButtons.forEach((button) =>{
                         if (projectInfo) {
                             const content = project.querySelector(".projects-section__projects-item-container") as HTMLElement;
                             
-                            projectInfo.style.top = '-464px';
+                            projectInfo.style.top = '-46.4rem';
                             content.style.display = "none";
                             openProject = project;
                             if(closeButton){
                                     closeButton.addEventListener("click", ()=>{
-                                    projectInfo.style.top = '77px';
+                                    projectInfo.style.top = '7.7rem';
                                     content.style.display= "block";
                                 })
                         }}
