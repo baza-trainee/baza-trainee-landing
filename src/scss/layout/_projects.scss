@@ -199,10 +199,13 @@
         margin-bottom: 1.6rem;
     }
     &__container{
-        overflow: auto; 
-        width: 33rem; 
-        height: 38rem;
+        text-align: left;
+        overflow: auto;
+        width: 33rem;
+        height: 36.4rem;
+        position: relative;
         cursor: pointer;
+        scrollbar-width: 0.8rem;
         &__body{
             cursor: auto;
             &__title{
@@ -226,36 +229,19 @@
                 color: $color-accent;
             }
         }
-    }
-    &__container{
-        text-align: left;
-        overflow: auto;
-        width: 33rem;
-        height: 36.4rem;
-        position: relative;
         &::-webkit-scrollbar {
             width: 0.8rem;
           }
           &::-webkit-scrollbar-track {
             background: $linear-gradient-white;
           }
-          ::-webkit-scrollbar-thumb {
+          &::-webkit-scrollbar-thumb {
             background: $color-white;
             border-radius: 0.4rem;
           }
     }
 }
 
-    /* Firefox */
-    .thumb__container {
-        scrollbar-width: 0.8rem;
-    }
+
         
-    .thumb__container::-webkit-scrollbar-thumb {
-        background: $color-white;
-        border-radius: 0.4rem;
-    }
   
-  .thumb__container::-webkit-scrollbar-track {
-        background: $linear-gradient-white;
-    }
