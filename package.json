@@ -5,7 +5,7 @@
   "homepage": "https://github.com/baza-trainee/baza-trainee-landing",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && cp -r !(*old*) .next",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
