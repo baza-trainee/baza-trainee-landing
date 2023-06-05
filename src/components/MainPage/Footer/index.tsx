@@ -1,96 +1,122 @@
+import styles from './styles.module.scss';
+
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       <div className="container">
-        <div className="footer-wrapper">
-          <div className="footer-section">
-            <a href="#header" className="footer-logo">
-              <svg className="footer-logo__svg">
+        <div className={styles['footer-wrapper']}>
+          <div className={styles['footer-section']}>
+            <a href="#header" className={styles['footer-logo']}>
+              <svg className={styles['footer-logo__svg']}>
                 <use href="@img/sprite.svg#logo-footer"></use>
               </svg>
             </a>
           </div>
 
-          <div className="footer-section">
-            <ul className="footer-list">
-              <li className="footer-list__item">
-                <a href="#projects" className="footer-list__link">
+          <div className={styles['footer-section']}>
+            <ul className={styles['footer-list']}>
+              <li className={styles['footer-list__item']}>
+                <a href="#projects" className={styles['footer-list__link']}>
                   Проєкти
                 </a>
               </li>
-              <li className="footer-list__item">
-                <a href="#partners" className="footer-list__link">
+              <li className={styles['footer-list__item']}>
+                <a href="#partners" className={styles['footer-list__link']}>
                   Партнери
                 </a>
               </li>
-              <li className="footer-list__item">
-                <a href="#forms" className="footer-list__link">
+              <li className={styles['footer-list__item']}>
+                <a href="#forms" className={styles['footer-list__link']}>
                   Взяти участь
                 </a>
               </li>
             </ul>
           </div>
 
-          <div className="footer-section">
-            <ul className="footer-list">
-              <li className="footer-list__item">
-                <a href="" className="footer-list__link underline ">
+          <div className={styles['footer-section']}>
+            <ul className={styles['footer-list']}>
+              <li className={styles['footer-list__item']}>
+                <a
+                  href=""
+                  className={`${styles['footer-list__link']} underline`}
+                >
                   Політика конфіденційності
                 </a>
               </li>
-              <li className="footer-list__item">
-                <a href="" className="footer-list__link underline ">
+              <li className={styles['footer-list__item']}>
+                <a
+                  href=""
+                  className={`${styles['footer-list__link']} underline`}
+                >
                   Правила користування сайтом
                 </a>
               </li>
-              <li className="footer-list__item">
-                <a href="" className="footer-list__link">
+              <li className={styles['footer-list__item']}>
+                <a href="" className={styles['footer-list__link']}>
                   Статут
                 </a>
               </li>
-              <li className="footer-list__item">
-                <a href="" className="footer-list__link">
+              <li className={styles['footer-list__item']}>
+                <a href="" className={styles['footer-list__link']}>
                   Звітність
                 </a>
               </li>
             </ul>
           </div>
 
-          <div className="footer-section">
-            <ul className="footer-list footer-list--contacts">
-              <li className="footer-list__item footer-list__item--contacts">
-                <svg className="footer-list__icon">
+          <div className={styles['footer-section']}>
+            <ul
+              className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
+            >
+              <li
+                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+              >
+                <svg className={styles['footer-list__icon']}>
                   <use href="@img/sprite.svg#phone"></use>
                 </svg>
-                <span className="footer-list__text">+38 063 628 6630</span>
+                <span className={styles['footer-list__text']}>
+                  +38 063 628 6630
+                </span>
               </li>
-              <li className="footer-list__item footer-list__item--contacts">
-                <svg className="footer-list__icon">
+              <li
+                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+              >
+                <svg className={styles['footer-list__icon']}>
                   <use href="@img/sprite.svg#phone"></use>
                 </svg>
-                <span className="footer-list__text">+38 067 568 1788</span>
+                <span className={styles['footer-list__text']}>
+                  +38 067 568 1788
+                </span>
               </li>
-              <li className="footer-list__item footer-list__item--contacts">
-                <svg className="footer-list__icon">
+              <li
+                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+              >
+                <svg className={styles['footer-list__icon']}>
                   <use href="@img/sprite.svg#mail"></use>
                 </svg>
-                <span className="footer-list__text">
+                <span className={styles['footer-list__text']}>
                   info@baza-trainee.site
                 </span>
               </li>
             </ul>
 
-            <ul className="footer-list footer-list--social">
-              <li className="footer-list__item--social footer-list__item">
-                <a href="" className="footer-social-link">
-                  <svg className="footer-social-link__svg">
+            <ul
+              className={`${styles['footer-list']} ${styles['footer-list--social']}`}
+            >
+              <li
+                className={`${styles['footer-list__item--social']} ${styles['footer-list__item']}`}
+              >
+                <a href="" className={styles['footer-social-link']}>
+                  <svg className={styles['footer-social-link__svg']}>
                     <use href="@img/sprite.svg#linkedIn"></use>
                   </svg>
                 </a>
               </li>
-              <li className="footer-list__item--social footer-list__item">
-                <a href="" className="footer-social-link">
-                  <svg className="footer-social-link__svg">
+              <li
+                className={`${styles['footer-list__item--social']} ${styles['footer-list__item']}`}
+              >
+                <a href="" className={styles['footer-social-link']}>
+                  <svg className={styles['footer-social-link__svg']}>
                     <use href="@img/sprite.svg#fb"></use>
                   </svg>
                 </a>
@@ -98,9 +124,8 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <p className="footer__license">
-          {' '}
-          Розробка BazaTraineeUkraine 2023 Усі права захищені.{' '}
+        <p className={styles['footer__license']}>
+          Розробка BazaTraineeUkraine 2023 Усі права захищені.
         </p>
       </div>
     </footer>

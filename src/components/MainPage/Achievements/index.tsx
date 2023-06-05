@@ -1,4 +1,5 @@
 import styles from './styles.module.scss';
+
 const Achievements = () => {
   return (
     <section className={styles.achievements}>
@@ -8,7 +9,7 @@ const Achievements = () => {
             <p className={styles.achievements__number}>
               <span counter-num="7">0</span>
             </p>
-            <p className={styles.achievements__text}>Виконанних проєктів</p>
+            <p className={styles.achievements__text}>Виконаних проєктів</p>
           </li>
           <li className={styles.achievements__item}>
             <p className={styles.achievements__number}>
