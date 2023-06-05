@@ -1,33 +1,36 @@
+'use client';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import Slide from './slide';
 import { slides } from './slides';
 import styles from './styles.module.scss';
 
-const Slider = () => {
+export type TSlide = {
+  image: string;
+  title: string;
+  description: string;
+};
+
+const HeroSlider = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <section className={styles['slider-section']}>
       <div
         className={styles['slider-section__carousel']}
         id="slider-section-carousel"
       >
-        {slides.map((slide, index) => (
-          <div
-            className={styles['slider-section__slide']}
-            key={index}
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
-            <div
-              className={`container ${styles['slider-section__slide-container']}`}
-            >
-              <div className={styles['slider-section__content']}>
-                <h2 className={`h2 ${styles['h2--white']}`}>{slide.title}</h2>
-                <p
-                  className={`sub-heading--white ${styles['sub-heading--white']}`}
-                >
-                  {slide.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
+        <Slider {...settings}>
+          {slides.map((slide: TSlide) => (
+            <Slide key={slide.title} slideData={slide} />
+          ))}
+        </Slider>
         <div className={styles['slider-section__buttons']}>
           <button className={styles['slider-section__btn-prev']}>
             <svg className={styles['slider-section__arrow-img']}>
@@ -55,4 +58,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default HeroSlider;
