@@ -121,12 +121,16 @@ h1 {
 
 h2 {
   font-size: 3.8rem;
+}
 
-  &--white {
-    color: $color-white;
-  }
+.h2--white {
+  color: $color-white;
+}
 
-  &--black {
-    color: $color-black;
-  }
+.h2--black {
+  color: $color-black;
+}
+
+.slick-arrow {
+  opacity: 1;
 }

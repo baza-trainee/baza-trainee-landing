@@ -1,4 +1,5 @@
 'use client';
+import SliderArrow from '@/components/common/SliderArrow';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -12,13 +13,58 @@ export type TSlide = {
   description: string;
 };
 
+function SampleNextArrow(props: { className: any; style: any; onClick: any }) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        right: '350px',
+        transform: 'scaleX(-1)',
+      }}
+      onClick={onClick}
+    >
+      <SliderArrow />
+    </div>
+  );
+}
+
+function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
+  const { className, style, onClick } = props;
+  console.log(props);
+  return (
+    <div
+      className={className}
+      style={{ ...style, left: '350px', zIndex: 1 }}
+      onClick={onClick}
+    >
+      <SliderArrow />
+    </div>
+  );
+}
+
 const HeroSlider = () => {
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: (
+      <SampleNextArrow
+        className={styles['slider-section__arrow-img']}
+        style={undefined}
+        onClick={undefined}
+      />
+    ),
+    prevArrow: (
+      <SamplePrevArrow
+        className={styles['slider-section__arrow-img']}
+        style={undefined}
+        onClick={undefined}
+      />
+    ),
   };
   return (
     <section className={styles['slider-section']}>
@@ -31,18 +77,6 @@ const HeroSlider = () => {
             <Slide key={slide.title} slideData={slide} />
           ))}
         </Slider>
-        <div className={styles['slider-section__buttons']}>
-          <button className={styles['slider-section__btn-prev']}>
-            <svg className={styles['slider-section__arrow-img']}>
-              <use href="@img/sprite.svg#arrow-left"></use>
-            </svg>
-          </button>
-          <button className={styles['slider-section__btn-next']}>
-            <svg className={styles['slider-section__arrow-img']}>
-              <use href="@img/sprite.svg#arrow-right"></use>
-            </svg>
-          </button>
-        </div>
       </div>
       <div className={styles['slider-section__actions']}>
         <div
@@ -54,6 +88,19 @@ const HeroSlider = () => {
           </button>
         </div>
       </div>
+      <style>
+        {`
+        .slick-next::before, .slick-prev::before {
+          content: none;
+        }
+        .slick-disabled {
+          opacity: 0;
+        }
+        .slick-active {
+
+        }
+      `}
+      </style>
     </section>
   );
 };
