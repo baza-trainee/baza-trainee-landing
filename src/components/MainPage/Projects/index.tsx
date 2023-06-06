@@ -5,7 +5,7 @@ const Projects = () => {
   return (
     <section className={styles['projects-section']} id="projects">
       {projects.map((project) => (
-        <div key={project.name}>{project.name}</div>
+        <div key={project.name}>Projects - TODO</div>
       ))}
     </section>
   );

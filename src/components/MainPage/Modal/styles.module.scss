@@ -1,7 +1,6 @@
-@import '../../../styles/abstracts/_variables.scss';
+@import '@/styles/abstracts/_variables.scss';
 
 .backdrop {
-  display: none; //To Do
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -14,7 +13,6 @@
 }
 
 .modal {
-  display: none; //To do
   width: 79.2rem;
   min-height: 67.8rem;
   padding: 10rem 6.8rem 9.8rem 6.8rem;
