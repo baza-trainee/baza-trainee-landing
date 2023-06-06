@@ -6,10 +6,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { id: 1, title: 'Проєкти', href: '#' },
-    { id: 2, title: 'Партнери', href: '#' },
-    { id: 3, title: 'Взяти участь', href: '#' },
-    { id: 4, title: 'Контакти', href: '#' },
+    { id: 1, title: 'Проєкти', href: '#projects' },
+    { id: 2, title: 'Партнери', href: '#partners' },
+    { id: 3, title: 'Взяти участь', href: '#forms' },
+    { id: 4, title: 'Контакти', href: '#footer' },
   ];
 
   const languageOptions = [
