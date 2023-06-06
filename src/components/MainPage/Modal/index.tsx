@@ -1,4 +1,4 @@
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
+import { Dispatch, MouseEvent, SetStateAction, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 const Modal = ({
@@ -13,6 +13,14 @@ const Modal = ({
   const handleInnerClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
+
+  useEffect(() => {
+    document.body.classList.add('disable-scroll');
+
+    return () => {
+      document.body.classList.remove('disable-scroll');
+    };
+  }, []);
 
   return (
     <section
