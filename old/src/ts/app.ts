@@ -1,11 +1,8 @@
-import { langMenuToggle } from './functions/languages';
 import { sliderMainStart, sliderReviewsStart } from './functions/helpers';
-import { achievementsCounters } from './functions/counter';
+import { langMenuToggle } from './functions/languages';
 
 langMenuToggle();
 
 sliderMainStart();
 
 sliderReviewsStart();
-
-achievementsCounters();
