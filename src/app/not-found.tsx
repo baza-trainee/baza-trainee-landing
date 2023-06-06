@@ -1,4 +1,4 @@
-import Page404 from '@/components/ErrorPage/Page404';
+import Page404 from '@/components/ErrorPages/Page404';
 
 const NotFound = () => <Page404 />;
 
