@@ -29,6 +29,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@types/next": "^9.0.0",
     "@types/react-slick": "^0.23.10",
     "husky": "^8.0.3",
     "prettier": "^2.8.8",

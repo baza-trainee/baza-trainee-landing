@@ -13,8 +13,9 @@ const Header = () => {
   ];
 
   const languageOptions = [
-    { id: 1, lang: 'EN' },
-    { id: 2, lang: 'PL' },
+    { id: 1, lang: 'UA' },
+    { id: 2, lang: 'EN' },
+    { id: 3, lang: 'PL' },
   ];
 
   const handleLanguageClick = (lang: string) => {
@@ -30,9 +31,11 @@ const Header = () => {
       <div className={`${styles.header__container} container`}>
         <div className={styles.header__logo}>
           <a href="/" className={styles['header__logo-link']}>
-            <svg className={styles['header__logo-img']}>
-              <use href="@img/sprite.svg#logo-black"></use>
-            </svg>
+            <img
+              className={styles['header__logo-img']}
+              src="/svg/logo-black.svg"
+              alt="Main logo"
+            />
           </a>
         </div>
         <ul className={styles['header__nav']}>
@@ -61,16 +64,18 @@ const Header = () => {
             }`}
             id="lang-list"
           >
-            {languageOptions.map((option) => (
-              <li key={option.id} className={styles['header__lang-elem']}>
-                <button
-                  className={styles['header__lang-btn']}
-                  onClick={() => handleLanguageClick(option.lang)}
-                >
-                  <span>{option.lang}</span>
-                </button>
-              </li>
-            ))}
+            {languageOptions
+              .filter((el) => el.lang !== activeLang)
+              .map((option) => (
+                <li key={option.id} className={styles['header__lang-elem']}>
+                  <button
+                    className={styles['header__lang-btn']}
+                    onClick={() => handleLanguageClick(option.lang)}
+                  >
+                    <span>{option.lang}</span>
+                  </button>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
