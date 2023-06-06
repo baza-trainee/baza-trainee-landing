@@ -11,21 +11,31 @@ const Achievements = () => {
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
-  const [isPlusVisible, setIsPlusVisible] = useState(false);
+  const [isCountFinish, setIsCountFinish] = useState(false);
 
-  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-    if (entries[0].isIntersecting) {
-      counterHandler(projectsCount, projects, setProjectsCount, () =>
-        setIsPlusVisible(true)
-      );
-      counterHandler(membersCount, members, setMembersCount);
-      counterHandler(haveJobCount, haveJob, setHaveJobCount);
-    }
-  };
+  const achievementData = [
+    { count: projectsCount, text: 'Виконаних проєктів' },
+    {
+      count: membersCount,
+      text: 'Залучених учасників',
+      plusVisible: isCountFinish,
+    },
+    { count: haveJobCount, text: 'Працевлаштовано' },
+  ];
 
   useEffect(() => {
     const options = {
-      threshold: 0.5,
+      threshold: 0.2,
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      if (entries[0].isIntersecting) {
+        counterHandler(projectsCount, projects, setProjectsCount, () =>
+          setIsCountFinish(true)
+        );
+        counterHandler(membersCount, members, setMembersCount);
+        counterHandler(haveJobCount, haveJob, setHaveJobCount);
+      }
     };
 
     const observer = new IntersectionObserver(handleIntersection, options);
@@ -39,30 +49,21 @@ const Achievements = () => {
         observer.unobserve(componentRef.current);
       }
     };
-  }, []);
+  }, [isCountFinish]);
+
   return (
     <section className={styles.achievements} ref={componentRef}>
       <div className="container">
         <ul className={styles.achievements__list}>
-          <li className={styles.achievements__item}>
-            <p className={styles.achievements__number}>
-              <span>{projectsCount}</span>
-            </p>
-            <p className={styles.achievements__text}>Виконаних проєктів</p>
-          </li>
-          <li className={styles.achievements__item}>
-            <p className={styles.achievements__number}>
-              <span>{membersCount}</span>
-              {isPlusVisible && '+'}
-            </p>
-            <p className={styles.achievements__text}>Залучених учасників</p>
-          </li>
-          <li className={styles.achievements__item}>
-            <p className={styles.achievements__number}>
-              <span>{haveJobCount}</span>
-            </p>
-            <p className={styles.achievements__text}>Працевлаштовано</p>
-          </li>
+          {achievementData.map((achievement, index) => (
+            <li key={index} className={styles.achievements__item}>
+              <p className={styles.achievements__number}>
+                <span>{achievement.count}</span>
+                {achievement.plusVisible && '+'}
+              </p>
+              <p className={styles.achievements__text}>{achievement.text}</p>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
