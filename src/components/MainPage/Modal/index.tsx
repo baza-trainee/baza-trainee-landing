@@ -1,13 +1,33 @@
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import styles from './styles.module.scss';
 
-const Modal = () => {
+const Modal = ({
+  setIsShowModal,
+}: {
+  setIsShowModal: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const modalCloseHandler = () => {
+    setIsShowModal((prev) => !prev);
+  };
+
+  const handleInnerClick = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+
   return (
-    <section className={`${styles.backdrop} ${styles['backdrop--is-hidden']}`}>
-      <div className={styles.modal}>
-        <button className={styles['modal__close-btn']} type="button">
-          <svg width="44" height="44">
-            <use href="@img/sprite.svg#Close" />
-          </svg>
+    <section
+      className={`${styles.backdrop} ${styles['backdrop--is-hidden']}`}
+      onClick={modalCloseHandler}
+    >
+      <div className={styles.modal} onClick={(e) => handleInnerClick(e)}>
+        <button type="button">
+          <img
+            src="/svg/close.svg"
+            width="44"
+            height="44"
+            className={styles['modal__close-btn']}
+            onClick={modalCloseHandler}
+          />
         </button>
         <div className={styles.donate}>
           <h2 className={styles['donate__title']}>
