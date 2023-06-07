@@ -15,6 +15,25 @@ const officialDocsList = [
   { id: 4, title: 'Звітність', href: '/' },
 ];
 
+const contactsDataList = [
+  { id: 1, type: 'phone', data: '+38 063 628 6630' },
+  { id: 2, type: 'phone', data: '+38 067 568 1788' },
+  { id: 3, type: 'mail', data: 'info@baza-trainee.site' },
+];
+
+const socialsMediaList = [
+  {
+    id: 1,
+    iconName: LinkedInIcon,
+    href: '/',
+  },
+  {
+    id: 2,
+    iconName: FacebookIcon,
+    href: '/',
+  },
+];
+
 const Footer = () => {
   return (
     <footer className={styles.footer} id="footer">
@@ -60,57 +79,33 @@ const Footer = () => {
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
             >
-              <li
-                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-              >
-                <img
-                  className={styles['footer-list__icon']}
-                  src="/svg/phone.svg"
-                  alt="phone icon"
-                />
-                <span className={styles['footer-list__text']}>
-                  +38 063 628 6630
-                </span>
-              </li>
-              <li
-                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-              >
-                <img
-                  className={styles['footer-list__icon']}
-                  src="/svg/phone.svg"
-                  alt="phone icon"
-                />
-                <span className={styles['footer-list__text']}>
-                  +38 067 568 1788
-                </span>
-              </li>
-              <li
-                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-              >
-                <img
-                  className={styles['footer-list__icon']}
-                  src="/svg/mail.svg"
-                  alt="mail icon"
-                />
-                <span className={styles['footer-list__text']}>
-                  info@baza-trainee.site
-                </span>
-              </li>
+              {contactsDataList.map(({ id, type, data }) => (
+                <li
+                  key={id}
+                  className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+                >
+                  <img
+                    className={styles['footer-list__icon']}
+                    src={`/svg/${type}.svg`}
+                    alt={`${type} icon`}
+                  />
+                  <span className={styles['footer-list__text']}>{data}</span>
+                </li>
+              ))}
             </ul>
 
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--social']}`}
             >
-              <li className={styles['footer-list__item--social']}>
-                <a href="" className={styles['footer-social-link']}>
-                  <LinkedInIcon className={styles['footer-social-link__svg']} />
-                </a>
-              </li>
-              <li className={styles['footer-list__item--social']}>
-                <a href="" className={styles['footer-social-link']}>
-                  <FacebookIcon className={styles['footer-social-link__svg']} />
-                </a>
-              </li>
+              {socialsMediaList.map(({ id, iconName: IconComponent, href }) => (
+                <li key={id} className={styles['footer-list__item--social']}>
+                  <a href={href} className={styles['footer-social-link']}>
+                    <IconComponent
+                      className={styles['footer-social-link__svg']}
+                    />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -119,11 +114,6 @@ const Footer = () => {
         </p>
       </div>
     </footer>
-    /*
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="./js/slick.min.js"></script>
-	<script src="./js/app.min.js"></script>*/
   );
 };
 
