@@ -1,13 +1,6 @@
-$font-primary-color: #121212;
-$font-secondary-color: #353535;
-$button-primary-bg-color: #ffd210;
-$button-hover-bg-color: #ffbd00;
-$button-active-bg-color: #fd9b00;
-$button-disabled-bg-color: #767676;
-
 .error {
   padding: 10rem 0;
-  color: $font-primary-color;
+  color: $color-black;
   font-family: $font-primary;
 }
 
@@ -38,7 +31,7 @@ $button-disabled-bg-color: #767676;
   line-height: 1.35;
   font-weight: 500;
 
-  color: $font-secondary-color;
+  color: $color-neutral-text;
 }
 .error__back-home-link {
   display: block;
@@ -54,14 +47,14 @@ $button-disabled-bg-color: #767676;
   text-decoration: none;
 
   color: inherit;
-  background-color: $button-primary-bg-color;
+  background-color: $color-accent;
 
   &:hover,
   &:focus {
-    background-color: $button-hover-bg-color;
+    background-color: $color-hover-btn;
   }
 
   &:active {
-    background-color: $button-active-bg-color;
+    background-color: $color-pressed-btn;
   }
 }
