@@ -1,5 +1,5 @@
-import FacebookIcon from '@/components/common/FacebookIcon';
-import LinkedInIcon from '@/components/common/LinkedInIcon';
+import FacebookIcon from '@/components/common/icons/FacebookIcon';
+import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
