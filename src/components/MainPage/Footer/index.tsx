@@ -1,5 +1,19 @@
-import SocialIcon from './socialIcon';
+import FacebookIcon from '@/components/common/FacebookIcon';
+import LinkedInIcon from '@/components/common/LinkedInIcon';
 import styles from './styles.module.scss';
+
+const anchoreLinksList = [
+  { id: 1, title: 'Проєкти', href: '#projects' },
+  { id: 2, title: 'Партнери', href: '#partners' },
+  { id: 3, title: 'Взяти участь', href: '#forms' },
+];
+
+const officialDocsList = [
+  { id: 1, title: 'Політика конфіденційності', href: '/' },
+  { id: 2, title: 'Правила користування сайтом', href: '/' },
+  { id: 3, title: 'Статут', href: '/' },
+  { id: 4, title: 'Звітність', href: '/' },
+];
 
 const Footer = () => {
   return (
@@ -17,52 +31,29 @@ const Footer = () => {
           </div>
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
-              <li className={styles['footer-list__item']}>
-                <a href="#projects" className={styles['footer-list__link']}>
-                  Проєкти
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="#partners" className={styles['footer-list__link']}>
-                  Партнери
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="#forms" className={styles['footer-list__link']}>
-                  Взяти участь
-                </a>
-              </li>
+              {anchoreLinksList.map(({ id, title, href }) => (
+                <li key={id} className={styles['footer-list__item']}>
+                  <a href={href} className={styles['footer-list__link']}>
+                    {title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
-              <li className={styles['footer-list__item']}>
-                <a
-                  href=""
-                  className={`${styles['footer-list__link']} underline`}
-                >
-                  Політика конфіденційності
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a
-                  href=""
-                  className={`${styles['footer-list__link']} underline`}
-                >
-                  Правила користування сайтом
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="" className={styles['footer-list__link']}>
-                  Статут
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="" className={styles['footer-list__link']}>
-                  Звітність
-                </a>
-              </li>
+              {officialDocsList.map(({ id, title, href }) => (
+                <li className={styles['footer-list__item']}>
+                  <a
+                    key={id}
+                    href={href}
+                    className={`${styles['footer-list__link']} underline`}
+                  >
+                    {title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -113,12 +104,12 @@ const Footer = () => {
             >
               <li className={styles['footer-list__item--social']}>
                 <a href="" className={styles['footer-social-link']}>
-                  <SocialIcon socialIconName="linkedIn" />
+                  <LinkedInIcon className={styles['footer-social-link__svg']} />
                 </a>
               </li>
               <li className={styles['footer-list__item--social']}>
                 <a href="" className={styles['footer-social-link']}>
-                  <SocialIcon socialIconName="facebook" />
+                  <FacebookIcon className={styles['footer-social-link__svg']} />
                 </a>
               </li>
             </ul>
