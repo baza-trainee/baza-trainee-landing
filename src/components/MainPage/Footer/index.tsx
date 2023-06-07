@@ -1,3 +1,4 @@
+import SocialIcon from './socialIcon';
 import styles from './styles.module.scss';
 
 const Footer = () => {
@@ -7,12 +8,13 @@ const Footer = () => {
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>
             <a href="#header" className={styles['footer-logo']}>
-              <svg className={styles['footer-logo__svg']}>
-                <use href="@img/sprite.svg#logo-footer"></use>
-              </svg>
+              <img
+                className={styles['footer-logo__svg']}
+                src="/svg/logo-footer.svg"
+                alt="Main logo"
+              />
             </a>
           </div>
-
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
               <li className={styles['footer-list__item']}>
@@ -71,9 +73,11 @@ const Footer = () => {
               <li
                 className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
               >
-                <svg className={styles['footer-list__icon']}>
-                  <use href="@/img/sprite.svg#phone"></use>
-                </svg>
+                <img
+                  className={styles['footer-list__icon']}
+                  src="/svg/phone.svg"
+                  alt="phone icon"
+                />
                 <span className={styles['footer-list__text']}>
                   +38 063 628 6630
                 </span>
@@ -81,9 +85,11 @@ const Footer = () => {
               <li
                 className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
               >
-                <svg className={styles['footer-list__icon']}>
-                  <use href="~@/img/sprite.svg#phone"></use>
-                </svg>
+                <img
+                  className={styles['footer-list__icon']}
+                  src="/svg/phone.svg"
+                  alt="phone icon"
+                />
                 <span className={styles['footer-list__text']}>
                   +38 067 568 1788
                 </span>
@@ -91,9 +97,11 @@ const Footer = () => {
               <li
                 className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
               >
-                <svg className={styles['footer-list__icon']}>
-                  <use href="@img/sprite.svg#mail"></use>
-                </svg>
+                <img
+                  className={styles['footer-list__icon']}
+                  src="/svg/mail.svg"
+                  alt="mail icon"
+                />
                 <span className={styles['footer-list__text']}>
                   info@baza-trainee.site
                 </span>
@@ -103,22 +111,14 @@ const Footer = () => {
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--social']}`}
             >
-              <li
-                className={`${styles['footer-list__item--social']} ${styles['footer-list__item']}`}
-              >
+              <li className={styles['footer-list__item--social']}>
                 <a href="" className={styles['footer-social-link']}>
-                  <svg className={styles['footer-social-link__svg']}>
-                    <use href="@img/sprite.svg#linkedIn"></use>
-                  </svg>
+                  <SocialIcon socialIconName="linkedIn" />
                 </a>
               </li>
-              <li
-                className={`${styles['footer-list__item--social']} ${styles['footer-list__item']}`}
-              >
+              <li className={styles['footer-list__item--social']}>
                 <a href="" className={styles['footer-social-link']}>
-                  <svg className={styles['footer-social-link__svg']}>
-                    <use href="@img/sprite.svg#fb"></use>
-                  </svg>
+                  <SocialIcon socialIconName="facebook" />
                 </a>
               </li>
             </ul>
