@@ -1,4 +1,38 @@
+import FacebookIcon from '@/components/common/icons/FacebookIcon';
+import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
+
+const anchoreLinksList = [
+  { id: 1, title: 'Проєкти', href: '#projects' },
+  { id: 2, title: 'Партнери', href: '#partners' },
+  { id: 3, title: 'Взяти участь', href: '#forms' },
+];
+
+const officialDocsList = [
+  { id: 1, title: 'Політика конфіденційності', href: '/' },
+  { id: 2, title: 'Правила користування сайтом', href: '/' },
+  { id: 3, title: 'Статут', href: '/' },
+  { id: 4, title: 'Звітність', href: '/' },
+];
+
+const contactsDataList = [
+  { id: 1, type: 'phone', data: '+38 063 628 6630' },
+  { id: 2, type: 'phone', data: '+38 067 568 1788' },
+  { id: 3, type: 'mail', data: 'info@baza-trainee.site' },
+];
+
+const socialsMediaList = [
+  {
+    id: 1,
+    iconName: LinkedInIcon,
+    href: '/',
+  },
+  {
+    id: 2,
+    iconName: FacebookIcon,
+    href: '/',
+  },
+];
 
 const Footer = () => {
   return (
@@ -7,60 +41,37 @@ const Footer = () => {
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>
             <a href="#header" className={styles['footer-logo']}>
-              <svg className={styles['footer-logo__svg']}>
-                <use href="@img/sprite.svg#logo-footer"></use>
-              </svg>
+              <img
+                className={styles['footer-logo__svg']}
+                src="/svg/logo-footer.svg"
+                alt="Main logo"
+              />
             </a>
           </div>
-
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
-              <li className={styles['footer-list__item']}>
-                <a href="#projects" className={styles['footer-list__link']}>
-                  Проєкти
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="#partners" className={styles['footer-list__link']}>
-                  Партнери
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="#forms" className={styles['footer-list__link']}>
-                  Взяти участь
-                </a>
-              </li>
+              {anchoreLinksList.map(({ id, title, href }) => (
+                <li key={id} className={styles['footer-list__item']}>
+                  <a href={href} className={styles['footer-list__link']}>
+                    {title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
-              <li className={styles['footer-list__item']}>
-                <a
-                  href=""
-                  className={`${styles['footer-list__link']} underline`}
-                >
-                  Політика конфіденційності
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a
-                  href=""
-                  className={`${styles['footer-list__link']} underline`}
-                >
-                  Правила користування сайтом
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="" className={styles['footer-list__link']}>
-                  Статут
-                </a>
-              </li>
-              <li className={styles['footer-list__item']}>
-                <a href="" className={styles['footer-list__link']}>
-                  Звітність
-                </a>
-              </li>
+              {officialDocsList.map(({ id, title, href }) => (
+                <li key={id} className={styles['footer-list__item']}>
+                  <a
+                    href={href}
+                    className={`${styles['footer-list__link']} underline`}
+                  >
+                    {title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -68,59 +79,33 @@ const Footer = () => {
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
             >
-              <li
-                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-              >
-                <svg className={styles['footer-list__icon']}>
-                  <use href="@/img/sprite.svg#phone"></use>
-                </svg>
-                <span className={styles['footer-list__text']}>
-                  +38 063 628 6630
-                </span>
-              </li>
-              <li
-                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-              >
-                <svg className={styles['footer-list__icon']}>
-                  <use href="~@/img/sprite.svg#phone"></use>
-                </svg>
-                <span className={styles['footer-list__text']}>
-                  +38 067 568 1788
-                </span>
-              </li>
-              <li
-                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-              >
-                <svg className={styles['footer-list__icon']}>
-                  <use href="@img/sprite.svg#mail"></use>
-                </svg>
-                <span className={styles['footer-list__text']}>
-                  info@baza-trainee.site
-                </span>
-              </li>
+              {contactsDataList.map(({ id, type, data }) => (
+                <li
+                  key={id}
+                  className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+                >
+                  <img
+                    className={styles['footer-list__icon']}
+                    src={`/svg/${type}.svg`}
+                    alt={`${type} icon`}
+                  />
+                  <span className={styles['footer-list__text']}>{data}</span>
+                </li>
+              ))}
             </ul>
 
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--social']}`}
             >
-              <li
-                className={`${styles['footer-list__item--social']} ${styles['footer-list__item']}`}
-              >
-                <a href="" className={styles['footer-social-link']}>
-                  <svg className={styles['footer-social-link__svg']}>
-                    <use href="@img/sprite.svg#linkedIn"></use>
-                  </svg>
-                </a>
-              </li>
-              <li
-                className={`${styles['footer-list__item--social']} ${styles['footer-list__item']}`}
-              >
-                <a href="" className={styles['footer-social-link']}>
-                  <svg className={styles['footer-social-link__svg']}>
-                    <use href="@img/sprite.svg#fb"></use>
-                  </svg>
-                </a>
-              </li>
+              {socialsMediaList.map(({ id, iconName: IconComponent, href }) => (
+                <li key={id} className={styles['footer-list__item--social']}>
+                  <a href={href} className={styles['footer-social-link']}>
+                    <IconComponent
+                      className={styles['footer-social-link__svg']}
+                    />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -129,11 +114,6 @@ const Footer = () => {
         </p>
       </div>
     </footer>
-    /*
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="./js/slick.min.js"></script>
-	<script src="./js/app.min.js"></script>*/
   );
 };
 
