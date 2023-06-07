@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="footer">
       <div className="container">
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>

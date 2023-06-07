@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <HeroSlider />
+      <HeroSlider setIsShowModal={setIsShowModal} />
       <Projects />
       <Statistics />
       <Forms />
@@ -25,7 +25,7 @@ export default function Home() {
       <Partners />
       <Reviews />
       <Footer />
-      {isShowModal && <Modal />}
+      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
     </>
   );
 }

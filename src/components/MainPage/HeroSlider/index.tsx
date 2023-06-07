@@ -1,5 +1,6 @@
 'use client';
 import SliderArrow from '@/components/common/SliderArrow';
+import { Dispatch, SetStateAction } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -44,7 +45,15 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
   );
 }
 
-const HeroSlider = () => {
+const HeroSlider = ({
+  setIsShowModal,
+}: {
+  setIsShowModal: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const donateClickHandler = () => {
+    setIsShowModal((prev) => !prev);
+  };
+
   const settings = {
     dots: true,
     infinite: false,
@@ -83,7 +92,10 @@ const HeroSlider = () => {
           className={`container ${styles['slider-section__actions-container']}`}
         >
           <div className={styles['slider-section__dots']}></div>
-          <button className={styles['slider-section__btn-donate']}>
+          <button
+            className={styles['slider-section__btn-donate']}
+            onClick={donateClickHandler}
+          >
             Фондувати
           </button>
         </div>
