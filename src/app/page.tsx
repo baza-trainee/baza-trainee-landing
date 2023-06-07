@@ -1,19 +1,23 @@
+'use client';
 import Achievements from '@/components/MainPage/Achievements';
 import Footer from '@/components/MainPage/Footer';
 import Forms from '@/components/MainPage/Forms';
+import Header from '@/components/MainPage/Header';
+import HeroSlider from '@/components/MainPage/HeroSlider';
+import Modal from '@/components/MainPage/Modal/index';
 import Partners from '@/components/MainPage/Partners';
 import Projects from '@/components/MainPage/Projects';
 import Reviews from '@/components/MainPage/Reviews';
-import Slider from '@/components/MainPage/Slider';
 import Statistics from '@/components/MainPage/Statistics';
-import Header from '../components/MainPage/Header/index';
-import Modal from '../components/MainPage/Modal/index';
+
+import { useState } from 'react';
 
 export default function Home() {
+  const [isShowModal, setIsShowModal] = useState(false);
   return (
     <>
       <Header />
-      <Slider />
+      <HeroSlider setIsShowModal={setIsShowModal} />
       <Projects />
       <Statistics />
       <Forms />
@@ -21,27 +25,7 @@ export default function Home() {
       <Partners />
       <Reviews />
       <Footer />
-      <Modal />
+      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
     </>
   );
 }
-/*
-@@include('header.html')
-    
-@@include('slider.html')
-
-@@include('projects.html')
-    
-@@include('statistic.html')
-
-@@include('forms.html')
-  
-@@include('achievements.html')
-
-@@include('partners.html')
-
-@@include('reviews.html') 
-
-@@include('footer.html')
-
-@@include('modal.html')*/

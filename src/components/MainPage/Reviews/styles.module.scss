@@ -1,5 +1,3 @@
-@import '../../../styles/abstracts/_variables.scss';
-
 .slick-list {
   overflow: hidden;
 }
@@ -71,12 +69,12 @@
 
   .slick-arrow.slick-prev {
     left: 0;
-    background: url('../../../assets/svg/left-arrow.svg') 0 0 / 100% no-repeat;
+    background: url('~@/assets/svg/left-arrow.svg') 0 0 / 100% no-repeat;
   }
 
   .slick-arrow.slick-next {
     right: 0;
-    background: url('../../../assets/svg/right-arrow.svg') 0 0 / 100% no-repeat;
+    background: url('~@/assets/svg/right-arrow.svg') 0 0 / 100% no-repeat;
   }
 
   .slick-dots {

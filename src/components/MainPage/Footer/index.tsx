@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="footer">
       <div className="container">
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>
@@ -72,7 +72,7 @@ const Footer = () => {
                 className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
               >
                 <svg className={styles['footer-list__icon']}>
-                  <use href="@img/sprite.svg#phone"></use>
+                  <use href="@/img/sprite.svg#phone"></use>
                 </svg>
                 <span className={styles['footer-list__text']}>
                   +38 063 628 6630
@@ -82,7 +82,7 @@ const Footer = () => {
                 className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
               >
                 <svg className={styles['footer-list__icon']}>
-                  <use href="@img/sprite.svg#phone"></use>
+                  <use href="~@/img/sprite.svg#phone"></use>
                 </svg>
                 <span className={styles['footer-list__text']}>
                   +38 067 568 1788
