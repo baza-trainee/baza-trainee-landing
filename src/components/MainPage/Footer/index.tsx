@@ -44,9 +44,8 @@ const Footer = () => {
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
               {officialDocsList.map(({ id, title, href }) => (
-                <li className={styles['footer-list__item']}>
+                <li key={id} className={styles['footer-list__item']}>
                   <a
-                    key={id}
                     href={href}
                     className={`${styles['footer-list__link']} underline`}
                   >
