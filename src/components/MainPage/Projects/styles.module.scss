@@ -37,13 +37,13 @@
     &__button {
       border: none;
       background: none;
-    }
-    &__icon {
-      width: 2.4rem;
-      height: 2.4rem;
       cursor: pointer;
-      align-self: center;
     }
+    // &__icon {
+    //   width: 2.4rem;
+    //   height: 2.4rem;
+    //   align-self: center;
+    // }
   }
   &__projects-container {
     display: grid;
