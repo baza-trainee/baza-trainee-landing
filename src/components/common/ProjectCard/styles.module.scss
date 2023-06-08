@@ -115,8 +115,6 @@
   &__team {
     position: absolute;
     top: 40.9rem;
-    padding: 0rem 0rem 0.4rem;
-    border-bottom: $border-white;
     cursor: pointer;
     &__btn {
       font-family: $font-primary;
@@ -126,6 +124,8 @@
       line-height: 1.35;
       background: none;
       border: none;
+      padding: 0rem 0rem 0.4rem;
+      border-bottom: $border-white;
       cursor: pointer;
     }
   }

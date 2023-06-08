@@ -5,16 +5,16 @@ import renderByStatus from '@/utils/renderByStatus';
 import renderFilledDivs from '@/utils/renderFilledDivs';
 import renderTeamMembersByRole from '@/utils/renderTeamMembersByRole';
 import showMore from '@/utils/showMore';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import CloseIcon from '../CloseIcon';
 import LevelIcon from '../LevelIcon';
 import StartIcon from '../StartIcon';
 import TimeIcon from '../TimeIcon';
 import styles from './styles.module.scss';
 const ProjectCard = ({ project }: { project: any }) => {
-  useEffect(() => {
-    showMore();
-  });
+  // useEffect(() => {
+  //   showMore();
+  // });
 
   function generateRandomNumber() {
     return Math.floor(Math.random() * 90000) + 10000;
@@ -107,6 +107,7 @@ const ProjectCard = ({ project }: { project: any }) => {
                   <button
                     className={styles['projects-section__team__btn']}
                     id="team-btn"
+                    onClick={showMore}
                   >
                     Команда проєкту
                   </button>
