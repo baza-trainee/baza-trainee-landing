@@ -3,6 +3,7 @@ const project = {
   title: '1112363',
   imageUrl: '/img/var-1.png',
   status: 'active',
+  stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
   link: 'https://murrfecto.site',
   description: 'Lorem ipsum dolor sit amet',
   creationDate: 1669872000000,

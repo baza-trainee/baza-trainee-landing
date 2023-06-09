@@ -2,7 +2,6 @@ function renderTeamMembersByRole(roleName: string, project: any, styles: any) {
   function generateRandomNumber() {
     return Math.floor(Math.random() * 9000) + 1000;
   }
-
   return (
     <ul className={styles['thumb__container__body__members']}>
       {project.teamMembers.map(
