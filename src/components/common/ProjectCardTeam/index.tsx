@@ -1,5 +1,5 @@
 import renderTeamMembersByRole from '@/utils/renderTeamMembersByRole';
-import CloseIcon from '../CloseIcon';
+import CloseIcon from '../icons/CloseIcon';
 import styles from './styles.module.scss';
 const ProjectCardTeam = ({
   onClick,
