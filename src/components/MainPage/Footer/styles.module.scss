@@ -1,66 +1,41 @@
 .footer {
   background-color: $color-black-light;
   color: $color-white;
-  padding: 4rem 0 3rem 0;
+  padding: 4rem 0;
 }
 
 .footer-wrapper {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  gap: 3.2rem;
+  margin-bottom: 1.2rem;
 }
 
 .footer-section {
-  overflow: hidden;
-  flex-wrap: wrap;
-  padding-bottom: 3.2rem;
-
-  &:nth-child(n + 2) {
-    margin-left: 3.2rem;
-  }
+  width: 27.6rem;
 }
 
 .footer-logo {
-  width: 12rem;
-  height: 12rem;
+  width: 12.2rem;
+  height: 12.4rem;
   display: block;
 
   &__svg {
-    width: 12rem;
-    height: 12rem;
+    width: 12.2rem;
+    height: 12.4rem;
   }
 }
 
 .footer-list {
   display: block;
 
-  // удалить после нормалайза
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  // ============
-
-  &__item {
-    margin: 0.5rem 0;
-
-    &--contacts {
-      display: flex;
-      align-items: center;
-    }
-
-    &--social:nth-child(n + 2) {
-      margin-left: 2rem;
-    }
-    &--social:nth-child(4n + 1) {
-      margin-left: 0;
-    }
-  }
-
   &__link {
     text-decoration: none;
     color: $color-white;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $color-in-progress;
     }
     &:active {
@@ -73,9 +48,8 @@
   }
 
   &__icon {
-    width: 2.5rem;
-    height: 2.2rem;
-    margin-right: 0.5rem;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   &__text {
@@ -83,21 +57,40 @@
   }
 
   &--contacts {
-    margin-bottom: 2rem;
+    margin-bottom: 2.4rem;
   }
 
   &--social {
     display: flex;
     flex-wrap: wrap;
+    gap: 2.4rem;
   }
 }
 
-.footer-social-link {
-  width: 4.8rem;
-  height: 4.8rem;
-  display: block;
+.footer-list__item:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
 
-  &:hover {
+.footer-list__item--social {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.footer-list__item--contacts {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.footer-social-link {
+  width: 3.2rem;
+  height: 3.2rem;
+  display: block;
+  color: $color-white;
+  fill: $color-white;
+
+  &:hover,
+  &:focus {
     .footer-social-link__svg {
       fill: $color-in-progress;
     }
@@ -108,14 +101,10 @@
       fill: $color-started;
     }
   }
-
-  &__svg {
-    fill: $color-accent;
-    width: 5rem;
-    height: 5rem;
-  }
 }
 
 .footer__license {
-  color: $color-gray;
+  color: $color-light-gray;
+  font-size: 1.4rem;
+  line-height: 1.7rem;
 }
