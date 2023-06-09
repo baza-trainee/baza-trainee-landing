@@ -22,7 +22,11 @@ const ProjectCard = ({ project }: { project: any }) => {
             background: `url(${project.imageUrl})`,
           }}
         >
-          <ProjectCardContent onClick={onClick} project={project} />
+          <ProjectCardContent
+            onClick={onClick}
+            project={project}
+            isOpen={isOpen}
+          />
           {isOpen === true && (
             <ProjectCardTeam onClick={onClick} project={project} />
           )}

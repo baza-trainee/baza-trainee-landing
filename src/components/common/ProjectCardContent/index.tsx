@@ -9,14 +9,16 @@ import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onClick,
   project,
+  isOpen,
 }: {
   onClick: any;
   project: any;
+  isOpen: any;
 }) => {
   return (
     <div
       className={styles['projects-section__projects-item__content-container']}
-      id="content-container"
+      style={{ display: isOpen ? 'none' : '' }}
     >
       <div
         className={`${
