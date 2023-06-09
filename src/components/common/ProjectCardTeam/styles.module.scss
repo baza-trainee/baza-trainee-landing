@@ -1,0 +1,71 @@
+.thumb {
+  padding: 2.4rem 2.4rem 0;
+  color: var(--basic-color);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  //   top: 7.7rem;
+  // top: 46.4rem;
+  top: 0;
+  left: 0;
+  background: $linear-gradient-black;
+  &__close-icon {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 2.4rem;
+    top: 2.4rem;
+    cursor: pointer;
+  }
+  &__text-container {
+    width: 88%;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    text-align: left;
+    display: flex;
+    margin-bottom: 1.6rem;
+  }
+  &__container {
+    text-align: left;
+    overflow: auto;
+    width: 33rem;
+    height: 36.4rem;
+    position: relative;
+    cursor: pointer;
+    scrollbar-width: 0.8rem;
+    &__body {
+      cursor: auto;
+      &__title {
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+        margin-bottom: 0.4rem;
+      }
+      &__members {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 1.6rem;
+      }
+      &__members a {
+        display: block;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+        text-decoration-line: underline;
+        color: $color-accent;
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+    }
+    &::-webkit-scrollbar-track {
+      background: $linear-gradient-white;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $color-white;
+      border-radius: 0.4rem;
+    }
+  }
+}

@@ -7,7 +7,6 @@ function generateRandomNumber() {
   return Math.floor(Math.random() * 9000) + 1000;
 }
 const Projects = () => {
-  // const project = projects.map((project) => console.log(project));
   return (
     <section className={styles['projects-section']} id="projects">
       <div className={`container`}>
