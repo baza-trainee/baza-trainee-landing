@@ -1,10 +1,10 @@
 import formatDate from '@/utils/formatDate';
 import projectCycle from '@/utils/projectCycle';
 import renderFilledDivs from '@/utils/renderFilledDivs';
-import LevelIcon from '../LevelIcon';
 import ProjectCardStatus from '../ProjectCardStatus';
-import StartIcon from '../StartIcon';
-import TimeIcon from '../TimeIcon';
+import LevelIcon from '../icons/LevelIcon';
+import StartIcon from '../icons/StartIcon';
+import TimeIcon from '../icons/TimeIcon';
 import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onClick,

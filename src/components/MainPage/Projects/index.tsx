@@ -1,6 +1,6 @@
-import ArrowBottomIcon from '@/components/common/ArrowBottomIcon';
-import MagnifierIcon from '@/components/common/MagnifierIcon/index';
 import ProjectCard from '@/components/common/ProjectCard';
+import ArrowBottomIcon from '@/components/common/icons/ArrowBottomIcon';
+import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { projects } from './projects';
 import styles from './styles.module.scss';
 function generateRandomNumber() {
