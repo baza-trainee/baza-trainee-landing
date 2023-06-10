@@ -3,9 +3,6 @@ import ArrowBottomIcon from '@/components/common/icons/ArrowBottomIcon';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { projects } from './projects';
 import styles from './styles.module.scss';
-function generateRandomNumber() {
-  return Math.floor(Math.random() * 9000) + 1000;
-}
 const Projects = () => {
   return (
     <section className={styles['projects-section']} id="projects">
@@ -36,7 +33,7 @@ const Projects = () => {
         <>
           <ul className={styles['projects-section__projects-container']}>
             {projects.map((project) => (
-              <ProjectCard key={generateRandomNumber()} project={project} />
+              <ProjectCard key={project._id} project={project} />
             ))}
           </ul>
         </>

@@ -1,23 +1,31 @@
 'use client';
 import { useState } from 'react';
-import ProjectCardContent from '../ProjectCardContent';
-import ProjectCardTeam from '../ProjectCardTeam';
+import ProjectCardContent from './ProjectCardContent';
+import ProjectCardTeam from './ProjectCardTeam';
 import styles from './styles.module.scss';
-const ProjectCard = ({ project }: { project: any }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClick = () => {
-    setIsOpen(!isOpen);
+const ProjectCard = ({
+  project,
+}: {
+  project: {
+    imageUrl: string;
+    stack: string[];
+    teamMembers: object[];
+    status: string;
+    description: string;
+    link: string;
+    createdAt: string;
+    complexity: number;
   };
-  function generateRandomNumber() {
-    return Math.floor(Math.random() * 90000) + 10000;
-  }
-
+}) => {
+  const [showTeamHandler, setShowTeamHandler] = useState(false);
+  const onClick = () => {
+    setShowTeamHandler(!showTeamHandler);
+  };
   return (
     <>
-      <li key={generateRandomNumber()}>
+      <li>
         <div
           className={styles['projects-section__projects-item']}
-          id="projects-item"
           style={{
             background: `url(${project.imageUrl})`,
           }}
@@ -25,9 +33,9 @@ const ProjectCard = ({ project }: { project: any }) => {
           <ProjectCardContent
             onClick={onClick}
             project={project}
-            isOpen={isOpen}
+            showTeamHandler={showTeamHandler}
           />
-          {isOpen === true && (
+          {showTeamHandler === true && (
             <ProjectCardTeam onClick={onClick} project={project} />
           )}
         </div>

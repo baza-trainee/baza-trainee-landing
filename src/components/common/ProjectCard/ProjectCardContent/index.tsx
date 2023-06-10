@@ -1,36 +1,39 @@
+import renderFilledDivs from '@/components/common/ProjectCard/renderFilledDivs';
+import projectCycle from '@/utils/developmentTimeCalculator';
 import formatDate from '@/utils/formatDate';
-import projectCycle from '@/utils/projectCycle';
-import renderFilledDivs from '@/utils/renderFilledDivs';
-import ProjectCardStatus from '../ProjectCardStatus';
-import LevelIcon from '../icons/LevelIcon';
-import StartIcon from '../icons/StartIcon';
-import TimeIcon from '../icons/TimeIcon';
+import LevelIcon from '../../icons/LevelIcon';
+import StartIcon from '../../icons/StartIcon';
+import TimeIcon from '../../icons/TimeIcon';
+import ProjectCardStatus from './projectStatus';
 import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onClick,
   project,
-  isOpen,
+  showTeamHandler,
 }: {
-  onClick: any;
-  project: any;
-  isOpen: any;
+  onClick: () => void;
+  project: {
+    status: string;
+    description: string;
+    link: string;
+    createdAt: string;
+    complexity: number;
+  };
+  showTeamHandler: boolean;
 }) => {
   return (
     <div
-      className={styles['projects-section__projects-item__content-container']}
-      style={{ display: isOpen ? 'none' : '' }}
+      className={
+        styles[
+          `${
+            showTeamHandler
+              ? 'projects-section__projects-item__content-container--ishidden'
+              : 'projects-section__projects-item__content-container'
+          }`
+        ]
+      }
     >
-      <div
-        className={`${
-          project.status === 'formation-of-the-team'
-            ? styles[
-                'projects-section__projects-item__state-container--formation'
-              ]
-            : styles['projects-section__projects-item__state-container']
-        }`}
-      >
-        <ProjectCardStatus statusName={project.status} />
-      </div>
+      <ProjectCardStatus statusName={project.status} />
       <div className={styles['projects-section__projects-item__container']}>
         <h4 className={styles['projects-section__projects-item__title']}>
           {project.description}
@@ -70,7 +73,7 @@ const ProjectCardContent = ({
             <div
               className={styles['projects-section__info__list-item__container']}
             >
-              {renderFilledDivs(project.complexity, styles)}
+              {renderFilledDivs(project.complexity)}
             </div>
           </li>
         </ul>
