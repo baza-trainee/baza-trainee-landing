@@ -167,7 +167,7 @@ export const projects = [
     _id: '64722eec6db949039aff9d',
     title: '1112363',
     imageUrl: '/img/var-1.png',
-    status: 'active',
+    status: 'formation-of-the-team',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
     description: 'Lorem ipsum dolor sit amet',

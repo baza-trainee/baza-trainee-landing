@@ -3,19 +3,19 @@ const ProjectCardStatus = ({ statusName }: { statusName: string }) => {
   const statuses = [
     {
       id: 1,
-      role: 'active',
+      status: 'active',
       text: 'Завершено',
       class: 'projects-section__projects-item__state-completed',
     },
     {
       id: 2,
-      role: 'under-development',
+      status: 'under-development',
       text: 'В розробці',
       class: 'projects-section__projects-item__state-under-development',
     },
     {
       id: 3,
-      role: 'formation-of-the-team',
+      status: 'formation-of-the-team',
       text: 'Формування команди',
       class: 'projects-section__projects-item__state-formation-of-the-team',
     },
@@ -24,11 +24,11 @@ const ProjectCardStatus = ({ statusName }: { statusName: string }) => {
     <>
       {statuses.map(
         (status) =>
-          status.role === statusName && (
+          status.status === statusName && (
             <div
               key={status.id}
               className={`${
-                status.role === 'formation-of-the-team'
+                status.status === 'formation-of-the-team'
                   ? styles[
                       'projects-section__projects-item__state-container--formation'
                     ]
