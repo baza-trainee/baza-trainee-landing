@@ -1,7 +1,5 @@
 import styles from './styles.module.scss';
 const ProjectCardStatus = ({ statusName }: { statusName: string }) => {
-  console.log(statusName);
-
   const statuses = [
     {
       id: 1,
@@ -10,13 +8,13 @@ const ProjectCardStatus = ({ statusName }: { statusName: string }) => {
       class: 'projects-section__projects-item__state-completed',
     },
     {
-      id: 1,
+      id: 2,
       role: 'under-development',
       text: 'В розробці',
       class: 'projects-section__projects-item__state-under-development',
     },
     {
-      id: 1,
+      id: 3,
       role: 'formation-of-the-team',
       text: 'Формування команди',
       class: 'projects-section__projects-item__state-formation-of-the-team',

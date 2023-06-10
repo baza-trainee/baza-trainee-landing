@@ -1,12 +1,12 @@
-import renderTeamMembersByRole from '@/utils/renderTeamMembersByRole';
-import CloseIcon from '../icons/CloseIcon';
+import RenderTeamMembersByRole from '@/components/common/ProjectCard/renderTeamMembersByRole';
+import CloseIcon from '../../icons/CloseIcon';
 import styles from './styles.module.scss';
 const ProjectCardTeam = ({
   onClick,
   project,
 }: {
-  onClick: any;
-  project: { stack: string[] };
+  onClick: () => void;
+  project: { stack: string[]; teamMembers: object[] };
 }) => {
   return (
     <div className={styles['thumb']} id="thumb">
@@ -25,17 +25,17 @@ const ProjectCardTeam = ({
           <h4 className={styles['thumb__container__body__title']}>
             Project Manager
           </h4>
-          {renderTeamMembersByRole('PM', project, styles)}
+          {RenderTeamMembersByRole('PM', project)}
           <h4 className={styles['thumb__container__body__title']}>Design</h4>
-          {renderTeamMembersByRole('Design', project, styles)}
+          {RenderTeamMembersByRole('Design', project)}
           <h4 className={styles['thumb__container__body__title']}>Front-end</h4>
-          {renderTeamMembersByRole('Front', project, styles)}
+          {RenderTeamMembersByRole('Front', project)}
           <h4 className={styles['thumb__container__body__title']}>Back-end</h4>
-          {renderTeamMembersByRole('Back', project, styles)}
+          {RenderTeamMembersByRole('Back', project)}
           <h4 className={styles['thumb__container__body__title']}>
             Quality Assurance
           </h4>
-          {renderTeamMembersByRole('QA', project, styles)}
+          {RenderTeamMembersByRole('QA', project)}
         </div>
       </div>
     </div>
