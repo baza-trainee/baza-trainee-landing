@@ -21,6 +21,7 @@
     &__state-container {
       width: 15.7rem;
       padding: 0.8rem 0;
+      color: $color-white;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -40,6 +41,7 @@
       position: absolute;
       top: 21.8rem;
       text-align: left;
+      color: $color-white;
     }
     &__content-container {
       display: block;
@@ -64,6 +66,7 @@
   &__info {
     position: absolute;
     top: 31.3rem;
+    color: $color-white;
     &__list {
       display: flex;
       flex-direction: column;

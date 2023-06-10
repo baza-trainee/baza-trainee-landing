@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useState } from 'react';
 import ProjectCardContent from './ProjectCardContent';
 import ProjectCardTeam from './ProjectCardTeam';
@@ -25,19 +26,30 @@ const ProjectCard = ({
     <>
       <li>
         <div
-          className={styles['projects-section__projects-item']}
-          style={{
-            background: `url(${project.imageUrl})`,
-          }}
+          className={
+            styles['projects-section__projects-item__project-card-image']
+          }
         >
-          <ProjectCardContent
-            onClick={onClick}
-            project={project}
-            showTeamHandler={showTeamHandler}
+          <Image
+            src={project.imageUrl}
+            alt="Project Image"
+            width={378}
+            height={464}
           />
-          {showTeamHandler === true && (
-            <ProjectCardTeam onClick={onClick} project={project} />
-          )}
+          <div
+            className={
+              styles['projects-section__projects-item__project-card-content']
+            }
+          >
+            <ProjectCardContent
+              onClick={onClick}
+              project={project}
+              showTeamHandler={showTeamHandler}
+            />
+            {showTeamHandler && (
+              <ProjectCardTeam onClick={onClick} project={project} />
+            )}
+          </div>
         </div>
       </li>
     </>

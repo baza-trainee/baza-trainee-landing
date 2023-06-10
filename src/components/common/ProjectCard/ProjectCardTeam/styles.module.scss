@@ -1,11 +1,9 @@
 .thumb {
   padding: 2.4rem 2.4rem 0;
-  color: var(--basic-color);
+  color: $color-white;
   height: 100%;
   width: 100%;
   position: absolute;
-  //   top: 7.7rem;
-  // top: 46.4rem;
   top: 0;
   left: 0;
   background: $linear-gradient-black;

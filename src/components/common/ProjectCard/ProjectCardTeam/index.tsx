@@ -25,17 +25,17 @@ const ProjectCardTeam = ({
           <h4 className={styles['thumb__container__body__title']}>
             Project Manager
           </h4>
-          {RenderTeamMembersByRole('PM', project)}
+          <RenderTeamMembersByRole roleName="PM" project={project} />
           <h4 className={styles['thumb__container__body__title']}>Design</h4>
-          {RenderTeamMembersByRole('Design', project)}
+          <RenderTeamMembersByRole roleName="Design" project={project} />
           <h4 className={styles['thumb__container__body__title']}>Front-end</h4>
-          {RenderTeamMembersByRole('Front', project)}
+          <RenderTeamMembersByRole roleName="Front" project={project} />
           <h4 className={styles['thumb__container__body__title']}>Back-end</h4>
-          {RenderTeamMembersByRole('Back', project)}
+          <RenderTeamMembersByRole roleName="Back" project={project} />
           <h4 className={styles['thumb__container__body__title']}>
             Quality Assurance
           </h4>
-          {RenderTeamMembersByRole('QA', project)}
+          <RenderTeamMembersByRole roleName="QA" project={project} />
         </div>
       </div>
     </div>
