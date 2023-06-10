@@ -6,5 +6,15 @@
     position: relative;
     overflow: hidden;
     padding: 2.4rem;
+    &__project-card-image {
+      position: relative;
+    }
+    &__project-card-content {
+      position: absolute;
+      top: 0rem;
+      width: 37.8rem;
+      height: 46.4rem;
+      padding: 2.5rem;
+    }
   }
 }
