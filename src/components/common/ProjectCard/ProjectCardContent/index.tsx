@@ -1,17 +1,17 @@
-import renderFilledDivs from '@/components/common/ProjectCard/renderFilledDivs';
+import ProjectComplexity from '@/components/common/ProjectCard/ProjectComplexity';
+import LevelIcon from '@/components/common/icons/LevelIcon';
+import StartIcon from '@/components/common/icons/StartIcon';
+import TimeIcon from '@/components/common/icons/TimeIcon';
 import projectCycle from '@/utils/developmentTimeCalculator';
 import formatDate from '@/utils/formatDate';
-import LevelIcon from '../../icons/LevelIcon';
-import StartIcon from '../../icons/StartIcon';
-import TimeIcon from '../../icons/TimeIcon';
 import ProjectCardStatus from './projectStatus';
 import styles from './styles.module.scss';
 const ProjectCardContent = ({
-  onClick,
+  onShowTeamHandler,
   project,
   showTeamHandler,
 }: {
-  onClick: () => void;
+  onShowTeamHandler: () => void;
   project: {
     status: string;
     description: string;
@@ -73,7 +73,7 @@ const ProjectCardContent = ({
             <div
               className={styles['projects-section__info__list-item__container']}
             >
-              {renderFilledDivs(project.complexity)}
+              <ProjectComplexity count={project.complexity} />
             </div>
           </li>
         </ul>
@@ -84,7 +84,7 @@ const ProjectCardContent = ({
             <button
               className={styles['projects-section__team__btn']}
               id="team-btn"
-              onClick={onClick}
+              onClick={onShowTeamHandler}
             >
               Команда проєкту
             </button>

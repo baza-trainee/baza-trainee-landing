@@ -1,5 +1,5 @@
-import styles from './ProjectCardContent/styles.module.scss';
-const renderFilledDivs = (count: number) => {
+import styles from './styles.module.scss';
+const ProjectComplexity = ({ count }: { count: number }) => {
   return Array.from({ length: 5 }, (_, index) => (
     <div
       key={index}
@@ -11,4 +11,4 @@ const renderFilledDivs = (count: number) => {
     ></div>
   ));
 };
-export default renderFilledDivs;
+export default ProjectComplexity;

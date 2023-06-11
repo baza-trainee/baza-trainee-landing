@@ -40,20 +40,6 @@
         line-height: 1.7rem;
         margin-bottom: 0.4rem;
       }
-      &__members {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-bottom: 1.6rem;
-      }
-      &__members a {
-        display: block;
-        font-weight: 400;
-        font-size: 1.4rem;
-        line-height: 1.7rem;
-        text-decoration-line: underline;
-        color: $color-accent;
-      }
     }
     &::-webkit-scrollbar {
       width: 0.8rem;
