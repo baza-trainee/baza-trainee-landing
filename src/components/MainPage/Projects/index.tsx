@@ -10,16 +10,11 @@ const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
   const handleSearchChange = (event: any) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleFormSubmit = (event: any) => {
     event.preventDefault();
-
+    setSearchQuery(event.target.value);
     const filtered = projects.filter((project) =>
       project.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
     setFilteredProjects(filtered);
   };
 
@@ -28,10 +23,7 @@ const Projects = () => {
       <div className={`container`}>
         <h3 className={styles['projects-section__title']}>Проєкти</h3>
         <div className={styles['projects-section__form-container']}>
-          <form
-            className={styles['projects-section__form']}
-            onSubmit={handleFormSubmit}
-          >
+          <form className={styles['projects-section__form']}>
             <input
               type="text"
               name="search"
