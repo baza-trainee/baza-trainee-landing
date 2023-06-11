@@ -55,18 +55,23 @@ const Projects = () => {
           </form>
         </div>
         <>
+          {filteredProjects.length === 0 && (
+            <p>Sorry! There are no projects.</p>
+          )}
           <ul className={styles['projects-section__projects-container']}>
             {filteredProjects.map((project) => (
               <ProjectCard key={project._id} project={project} />
             ))}
           </ul>
         </>
-        <div className={styles['projects-section__load-more__container']}>
-          <button className={styles['projects-section__load-more']}>
-            Більше проєктів
-            <ArrowBottomIcon />
-          </button>
-        </div>
+        {filteredProjects.length !== 0 && (
+          <div className={styles['projects-section__load-more__container']}>
+            <button className={styles['projects-section__load-more']}>
+              Більше проєктів
+              <ArrowBottomIcon />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
