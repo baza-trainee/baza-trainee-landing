@@ -1,17 +1,19 @@
-import styles from './ProjectCardTeam/styles.module.scss';
-const RenderTeamMembersByRole = ({
+import styles from './styles.module.scss';
+const ProjectTeamMembers = ({
   roleName,
-  project,
+  teamMembers,
 }: {
   roleName: string;
-  project: { teamMembers: object[] };
+  teamMembers: {
+    role: { name: string; _id: string };
+    user: { _id: string; link: string; name: string };
+  }[];
 }) => {
-  const members = project.teamMembers.filter(
-    (member: any) => member.role.name === roleName
-  );
+  const members = teamMembers.filter((member) => member.role.name === roleName);
+
   return (
     <ul className={styles['thumb__container__body__members']}>
-      {members.map((member: any) => (
+      {members.map((member) => (
         <li key={member.user._id}>
           <a
             className={styles['thumb__container__body__link']}
@@ -25,4 +27,4 @@ const RenderTeamMembersByRole = ({
     </ul>
   );
 };
-export default RenderTeamMembersByRole;
+export default ProjectTeamMembers;

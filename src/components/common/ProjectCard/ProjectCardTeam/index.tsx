@@ -1,12 +1,18 @@
-import RenderTeamMembersByRole from '@/components/common/ProjectCard/renderTeamMembersByRole';
+import ProjectTeamMembers from '@/components/common/ProjectCard/ProjectTeamMembers';
 import CloseIcon from '../../icons/CloseIcon';
 import styles from './styles.module.scss';
 const ProjectCardTeam = ({
-  onClick,
+  onShowTeamHandler,
   project,
 }: {
-  onClick: () => void;
-  project: { stack: string[]; teamMembers: object[] };
+  onShowTeamHandler: () => void;
+  project: {
+    stack: string[];
+    teamMembers: {
+      role: { name: string; _id: string };
+      user: { _id: string; link: string; name: string };
+    }[];
+  };
 }) => {
   const roles = [
     {
@@ -44,7 +50,10 @@ const ProjectCardTeam = ({
     <div className={styles['thumb']}>
       <div className={styles['thumb__text-container']}>
         <p>Stack: {project.stack.join(', ')}</p>
-        <button className={styles['thumb__close-icon']} onClick={onClick}>
+        <button
+          className={styles['thumb__close-icon']}
+          onClick={onShowTeamHandler}
+        >
           <CloseIcon />
         </button>
       </div>
@@ -54,7 +63,10 @@ const ProjectCardTeam = ({
             <h4 className={styles['thumb__container__body__title']}>
               {role.text}
             </h4>
-            <RenderTeamMembersByRole roleName={role.role} project={project} />
+            <ProjectTeamMembers
+              roleName={role.role}
+              teamMembers={project.teamMembers}
+            />
           </div>
         ))}
       </div>

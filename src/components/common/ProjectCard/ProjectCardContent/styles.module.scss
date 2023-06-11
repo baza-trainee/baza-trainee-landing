@@ -92,20 +92,6 @@
         flex-direction: row;
         gap: 0.4rem;
       }
-      &__level {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        border: $border-white;
-        background: none;
-      }
-      &__level-active {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        border: $border-white;
-        background-color: #fcfcfc;
-      }
     }
     &__list-container {
       display: flex;
