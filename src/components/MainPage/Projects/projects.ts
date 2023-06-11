@@ -6,7 +6,7 @@ export const projects = [
     status: 'active',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
-    description: 'Lorem ipsum dolor sit amet',
+    description: 'ipsum dolor sit amet',
     creationDate: 1669872000000,
     launchDate: 1669872000000,
     complexity: 1,

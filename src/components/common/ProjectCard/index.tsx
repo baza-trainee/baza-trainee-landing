@@ -21,9 +21,9 @@ const ProjectCard = ({
     }[];
   };
 }) => {
-  const [showTeamHandler, setShowTeamHandler] = useState(false);
+  const [isMembersVIsible, setIsMembersVIsible] = useState(false);
   const handleShowTeam = () => {
-    setShowTeamHandler((prev) => !prev);
+    setIsMembersVIsible((prev) => !prev);
   };
   return (
     <>
@@ -47,9 +47,9 @@ const ProjectCard = ({
             <ProjectCardContent
               onShowTeamHandler={handleShowTeam}
               project={project}
-              showTeamHandler={showTeamHandler}
+              isMembersVIsible={isMembersVIsible}
             />
-            {showTeamHandler && (
+            {isMembersVIsible && (
               <ProjectCardTeam
                 onShowTeamHandler={handleShowTeam}
                 project={project}

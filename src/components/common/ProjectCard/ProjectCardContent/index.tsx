@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onShowTeamHandler,
   project,
-  showTeamHandler,
+  isMembersVIsible,
 }: {
   onShowTeamHandler: () => void;
   project: {
@@ -19,14 +19,14 @@ const ProjectCardContent = ({
     createdAt: string;
     complexity: number;
   };
-  showTeamHandler: boolean;
+  isMembersVIsible: boolean;
 }) => {
   return (
     <div
       className={
         styles[
           `${
-            showTeamHandler
+            isMembersVIsible
               ? 'projects-section__projects-item__content-container--ishidden'
               : 'projects-section__projects-item__content-container'
           }`
