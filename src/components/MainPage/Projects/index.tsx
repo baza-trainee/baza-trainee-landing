@@ -13,7 +13,9 @@ const Projects = () => {
     event.preventDefault();
     setSearchQuery(event.target.value);
     const filtered = projects.filter((project) =>
-      project.description.toLowerCase().includes(searchQuery.toLowerCase())
+      project.description
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase())
     );
     setFilteredProjects(filtered);
   };
