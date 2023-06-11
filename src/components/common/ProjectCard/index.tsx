@@ -22,8 +22,8 @@ const ProjectCard = ({
   };
 }) => {
   const [showTeamHandler, setShowTeamHandler] = useState(false);
-  const handleShowTeam = (value: boolean) => {
-    setShowTeamHandler(value);
+  const handleShowTeam = () => {
+    setShowTeamHandler((prev) => !prev);
   };
   return (
     <>
@@ -45,13 +45,13 @@ const ProjectCard = ({
             }
           >
             <ProjectCardContent
-              onShowTeamHandler={() => handleShowTeam(true)}
+              onShowTeamHandler={handleShowTeam}
               project={project}
               showTeamHandler={showTeamHandler}
             />
             {showTeamHandler && (
               <ProjectCardTeam
-                onShowTeamHandler={() => handleShowTeam(false)}
+                onShowTeamHandler={handleShowTeam}
                 project={project}
               />
             )}
