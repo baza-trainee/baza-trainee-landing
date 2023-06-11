@@ -1,15 +1,37 @@
 import ProjectCard from '@/components/common/ProjectCard';
 import ArrowBottomIcon from '@/components/common/icons/ArrowBottomIcon';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
+import { useState } from 'react';
 import { projects } from './projects';
 import styles from './styles.module.scss';
+
 const Projects = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProjects, setFilteredProjects] = useState(projects);
+
+  const handleSearchChange = (event: any) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleFormSubmit = (event: any) => {
+    event.preventDefault();
+
+    const filtered = projects.filter((project) =>
+      project.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setFilteredProjects(filtered);
+  };
+
   return (
     <section className={styles['projects-section']} id="projects">
       <div className={`container`}>
         <h3 className={styles['projects-section__title']}>Проєкти</h3>
         <div className={styles['projects-section__form-container']}>
-          <form className={styles['projects-section__form']}>
+          <form
+            className={styles['projects-section__form']}
+            onSubmit={handleFormSubmit}
+          >
             <input
               type="text"
               name="search"
@@ -20,6 +42,8 @@ const Projects = () => {
               title="Поле пошуку приймає ключові слова від 2-х до 50-ти символів. Поле пошуку приймає латиницю і кирилицю"
               minLength={2}
               maxLength={50}
+              value={searchQuery}
+              onChange={handleSearchChange}
               required
             />
             <button
@@ -32,7 +56,7 @@ const Projects = () => {
         </div>
         <>
           <ul className={styles['projects-section__projects-container']}>
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <ProjectCard key={project._id} project={project} />
             ))}
           </ul>
