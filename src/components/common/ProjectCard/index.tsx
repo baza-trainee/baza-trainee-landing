@@ -10,12 +10,15 @@ const ProjectCard = ({
   project: {
     imageUrl: string;
     stack: string[];
-    teamMembers: object[];
     status: string;
     description: string;
     link: string;
     createdAt: string;
     complexity: number;
+    teamMembers: {
+      role: { name: string; _id: string };
+      user: { _id: string; link: string; name: string };
+    }[];
   };
 }) => {
   const [showTeamHandler, setShowTeamHandler] = useState(false);
