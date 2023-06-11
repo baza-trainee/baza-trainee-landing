@@ -14,8 +14,9 @@ const Projects = () => {
     setSearchQuery(event.target.value);
     const filtered = projects.filter((project) =>
       project.description
+        .trim()
         .toLowerCase()
-        .includes(event.target.value.toLowerCase())
+        .includes(event.target.value.trim().toLowerCase())
     );
     setFilteredProjects(filtered);
   };
@@ -61,7 +62,9 @@ const Projects = () => {
         {filteredProjects.length !== 0 && (
           <div className={styles['projects-section__load-more__container']}>
             <button className={styles['projects-section__load-more']}>
-              Більше проєктів
+              <span className={styles['projects-section__load-more__text']}>
+                Більше проєктів
+              </span>
               <ArrowBottomIcon />
             </button>
           </div>
