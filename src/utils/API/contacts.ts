@@ -14,7 +14,7 @@ const contacts = {
     console.log('contacts:', { contacts });
 
     try {
-      const response: AxiosResponse = await axios.post('/contacts', {
+      const response: AxiosResponse = await axios.patch('/contacts', {
         contacts,
       });
 

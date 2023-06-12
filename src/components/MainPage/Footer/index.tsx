@@ -2,29 +2,31 @@ import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
 
-// (async () => {
-//   console.log(
-//     await authApi.logIn({
-//       email: 'snoop@doggie.dog',
-//       password: '0800500609',
-//     }),
-//     authApi.getInfo(),
-//     contactsApi.getData(),
-//     contactsApi.update({
-//       contacts: {
-//         contactsDataList: {
-//           phone1: 1234567890,
-//           phone2: 9876543210,
-//           email: 'example@example.com',
-//         },
-//         socialsMediaList: {
-//           linkedin: 'https://www.linkedin.com/in/example',
-//           facebook: 'https://www.facebook.com/example',
-//         },
-//       },
-//     })
-//   );
-// })();
+import { authApi, contactsApi } from '@/utils/API';
+
+(async () => {
+  console.log(
+    await authApi.logIn({
+      email: 'snoop@doggie.dog',
+      password: '0800500609',
+    }),
+    authApi.getInfo(),
+    contactsApi.getData(),
+    contactsApi.update({
+      contacts: {
+        contactsDataList: {
+          phone1: 1234567890,
+          phone2: 9876543210,
+          email: 'example@example.com',
+        },
+        socialsMediaList: {
+          linkedin: 'https://www.linkedin.com/in/example',
+          facebook: 'https://www.facebook.com/example',
+        },
+      },
+    })
+  );
+})();
 
 const anchoreLinksList = [
   { id: 1, title: 'Проєкти', href: '#projects' },
