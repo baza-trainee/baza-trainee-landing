@@ -1,20 +1,24 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const contacts = {
-  async getAll() {
+  async getData() {
     try {
-      const response = await axios.get('/contacts');
+      const response: AxiosResponse = await axios.get('/contacts');
 
-      return response;
+      return response.data.contacts;
     } catch (error) {
       console.log(error);
     }
   },
   async update({ contacts }: { contacts: object }) {
-    try {
-      const response = await axios.post('/contacts', { contacts });
+    console.log('contacts:', { contacts });
 
-      return response;
+    try {
+      const response: AxiosResponse = await axios.post('/contacts', {
+        contacts,
+      });
+
+      return response.data;
     } catch (error) {
       console.log(error);
     }
