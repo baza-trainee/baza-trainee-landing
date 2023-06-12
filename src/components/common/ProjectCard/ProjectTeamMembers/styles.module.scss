@@ -1,0 +1,20 @@
+.thumb {
+  &__container {
+    &__body {
+      &__members {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 1.6rem;
+      }
+      &__members a {
+        display: block;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+        text-decoration-line: underline;
+        color: $color-accent;
+      }
+    }
+  }
+}
