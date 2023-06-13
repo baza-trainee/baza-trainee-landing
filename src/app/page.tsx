@@ -9,23 +9,24 @@ import Partners from '@/components/MainPage/Partners';
 import Projects from '@/components/MainPage/Projects';
 import Reviews from '@/components/MainPage/Reviews';
 import Statistics from '@/components/MainPage/Statistics';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 import { useState } from 'react';
 
 export default function Home() {
   const [isShowModal, setIsShowModal] = useState(false);
   return (
-    <>
+    <LanguageProvider>
       <Header />
       <HeroSlider setIsShowModal={setIsShowModal} />
       <Projects />
       <Statistics />
       <Forms />
-      <Achievements />
       <Partners />
+      <Achievements />
       <Reviews />
       <Footer />
       {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
-    </>
+    </LanguageProvider>
   );
 }
