@@ -1,8 +1,9 @@
 const project = {
   _id: '64722eec6db949039aff9d65',
   title: '1112363',
-  imageUrl: '/image.jpg',
+  imageUrl: '/img/var-1.png',
   status: 'active',
+  link: 'https://murrfecto.site',
   description: 'Lorem ipsum dolor sit amet',
   creationDate: 1669872000000,
   launchDate: 1669872000000,
@@ -12,6 +13,7 @@ const project = {
       user: {
         _id: '6471fa06933513f26024a990',
         name: 'some name',
+        link: 'https://www.linkedin.com/feed/',
       },
       role: {
         _id: '6471f9a29c17ac2190eb8791',
@@ -22,6 +24,7 @@ const project = {
       user: {
         _id: '6471fa06933513f26024a990',
         name: 'some name',
+        link: 'https://www.linkedin.com/feed/',
       },
       role: {
         _id: '6471f9a29c17ac2190eb8791',
@@ -32,6 +35,7 @@ const project = {
       user: {
         _id: '6471fa06933513f26024a990',
         name: 'some name',
+        link: 'https://www.linkedin.com/feed/',
       },
       role: {
         _id: '6471f9a29c17ac2190eb8791',
@@ -42,6 +46,7 @@ const project = {
       user: {
         _id: '6471fa06933513f26024a990',
         name: 'some name',
+        link: 'https://www.linkedin.com/feed/',
       },
       role: {
         _id: '6471f9a29c17ac2190eb8791',
@@ -52,6 +57,7 @@ const project = {
       user: {
         _id: '6471fa06933513f26024a990',
         name: 'some name',
+        link: 'https://www.linkedin.com/feed/',
       },
       role: {
         _id: '6471f9a29c17ac2190eb8791',
@@ -62,6 +68,7 @@ const project = {
       user: {
         _id: '6471fa06933513f26024a990',
         name: 'some name',
+        link: 'https://www.linkedin.com/feed/',
       },
       role: {
         _id: '6471f9a29c17ac2190eb8791',
