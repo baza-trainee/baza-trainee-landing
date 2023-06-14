@@ -5,16 +5,19 @@ const projects = {
     try {
       const response = await axios.get('/projects');
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   },
+
+  // TO DO
+
   async createNew(project: object) {
     try {
       const response = await axios.post('/projects', project);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log();
     }
@@ -23,7 +26,7 @@ const projects = {
     try {
       const response = await axios.get(`/projects/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -32,16 +35,18 @@ const projects = {
     try {
       const response = await axios.delete(`/projects/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   },
-  async updateById(id: string) {
-    try {
-      const response = await axios.patch(`/projects/${id}`);
 
-      return response;
+  // TO DO
+  async updateById(id: string, payload: object) {
+    try {
+      const response = await axios.patch(`/projects/${id}`, payload);
+
+      return response.data;
     } catch (error) {
       console.log(error);
     }

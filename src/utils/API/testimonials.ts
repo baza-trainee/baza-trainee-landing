@@ -5,7 +5,7 @@ const testimonials = {
     try {
       const response = await axios.get('/testimonials');
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -14,7 +14,7 @@ const testimonials = {
     try {
       const response = await axios.post('/testimonials', testimonial);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log();
     }
@@ -23,7 +23,7 @@ const testimonials = {
     try {
       const response = await axios.get(`/testimonials/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -32,16 +32,16 @@ const testimonials = {
     try {
       const response = await axios.delete(`/testimonials/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   },
-  async updateById(id: string) {
+  async updateById(id: string, payload: object) {
     try {
-      const response = await axios.patch(`/testimonials/${id}`);
+      const response = await axios.patch(`/testimonials/${id}`, payload);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }

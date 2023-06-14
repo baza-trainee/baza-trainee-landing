@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 const file = {
-  async upload(file: string) {
+  async upload(file: any) {
     try {
+      console.log(file);
       const response = await axios.post('/upload', file);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }

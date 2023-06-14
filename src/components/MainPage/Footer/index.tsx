@@ -2,30 +2,15 @@ import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
 
-import { authApi, contactsApi } from '@/utils/API';
+import { authApi, fileApi } from '@/utils/API';
+import { ChangeEvent, useState } from 'react';
 
 (async () => {
-  console.log(
-    await authApi.logIn({
-      email: 'snoop@doggie.dog',
-      password: '0800500609',
-    }),
-    authApi.getInfo(),
-    contactsApi.getData(),
-    contactsApi.update({
-      contacts: {
-        contactsDataList: {
-          phone1: 1234567890,
-          phone2: 9876543210,
-          email: 'example@example.com',
-        },
-        socialsMediaList: {
-          linkedin: 'https://www.linkedin.com/in/example',
-          facebook: 'https://www.facebook.com/example',
-        },
-      },
-    })
-  );
+  await authApi.logIn({
+    email: 'snoop@doggie.dog',
+    password: '0800500609',
+  }),
+    console.log();
 })();
 
 const anchoreLinksList = [
@@ -61,6 +46,21 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
+  const [data] = useState(() => {
+    return new FormData();
+  });
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+
+    console.log(target.files);
+
+    if (target.files) {
+      data.append('file', target.files[0]);
+      console.log(data.get('file'));
+    }
+  };
+
   return (
     <footer className={styles.footer} id="footer">
       <div className="container">
@@ -139,6 +139,18 @@ const Footer = () => {
           Розробка BazaTraineeUkraine 2023 Усі права захищені.
         </p>
       </div>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(data.get('file'));
+
+          fileApi.upload(data);
+        }}
+      >
+        <input type="file" name="file" onChange={handleFileChange} />
+        <input type="submit" />
+      </form>
     </footer>
   );
 };

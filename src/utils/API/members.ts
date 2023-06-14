@@ -5,7 +5,7 @@ const members = {
     try {
       const response = await axios.get('/members');
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -14,7 +14,7 @@ const members = {
     try {
       const response = await axios.post('/members', member);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log();
     }
@@ -23,7 +23,7 @@ const members = {
     try {
       const response = await axios.get(`/members/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -32,16 +32,16 @@ const members = {
     try {
       const response = await axios.delete(`/members/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   },
-  async updateById(id: string) {
+  async updateById(id: string, payload: object) {
     try {
-      const response = await axios.patch(`/members/${id}`);
+      const response = await axios.patch(`/members/${id}`, payload);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }

@@ -5,7 +5,7 @@ const roles = {
     try {
       const response = await axios.get('/roles');
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -14,7 +14,7 @@ const roles = {
     try {
       const response = await axios.post('/roles', role);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log();
     }
@@ -23,7 +23,7 @@ const roles = {
     try {
       const response = await axios.get(`/roles/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -32,16 +32,16 @@ const roles = {
     try {
       const response = await axios.delete(`/roles/${id}`);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   },
-  async updateById(id: string) {
+  async updateById(id: string, payload: object) {
     try {
-      const response = await axios.patch(`/roles/${id}`);
+      const response = await axios.patch(`/roles/${id}`, payload);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
