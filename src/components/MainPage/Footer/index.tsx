@@ -2,8 +2,8 @@ import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
 
-import { fileApi } from '@/utils/API';
-import { ChangeEvent, useState } from 'react';
+// import { fileApi } from '@/utils/API';
+// import { ChangeEvent, useState } from 'react';
 
 const anchoreLinksList = [
   { id: 1, title: 'Проєкти', href: '#projects' },
@@ -38,20 +38,20 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
-  const [data] = useState(() => {
-    return new FormData();
-  });
+  // const [data] = useState(() => {
+  //   return new FormData();
+  // });
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const files = e.target.files;
 
-    console.log(files);
+  //   console.log(files);
 
-    if (files) {
-      data.append('file', files[0]);
-      console.log(data.get('file'));
-    }
-  };
+  //   if (files) {
+  //     data.append('file', files[0]);
+  //     console.log(data.get('file'));
+  //   }
+  // };
 
   return (
     <footer className={styles.footer} id="footer">
@@ -132,7 +132,7 @@ const Footer = () => {
         </p>
       </div>
 
-      <form
+      {/* <form
         onSubmit={(e) => {
           e.preventDefault();
           console.log(data.get('file'));
@@ -142,7 +142,7 @@ const Footer = () => {
       >
         <input type="file" name="file" onChange={handleFileChange} />
         <input type="submit" />
-      </form>
+      </form> */}
     </footer>
   );
 };
