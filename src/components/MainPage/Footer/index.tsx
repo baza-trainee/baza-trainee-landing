@@ -2,16 +2,8 @@ import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
 
-import { authApi, fileApi } from '@/utils/API';
+import { fileApi } from '@/utils/API';
 import { ChangeEvent, useState } from 'react';
-
-(async () => {
-  await authApi.logIn({
-    email: 'snoop@doggie.dog',
-    password: '0800500609',
-  }),
-    console.log();
-})();
 
 const anchoreLinksList = [
   { id: 1, title: 'Проєкти', href: '#projects' },
@@ -51,12 +43,12 @@ const Footer = () => {
   });
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
+    const files = e.target.files;
 
-    console.log(target.files);
+    console.log(files);
 
-    if (target.files) {
-      data.append('file', target.files[0]);
+    if (files) {
+      data.append('file', files[0]);
       console.log(data.get('file'));
     }
   };
