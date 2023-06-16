@@ -1,0 +1,21 @@
+.container {
+  background: $color-white;
+  padding: 5.2rem;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 32.5rem;
+  height: 42.8rem;
+  padding: 2rem;
+  gap: 3.2rem;
+  background: $frame-white;
+  border: 0.5px solid $color-gray;
+  border-radius: 0.8rem;
+}
