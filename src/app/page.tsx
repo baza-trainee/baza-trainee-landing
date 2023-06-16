@@ -10,6 +10,9 @@ import Projects from '@/components/MainPage/Projects';
 import Reviews from '@/components/MainPage/Reviews';
 import Statistics from '@/components/MainPage/Statistics';
 
+
+import Sidebar from "@/components/Admin/Sidebar";
+
 import { useState } from 'react';
 
 export default function Home() {
@@ -25,6 +28,8 @@ export default function Home() {
       <Partners />
       <Reviews />
       <Footer />
+      <Sidebar/>
+      
       {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
     </>
   );
