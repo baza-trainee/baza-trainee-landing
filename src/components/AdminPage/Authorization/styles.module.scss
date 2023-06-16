@@ -19,3 +19,11 @@
   border: 0.5px solid $color-gray;
   border-radius: 0.8rem;
 }
+
+.text {
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 1.6rem;
+  text-decoration-line: underline;
+  color: $color-neutral-text;
+}
