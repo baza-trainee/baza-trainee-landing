@@ -6,15 +6,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.header {
   font-family: $font-primary;
   font-weight: 600;
   font-size: 2.2rem;
   color: $color-white;
+
+  &:hover {
+    cursor: pointer;
+    box-sizing: border-box;
+    background: $color-white;
+    border: 1px solid $color-black;
+    color: $color-black;
+  }
+
+  &:disabled {
+    background: $color-light-gray;
+    border: $border-gray;
+    color: $color-gray;
+    cursor: not-allowed;
+  }
 }

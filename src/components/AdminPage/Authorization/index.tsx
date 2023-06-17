@@ -14,7 +14,7 @@ const Authorization = () => {
         <Link href={''} className={styles.text}>
           Забули пароль?
         </Link>
-        <AdminButton title={'Підтвердити'} />
+        <AdminButton title={'Увійти'} />
       </div>
     </section>
   );
