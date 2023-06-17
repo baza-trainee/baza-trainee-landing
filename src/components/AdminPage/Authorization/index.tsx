@@ -9,12 +9,17 @@ const Authorization = () => {
     <section className={styles.container}>
       <div className={styles.frame}>
         <AdminTitle title={'Вхід'} />
-        <TextInput title={'Логін'} placeholder={'Введіть логін'} />
+        <TextInput
+          title={'Логін'}
+          errorText={''}
+          placeholder={'Введіть логін'}
+        />
         <TextInput title={'Пароль'} placeholder={'Введіть пароль'} />
         <Link href={''} className={styles.text}>
           Забули пароль?
         </Link>
         <AdminButton title={'Увійти'} />
+        <AdminButton title={'Зареєструватися'} />
       </div>
     </section>
   );

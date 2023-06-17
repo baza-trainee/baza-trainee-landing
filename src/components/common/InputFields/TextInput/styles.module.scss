@@ -25,4 +25,26 @@
     font-size: 1.6rem;
     color: $input-placeholder;
   }
+
+  &:focus {
+    border-color: $input-focused-border;
+  }
+}
+
+.error {
+  color: $input-error;
+  caret-color: $input-error;
+
+  &-text {
+    font-size: 1.2rem;
+  }
+
+  &-border {
+    border: 0.5px solid $input-error;
+  }
+
+  &-border:focus,
+  &-border:focus-visible {
+    border: 0.5px solid $input-error;
+  }
 }
