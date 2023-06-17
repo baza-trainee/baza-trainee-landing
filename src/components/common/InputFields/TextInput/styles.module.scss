@@ -8,8 +8,8 @@
 }
 
 .input {
-  width: 285px;
-  height: 40px;
+  width: 28.5rem;
+  height: 4rem;
   background: $color-white;
   border: 0.5px solid $color-gray;
   border-radius: 0.4rem;
@@ -21,7 +21,6 @@
 
   &::placeholder {
     font-family: $font-primary;
-    font-weight: 400;
     font-size: 1.6rem;
     color: $input-placeholder;
   }

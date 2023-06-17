@@ -1,12 +1,11 @@
-'use client';
 import EyeClosed from '@/components/common/icons/EyeClosed';
 import EyeOpen from '@/components/common/icons/EyeOpen';
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 const TextInput = ({ title = '', errorText = '', type = 'text', ...rest }) => {
-  const [inputType, setInputType] = useState(type);
-  const [icon, setIcon] = useState<React.ReactElement | null>();
+  const [inputType, setInputType] = useState<string>(type);
+  const [icon, setIcon] = useState<React.ReactElement | null>(null);
 
   const iconClickHandler = () => {
     if (type === 'password') {
@@ -19,6 +18,7 @@ const TextInput = ({ title = '', errorText = '', type = 'text', ...rest }) => {
       if (type === 'password') {
         return inputType === 'password' ? <EyeOpen /> : <EyeClosed />;
       }
+      return null;
     };
     setIcon(iconSelector);
   }, [inputType, type]);
