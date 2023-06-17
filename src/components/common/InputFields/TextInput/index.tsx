@@ -1,15 +1,12 @@
 'use client';
-import { useState } from 'react';
-import EyeClosed from '../../icons/EyeClosed';
-import EyeOpen from '../../icons/EyeOpen';
+import EyeClosed from '@/components/common/icons/EyeClosed';
+import EyeOpen from '@/components/common/icons/EyeOpen';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-const typeSelector = (type: string) => {
-  return type;
-};
-
 const TextInput = ({ title = '', errorText = '', type = 'text', ...rest }) => {
-  const [inputType, setInputType] = useState(typeSelector(type));
+  const [inputType, setInputType] = useState(type);
+  const [icon, setIcon] = useState<React.ReactElement | null>();
 
   const iconClickHandler = () => {
     if (type === 'password') {
@@ -17,11 +14,14 @@ const TextInput = ({ title = '', errorText = '', type = 'text', ...rest }) => {
     }
   };
 
-  const iconSelector = () => {
-    if (type === 'password') {
-      return inputType === 'password' ? <EyeOpen /> : <EyeClosed />;
-    }
-  };
+  useEffect(() => {
+    const iconSelector = () => {
+      if (type === 'password') {
+        return inputType === 'password' ? <EyeOpen /> : <EyeClosed />;
+      }
+    };
+    setIcon(iconSelector);
+  }, [inputType, type]);
 
   return (
     <div className={styles.container}>
@@ -37,7 +37,7 @@ const TextInput = ({ title = '', errorText = '', type = 'text', ...rest }) => {
           {...rest}
         />
         <div className={styles['icon-wrapper']} onClick={iconClickHandler}>
-          {iconSelector()}
+          {icon}
         </div>
       </div>
       {errorText && (
