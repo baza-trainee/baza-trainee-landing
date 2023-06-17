@@ -17,14 +17,12 @@ const Authorization = () => {
 
   const loginChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLogin(event.target.value);
-    loginErrorHandler(event.target.value);
   };
 
   const passwordChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setPassword(event.target.value);
-    passwordErrorHandler(event.target.value);
   };
 
   const loginErrorHandler = (email: string) => {
@@ -44,6 +42,23 @@ const Authorization = () => {
       ? setPasswordError('')
       : setPasswordError('Пароль повинен бути довше ніж 5 символів');
   };
+
+  const loginHandler = () => {
+    loginErrorHandler(login);
+    passwordErrorHandler(password);
+    if (!loginError && !passwordError) {
+      console.log('reg');
+    }
+  };
+
+  const registrationHandler = () => {
+    loginErrorHandler(login);
+    passwordErrorHandler(password);
+    if (!loginError && !passwordError) {
+      console.log('reg');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.frame}>
@@ -66,10 +81,13 @@ const Authorization = () => {
         <Link href={recoverLink} className={styles.text}>
           Забули пароль?
         </Link>
-        <AdminButton title={'Увійти'} />
-        {/*process.env.ENABLE_REGISTRATION && (
-          <AdminButton title={'Зареєструватися'} />
-        )*/}
+        <AdminButton title={'Увійти'} onClick={loginHandler} />
+        {true && (
+          <AdminButton
+            title={'Зареєструватися'}
+            onClick={registrationHandler}
+          />
+        )}
       </div>
     </div>
   );
