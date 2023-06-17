@@ -48,6 +48,8 @@ function Sidebar() {
           className={styles['sidebar-logo__svg']}
           src="/svg/logo-black.svg"
           alt="Main logo"
+          width={68}
+          height={68}
         />
         </a>
         
