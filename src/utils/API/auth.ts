@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-const url = process.env.SERVER_URL;
+const url = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const token = {
   set: (token: string) => {
@@ -13,11 +13,12 @@ const token = {
 const auth = {
   async getInfo() {
     try {
-      const response: AxiosResponse = await axios.get('/auth/user');
+      const response: AxiosResponse = await axios.get(`${url}/auth/user`);
 
       return response.data;
     } catch (error: any) {
       console.log(error.message);
+      return error;
     }
   },
   async logIn({ email, password }: { email: string; password: string }) {
@@ -31,6 +32,7 @@ const auth = {
       return response.data;
     } catch (error) {
       console.log(error);
+      return error;
     }
   },
   async register({
@@ -43,7 +45,7 @@ const auth = {
     name: string;
   }) {
     try {
-      const response: AxiosResponse = await axios.post('/auth/register', {
+      const response: AxiosResponse = await axios.post(`${url}/auth/register`, {
         email,
         password,
         name,
@@ -53,6 +55,7 @@ const auth = {
       return response.data;
     } catch (error) {
       console.log(error);
+      return error;
     }
   },
 };

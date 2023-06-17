@@ -3,36 +3,12 @@
 import AdminButton from '@/components/common/AdminButton';
 import AdminTitle from '@/components/common/AdminTitle';
 import TextInput from '@/components/common/InputFields/TextInput';
-import axios from 'axios';
+import auth from '@/utils/API/auth';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from './styles.module.scss';
 
 const recoverLink = 'https://youtu.be/dQw4w9WgXcQ'; // TODO: Replace with actual recover link
-
-const loginReq = async (body: any) => {
-  try {
-    const response = await axios.post(
-      'https://baza-trainee-7ain.onrender.com/auth/login',
-      body
-    );
-    return response;
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
-
-const registrationReq = async (body: any) => {
-  try {
-    const response = await axios.post(
-      'https://baza-trainee-7ain.onrender.com/auth/register',
-      body
-    );
-    return response;
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
 
 const validateEmail = (email: string) => {
   const isInvalid = String(email)
@@ -75,7 +51,7 @@ const Authorization = () => {
     setPasswordError(passwordError);
 
     if (!emailError && !passwordError) {
-      const res = await loginReq({ email: login, password: password });
+      const res = await auth.logIn({ email: login, password: password });
       if (res?.status === 200) alert('Login successful');
     }
   };
@@ -88,7 +64,7 @@ const Authorization = () => {
     setPasswordError(passwordError);
 
     if (!emailError && !passwordError) {
-      const res = await registrationReq({
+      const res = await auth.register({
         email: login,
         password: password,
         name: login,
