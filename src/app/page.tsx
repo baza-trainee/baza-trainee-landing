@@ -19,7 +19,7 @@ export default function Home() {
   const [isShowModal, setIsShowModal] = useState(false);
   return (
     <>
-      {/* <Header />
+      <Header />
       <HeroSlider setIsShowModal={setIsShowModal} />
       <Projects />
       <Statistics />
@@ -27,7 +27,7 @@ export default function Home() {
       <Achievements />
       <Partners />
       <Reviews />
-      <Footer /> */}
+      <Footer />
       <Sidebar/>
       
       {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
