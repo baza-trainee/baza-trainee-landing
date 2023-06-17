@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+const url = process.env.SERVER_URL;
 
 const token = {
   set: (token: string) => {
@@ -21,7 +22,7 @@ const auth = {
   },
   async logIn({ email, password }: { email: string; password: string }) {
     try {
-      const response: AxiosResponse = await axios.post('/auth/login', {
+      const response: AxiosResponse = await axios.post(`${url}/auth/login`, {
         email,
         password,
       });
