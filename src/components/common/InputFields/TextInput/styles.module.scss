@@ -48,3 +48,14 @@
     border: 0.5px solid $input-error;
   }
 }
+
+.input-wrapper {
+  position: relative;
+}
+
+.icon-wrapper {
+  position: absolute;
+  top: 0.8rem;
+  right: -94%; /* Adjust the position as desired */
+  //transform: translateY(-50%);
+}

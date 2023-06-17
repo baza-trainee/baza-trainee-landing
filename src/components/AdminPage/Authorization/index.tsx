@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 const Authorization = () => {
   return (
-    <section className={styles.container}>
+    <main className={styles.container}>
       <div className={styles.frame}>
         <AdminTitle title={'Вхід'} />
         <TextInput
@@ -14,14 +14,20 @@ const Authorization = () => {
           errorText={''}
           placeholder={'Введіть логін'}
         />
-        <TextInput title={'Пароль'} placeholder={'Введіть пароль'} />
+        <TextInput
+          title={'Пароль'}
+          placeholder={'Введіть пароль'}
+          type={'password'}
+        />
         <Link href={''} className={styles.text}>
           Забули пароль?
         </Link>
         <AdminButton title={'Увійти'} />
-        <AdminButton title={'Зареєструватися'} />
+        {process.env.ENABLE_REGISTRATION && (
+          <AdminButton title={'Зареєструватися'} />
+        )}
       </div>
-    </section>
+    </main>
   );
 };
 
