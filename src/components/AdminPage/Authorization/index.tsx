@@ -53,7 +53,7 @@ const Authorization = () => {
 
     if (!emailError && !passwordError) {
       const res = await auth.logIn({ email: login, password: password });
-      if (res?.status === 200) alert('Login successful');
+      if (res) alert('Login successful');
     }
   };
 
@@ -70,8 +70,7 @@ const Authorization = () => {
         password: password,
         name: login,
       });
-      if (res?.status === 201)
-        alert(`User registered ${JSON.stringify(res.data)}`);
+      if (res) alert(`User registered ${JSON.stringify(res)}`);
     }
   };
 

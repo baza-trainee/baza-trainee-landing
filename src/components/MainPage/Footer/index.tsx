@@ -1,9 +1,15 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import { achievementsApi, authApi } from '@/utils/API';
 import styles from './styles.module.scss';
 
-// import { fileApi } from '@/utils/API';
+// import { heroSliderApi } from '@/utils/API';
 // import { ChangeEvent, useState } from 'react';
+
+(async () => {
+  authApi.logIn({ email: 'snoop@doggie.dog', password: '0800500609' });
+  console.log(await achievementsApi.getData());
+})();
 
 const anchoreLinksList = [
   { id: 1, title: 'Проєкти', href: '#projects' },
@@ -45,11 +51,8 @@ const Footer = () => {
   // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
   //   const files = e.target.files;
 
-  //   console.log(files);
-
   //   if (files) {
   //     data.append('file', files[0]);
-  //     console.log(data.get('file'));
   //   }
   // };
 
@@ -135,9 +138,9 @@ const Footer = () => {
       {/* <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(data.get('file'));
+          console.dir(data);
 
-          fileApi.upload(data);
+          heroSliderApi.createNew(data);
         }}
       >
         <input type="file" name="file" onChange={handleFileChange} />

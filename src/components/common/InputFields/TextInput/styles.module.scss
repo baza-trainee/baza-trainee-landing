@@ -50,6 +50,7 @@
   &-border:focus,
   &-border:focus-visible {
     border: $border-error;
+    outline: $border-error;
   }
 }
 
