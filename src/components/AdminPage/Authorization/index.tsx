@@ -25,9 +25,10 @@ const validatePassword = (password: string) => {
 };
 
 const Authorization = () => {
-  const [isEnableRegister] = useState<boolean>(
-    Boolean(process.env.NEXT_PUBLIC_ENABLE_REGISTRATION)
-  );
+  const isAllowRegistration = () =>
+    Boolean(process.env.NEXT_PUBLIC_ENABLE_REGISTRATION);
+
+  const [isEnableRegistration] = useState<boolean>(isAllowRegistration);
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loginError, setLoginError] = useState<string>('');
@@ -97,7 +98,7 @@ const Authorization = () => {
           Забули пароль?
         </Link>
         <AdminButton title={'Увійти'} onClick={loginHandler} />
-        {isEnableRegister && (
+        {isEnableRegistration && (
           <AdminButton
             title={'Зареєструватися'}
             onClick={registrationHandler}

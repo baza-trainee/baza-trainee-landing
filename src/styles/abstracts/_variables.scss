@@ -11,19 +11,19 @@ $color-started: #eb903c;
 $color-neutral-text: #353535;
 $color-hover-btn: #ffbd00;
 $color-pressed-btn: #fd9b00;
+$frame-white: #fffefa;
+$input-placeholder: #939393;
+$input-focused-border: #262626;
+$input-error: #ff4314;
 //MODAL
 $modal-backdrop-color: #ececec;
 $modal-window-color: #ffffff;
 //BORDERS
 $border-black: 1px solid $color-black;
 $border-gray: 1px solid $color-gray;
+$border-error: 1px solid $input-error;
 $border-gray-light: 1px solid rgba(252, 252, 252, 0.5);
 $border-white: 1.5px solid $color-white;
-//ADMIN
-$frame-white: #fffefa;
-$input-placeholder: #939393;
-$input-focused-border: #262626;
-$input-error: #ff4314;
 
 // FONTS
 $font-primary: 'Exo 2', sans-serif;
