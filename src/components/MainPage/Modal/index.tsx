@@ -18,10 +18,11 @@ const Modal = () => {
   };
 
   useEffect(() => {
-    document.body.classList.add('disable-scroll');
+    state.isLandingModalShown && document.body.classList.add('disable-scroll');
 
     return () => {
-      document.body.classList.remove('disable-scroll');
+      !state.isLandingModalShown &&
+        document.body.classList.remove('disable-scroll');
     };
   }, []);
 

@@ -5,8 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 const Header = () => {
-  const lang = () => localStorage.getItem('lang')?.toUpperCase() || 'ua';
-  const [activeLang, setActiveLang] = useState(lang);
+  const [activeLang, setActiveLang] = useState('ua');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { state, dispatch } = useContext<StoreContextType>(GlobalContext);
 
@@ -37,9 +36,14 @@ const Header = () => {
   };
 
   useEffect(() => {
+    const lang =
+      typeof window !== 'undefined'
+        ? () => localStorage.getItem('lang') || 'ua'
+        : 'ua';
+    setActiveLang(lang);
     dispatch({
       type: ReducerActionType.SET_LANDING_LANGUAGE,
-      payload: activeLang as 'ua' | 'en' | 'pl',
+      payload: lang as 'ua' | 'en' | 'pl',
     });
   }, [activeLang, dispatch]);
 
