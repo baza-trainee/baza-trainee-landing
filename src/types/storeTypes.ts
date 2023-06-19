@@ -1,4 +1,4 @@
-import { ReducerActionType } from '@/store/globalContext';
+import { ReducerActionType } from '@/store/globalReducer';
 import { Dispatch } from 'react';
 
 export type State = {
@@ -6,10 +6,16 @@ export type State = {
   isLandingModalShown: boolean;
 };
 
-export type Action = {
-  type: ReducerActionType;
+export type SetLandingLanguage = {
+  type: ReducerActionType.SET_LANDING_LANGUAGE;
   payload: 'ua' | 'en' | 'pl';
 };
+
+export type ToggleLandingModal = {
+  type: ReducerActionType.TOGGLE_LANDING_MODAL;
+};
+
+export type Action = SetLandingLanguage | ToggleLandingModal;
 
 export type StoreContextType = {
   state: State;

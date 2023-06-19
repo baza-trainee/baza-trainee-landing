@@ -1,4 +1,4 @@
-'use client';
+'use client'; //Fix It
 import Achievements from '@/components/MainPage/Achievements';
 import Footer from '@/components/MainPage/Footer';
 import Forms from '@/components/MainPage/Forms';
@@ -9,16 +9,12 @@ import Partners from '@/components/MainPage/Partners';
 import Projects from '@/components/MainPage/Projects';
 import Reviews from '@/components/MainPage/Reviews';
 import Statistics from '@/components/MainPage/Statistics';
-import { LanguageProvider } from '@/store/LanguageContext';
-
-import { useState } from 'react';
 
 export default function Home() {
-  const [isShowModal, setIsShowModal] = useState(false);
   return (
-    <LanguageProvider>
+    <>
       <Header />
-      <HeroSlider setIsShowModal={setIsShowModal} />
+      <HeroSlider />
       <Projects />
       <Statistics />
       <Forms />
@@ -26,7 +22,7 @@ export default function Home() {
       <Achievements />
       <Reviews />
       <Footer />
-      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
-    </LanguageProvider>
+      <Modal />
+    </>
   );
 }

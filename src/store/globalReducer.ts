@@ -1,5 +1,9 @@
 import { Action, State } from '@/types/storeTypes';
-import { ReducerActionType } from './globalContext';
+
+export enum ReducerActionType {
+  SET_LANDING_LANGUAGE,
+  TOGGLE_LANDING_MODAL,
+}
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
