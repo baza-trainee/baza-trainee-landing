@@ -1,61 +1,54 @@
 import axios from 'axios';
-import { IError, IProject } from './types';
 
 const projects = {
-  async getAll(): Promise<Array<IProject> | IError> {
+  async getAll() {
     try {
       const response = await axios.get('/projects');
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
 
   // TO DO
 
-  async createNew(project: object): Promise<IProject | IError> {
+  async createNew(project: object) {
     try {
       const response = await axios.post('/projects', project);
 
       return response.data;
-    } catch (error: any) {
-      console.log(error);
-
-      return error;
+    } catch (error) {
+      console.log();
     }
   },
-  async getById(id: string): Promise<IProject | IError> {
+  async getById(id: string) {
     try {
       const response = await axios.get(`/projects/${id}`);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async deleteById(id: string): Promise<IProject | IError> {
+  async deleteById(id: string) {
     try {
       const response = await axios.delete(`/projects/${id}`);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
 
   // TO DO
-  async updateById(id: string, payload: object): Promise<IProject | IError> {
+  async updateById(id: string, payload: object) {
     try {
       const response = await axios.patch(`/projects/${id}`, payload);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
 };

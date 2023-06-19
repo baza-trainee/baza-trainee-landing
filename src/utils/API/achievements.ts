@@ -1,37 +1,33 @@
 import axios, { AxiosResponse } from 'axios';
-import { IAchievements, IError } from './types';
 
 const achievements = {
-  async getData(): Promise<IAchievements | IError> {
+  async getData() {
     try {
-      const response: AxiosResponse = await axios.get('/achievement');
+      const response: AxiosResponse = await axios.get('/achievements');
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async updateEmployed(employed: number): Promise<IAchievements | IError> {
+  async updateEmployed(employed: number) {
     try {
       const response: AxiosResponse = await axios.patch('/achievements', {
         employed,
       });
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async getEmployed(): Promise<Number | IError> {
+  async getEmployed() {
     try {
       const response: AxiosResponse = await axios.get('/achievements/employed');
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
 };

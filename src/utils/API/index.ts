@@ -11,7 +11,6 @@ import rolesApi from './roles';
 import stacksApi from './stacks';
 import testimonialsApi from './testimonials';
 
-// const url = process.env.NEXT_PUBLIC_SERVER_URL;
 axios.defaults.baseURL = 'https://baza-trainee-7ain.onrender.com/';
 
 export {
