@@ -1,59 +1,49 @@
 import axios from 'axios';
-import { IError, ITeamMemberRole } from './types';
 
 const roles = {
-  async getAll(): Promise<Array<ITeamMemberRole> | IError> {
+  async getAll() {
     try {
       const response = await axios.get('/roles');
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async createNew(role: object): Promise<ITeamMemberRole | IError> {
+  async createNew(role: object) {
     try {
       const response = await axios.post('/roles', role);
 
       return response.data;
-    } catch (error: any) {
-      console.log(error);
-
-      return error;
+    } catch (error) {
+      console.log();
     }
   },
-  async getById(id: string): Promise<ITeamMemberRole | IError> {
+  async getById(id: string) {
     try {
       const response = await axios.get(`/roles/${id}`);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async deleteById(id: string): Promise<ITeamMemberRole | IError> {
+  async deleteById(id: string) {
     try {
       const response = await axios.delete(`/roles/${id}`);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async updateById(
-    id: string,
-    payload: object
-  ): Promise<ITeamMemberRole | IError> {
+  async updateById(id: string, payload: object) {
     try {
       const response = await axios.patch(`/roles/${id}`, payload);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
 };

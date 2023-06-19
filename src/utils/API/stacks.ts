@@ -1,55 +1,49 @@
 import axios from 'axios';
-import { IError, IStack } from './types';
 
 const stacks = {
-  async getAll(): Promise<Promise<IStack> | IError> {
+  async getAll() {
     try {
       const response = await axios.get('/stacks');
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async createNew(stack: object): Promise<IStack | IError> {
+  async createNew(stack: object) {
     try {
       const response = await axios.post('/stacks', stack);
 
       return response.data;
-    } catch (error: any) {
-      console.log(error);
-      return error;
+    } catch (error) {
+      console.log();
     }
   },
-  async getById(id: string): Promise<IStack | IError> {
+  async getById(id: string) {
     try {
       const response = await axios.get(`/stacks/${id}`);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async deleteById(id: string): Promise<IStack | IError> {
+  async deleteById(id: string) {
     try {
       const response = await axios.delete(`/stacks/${id}`);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
-  async updateById(id: string, payload: object): Promise<IStack | IError> {
+  async updateById(id: string, payload: object) {
     try {
       const response = await axios.patch(`/stacks/${id}`, payload);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      return error;
     }
   },
 };
