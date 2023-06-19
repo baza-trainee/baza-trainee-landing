@@ -8,8 +8,11 @@ export const useAPI = async (methodRef: Function): Promise<Object> => {
   try {
     const response = await methodRef();
     if (response) {
+      console.log(response);
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 
   return [data, isLoading, isError];
 };
