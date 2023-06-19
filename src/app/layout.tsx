@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/context/AuthContext';
+import { StoreProvider } from '@/store/globalContext';
 import './globals.scss';
 
 export const metadata = {
@@ -13,9 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <AuthProvider>
+      <StoreProvider>
         <body>{children}</body>
-      </AuthProvider>
+      </StoreProvider>
     </html>
   );
 }

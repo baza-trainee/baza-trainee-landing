@@ -9,7 +9,7 @@ import Partners from '@/components/MainPage/Partners';
 import Projects from '@/components/MainPage/Projects';
 import Reviews from '@/components/MainPage/Reviews';
 import Statistics from '@/components/MainPage/Statistics';
-import { LanguageProvider } from '@/context/LanguageContext';
+import { LanguageProvider } from '@/store/LanguageContext';
 
 import { useState } from 'react';
 
