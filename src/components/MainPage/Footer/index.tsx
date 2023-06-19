@@ -1,5 +1,7 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import { achievementsApi } from '@/utils/API';
+import { useAPI } from '@/utils/hooks/useAPI';
 import styles from './styles.module.scss';
 
 // import { fileApi } from '@/utils/API';
@@ -38,6 +40,10 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
+  const [data, isLoading, isError] = useAPI(achievementsApi.getData);
+
+  // console.log(data);
+
   // const [data] = useState(() => {
   //   return new FormData();
   // });
