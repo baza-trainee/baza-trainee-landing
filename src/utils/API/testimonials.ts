@@ -1,42 +1,43 @@
-import axios from 'axios';
-import { IError, ITestimonial } from './types';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
+import { IError } from './types';
 
 const testimonials = {
-  async getAll(): Promise<Array<ITestimonial> | IError> {
+  async getAll(): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get('/testimonials');
+      const response = bazaAPI.get('/testimonials');
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async createNew(testimonial: object): Promise<ITestimonial | IError> {
+  async createNew(testimonial: object): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.post('/testimonials', testimonial);
+      const response = bazaAPI.post('/testimonials', testimonial);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async getById(id: string): Promise<ITestimonial | IError> {
+  async getById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get(`/testimonials/${id}`);
+      const response = bazaAPI.get(`/testimonials/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async deleteById(id: string): Promise<ITestimonial | IError> {
+  async deleteById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.delete(`/testimonials/${id}`);
+      const response = bazaAPI.delete(`/testimonials/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -45,11 +46,11 @@ const testimonials = {
   async updateById(
     id: string,
     payload: object
-  ): Promise<ITestimonial | IError> {
+  ): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.patch(`/testimonials/${id}`, payload);
+      const response = bazaAPI.patch(`/testimonials/${id}`, payload);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;

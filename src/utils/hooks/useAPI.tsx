@@ -1,4 +1,9 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+export const bazaAPI = axios.create({
+  baseURL: 'https://baza-trainee-7ain.onrender.com/',
+});
 
 export const useAPI = (fetcherRef: Function, payload?: any) => {
   const [data, setData] = useState<Object>({});

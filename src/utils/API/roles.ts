@@ -1,43 +1,44 @@
-import axios from 'axios';
-import { IError, ITeamMemberRole } from './types';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
+import { IError } from './types';
 
 const roles = {
-  async getAll(): Promise<Array<ITeamMemberRole> | IError> {
+  async getAll(): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get('/roles');
+      const response = await bazaAPI.get('/roles');
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async createNew(role: object): Promise<ITeamMemberRole | IError> {
+  async createNew(role: object): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.post('/roles', role);
+      const response = await bazaAPI.post('/roles', role);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
 
       return error;
     }
   },
-  async getById(id: string): Promise<ITeamMemberRole | IError> {
+  async getById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get(`/roles/${id}`);
+      const response = await bazaAPI.get(`/roles/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async deleteById(id: string): Promise<ITeamMemberRole | IError> {
+  async deleteById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.delete(`/roles/${id}`);
+      const response = await bazaAPI.delete(`/roles/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -46,11 +47,11 @@ const roles = {
   async updateById(
     id: string,
     payload: object
-  ): Promise<ITeamMemberRole | IError> {
+  ): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.patch(`/roles/${id}`, payload);
+      const response = await bazaAPI.patch(`/roles/${id}`, payload);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;

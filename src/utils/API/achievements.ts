@@ -1,10 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
 import { IError } from './types';
 
 const achievements = {
   async getData(): Promise<AxiosResponse | IError> {
     try {
-      const response: AxiosResponse = await axios.get('/achievements');
+      const response: AxiosResponse = await bazaAPI.get('/achievements');
 
       return response;
     } catch (error: any) {
@@ -14,7 +15,7 @@ const achievements = {
   },
   async updateEmployed(employed: number): Promise<AxiosResponse | IError> {
     try {
-      const response: AxiosResponse = await axios.patch('/achievements', {
+      const response: AxiosResponse = await bazaAPI.patch('/achievements', {
         employed,
       });
 
@@ -26,7 +27,9 @@ const achievements = {
   },
   async getEmployed(): Promise<AxiosResponse | IError> {
     try {
-      const response: AxiosResponse = await axios.get('/achievements/employed');
+      const response: AxiosResponse = await bazaAPI.get(
+        '/achievements/employed'
+      );
 
       return response;
     } catch (error: any) {

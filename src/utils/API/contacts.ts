@@ -1,12 +1,13 @@
-import axios, { AxiosResponse } from 'axios';
-import { IContacts, IError } from './types';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
+import { IError } from './types';
 
 const contacts = {
-  async getData(): Promise<IContacts | IError> {
+  async getData(): Promise<AxiosResponse | IError> {
     try {
-      const response: AxiosResponse = await axios.get('/contacts');
+      const response: AxiosResponse = await bazaAPI.get('/contacts');
 
-      return response.data.contacts;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -16,15 +17,15 @@ const contacts = {
     contacts,
   }: {
     contacts: object;
-  }): Promise<IContacts | IError> {
+  }): Promise<AxiosResponse | IError> {
     console.log('contacts:', { contacts });
 
     try {
-      const response: AxiosResponse = await axios.patch('/contacts', {
+      const response: AxiosResponse = await bazaAPI.patch('/contacts', {
         contacts,
       });
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;

@@ -1,52 +1,56 @@
-import axios from 'axios';
-import { IError, IHeroSlider } from './types';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
+import { IError } from './types';
 
 const heroSlider = {
-  async getAll(): Promise<IHeroSlider | IError> {
+  async getAll(): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get('/heroslider');
+      const response = await bazaAPI.get('/heroslider');
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async createNew(slider: object): Promise<IHeroSlider | IError> {
+  async createNew(slider: object): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.post('/heroslider', slider);
+      const response = await bazaAPI.post('/heroslider', slider);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async getById(id: string): Promise<IHeroSlider | IError> {
+  async getById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get(`/heroslider/${id}`);
+      const response = await bazaAPI.get(`/heroslider/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async deleteById(id: string): Promise<IHeroSlider | IError> {
+  async deleteById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.delete(`/heroslider/${id}`);
+      const response = await bazaAPI.delete(`/heroslider/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async updateById(id: string, payload: object): Promise<IHeroSlider | IError> {
+  async updateById(
+    id: string,
+    payload: object
+  ): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.patch(`/heroslider/${id}`, payload);
+      const response = await bazaAPI.patch(`/heroslider/${id}`, payload);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;

@@ -1,10 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
 import { IError } from './types';
 
 const members = {
   async getAll(): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get('/members');
+      const response = await bazaAPI.get('/members');
 
       return response;
     } catch (error: any) {
@@ -14,7 +15,7 @@ const members = {
   },
   async createNew(member: object): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.post('/members', member);
+      const response = await bazaAPI.post('/members', member);
 
       return response;
     } catch (error: any) {
@@ -25,7 +26,7 @@ const members = {
   },
   async getById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get(`/members/${id}`);
+      const response = await bazaAPI.get(`/members/${id}`);
 
       return response;
     } catch (error: any) {
@@ -35,7 +36,7 @@ const members = {
   },
   async deleteById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.delete(`/members/${id}`);
+      const response = await bazaAPI.delete(`/members/${id}`);
 
       return response;
     } catch (error: any) {
@@ -48,7 +49,7 @@ const members = {
     payload: object
   ): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.patch(`/members/${id}`, payload);
+      const response = await bazaAPI.patch(`/members/${id}`, payload);
 
       return response;
     } catch (error: any) {

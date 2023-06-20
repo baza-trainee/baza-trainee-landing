@@ -1,52 +1,56 @@
-import axios from 'axios';
-import { IError, IStack } from './types';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
+import { IError } from './types';
 
 const stacks = {
-  async getAll(): Promise<Promise<IStack> | IError> {
+  async getAll(): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get('/stacks');
+      const response = await bazaAPI.get('/stacks');
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async createNew(stack: object): Promise<IStack | IError> {
+  async createNew(stack: object): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.post('/stacks', stack);
+      const response = await bazaAPI.post('/stacks', stack);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async getById(id: string): Promise<IStack | IError> {
+  async getById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get(`/stacks/${id}`);
+      const response = await bazaAPI.get(`/stacks/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async deleteById(id: string): Promise<IStack | IError> {
+  async deleteById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.delete(`/stacks/${id}`);
+      const response = await bazaAPI.delete(`/stacks/${id}`);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
     }
   },
-  async updateById(id: string, payload: object): Promise<IStack | IError> {
+  async updateById(
+    id: string,
+    payload: object
+  ): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.patch(`/stacks/${id}`, payload);
+      const response = await bazaAPI.patch(`/stacks/${id}`, payload);
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;

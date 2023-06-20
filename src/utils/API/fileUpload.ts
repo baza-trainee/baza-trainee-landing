@@ -6,7 +6,7 @@ const file = {
       console.log(file);
       const response = await axios.post('/upload', file);
 
-      return response.data;
+      return response;
     } catch (error) {
       console.log(error);
     }

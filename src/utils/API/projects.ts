@@ -1,10 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { bazaAPI } from '../hooks/useAPI';
 import { IError } from './types';
 
 const projects = {
   async getAll(): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get('/projects');
+      const response = await bazaAPI.get('/projects');
 
       return response;
     } catch (error: any) {
@@ -17,7 +18,7 @@ const projects = {
 
   async createNew(project: object): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.post('/projects', project);
+      const response = await bazaAPI.post('/projects', project);
 
       return response;
     } catch (error: any) {
@@ -28,7 +29,7 @@ const projects = {
   },
   async getById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.get(`/projects/${id}`);
+      const response = await bazaAPI.get(`/projects/${id}`);
 
       return response;
     } catch (error: any) {
@@ -38,7 +39,7 @@ const projects = {
   },
   async deleteById(id: string): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.delete(`/projects/${id}`);
+      const response = await bazaAPI.delete(`/projects/${id}`);
 
       return response;
     } catch (error: any) {
@@ -53,7 +54,7 @@ const projects = {
     payload: object
   ): Promise<AxiosResponse | IError> {
     try {
-      const response = await axios.patch(`/projects/${id}`, payload);
+      const response = await bazaAPI.patch(`/projects/${id}`, payload);
 
       return response;
     } catch (error: any) {
