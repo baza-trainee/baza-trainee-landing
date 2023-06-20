@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import styles from './styles.module.scss';
 
@@ -54,9 +55,11 @@ const Header = () => {
             onClick={handleMenuClick}
           >
             {activeLang}
-            <svg className={styles['header__lang-arrow']}>
-              <use href="@img/sprite.svg#arrow-bottom"></use>
-            </svg>
+            <img
+              className={styles['header__lang-arrow']}
+              src="/svg/arrow-bottom.svg"
+              alt="Language dropdown menu arrow"
+            />
           </button>
           <ul
             className={`${styles['header__lang-list']} ${
