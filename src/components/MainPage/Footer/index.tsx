@@ -1,8 +1,8 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-import { authApi, membersApi, projectsApi } from '@/utils/API';
-import { useAPI } from '@/utils/hooks/useAPI';
-import { useEffect, useState } from 'react';
+// import { authApi, membersApi, projectsApi } from '@/utils/API';
+// import { useAPI } from '@/utils/hooks/useAPI';
+// import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 // import { fileApi } from '@/utils/API';
@@ -41,36 +41,36 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
-  const [loginData, setLoginData] = useState<Object>({});
-  const [data, isLoading, isError] = useAPI(authApi.logIn, loginData);
+  // const [loginData, setLoginData] = useState<Object>({});
+  // const [data, isLoading, isError] = useAPI(authApi.logIn, loginData);
 
-  const [projectsData, isProjectsLoading, isProjectsError] = useAPI(
-    projectsApi.getAll
-  );
+  // const [projectsData, isProjectsLoading, isProjectsError] = useAPI(
+  //   projectsApi.getAll
+  // );
 
-  const [membersData, isMembersLoading, isMembersError] = useAPI(
-    membersApi.getAll
-  );
+  // const [membersData, isMembersLoading, isMembersError] = useAPI(
+  //   membersApi.getAll
+  // );
 
-  useEffect(() => {
-    (() => {
-      console.log(
-        'logIn >',
-        setLoginData({ email: 'snoop@doggie.dog', password: '0800500609' }),
-        data,
-        isLoading,
-        isError
-      );
-    })();
+  // useEffect(() => {
+  //   (() => {
+  //     console.log(
+  //       'logIn >',
+  //       setLoginData({ email: 'snoop@doggie.dog', password: '0800500609' }),
+  //       data,
+  //       isLoading,
+  //       isError
+  //     );
+  //   })();
 
-    setTimeout(() => {
-      setLoginData({ email: 'HESOYAM@mail.com', password: 'HESOYAM' });
-    }, 5000);
-  }, []);
+  //   setTimeout(() => {
+  //     setLoginData({ email: 'HESOYAM@mail.com', password: 'HESOYAM' });
+  //   }, 5000);
+  // }, []);
 
-  console.log('login >', data, isLoading, isError);
-  console.log('projects >', projectsData, isProjectsLoading, isProjectsError);
-  console.log('members >', membersData, isMembersLoading, isMembersError);
+  // console.log('login >', data, isLoading, isError);
+  // console.log('projects >', projectsData, isProjectsLoading, isProjectsError);
+  // console.log('members >', membersData, isMembersLoading, isMembersError);
 
   // console.log(data);
 
