@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IError, IUser } from './types';
+import { IError } from './types';
 
 const token = {
   set: (token: string) => {
@@ -11,11 +11,11 @@ const token = {
 };
 
 const auth = {
-  async getInfo(): Promise<IUser | IError> {
+  async getInfo(): Promise<AxiosResponse | IError> {
     try {
       const response: AxiosResponse = await axios.get('/auth/user');
 
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -27,7 +27,7 @@ const auth = {
   }: {
     email: string;
     password: string;
-  }): Promise<IUser | IError> {
+  }): Promise<AxiosResponse | IError> {
     try {
       const response: AxiosResponse = await axios.post('/auth/login', {
         email,
@@ -35,7 +35,7 @@ const auth = {
       });
 
       token.set(response.data.token);
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -49,7 +49,7 @@ const auth = {
     email: string;
     password: string;
     name: string;
-  }): Promise<IUser | IError> {
+  }): Promise<AxiosResponse | IError> {
     try {
       const response: AxiosResponse = await axios.post('/auth/register', {
         email,
@@ -58,7 +58,7 @@ const auth = {
       });
 
       token.set(response.data.token);
-      return response.data;
+      return response;
     } catch (error: any) {
       console.log(error);
       return error;

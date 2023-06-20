@@ -1,31 +1,42 @@
 import { useEffect, useState } from 'react';
 
-export const useAPI = (methodRef: Function) => {
+export const useAPI = (fetcherRef: Function, payload?: any) => {
   const [data, setData] = useState<Object>({});
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Object>(false);
 
   useEffect(() => {
-    (async () => {
+    if (payload) {
+      if (Object.keys(payload).length === 0) {
+        return;
+      }
+    }
+
+    const fetcher = async () => {
       try {
         setIsLoading(true);
-        const response = await methodRef();
+        const response = await fetcherRef(payload);
 
         if (response.status === 200) {
           setData(response.data);
           setIsError(false);
         } else {
-          console.log(response);
-          throw new Error(response);
+          setData({});
+          throw {
+            message: response.message,
+            status: response.response.status,
+          };
         }
-        setIsLoading(false);
       } catch (error: any) {
         console.log(error);
         setIsError(error);
+      } finally {
         setIsLoading(false);
       }
-    })();
-  }, []);
+      return data;
+    };
+    fetcher();
+  }, [payload]);
 
   return [data, isLoading, isError];
 };
