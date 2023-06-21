@@ -1,9 +1,5 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-import authApi from '@/utils/API/auth';
-import projectsApi from '@/utils/API/projects';
-import { useAPI } from '@/utils/hooks/useAPI';
-import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
