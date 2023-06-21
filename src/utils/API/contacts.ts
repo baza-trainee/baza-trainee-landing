@@ -21,6 +21,14 @@ const contactsApi = {
     console.log('contacts:', { contacts });
 
     try {
+      if (!contacts) {
+        throw {
+          message: 'Must be contacts payload',
+          responseMessage: 'none',
+          status: '1',
+        };
+      }
+
       const response: AxiosResponse = await bazaAPI.patch('/contacts', {
         contacts,
       });

@@ -31,6 +31,14 @@ const authApi = {
     password: string;
   }): Promise<AxiosResponse | IError> {
     try {
+      if (!email || !password) {
+        throw {
+          message: 'Must be email, password',
+          responseMessage: 'none',
+          status: '1',
+        };
+      }
+
       const response: AxiosResponse = await bazaAPI.post(`/auth/login`, {
         email,
         password,

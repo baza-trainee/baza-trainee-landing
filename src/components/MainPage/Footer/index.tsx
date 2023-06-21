@@ -1,5 +1,9 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import achievementsApi from '@/utils/API/achievements';
+import authApi from '@/utils/API/auth';
+import { useAPI } from '@/utils/hooks/useAPI';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
@@ -35,6 +39,27 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
+  const [logInData, setLogInData] = useState({
+    name: 'AaaaAA',
+    email: 'AASsss@doggie.dog',
+    password: '0800500609',
+  });
+  const [reqData, setReqData] = useState<any>();
+  const [user, isUserLoading, isUserError] = useAPI(
+    authApi.register,
+    logInData
+  );
+  const [data, isLoading, isError] = useAPI(
+    achievementsApi.updateEmployed,
+    reqData
+  );
+  // console.log(user, isUserLoading, isUserError);
+  console.log(data, isLoading, isError);
+
+  const handleClick = () => {
+    setReqData(894);
+  };
+
   return (
     <footer className={styles.footer} id="footer">
       <div className="container">
@@ -114,17 +139,7 @@ const Footer = () => {
         </p>
       </div>
 
-      {/* <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(data.get('file'));
-
-          fileApi.upload(data);
-        }}
-      >
-        <input type="file" name="file" onChange={handleFileChange} />
-        <input type="submit" />
-      </form> */}
+      <button onClick={handleClick}>QWE</button>
     </footer>
   );
 };

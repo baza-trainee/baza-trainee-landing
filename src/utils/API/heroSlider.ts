@@ -15,6 +15,14 @@ const heroSliderApi = {
   },
   async createNew(slider: object): Promise<AxiosResponse | IError> {
     try {
+      if (!slider) {
+        throw {
+          message: 'Must be slider payload',
+          responseMessage: 'none',
+          status: '1',
+        };
+      }
+
       const response = await bazaAPI.post('/heroslider', slider);
 
       return response;

@@ -5,22 +5,25 @@ export const bazaAPI = axios.create({
   baseURL: 'https://baza-trainee-7ain.onrender.com/',
 });
 
-export const useAPI = (fetcherRef: Function, payload: any = null) => {
+export const useAPI = (fetcherRef: Function, payload?: any) => {
   const [data, setData] = useState<Object>({});
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Object>(false);
 
   useEffect(() => {
-    if (!payload) {
-      return;
-    }
+    // if (payload ===) {
+    //   return;
+    // }
 
     const fetcher = async () => {
       try {
+        setData({});
+        setIsError(false);
         setIsLoading(true);
         const response = await fetcherRef(payload);
 
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 201) {
+          console.log('qwe');
           setData(response.data);
           setIsError(false);
         } else {

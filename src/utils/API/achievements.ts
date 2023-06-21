@@ -15,6 +15,14 @@ const achievementsApi = {
   },
   async updateEmployed(employed: number): Promise<AxiosResponse | IError> {
     try {
+      if (!employed) {
+        throw {
+          message: 'Must be payload',
+          responseMessage: 'none',
+          status: '1',
+        };
+      }
+
       const response: AxiosResponse = await bazaAPI.patch('/achievements', {
         employed,
       });

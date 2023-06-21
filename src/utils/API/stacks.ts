@@ -47,6 +47,14 @@ const stacksApi = {
     AxiosResponse | IError
   > {
     try {
+      if (!id || !payload) {
+        throw {
+          message: 'Must be id payload payload',
+          responseMessage: 'none',
+          status: '1',
+        };
+      }
+
       const response = await bazaAPI.patch(`/stacks/${id}`, payload);
 
       return response;
