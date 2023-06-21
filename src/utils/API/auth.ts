@@ -12,7 +12,7 @@ const token = {
   },
 };
 
-const auth = {
+const authApi = {
   async getInfo(): Promise<AxiosResponse | IError> {
     try {
       const response: AxiosResponse = await bazaAPI.get(`/auth/user`);
@@ -68,4 +68,4 @@ const auth = {
   },
 };
 
-export default auth;
+export default authApi;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const file = {
+const fileApi = {
   async upload(file: any) {
     try {
       console.log(file);
@@ -13,4 +13,4 @@ const file = {
   },
 };
 
-export default file;
+export default fileApi;

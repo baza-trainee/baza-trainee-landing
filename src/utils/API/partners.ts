@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { bazaAPI } from '../hooks/useAPI';
 import { IError } from './types';
 
-const partners = {
+const partnersApi = {
   async getAll(): Promise<AxiosResponse | IError> {
     try {
       const response = await bazaAPI.get('/partners');
@@ -43,10 +43,9 @@ const partners = {
       return error;
     }
   },
-  async updateById(
-    id: string,
-    payload: object
-  ): Promise<AxiosResponse | IError> {
+  async updateById([id, payload]: [id: string, payload: object]): Promise<
+    AxiosResponse | IError
+  > {
     try {
       const response = await bazaAPI.patch(`/partners/${id}`, payload);
 
@@ -58,4 +57,4 @@ const partners = {
   },
 };
 
-export default partners;
+export default partnersApi;

@@ -1,12 +1,10 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-// import { authApi, membersApi, projectsApi } from '@/utils/API';
-// import { useAPI } from '@/utils/hooks/useAPI';
-// import { useEffect, useState } from 'react';
+import authApi from '@/utils/API/auth';
+import projectsApi from '@/utils/API/projects';
+import { useAPI } from '@/utils/hooks/useAPI';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
-
-// import { fileApi } from '@/utils/API';
-// import { ChangeEvent, useState } from 'react';
 
 const anchoreLinksList = [
   { id: 1, title: 'Проєкти', href: '#projects' },
@@ -41,54 +39,6 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
-  // const [loginData, setLoginData] = useState<Object>({});
-  // const [data, isLoading, isError] = useAPI(authApi.logIn, loginData);
-
-  // const [projectsData, isProjectsLoading, isProjectsError] = useAPI(
-  //   projectsApi.getAll
-  // );
-
-  // const [membersData, isMembersLoading, isMembersError] = useAPI(
-  //   membersApi.getAll
-  // );
-
-  // useEffect(() => {
-  //   (() => {
-  //     console.log(
-  //       'logIn >',
-  //       setLoginData({ email: 'snoop@doggie.dog', password: '0800500609' }),
-  //       data,
-  //       isLoading,
-  //       isError
-  //     );
-  //   })();
-
-  //   setTimeout(() => {
-  //     setLoginData({ email: 'HESOYAM@mail.com', password: 'HESOYAM' });
-  //   }, 5000);
-  // }, []);
-
-  // console.log('login >', data, isLoading, isError);
-  // console.log('projects >', projectsData, isProjectsLoading, isProjectsError);
-  // console.log('members >', membersData, isMembersLoading, isMembersError);
-
-  // console.log(data);
-
-  // const [data] = useState(() => {
-  //   return new FormData();
-  // });
-
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-
-  //   console.log(files);
-
-  //   if (files) {
-  //     data.append('file', files[0]);
-  //     console.log(data.get('file'));
-  //   }
-  // };
-
   return (
     <footer className={styles.footer} id="footer">
       <div className="container">

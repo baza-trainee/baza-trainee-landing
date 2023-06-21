@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { bazaAPI } from '../hooks/useAPI';
 import { IError } from './types';
 
-const achievements = {
+const achievementsApi = {
   async getData(): Promise<AxiosResponse | IError> {
     try {
       const response: AxiosResponse = await bazaAPI.get('/achievements');
@@ -39,4 +39,4 @@ const achievements = {
   },
 };
 
-export default achievements;
+export default achievementsApi;

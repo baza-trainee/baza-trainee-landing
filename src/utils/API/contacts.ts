@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { bazaAPI } from '../hooks/useAPI';
 import { IError } from './types';
 
-const contacts = {
+const contactsApi = {
   async getData(): Promise<AxiosResponse | IError> {
     try {
       const response: AxiosResponse = await bazaAPI.get('/contacts');
@@ -33,4 +33,4 @@ const contacts = {
   },
 };
 
-export default contacts;
+export default contactsApi;
