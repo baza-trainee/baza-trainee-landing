@@ -2,30 +2,26 @@ export interface IAuthenticatedRequest extends Request {
   userId?: string;
 }
 
-export interface IDocumentResult<T> {
-  _doc: T;
-}
-
-export interface IUser extends IDocumentResult<IUser> {
+export interface IUser {
   _id: string | number;
   name: string;
   email: string;
   passwordHash: string;
 }
 
-export interface ITestimonial extends IDocumentResult<ITestimonial> {
+export interface ITestimonial {
   name: string;
   review: string;
   date: number;
   imageUrl: string;
 }
 
-export interface ITeamMember extends IDocumentResult<ITestimonial> {
+export interface ITeamMember {
   name: string;
   profileUrl?: string;
 }
 
-export interface ITeamMemberRole extends IDocumentResult<ITeamMemberRole> {
+export interface ITeamMemberRole {
   name: string;
 }
 
@@ -40,13 +36,13 @@ export interface IProjectTeamMember {
   };
 }
 
-export interface IStack extends IDocumentResult<IStack> {
+export interface IStack {
   stackId: any;
   _id: string | number;
   name: string;
 }
 
-export interface IProject extends IDocumentResult<IProject> {
+export interface IProject {
   title: string;
   imageUrl: string;
   deployUrl?: string;
@@ -61,12 +57,12 @@ export interface IProject extends IDocumentResult<IProject> {
   _id: string | number;
 }
 
-export interface IPartner extends IDocumentResult<IPartner> {
+export interface IPartner {
   homeUrl?: string;
   imageUrl: string;
 }
 
-export interface IContacts extends IDocumentResult<IContacts> {
+export interface IContacts {
   contacts: {
     contactsDataList: {
       phone1: number;
@@ -115,7 +111,7 @@ export interface IProjectResponse {
   }>;
 }
 
-export interface IHeroSlider extends IDocumentResult<IHeroSlider> {
+export interface IHeroSlider {
   title: string;
   subtitle: string;
   imageUrl: string;
