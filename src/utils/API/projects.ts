@@ -14,8 +14,6 @@ const projectsApi = {
     }
   },
 
-  // TO DO
-
   async createNew(project: object): Promise<AxiosResponse | IError> {
     try {
       const response = await bazaAPI.post('/projects', project);
@@ -60,7 +58,6 @@ const projectsApi = {
     }
   },
 
-  // TO DO
   async updateById([id, payload]: [id: string, payload: object]): Promise<
     AxiosResponse | IError
   > {
