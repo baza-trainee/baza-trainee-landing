@@ -1,9 +1,3 @@
-export interface ILanguageSelector<T> {
-  en: T;
-  pl: T;
-  ua: T;
-}
-
 export interface IAuthenticatedRequest extends Request {
   userId?: string;
 }
@@ -14,16 +8,14 @@ export interface IDocumentResult<T> {
 
 export interface IUser extends IDocumentResult<IUser> {
   _id: string | number;
-  createdAt: Date;
-  updatedAt: Date;
   name: string;
   email: string;
   passwordHash: string;
 }
 
 export interface ITestimonial extends IDocumentResult<ITestimonial> {
-  name: ILanguageSelector<string>;
-  review: ILanguageSelector<string>;
+  name: string;
+  review: string;
   date: number;
   imageUrl: string;
 }
@@ -34,7 +26,7 @@ export interface ITeamMember extends IDocumentResult<ITestimonial> {
 }
 
 export interface ITeamMemberRole extends IDocumentResult<ITeamMemberRole> {
-  name: ILanguageSelector<string>;
+  name: string;
 }
 
 export interface IProjectTeamMember {
@@ -55,7 +47,7 @@ export interface IStack extends IDocumentResult<IStack> {
 }
 
 export interface IProject extends IDocumentResult<IProject> {
-  title: ILanguageSelector<string>;
+  title: string;
   imageUrl: string;
   deployUrl?: string;
   stack: Array<{
@@ -124,8 +116,8 @@ export interface IProjectResponse {
 }
 
 export interface IHeroSlider extends IDocumentResult<IHeroSlider> {
-  title: ILanguageSelector<string>;
-  subtitle: ILanguageSelector<string>;
+  title: string;
+  subtitle: string;
   imageUrl: string;
 }
 

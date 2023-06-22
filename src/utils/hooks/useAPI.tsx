@@ -10,7 +10,7 @@ export const useAPI = (
 ): [Function, any, Boolean, Object | Boolean] => {
   const [doFetch, setDoFetch] = useState<Boolean>(false);
   const [payload, setPayload] = useState<any>(null);
-  const [data, setData] = useState<Object>({});
+  const [data, setData] = useState<Object | null>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Object | Boolean>(false);
 
@@ -26,7 +26,7 @@ export const useAPI = (
       }
 
       try {
-        setData({});
+        setData(null);
         setIsError(false);
         setIsLoading(true);
         const response = await method(payload);
@@ -35,7 +35,7 @@ export const useAPI = (
           setData(response.data);
           setIsError(false);
         } else {
-          setData({});
+          setData(null);
           throw {
             message: response.message,
             responseMessage:
@@ -56,6 +56,10 @@ export const useAPI = (
       return data;
     };
     fetcher();
+
+    return () => {
+      setDoFetch(false);
+    };
   }, [doFetch]);
 
   return [dispatch, data, isLoading, isError];

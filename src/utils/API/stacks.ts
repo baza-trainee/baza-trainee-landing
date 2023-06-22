@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
+import { IError } from '../../types/typesAPI';
 import { bazaAPI } from '../hooks/useAPI';
-import { IError } from './types';
 
 const stacksApi = {
   async getAll(): Promise<AxiosResponse | IError> {
