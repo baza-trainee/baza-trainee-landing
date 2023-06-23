@@ -1,5 +1,9 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import achievementsApi from '@/utils/API/achievements';
+import authApi from '@/utils/API/auth';
+import { useAPI } from '@/utils/hooks/useAPI';
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
@@ -35,6 +39,34 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
+  const [logIn, userData, isLoggingIn, isError] = useAPI(authApi.logIn);
+  const [
+    getAchievements,
+    achievements,
+    isAchievementsLoading,
+    isAchievementError,
+  ] = useAPI(achievementsApi.getData);
+  const [updateEmployed, updatedData, isUpdating, isUpdatingError] = useAPI(
+    achievementsApi.updateEmployed
+  );
+
+  useEffect(() => {
+    logIn({ email: 'snoop@doggie.dog', password: '0800500609' });
+  }, []);
+
+  const handleClick = () => {
+    getAchievements();
+    updateEmployed(7878);
+  };
+
+  console.log(
+    typeof getAchievements,
+    achievements,
+    isAchievementsLoading,
+    isAchievementError
+  );
+  console.log(typeof updateEmployed, updatedData, isUpdating, isUpdatingError);
+
   return (
     <footer className={styles.footer} id="footer">
       <div className="container">
@@ -114,7 +146,7 @@ const Footer = () => {
         </p>
       </div>
 
-      {/* <button onClick={handleClick}>DISPATCH</button> */}
+      <button onClick={handleClick}>DISPATCH</button>
     </footer>
   );
 };

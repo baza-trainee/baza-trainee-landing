@@ -1,15 +1,8 @@
-import axios from 'axios';
+import { bazaAPI } from './config';
 
 const fileApi = {
   async upload(file: any) {
-    try {
-      console.log(file);
-      const response = await axios.post('/upload', file);
-
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
+    return await bazaAPI.post('/upload', file);
   },
 };
 

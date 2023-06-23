@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { IError } from '../../types/typesAPI';
-import { bazaAPI } from '../hooks/useAPI';
+import { bazaAPI } from './config';
 
 const testimonialsApi = {
   async getAll(): Promise<AxiosResponse | IError> {
@@ -49,7 +49,7 @@ const testimonialsApi = {
     try {
       if (!id || !payload) {
         throw {
-          message: 'Must be id payload payload',
+          message: 'Must be id, payload payload',
           responseMessage: 'none',
           status: '1',
         };

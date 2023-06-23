@@ -1,69 +1,20 @@
-import { AxiosResponse } from 'axios';
-import { IError } from '../../types/typesAPI';
-import { bazaAPI } from '../hooks/useAPI';
+import { bazaAPI } from './config';
 
 const membersApi = {
-  async getAll(): Promise<AxiosResponse | IError> {
-    try {
-      const response = await bazaAPI.get('/members');
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  async getAll() {
+    return await bazaAPI.get('/members');
   },
-  async createNew(member: object): Promise<AxiosResponse | IError> {
-    try {
-      const response = await bazaAPI.post('/members', member);
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-
-      return error;
-    }
+  async createNew(member: object) {
+    return await bazaAPI.post('/members', member);
   },
-  async getById(id: string): Promise<AxiosResponse | IError> {
-    try {
-      const response = await bazaAPI.get(`/members/${id}`);
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  async getById(id: string) {
+    return await bazaAPI.get(`/members/${id}`);
   },
-  async deleteById(id: string): Promise<AxiosResponse | IError> {
-    try {
-      const response = await bazaAPI.delete(`/members/${id}`);
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`/members/${id}`);
   },
-  async updateById([id, payload]: [id: string, payload: object]): Promise<
-    AxiosResponse | IError
-  > {
-    try {
-      if (!id || !payload) {
-        throw {
-          message: 'Must be id payload payload',
-          responseMessage: 'none',
-          status: '1',
-        };
-      }
-
-      const response = await bazaAPI.patch(`/members/${id}`, payload);
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  async updateById([id, payload]: [id: string, payload: object]) {
+    return await bazaAPI.patch(`/members/${id}`, payload);
   },
 };
-
 export default membersApi;

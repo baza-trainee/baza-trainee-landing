@@ -1,7 +1,4 @@
-import { AxiosResponse } from 'axios';
-import { IError } from '../../types/typesAPI';
-import { bazaAPI } from '../hooks/useAPI';
-// const url = process.env.NEXT_PUBLIC_SERVER_URL;
+import { bazaAPI } from './config';
 
 const token = {
   set: (token: string) => {
@@ -13,43 +10,17 @@ const token = {
 };
 
 const authApi = {
-  async getInfo(): Promise<AxiosResponse | IError> {
-    try {
-      const response: AxiosResponse = await bazaAPI.get(`/auth/user`);
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  async getInfo() {
+    return await bazaAPI.get(`/auth/user`);
   },
-  async logIn({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }): Promise<AxiosResponse | IError> {
-    try {
-      if (!email || !password) {
-        throw {
-          message: 'Must be email, password',
-          responseMessage: 'none',
-          status: '1',
-        };
-      }
+  async logIn({ email, password }: { email: string; password: string }) {
+    const response = await bazaAPI.post(`/auth/login`, {
+      email,
+      password,
+    });
 
-      const response: AxiosResponse = await bazaAPI.post(`/auth/login`, {
-        email,
-        password,
-      });
-
-      token.set(response.data.token);
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+    token.set(response.data.token);
+    return response;
   },
   async register({
     email,
@@ -59,20 +30,15 @@ const authApi = {
     email: string;
     password: string;
     name: string;
-  }): Promise<AxiosResponse | IError> {
-    try {
-      const response: AxiosResponse = await bazaAPI.post(`/auth/register`, {
-        email,
-        password,
-        name,
-      });
+  }) {
+    const response = await bazaAPI.post(`/auth/register`, {
+      email,
+      password,
+      name,
+    });
 
-      token.set(response.data.token);
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+    token.set(response.data.token);
+    return response;
   },
 };
 

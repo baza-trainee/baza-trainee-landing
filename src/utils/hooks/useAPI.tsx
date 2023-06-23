@@ -1,13 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export const bazaAPI = axios.create({
-  baseURL: 'https://baza-trainee-7ain.onrender.com/',
-});
-
 export const useAPI = (
   method: Function
-): [Function, any, Boolean, Object | Boolean] => {
+): [Function, Object | null, Boolean, Object | Boolean] => {
   const [doFetch, setDoFetch] = useState<Boolean>(false);
   const [payload, setPayload] = useState<any>(null);
   const [data, setData] = useState<Object | null>(null);
@@ -34,20 +30,17 @@ export const useAPI = (
         if (response.status === 200 || response.status === 201) {
           setData(response.data);
           setIsError(false);
-        } else {
-          setData(null);
-          throw {
-            message: response.message,
-            responseMessage:
-              response.response?.data[0]?.msg ||
-              response.response?.data?.message ||
-              'none',
-            status: response.response.status,
-          };
         }
       } catch (error: any) {
-        console.log(error);
-        setIsError(error);
+        setData({
+          message: error.message,
+          responseMessage:
+            error.response?.data[0]?.msg ||
+            error.response?.data?.message ||
+            'none',
+          status: error.response.status,
+        });
+        setIsError(true);
       } finally {
         setIsLoading(false);
         setDoFetch(false);
@@ -64,3 +57,8 @@ export const useAPI = (
 
   return [dispatch, data, isLoading, isError];
 };
+
+// Розібратись дженерики
+// Подивитись як робиться АРІ
+// isError - boolean
+// baseURL
