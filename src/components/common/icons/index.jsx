@@ -8,4 +8,5 @@ export { default as PartnerIcon } from './Partner';
 export { default as ProjectIcon } from './ProjectIcon';
 export { default as RecallIcon } from './RecallIcon';
 export { default as ReportIcon } from './ReportIcon';
+export { default as SettingsIcon } from './SettingsIcon';
 export { default as SliderIcon } from './SliderIcon';

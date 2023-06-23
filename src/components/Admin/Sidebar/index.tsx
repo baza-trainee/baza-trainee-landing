@@ -1,28 +1,10 @@
+import { ArrowIcon, LogOutIcon } from '@/components/common/icons';
 import Image from 'next/image';
 import { MouseEvent, useState } from 'react';
+
+import MenuItem from './MenuItem';
+import sidebarSectionsList from './sidebarSectionsList';
 import styles from './styles.module.scss';
-
-import {
-  ArrowIcon,
-  ContactIcon,
-  CounterIcon,
-  LogOutIcon,
-  PartnerIcon,
-  ProjectIcon,
-  RecallIcon,
-  ReportIcon,
-  SliderIcon,
-} from '@/components/common/icons/index';
-
-const sidebarSectionsList = [
-  { id: 0, iconName: SliderIcon, text: 'Слайдер' },
-  { id: 1, iconName: ProjectIcon, text: 'Проєкти' },
-  { id: 2, iconName: CounterIcon, text: 'Каунтер' },
-  { id: 3, iconName: PartnerIcon, text: 'Лого партнерів' },
-  { id: 4, iconName: RecallIcon, text: 'Відгуки' },
-  { id: 5, iconName: ReportIcon, text: 'Звітність' },
-  { id: 6, iconName: ContactIcon, text: 'Контакти' },
-];
 
 function Sidebar() {
   const [page, setPage] = useState<number>(0);
@@ -30,17 +12,6 @@ function Sidebar() {
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
     setPage(Number(e.currentTarget.id));
-  };
-
-  const makeOptionClasses = (index: number) => {
-
-    let classes = styles['sidebar-list__button'];
-
-    if (index === page) {classes += ` ${styles['sidebar-list__button--accent']}`}
-
-    if (isSidebarOpen) {classes += ` ${styles['sidebar-list__button--extended']}`}
-
-    return classes;
   };
 
   const toggleSidebar = () => {
@@ -84,36 +55,20 @@ function Sidebar() {
 
         <div className={styles['sidebar-menu']}>
           <ul className={styles['sidebar-list']}>
-            {sidebarSectionsList &&
-              sidebarSectionsList.map(
-                ({ id, iconName: IconComponent, text }) => (
-                  <li
-                    key={id}
-                    id={id.toString()}
-                    className={styles['sidebar-list__item']}
-                    onClick={handleClick}
-                  >
-                    <button className={makeOptionClasses(id)}>
-                      {IconComponent && (
-                        <IconComponent
-                          className={
-                            toggleSidebarClasses  ('sidebar-list__item-icon') ||
-                            ''
-                          }
-                        />
-                      )}
-
-                      {isSidebarOpen && (
-                        <p className={styles['sidebar-list__text']}>{text}</p>
-                      )}
-                    </button>
-                  </li>
-                )
-              )}
+            {sidebarSectionsList.map((item) => (
+              <MenuItem
+                key={item.id}
+                sidebarSection={item}
+                page={page}
+                isSidebarOpen={isSidebarOpen}
+                handleClick={handleClick}
+              />
+            ))}
           </ul>
 
           <a href="#" className={styles['log-out']}>
             <LogOutIcon className={styles['log-out__icon']} />
+            {isSidebarOpen && 'вихід'}
           </a>
         </div>
       </div>
