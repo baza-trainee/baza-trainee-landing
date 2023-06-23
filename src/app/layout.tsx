@@ -1,3 +1,4 @@
+import { StoreProvider } from '@/store/globalContext';
 import './globals.scss';
 
 export const metadata = {
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <StoreProvider>
+        <body>{children}</body>
+      </StoreProvider>
     </html>
   );
 }
