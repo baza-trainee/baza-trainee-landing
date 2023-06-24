@@ -16,7 +16,7 @@ function MenuItem({
   handleClick: (_e: MouseEvent<HTMLLIElement>) => void;
 }) {
   const { id, iconName: IconComponent, text, submenu } = sidebarSection;
-  const [isSubmenuClose, setIsSubmenuClose] = useState(false);
+  const [isSubmenuClose, setIsSubmenuClose] = useState(true);
 
   const isSelected = () => {
     const items = submenu?.map((el) => {
