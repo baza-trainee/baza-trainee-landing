@@ -16,8 +16,16 @@ function Sidebar() {
     const lastPart = matches ? matches[1] : sidebarSectionsList[0].id;
     return lastPart;
   };
+  const isMenuOpen = () => {
+    const result =
+      typeof window !== 'undefined'
+        ? () => localStorage.getItem('isAdminSideBarOpen')
+        : 'true';
+    return Boolean(result);
+  };
+
   const [page, setPage] = useState<string>(getPath());
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(isMenuOpen());
   const router = useRouter();
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
@@ -27,7 +35,8 @@ function Sidebar() {
   };
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    localStorage.setItem('isAdminSideBarOpen', String(!isSidebarOpen));
+    setIsSidebarOpen((prev) => !prev);
   };
 
   return (
