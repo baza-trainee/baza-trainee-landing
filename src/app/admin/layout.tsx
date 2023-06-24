@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Admin/Sidebar';
+import styles from './styles.module.scss';
 
 export const metadata = {
   title: 'Baza-Trainee',
@@ -12,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={styles.main}>
         <Sidebar />
         {children}
       </body>

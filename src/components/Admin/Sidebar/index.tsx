@@ -2,18 +2,28 @@
 import { LogOutIcon, SliderMenuArrow } from '@/components/common/icons';
 import IconInner from '@/components/common/icons/Spinner/inner';
 import IconOuter from '@/components/common/icons/Spinner/outer';
+import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useState } from 'react';
 import MenuItem from './MenuItem';
 import sidebarSectionsList from './sidebarSectionsList';
 import styles from './styles.module.scss';
 
 function Sidebar() {
-  const [page, setPage] = useState<string>(sidebarSectionsList[0].id);
+  const path = usePathname();
+  const getPath = () => {
+    const regex = /\/([^\\/]+)$/;
+    const matches = path.match(regex);
+    const lastPart = matches ? matches[1] : sidebarSectionsList[0].id;
+    return lastPart;
+  };
+  const [page, setPage] = useState<string>(getPath());
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const router = useRouter();
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
     e.stopPropagation();
     setPage(e.currentTarget.id);
+    router.push(`admin/${e.currentTarget.id}`);
   };
 
   const toggleSidebar = () => {
@@ -28,8 +38,7 @@ function Sidebar() {
         }`}
       >
         <div className={styles['sidebar-logo']}>
-          <a
-            href="#"
+          <button
             className={styles['sidebar-logo__link']}
             onClick={toggleSidebar}
           >
@@ -47,12 +56,11 @@ function Sidebar() {
                 height={68}
               />
             </div>
-          </a>
+          </button>
         </div>
 
         <div className={styles['sidebar-menu']}>
-          <a
-            href="#"
+          <button
             className={styles['sidebar-logo__close-svg']}
             onClick={toggleSidebar}
           >
@@ -61,7 +69,7 @@ function Sidebar() {
                 isSidebarOpen ? styles['sidebar-logo__close-svg--mirrored'] : ''
               }`}
             />
-          </a>
+          </button>
 
           <ul className={styles['sidebar-list']}>
             {sidebarSectionsList.map((item) => (

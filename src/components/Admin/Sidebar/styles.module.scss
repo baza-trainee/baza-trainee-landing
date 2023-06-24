@@ -1,7 +1,8 @@
 .sidebar-wrapper {
   width: 11.5rem;
-  min-height: 100vh;
   transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
 
   &--extended {
     width: 24.1rem;
@@ -23,6 +24,11 @@
   }
 }
 
+.sidebar-logo__link {
+  background: none;
+  border: none;
+}
+
 .sidebar-logo {
   display: flex;
   width: 11.5rem;
@@ -41,9 +47,7 @@
   width: 6.8rem;
   height: 6.8rem;
   transition: all 0.3s ease-in-out;
-
   align-items: center;
-  flex-shrink: 0;
   fill: $color-black;
 }
 
@@ -83,6 +87,7 @@
   background: $color-black;
   border-radius: 4px 0px 0px 4px;
   fill: $color-white;
+  cursor: pointer;
 
   &--mirrored {
     transform: scaleX(-1);
@@ -95,7 +100,7 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-height: 100vh;
+  flex-grow: 2;
   border: 1px solid $color-gray;
   gap: 4rem;
 }

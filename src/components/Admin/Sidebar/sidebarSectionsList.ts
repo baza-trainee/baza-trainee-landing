@@ -18,7 +18,7 @@ const sidebarSectionsList = [
     submenu: [
       {
         text: 'Учасники',
-        id: 'users',
+        id: 'members',
       },
       {
         text: 'Ролі',
