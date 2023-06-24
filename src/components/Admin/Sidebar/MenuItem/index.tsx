@@ -24,8 +24,6 @@ function MenuItem({
     });
     const isSidebarSelected = id === page;
     const isSubmenuSelected = items?.includes(page);
-    console.log(items);
-    console.log(isSidebarSelected, isSubmenuSelected);
     return isSidebarSelected || !!isSubmenuSelected;
   };
 
