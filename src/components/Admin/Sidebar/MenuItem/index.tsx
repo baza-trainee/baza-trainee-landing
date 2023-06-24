@@ -16,7 +16,7 @@ function MenuItem({
   handleClick: (_e: MouseEvent<HTMLLIElement>) => void;
 }) {
   const { id, iconName: IconComponent, text, submenu } = sidebarSection;
-  const [isSubmenuShown, setIsSubmenuShown] = useState(false);
+  const [isSubmenuClose, setIsSubmenuClose] = useState(false);
 
   const isSelected = () => {
     const items = submenu?.map((el) => {
@@ -31,7 +31,7 @@ function MenuItem({
 
   const submenuArrowClickHandler = (e: MouseEvent<HTMLLIElement>) => {
     e.stopPropagation();
-    setIsSubmenuShown((prev) => !prev);
+    setIsSubmenuClose((prev) => !prev);
   };
 
   return (
@@ -40,7 +40,7 @@ function MenuItem({
         className={`${styles['sidebar-list__button']} ${
           isSidebarOpen && styles['sidebar-list__button--extended']
         }  ${isSelected() && styles['sidebar-list__button--accent']} ${
-          isSubmenuShown && styles['submenu-opened']
+          isSubmenuClose && styles['submenu-closed']
         }`}
       >
         <IconComponent className={styles['sidebar-list__item-icon']} />
@@ -50,23 +50,23 @@ function MenuItem({
         )}
         {submenu && (
           <SliderMenuArrow
-            className={`${isSidebarOpen && styles['sidebar-logo__close-svg']}`}
+            className={`${styles['sidebar-logo__close-svg']}`}
             onClick={submenuArrowClickHandler}
           />
         )}
       </button>
-      <ul className={styles['sidebar-list__submenu']}>
-        {submenu &&
-          submenu.map((submenuEl) => (
+      {submenu && (
+        <ul className={styles['sidebar-list__submenu']}>
+          {submenu.map((submenuEl) => (
             <SubmenuItem
               key={submenuEl.id}
               submenuEl={submenuEl}
               page={page}
-              isSidebarOpen={isSidebarOpen}
               handleClick={handleClick}
             />
           ))}
-      </ul>
+        </ul>
+      )}
     </li>
   );
 }
