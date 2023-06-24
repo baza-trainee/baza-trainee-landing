@@ -7,11 +7,12 @@ import sidebarSectionsList from './sidebarSectionsList';
 import styles from './styles.module.scss';
 
 function Sidebar() {
-  const [page, setPage] = useState<number>(0);
+  const [page, setPage] = useState<string>(sidebarSectionsList[0].id);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
-    setPage(Number(e.currentTarget.id));
+    e.stopPropagation();
+    setPage(e.currentTarget.id);
   };
 
   const toggleSidebar = () => {

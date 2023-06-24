@@ -1,6 +1,8 @@
 .sidebar-wrapper {
   width: 11.5rem;
   min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
 
   &--extended {
     width: 24.1rem;
@@ -27,6 +29,7 @@
   width: 11.5rem;
   padding: 1.8rem 2.3rem 1.8rem 2.4rem;
   height: 10.4rem;
+  transition: all 0.3s ease-in-out;
 
   align-items: center;
   flex-shrink: 0;
@@ -47,6 +50,7 @@
   height: 4rem;
   background: $color-black;
   border-radius: 4px 0px 0px 4px;
+  fill: $color-white;
 
   &--mirrored {
     transform: scaleX(-1);
@@ -83,6 +87,7 @@
   width: 4.7rem;
   height: 5.6rem;
   padding: 0;
+  cursor: pointer;
 
   &__text {
     display: none;

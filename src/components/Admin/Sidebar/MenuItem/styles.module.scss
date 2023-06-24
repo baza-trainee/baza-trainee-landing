@@ -1,4 +1,12 @@
+.sidebar-list__item {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+  gap: 0.4rem;
+}
+
 .sidebar-list__button {
+  position: relative;
   display: flex;
   width: 4.7rem;
   height: 4rem;
@@ -10,6 +18,9 @@
   background-color: $color-white;
   border: 0;
   border-radius: 4px;
+  gap: 0.8rem;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
 
   &--accent {
     background: $color-black;
@@ -21,6 +32,14 @@
     .sidebar-list__text {
       color: $color-white;
     }
+
+    & .sidebar-logo__close-svg {
+      fill: $color-white;
+    }
+
+    & .sidebar-logo__close-svg--mirrored ~ .sidebar-list__submenu {
+      display: none;
+    }
   }
 
   &--extended {
@@ -28,13 +47,41 @@
     width: 17.7rem;
     height: 4rem;
     justify-content: flex-start;
-
-    & .sidebar-list__item-icon {
-      margin-right: 1rem;
-    }
   }
 }
 
 .sidebar-list__item-icon {
   width: 2.4rem;
+}
+
+.sidebar-list__submenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.4rem;
+
+  .submenu-opened ~ & {
+    display: none;
+  }
+}
+
+.sidebar-logo__close-svg {
+  display: flex;
+  position: absolute;
+  right: 1.2rem;
+  top: 0.8rem;
+  justify-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  //fill: $color-black;
+  //background: $color-black;
+  //border-radius: 4px 0px 0px 4px;
+  transform: rotate(0.75turn);
+
+  .submenu-opened & {
+    transform: rotate(0.25turn);
+  }
 }

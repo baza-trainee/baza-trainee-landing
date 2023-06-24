@@ -1,0 +1,38 @@
+.sidebar-list__item {
+  transition: all 0.3s ease-in-out;
+  gap: 0.4rem;
+  border-top: $border-black;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.sidebar-list__button {
+  display: flex;
+  width: 17.7rem;
+  height: 4rem;
+  padding: 0.4rem 10.1rem 0.4rem 4.4rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  cursor: pointer;
+  background: $color-white;
+  border-radius: 4px;
+  border: none;
+
+  &--accent {
+    background: $color-accent;
+  }
+
+  &:hover {
+    background: $color-accent;
+  }
+}
+
+.sidebar-list__text {
+  color: $color-neutral-text;
+  font-size: 1.6rem;
+  font-family: $font-primary;
+  line-height: 3.2rem;
+}
