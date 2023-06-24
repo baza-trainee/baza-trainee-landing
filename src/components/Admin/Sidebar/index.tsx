@@ -3,7 +3,7 @@ import { LogOutIcon, SliderMenuArrow } from '@/components/common/icons';
 import IconInner from '@/components/common/icons/Spinner/inner';
 import IconOuter from '@/components/common/icons/Spinner/outer';
 import { usePathname, useRouter } from 'next/navigation';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import sidebarSectionsList from './sidebarSectionsList';
 import styles from './styles.module.scss';
@@ -38,6 +38,11 @@ function Sidebar() {
     localStorage.setItem('isAdminSideBarOpen', String(!isSidebarOpen));
     setIsSidebarOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const MenuState = isMenuOpen();
+    setIsSidebarOpen(MenuState);
+  }, []);
 
   return (
     <>
