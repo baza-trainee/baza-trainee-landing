@@ -120,3 +120,12 @@
     fill: $color-white;
   }
 }
+
+.sidebar-list__text {
+  display: none;
+  overflow: hidden;
+
+  .sidebar-list__button--extended & {
+    display: block;
+  }
+}

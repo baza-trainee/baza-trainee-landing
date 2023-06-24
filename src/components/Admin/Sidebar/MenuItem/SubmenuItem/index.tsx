@@ -23,7 +23,7 @@ function SubmenuItem({
     >
       <button
         className={`${styles['sidebar-list__button']} ${
-          id === page && styles['sidebar-list__button--accent']
+          id === page ? styles['sidebar-list__button--accent'] : ''
         }`}
       >
         <p className={styles['sidebar-list__text']}>{text}</p>

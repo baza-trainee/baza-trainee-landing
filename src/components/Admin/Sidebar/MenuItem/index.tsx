@@ -19,11 +19,8 @@ function MenuItem({
   const [isSubmenuClose, setIsSubmenuClose] = useState(true);
 
   const isSelected = () => {
-    const items = submenu?.map((el) => {
-      return el.id;
-    });
     const isSidebarSelected = id === page;
-    const isSubmenuSelected = items?.includes(page);
+    const isSubmenuSelected = submenu?.some((el) => el.id === page);
     return isSidebarSelected || !!isSubmenuSelected;
   };
 
@@ -36,16 +33,13 @@ function MenuItem({
     <li id={id} className={styles['sidebar-list__item']} onClick={handleClick}>
       <button
         className={`${styles['sidebar-list__button']} ${
-          isSidebarOpen && styles['sidebar-list__button--extended']
-        }  ${isSelected() && styles['sidebar-list__button--accent']} ${
-          isSubmenuClose && styles['submenu-closed']
+          isSidebarOpen ? styles['sidebar-list__button--extended'] : ''
+        }  ${isSelected() ? styles['sidebar-list__button--accent'] : ''} ${
+          isSubmenuClose ? styles['submenu-closed'] : ''
         }`}
       >
         <IconComponent className={styles['sidebar-list__item-icon']} />
-
-        {isSidebarOpen && (
-          <p className={styles['sidebar-list__text']}>{text}</p>
-        )}
+        <p className={styles['sidebar-list__text']}>{text}</p>
         {submenu && (
           <SliderMenuArrow
             className={`${styles['sidebar-logo__close-svg']}`}

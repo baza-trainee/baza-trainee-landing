@@ -90,14 +90,14 @@
 }
 
 .sidebar-menu {
-  border: 1px solid $color-gray;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 4rem;
   width: 100%;
   min-height: 100vh;
+  border: 1px solid $color-gray;
+  gap: 4rem;
 }
 
 .sidebar-list {
@@ -141,14 +141,5 @@
 
   &:hover &__icon {
     fill: $color-white;
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }

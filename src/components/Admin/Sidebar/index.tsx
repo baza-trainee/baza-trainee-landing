@@ -24,7 +24,7 @@ function Sidebar() {
     <>
       <div
         className={`${styles['sidebar-wrapper']} ${
-          isSidebarOpen && styles['sidebar-wrapper--extended']
+          isSidebarOpen ? styles['sidebar-wrapper--extended'] : ''
         }`}
       >
         <div className={styles['sidebar-logo']}>
@@ -36,7 +36,7 @@ function Sidebar() {
             <div className={styles['spinner-container']}>
               <IconOuter
                 className={`${styles['spinner-outer']} ${
-                  isSidebarOpen && styles['spinner-outer--rotate']
+                  isSidebarOpen ? styles['spinner-outer--rotate'] : ''
                 }`}
                 width={68}
                 height={68}
@@ -47,13 +47,6 @@ function Sidebar() {
                 height={68}
               />
             </div>
-            {/*<Image
-              className={styles['sidebar-logo__svg']}
-              src="/svg/logo-black.svg"
-              alt="Main logo"
-              width={68}
-              height={68}
-      />*/}
           </a>
         </div>
 
@@ -65,7 +58,7 @@ function Sidebar() {
           >
             <SliderMenuArrow
               className={`${
-                isSidebarOpen && styles['sidebar-logo__close-svg--mirrored']
+                isSidebarOpen ? styles['sidebar-logo__close-svg--mirrored'] : ''
               }`}
             />
           </a>

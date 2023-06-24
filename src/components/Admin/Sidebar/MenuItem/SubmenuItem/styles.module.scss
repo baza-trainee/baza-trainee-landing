@@ -21,10 +21,7 @@
   border-radius: 4px;
   border: none;
 
-  &--accent {
-    background: $color-accent;
-  }
-
+  &--accent,
   &:hover {
     background: $color-accent;
   }
