@@ -35,6 +35,39 @@
   background: $color-accent;
 }
 
+.spinner-container {
+  position: relative;
+  display: flex;
+  width: 6.8rem;
+  height: 6.8rem;
+  transition: all 0.3s ease-in-out;
+
+  align-items: center;
+  flex-shrink: 0;
+  fill: $color-black;
+}
+
+.spinner-outer {
+  width: 6.8rem;
+  height: 6.8rem;
+  transition: all 0.3s;
+
+  &--rotate {
+    transform: rotate(0.28turn);
+  }
+}
+
+.spinner-inner {
+  position: absolute;
+  top: 2px;
+  left: -1px;
+}
+
+.spinner-outer,
+.spinner-inner {
+  fill: $color-black;
+}
+
 .sidebar-logo__svg {
   width: 6.8rem;
   height: 6.8rem;
@@ -108,5 +141,14 @@
 
   &:hover &__icon {
     fill: $color-white;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

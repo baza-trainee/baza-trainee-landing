@@ -1,6 +1,7 @@
 'use client';
 import { LogOutIcon, SliderMenuArrow } from '@/components/common/icons';
-import Image from 'next/image';
+import IconInner from '@/components/common/icons/Spinner/inner';
+import IconOuter from '@/components/common/icons/Spinner/outer';
 import { MouseEvent, useState } from 'react';
 import MenuItem from './MenuItem';
 import sidebarSectionsList from './sidebarSectionsList';
@@ -32,13 +33,27 @@ function Sidebar() {
             className={styles['sidebar-logo__link']}
             onClick={toggleSidebar}
           >
-            <Image
+            <div className={styles['spinner-container']}>
+              <IconOuter
+                className={`${styles['spinner-outer']} ${
+                  isSidebarOpen && styles['spinner-outer--rotate']
+                }`}
+                width={68}
+                height={68}
+              />
+              <IconInner
+                className={styles['spinner-inner']}
+                width={68}
+                height={68}
+              />
+            </div>
+            {/*<Image
               className={styles['sidebar-logo__svg']}
               src="/svg/logo-black.svg"
               alt="Main logo"
               width={68}
               height={68}
-            />
+      />*/}
           </a>
         </div>
 
