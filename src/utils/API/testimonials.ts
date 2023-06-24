@@ -1,67 +1,25 @@
-import { AxiosResponse } from 'axios';
-import { IError } from '../../types/typesAPI';
+import { ITestimonial, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const testimonialsApi = {
-  async getAll(): Promise<AxiosResponse | IError> {
-    try {
-      const response = bazaAPI.get('/testimonials');
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  getAll() {
+    return bazaAPI.get('/testimonials');
   },
-  async createNew(testimonial: object): Promise<AxiosResponse | IError> {
-    try {
-      const response = bazaAPI.post('/testimonials', testimonial);
 
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  createNew(testimonial: ITestimonial) {
+    return bazaAPI.post('/testimonials', testimonial);
   },
-  async getById(id: string): Promise<AxiosResponse | IError> {
-    try {
-      const response = bazaAPI.get(`/testimonials/${id}`);
 
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  getById(id: byIdRequest) {
+    return bazaAPI.get(`/testimonials/${id}`);
   },
-  async deleteById(id: string): Promise<AxiosResponse | IError> {
-    try {
-      const response = bazaAPI.delete(`/testimonials/${id}`);
 
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  deleteById(id: byIdRequest) {
+    return bazaAPI.delete(`/testimonials/${id}`);
   },
-  async updateById([id, payload]: [id: string, payload: object]): Promise<
-    AxiosResponse | IError
-  > {
-    try {
-      if (!id || !payload) {
-        throw {
-          message: 'Must be id, payload payload',
-          responseMessage: 'none',
-          status: '1',
-        };
-      }
 
-      const response = bazaAPI.patch(`/testimonials/${id}`, payload);
-
-      return response;
-    } catch (error: any) {
-      console.log(error);
-      return error;
-    }
+  updateById([id, payload]: updateByIdRequest) {
+    return bazaAPI.patch(`/testimonials/${id}`, payload);
   },
 };
 

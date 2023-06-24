@@ -1,3 +1,5 @@
+import { ILoginRequest, IRegisterRequest } from '@/types/typesAPI';
+import { AxiosResponse } from 'axios';
 import { bazaAPI } from './config';
 
 const token = {
@@ -10,10 +12,8 @@ const token = {
 };
 
 const authApi = {
-  async getInfo() {
-    return await bazaAPI.get(`/auth/user`);
-  },
-  async logIn({ email, password }: { email: string; password: string }) {
+  getInfo: () => bazaAPI.get(`/auth/user`),
+  logIn: async ({ email, password }: ILoginRequest): Promise<AxiosResponse> => {
     const response = await bazaAPI.post(`/auth/login`, {
       email,
       password,
@@ -22,15 +22,11 @@ const authApi = {
     token.set(response.data.token);
     return response;
   },
-  async register({
+  register: async ({
+    name,
     email,
     password,
-    name,
-  }: {
-    email: string;
-    password: string;
-    name: string;
-  }) {
+  }: IRegisterRequest): Promise<AxiosResponse> => {
     const response = await bazaAPI.post(`/auth/register`, {
       email,
       password,

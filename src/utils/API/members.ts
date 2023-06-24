@@ -1,20 +1,21 @@
+import { IMember, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const membersApi = {
-  async getAll() {
-    return await bazaAPI.get('/members');
+  getAll() {
+    return bazaAPI.get('/members');
   },
-  async createNew(member: object) {
-    return await bazaAPI.post('/members', member);
+  createNew(member: IMember) {
+    return bazaAPI.post('/members', member);
   },
-  async getById(id: string) {
-    return await bazaAPI.get(`/members/${id}`);
+  getById(id: byIdRequest) {
+    return bazaAPI.get(`/members/${id}`);
   },
-  async deleteById(id: string) {
-    return await bazaAPI.delete(`/members/${id}`);
+  deleteById(id: byIdRequest) {
+    return bazaAPI.delete(`/members/${id}`);
   },
-  async updateById([id, payload]: [id: string, payload: object]) {
-    return await bazaAPI.patch(`/members/${id}`, payload);
+  updateById([id, payload]: updateByIdRequest) {
+    return bazaAPI.patch(`/members/${id}`, payload);
   },
 };
 export default membersApi;

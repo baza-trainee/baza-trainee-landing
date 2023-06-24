@@ -1,20 +1,25 @@
+import { IRole, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const rolesApi = {
-  async getAll() {
-    return await bazaAPI.get('/roles');
+  getAll() {
+    return bazaAPI.get('/roles');
   },
-  async createNew(role: object) {
-    return await bazaAPI.post('/roles', role);
+
+  createNew(role: IRole) {
+    return bazaAPI.post('/roles', role);
   },
-  async getById(id: string) {
-    return await bazaAPI.get(`/roles/${id}`);
+
+  getById(id: byIdRequest) {
+    return bazaAPI.get(`/roles/${id}`);
   },
-  async deleteById(id: string) {
-    return await bazaAPI.delete(`/roles/${id}`);
+
+  deleteById(id: byIdRequest) {
+    return bazaAPI.delete(`/roles/${id}`);
   },
-  async updateById([id, payload]: [id: string, payload: object]) {
-    return await bazaAPI.patch(`/roles/${id}`, payload);
+
+  updateById([id, payload]: updateByIdRequest) {
+    return bazaAPI.patch(`/roles/${id}`, payload);
   },
 };
 

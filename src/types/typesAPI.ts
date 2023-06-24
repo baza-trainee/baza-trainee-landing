@@ -1,127 +1,138 @@
-export interface IAuthenticatedRequest extends Request {
-  userId?: string;
+export interface IErrorResponse {
+  message: String;
+  responseMessage: String;
+  status: Number;
 }
 
-export interface IUser {
-  _id: string | number;
-  name: string;
+// Request types
+
+export interface ILoginRequest {
   email: string;
-  passwordHash: string;
+  password: string;
 }
 
-export interface ITestimonial {
-  name: string;
-  review: string;
-  date: number;
-  imageUrl: string;
-}
-
-export interface ITeamMember {
-  name: string;
-  profileUrl?: string;
-}
-
-export interface ITeamMemberRole {
+export interface IRegisterRequest extends ILoginRequest {
   name: string;
 }
 
-export interface IProjectTeamMember {
-  userId: {
-    _id: string | number;
-    name?: string;
-  };
-  roleId: {
-    _id: string | number;
-    name?: string;
-  };
+export interface IUpdateEmployedRequest {
+  employed: Number;
 }
 
-export interface IStack {
-  stackId: any;
-  _id: string | number;
-  name: string;
-}
-
-export interface IProject {
-  title: string;
-  imageUrl: string;
-  deployUrl?: string;
-  stack: Array<{
-    stackId: Partial<IStack>;
-  }>;
-  isTeamRequired: boolean;
-  creationDate: number;
-  launchDate: number;
-  complexity: number;
-  teamMembers: Partial<IProjectTeamMember>[];
-  _id: string | number;
-}
-
-export interface IPartner {
-  homeUrl?: string;
-  imageUrl: string;
-}
-
-export interface IContacts {
+export interface IUpdateContactsRequest {
   contacts: {
     contactsDataList: {
-      phone1: number;
-      phone2: number;
-      email: string;
+      phone1: String | Number;
+      phone2: String | Number;
+      email: String;
     };
     socialsMediaList: {
-      linkedin: string;
-      facebook: string;
+      linkedin: String;
+      facebook: String;
     };
   };
-}
-
-export interface IAchievements {
-  employed: {
-    type: number;
-  };
-}
-
-export interface IProjectResponse {
-  title: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  _id: string;
-  imageUrl: string;
-  deployUrl?: string;
-  stack: Array<{
-    _id: string;
-    name: string;
-  }>;
-  isTeamRequired: boolean;
-  creationDate: number;
-  launchDate: number;
-  complexity: number;
-  teamMembers: Array<{
-    user: {
-      name: string;
-      _id: string;
-    };
-    role: {
-      name: string;
-      _id: string;
-    };
-  }>;
 }
 
 export interface IHeroSlider {
-  title: string;
-  subtitle: string;
-  imageUrl: string;
+  title: {
+    en: String;
+    pl: String;
+    ua: String;
+  };
+  subTitle: {
+    en: String;
+    pl: String;
+    ua: String;
+  };
+  imageUrl?: String;
+  file?: File;
 }
 
-export interface IError {
-  code: string;
-  config: Array<any>;
-  message: string;
-  name: string;
-  request: XMLHttpRequest;
-  response: Object;
+export interface IPartner {
+  homeUrl?: String;
+  imageUrl: String;
 }
+
+export interface IProject {
+  title: {
+    en: String;
+    pl: String;
+    ua: String;
+  };
+  imageUrl: String;
+  deployUrl?: String;
+  stack?: [{ _id: String; name: String }];
+  isTeamRequired: Boolean;
+  creationDate: Number;
+  launchDate?: Number;
+  complexity: Number;
+  teamMembers?: [
+    { user: { _id: String; name: String }; role: { _id: String; name: String } }
+  ];
+}
+
+export interface IRole {
+  en: String;
+  pl: String;
+  ua: String;
+  name: String;
+}
+
+export interface IStack {
+  name: String;
+}
+
+export interface IMember {
+  name: {
+    en: String;
+    pl: String;
+    ua: String;
+  };
+  profileUrl?: String;
+}
+
+export interface ITestimonial {
+  name: {
+    en: String;
+    pl: String;
+    ua: String;
+  };
+  review: {
+    en: String;
+    pl: String;
+    ua: String;
+  };
+  date: Number;
+  imageUrl: String;
+}
+
+export interface IUser {
+  name: String;
+  email: String;
+  passwordHash: String;
+}
+
+export type id = String | Number;
+export type byIdRequest = id;
+export type updateByIdRequest = [id: id, payload: Object];
+export type searchProjectRequest = string;
+
+export type methodType = Function;
+export type dispatcherType = (payload?: requestPayloadType) => void;
+export type responseDataType<T> = T | IErrorResponse | null;
+export type requestPayloadType =
+  | ILoginRequest
+  | IRegisterRequest
+  | IUpdateEmployedRequest
+  | IUpdateContactsRequest
+  | IHeroSlider
+  | IPartner
+  | IProject
+  | IRole
+  | IStack
+  | IMember
+  | ITestimonial
+  | byIdRequest
+  | updateByIdRequest
+  | searchProjectRequest
+  | null;

@@ -1,27 +1,34 @@
+import {
+  IProject,
+  byIdRequest,
+  searchProjectRequest,
+  updateByIdRequest,
+} from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const projectsApi = {
-  async getAll() {
-    return await bazaAPI.get('/projects');
+  getAll() {
+    return bazaAPI.get('/projects');
   },
 
-  async createNew(project: object) {
-    return await bazaAPI.post('/projects', project);
+  createNew(project: IProject) {
+    return bazaAPI.post('/projects', project);
   },
 
-  async search(query: string) {
-    return await bazaAPI.get(`/projects/search?query=${query}`);
+  search(query: searchProjectRequest) {
+    return bazaAPI.get(`/projects/search?query=${query}`);
   },
 
-  async getById(id: string) {
-    return await bazaAPI.get(`/projects/${id}`);
-  },
-  async deleteById(id: string) {
-    return await bazaAPI.delete(`/projects/${id}`);
+  getById(id: byIdRequest) {
+    return bazaAPI.get(`/projects/${id}`);
   },
 
-  async updateById([id, payload]: [id: string, payload: object]) {
-    return await bazaAPI.patch(`/projects/${id}`, payload);
+  deleteById(id: byIdRequest) {
+    return bazaAPI.delete(`/projects/${id}`);
+  },
+
+  updateById([id, payload]: updateByIdRequest) {
+    return bazaAPI.patch(`/projects/${id}`, payload);
   },
 };
 

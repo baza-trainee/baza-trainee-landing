@@ -1,20 +1,21 @@
+import { byIdRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const partnersApi = {
-  async getAll() {
-    return await bazaAPI.get('/partners');
+  getAll() {
+    return bazaAPI.get('/partners');
   },
-  async createNew(partner: object) {
-    return await bazaAPI.post('/partners', partner);
+  createNew(partner: object) {
+    return bazaAPI.post('/partners', partner);
   },
-  async getById(id: string) {
-    return await bazaAPI.get(`/partners/${id}`);
+  getById(id: byIdRequest) {
+    return bazaAPI.get(`/partners/${id}`);
   },
-  async deleteById(id: string) {
-    return await bazaAPI.delete(`/partners/${id}`);
+  deleteById(id: byIdRequest) {
+    return bazaAPI.delete(`/partners/${id}`);
   },
-  async updateById([id, payload]: [id: string, payload: object]) {
-    return await bazaAPI.patch(`/partners/${id}`, payload);
+  updateById([id, payload]: updateByIdRequest) {
+    return bazaAPI.patch(`/partners/${id}`, payload);
   },
 };
 

@@ -1,7 +1,8 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-import achievementsApi from '@/utils/API/achievements';
+import { IMember, IUser } from '@/types/typesAPI';
 import authApi from '@/utils/API/auth';
+import membersApi from '@/utils/API/members';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useEffect } from 'react';
 import styles from './styles.module.scss';
@@ -39,33 +40,21 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
-  const [logIn, userData, isLoggingIn, isError] = useAPI(authApi.logIn);
-  const [
-    getAchievements,
-    achievements,
-    isAchievementsLoading,
-    isAchievementError,
-  ] = useAPI(achievementsApi.getData);
-  const [updateEmployed, updatedData, isUpdating, isUpdatingError] = useAPI(
-    achievementsApi.updateEmployed
+  const [logIn, userData, isLoggingIn, isLoggingError] = useAPI<IUser>(
+    authApi.logIn
   );
-
+  const [dispatch, data, isLoading, isError] = useAPI<IMember>(
+    membersApi.updateById
+  );
   useEffect(() => {
     logIn({ email: 'snoop@doggie.dog', password: '0800500609' });
   }, []);
 
   const handleClick = () => {
-    getAchievements();
-    updateEmployed(7878);
+    dispatch();
   };
 
-  console.log(
-    typeof getAchievements,
-    achievements,
-    isAchievementsLoading,
-    isAchievementError
-  );
-  console.log(typeof updateEmployed, updatedData, isUpdating, isUpdatingError);
+  console.log(typeof dispatch, data, isLoading, isError);
 
   return (
     <footer className={styles.footer} id="footer">

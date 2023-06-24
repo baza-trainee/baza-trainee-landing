@@ -1,18 +1,23 @@
-import axios from 'axios';
+import {
+  dispatcherType,
+  methodType,
+  requestPayloadType,
+  responseDataType,
+} from '@/types/typesAPI';
 import { useEffect, useState } from 'react';
 
-export const useAPI = (
-  method: Function
-): [Function, Object | null, Boolean, Object | Boolean] => {
+export const useAPI = <T,>(
+  method: methodType
+): [dispatcherType, responseDataType<T>, Boolean, Boolean] => {
   const [doFetch, setDoFetch] = useState<Boolean>(false);
-  const [payload, setPayload] = useState<any>(null);
-  const [data, setData] = useState<Object | null>(null);
+  const [payload, setPayload] = useState<T | requestPayloadType>(null);
+  const [data, setData] = useState<responseDataType<T>>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const [isError, setIsError] = useState<Object | Boolean>(false);
+  const [isError, setIsError] = useState<Boolean>(false);
 
-  const dispatch: Function = (payload: any = null) => {
+  const dispatch: dispatcherType = (payload?: T | requestPayloadType): void => {
     setDoFetch(true);
-    setPayload(payload);
+    setPayload(payload || null);
   };
 
   useEffect(() => {
@@ -57,8 +62,3 @@ export const useAPI = (
 
   return [dispatch, data, isLoading, isError];
 };
-
-// Розібратись дженерики
-// Подивитись як робиться АРІ
-// isError - boolean
-// baseURL
