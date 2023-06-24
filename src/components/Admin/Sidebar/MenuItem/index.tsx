@@ -15,27 +15,6 @@ function MenuItem({
 }) {
   const { id, iconName: IconComponent, text } = sidebarSection;
 
-  const makeOptionClasses = (index: number) => {
-    let classes = styles['sidebar-list__button'];
-
-    if (index === page) {
-      classes += ` ${styles['sidebar-list__button--accent']}`;
-    }
-
-    if (isSidebarOpen) {
-      classes += ` ${styles['sidebar-list__button--extended']}`;
-    }
-
-    return classes;
-  };
-
-  const toggleSidebarClasses = (className: string): string | undefined => {
-    if (isSidebarOpen) {
-      return ` ${styles[className]} ${styles[`${className}--extended`]}`;
-    }
-    return `${styles[className]}`;
-  };
-
   return (
     <li
       key={id}
@@ -43,12 +22,12 @@ function MenuItem({
       className={styles['sidebar-list__item']}
       onClick={handleClick}
     >
-      <button className={makeOptionClasses(id)}>
-        {IconComponent && (
-          <IconComponent
-            className={toggleSidebarClasses('sidebar-list__item-icon') || ''}
-          />
-        )}
+      <button
+        className={`${styles['sidebar-list__button']} ${
+          isSidebarOpen && styles['sidebar-list__button--extended']
+        }  ${id === page && styles['sidebar-list__button--accent']}`}
+      >
+        <IconComponent className={styles['sidebar-list__item-icon']} />
 
         {isSidebarOpen && (
           <p className={styles['sidebar-list__text']}>{text}</p>

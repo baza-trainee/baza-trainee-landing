@@ -1,7 +1,7 @@
-import { ArrowIcon, LogOutIcon } from '@/components/common/icons';
+'use client';
+import { LogOutIcon, SliderMenuArrow } from '@/components/common/icons';
 import Image from 'next/image';
 import { MouseEvent, useState } from 'react';
-
 import MenuItem from './MenuItem';
 import sidebarSectionsList from './sidebarSectionsList';
 import styles from './styles.module.scss';
@@ -18,20 +18,17 @@ function Sidebar() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleSidebarClasses = (className: string): string | undefined => {
-    if (isSidebarOpen) {
-      return ` ${styles[className]} ${styles[`${className}--extended`]}`;
-    }
-    return `${styles[className]}`;
-  };
-
   return (
     <>
-      <div className={toggleSidebarClasses('sidebar-wrapper')}>
-        <div className={toggleSidebarClasses('sidebar-logo')}>
+      <div
+        className={`${styles['sidebar-wrapper']} ${
+          isSidebarOpen && styles['sidebar-wrapper--extended']
+        }`}
+      >
+        <div className={styles['sidebar-logo']}>
           <a
             href="#"
-            className={toggleSidebarClasses('sidebar-logo__link')}
+            className={styles['sidebar-logo__link']}
             onClick={toggleSidebar}
           >
             <Image
@@ -42,18 +39,21 @@ function Sidebar() {
               height={68}
             />
           </a>
-          {isSidebarOpen && (
-            <a
-              href="#"
-              className={styles['sidebar-logo__close-svg']}
-              onClick={toggleSidebar}
-            >
-              <ArrowIcon className="" />
-            </a>
-          )}
         </div>
 
         <div className={styles['sidebar-menu']}>
+          <a
+            href="#"
+            className={styles['sidebar-logo__close-svg']}
+            onClick={toggleSidebar}
+          >
+            <SliderMenuArrow
+              className={`${
+                isSidebarOpen && styles['sidebar-logo__close-svg--mirrored']
+              }`}
+            />
+          </a>
+
           <ul className={styles['sidebar-list']}>
             {sidebarSectionsList.map((item) => (
               <MenuItem
@@ -65,11 +65,10 @@ function Sidebar() {
               />
             ))}
           </ul>
-
-          <a href="#" className={styles['log-out']}>
+          <button className={styles['log-out']}>
             <LogOutIcon className={styles['log-out__icon']} />
-            {isSidebarOpen && 'вихід'}
-          </a>
+            <p className={styles['log-out__text']}>{'Вийти'}</p>
+          </button>
         </div>
       </div>
     </>
