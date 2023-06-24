@@ -28,7 +28,7 @@ const Spinner = ({ title = 'Loading' }) => {
           <IconOuter fill={'#121212'} />
         </div>
         <div className={styles['spinner-inner']}>
-          <IconInner fill={'#121212'} />
+          <IconInner fill={'#121212'} />      
         </div>
       </div>
       <h1 className={styles['spinner-header']}>

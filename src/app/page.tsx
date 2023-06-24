@@ -1,4 +1,4 @@
-'use client';
+'use client'; //Fix It
 import Achievements from '@/components/MainPage/Achievements';
 import Footer from '@/components/MainPage/Footer';
 import Forms from '@/components/MainPage/Forms';
@@ -10,22 +10,19 @@ import Projects from '@/components/MainPage/Projects';
 import Reviews from '@/components/MainPage/Reviews';
 import Statistics from '@/components/MainPage/Statistics';
 
-import { useState } from 'react';
-
 export default function Home() {
-  const [isShowModal, setIsShowModal] = useState(false);
   return (
     <>
       <Header />
-      <HeroSlider setIsShowModal={setIsShowModal} />
+      <HeroSlider />
       <Projects />
       <Statistics />
       <Forms />
-      <Achievements />
       <Partners />
+      <Achievements />
       <Reviews />
       <Footer />
-      {isShowModal && <Modal setIsShowModal={setIsShowModal} />}
+      <Modal />
     </>
   );
 }

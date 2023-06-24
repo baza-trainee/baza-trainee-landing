@@ -1,9 +1,12 @@
 'use client';
 import SliderArrow from '@/components/common/SliderArrow';
-import { Dispatch, SetStateAction } from 'react';
+import { GlobalContext } from '@/store/globalContext';
+import { StoreContextType } from '@/types/storeTypes';
+import { useContext } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { ReducerActionType } from '../../../store/globalReducer';
 import Slide from './slide';
 import { slides } from './slides';
 import styles from './styles.module.scss';
@@ -45,13 +48,13 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
   );
 }
 
-const HeroSlider = ({
-  setIsShowModal,
-}: {
-  setIsShowModal: Dispatch<SetStateAction<boolean>>;
-}) => {
+const HeroSlider = () => {
+  const { state, dispatch } = useContext<StoreContextType>(GlobalContext);
+
   const donateClickHandler = () => {
-    setIsShowModal((prev) => !prev);
+    dispatch({
+      type: ReducerActionType.TOGGLE_LANDING_MODAL,
+    });
   };
 
   const settings = {
