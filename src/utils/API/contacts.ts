@@ -2,11 +2,11 @@ import { IUpdateContactsRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const contactsApi = {
-  async getData() {
-    return await bazaAPI.get('/contacts');
+  getData() {
+    return bazaAPI.get('/contacts');
   },
-  async update({ contacts }: IUpdateContactsRequest) {
-    return await bazaAPI.patch('/contacts', {
+  update({ contacts }: IUpdateContactsRequest) {
+    return bazaAPI.patch('/contacts', {
       contacts,
     });
   },
