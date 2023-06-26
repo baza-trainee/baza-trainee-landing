@@ -1,3 +1,5 @@
+'use client';
+
 import { GlobalContext } from '@/store/globalContext';
 import { ReducerActionType } from '@/store/globalReducer';
 import { StoreContextType } from '@/types/storeTypes';

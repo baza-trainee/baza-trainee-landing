@@ -1,7 +1,7 @@
 'use client';
 
 import { State, StoreContextType } from '@/types/storeTypes';
-import React, { createContext, useReducer } from 'react';
+import { PropsWithChildren, createContext, useReducer } from 'react';
 import { reducer } from './globalReducer';
 
 const initialState: State = {
@@ -13,11 +13,8 @@ export const GlobalContext = createContext<StoreContextType>({
   state: initialState,
   dispatch: () => {},
 });
-type GlobalProviderProps = {
-  children: React.ReactNode;
-};
 
-export const StoreProvider = ({ children }: GlobalProviderProps) => {
+export const StoreProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

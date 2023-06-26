@@ -13,11 +13,6 @@
     display: flex;
   }
 
-  &__logo-img {
-    max-width: 7.8rem;
-    max-height: 7.8rem;
-  }
-
   &__nav {
     display: flex;
     gap: 5.6rem;
@@ -123,10 +118,5 @@
         transform: scaleX(1);
       }
     }
-  }
-
-  &__lang-arrow {
-    max-width: 1.6rem;
-    max-height: 1rem;
   }
 }

@@ -1,4 +1,3 @@
-'use client'; //Fix It
 import Achievements from '@/components/MainPage/Achievements';
 import Footer from '@/components/MainPage/Footer';
 import Forms from '@/components/MainPage/Forms';

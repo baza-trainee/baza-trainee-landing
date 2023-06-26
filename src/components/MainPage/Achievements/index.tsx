@@ -1,3 +1,5 @@
+'use client';
+
 import counterHandler from '@/utils/counterHandler';
 import { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';

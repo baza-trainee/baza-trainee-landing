@@ -1,5 +1,7 @@
+'use client';
+
 import ProjectCard from '@/components/common/ProjectCard';
-import ArrowBottomIcon from '@/components/common/icons/ArrowBottomIcon';
+import { ArrowBottomIcon } from '@/components/common/icons';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { useState } from 'react';
 import { projects } from './projects';
