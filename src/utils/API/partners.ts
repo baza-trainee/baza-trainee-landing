@@ -1,11 +1,11 @@
-import { byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IPartner, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const partnersApi = {
   getAll() {
     return bazaAPI.get('/partners');
   },
-  createNew(partner: object) {
+  createNew(partner: IPartner) {
     return bazaAPI.post('/partners', partner);
   },
   getById(id: byIdRequest) {

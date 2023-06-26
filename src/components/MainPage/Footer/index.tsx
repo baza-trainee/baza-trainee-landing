@@ -1,9 +1,5 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-import authApi from '@/utils/API/auth';
-import projectsApi from '@/utils/API/projects';
-import { useAPI } from '@/utils/hooks/useAPI';
-import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
@@ -39,18 +35,6 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
-  // const [logIn, userData, isLoggingIn, isLoggingError] = useAPI(authApi.logIn);
-  // const [dispatch, data, isLoading, isError] = useAPI(projectsApi.updateById);
-  // useEffect(() => {
-  //   logIn({ email: 'snoop@doggie.dog', password: '0800500609' });
-  // }, []);
-
-  // const handleClick = () => {
-  //   dispatch();
-  // };
-
-  // console.log(typeof dispatch, data, isLoading, isError);
-
   return (
     <footer className={styles.footer} id="footer">
       <div className="container">
@@ -129,8 +113,6 @@ const Footer = () => {
           Розробка BazaTraineeUkraine 2023 Усі права захищені.
         </p>
       </div>
-
-      {/* <button onClick={handleClick}>DISPATCH</button> */}
     </footer>
   );
 };

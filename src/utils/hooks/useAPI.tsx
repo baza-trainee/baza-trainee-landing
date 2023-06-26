@@ -34,11 +34,11 @@ export const useAPI = <T,>(
       } catch (error: any) {
         setData({
           message: error.message,
-          responseMessage:
+          statusText:
             error.response?.data[0]?.msg ||
             error.response?.data?.message ||
             'none',
-          status: error?.response?.status,
+          status: error.response?.status,
         });
         setIsError(true);
       } finally {

@@ -2,8 +2,8 @@ import { AxiosResponse } from 'axios';
 
 export interface IErrorResponse {
   message: String;
-  responseMessage: String;
   status: Number;
+  statusText?: String;
 }
 
 // Request types
@@ -41,7 +41,7 @@ export interface IHeroSlider {
     pl: String;
     ua: String;
   };
-  subTitle: {
+  subtitle: {
     en: String;
     pl: String;
     ua: String;
@@ -74,10 +74,12 @@ export interface IProject {
 }
 
 export interface IRole {
-  en: String;
-  pl: String;
-  ua: String;
-  name: String;
+  name: {
+    en: String;
+    pl: String;
+    ua: String;
+    name: String;
+  };
 }
 
 export interface IStack {
@@ -122,6 +124,7 @@ export type searchProjectRequest = string;
 export type methodType<T> = (payload: T) => Promise<AxiosResponse>;
 export type dispatcherType<T> = (payload?: T) => void;
 export type responseDataType =
+  | IUser
   | IHeroSlider
   | IPartner
   | IProject
@@ -130,4 +133,13 @@ export type responseDataType =
   | IMember
   | ITestimonial
   | IErrorResponse
+  | Array<
+      | IHeroSlider
+      | IPartner
+      | IProject
+      | IRole
+      | IStack
+      | IMember
+      | ITestimonial
+    >
   | null;
