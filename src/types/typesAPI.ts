@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 export interface IErrorResponse {
   message: String;
   responseMessage: String;
@@ -117,14 +119,9 @@ export type byIdRequest = id;
 export type updateByIdRequest = [id: id, payload: Object];
 export type searchProjectRequest = string;
 
-export type methodType = Function;
-export type dispatcherType = (payload?: requestPayloadType) => void;
-export type responseDataType<T> = T | IErrorResponse | null;
-export type requestPayloadType =
-  | ILoginRequest
-  | IRegisterRequest
-  | IUpdateEmployedRequest
-  | IUpdateContactsRequest
+export type methodType<T> = (payload: T) => Promise<AxiosResponse>;
+export type dispatcherType<T> = (payload?: T) => void;
+export type responseDataType =
   | IHeroSlider
   | IPartner
   | IProject
@@ -132,7 +129,5 @@ export type requestPayloadType =
   | IStack
   | IMember
   | ITestimonial
-  | byIdRequest
-  | updateByIdRequest
-  | searchProjectRequest
+  | IErrorResponse
   | null;

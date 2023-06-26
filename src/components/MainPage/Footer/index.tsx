@@ -1,8 +1,7 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-import { IMember, IUser } from '@/types/typesAPI';
 import authApi from '@/utils/API/auth';
-import membersApi from '@/utils/API/members';
+import projectsApi from '@/utils/API/projects';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useEffect } from 'react';
 import styles from './styles.module.scss';
@@ -40,21 +39,17 @@ const socialsMediaList = [
 ];
 
 const Footer = () => {
-  const [logIn, userData, isLoggingIn, isLoggingError] = useAPI<IUser>(
-    authApi.logIn
-  );
-  const [dispatch, data, isLoading, isError] = useAPI<IMember>(
-    membersApi.updateById
-  );
-  useEffect(() => {
-    logIn({ email: 'snoop@doggie.dog', password: '0800500609' });
-  }, []);
+  // const [logIn, userData, isLoggingIn, isLoggingError] = useAPI(authApi.logIn);
+  // const [dispatch, data, isLoading, isError] = useAPI(projectsApi.updateById);
+  // useEffect(() => {
+  //   logIn({ email: 'snoop@doggie.dog', password: '0800500609' });
+  // }, []);
 
-  const handleClick = () => {
-    dispatch();
-  };
+  // const handleClick = () => {
+  //   dispatch();
+  // };
 
-  console.log(typeof dispatch, data, isLoading, isError);
+  // console.log(typeof dispatch, data, isLoading, isError);
 
   return (
     <footer className={styles.footer} id="footer">
@@ -135,7 +130,7 @@ const Footer = () => {
         </p>
       </div>
 
-      <button onClick={handleClick}>DISPATCH</button>
+      {/* <button onClick={handleClick}>DISPATCH</button> */}
     </footer>
   );
 };

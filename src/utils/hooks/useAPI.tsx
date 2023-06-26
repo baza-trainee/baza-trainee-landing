@@ -1,23 +1,18 @@
-import {
-  dispatcherType,
-  methodType,
-  requestPayloadType,
-  responseDataType,
-} from '@/types/typesAPI';
-import { useEffect, useState } from 'react';
+import { dispatcherType, methodType, responseDataType } from '@/types/typesAPI';
+import { useEffect, useRef, useState } from 'react';
 
 export const useAPI = <T,>(
-  method: methodType
-): [dispatcherType, responseDataType<T>, Boolean, Boolean] => {
+  method: methodType<T>
+): [dispatcherType<T>, responseDataType, Boolean, Boolean] => {
   const [doFetch, setDoFetch] = useState<Boolean>(false);
-  const [payload, setPayload] = useState<T | requestPayloadType>(null);
-  const [data, setData] = useState<responseDataType<T>>(null);
+  const [data, setData] = useState<responseDataType>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Boolean>(false);
+  let body: any = useRef(null);
 
-  const dispatch: dispatcherType = (payload?: T | requestPayloadType): void => {
+  const dispatch: dispatcherType<T> = (payload?: T): void => {
     setDoFetch(true);
-    setPayload(payload || null);
+    body.current = payload;
   };
 
   useEffect(() => {
@@ -30,7 +25,7 @@ export const useAPI = <T,>(
         setData(null);
         setIsError(false);
         setIsLoading(true);
-        const response = await method(payload);
+        const response = await method(body.current);
 
         if (response.status === 200 || response.status === 201) {
           setData(response.data);
@@ -43,13 +38,13 @@ export const useAPI = <T,>(
             error.response?.data[0]?.msg ||
             error.response?.data?.message ||
             'none',
-          status: error.response.status,
+          status: error?.response?.status,
         });
         setIsError(true);
       } finally {
         setIsLoading(false);
         setDoFetch(false);
-        setPayload(null);
+        body.current = null;
       }
       return data;
     };

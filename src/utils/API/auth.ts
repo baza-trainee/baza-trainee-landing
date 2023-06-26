@@ -1,4 +1,4 @@
-import { ILoginRequest, IRegisterRequest } from '@/types/typesAPI';
+import { ILoginRequest, IRegisterRequest, methodType } from '@/types/typesAPI';
 import { AxiosResponse } from 'axios';
 import { bazaAPI } from './config';
 
