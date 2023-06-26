@@ -12,7 +12,7 @@ function MenuItem({
 }: {
   sidebarSection: (typeof sidebarSectionsList)[number];
   page: string;
-  isSidebarOpen: boolean | null;
+  isSidebarOpen: boolean;
   handleClick: (_e: MouseEvent<HTMLLIElement>) => void;
 }) {
   const { id, iconName: IconComponent, text, submenu } = sidebarSection;

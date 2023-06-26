@@ -17,7 +17,7 @@ function Sidebar() {
     return lastPart;
   };
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const [page, setPage] = useState<string>(getPath());
   const router = useRouter();
