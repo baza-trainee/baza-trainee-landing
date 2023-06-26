@@ -2,6 +2,7 @@
 import { LogOutIcon, SliderMenuArrow } from '@/components/common/icons';
 import IconInner from '@/components/common/icons/Spinner/inner';
 import IconOuter from '@/components/common/icons/Spinner/outer';
+import localStorageHandler from '@/utils/localStorageHandler';
 import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
@@ -29,13 +30,19 @@ function Sidebar() {
   };
 
   const toggleSidebar = async () => {
-    localStorage.setItem('isAdminSideBarOpen', JSON.stringify(!isSidebarOpen));
+    localStorageHandler.setItem(
+      'isAdminSideBarOpen',
+      JSON.stringify(!isSidebarOpen)
+    );
     setIsSidebarOpen((prev) => !prev);
   };
 
   useEffect(() => {
-    const a = localStorage.getItem('isAdminSideBarOpen');
-    setIsSidebarOpen(a === 'true');
+    const isAdminSideBarOpen = localStorageHandler.getItem(
+      'isAdminSideBarOpen',
+      'false'
+    );
+    setIsSidebarOpen(JSON.parse(isAdminSideBarOpen as string));
   }, []);
 
   return (

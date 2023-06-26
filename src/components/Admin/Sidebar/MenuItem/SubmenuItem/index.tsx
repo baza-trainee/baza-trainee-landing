@@ -4,12 +4,14 @@ import styles from './styles.module.scss';
 function SubmenuItem({
   submenuEl,
   page,
+  isSidebarOpen,
   handleClick,
 }: {
   submenuEl: {
     text: string;
     id: string;
   };
+  isSidebarOpen: boolean;
   page: string;
   handleClick: (_e: MouseEvent<HTMLLIElement>) => void;
 }) {
@@ -18,7 +20,9 @@ function SubmenuItem({
   return (
     <li
       id={id}
-      className={`${styles['sidebar-list__item']}`}
+      className={`${styles['sidebar-list__item']} ${
+        isSidebarOpen ? styles['sidebar-list__button--extended'] : ''
+      }`}
       onClick={handleClick}
     >
       <button

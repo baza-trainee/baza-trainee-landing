@@ -54,6 +54,7 @@ function MenuItem({
               key={submenuEl.id}
               submenuEl={submenuEl}
               page={page}
+              isSidebarOpen={isSidebarOpen}
               handleClick={handleClick}
             />
           ))}
