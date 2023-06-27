@@ -7,14 +7,14 @@ import { LogoBlack } from '@/components/common/icons';
 
 import LanguageSelector from './LanguageSelector';
 
-const Header = () => {
-  const navLinks = [
-    { title: 'Проєкти', href: '#projects' },
-    { title: 'Партнери', href: '#partners' },
-    { title: 'Взяти участь', href: '#forms' },
-    { title: 'Контакти', href: '#footer' },
-  ];
+const navLinks = [
+  { title: 'Проєкти', href: '#projects' },
+  { title: 'Партнери', href: '#partners' },
+  { title: 'Взяти участь', href: '#forms' },
+  { title: 'Контакти', href: '#footer' },
+];
 
+const Header = () => {
   return (
     <header className={styles.header} id="header">
       <div className={`${styles.header__container} container`}>

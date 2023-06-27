@@ -1,24 +1,53 @@
 'use client';
 
-import { State, StoreContextType } from '@/types/storeTypes';
-import { PropsWithChildren, createContext, useReducer } from 'react';
-import { reducer } from './globalReducer';
+import {
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from 'react';
 
-const initialState: State = {
-  landingLanguage: 'ua',
-  isLandingModalShown: false,
-};
+export type TLandingLanguage = 'ua' | 'en' | 'pl';
 
-export const GlobalContext = createContext<StoreContextType>({
-  state: initialState,
-  dispatch: () => {},
-});
+export interface IStoreContextType {
+  landingLanguage: TLandingLanguage;
+  isLandingModalShown: boolean;
+  setLandingLanguage: Dispatch<SetStateAction<TLandingLanguage>>;
+  setIsLandingModalShown: Dispatch<SetStateAction<boolean>>;
+}
+
+export const GlobalContext = createContext<IStoreContextType>(
+  {} as IStoreContextType
+);
 
 export const StoreProvider = ({ children }: PropsWithChildren) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [landingLanguage, setLandingLanguage] =
+    useState<TLandingLanguage>('ua');
+  const [isLandingModalShown, setIsLandingModalShown] = useState(false);
+
+  useEffect(() => {
+    const landingLanguage = localStorage.getItem('landingLanguage');
+    landingLanguage && setLandingLanguage(landingLanguage as TLandingLanguage);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'landingLanguage',
+      landingLanguage as TLandingLanguage
+    );
+  }, [landingLanguage]);
+
+  const contextValue = {
+    landingLanguage,
+    setLandingLanguage,
+    isLandingModalShown,
+    setIsLandingModalShown,
+  };
 
   return (
-    <GlobalContext.Provider value={{ state, dispatch }}>
+    <GlobalContext.Provider value={contextValue}>
       {children}
     </GlobalContext.Provider>
   );

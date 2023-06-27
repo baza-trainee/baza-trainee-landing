@@ -2,49 +2,31 @@
 
 import { genKeyId } from '@/utils/genKeyId';
 
-import { GlobalContext } from '@/store/globalContext';
-import { ReducerActionType } from '@/store/globalReducer';
-import { StoreContextType } from '@/types/storeTypes';
-import { useContext, useEffect, useState } from 'react';
+import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
+import { useContext, useState } from 'react';
 
 import styles from './styles.module.scss';
 
 import { ArrowBottomIcon } from '@/components/common/icons';
 
+const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
+
 const LanguageSelector = () => {
-//   const [activeLang, setActiveLang] = useState('ua');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { state, dispatch } = useContext<StoreContextType>(GlobalContext);
+  const { landingLanguage, setLandingLanguage } = useContext(GlobalContext);
 
-  const languageOptions: {
-    lang: 'ua' | 'en' | 'pl';
-  }[] = [{ lang: 'ua' }, { lang: 'en' }, { lang: 'pl' }];
-
-  const handleLanguageClick = (lang: 'ua' | 'en' | 'pl') => {
-    // setActiveLang(lang);
-    dispatch({
-      type: ReducerActionType.SET_LANDING_LANGUAGE,
-      payload: lang,
-    });
-    localStorage.setItem('lang', lang);
+  const handleLanguageClick = (lang: TLandingLanguage) => {
+    setLandingLanguage(lang);
     handleMenuClick();
   };
-
-  useEffect(() => {
-    const lang =
-      typeof window !== 'undefined'
-        ? () => localStorage.getItem('lang') || 'ua'
-        : 'ua';
-    // setActiveLang(lang);
-    dispatch({
-      type: ReducerActionType.SET_LANDING_LANGUAGE,
-      payload: lang as 'ua' | 'en' | 'pl',
-    });
-  }, [ dispatch]);
 
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
   };
+
+  const menuStyle = `${styles['header__lang-list']} ${
+    isMenuOpen ? styles['header__lang-list--visible'] : ''
+  }`;
 
   return (
     <div className={styles['header__lang']}>
@@ -53,26 +35,21 @@ const LanguageSelector = () => {
         id="active-lang"
         onClick={handleMenuClick}
       >
-        {state.landingLanguage.toUpperCase()}
+        {landingLanguage.toUpperCase()}
 
-        <ArrowBottomIcon />
+        <ArrowBottomIcon open={isMenuOpen} />
       </button>
 
-      <ul
-        className={`${styles['header__lang-list']} ${
-          isMenuOpen && styles['header__lang-list--visible']
-        }`}
-        id="lang-list"
-      >
+      <ul className={menuStyle} id="lang-list">
         {languageOptions
-          .filter((el) => el.lang !== state.landingLanguage)
-          .map((option) => (
+          .filter((lang) => lang !== landingLanguage)
+          .map((lang) => (
             <li key={genKeyId()} className={styles['header__lang-elem']}>
               <button
                 className={styles['header__lang-btn']}
-                onClick={() => handleLanguageClick(option.lang)}
+                onClick={() => handleLanguageClick(lang)}
               >
-                <span>{option.lang.toUpperCase()}</span>
+                <span>{lang.toUpperCase()}</span>
               </button>
             </li>
           ))}

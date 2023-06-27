@@ -69,14 +69,16 @@
     border-radius: 5px;
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-100%);
-    transition: all 0.3s ease-in;
+    transition-duration: 75ms;
+    transition-timing-function: ease-in;
   }
 
   &__lang-list--visible {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0);
+    transform: scaleY(1);
+    transition-duration: 100ms;
+    transition-timing-function: ease-out;
   }
 
   &__lang-btn {
