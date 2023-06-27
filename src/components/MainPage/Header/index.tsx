@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 const Header = () => {
   const [activeLang, setActiveLang] = useState('ua');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { state, dispatch } = useContext<StoreContextType>(GlobalContext);
+  const { dispatch } = useContext<StoreContextType>(GlobalContext);
 
   const navLinks = [
     { id: 1, title: 'Проєкти', href: '#projects' },
