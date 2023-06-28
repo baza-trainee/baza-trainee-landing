@@ -1,15 +1,17 @@
 'use client';
 
-import { genKeyId } from '@/utils/genKeyId';
-
 import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
 import { useContext, useState } from 'react';
-
-import styles from './styles.module.scss';
 
 import { ArrowBottomIcon } from '@/components/common/icons';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
+
+const btnStyle =
+  'relative z-10 flex cursor-pointer items-center gap-3 bg-transparent pl-5 text-[2rem] font-semibold';
+
+const underLineStyle =
+  "relative after:absolute after:bottom-0 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] after:hover:scale-100";
 
 const LanguageSelector = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,17 +26,15 @@ const LanguageSelector = () => {
     setIsMenuOpen((state) => !state);
   };
 
-  const menuStyle = `${styles['header__lang-list']} ${
-    isMenuOpen ? styles['header__lang-list--visible'] : ''
+  const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-full transform flex-col gap-[1.2rem] rounded-md bg-accent py-[1.2rem] pr-[0.5rem]  ${
+    isMenuOpen
+      ? 'opacity-100 duration-100 ease-out'
+      : 'invisible opacity-0 duration-75 ease-in'
   }`;
 
   return (
-    <div className={styles['header__lang']}>
-      <button
-        className={styles['header__lang-btn']}
-        id="active-lang"
-        onClick={handleMenuClick}
-      >
+    <div className="relative w-20">
+      <button className={btnStyle} id="active-lang" onClick={handleMenuClick}>
         {landingLanguage.toUpperCase()}
 
         <ArrowBottomIcon open={isMenuOpen} />
@@ -44,12 +44,12 @@ const LanguageSelector = () => {
         {languageOptions
           .filter((lang) => lang !== landingLanguage)
           .map((lang) => (
-            <li key={genKeyId()} className={styles['header__lang-elem']}>
+            <li key={`key_${lang}`}>
               <button
-                className={styles['header__lang-btn']}
+                className={btnStyle}
                 onClick={() => handleLanguageClick(lang)}
               >
-                <span>{lang.toUpperCase()}</span>
+                <span className={underLineStyle}>{lang.toUpperCase()}</span>
               </button>
             </li>
           ))}

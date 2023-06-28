@@ -11,8 +11,8 @@ const Slide = ({ slideData }: { slideData: TSlide }) => {
     >
       <div className={`container ${styles['slider-section__slide-container']}`}>
         <div className={styles['slider-section__content']}>
-          <h2 className={`h2 h2--white`}>{slideData.title}</h2>
-          <p className={`sub-heading--white ${styles['sub-heading--white']}`}>
+          <h2 className="text-white">{slideData.title}</h2>
+          <p className="text-[2rem] font-medium leading-[1.6] text-white">
             {slideData.description}
           </p>
         </div>

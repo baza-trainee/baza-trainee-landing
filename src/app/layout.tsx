@@ -1,5 +1,12 @@
+import { Exo_2 } from 'next/font/google';
 import { StoreProvider } from '@/store/globalContext';
-import './globals.scss';
+import './globals.css';
+
+const exo2 = Exo_2({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Baza-Trainee',
@@ -14,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body>{children}</body>
+        <body className={exo2.className}>{children}</body>
       </StoreProvider>
     </html>
   );
