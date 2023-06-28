@@ -3,16 +3,16 @@ import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
-  { id: 1, title: 'Проєкти', href: '#projects' },
-  { id: 2, title: 'Партнери', href: '#partners' },
-  { id: 3, title: 'Взяти участь', href: '#forms' },
+  { id: 1, title: 'Проєкти', href: '#projects', underlined: false },
+  { id: 2, title: 'Партнери', href: '#partners', underlined: false },
+  { id: 3, title: 'Взяти участь', href: '#forms', underlined: false },
 ];
 
 const officialDocsList = [
-  { id: 1, title: 'Політика конфіденційності', href: '/' },
-  { id: 2, title: 'Правила користування сайтом', href: '/' },
-  { id: 3, title: 'Статут', href: '/' },
-  { id: 4, title: 'Звітність', href: '/' },
+  { id: 1, title: 'Політика конфіденційності', href: '/', underlined: true },
+  { id: 2, title: 'Правила користування сайтом', href: '/', underlined: true },
+  { id: 3, title: 'Статут', href: '/', underlined: false },
+  { id: 4, title: 'Звітність', href: '/', underlined: false },
 ];
 
 const contactsDataList = [
@@ -62,11 +62,13 @@ const Footer = () => {
 
           <div className={styles['footer-section']}>
             <ul className={styles['footer-list']}>
-              {officialDocsList.map(({ id, title, href }) => (
+              {officialDocsList.map(({ id, title, href, underlined }) => (
                 <li key={id} className={styles['footer-list__item']}>
                   <a
                     href={href}
-                    className={`${styles['footer-list__link']} underline`}
+                    className={`${styles['footer-list__link']} ${
+                      underlined ? styles['footer-list__link--underline'] : ''
+                    }`}
                   >
                     {title}
                   </a>

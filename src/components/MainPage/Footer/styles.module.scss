@@ -28,25 +28,6 @@
 .footer-list {
   display: block;
 
-  &__link {
-    text-decoration: none;
-    color: $color-white;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-
-    &:hover,
-    &:focus {
-      color: $color-in-progress;
-    }
-    &:active {
-      color: $color-started;
-    }
-
-    &.underline {
-      text-decoration: underline;
-    }
-  }
-
   &__icon {
     width: 2.4rem;
     height: 2.4rem;
@@ -65,6 +46,25 @@
     flex-wrap: wrap;
     gap: 2.4rem;
   }
+}
+
+.footer-list__link {
+  color: $color-white;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $color-in-progress;
+  }
+  &:active {
+    color: $color-started;
+  }
+}
+
+.footer-list__link--underline {
+  text-decoration: underline;
 }
 
 .footer-list__item:not(:last-child) {
