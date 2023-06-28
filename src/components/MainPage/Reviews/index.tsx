@@ -1,51 +1,81 @@
+import React, { useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { slides } from './slides';
+import SliderArrow from '@/components/common/SliderArrow/SliderArrow';
 import styles from './styles.module.scss';
 
-const Reviews = () => {
-  const reviewsData = [
-    {
-      name: 'Denis Solomko',
-      specialization: 'QA engineer',
-      text: '“This is exactly what I needed. It was that company and the very people who helped me develop my skills and feel confident. Thank you”',
-      image: 'a_reviews.jpg',
-    },
-    {
-      name: 'Iryna Korotchaeva',
-      specialization: 'UI/UX Designer',
-      text: '“It was very interesting to communicate with new people and share knowledge. Thank you for the experience of working in a team“',
-      image: 'b_reviews.jpg',
-    },
-    {
-      name: 'Natalia Shapoval',
-      specialization: 'Full Stack Developer',
-      text: '“Good project, good people. Grateful for new knowledge, received only positive emotions“',
-      image: 'c_reviews.jpg',
-    },
-  ];
+type Review = {
+  name: string;
+  specialization: string;
+  text: string;
+  image: string;
+};
 
-  return (
-    <section className="container">
-      <div className={styles.slider_container}>
-        <h3>Відгуки</h3>
-        <div className={styles.slider}>
-          {reviewsData.map((review, index) => (
-            <div className={styles.slider_item} key={index}>
-              <div className={styles.slider_item_container}>
-                <img src={`/img/${review.image}`} alt="user photo" />
-                <div className={styles.user_info}>
-                  <h4 className={styles.user_name}>{review.name}</h4>
-                  <p className={styles.user_specialization}>
-                    {review.specialization}
-                  </p>
-                </div>
-                <div>
-                  <p className={styles.user_text}>{review.text}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+const Reviews = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+
+  const SampleNextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+
+    return (
+        <div className={className} style={{ ...style, position: 'absolute', top: '50%', right: '20px', transform: 'translateY(-50%) scaleX(-1)' }} onClick={onClick}>
+          <SliderArrow />
+        </div>
+    );
+  };
+
+  const SamplePrevArrow = (props: any) => {
+    const { className, style, onClick } = props;
+
+    return (
+        <div className={className} style={{ ...style, position: 'absolute', top: '50%', left: '20px', transform: 'translateY(-50%)', zIndex: 1 }} onClick={onClick}>
+          <SliderArrow  />
+        </div>
+    );
+  };
+
+  const sliderSettings = {
+    dots: true,
+    adaptiveHeight: true,
+    autoplay: false,
+    speed: 1000,
+    autoplaySpeed: 5000,
+    customPaging: (index: number) => (
+        <div className={`${styles.custom_dots}`}>
+          <div className={`${styles.custom_dot} ${index === currentSlide ? styles.active_dot : ''}`} />
+        </div>
+    ),
+    prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow />,
+  };
+
+  const reviewSlides = slides.map((review:Review, index) => (
+      <div className={`${styles.slider} ${styles.slider_item}`} key={index}>
+        <div className={styles.slider_item_container}>
+          <img src={`/img/${review.image}`} alt="user photo" />
+          <div className={styles.user_info}>
+            <h4 className={styles.user_name}>{review.name}</h4>
+            <p className={styles.user_specialization}>{review.specialization}</p>
+          </div>
+          <div>
+            <p className={styles.user_text}>{review.text}</p>
+          </div>
         </div>
       </div>
-    </section>
+  ));
+
+  return (
+      <section className="container">
+        <div className={styles.slider_container}>
+          <h3>Відгуки</h3>
+          <Slider {...sliderSettings} afterChange={(index) => setCurrentSlide(index)}>
+            {reviewSlides}
+          </Slider>
+        </div>
+      </section>
   );
 };
 

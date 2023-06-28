@@ -105,3 +105,26 @@
     }
   }
 }
+.custom_dots {
+  display: flex;
+  position: relative;
+  top: 3.4rem;
+  right: 53rem;
+}
+.custom_dot {
+  font-size: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid $color-black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.active_dot {
+  width: 2rem;
+  height: 2rem;
+  background: $color-black;
+  border: none;
+  position: absolute;
+  top: 0.1rem;
+
+}
