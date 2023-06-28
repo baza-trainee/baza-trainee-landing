@@ -48,6 +48,12 @@
   }
 }
 
+.footer-list--underlined {
+  .footer-list__link {
+    text-decoration: underline;
+  }
+}
+
 .footer-list__link {
   color: $color-white;
   font-size: 1.6rem;
@@ -61,10 +67,6 @@
   &:active {
     color: $color-started;
   }
-}
-
-.footer-list__link--underline {
-  text-decoration: underline;
 }
 
 .footer-list__item:not(:last-child) {

@@ -4,16 +4,16 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
-  { title: 'Проєкти', href: '#projects', underlined: false },
-  { title: 'Партнери', href: '#partners', underlined: false },
-  { title: 'Взяти участь', href: '#forms', underlined: false },
+  { title: 'Проєкти', href: '#projects' },
+  { title: 'Партнери', href: '#partners' },
+  { title: 'Взяти участь', href: '#forms' },
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/', underlined: true },
-  { title: 'Правила користування сайтом', href: '/', underlined: true },
-  { title: 'Статут', href: '/', underlined: false },
-  { title: 'Звітність', href: '/', underlined: false },
+  { title: 'Політика конфіденційності', href: '/' },
+  { title: 'Правила користування сайтом', href: '/' },
+  { title: 'Статут', href: '/' },
+  { title: 'Звітність', href: '/' },
 ];
 
 const contactsDataList = [
@@ -62,14 +62,14 @@ const Footer = () => {
           </div>
 
           <div className={styles['footer-section']}>
-            <ul className={styles['footer-list']}>
-              {officialDocsList.map(({ title, href, underlined }) => (
+            <ul
+              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
+            >
+              {officialDocsList.map(({ title, href }) => (
                 <li key={title + href} className={styles['footer-list__item']}>
                   <Link
                     href={href}
-                    className={`${styles['footer-list__link']} ${
-                      underlined ? styles['footer-list__link--underline'] : ''
-                    }`}
+                    className={`${styles['footer-list__link']}`}
                   >
                     {title}
                   </Link>
