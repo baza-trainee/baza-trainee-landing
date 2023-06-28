@@ -1,3 +1,5 @@
+
+'use client';
 import { GlobalContext } from '@/store/globalContext';
 import { ReducerActionType } from '@/store/globalReducer';
 import { StoreContextType } from '@/types/storeTypes';
@@ -77,11 +79,11 @@ const Header = () => {
             id="active-lang"
             onClick={handleMenuClick}
           >
-            {activeLang.toUpperCase()}
+            {activeLang}
             <img
               className={styles['header__lang-arrow']}
               src="/svg/arrow-bottom.svg"
-              alt="Language selection arrow"
+              alt="Language dropdown menu arrow"
             />
           </button>
           <ul
