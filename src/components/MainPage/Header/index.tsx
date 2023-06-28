@@ -1,9 +1,15 @@
-import { useState } from 'react';
+
+'use client';
+import { GlobalContext } from '@/store/globalContext';
+import { ReducerActionType } from '@/store/globalReducer';
+import { StoreContextType } from '@/types/storeTypes';
+import { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 const Header = () => {
-  const [activeLang, setActiveLang] = useState('UA');
+  const [activeLang, setActiveLang] = useState('ua');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { dispatch } = useContext<StoreContextType>(GlobalContext);
 
   const navLinks = [
     { id: 1, title: 'Проєкти', href: '#projects' },
@@ -12,16 +18,36 @@ const Header = () => {
     { id: 4, title: 'Контакти', href: '#footer' },
   ];
 
-  const languageOptions = [
-    { id: 1, lang: 'UA' },
-    { id: 2, lang: 'EN' },
-    { id: 3, lang: 'PL' },
+  const languageOptions: {
+    id: number;
+    lang: 'ua' | 'en' | 'pl';
+  }[] = [
+    { id: 1, lang: 'ua' },
+    { id: 2, lang: 'en' },
+    { id: 3, lang: 'pl' },
   ];
 
-  const handleLanguageClick = (lang: string) => {
+  const handleLanguageClick = (lang: 'ua' | 'en' | 'pl') => {
     setActiveLang(lang);
+    dispatch({
+      type: ReducerActionType.SET_LANDING_LANGUAGE,
+      payload: lang,
+    });
+    localStorage.setItem('lang', lang);
     handleMenuClick();
   };
+
+  useEffect(() => {
+    const lang =
+      typeof window !== 'undefined'
+        ? () => localStorage.getItem('lang') || 'ua'
+        : 'ua';
+    setActiveLang(lang);
+    dispatch({
+      type: ReducerActionType.SET_LANDING_LANGUAGE,
+      payload: lang as 'ua' | 'en' | 'pl',
+    });
+  }, [activeLang, dispatch]);
 
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
@@ -42,7 +68,7 @@ const Header = () => {
           {navLinks.map((link) => (
             <li key={link.id} className={styles['header__nav-elem']}>
               <a href={link.href} className={styles['header__nav-link']}>
-                {link.title}
+                {link.title.toUpperCase()}
               </a>
             </li>
           ))}
@@ -54,9 +80,11 @@ const Header = () => {
             onClick={handleMenuClick}
           >
             {activeLang}
-            <svg className={styles['header__lang-arrow']}>
-              <use href="@img/sprite.svg#arrow-bottom"></use>
-            </svg>
+            <img
+              className={styles['header__lang-arrow']}
+              src="/svg/arrow-bottom.svg"
+              alt="Language dropdown menu arrow"
+            />
           </button>
           <ul
             className={`${styles['header__lang-list']} ${
@@ -72,7 +100,7 @@ const Header = () => {
                     className={styles['header__lang-btn']}
                     onClick={() => handleLanguageClick(option.lang)}
                   >
-                    <span>{option.lang}</span>
+                    <span>{option.lang.toUpperCase()}</span>
                   </button>
                 </li>
               ))}

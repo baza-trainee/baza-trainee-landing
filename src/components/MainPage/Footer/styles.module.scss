@@ -48,6 +48,7 @@
   }
 }
 
+
 .footer-list--underlined .footer-list__link {
   text-decoration: underline;
 }
@@ -62,6 +63,7 @@
   &:focus {
     color: $color-accent;
   }
+
   &:active {
     color: $color-pressed-btn;
   }
