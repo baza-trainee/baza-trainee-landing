@@ -48,10 +48,8 @@
   }
 }
 
-.footer-list--underlined {
-  .footer-list__link {
-    text-decoration: underline;
-  }
+.footer-list--underlined .footer-list__link {
+  text-decoration: underline;
 }
 
 .footer-list__link {
