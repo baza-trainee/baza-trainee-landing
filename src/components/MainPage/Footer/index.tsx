@@ -1,24 +1,25 @@
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import Link from 'next/link';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
-  { id: 1, title: 'Проєкти', href: '#projects' },
-  { id: 2, title: 'Партнери', href: '#partners' },
-  { id: 3, title: 'Взяти участь', href: '#forms' },
+  { title: 'Проєкти', href: '#projects' },
+  { title: 'Партнери', href: '#partners' },
+  { title: 'Взяти участь', href: '#forms' },
 ];
 
 const officialDocsList = [
-  { id: 1, title: 'Політика конфіденційності', href: '/' },
-  { id: 2, title: 'Правила користування сайтом', href: '/' },
-  { id: 3, title: 'Статут', href: '/' },
-  { id: 4, title: 'Звітність', href: '/' },
+  { title: 'Політика конфіденційності', href: '/' },
+  { title: 'Правила користування сайтом', href: '/' },
+  { title: 'Статут', href: '/' },
+  { title: 'Звітність', href: '/' },
 ];
 
 const contactsDataList = [
-  { id: 1, type: 'phone', data: '+38 063 628 6630' },
-  { id: 2, type: 'phone', data: '+38 067 568 1788' },
-  { id: 3, type: 'mail', data: 'info@baza-trainee.site' },
+  { type: 'phone', data: '+38 063 628 6630' },
+  { type: 'phone', data: '+38 067 568 1788' },
+  { type: 'mail', data: 'info@baza-trainee.site' },
 ];
 
 const socialsMediaList = [
@@ -40,36 +41,40 @@ const Footer = () => {
       <div className="container">
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>
-            <a href="#header" className={styles['footer-logo']}>
+            <Link href="#header" className={styles['footer-logo']}>
               <img
                 className={styles['footer-logo__svg']}
                 src="/svg/logo-footer.svg"
                 alt="Main logo"
               />
-            </a>
+            </Link>
           </div>
           <div className={styles['footer-section']}>
-            <ul className={styles['footer-list']}>
-              {anchoreLinksList.map(({ id, title, href }) => (
-                <li key={id} className={styles['footer-list__item']}>
-                  <a href={href} className={styles['footer-list__link']}>
+            <ul
+              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
+            >
+              {anchoreLinksList.map(({ title, href }) => (
+                <li key={title + href} className={styles['footer-list__item']}>
+                  <Link href={href} className={styles['footer-list__link']}>
                     {title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className={styles['footer-section']}>
-            <ul className={styles['footer-list']}>
-              {officialDocsList.map(({ id, title, href }) => (
-                <li key={id} className={styles['footer-list__item']}>
-                  <a
+            <ul
+              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
+            >
+              {officialDocsList.map(({ title, href }) => (
+                <li key={title + href} className={styles['footer-list__item']}>
+                  <Link
                     href={href}
-                    className={`${styles['footer-list__link']} underline`}
+                    className={`${styles['footer-list__link']}`}
                   >
                     {title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -79,9 +84,9 @@ const Footer = () => {
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
             >
-              {contactsDataList.map(({ id, type, data }) => (
+              {contactsDataList.map(({ type, data }) => (
                 <li
-                  key={id}
+                  key={data}
                   className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
                 >
                   <img
@@ -99,11 +104,11 @@ const Footer = () => {
             >
               {socialsMediaList.map(({ id, iconName: IconComponent, href }) => (
                 <li key={id} className={styles['footer-list__item--social']}>
-                  <a href={href} className={styles['footer-social-link']}>
+                  <Link href={href} className={styles['footer-social-link']}>
                     <IconComponent
                       className={styles['footer-social-link__svg']}
                     />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
