@@ -7,6 +7,7 @@
 }
 
 .slider_container {
+  cursor: pointer;
   margin: 12rem auto;
   h3 {
     margin-bottom: 3.2rem;
@@ -53,62 +54,34 @@
 .slider {
   position: relative;
   padding: 0 17rem;
-
-  .slick-arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 10;
-    font-size: 0;
-    width: 1.5rem;
-    height: 2.6rem;
-    border: none;
-    cursor: pointer;
-    margin-top: -5rem;
-  }
-
-  .slick-arrow.slick-prev {
-    left: 0;
-    background: url('~@/assets/svg/left-arrow.svg') 0 0 / 100% no-repeat;
-  }
-
-  .slick-arrow.slick-next {
-    right: 0;
-    background: url('~@/assets/svg/right-arrow.svg') 0 0 / 100% no-repeat;
-  }
-
-  .slick-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    li {
-      list-style: none;
-      margin: 4rem 0.4rem 0 0.4rem;
-
-      button {
-        font-size: 0;
-        width: 1rem;
-        height: 1rem;
-        background-color: $color-black;
-        border-radius: 50%;
-        cursor: pointer;
-        border: none;
-      }
-    }
-
-    li.slick-active button {
-      width: 1.4rem;
-      height: 1.4rem;
-      background: $color-accent;
-      border: none;
-    }
-  }
 }
-
 .slider_item img {
   width: 11.5rem;
   height: 11.5rem;
   border-radius: 50%;
   object-fit: cover;
   text-align: center;
+}
+.custom_dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 4rem;
+}
+.custom_dot {
+  font-size: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: $color-black;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+.active_dot {
+  width: 1.4rem;
+  height: 1.4rem;
+  background: $color-accent;
+  border: none;
+
 }

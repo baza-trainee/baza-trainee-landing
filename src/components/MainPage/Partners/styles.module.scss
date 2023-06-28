@@ -1,5 +1,5 @@
 .partner {
-  margin-top: 12rem;
+  margin-bottom: 12rem;
 }
 
 .partner_title {
@@ -8,60 +8,8 @@
   margin-bottom: 3.2rem;
 }
 
-.partner_list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 3.2rem;
-  margin-bottom: 3.2rem;
-}
-
-.partner_item {
-  width: calc((100% - 12.8rem) / 5);
-  height: 10rem;
-  background-color: #d9d9d9;
-}
-
 .partner_link {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.add_more {
-  height: 6.4rem;
-  width: fit-content;
-  border-style: none;
-  background-color: $color-white;
-  cursor: pointer;
-  margin: 0 auto;
-  position: relative;
-  font-size: 2rem;
-  line-height: 2.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
-  }
-
-  &::after {
-    content: '';
-    display: inline-block;
-    width: 100%;
-    height: 0.1rem;
-    background-color: $color-black;
-    position: absolute;
-    left: 0;
-    bottom: 3.8rem;
-    transform: scaleX(0);
-    transition: all 0.3s ease-in;
-  }
-
-  &:hover::after {
-    transform: scaleX(1);
-  }
+  background: $color-light-gray;
+  line-height: 10rem;
+  padding: 4rem 10rem;
 }

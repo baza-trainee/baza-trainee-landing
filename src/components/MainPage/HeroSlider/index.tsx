@@ -1,6 +1,7 @@
 'use client';
 
 import SliderArrow from '@/components/common/SliderArrow';
+
 import { GlobalContext } from '@/store/globalContext';
 import { useContext } from 'react';
 import Slider from 'react-slick';
@@ -47,6 +48,8 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
   );
 }
 
+const firstSlide = 0;
+
 const HeroSlider = () => {
   const { setIsLandingModalShown } = useContext(GlobalContext);
 
@@ -60,6 +63,15 @@ const HeroSlider = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    customPaging: (index: number) => (
+      <div className={`${styles.custom_dots}`}>
+        <div
+          className={`${styles.custom_dot} ${
+            index === currentSlide ? styles.active_dot : ''
+          }`}
+        />
+      </div>
+    ),
     nextArrow: (
       <SampleNextArrow
         className={styles['slider-section__arrow-img']}
@@ -81,7 +93,7 @@ const HeroSlider = () => {
         className={styles['slider-section__carousel']}
         id="slider-section-carousel"
       >
-        <Slider {...settings}>
+        <Slider {...settings} afterChange={(index) => setCurrentSlide(index)}>
           {slides.map((slide: TSlide) => (
             <Slide key={slide.title} slideData={slide} />
           ))}
