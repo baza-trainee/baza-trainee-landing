@@ -49,9 +49,11 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
   );
 }
 
+const firstSlide = 0;
+
 const HeroSlider = () => {
   const { dispatch } = useContext<StoreContextType>(GlobalContext);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(firstSlide);
   const donateClickHandler = () => {
     dispatch({
       type: ReducerActionType.TOGGLE_LANDING_MODAL,
