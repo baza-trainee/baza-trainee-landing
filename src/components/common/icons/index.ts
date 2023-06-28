@@ -14,3 +14,4 @@ export { default as SliderMenuArrow } from './SliderMenuArrow';
 export * from './ArrowBottomIcon';
 export * from './LogoBlack';
 export * from './CloseMainIcon';
+export * from './RotaryArrow';

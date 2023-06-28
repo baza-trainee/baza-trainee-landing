@@ -10,10 +10,7 @@ export const ArrowBottomIcon = ({ open = false, ...props }: Props) => (
     width={24}
     height={24}
     fill="none"
-    style={{
-      transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-      transition: 'all 200ms',
-    }}
+    className={`transition-all duration-200 ${open ? 'rotate-180' : 'rotate-0'}`}
     {...props}
   >
     <path
