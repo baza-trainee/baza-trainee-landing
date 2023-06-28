@@ -62,11 +62,11 @@
 
   &:hover,
   &:focus {
-    color: $color-in-progress;
+    color: $color-accent;
   }
-  &:active {
-    color: $color-started;
-  }
+  // &:active {
+  //   color: $color-started;
+  // }
 }
 
 .footer-list__item:not(:last-child) {
@@ -88,21 +88,21 @@
   width: 3.2rem;
   height: 3.2rem;
   display: block;
-  color: $color-white;
-  fill: $color-white;
+  color: $color-accent;
+  fill: $color-accent;
 
   &:hover,
   &:focus {
     .footer-social-link__svg {
-      fill: $color-in-progress;
+      fill: $color-hover-btn;
     }
   }
 
-  &:active {
-    .footer-social-link__svg {
-      fill: $color-started;
-    }
-  }
+  // &:active {
+  //   .footer-social-link__svg {
+  //     fill: $color-started;
+  //   }
+  // }
 }
 
 .footer__license {

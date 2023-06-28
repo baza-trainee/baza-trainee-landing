@@ -50,7 +50,9 @@ const Footer = () => {
             </Link>
           </div>
           <div className={styles['footer-section']}>
-            <ul className={styles['footer-list']}>
+            <ul
+              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
+            >
               {anchoreLinksList.map(({ title, href }) => (
                 <li key={title + href} className={styles['footer-list__item']}>
                   <Link href={href} className={styles['footer-list__link']}>
