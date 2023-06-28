@@ -13,9 +13,9 @@ module.exports = {
         completed: '#74be4f',
         'in-progress': '#ebcf3c',
         started: '#eb903c',
-        'neutral': '#353535',
-        'hover': '#ffbd00',
-        'pressed': '#fd9b00',
+        neutral: '#353535',
+        hover: '#ffbd00',
+        pressed: '#fd9b00',
       },
       fontFamily: {
         // primary: ['Exo 2', 'sans-serif'],
