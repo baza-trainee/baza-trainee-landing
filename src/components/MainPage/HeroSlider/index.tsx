@@ -1,5 +1,6 @@
 'use client';
 import SliderArrow from '@/components/common/SliderArrow';
+
 import { GlobalContext } from '@/store/globalContext';
 import { StoreContextType } from '@/types/storeTypes';
 import { useContext } from 'react';
@@ -20,17 +21,17 @@ export type TSlide = {
 function SampleNextArrow(props: { className: any; style: any; onClick: any }) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        right: '350px',
-        transform: 'scaleX(-1)',
-      }}
-      onClick={onClick}
-    >
-      <SliderArrow />
-    </div>
+      <div
+          className={className}
+          style={{
+            ...style,
+            right: '350px',
+            transform: 'scaleX(-1)',
+          }}
+          onClick={onClick}
+      >
+        <SliderArrow />
+      </div>
   );
 }
 
@@ -38,19 +39,19 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
   const { className, style, onClick } = props;
 
   return (
-    <div
-      className={className}
-      style={{ ...style, left: '350px', zIndex: 1 }}
-      onClick={onClick}
-    >
-      <SliderArrow />
-    </div>
+      <div
+          className={className}
+          style={{ ...style, left: '350px', zIndex: 1 }}
+          onClick={onClick}
+      >
+        <SliderArrow />
+      </div>
   );
 }
 
+
 const HeroSlider = () => {
   const { state, dispatch } = useContext<StoreContextType>(GlobalContext);
-
   const donateClickHandler = () => {
     dispatch({
       type: ReducerActionType.TOGGLE_LANDING_MODAL,
@@ -63,48 +64,53 @@ const HeroSlider = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    customPaging: (index: number) => (
+        <div className={`${styles.custom_dots}`}>
+          <div className={`${styles.custom_dot} ${index === currentSlide ? styles.active_dot : ''}`} />
+        </div>
+    ),
     nextArrow: (
-      <SampleNextArrow
-        className={styles['slider-section__arrow-img']}
-        style={undefined}
-        onClick={undefined}
-      />
+        <SampleNextArrow
+            className={styles['slider-section__arrow-img']}
+            style={undefined}
+            onClick={undefined}
+        />
     ),
     prevArrow: (
-      <SamplePrevArrow
-        className={styles['slider-section__arrow-img']}
-        style={undefined}
-        onClick={undefined}
-      />
+        <SamplePrevArrow
+            className={styles['slider-section__arrow-img']}
+            style={undefined}
+            onClick={undefined}
+        />
     ),
   };
   return (
-    <section className={styles['slider-section']}>
-      <div
-        className={styles['slider-section__carousel']}
-        id="slider-section-carousel"
-      >
-        <Slider {...settings}>
-          {slides.map((slide: TSlide) => (
-            <Slide key={slide.title} slideData={slide} />
-          ))}
-        </Slider>
-      </div>
-      <div className={styles['slider-section__actions']}>
+      <section className={styles['slider-section']}>
         <div
-          className={`container ${styles['slider-section__actions-container']}`}
+            className={styles['slider-section__carousel']}
+            id="slider-section-carousel"
         >
-          <div className={styles['slider-section__dots']}></div>
-          <button
-            className={styles['slider-section__btn-donate']}
-            onClick={donateClickHandler}
-          >
-            Фондувати
-          </button>
+          <Slider {...settings}  afterChange={(index) => setCurrentSlide(index)}>
+            {slides.map((slide: TSlide) => (
+                <Slide key={slide.title} slideData={slide}  />
+            ))}
+          </Slider>
         </div>
-      </div>
-      <style>
-        {`
+        <div className={styles['slider-section__actions']}>
+          <div
+              className={`container ${styles['slider-section__actions-container']}`}
+          >
+            <div className={styles['slider-section__dots']}></div>
+            <button
+                className={styles['slider-section__btn-donate']}
+                onClick={donateClickHandler}
+            >
+              Фондувати
+            </button>
+          </div>
+        </div>
+        <style>
+          {`
         .slick-next::before, .slick-prev::before {
           content: none;
         }
@@ -115,8 +121,8 @@ const HeroSlider = () => {
 
         }
       `}
-      </style>
-    </section>
+        </style>
+      </section>
   );
 };
 
