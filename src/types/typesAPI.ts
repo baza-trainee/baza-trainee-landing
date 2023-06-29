@@ -6,6 +6,12 @@ export interface IErrorResponse {
   statusText?: String;
 }
 
+type titleLanguagesTypes = {
+  en: String;
+  pl: String;
+  ua: String;
+};
+
 // Request types
 
 export interface ILoginRequest {
@@ -15,6 +21,12 @@ export interface ILoginRequest {
 
 export interface IRegisterRequest extends ILoginRequest {
   name: string;
+}
+
+export interface IAchievement {
+  projects: Number;
+  members: Number;
+  employed: Number;
 }
 
 export interface IUpdateEmployedRequest {
@@ -36,18 +48,9 @@ export interface IUpdateContactsRequest {
 }
 
 export interface IHeroSlider {
-  title: {
-    en: String;
-    pl: String;
-    ua: String;
-  };
-  subtitle: {
-    en: String;
-    pl: String;
-    ua: String;
-  };
+  title: titleLanguagesTypes;
+  subtitle: titleLanguagesTypes;
   imageUrl?: String;
-  file?: File;
 }
 
 export interface IPartner {
@@ -56,30 +59,24 @@ export interface IPartner {
 }
 
 export interface IProject {
-  title: {
-    en: String;
-    pl: String;
-    ua: String;
-  };
+  title: titleLanguagesTypes;
   imageUrl: String;
   deployUrl?: String;
-  stack?: [{ _id: String; name: String }];
+  stack?: [{ _id?: String; name: String }];
   isTeamRequired: Boolean;
   creationDate: Number;
   launchDate?: Number;
   complexity: Number;
   teamMembers?: [
-    { user: { _id: String; name: String }; role: { _id: String; name: String } }
+    {
+      user: { _id?: String; name: String };
+      role: { _id?: String; name: String };
+    }
   ];
 }
 
 export interface IRole {
-  name: {
-    en: String;
-    pl: String;
-    ua: String;
-    name: String;
-  };
+  name: titleLanguagesTypes;
 }
 
 export interface IStack {
@@ -87,25 +84,13 @@ export interface IStack {
 }
 
 export interface IMember {
-  name: {
-    en: String;
-    pl: String;
-    ua: String;
-  };
+  name: titleLanguagesTypes;
   profileUrl?: String;
 }
 
 export interface ITestimonial {
-  name: {
-    en: String;
-    pl: String;
-    ua: String;
-  };
-  review: {
-    en: String;
-    pl: String;
-    ua: String;
-  };
+  name: titleLanguagesTypes;
+  review: titleLanguagesTypes;
   date: Number;
   imageUrl: String;
 }
@@ -124,7 +109,9 @@ export type searchProjectRequest = string;
 export type methodType<T> = (payload: T) => Promise<AxiosResponse>;
 export type dispatcherType<T> = (payload?: T) => void;
 export type responseDataType =
+  | any
   | IUser
+  | IAchievement
   | IHeroSlider
   | IPartner
   | IProject
