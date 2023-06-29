@@ -37,7 +37,7 @@ module.exports = {
         },
         critic: {
           light: '#FF4314',
-          dark: '#D13E19'
+          dark: '#D13E19',
         },
         warning: {
           light: '#FFDC14',

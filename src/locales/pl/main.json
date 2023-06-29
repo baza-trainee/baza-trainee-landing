@@ -1,0 +1,32 @@
+{
+  "navbar": {
+    "projects": "Projekty",
+    "partners": "Partnerzy",
+    "participate": "Weź udział",
+    "contacts": "Kontakt"
+  },
+  "heroSlider": {
+    "firstSlide": {
+      "title": "Baza Trainee Ukraine",
+      "description": "Organizacja publiczna, której celem jest zapewnienie pierwszego doświadczenia zawodowego osobom rozpoczynającym pracę w branży IT."
+    },
+    "secondSlide": {
+      "title": "Nasz cel",
+      "description": "Połączenie tych kategorii we wspólnych działaniach w sposób przynoszący korzyści obu stronom. Dla pierwszej grupy oznacza to zdobycie prawdziwego praktycznego doświadczenia w tworzeniu projektu na żywo, podczas gdy dla drugiej grupy oznacza to otrzymanie funkcjonalnego produktu cyfrowego, który działa i przyczynia się do rozwoju inicjatywy społecznej."
+    },
+    "thirdSlide": {
+      "title": "O nas",
+      "description": "Inicjatywa Baza Trainee Ukraine jako platforma edukacyjno-szkoleniowa jest odpowiedzią na zapotrzebowanie społeczne, które pojawiło się na Ukrainie w latach 2022-2023 na zatrudnienie w obszarze technologii informatycznych. Jest to strona internetowa, która łączy dwie grupy społeczne użytkowników."
+    },
+    "fourthSlide": {
+      "title": "Zasady działania",
+      "description": "Przeszkolenie uczestnika w obszarze technologii, które są mu już znane i ułatwienie mu zatrudnienia. Podczas realizacji projektu zastosuj technologie, w których uczestnik chce dalej się rozwijać. Najistotniejsze będzie dostarczenie klientowi rozwiązania wysokiej jakości."
+    },
+    "fifthSlide": {
+      "title": "Nasza grupa docelowa",
+      "description": "Ukraińcy, którzy zdobywają umiejętności w dziedzinie IT, niezależnie od ich wieku i poziomu doświadczenia, stanowią jedną stronę naszej grupy docelowej. Obejmuje to stażystów, juniorów, osoby zmieniające karierę i mentorów. Z drugiej strony, nasza grupa odbiorców składa się z organizacji charytatywnych, społeczności wolontariuszy i inicjatyw obywatelskich na Ukrainie, które są zaangażowane w filantropię, wolontariat i inicjatywy społeczne. Naszym celem jest połączenie tych dwóch grup i stworzenie możliwości współpracy, dzielenia się wiedzą i rozwoju umiejętności w sektorze IT."
+    }
+  },
+  "toFund": "Finansowanie",
+  "enterKeywordForSearch": "Wprowadź słowo kluczowe aby wyszukać"
+}

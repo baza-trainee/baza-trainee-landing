@@ -17,7 +17,7 @@ const linkStyle =
 
 const Header = () => {
   return (
-    <header className="h-[10.4rem] bg-accent py-5" id="header">
+    <header className="bg-accent h-[10.4rem] py-5" id="header">
       <ContainerMaxW1200 className="items-center justify-between">
         <Link href="/">
           <LogoBlack />

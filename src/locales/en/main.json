@@ -1,0 +1,32 @@
+{
+  "navbar": {
+    "projects": "Projects",
+    "partners": "Partners",
+    "participate": "To Participate",
+    "contacts": "Contacts"
+  },
+  "heroSlider": {
+    "firstSlide": {
+      "title": "Baza Trainee Ukraine",
+      "description": "A public organization aimed at providing initial work experience for those who are starting their journey in IT."
+    },
+    "secondSlide": {
+      "title": "Our Goal",
+      "description": "To combine these categories in joint activities in a way that benefits both sides. For the first group, it means gaining real practical experience in creating a live project, while for the second group, it involves receiving a functional digital product that works and contributes to the development of a social initiative."
+    },
+    "thirdSlide": {
+      "title": "About",
+      "description": "Baza Trainee Ukraine initiative as an educational and training platform is a response to the societal demand that has emerged in Ukraine in 2022-2023 regarding employment in the field of information technology. It represents a website that brings together two social groups as its users."
+    },
+    "fourthSlide": {
+      "title": "Principle of Action",
+      "description": "Train the participant based on the technologies they currently possess and facilitate their employment. When creating a project, apply the technologies that the participant wants to develop further, retraining does not take place. To provide the customer with a high-quality digital product."
+    },
+    "fifthSlide": {
+      "title": "Our target audience",
+      "description": "Ukrainians who are acquiring skills in the IT field, regardless of their age and experience level, form one side of our target audience. This includes trainees, juniors, career switchers, and mentors. On the other side, our audience consists of charitable organizations, volunteering communities, and civic initiatives in Ukraine that are involved in philanthropy, volunteering, and community-driven initiatives. Our goal is to bring together these two groups and create opportunities for collaboration, knowledge sharing, and skill development within the IT sector."
+    }
+  },
+  "toFund": "To Fund",
+  "enterKeywordForSearch": "Enter a keyword for search"
+}
