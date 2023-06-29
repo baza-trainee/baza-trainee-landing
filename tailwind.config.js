@@ -4,22 +4,52 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        white: '#fcfcfc',
-        black: '#121212',
-        'black-light': '#232323',
-        accent: '#ffd210',
-        'gray-light': '#cecece',
-        gray: '#767676',
-        completed: '#74be4f',
-        'in-progress': '#ebcf3c',
-        started: '#eb903c',
-        neutral: '#353535',
-        hover: '#ffbd00',
-        pressed: '#fd9b00',
+        white: '#FCFCFC',
+        black: '#151515',
+        yellow: {
+          500: '#FFD210',
+          600: '#FFBD00',
+          700: '#FFB000',
+          800: '#FD9B00',
+        },
+        neutral: {
+          75: '#CECECE',
+          100: '#B1B1B1',
+          200: '#939393',
+          300: '#767676',
+          400: '#585858',
+          500: '#464646',
+          600: '#353535',
+          700: '#232323',
+          800: '#121212',
+        },
+        base: {
+          light: '#FCFCFC',
+          dark: '#FEFEFE',
+        },
+        faint: {
+          light: '#151515',
+          dark: '#E2DFD3',
+        },
+        accent: {
+          light: '#FFD014',
+          dark: '#D7B21F',
+        },
+        critic: {
+          light: '#FF4314',
+          dark: '#D13E19'
+        },
+        warning: {
+          light: '#FFDC14',
+          dark: '#D8BC20',
+        },
+        success: {
+          light: '#14FF18',
+          dark: '#1CD41F',
+        },
       },
       fontFamily: {
-        // primary: ['Exo 2', 'sans-serif'],
-        secondary: ['Inter', 'sans-serif'],
+        // secondary: ['Inter', 'sans-serif'],
       },
       linearGradientColors: {
         black: [

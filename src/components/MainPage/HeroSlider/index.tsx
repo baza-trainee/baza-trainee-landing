@@ -5,7 +5,7 @@ import { useContext, useState } from 'react';
 import Slider from 'react-slick';
 // import 'slick-carousel/slick/slick-theme.css';
 // import 'slick-carousel/slick/slick.css';
-import { SlickArrow } from '@/components/atomic';
+import { PrimaryButton, SlickArrow } from '@/components/atomic';
 import Slide from './slide';
 import { slides } from './slides';
 import styles from './styles.module.scss';
@@ -43,7 +43,7 @@ const HeroSlider = () => {
     prevArrow: <SlickArrow direction="left" />,
   };
   return (
-    <section className={styles['slider-section']}>
+    <section className="relative">
       <div
         className={styles['slider-section__carousel']}
         id="slider-section-carousel"
@@ -59,12 +59,8 @@ const HeroSlider = () => {
           className={`container ${styles['slider-section__actions-container']}`}
         >
           <div className={styles['slider-section__dots']}></div>
-          <button
-            className={styles['slider-section__btn-donate']}
-            onClick={donateClickHandler}
-          >
-            Фондувати
-          </button>
+          
+          <PrimaryButton onClick={donateClickHandler}>Фондувати</PrimaryButton>
         </div>
       </div>
     </section>
