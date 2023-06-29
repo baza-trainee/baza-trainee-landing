@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 const Page404 = () => {
   return (
     <section className={styles.error}>
-      <div className={styles.container}>
+      <div className="max-w-[120rem] m-auto">
         <p className={styles.error__digits}>404</p>
         <h2 className={styles.error__title}>Цю сторінку не знайдено</h2>
         <p className={styles.error__description}>

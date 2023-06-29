@@ -10,3 +10,8 @@ export { default as ReportIcon } from './ReportIcon';
 export { default as SettingsIcon } from './SettingsIcon';
 export { default as SliderIcon } from './SliderIcon';
 export { default as SliderMenuArrow } from './SliderMenuArrow';
+
+export * from './ArrowBottomIcon';
+export * from './LogoBlack';
+export * from './CloseMainIcon';
+export * from './RotaryArrow';
