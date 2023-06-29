@@ -2,37 +2,19 @@
 
 import { GlobalContext } from '@/store/globalContext';
 import { useContext, useState } from 'react';
-import Slider, { CustomArrowProps } from 'react-slick';
+import Slider from 'react-slick';
 // import 'slick-carousel/slick/slick-theme.css';
 // import 'slick-carousel/slick/slick.css';
+import { SlickArrow } from '@/components/atomic';
 import Slide from './slide';
 import { slides } from './slides';
 import styles from './styles.module.scss';
-import { RotaryArrow } from '@/components/common/icons';
 
 export type TSlide = {
   image: string;
   title: string;
   description: string;
 };
-
-const NextArrow = (props: CustomArrowProps) =>
-  props.onClick && (
-    <RotaryArrow
-      direction="right"
-      className="absolute right-[10%] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-      onClick={props.onClick}
-    />
-  );
-
-const PrevArrow = (props: CustomArrowProps) =>
-  props.onClick && (
-    <RotaryArrow
-      direction="left"
-      className="absolute left-[10%] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-      onClick={props.onClick}
-    />
-  );
 
 const HeroSlider = () => {
   const { setIsLandingModalShown } = useContext(GlobalContext);
@@ -57,8 +39,8 @@ const HeroSlider = () => {
         />
       </div>
     ),
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <SlickArrow direction="right" />,
+    prevArrow: <SlickArrow direction="left" />,
   };
   return (
     <section className={styles['slider-section']}>

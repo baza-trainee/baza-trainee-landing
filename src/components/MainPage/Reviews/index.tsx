@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+import { SlickArrow } from '@/components/atomic';
 import { slides } from './slides';
-import SliderArrow from '@/components/common/SliderArrow/SliderArrow';
 import styles from './styles.module.scss';
 
 type Review = {
@@ -17,47 +17,6 @@ type Review = {
 
 const Reviews = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const SampleNextArrow = (props: any) => {
-    const { className, style, onClick } = props;
-
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          position: 'absolute',
-          top: '50%',
-          right: '20px',
-          transform: 'translateY(-50%) scaleX(-1)',
-        }}
-        onClick={onClick}
-      >
-        <SliderArrow />
-      </div>
-    );
-  };
-
-  const SamplePrevArrow = (props: any) => {
-    const { className, style, onClick } = props;
-
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          position: 'absolute',
-          top: '50%',
-          left: '20px',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-        }}
-        onClick={onClick}
-      >
-        <SliderArrow />
-      </div>
-    );
-  };
 
   const sliderSettings = {
     dots: true,
@@ -74,8 +33,8 @@ const Reviews = () => {
         />
       </div>
     ),
-    prevArrow: <SamplePrevArrow />,
-    nextArrow: <SampleNextArrow />,
+    nextArrow: <SlickArrow direction="right" color="#101010" />,
+    prevArrow: <SlickArrow direction="left" color="#101010" />,
   };
 
   const reviewSlides = slides.map((review: Review, index) => (
