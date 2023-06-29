@@ -4,7 +4,7 @@ interface Props extends SVGProps<SVGSVGElement> {
   direction: 'top' | 'bottom' | 'left' | 'right';
 }
 
-export const RotaryArrow = ({ direction, className, ...props }: Props) => {
+export const RotaryArrow = ({ direction, className, color = '#FCFCFC', ...props }: Props) => {
   let transformClass = '';
 
   switch (direction) {
@@ -34,7 +34,7 @@ export const RotaryArrow = ({ direction, className, ...props }: Props) => {
       {...props}
     >
       <path
-        stroke="#FCFCFC"
+        stroke={color}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={1.5}
