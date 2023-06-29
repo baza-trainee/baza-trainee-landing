@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const linkStyle =
-  "relative text-[2rem] font-semibold transition-all duration-300 after:absolute after:-bottom-2 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] hover:scale-105 after:hover:scale-100 whitespace-nowrap";
+  "relative text-[2rem] font-semibold transition-all duration-300 after:absolute after:-bottom-2 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] hover:scale-105 after:hover:scale-100 whitespace-nowrap after:border-black";
 
 const Header = () => {
   return (
@@ -30,7 +30,7 @@ const Header = () => {
               href={link.href}
               className={linkStyle}
             >
-              {link.title.toUpperCase()}
+              {link.title}
             </Link>
           ))}
         </nav>

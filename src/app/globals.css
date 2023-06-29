@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'); */
 
 @tailwind base;
 @tailwind components;
@@ -20,18 +20,13 @@ ul {
   @apply list-none;
 }
 
-/* TECH CLASSES */
-
 .container {
   @apply max-w-[120rem];
   @apply mx-auto;
 }
 
-h1,
-h2 {
-  @apply font-bold;
-}
-
-h2 {
-  @apply text-6xl;
+.slick-dots {
+  @apply !w-fit;
+  @apply !bottom-[-6rem];
+  @apply left-[5%] xl:left-[10%] 2xl:left-[20%];
 }
