@@ -2,20 +2,17 @@ import Link from 'next/link';
 
 import { LogoBlack } from '@/components/common/icons';
 
-import LanguageSelector from './LanguageSelector';
 import { ContainerMaxW1200 } from '@/components/atomic';
-
-const navLinks = [
-  { title: 'ПРОЕКТИ', href: '#projects' },
-  { title: 'ПАРТНЕРИ', href: '#partners' },
-  { title: 'ВЗЯТИ УЧАСТЬ', href: '#forms' },
-  { title: 'КОНТАКТИ', href: '#footer' },
-];
+import LanguageSelector from './LanguageSelector';
 
 const linkStyle =
   "relative text-[2rem] font-semibold transition-all duration-300 after:absolute after:-bottom-2 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] hover:scale-105 after:hover:scale-100 whitespace-nowrap";
 
-const Header = () => {
+const Header = ({
+  navLinks,
+}: {
+  navLinks: Array<{ title: string; href: string }>;
+}) => {
   return (
     <header className="bg-accent h-[10.4rem] py-5" id="header">
       <ContainerMaxW1200 className="items-center justify-between">

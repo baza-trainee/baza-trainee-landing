@@ -5,10 +5,10 @@ import { useContext, useState } from 'react';
 import Slider, { CustomArrowProps } from 'react-slick';
 // import 'slick-carousel/slick/slick-theme.css';
 // import 'slick-carousel/slick/slick.css';
-import Slide from './slide';
-import { slides } from './slides';
-import styles from './styles.module.scss';
 import { RotaryArrow } from '@/components/common/icons';
+import Slide from './slide';
+import { getTranslatedSlides, slides } from './slides';
+import styles from './styles.module.scss';
 
 export type TSlide = {
   image: string;
@@ -34,13 +34,43 @@ const PrevArrow = (props: CustomArrowProps) =>
     />
   );
 
-const HeroSlider = () => {
+const HeroSlider = ({
+  dict,
+}: {
+  dict: {
+    toFund: string;
+    heroSlider: {
+      firstSlide: {
+        title: string;
+        description: string;
+      };
+      secondSlide: {
+        title: string;
+        description: string;
+      };
+      thirdSlide: {
+        title: string;
+        description: string;
+      };
+      fourthSlide: {
+        title: string;
+        description: string;
+      };
+      fifthSlide: {
+        title: string;
+        description: string;
+      };
+    };
+  };
+}) => {
   const { setIsLandingModalShown } = useContext(GlobalContext);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const donateClickHandler = () => {
     setIsLandingModalShown((prevState) => !prevState);
   };
+
+  const translatedSlides = getTranslatedSlides(slides, dict);
 
   const settings = {
     dots: true,
@@ -67,7 +97,7 @@ const HeroSlider = () => {
         id="slider-section-carousel"
       >
         <Slider {...settings} afterChange={setCurrentSlide}>
-          {slides.map((slide: TSlide) => (
+          {[...translatedSlides]?.map((slide: TSlide) => (
             <Slide key={slide.title} slideData={slide} />
           ))}
         </Slider>
@@ -81,7 +111,7 @@ const HeroSlider = () => {
             className={styles['slider-section__btn-donate']}
             onClick={donateClickHandler}
           >
-            Фондувати
+            {dict.toFund}
           </button>
         </div>
       </div>

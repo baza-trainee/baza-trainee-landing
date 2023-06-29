@@ -4,6 +4,7 @@ import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
 import { useContext, useState } from 'react';
 
 import { ArrowBottomIcon } from '@/components/common/icons';
+import { useRouter } from 'next/navigation';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 
@@ -22,6 +23,7 @@ const LanguageSelector = () => {
     handleMenuClick();
   };
 
+  const router = useRouter();
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
   };
@@ -47,12 +49,21 @@ const LanguageSelector = () => {
             <li key={`key_${lang}`}>
               <button
                 className={btnStyle}
-                onClick={() => handleLanguageClick(lang)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLanguageClick(lang);
+                  router.push(`/${lang}/`);
+                }}
               >
+                {/* {lang} */}
                 <span className={underLineStyle}>{lang.toUpperCase()}</span>
               </button>
             </li>
+            // <a href={`/${lang}/`} key={`key-${lang}`}>
+            //   {lang.toUpperCase()}
+            // </a>
           ))}
+        {/* <a href="/pl/">sad</a> */}
       </ul>
     </div>
   );
