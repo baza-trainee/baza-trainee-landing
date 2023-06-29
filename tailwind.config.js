@@ -6,10 +6,6 @@ module.exports = {
       colors: {
         white: '#FCFCFC',
         black: '#151515',
-        'black-light': '#232323',
-        gray: '#1C1C1C',
-        'gray-light': '#cecece',
-        'gray-dark': '#262626',
         yellow: {
           500: '#FFD210',
           600: '#FFBD00',
@@ -27,18 +23,30 @@ module.exports = {
           700: '#232323',
           800: '#121212',
         },
-        'base-on-light': '#FCFCFC',
-        'base-on-dark': '#FEFEFE',
-        'faint-on-light': '#151515',
-        'faint-on-dark': '#E2DFD3',
-        'accent-on-light': '#FFD014',
-        'accent-on-dark': '#D7B21F',
-        'critic-on-light': '#FF4314',
-        'critic-on-dark': '#D13E19',
-        'warning-on-light': '#FFDC14',
-        'warning-on-dark': '#D8BC20',
-        'success-on-light': '#14FF18',
-        'success-on-dark': '#1CD41F',
+        base: {
+          light: '#FCFCFC',
+          dark: '#FEFEFE',
+        },
+        faint: {
+          light: '#151515',
+          dark: '#E2DFD3',
+        },
+        accent: {
+          light: '#FFD014',
+          dark: '#D7B21F',
+        },
+        critic: {
+          light: '#FF4314',
+          dark: '#D13E19'
+        },
+        warning: {
+          light: '#FFDC14',
+          dark: '#D8BC20',
+        },
+        success: {
+          light: '#14FF18',
+          dark: '#1CD41F',
+        },
       },
       fontFamily: {
         // secondary: ['Inter', 'sans-serif'],
