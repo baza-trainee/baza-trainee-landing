@@ -114,6 +114,14 @@
       padding: 0rem 0rem 0.4rem;
       border-bottom: $border-white;
       cursor: pointer;
+      &:hover {
+        color: $color-accent;
+        border-color: $color-accent;
+      }
+      &:active {
+        color: $color-pressed-btn;
+        border-color: $color-pressed-btn;
+      }
     }
   }
 }
