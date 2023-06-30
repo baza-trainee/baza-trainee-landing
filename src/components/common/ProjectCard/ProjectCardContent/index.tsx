@@ -86,7 +86,7 @@ const ProjectCardContent = ({
               id="team-btn"
               onClick={onShowTeamHandler}
             >
-              Команда проєкту
+              Команда
             </button>
           </div>
         </>

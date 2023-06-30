@@ -187,7 +187,7 @@ export const projects = [
     status: 'under-development',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
-    description: 'Lorem ',
+    description: 'Благодійний проєкт',
     creationDate: 1669872000000,
     launchDate: 1669872000000,
     complexity: 1,

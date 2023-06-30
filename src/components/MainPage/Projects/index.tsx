@@ -20,7 +20,6 @@ const Projects = () => {
     );
     setFilteredProjects(filtered);
   };
-
   return (
     <section className={styles['projects-section']} id="projects">
       <div className={`container`}>
@@ -35,7 +34,7 @@ const Projects = () => {
               placeholder="Введіть ключове слово для пошуку"
               pattern="[а-яА-Яa-zA-ZҐґЄєІіЇї]{2,50}"
               title="Поле пошуку приймає ключові слова від 2-х до 50-ти символів. Поле пошуку приймає латиницю і кирилицю"
-              minLength={2}
+              minLength={1}
               maxLength={50}
               value={searchQuery}
               onChange={handleSearchChange}
@@ -51,7 +50,7 @@ const Projects = () => {
         </div>
         <>
           {filteredProjects.length === 0 && (
-            <p>Sorry! There are no projects.</p>
+            <p>Нічого не знайдено. Змініть запит.</p>
           )}
           <ul className={styles['projects-section__projects-container']}>
             {filteredProjects.map((project) => (
