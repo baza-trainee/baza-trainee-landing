@@ -23,8 +23,8 @@ export default async function Home({ params }: { params: { lang: string } }) {
   return (
     <>
       <Header navLinks={navLinks} />
-      <HeroSlider dict={dict} />
-      <Projects />
+      <HeroSlider dictionary={dict} />
+      <Projects dictionary={dict} />
       <Statistics />
       <Forms />
       <Partners />

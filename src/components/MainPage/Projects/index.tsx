@@ -7,7 +7,39 @@ import { useState } from 'react';
 import { projects } from './projects';
 import styles from './styles.module.scss';
 
-const Projects = () => {
+const Projects = ({
+  dictionary,
+}: {
+  dictionary: {
+    navbar: {
+      projects: string;
+    };
+    toFund: string;
+    enterKeywordForSearch: string;
+    heroSlider: {
+      firstSlide: {
+        title: string;
+        description: string;
+      };
+      secondSlide: {
+        title: string;
+        description: string;
+      };
+      thirdSlide: {
+        title: string;
+        description: string;
+      };
+      fourthSlide: {
+        title: string;
+        description: string;
+      };
+      fifthSlide: {
+        title: string;
+        description: string;
+      };
+    };
+  };
+}) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
@@ -26,7 +58,9 @@ const Projects = () => {
   return (
     <section className={styles['projects-section']} id="projects">
       <div className={`container`}>
-        <h3 className={styles['projects-section__title']}>Проєкти</h3>
+        <h3 className={styles['projects-section__title']}>
+          {dictionary.navbar.projects}
+        </h3>
         <div className={styles['projects-section__form-container']}>
           <form className={styles['projects-section__form']}>
             <input
@@ -34,7 +68,7 @@ const Projects = () => {
               name="search"
               id="search-input"
               className={styles['projects-section__form__input']}
-              placeholder="Введіть ключове слово для пошуку"
+              placeholder={dictionary.enterKeywordForSearch}
               pattern="[а-яА-Яa-zA-ZҐґЄєІіЇї]{2,50}"
               title="Поле пошуку приймає ключові слова від 2-х до 50-ти символів. Поле пошуку приймає латиницю і кирилицю"
               minLength={2}

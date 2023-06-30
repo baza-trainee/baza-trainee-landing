@@ -35,9 +35,9 @@ const PrevArrow = (props: CustomArrowProps) =>
   );
 
 const HeroSlider = ({
-  dict,
+  dictionary,
 }: {
-  dict: {
+  dictionary: {
     toFund: string;
     heroSlider: {
       firstSlide: {
@@ -70,7 +70,7 @@ const HeroSlider = ({
     setIsLandingModalShown((prevState) => !prevState);
   };
 
-  const translatedSlides = getTranslatedSlides(slides, dict);
+  const translatedSlides = getTranslatedSlides(slides, dictionary);
 
   const settings = {
     dots: true,
@@ -111,7 +111,7 @@ const HeroSlider = ({
             className={styles['slider-section__btn-donate']}
             onClick={donateClickHandler}
           >
-            {dict.toFund}
+            {dictionary.toFund}
           </button>
         </div>
       </div>
