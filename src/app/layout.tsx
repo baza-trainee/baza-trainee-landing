@@ -2,6 +2,8 @@ import { StoreProvider } from '@/store/globalContext';
 import { exo2, inter } from './fonts';
 
 import './globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const metadata = {
   title: 'Baza-Trainee',

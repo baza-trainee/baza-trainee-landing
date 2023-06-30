@@ -2,6 +2,7 @@ import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import Link from 'next/link';
 import styles from './styles.module.scss';
+import { ContainerMaxW1200 } from '@/components/atomic';
 
 const anchoreLinksList = [
   { title: 'Проєкти', href: '#projects' },
@@ -35,10 +36,12 @@ const socialsMediaList = [
   },
 ];
 
-const Footer = () => {
+export const Footer = () => {
   return (
-    <footer className={styles.footer} id="footer">
-      <div className="container">
+    <footer className="bg-neutral-700 py-16" id="footer">
+      <ContainerMaxW1200 className="flex-col text-white">
+        {/* needs refactoring ! */}
+
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>
             <Link href="#header" className={styles['footer-logo']}>
@@ -114,12 +117,11 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <p className={styles['footer__license']}>
+
+        <p className="text-[1.4rem] text-neutral-75">
           Розробка BazaTraineeUkraine 2023 Усі права захищені.
         </p>
-      </div>
+      </ContainerMaxW1200>
     </footer>
   );
 };
-
-export default Footer;

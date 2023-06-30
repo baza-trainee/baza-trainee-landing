@@ -1,21 +1,22 @@
-import { PropsWithChildren, JSX } from 'react';
+import { JSX, ReactNode } from 'react';
 
-type TProps = PropsWithChildren & {
+type TProps = {
   className?: string;
   component?: keyof JSX.IntrinsicElements;
   id?: string;
+  children?: ReactNode;
 };
 
 export const ContainerMaxW1200 = ({
   className = '',
   component: Component = 'div',
   children,
-  ...otherProps
+  id,
 }: TProps) => (
-  <div className="relative mx-4 flex justify-center sm:mx-8 lg:mx-20">
+  <div className="relative mx-4 sm:mx-8 lg:mx-20">
     <Component
-      className={`container relative flex ${className}`}
-      {...otherProps}
+      className={`container relative m-auto flex max-w-[120rem] ${className}`}
+      id={id}
     >
       {children}
     </Component>

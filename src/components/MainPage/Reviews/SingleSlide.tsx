@@ -5,8 +5,11 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
   const { image, title, text, specialization } = slideData;
 
   return (
-    <div className="flex h-48 w-[80rem] items-center gap-[4.8rem] text-neutral-700">
-      <div className="relative h-full w-48">
+    <div
+      className="min-h-48 m-auto flex w-3/5 flex-col flex-wrap items-center 
+      gap-[2rem] text-neutral-700 sm:flex-row md:gap-[4.8rem] lg:flex-nowrap xl:w-[80rem]"
+    >
+      <div className="relative h-48 w-48 shrink-0">
         <Image src={image} alt={'customer'} fill className="rounded-full" />
       </div>
 
@@ -15,9 +18,7 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
         <p className="">{specialization}</p>
       </div>
 
-      <div>
-        <span>{text}</span>
-      </div>
+      <span className="font-secondary">{text}</span>
     </div>
   );
 };

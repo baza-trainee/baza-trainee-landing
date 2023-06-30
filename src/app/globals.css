@@ -8,12 +8,6 @@ html {
 }
 
 body {
-  @apply text-[1.6rem];
-  @apply text-neutral-800;
+  @apply text-[1.6rem] text-neutral-800;
   @apply h-screen;
-}
-
-.container {
-  @apply w-[120rem];
-  @apply mx-auto;
 }

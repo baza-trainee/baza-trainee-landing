@@ -6,6 +6,7 @@ import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { useState } from 'react';
 import { projects } from './projects';
 import styles from './styles.module.scss';
+import { ContainerMaxW1200 } from '@/components/atomic';
 
 const Projects = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +26,7 @@ const Projects = () => {
 
   return (
     <section className={styles['projects-section']} id="projects">
-      <div className={`container`}>
+      <ContainerMaxW1200 className="flex-col">
         <h3 className={styles['projects-section__title']}>Проєкти</h3>
         <div className={styles['projects-section__form-container']}>
           <form className={styles['projects-section__form']}>
@@ -71,7 +72,7 @@ const Projects = () => {
             </button>
           </div>
         )}
-      </div>
+      </ContainerMaxW1200>
     </section>
   );
 };
