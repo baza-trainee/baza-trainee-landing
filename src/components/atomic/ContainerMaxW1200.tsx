@@ -12,9 +12,9 @@ export const ContainerMaxW1200 = ({
   children,
   ...otherProps
 }: TProps) => (
-  <div className="flex w-full justify-center px-4 sm:px-8 lg:px-28">
+  <div className="relative mx-4 flex justify-center sm:mx-8 lg:mx-20">
     <Component
-      className={`container relative flex max-w-[75rem] ${className}`}
+      className={`container relative flex ${className}`}
       {...otherProps}
     >
       {children}

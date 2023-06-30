@@ -10,7 +10,7 @@ export const SlickArrow = ({ onClick, direction, color }: IProps) =>
   onClick && (
     <RotaryArrow
       direction={direction}
-      className={`absolute 
+      className={`absolute cursor-pointer
       ${direction === 'left' && 'left-[5%] xl:left-[10%]'} 
       ${direction === 'right' && 'right-[5%] xl:right-[10%]'} 
       top-1/2 z-10 -translate-y-1/2`}
