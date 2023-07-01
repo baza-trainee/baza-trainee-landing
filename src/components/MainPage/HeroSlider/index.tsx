@@ -79,3 +79,4 @@ export const HeroSlider = ({
     </section>
   );
 };
+export type { TSlide };

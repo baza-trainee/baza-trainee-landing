@@ -4,7 +4,7 @@ import { TSlide } from '.';
 import styles from './styles.module.scss';
 
 const Slide = ({ slideData }: { slideData: TSlide }) => {
-  const { image, title, description } = slideData;
+  const { image, title, text } = slideData;
   return (
     <div
       className={styles['slider-section__slide']}
@@ -14,7 +14,7 @@ const Slide = ({ slideData }: { slideData: TSlide }) => {
         <div className={styles['slider-section__content']}>
           <h2 className="text-white">{title}</h2>
           <p className="text-[2rem] font-medium leading-[1.6] text-white">
-            {description}
+            {text}
           </p>
         </div>
       </div>
