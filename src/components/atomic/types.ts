@@ -5,4 +5,5 @@ export type TButtonProps = PropsWithChildren & {
   className?: string;
   disabled?: boolean;
   size?: 'L' | 'M';
+  linkTo?: string;
 };

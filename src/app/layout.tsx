@@ -1,12 +1,9 @@
-import { Exo_2 } from 'next/font/google';
 import { StoreProvider } from '@/store/globalContext';
-import './globals.css';
+import { exo2, inter } from './fonts';
 
-const exo2 = Exo_2({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['400', '600', '700'],
-  display: 'swap',
-});
+import './globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const metadata = {
   title: 'Baza-Trainee',
@@ -21,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body className={exo2.className}>{children}</body>
+        <body className={`${inter.variable} ${exo2.className}`}>
+          {children}
+        </body>
       </StoreProvider>
     </html>
   );
