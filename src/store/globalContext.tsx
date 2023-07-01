@@ -13,9 +13,7 @@ export type TLandingLanguage = 'ua' | 'en' | 'pl';
 
 export interface IStoreContextType {
   landingLanguage: TLandingLanguage;
-  isLandingModalShown: boolean;
   setLandingLanguage: Dispatch<SetStateAction<TLandingLanguage>>;
-  setIsLandingModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
 export const GlobalContext = createContext<IStoreContextType>(
@@ -25,7 +23,6 @@ export const GlobalContext = createContext<IStoreContextType>(
 export const StoreProvider = ({ children }: PropsWithChildren) => {
   const [landingLanguage, setLandingLanguage] =
     useState<TLandingLanguage>('ua');
-  const [isLandingModalShown, setIsLandingModalShown] = useState(false);
 
   useEffect(() => {
     const landingLanguage = localStorage.getItem('landingLanguage');
@@ -42,8 +39,6 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
   const contextValue = {
     landingLanguage,
     setLandingLanguage,
-    isLandingModalShown,
-    setIsLandingModalShown,
   };
 
   return (

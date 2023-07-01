@@ -1,14 +1,16 @@
 'use client';
 
-import counterHandler from '@/utils/counterHandler';
 import { useEffect, useRef, useState } from 'react';
-import styles from './styles.module.scss';
+
+import counterHandler from '@/utils/counterHandler';
+
+import { ContainerMaxW1200 } from '@/components/atomic';
 
 const projects = 7;
 const members = 420;
 const haveJob = 212;
 
-const Achievements = () => {
+export const Achievements = () => {
   const componentRef = useRef(null);
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
@@ -54,22 +56,19 @@ const Achievements = () => {
   }, [isCountFinish]);
 
   return (
-    <section className={styles.achievements} ref={componentRef}>
-      <div className="container">
-        <ul className={styles.achievements__list}>
-          {achievementData.map((achievement, index) => (
-            <li key={index} className={styles.achievements__item}>
-              <p className={styles.achievements__number}>
-                <span>{achievement.count}</span>
-                {achievement.plusVisible && '+'}
-              </p>
-              <p className={styles.achievements__text}>{achievement.text}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <section className="bg-yellow-500 py-[5.2rem]" ref={componentRef}>
+      <ContainerMaxW1200 className="justify-between">
+        {achievementData.map(({ count, plusVisible, text }, i) => (
+          <div key={`achievement_key_${count + i}`} className={'text-center'}>
+            <p className={'text-[5.6rem] font-semibold'}>
+              {count}
+              {plusVisible && '+'}
+            </p>
+
+            <p className={'text-[2rem] font-medium uppercase'}>{text}</p>
+          </div>
+        ))}
+      </ContainerMaxW1200>
     </section>
   );
 };
-
-export default Achievements;
