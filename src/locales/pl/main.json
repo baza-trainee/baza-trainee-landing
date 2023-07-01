@@ -5,6 +5,20 @@
     "participate": "Weź udział",
     "contacts": "Kontakt"
   },
+  "monthsNames": {
+    "january": "styczeń ",
+    "february": "luty ",
+    "march": "marsz ",
+    "april": "kwiecień",
+    "may": "móc",
+    "june": "czerwiec",
+    "july": "lipiec",
+    "august": "sierpień",
+    "september": "wrzesień",
+    "october": "październik",
+    "november": "listopad",
+    "december": "grudzień"
+  },
   "heroSlider": {
     "firstSlide": {
       "title": "Baza Trainee Ukraine",
@@ -26,6 +40,42 @@
       "title": "Nasza grupa docelowa",
       "description": "Ukraińcy, którzy zdobywają umiejętności w dziedzinie IT, niezależnie od ich wieku i poziomu doświadczenia, stanowią jedną stronę naszej grupy docelowej. Obejmuje to stażystów, juniorów, osoby zmieniające karierę i mentorów. Z drugiej strony, nasza grupa odbiorców składa się z organizacji charytatywnych, społeczności wolontariuszy i inicjatyw obywatelskich na Ukrainie, które są zaangażowane w filantropię, wolontariat i inicjatywy społeczne. Naszym celem jest połączenie tych dwóch grup i stworzenie możliwości współpracy, dzielenia się wiedzą i rozwoju umiejętności w sektorze IT."
     }
+  },
+  "moreProjects": "Więcej projektów",
+  "projects": {
+    "projectStart": "Start projektu",
+    "projectCycle": "Cykl projektu",
+    "time": "tygodnie",
+    "complexity": "Złożoność",
+    "projectTeam": "Zespół",
+    "status": {
+      "teamFormation": "Tworzenie zespołu",
+      "underDevelopment": "W trakcie opracowywania",
+      "completed": "Ukończone"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "Jak wesprzeć Baza Trainee Ukraina",
+    "teamsWaitForYou": "5 projektów i 3 zespoły czekają na Ciebie",
+    "bazaTraineeInvite": "Baza Trainee Ukraine zaprasza do dołączenia do zespołu",
+    "chooseRole": "Wybierz swoją rolę w projekcie",
+    "role": {
+      "participant": "Jestem uczestnikiem",
+      "mentor": "Jestem mentorem",
+      "partner": "Jestem partnerem",
+      "customer": "Jestem klientem"
+    }
+  },
+  "partners": {
+    "title": "Partnerzy"
+  },
+  "stats": {
+    "completedProjects": "Ukończone projekty",
+    "involvedParticipants": "Uczestnicy",
+    "employed": "Osoby zatrudnione "
+  },
+  "reviews": {
+    "title": "Recenzje"
   },
   "toFund": "Finansowanie",
   "enterKeywordForSearch": "Wprowadź słowo kluczowe aby wyszukać"

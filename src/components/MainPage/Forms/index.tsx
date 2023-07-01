@@ -1,32 +1,47 @@
 import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 
-export const Forms = () => {
+export const Forms = ({
+  dictionary,
+}: {
+  dictionary: {
+    invite: {
+      bazaTraineeInvite: string;
+      chooseRole: string;
+      role: {
+        participant: string;
+        mentor: string;
+        partner: string;
+        customer: string;
+      };
+    };
+  };
+}) => {
   return (
     <section className="my-48 text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">
         <h2 className="mb-9 text-[3rem] font-bold md:text-[4rem]">
-          Baza Trainee Ukraine запрошує приєднатись до команди
+          {dictionary.invite.bazaTraineeInvite}
         </h2>
 
         <p className="mb-[4.8rem] text-[2.4rem]">
-          Оберіть свою участь в проєкті
+          {dictionary.invite.chooseRole}
         </p>
 
         <nav className="flex flex-wrap justify-center gap-[3.2rem] md:flex-nowrap">
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1QsjBjv90-GNkMN_fm2-Nsn0ROlx-yHiyYyou2_oyH2Q/edit">
-            Я учасник
+            {dictionary.invite.role.participant}
           </ParticipantButtonLink>
 
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1Y_3FiBw_TYl8BvGq-tA_fcLmULz6p9K8T4WPuLmoc_k/edit">
-            Я Ментор
+            {dictionary.invite.role.mentor}
           </ParticipantButtonLink>
 
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1Z2zOR8_WgCtq8cQ5ihsJKLUrfxIWA_Iq-rQiuXNd21Y/edit">
-            Я партнер
+            {dictionary.invite.role.partner}
           </ParticipantButtonLink>
 
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1gbHRVDY2kPOZe9D5GzLoFqJbzZxfR_xwXgMTOnmDttM/edit">
-            Я замовник
+            {dictionary.invite.role.customer}
           </ParticipantButtonLink>
         </nav>
       </ContainerMaxW1200>

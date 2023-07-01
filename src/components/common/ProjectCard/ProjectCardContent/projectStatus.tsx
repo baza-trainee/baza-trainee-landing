@@ -1,22 +1,36 @@
 import styles from './styles.module.scss';
-const ProjectCardStatus = ({ statusName }: { statusName: string }) => {
+const ProjectCardStatus = ({
+  statusName,
+  dictionary,
+}: {
+  statusName: string;
+  dictionary: {
+    projects: {
+      status: {
+        teamFormation: string;
+        underDevelopment: string;
+        completed: string;
+      };
+    };
+  };
+}) => {
   const statuses = [
     {
       id: 1,
       status: 'active',
-      text: 'Завершено',
+      text: dictionary.projects.status.completed,
       class: 'projects-section__projects-item__state-completed',
     },
     {
       id: 2,
       status: 'under-development',
-      text: 'В розробці',
+      text: dictionary.projects.status.underDevelopment,
       class: 'projects-section__projects-item__state-under-development',
     },
     {
       id: 3,
       status: 'formation-of-the-team',
-      text: 'Формування команди',
+      text: dictionary.projects.status.teamFormation,
       class: 'projects-section__projects-item__state-formation-of-the-team',
     },
   ];

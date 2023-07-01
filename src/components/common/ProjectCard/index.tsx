@@ -6,6 +6,7 @@ import ProjectCardTeam from './ProjectCardTeam';
 import styles from './styles.module.scss';
 const ProjectCard = ({
   project,
+  dictionary,
 }: {
   project: {
     imageUrl: string;
@@ -19,6 +20,34 @@ const ProjectCard = ({
       role: { name: string; _id: string };
       user: { _id: string; link: string; name: string };
     }[];
+  };
+  dictionary: {
+    monthsNames: {
+      january: string;
+      february: string;
+      march: string;
+      april: string;
+      may: string;
+      june: string;
+      july: string;
+      august: string;
+      september: string;
+      october: string;
+      november: string;
+      december: string;
+    };
+    projects: {
+      projectStart: string;
+      projectCycle: string;
+      complexity: string;
+      time: string;
+      projectTeam: string;
+      status: {
+        teamFormation: string;
+        underDevelopment: string;
+        completed: string;
+      };
+    };
   };
 }) => {
   const [isMembersVIsible, setIsMembersVIsible] = useState(false);
@@ -45,6 +74,7 @@ const ProjectCard = ({
             }
           >
             <ProjectCardContent
+              dictionary={dictionary}
               onShowTeamHandler={handleShowTeam}
               project={project}
               isMembersVIsible={isMembersVIsible}

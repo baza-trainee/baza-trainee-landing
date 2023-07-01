@@ -8,15 +8,42 @@ import { useState } from 'react';
 import { projects } from './projects';
 import styles from './styles.module.scss';
 
-const Projects = ({
+export const Projects = ({
   dictionary,
 }: {
   dictionary: {
     navbar: {
       projects: string;
     };
+    monthsNames: {
+      january: string;
+      february: string;
+      march: string;
+      april: string;
+      may: string;
+      june: string;
+      july: string;
+      august: string;
+      september: string;
+      october: string;
+      november: string;
+      december: string;
+    };
     toFund: string;
+    moreProjects: string;
     enterKeywordForSearch: string;
+    projects: {
+      projectStart: string;
+      projectCycle: string;
+      time: string;
+      complexity: string;
+      projectTeam: string;
+      status: {
+        teamFormation: string;
+        underDevelopment: string;
+        completed: string;
+      };
+    };
     heroSlider: {
       firstSlide: {
         title: string;
@@ -59,7 +86,9 @@ const Projects = ({
   return (
     <section className={styles['projects-section']} id="projects">
       <ContainerMaxW1200 className="flex-col">
-        <h3 className={styles['projects-section__title']}>Проєкти</h3>
+        <h3 className={styles['projects-section__title']}>
+          {dictionary.navbar.projects}
+        </h3>
         <div className={styles['projects-section__form-container']}>
           <form className={styles['projects-section__form']}>
             <input
@@ -90,7 +119,11 @@ const Projects = ({
           )}
           <ul className={styles['projects-section__projects-container']}>
             {filteredProjects.map((project) => (
-              <ProjectCard key={project._id} project={project} />
+              <ProjectCard
+                dictionary={dictionary}
+                key={project._id}
+                project={project}
+              />
             ))}
           </ul>
         </>
@@ -98,7 +131,7 @@ const Projects = ({
           <div className={styles['projects-section__load-more__container']}>
             <button className={styles['projects-section__load-more']}>
               <span className={styles['projects-section__load-more__text']}>
-                Більше проєктів
+                {dictionary.moreProjects}
               </span>
               <ArrowBottomIcon />
             </button>
@@ -108,5 +141,3 @@ const Projects = ({
     </section>
   );
 };
-
-export default Projects;

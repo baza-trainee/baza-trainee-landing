@@ -27,7 +27,7 @@ export const slides = [
 ];
 
 export const getTranslatedSlides = (
-  slides: { image: string; title: string; description: string }[],
+  slides: { image: string; title: string; text: string }[],
   dict: {
     heroSlider: {
       firstSlide: {
@@ -60,23 +60,23 @@ export const getTranslatedSlides = (
     switch (i) {
       case '0':
         slides[i].title = dict.heroSlider.firstSlide?.title;
-        slides[i].description = dict.heroSlider.firstSlide?.description;
+        slides[i].text = dict.heroSlider.firstSlide?.description;
         break;
       case '1':
         slides[i].title = dict.heroSlider.secondSlide?.title;
-        slides[i].description = dict.heroSlider.secondSlide?.description;
+        slides[i].text = dict.heroSlider.secondSlide?.description;
         break;
       case '2':
         slides[i].title = dict.heroSlider.thirdSlide?.title;
-        slides[i].description = dict.heroSlider.thirdSlide?.description;
+        slides[i].text = dict.heroSlider.thirdSlide?.description;
         break;
       case '3':
         slides[i].title = dict.heroSlider.fourthSlide?.title;
-        slides[i].description = dict.heroSlider.fourthSlide?.description;
+        slides[i].text = dict.heroSlider.fourthSlide?.description;
         break;
       case '4':
         slides[i].title = dict.heroSlider.fifthSlide?.title;
-        slides[i].description = dict.heroSlider.fifthSlide?.description;
+        slides[i].text = dict.heroSlider.fifthSlide?.description;
         break;
     }
   }

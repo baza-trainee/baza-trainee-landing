@@ -15,7 +15,11 @@ const navLinks = [
 const linkStyle =
   "relative text-[2rem] font-semibold transition-all duration-300 after:absolute after:-bottom-2 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] hover:scale-105 after:hover:scale-100 whitespace-nowrap after:border-black";
 
-const Header = () => {
+export const Header = ({
+  navLinks,
+}: {
+  navLinks: { title: string; href: string }[];
+}) => {
   return (
     <header className="min-h-[10.4rem] bg-yellow-500 py-5" id="header">
       <ContainerMaxW1200 className="items-center justify-between">
@@ -40,5 +44,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

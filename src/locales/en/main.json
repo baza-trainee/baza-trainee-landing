@@ -5,6 +5,20 @@
     "participate": "To Participate",
     "contacts": "Contacts"
   },
+  "monthsNames": {
+    "january": "january",
+    "february": "february",
+    "march": "march",
+    "april": "april",
+    "may": "may",
+    "june": "june",
+    "july": "july",
+    "august": "august",
+    "september": "september",
+    "october": "october",
+    "november": "november",
+    "december": "december"
+  },
   "heroSlider": {
     "firstSlide": {
       "title": "Baza Trainee Ukraine",
@@ -26,6 +40,42 @@
       "title": "Our target audience",
       "description": "Ukrainians who are acquiring skills in the IT field, regardless of their age and experience level, form one side of our target audience. This includes trainees, juniors, career switchers, and mentors. On the other side, our audience consists of charitable organizations, volunteering communities, and civic initiatives in Ukraine that are involved in philanthropy, volunteering, and community-driven initiatives. Our goal is to bring together these two groups and create opportunities for collaboration, knowledge sharing, and skill development within the IT sector."
     }
+  },
+  "moreProjects": "More projects",
+  "projects": {
+    "projectStart": "Project start",
+    "projectCycle": "Project cycle",
+    "time": "weeks",
+    "complexity": "Complexity",
+    "projectTeam": "Project team",
+    "status": {
+      "teamFormation": "Team formation",
+      "underDevelopment": "Under development",
+      "completed": "Completed"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "To support Baza Trainee Ukraine",
+    "teamsWaitForYou": "5 projects and 3 teams are waiting for you",
+    "bazaTraineeInvite": "Baza Trainee Ukraine invites you to join the team",
+    "chooseRole": "Choose your role in the project",
+    "role": {
+      "participant": "I am a participant",
+      "mentor": "I am a mentor",
+      "partner": "I am a partner",
+      "customer": "I am a customer"
+    }
+  },
+  "partners": {
+    "title": "Partners"
+  },
+  "stats": {
+    "completedProjects": "completed projects",
+    "involvedParticipants": "involved participants",
+    "employed": "employed"
+  },
+  "reviews": {
+    "title": "Reviews"
   },
   "toFund": "To Fund",
   "enterKeywordForSearch": "Enter a keyword for search"

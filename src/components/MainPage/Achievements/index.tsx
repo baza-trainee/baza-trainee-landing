@@ -10,7 +10,17 @@ const projects = 7;
 const members = 420;
 const haveJob = 212;
 
-export const Achievements = () => {
+export const Achievements = ({
+  dictionary,
+}: {
+  dictionary: {
+    stats: {
+      completedProjects: string;
+      involvedParticipants: string;
+      employed: string;
+    };
+  };
+}) => {
   const componentRef = useRef(null);
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
@@ -18,13 +28,13 @@ export const Achievements = () => {
   const [isCountFinish, setIsCountFinish] = useState(false);
 
   const achievementData = [
-    { count: projectsCount, text: 'Виконаних проєктів' },
+    { count: projectsCount, text: dictionary.stats.completedProjects },
     {
       count: membersCount,
-      text: 'Залучених учасників',
+      text: dictionary.stats.involvedParticipants,
       plusVisible: isCountFinish,
     },
-    { count: haveJobCount, text: 'Працевлаштовано' },
+    { count: haveJobCount, text: dictionary.stats.employed },
   ];
 
   useEffect(() => {

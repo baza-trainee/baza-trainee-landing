@@ -1,11 +1,19 @@
 import styles from './styles.module.scss';
 
-const Statistics = () => {
+const Statistics = ({
+  dictionary,
+}: {
+  dictionary: {
+    invite: {
+      teamsWaitForYou: string;
+    };
+  };
+}) => {
   return (
     <section className={styles.statistic}>
       <div className={`container `}>
         <h2 className={styles['statistic__title']}>
-          5 проектів та 3 команди чекають на тебе
+          {dictionary.invite.teamsWaitForYou}
         </h2>
       </div>
     </section>

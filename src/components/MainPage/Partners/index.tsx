@@ -19,11 +19,21 @@ const sliderSettings = {
   draggable: false,
 };
 
-export const Partners = () => {
+export const Partners = ({
+  dictionary,
+}: {
+  dictionary: {
+    partners: {
+      title: string;
+    };
+  };
+}) => {
   return (
     <section className="mb-[12rem]" id="partners">
       <ContainerMaxW1200 className="flex-col">
-        <h2 className="mb-[3.2rem] text-center text-6xl font-bold">Партнери</h2>
+        <h2 className="mb-[3.2rem] text-center text-6xl font-bold">
+          {dictionary.partners.title}
+        </h2>
 
         <Slider {...sliderSettings}>
           <Link className="" href="#">

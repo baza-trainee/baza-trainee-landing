@@ -18,7 +18,15 @@ const sliderSettings = {
   prevArrow: <SlickArrow direction="left" color="#101010" />,
 };
 
-export const Reviews = () => {
+export const Reviews = ({
+  dictionary,
+}: {
+  dictionary: {
+    reviews: {
+      title: string;
+    };
+  };
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const customPaging = (i: number) => Dot(i, currentSlide);
@@ -27,7 +35,9 @@ export const Reviews = () => {
     <section className="my-48">
       <ContainerMaxW1200>
         <div className="w-full">
-          <h3 className="mb-12 text-center text-6xl font-bold">Відгуки</h3>
+          <h3 className="mb-12 text-center text-6xl font-bold">
+            {dictionary.reviews.title}
+          </h3>
 
           <Slider
             {...sliderSettings}

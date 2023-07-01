@@ -5,6 +5,20 @@
     "participate": "Взяти участь",
     "contacts": "Контакти"
   },
+  "monthsNames": {
+    "january": "січня",
+    "february": "лютого",
+    "march": "березня",
+    "april": "квітня",
+    "may": "травня",
+    "june": "червня",
+    "july": "липня",
+    "august": "серпня",
+    "september": "вересня",
+    "october": "жовтня",
+    "november": "листопада",
+    "december": "грудня"
+  },
   "heroSlider": {
     "firstSlide": {
       "title": "Baza Trainee Ukraine",
@@ -26,6 +40,42 @@
       "title": "Наша цільова аудиторія",
       "description": "Українці, які опановують спеціальності в сфері ІТ незалежно від віку і досвіду - трейні, джуніори, світчери, ментори з однієї сторони, і громади та спільноти України в сфері благодійності, волонтерства, громадських ініціатив з іншої."
     }
+  },
+  "moreProjects": "Більше проєктів",
+  "projects": {
+    "projectStart": "Старт проєкту",
+    "projectCycle": "Цикл проєкту",
+    "time": "тижнів",
+    "complexity": "Складність",
+    "projectTeam": "Команда проєкту",
+    "status": {
+      "teamFormation": "Формування команди",
+      "underDevelopment": "В розробці",
+      "completed": "Завершено"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "Підтримати Baza Trainee Ukraine",
+    "teamsWaitForYou": "5 проєктів і 3 команди чекають на тебе",
+    "bazaTraineeInvite": "Baza Trainee Ukraine запрошує до команди",
+    "chooseRole": "Оберіть свою роль в проєкті",
+    "role": {
+      "participant": "Я учасник",
+      "mentor": "Я ментор",
+      "partner": "Я партнер",
+      "customer": "Я замовник"
+    }
+  },
+  "partners": {
+    "title": "Партнери"
+  },
+  "stats": {
+    "completedProjects": "виконаних проєктів",
+    "involvedParticipants": "залучених учасників",
+    "employed": "працевлаштовано"
+  },
+  "reviews": {
+    "title": "Відгуки"
   },
   "toFund": "Фондувати",
   "enterKeywordForSearch": "Введіть ключове слово для пошуку"

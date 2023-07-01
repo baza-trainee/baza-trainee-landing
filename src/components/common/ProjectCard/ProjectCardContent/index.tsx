@@ -10,6 +10,7 @@ const ProjectCardContent = ({
   onShowTeamHandler,
   project,
   isMembersVIsible,
+  dictionary,
 }: {
   onShowTeamHandler: () => void;
   project: {
@@ -20,6 +21,34 @@ const ProjectCardContent = ({
     complexity: number;
   };
   isMembersVIsible: boolean;
+  dictionary: {
+    monthsNames: {
+      january: string;
+      february: string;
+      march: string;
+      april: string;
+      may: string;
+      june: string;
+      july: string;
+      august: string;
+      september: string;
+      october: string;
+      november: string;
+      december: string;
+    };
+    projects: {
+      projectStart: string;
+      projectCycle: string;
+      complexity: string;
+      time: string;
+      projectTeam: string;
+      status: {
+        teamFormation: string;
+        underDevelopment: string;
+        completed: string;
+      };
+    };
+  };
 }) => {
   return (
     <div
@@ -33,7 +62,7 @@ const ProjectCardContent = ({
         ]
       }
     >
-      <ProjectCardStatus statusName={project.status} />
+      <ProjectCardStatus dictionary={dictionary} statusName={project.status} />
       <div className={styles['projects-section__projects-item__container']}>
         <h4 className={styles['projects-section__projects-item__title']}>
           {project.description}
@@ -54,21 +83,23 @@ const ProjectCardContent = ({
           <li className={styles['projects-section__info__list-item']}>
             <div className={styles['projects-section__info__list-container']}>
               <StartIcon />
-              <p>Старт проєкту</p>
+              <p>{dictionary.projects.projectStart}</p>
             </div>
-            <p>{formatDate(project.createdAt)}</p>
+            <p>{formatDate(project.createdAt, dictionary)}</p>
           </li>
           <li className={styles['projects-section__info__list-item']}>
             <div className={styles['projects-section__info__list-container']}>
               <TimeIcon />
-              <p>Цикл проєкту</p>
+              <p>{dictionary.projects.projectCycle}</p>
             </div>
-            <p>{projectCycle(project)} тижнів</p>
+            <p>
+              {projectCycle(project)} {dictionary.projects.time}
+            </p>
           </li>
           <li className={styles['projects-section__info__list-item']}>
             <div className={styles['projects-section__info__list-container']}>
               <LevelIcon />
-              <p>Складність</p>
+              <p>{dictionary.projects.complexity}</p>
             </div>
             <div
               className={styles['projects-section__info__list-item__container']}
@@ -86,7 +117,7 @@ const ProjectCardContent = ({
               id="team-btn"
               onClick={onShowTeamHandler}
             >
-              Команда проєкту
+              {dictionary.projects.projectTeam}
             </button>
           </div>
         </>

@@ -13,7 +13,7 @@ import { TSlide } from '@/types';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
+import { getTranslatedSlides, slides } from './slides';
 
 const settings = {
   infinite: false,
@@ -24,13 +24,45 @@ const settings = {
   prevArrow: <SlickArrow direction="left" />,
 };
 
-export const HeroSlider = () => {
+export const HeroSlider = ({
+  dictionary,
+}: {
+  dictionary: {
+    navbar: {
+      projects: string;
+    };
+    toFund: string;
+    enterKeywordForSearch: string;
+    heroSlider: {
+      firstSlide: {
+        title: string;
+        description: string;
+      };
+      secondSlide: {
+        title: string;
+        description: string;
+      };
+      thirdSlide: {
+        title: string;
+        description: string;
+      };
+      fourthSlide: {
+        title: string;
+        description: string;
+      };
+      fifthSlide: {
+        title: string;
+        description: string;
+      };
+    };
+  };
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const translatedSlides = getTranslatedSlides(slides, dictionary);
   return (
     <section className="relative">
       <Slider {...settings} afterChange={setCurrentSlide} lazyLoad="ondemand">
-        {slides.map((slide: TSlide) => (
+        {translatedSlides.map((slide: TSlide) => (
           <SingleSlide key={`key_${slide.title}`} slideData={slide} />
         ))}
       </Slider>
@@ -40,7 +72,7 @@ export const HeroSlider = () => {
           <Dots currentSlide={currentSlide} />
 
           <Modal>
-            <PrimaryButton>Фондувати</PrimaryButton>
+            <PrimaryButton>{dictionary.toFund}</PrimaryButton>
           </Modal>
         </ContainerMaxW1200>
       </div>
