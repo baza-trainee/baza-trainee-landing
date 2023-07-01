@@ -1,85 +1,72 @@
 'use client';
 
-import React from 'react';
+import Link from 'next/link';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styles from './styles.module.scss';
 
-const Partners = () => {
-  const sliderSettings = {
-    dots: false,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 6000,
-    speed: 2000,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    infinite: true,
-    draggable: false,
-  };
+import { ContainerMaxW1200 } from '@/components/atomic';
 
+const nestedElemStyle = 'h-40 w-11/12 bg-neutral-75 text-center py-4';
+
+const sliderSettings = {
+  dots: false,
+  arrows: false,
+  autoplay: true,
+  autoplaySpeed: 6000,
+  speed: 2000,
+  slidesToShow: 5,
+  slidesToScroll: 5,
+  infinite: true,
+  draggable: false,
+};
+
+export const Partners = () => {
   return (
-    <section className={styles.partner} id="partners">
-      <div className="container">
-        <h2 className={styles.partner_title}>Партнери</h2>
-        <ul className={styles.partner_list}>
-          <Slider {...sliderSettings}>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                1
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                2
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                3
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                4
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                5
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                6
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                7
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                8
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                9
-              </a>
-            </li>
-            <li className={styles.partner_item}>
-              <a className={styles.partner_link} href="http://">
-                10
-              </a>
-            </li>
-          </Slider>
-        </ul>
-      </div>
+    <section className="mb-[12rem]" id="partners">
+      <ContainerMaxW1200 className="flex-col">
+        <h2 className="mb-[3.2rem] text-center text-6xl font-bold">Партнери</h2>
+
+        <Slider {...sliderSettings}>
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>1</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>2</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>3</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>4</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>5</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>6</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>7</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>8</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>9</div>
+          </Link>
+
+          <Link className="" href="#">
+            <div className={nestedElemStyle}>10</div>
+          </Link>
+        </Slider>
+      </ContainerMaxW1200>
     </section>
   );
 };
-
-export default Partners;

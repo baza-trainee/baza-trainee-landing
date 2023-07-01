@@ -1,84 +1,43 @@
 'use client';
 
-import { GlobalContext } from '@/store/globalContext';
-import { MouseEvent, useContext, useEffect } from 'react';
-import styles from './styles.module.scss';
-import { CloseMainIcon } from '@/components/common/icons';
+import { MouseEvent, ReactElement, cloneElement, useState } from 'react';
 
-const Modal = () => {
-  const { isLandingModalShown, setIsLandingModalShown } =
-    useContext(GlobalContext);
+import { createPortal } from 'react-dom';
 
-  const modalCloseHandler = () => {
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+
+import { ModalContent } from './ModalContent';
+
+export const Modal = ({ children }: { children: ReactElement }) => {
+  const [isLandingModalShown, setIsLandingModalShown] = useState(false);
+  const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
+
+  const handlerShowModal = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setIsLandingModalShown((prevState) => !prevState);
+    }
+  };
+
+  const handleIconClick = () => {
     setIsLandingModalShown((prevState) => !prevState);
   };
 
-  const handleInnerClick = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-  };
+  return (
+    <>
+      {children &&
+        cloneElement(children, {
+          onClick: handlerShowModal,
+        })}
 
-  useEffect(() => {
-    const body = document.body;
-    if (isLandingModalShown) {
-      body.classList.add('overflow-hidden');
-    } else {
-      body.classList.remove('overflow-hidden');
-    }
-  }, [isLandingModalShown]);
-
-  return !isLandingModalShown ? null : (
-    <section
-      className={`${styles.backdrop} ${styles['backdrop--is-hidden']}`}
-      onClick={modalCloseHandler}
-    >
-      <div className={styles.modal} onClick={(e) => handleInnerClick(e)}>
-        <CloseMainIcon
-          className={styles['modal__close-btn']}
-          onClick={modalCloseHandler}
-        />
-
-        <div className={styles.donate}>
-          <h2 className={styles['donate__title']}>
-            Оберіть суму, якою хочете підтримати Baza Trainee Ukraine
-          </h2>
-          <p className={styles['donate__description']}>
-            Сума списується одноразово, якщо бажаєте оформити підписку, потрібно
-            ...
-          </p>
-          <ul className={styles['donate__list']}>
-            <li className={styles['donate__item']}>
-              <a className={styles['donate__link']} href="#">
-                100 грн
-              </a>
-            </li>
-            <li className={styles['donate__item']}>
-              <a className={styles['donate__link']} href="#">
-                200 грн
-              </a>
-            </li>
-            <li className={styles['donate__item']}>
-              <a className={styles['donate__link']} href="#">
-                500 грн
-              </a>
-            </li>
-            <li className={styles['donate__item']}>
-              <a className={styles['donate__link']} href="#">
-                1000 грн
-              </a>
-            </li>
-            <li className={styles['donate__item']}>
-              <a className={styles['donate__link']} href="#">
-                інша сумма UAH
-              </a>
-            </li>
-          </ul>
-          <button className={styles['donate__btn']} type="button">
-            Підтримати
-          </button>
-        </div>
-      </div>
-    </section>
+      {isLandingModalShown &&
+        createPortal(
+          <ModalContent
+            handlerShowModal={handlerShowModal}
+            handleIconClick={handleIconClick}
+            bodyScrollLockRef={bodyScrollLockRef}
+          />,
+          document.body
+        )}
+    </>
   );
 };
-
-export default Modal;

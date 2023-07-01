@@ -1,5 +1,6 @@
 'use client';
 
+import { ContainerMaxW1200 } from '@/components/atomic';
 import ProjectCard from '@/components/common/ProjectCard';
 import { ArrowBottomIcon } from '@/components/common/icons';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
@@ -57,10 +58,8 @@ const Projects = ({
 
   return (
     <section className={styles['projects-section']} id="projects">
-      <div className={`container`}>
-        <h3 className={styles['projects-section__title']}>
-          {dictionary.navbar.projects}
-        </h3>
+      <ContainerMaxW1200 className="flex-col">
+        <h3 className={styles['projects-section__title']}>Проєкти</h3>
         <div className={styles['projects-section__form-container']}>
           <form className={styles['projects-section__form']}>
             <input
@@ -105,7 +104,7 @@ const Projects = ({
             </button>
           </div>
         )}
-      </div>
+      </ContainerMaxW1200>
     </section>
   );
 };
