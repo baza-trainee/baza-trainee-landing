@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-const Statistics = ({
+export const Statistics = ({
   dictionary,
 }: {
   dictionary: {
@@ -19,5 +19,3 @@ const Statistics = ({
     </section>
   );
 };
-
-export default Statistics;

@@ -6,7 +6,7 @@ import { HeroSlider } from '@/components/MainPage/HeroSlider';
 import { Partners } from '@/components/MainPage/Partners';
 import { Projects } from '@/components/MainPage/Projects';
 import { Reviews } from '@/components/MainPage/Reviews';
-import Statistics from '@/components/MainPage/Statistics';
+import { Statistics } from '@/components/MainPage/Statistics';
 import { getDictionary } from './dictionaries';
 
 export default async function Home({ params }: { params: { lang: string } }) {
@@ -29,7 +29,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
       <Partners dictionary={dict} />
       <Achievements dictionary={dict} />
       <Reviews dictionary={dict} />
-      <Footer />
+      <Footer dictionary={dict} />
     </>
   );
 }

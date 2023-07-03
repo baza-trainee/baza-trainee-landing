@@ -77,6 +77,33 @@
   "reviews": {
     "title": "Recenzje"
   },
+  "modal": {
+    "title": "Wybierz kwotę, którą chcesz wesprzeć Baza Trainee Ukraine.",
+    "description": "Kwota jest pobierana jednorazowo, jeśli chcesz wystawić abonament, potrzebujesz ..",
+    "sums": {
+      "100": "100 UAH",
+      "200": "200 UAH",
+      "500": "500 UAH",
+      "1000": "1000 UAH",
+      "otherSum": "Inna kwota w UAH"
+    },
+    "button": "Wsparcie Baza Trainee Ukraine "
+  },
+  "footer": {
+    "projects": "Projekty",
+    "partners": "Partnerzy",
+    "participate": "Weź udział",
+    "privacyPolicy": "Polityka prywatności",
+    "rulesForUsingTheSite": "Zasady korzystania z serwisu",
+    "statute": "Statut",
+    "accountability": "Odpowiedzialność",
+    "allRightsReserved": "BazaTraineeUkraine 2023 Wszelkie prawa zastrzeżone"
+  },
+  "notFound": {
+    "title": "Ta strona nie została znaleziona.",
+    "description": "Nie mogliśmy znaleźć strony, której szukasz",
+    "button": "Powrót do strony głównej"
+  },
   "toFund": "Finansowanie",
   "enterKeywordForSearch": "Wprowadź słowo kluczowe aby wyszukać"
 }

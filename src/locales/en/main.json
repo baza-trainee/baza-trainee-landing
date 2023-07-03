@@ -77,6 +77,33 @@
   "reviews": {
     "title": "Reviews"
   },
+  "modal": {
+    "title": "Choose the amount you would like to support Baza Trainee Ukraine with.",
+    "description": "The amount is debited once, if you want to issue a subscription, you need ..",
+    "sums": {
+      "100": "100 UAH",
+      "200": "200 UAH",
+      "500": "500 UAH",
+      "1000": "1000 UAH",
+      "otherSum": "A different amount in UAH "
+    },
+    "button": "To support Baza Trainee Ukraine"
+  },
+  "footer": {
+    "projects": "Projects",
+    "partners": "Partners",
+    "participate": "To Participate",
+    "privacyPolicy": "Privacy Policy",
+    "rulesForUsingTheSite": "Rules for using the site",
+    "statute": "Statute",
+    "accountability": "Accountability",
+    "allRightsReserved": "Developed by BazaTraineeUkraine 2023 All rights reserved"
+  },
+  "notFound": {
+    "title": "This page was not found.",
+    "description": "We could not find the page you are looking for. An error may have occurred",
+    "button": "Return to the main page"
+  },
   "toFund": "To Fund",
   "enterKeywordForSearch": "Enter a keyword for search"
 }

@@ -4,19 +4,6 @@ import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 
-const anchoreLinksList = [
-  { title: 'Проєкти', href: '#projects' },
-  { title: 'Партнери', href: '#partners' },
-  { title: 'Взяти участь', href: '#forms' },
-];
-
-const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/' },
-  { title: 'Правила користування сайтом', href: '/' },
-  { title: 'Статут', href: '/' },
-  { title: 'Звітність', href: '/' },
-];
-
 const contactsDataList = [
   { type: 'phone', data: '+38 063 628 6630' },
   { type: 'phone', data: '+38 067 568 1788' },
@@ -36,7 +23,34 @@ const socialsMediaList = [
   },
 ];
 
-export const Footer = () => {
+export const Footer = ({
+  dictionary,
+}: {
+  dictionary: {
+    footer: {
+      projects: string;
+      partners: string;
+      participate: string;
+      privacyPolicy: string;
+      rulesForUsingTheSite: string;
+      statute: string;
+      accountability: string;
+      allRightsReserved: string;
+    };
+  };
+}) => {
+  const anchoreLinksList = [
+    { title: dictionary.footer.projects, href: '#projects' },
+    { title: dictionary.footer.partners, href: '#partners' },
+    { title: dictionary.footer.participate, href: '#forms' },
+  ];
+
+  const officialDocsList = [
+    { title: dictionary.footer.privacyPolicy, href: '/' },
+    { title: dictionary.footer.rulesForUsingTheSite, href: '/' },
+    { title: dictionary.footer.statute, href: '/' },
+    { title: dictionary.footer.accountability, href: '/' },
+  ];
   return (
     <footer className="bg-neutral-700 py-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
@@ -119,7 +133,7 @@ export const Footer = () => {
         </div>
 
         <p className="text-[1.4rem] text-neutral-75">
-          Розробка BazaTraineeUkraine 2023 Усі права захищені.
+          {dictionary.footer.allRightsReserved}
         </p>
       </ContainerMaxW1200>
     </footer>

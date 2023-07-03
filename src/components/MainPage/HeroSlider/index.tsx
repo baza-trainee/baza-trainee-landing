@@ -55,6 +55,18 @@ export const HeroSlider = ({
         description: string;
       };
     };
+    modal: {
+      title: string;
+      description: string;
+      sums: {
+        100: string;
+        200: string;
+        500: string;
+        1000: string;
+        otherSum: string;
+      };
+      button: string;
+    };
   };
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -71,7 +83,7 @@ export const HeroSlider = ({
         <ContainerMaxW1200 className="h-[8.8rem] items-center justify-between">
           <Dots currentSlide={currentSlide} />
 
-          <Modal>
+          <Modal dictionary={dictionary}>
             <PrimaryButton>{dictionary.toFund}</PrimaryButton>
           </Modal>
         </ContainerMaxW1200>

@@ -8,7 +8,26 @@ import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
 import { ModalContent } from './ModalContent';
 
-export const Modal = ({ children }: { children: ReactElement }) => {
+export const Modal = ({
+  children,
+  dictionary,
+}: {
+  children: ReactElement;
+  dictionary: {
+    modal: {
+      title: string;
+      description: string;
+      sums: {
+        100: string;
+        200: string;
+        500: string;
+        1000: string;
+        otherSum: string;
+      };
+      button: string;
+    };
+  };
+}) => {
   const [isLandingModalShown, setIsLandingModalShown] = useState(false);
   const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
 
@@ -32,6 +51,7 @@ export const Modal = ({ children }: { children: ReactElement }) => {
       {isLandingModalShown &&
         createPortal(
           <ModalContent
+            dictionary={dictionary}
             handlerShowModal={handlerShowModal}
             handleIconClick={handleIconClick}
             bodyScrollLockRef={bodyScrollLockRef}

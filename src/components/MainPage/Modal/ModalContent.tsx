@@ -2,13 +2,27 @@ import { MouseEvent, MutableRefObject } from 'react';
 
 import Link from 'next/link';
 
-import { CloseMainIcon } from '@/components/common/icons';
 import { SupportBazaButton } from '@/components/atomic';
+import { CloseMainIcon } from '@/components/common/icons';
 
 interface IModalContent {
   handlerShowModal: (e: MouseEvent<HTMLDivElement>) => void;
   handleIconClick: () => void;
   bodyScrollLockRef: MutableRefObject<any>;
+  dictionary: {
+    modal: {
+      title: string;
+      description: string;
+      sums: {
+        100: string;
+        200: string;
+        500: string;
+        1000: string;
+        otherSum: string;
+      };
+      button: string;
+    };
+  };
 }
 
 const linkStyle =
@@ -34,33 +48,34 @@ export const ModalContent = (props: IModalContent) => {
 
         <div className="px-[3.5rem] py-[2.4rem] text-center text-[2.4rem] text-neutral-800">
           <h2 className="mb-[2rem] font-semibold uppercase leading-tight">
-            Оберіть суму, якою хочете підтримати Baza Trainee Ukraine
+            {props.dictionary.modal.title}
           </h2>
 
           <p className="mb-[4.4rem] text-[2rem] leading-tight">
-            Сума списується одноразово, якщо бажаєте оформити підписку, потрібно
-            ...
+            {props.dictionary.modal.description}
           </p>
 
           <div className="mb-[4.8rem] flex h-[19.2rem] w-[58.6rem] flex-wrap items-stretch justify-between gap-[3rem] font-medium uppercase">
             <Link className={linkStyle} href="#">
-              100 грн
+              {props.dictionary.modal.sums[100]}
             </Link>
             <Link className={linkStyle} href="#">
-              200 грн
+              {props.dictionary.modal.sums[200]}
             </Link>
             <Link className={linkStyle} href="#">
-              500 грн
+              {props.dictionary.modal.sums[500]}
             </Link>
             <Link className={linkStyle} href="#">
-              1000 грн
+              {props.dictionary.modal.sums[1000]}
             </Link>
             <Link className={`${linkStyle} w-[38rem]`} href="#">
-              інша сумма UAH
+              {props.dictionary.modal.sums.otherSum}
             </Link>
           </div>
 
-          <SupportBazaButton size="M">Підтримати</SupportBazaButton>
+          <SupportBazaButton size="M">
+            {props.dictionary.modal.button}
+          </SupportBazaButton>
         </div>
       </div>
     </section>
