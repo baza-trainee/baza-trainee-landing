@@ -104,6 +104,7 @@ export interface IUser extends CommonResponseBase {
   name: String;
   email: String;
   passwordHash: String;
+  token: String;
 }
 
 export type id = String | Number;
