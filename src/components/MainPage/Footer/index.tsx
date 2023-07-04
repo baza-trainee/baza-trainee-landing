@@ -1,8 +1,8 @@
+import { ContainerMaxW1200 } from '@/components/atomic';
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import { ContainerMaxW1200 } from '@/components/atomic';
 
 const anchoreLinksList = [
   { title: 'Проєкти', href: '#projects' },
@@ -11,8 +11,8 @@ const anchoreLinksList = [
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/' },
-  { title: 'Правила користування сайтом', href: '/' },
+  { title: 'Політика конфіденційності', href: '/', underlined: true },
+  { title: 'Правила користування сайтом', href: '/', underlined: true },
   { title: 'Статут', href: '/' },
   { title: 'Звітність', href: '/' },
 ];
@@ -53,9 +53,7 @@ export const Footer = () => {
             </Link>
           </div>
           <div className={styles['footer-section']}>
-            <ul
-              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
-            >
+            <ul className={styles['footer-list']}>
               {anchoreLinksList.map(({ title, href }) => (
                 <li key={title + href} className={styles['footer-list__item']}>
                   <Link href={href} className={styles['footer-list__link']}>
@@ -67,14 +65,14 @@ export const Footer = () => {
           </div>
 
           <div className={styles['footer-section']}>
-            <ul
-              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
-            >
-              {officialDocsList.map(({ title, href }) => (
+            <ul className={styles['footer-list']}>
+              {officialDocsList.map(({ title, href, underlined = false }) => (
                 <li key={title + href} className={styles['footer-list__item']}>
                   <Link
                     href={href}
-                    className={`${styles['footer-list__link']}`}
+                    className={`${styles['footer-list__link']} ${
+                      underlined ? 'underline' : ''
+                    }`}
                   >
                     {title}
                   </Link>
