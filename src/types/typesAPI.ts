@@ -6,6 +6,11 @@ export interface IErrorResponse {
   statusText?: String;
 }
 
+interface CommonResponseBase {
+  _id?: String;
+  __v?: Number;
+}
+
 type titleLanguagesTypes = {
   en: String;
   pl: String;
@@ -23,7 +28,7 @@ export interface IRegisterRequest extends ILoginRequest {
   name: string;
 }
 
-export interface IAchievement {
+export interface IAchievement extends CommonResponseBase {
   projects: Number;
   members: Number;
   employed: Number;
@@ -47,18 +52,18 @@ export interface IUpdateContactsRequest {
   };
 }
 
-export interface IHeroSlider {
+export interface IHeroSlider extends CommonResponseBase {
   title: titleLanguagesTypes;
   subtitle: titleLanguagesTypes;
   imageUrl?: String;
 }
 
-export interface IPartner {
+export interface IPartner extends CommonResponseBase {
   homeUrl?: String;
   imageUrl: String;
 }
 
-export interface IProject {
+export interface IProject extends CommonResponseBase {
   title: titleLanguagesTypes;
   imageUrl: String;
   deployUrl?: String;
@@ -75,30 +80,31 @@ export interface IProject {
   ];
 }
 
-export interface IRole {
+export interface IRole extends CommonResponseBase {
   name: titleLanguagesTypes;
 }
 
-export interface IStack {
+export interface IStack extends CommonResponseBase {
   name: String;
 }
 
-export interface IMember {
+export interface IMember extends CommonResponseBase {
   name: titleLanguagesTypes;
   profileUrl?: String;
 }
 
-export interface ITestimonial {
+export interface ITestimonial extends CommonResponseBase {
   name: titleLanguagesTypes;
   review: titleLanguagesTypes;
   date: Number;
   imageUrl: String;
 }
 
-export interface IUser {
+export interface IUser extends CommonResponseBase {
   name: String;
   email: String;
   passwordHash: String;
+  token: String;
 }
 
 export type id = String | Number;
