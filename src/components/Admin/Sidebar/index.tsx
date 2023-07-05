@@ -48,7 +48,7 @@ function Sidebar() {
   return (
     <aside
       // className={`  ${isSidebarOpen ? "w-[24.1rem]"}`}
-      className={`${styles['sidebar-wrapper']} ${
+      className={`h-screen ${styles['sidebar-wrapper']} ${
         isSidebarOpen ? styles['sidebar-wrapper--extended'] : ''
       }`}
     >

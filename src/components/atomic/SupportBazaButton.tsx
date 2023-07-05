@@ -3,10 +3,9 @@ import { TButtonProps } from './types';
 
 export const SupportBazaButton: FC<TButtonProps> = ({
   children,
-  onClick,
   className = '',
-  disabled = false,
   size = 'L',
+  ...otherProps
 }) => (
   <button
     className={`inline-flex w-[58.4rem] items-center justify-center rounded-[0.4rem] 
@@ -15,8 +14,7 @@ export const SupportBazaButton: FC<TButtonProps> = ({
     ${size === 'M' && 'h-[5.6rem]'}
     ${size === 'L' && 'h-[8.8rem]'}
     ${className}`}
-    onClick={onClick}
-    disabled={disabled}
+    {...otherProps}
   >
     {children}
   </button>
