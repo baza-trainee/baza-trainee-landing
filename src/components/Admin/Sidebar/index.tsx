@@ -1,5 +1,5 @@
 'use client';
-import { LogOutIcon, SliderMenuArrow } from '@/components/common/icons';
+import { LogOutIcon, MultiArrow } from '@/components/common/icons';
 import IconInner from '@/components/common/icons/Spinner/inner';
 import IconOuter from '@/components/common/icons/Spinner/outer';
 import localStorageHandler from '@/utils/localStorageHandler';
@@ -46,64 +46,61 @@ function Sidebar() {
   }, []);
 
   return (
-    <>
-      <div
-        className={`${styles['sidebar-wrapper']} ${
-          isSidebarOpen ? styles['sidebar-wrapper--extended'] : ''
-        }`}
-      >
-        <div className={styles['sidebar-logo']}>
-          <button
-            className={styles['sidebar-logo__link']}
-            onClick={toggleSidebar}
-          >
-            <div className={styles['spinner-container']}>
-              <IconOuter
-                className={`${styles['spinner-outer']} ${
-                  isSidebarOpen ? styles['spinner-outer--rotate'] : ''
-                }`}
-                width={68}
-                height={68}
-              />
-              <IconInner
-                className={styles['spinner-inner']}
-                width={68}
-                height={68}
-              />
-            </div>
-          </button>
-        </div>
-
-        <div className={styles['sidebar-menu']}>
-          <button
-            className={styles['sidebar-logo__close-svg']}
-            onClick={toggleSidebar}
-          >
-            <SliderMenuArrow
-              className={`${
-                isSidebarOpen ? styles['sidebar-logo__close-svg--mirrored'] : ''
+    <aside
+      // className={`  ${isSidebarOpen ? "w-[24.1rem]"}`}
+      className={`${styles['sidebar-wrapper']} ${
+        isSidebarOpen ? styles['sidebar-wrapper--extended'] : ''
+      }`}
+    >
+      <div className={styles['sidebar-logo']}>
+        <button
+          className={styles['sidebar-logo__link']}
+          onClick={toggleSidebar}
+        >
+          <div className={styles['spinner-container']}>
+            <IconOuter
+              className={`${styles['spinner-outer']} ${
+                isSidebarOpen ? styles['spinner-outer--rotate'] : ''
               }`}
+              width={68}
+              height={68}
             />
-          </button>
-
-          <ul className={styles['sidebar-list']}>
-            {sidebarSectionsList.map((item) => (
-              <MenuItem
-                key={item.id}
-                sidebarSection={item}
-                page={page}
-                isSidebarOpen={isSidebarOpen}
-                handleClick={handleClick}
-              />
-            ))}
-          </ul>
-          <button className={styles['log-out']}>
-            <LogOutIcon className={styles['log-out__icon']} />
-            <p className={styles['log-out__text']}>{'Вийти'}</p>
-          </button>
-        </div>
+            <IconInner
+              className={styles['spinner-inner']}
+              width={68}
+              height={68}
+            />
+          </div>
+        </button>
       </div>
-    </>
+
+      <div className={styles['sidebar-menu']}>
+        <button
+          className={styles['sidebar-logo__close-svg']}
+          onClick={toggleSidebar}
+        >
+
+          <MultiArrow direction="right" open={isSidebarOpen} className='text-white'/>
+        </button>
+
+        <ul className={styles['sidebar-list']}>
+          {sidebarSectionsList.map((item) => (
+            <MenuItem
+              key={item.id}
+              sidebarSection={item}
+              page={page}
+              isSidebarOpen={isSidebarOpen}
+              handleClick={handleClick}
+            />
+          ))}
+        </ul>
+
+        <button className={styles['log-out']}>
+          <LogOutIcon className={styles['log-out__icon']} />
+          <p className={styles['log-out__text']}>{'Вийти'}</p>
+        </button>
+      </div>
+    </aside>
   );
 }
 

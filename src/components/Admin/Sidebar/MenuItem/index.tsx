@@ -1,4 +1,5 @@
-import { SliderMenuArrow } from '@/components/common/icons';
+
+import SliderMenuArrow from '@/components/common/icons/SliderMenuArrow';
 import { MouseEvent, useState } from 'react';
 import sidebarSectionsList from '../sidebarSectionsList';
 import SubmenuItem from './SubmenuItem';

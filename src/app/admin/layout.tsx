@@ -1,9 +1,7 @@
 import Sidebar from '@/components/Admin/Sidebar';
-import styles from './styles.module.scss';
 
 export const metadata = {
   title: 'Baza-Trainee',
-  description: 'Baza-Trainee',
 };
 
 export default function RootLayout({
@@ -12,9 +10,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={styles.main}>
+    <html lang="uk">
+      <body>
         <Sidebar />
+
         {children}
       </body>
     </html>
