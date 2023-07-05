@@ -1,11 +1,8 @@
 'use client';
 
 import { MouseEvent, ReactElement, cloneElement, useState } from 'react';
-
 import { createPortal } from 'react-dom';
-
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-
 import { ModalContent } from './ModalContent';
 
 export const Modal = ({ children }: { children: ReactElement }) => {
