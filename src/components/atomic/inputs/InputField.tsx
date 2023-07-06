@@ -6,7 +6,7 @@ import { ReactElement, useEffect, useState } from 'react';
 
 export const InputField = ({
   label = 'Input label',
-  errorText = '\u00A0',
+  errorText = '',
   type = 'text',
   ...rest
 }) => {
@@ -28,7 +28,7 @@ export const InputField = ({
 
   return (
     <div
-      className={`w-40 border relative ${
+      className={`relative w-[32.6rem] border ${
         errorText && 'text-critic-light caret-critic-light'
       }`}
     >
@@ -54,7 +54,7 @@ export const InputField = ({
         </div>
       </div>
 
-      <p className="text-[1.2rem]">{errorText}</p>
+      <p className="text-[1.2rem]">{errorText || '\u00A0'}</p>
     </div>
   );
 };

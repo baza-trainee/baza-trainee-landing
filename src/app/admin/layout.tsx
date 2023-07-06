@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Baza-Trainee',
 };
 
-export default function RootLayout({
+export default function AdminPageLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -1,12 +1,12 @@
 import Authorization from '@/components/AdminPage/Authorization';
 import { InputField } from '@/components/atomic';
 
-const AdminLogin = () => {
+const AdminMainPage = () => {
   return (
     <section>
       {/* <Authorization /> */}
 
-      <div className="ml-12">
+      <div className="m-12">
         <InputField placeholder="placeholder" />
       </div>
       {/* <TextInput title='asdf'/> */}
@@ -14,4 +14,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default AdminMainPage;
