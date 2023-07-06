@@ -1,19 +1,9 @@
 import { SupportBazaButton } from '@/components/atomic';
 import { CloseMainIcon } from '@/components/common/icons';
+import axios from 'axios';
 import { ChangeEvent, MouseEvent, MutableRefObject, useState } from 'react';
 
 const paymentAmountData = ['100', '200', '500', '1000'];
-
-const paymentRequest = () => {
-  return {
-    order_id: Date.now().toString(),
-    merchant_id: 1,
-    order_desc: '',
-    signature: '',
-    amount: 0,
-    currency: 'UAH',
-  };
-};
 
 interface IModalContent {
   handlerShowModal: (_e: MouseEvent<HTMLDivElement>) => void;
@@ -36,8 +26,18 @@ export const ModalContent = (props: IModalContent) => {
       setPaymentAmount(inputValue);
   };
 
-  const paymentHandler = () => {
-    console.log(paymentAmount);
+  const paymentHandler = async () => {
+    const data = await axios.post('http://localhost:3001/payment', {
+      order_id: Date.now().toString(),
+      order_desc: 'Baza trainee support',
+      amount: paymentAmount + '00',
+      currency: 'UAH',
+      response_url: window.location.href,
+    });
+    if (data.data.response?.checkout_url) {
+      console.log(data.data.response?.checkout_url);
+      window.location.href = data.data.response.checkout_url;
+    }
   };
 
   return (
