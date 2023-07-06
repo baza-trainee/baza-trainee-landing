@@ -12,7 +12,7 @@ interface IModalContent {
 }
 
 const linkStyle =
-  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300 px-[4rem] hover:bg-neutral-300 hover:text-white';
+  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300 hover:bg-neutral-300 hover:text-white';
 
 export const ModalContent = (props: IModalContent) => {
   const { handlerShowModal, handleIconClick, bodyScrollLockRef } = props;
@@ -36,7 +36,7 @@ export const ModalContent = (props: IModalContent) => {
     });
 
     if (data.data.response?.checkout_url) {
-      console.log(data.data.response?.checkout_url);
+      //console.log(data.data.response?.checkout_url);
       window.location.href = data.data.response.checkout_url;
     }
   };
@@ -76,8 +76,8 @@ export const ModalContent = (props: IModalContent) => {
             <input
               type="text"
               pattern="[0-9]"
-              className={`${linkStyle} w-[38rem] `}
-              placeholder="інша сумма"
+              className={`${linkStyle} w-[38rem] px-[4rem]`}
+              placeholder="ІНША СУМА ГРН"
               onChange={inputPaymentHandler}
               value={paymentAmount}
             ></input>
