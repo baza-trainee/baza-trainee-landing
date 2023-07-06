@@ -10,6 +10,7 @@ export { default as ReportIcon } from './ReportIcon';
 export { default as SettingsIcon } from './SettingsIcon';
 export { default as SliderIcon } from './SliderIcon';
 
+export * from './Eyes';
 export * from './CloseMainIcon';
 export * from './LogoBlack';
 export * from './MultiArrow';

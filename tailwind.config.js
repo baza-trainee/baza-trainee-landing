@@ -49,7 +49,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        secondary: ['var(--font-inter)'],
+        // secondary: ['var(--font-inter)'],
       },
       linearGradientColors: {
         black: [

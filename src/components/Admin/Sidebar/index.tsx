@@ -2,7 +2,7 @@
 import { LogOutIcon, MultiArrow } from '@/components/common/icons';
 import IconInner from '@/components/common/icons/Spinner/inner';
 import IconOuter from '@/components/common/icons/Spinner/outer';
-import localStorageHandler from '@/utils/localStorageHandler';
+import { localStorageHandler } from '@/utils/localStorageHandler';
 import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
@@ -29,30 +29,23 @@ function Sidebar() {
     router.push(`admin/${e.currentTarget.id}`);
   };
 
-  const toggleSidebar = async () => {
-    localStorageHandler.setItem(
-      'isAdminSideBarOpen',
-      JSON.stringify(!isSidebarOpen)
-    );
+  const toggleSidebar = () => {
+    localStorageHandler.setItem('isAdminSideBarOpen', !isSidebarOpen);
     setIsSidebarOpen((prev) => !prev);
   };
 
   useEffect(() => {
-    const isAdminSideBarOpen = localStorageHandler.getItem(
-      'isAdminSideBarOpen',
-      'false'
-    );
-    setIsSidebarOpen(JSON.parse(isAdminSideBarOpen as string));
+    const value = localStorageHandler.getItem('isAdminSideBarOpen');
+    value && setIsSidebarOpen(value as boolean);
   }, []);
 
   return (
-    <aside
-      // className={`  ${isSidebarOpen ? "w-[24.1rem]"}`}
-      className={`h-screen ${styles['sidebar-wrapper']} ${
-        isSidebarOpen ? styles['sidebar-wrapper--extended'] : ''
-      }`}
+    <div
+      className={`flex flex-col transition-all  duration-300  
+      ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.55rem]'}
+      `}
     >
-      <div className={styles['sidebar-logo']}>
+      <div className={`w-full ${styles['sidebar-logo']}`}>
         <button
           className={styles['sidebar-logo__link']}
           onClick={toggleSidebar}
@@ -74,13 +67,16 @@ function Sidebar() {
         </button>
       </div>
 
-      <div className={styles['sidebar-menu']}>
+      <div className={`border-r border-neutral-300 ${styles['sidebar-menu']}`}>
         <button
           className={styles['sidebar-logo__close-svg']}
           onClick={toggleSidebar}
         >
-
-          <MultiArrow direction="right" open={isSidebarOpen} className='text-white'/>
+          <MultiArrow
+            direction="right"
+            open={isSidebarOpen}
+            className="text-white"
+          />
         </button>
 
         <ul className={styles['sidebar-list']}>
@@ -100,7 +96,7 @@ function Sidebar() {
           <p className={styles['log-out__text']}>{'Вийти'}</p>
         </button>
       </div>
-    </aside>
+    </div>
   );
 }
 

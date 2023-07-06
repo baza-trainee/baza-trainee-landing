@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { TButtonProps } from './types';
 import Link from 'next/link';
+import { FC } from 'react';
+import { TButtonProps } from '../types';
 
 export const ParticipantButtonLink: FC<TButtonProps> = ({
   children,

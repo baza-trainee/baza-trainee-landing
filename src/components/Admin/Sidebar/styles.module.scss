@@ -1,14 +1,14 @@
 .sidebar-wrapper {
-  width: 11.5rem;
-  transition: all 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
+  // width: 11.5rem;
+  // transition: all 0.3s ease-in-out;
+  // // display: flex;
+  // flex-direction: column;
 
   &--extended {
-    width: 24.1rem;
+    // width: 24.1rem;
 
     & .sidebar-logo {
-      width: 24.1rem;
+      // width: 24.1rem;
       padding: 1.8rem 14.1rem 1.8rem 3.2rem;
     }
 
@@ -31,7 +31,7 @@
 
 .sidebar-logo {
   display: flex;
-  width: 11.5rem;
+  // width: 11.5rem;
   padding: 1.8rem 2.3rem 1.8rem 2.4rem;
   height: 10.4rem;
   transition: all 0.3s ease-in-out;
@@ -101,7 +101,7 @@
   justify-content: flex-start;
   width: 100%;
   flex-grow: 2;
-  border: 1px solid $color-gray;
+  // border: 1px solid $color-gray;
   gap: 4rem;
 }
 

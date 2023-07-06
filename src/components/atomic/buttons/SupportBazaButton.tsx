@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TButtonProps } from './types';
+import { TButtonProps } from '../types';
 
 export const SupportBazaButton: FC<TButtonProps> = ({
   children,
