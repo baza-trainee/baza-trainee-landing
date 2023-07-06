@@ -29,16 +29,18 @@ export const ModalContent = (props: IModalContent) => {
   };
 
   const paymentHandler = async () => {
-    const data = await axios.post(`${url}/payment`, {
-      order_id: Date.now().toString(),
-      order_desc: 'Baza trainee support',
-      amount: paymentAmount + '00',
-      currency: 'UAH',
-      response_url: window.location.href,
-    });
+    if (paymentAmount) {
+      const data = await axios.post(`${url}/payment`, {
+        order_id: Date.now().toString(),
+        order_desc: 'Baza trainee support',
+        amount: paymentAmount + '00',
+        currency: 'UAH',
+        response_url: window.location.href,
+      });
 
-    if (data.data.response?.checkout_url) {
-      window.location.href = data.data.response.checkout_url;
+      if (data.data.response?.checkout_url) {
+        window.location.href = data.data.response.checkout_url;
+      }
     }
     //add error message
   };
@@ -66,7 +68,7 @@ export const ModalContent = (props: IModalContent) => {
           <div className="mb-[4.8rem] flex h-[19.2rem] w-[58.6rem] flex-wrap items-stretch justify-between gap-[3rem] font-medium uppercase">
             {paymentAmountData.map((el, index) => (
               <button
-                className={`${linkStyle}  ${
+                className={`${linkStyle} ${
                   el === paymentAmount ? 'bg-neutral-800 text-white' : ''
                 }`}
                 key={index}
