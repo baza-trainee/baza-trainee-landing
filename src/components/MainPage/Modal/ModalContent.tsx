@@ -5,6 +5,8 @@ import { ChangeEvent, MouseEvent, MutableRefObject, useState } from 'react';
 
 const paymentAmountData = ['100', '200', '500', '1000'];
 
+const url = process.env.NEXT_PUBLIC_SERVER_URL;
+
 interface IModalContent {
   handlerShowModal: (_e: MouseEvent<HTMLDivElement>) => void;
   handleIconClick: () => void;
@@ -27,7 +29,7 @@ export const ModalContent = (props: IModalContent) => {
   };
 
   const paymentHandler = async () => {
-    const data = await axios.post('http://localhost:3001/payment', {
+    const data = await axios.post(`${url}/payment`, {
       order_id: Date.now().toString(),
       order_desc: 'Baza trainee support',
       amount: paymentAmount + '00',
@@ -36,9 +38,9 @@ export const ModalContent = (props: IModalContent) => {
     });
 
     if (data.data.response?.checkout_url) {
-      //console.log(data.data.response?.checkout_url);
       window.location.href = data.data.response.checkout_url;
     }
+    //add error message
   };
 
   return (
@@ -57,7 +59,7 @@ export const ModalContent = (props: IModalContent) => {
         />
 
         <div className="px-[3.5rem] py-[2.4rem] text-center text-[2.4rem] text-neutral-800">
-          <h2 className="mb-[2rem] font-semibold uppercase leading-tight">
+          <h2 className="mb-[4.4rem] font-semibold uppercase leading-tight">
             Оберіть суму, якою хочете підтримати Baza Trainee Ukraine
           </h2>
 
