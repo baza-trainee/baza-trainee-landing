@@ -12,7 +12,7 @@ interface IModalContent {
 }
 
 const linkStyle =
-  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300 px-[4rem]';
+  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300 px-[4rem] hover:bg-neutral-300 hover:text-white';
 
 export const ModalContent = (props: IModalContent) => {
   const { handlerShowModal, handleIconClick, bodyScrollLockRef } = props;
@@ -20,10 +20,10 @@ export const ModalContent = (props: IModalContent) => {
 
   const inputPaymentHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    const numbersOnly = /^[0-9\b]+$/;
-
-    if (inputValue === '' || numbersOnly.test(inputValue))
-      setPaymentAmount(inputValue);
+    const numericValue = inputValue.replace(/\D/g, '');
+    if (numericValue.length <= 7) {
+      setPaymentAmount(numericValue);
+    }
   };
 
   const paymentHandler = async () => {
@@ -34,6 +34,7 @@ export const ModalContent = (props: IModalContent) => {
       currency: 'UAH',
       response_url: window.location.href,
     });
+
     if (data.data.response?.checkout_url) {
       console.log(data.data.response?.checkout_url);
       window.location.href = data.data.response.checkout_url;
@@ -42,12 +43,12 @@ export const ModalContent = (props: IModalContent) => {
 
   return (
     <section
-      className="duration-250 fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
+      className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >
       <div
-        className="relative w-[79.2rem] rounded-xl bg-white px-28 py-40"
+        className="relative w-[79.2rem] rounded-xl bg-white px-28 py-[12.8rem]"
         id="modalWindow"
       >
         <CloseMainIcon
@@ -63,18 +64,20 @@ export const ModalContent = (props: IModalContent) => {
           <div className="mb-[4.8rem] flex h-[19.2rem] w-[58.6rem] flex-wrap items-stretch justify-between gap-[3rem] font-medium uppercase">
             {paymentAmountData.map((el, index) => (
               <button
-                className={linkStyle}
+                className={`${linkStyle}  ${
+                  el === paymentAmount ? 'bg-neutral-800 text-white' : ''
+                }`}
                 key={index}
                 onClick={() => setPaymentAmount(el)}
               >
-                {el}
+                {el} ГРН
               </button>
             ))}
             <input
               type="text"
               pattern="[0-9]"
               className={`${linkStyle} w-[38rem] `}
-              placeholder="інша сумма UAH"
+              placeholder="інша сумма"
               onChange={inputPaymentHandler}
               value={paymentAmount}
             ></input>
