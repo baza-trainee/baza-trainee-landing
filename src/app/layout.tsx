@@ -12,7 +12,8 @@ export const metadata = {
 
 const exo2 = Exo_2({
   weight: ['400', '500', '600', '700', '800', '900'],
-  subsets: ['cyrillic'],
+  subsets: ['cyrillic', 'latin'],
+  display: 'swap',
 });
 
 export default function RootLayout({
