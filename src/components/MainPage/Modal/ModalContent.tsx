@@ -29,7 +29,7 @@ export const ModalContent = (props: IModalContent) => {
   };
 
   const paymentHandler = async () => {
-    if (paymentAmount) {
+    if (Number(paymentAmount)) {
       const data = await axios.post(`${url}/payment`, {
         order_id: Date.now().toString(),
         order_desc: 'Baza trainee support',
