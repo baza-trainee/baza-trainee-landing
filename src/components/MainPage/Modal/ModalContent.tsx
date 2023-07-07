@@ -1,11 +1,9 @@
 import { SupportBazaButton } from '@/components/atomic';
 import { CloseMainIcon } from '@/components/common/icons';
-import axios from 'axios';
-import { ChangeEvent, MouseEvent, MutableRefObject, useState } from 'react';
+import usePaymentHandler from '@/hooks/usePayment';
+import { MouseEvent, MutableRefObject } from 'react';
 
 const paymentAmountData = ['100', '200', '500', '1000'];
-
-const url = process.env.NEXT_PUBLIC_SERVER_URL;
 
 interface IModalContent {
   handlerShowModal: (_e: MouseEvent<HTMLDivElement>) => void;
@@ -18,32 +16,8 @@ const linkStyle =
 
 export const ModalContent = (props: IModalContent) => {
   const { handlerShowModal, handleIconClick, bodyScrollLockRef } = props;
-  const [paymentAmount, setPaymentAmount] = useState<string>('');
-
-  const inputPaymentHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    const numericValue = inputValue.replace(/\D/g, '');
-    if (numericValue.length <= 7) {
-      setPaymentAmount(numericValue);
-    }
-  };
-
-  const paymentHandler = async () => {
-    if (Number(paymentAmount)) {
-      const data = await axios.post(`${url}/payment`, {
-        order_id: Date.now().toString(),
-        order_desc: 'Baza trainee support',
-        amount: paymentAmount + '00',
-        currency: 'UAH',
-        response_url: window.location.href,
-      });
-
-      if (data.data.response?.checkout_url) {
-        window.location.href = data.data.response.checkout_url;
-      }
-    }
-    //add error message
-  };
+  const { paymentAmount, handlePayment, handleAmountChange } =
+    usePaymentHandler();
 
   return (
     <section
@@ -72,7 +46,7 @@ export const ModalContent = (props: IModalContent) => {
                   el === paymentAmount ? 'bg-neutral-800 text-white' : ''
                 }`}
                 key={index}
-                onClick={() => setPaymentAmount(el)}
+                onClick={() => handleAmountChange(el)}
               >
                 {el} ГРН
               </button>
@@ -82,12 +56,12 @@ export const ModalContent = (props: IModalContent) => {
               pattern="[0-9]"
               className={`${linkStyle} w-[38rem] px-[4rem]`}
               placeholder="ІНША СУМА ГРН"
-              onChange={inputPaymentHandler}
+              onChange={(e) => handleAmountChange(e.target.value)}
               value={paymentAmount}
             ></input>
           </div>
 
-          <SupportBazaButton size="M" onClick={paymentHandler}>
+          <SupportBazaButton size="M" onClick={handlePayment}>
             Підтримати
           </SupportBazaButton>
         </div>
