@@ -45,7 +45,7 @@ export const ModalContent = (props: IModalContent) => {
                 className={`${linkStyle} ${
                   el === paymentAmount ? 'bg-neutral-800 text-white' : ''
                 }`}
-                key={index}
+                key={index + el}
                 onClick={() => handleAmountChange(el)}
               >
                 {el} ГРН
