@@ -5,7 +5,7 @@ export const SupportBazaButton: FC<TButtonProps> = ({
   children,
   className = '',
   size = 'L',
-  ...otherProps
+  ...rest
 }) => (
   <button
     className={`inline-flex w-[58.4rem] items-center justify-center rounded-[0.4rem] 
@@ -14,7 +14,7 @@ export const SupportBazaButton: FC<TButtonProps> = ({
     ${size === 'M' && 'h-[5.6rem]'}
     ${size === 'L' && 'h-[8.8rem]'}
     ${className}`}
-    {...otherProps}
+    {...rest}
   >
     {children}
   </button>
