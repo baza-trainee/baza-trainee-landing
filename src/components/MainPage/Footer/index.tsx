@@ -51,9 +51,17 @@ export const Footer = () => {
 
   useEffect(() => {
     getContactsData();
-  }, [getContactsData]);
+  }, []);
 
   console.log(contactsData, isContactsDataLoading, isContactsDataError);
+
+  if (!contactsData || isContactsDataLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!contactsApi || isContactsDataError) {
+    return <div>Error</div>;
+  }
 
   return (
     <footer className="bg-neutral-700 py-16" id="footer">
@@ -105,35 +113,69 @@ export const Footer = () => {
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
             >
-              {contactsDataList.map(({ type, data }) => (
-                <li
-                  key={data}
-                  className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-                >
-                  <Image
-                    className={styles['footer-list__icon']}
-                    src={`/svg/${type}.svg`}
-                    alt={`${type} icon`}
-                    width={48}
-                    height={48}
-                  />
-                  <span className={styles['footer-list__text']}>{data}</span>
-                </li>
-              ))}
+              <li
+                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+              >
+                <Image
+                  className={styles['footer-list__icon']}
+                  src={`/svg/phone.svg`}
+                  alt={`phone icon`}
+                  width={48}
+                  height={48}
+                />
+                <span className={styles['footer-list__text']}>
+                  {contactsData.contacts.contactsDataList.phone1}
+                </span>
+              </li>
+              <li
+                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+              >
+                <Image
+                  className={styles['footer-list__icon']}
+                  src={`/svg/phone.svg`}
+                  alt={`phone icon`}
+                  width={48}
+                  height={48}
+                />
+                <span className={styles['footer-list__text']}>
+                  {contactsData.contacts.contactsDataList.phone2}
+                </span>
+              </li>
+              <li
+                className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
+              >
+                <Image
+                  className={styles['footer-list__icon']}
+                  src={`/svg/mail.svg`}
+                  alt={`email icon`}
+                  width={48}
+                  height={48}
+                />
+                <span className={styles['footer-list__text']}>
+                  {contactsData.contacts.contactsDataList.email}
+                </span>
+              </li>
             </ul>
 
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--social']}`}
             >
-              {socialsMediaList.map(({ id, iconName: IconComponent, href }) => (
-                <li key={id} className={styles['footer-list__item--social']}>
-                  <Link href={href} className={styles['footer-social-link']}>
-                    <IconComponent
-                      className={styles['footer-social-link__svg']}
-                    />
-                  </Link>
-                </li>
-              ))}
+              <li className={styles['footer-list__item--social']}>
+                <Link
+                  href={contactsData.contacts.socialsMediaList.linkedin}
+                  className={styles['footer-social-link']}
+                >
+                  <LinkedInIcon className={styles['footer-social-link__svg']} />
+                </Link>
+              </li>
+              <li className={styles['footer-list__item--social']}>
+                <Link
+                  href={contactsData.contacts.socialsMediaList.facebook}
+                  className={styles['footer-social-link']}
+                >
+                  <FacebookIcon className={styles['footer-social-link__svg']} />
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
