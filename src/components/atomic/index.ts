@@ -7,4 +7,4 @@ export * from './buttons/PrimaryButton';
 export * from './buttons/SupportBazaButton';
 
 export * from './inputs/InputField';
-export * from './inputs/PassawordInput';
+export * from './inputs/PasswordInput';

@@ -1,15 +1,15 @@
 import Authorization from '@/components/AdminPage/Authorization';
-import { InputField } from '@/components/atomic';
+import { InputField,  PasswordInput } from '@/components/atomic';
 
 const AdminMainPage = () => {
   return (
-    <section>
+    <section className='w-full'>
       {/* <Authorization /> */}
 
+    
       <div className="m-12">
-        <InputField placeholder="placeholder" />
+        <PasswordInput placeholder="Pass" />
       </div>
-      {/* <TextInput title='asdf'/> */}
     </section>
   );
 };
