@@ -1,7 +1,11 @@
+'use client';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import contactsApi from '@/utils/API/contacts';
+import { useAPI } from '@/utils/hooks/useAPI';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
@@ -11,8 +15,8 @@ const anchoreLinksList = [
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/', underlined: true },
-  { title: 'Правила користування сайтом', href: '/', underlined: true },
+  { title: 'Політика конфіденційності', href: '/' },
+  { title: 'Правила користування сайтом', href: '/' },
   { title: 'Статут', href: '/' },
   { title: 'Звітність', href: '/' },
 ];
@@ -37,6 +41,19 @@ const socialsMediaList = [
 ];
 
 export const Footer = () => {
+  const [
+    getContactsData,
+    contactsData,
+    isContactsDataLoading,
+    isContactsDataError,
+  ] = useAPI(contactsApi.getData);
+
+  useEffect(() => {
+    getContactsData();
+  }, []);
+
+  console.log(contactsData, isContactsDataLoading, isContactsDataError);
+
   return (
     <footer className="bg-neutral-700 py-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
@@ -65,14 +82,14 @@ export const Footer = () => {
           </div>
 
           <div className={styles['footer-section']}>
-            <ul className={styles['footer-list']}>
-              {officialDocsList.map(({ title, href, underlined = false }) => (
+            <ul
+              className={`${styles['footer-list']} [&>*:nth-child(-n+2)]:underline`}
+            >
+              {officialDocsList.map(({ title, href }) => (
                 <li key={title + href} className={styles['footer-list__item']}>
                   <Link
                     href={href}
-                    className={`${styles['footer-list__link']} ${
-                      underlined ? 'underline' : ''
-                    }`}
+                    className={`${styles['footer-list__link']} `}
                   >
                     {title}
                   </Link>
