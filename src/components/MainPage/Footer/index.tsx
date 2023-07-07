@@ -4,6 +4,7 @@ import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import contactsApi from '@/utils/API/contacts';
 import { useAPI } from '@/utils/hooks/useAPI';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import styles from './styles.module.scss';
@@ -50,7 +51,7 @@ export const Footer = () => {
 
   useEffect(() => {
     getContactsData();
-  }, []);
+  }, [getContactsData]);
 
   console.log(contactsData, isContactsDataLoading, isContactsDataError);
 
@@ -62,10 +63,12 @@ export const Footer = () => {
         <div className={styles['footer-wrapper']}>
           <div className={styles['footer-section']}>
             <Link href="#header" className={styles['footer-logo']}>
-              <img
+              <Image
                 className={styles['footer-logo__svg']}
                 src="/svg/logo-footer.svg"
                 alt="Main logo"
+                width={122}
+                height={122}
               />
             </Link>
           </div>
@@ -107,10 +110,12 @@ export const Footer = () => {
                   key={data}
                   className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
                 >
-                  <img
+                  <Image
                     className={styles['footer-list__icon']}
                     src={`/svg/${type}.svg`}
                     alt={`${type} icon`}
+                    width={48}
+                    height={48}
                   />
                   <span className={styles['footer-list__text']}>{data}</span>
                 </li>
