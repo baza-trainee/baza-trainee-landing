@@ -22,25 +22,6 @@ const officialDocsList = [
   { title: 'Звітність', href: '/' },
 ];
 
-const contactsDataList = [
-  { type: 'phone', data: '+38 063 628 6630' },
-  { type: 'phone', data: '+38 067 568 1788' },
-  { type: 'mail', data: 'info@baza-trainee.site' },
-];
-
-const socialsMediaList = [
-  {
-    id: 1,
-    iconName: LinkedInIcon,
-    href: '/',
-  },
-  {
-    id: 2,
-    iconName: FacebookIcon,
-    href: '/',
-  },
-];
-
 export const Footer = () => {
   const [
     getContactsData,
@@ -52,8 +33,6 @@ export const Footer = () => {
   useEffect(() => {
     getContactsData();
   }, []);
-
-  console.log(contactsData, isContactsDataLoading, isContactsDataError);
 
   if (!contactsData || isContactsDataLoading) {
     return <div>Loading...</div>;
