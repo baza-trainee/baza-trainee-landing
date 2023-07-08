@@ -7,8 +7,8 @@ const AdminMainPage = () => {
       {/* <Authorization /> */}
 
     
-      <div className="m-12">
-        <PasswordInput placeholder="Pass" />
+      <div className="m-16">
+        <PasswordInput placeholder="Pass" enableTranslator />
       </div>
     </section>
   );

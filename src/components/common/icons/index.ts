@@ -14,3 +14,5 @@ export * from './Eyes';
 export * from './CloseMainIcon';
 export * from './LogoBlack';
 export * from './MultiArrow';
+export * from './TranslatorIcon';
+export * from './TranslatorIcon2';

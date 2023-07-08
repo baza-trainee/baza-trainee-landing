@@ -1,7 +1,7 @@
 import { SVGProps } from 'react';
 
 interface Props extends SVGProps<SVGSVGElement> {
-  open?: boolean;
+  open: boolean;
 }
 
 const eyeOpen =
@@ -15,10 +15,10 @@ export const Eyes = ({ className, open, ...props }: Props) => (
     xmlns="http://www.w3.org/2000/svg"
     width={24}
     height={24}
-    fill="none"
+    fill="currentColor"
     className={className}
     {...props}
   >
-    <path stroke="currentColor" d={open ? eyeOpen : eyeClose} />
+    <path d={open ? eyeOpen : eyeClose} />
   </svg>
 );

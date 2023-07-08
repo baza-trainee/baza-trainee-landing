@@ -1,3 +1,4 @@
+import { TranslatorIcon, TranslatorIcon2 } from '@/components/common/icons';
 import { ReactNode } from 'react';
 
 interface InputFieldProps {
@@ -6,14 +7,16 @@ interface InputFieldProps {
   type?: string;
   iconClickHandler?: () => void;
   icon?: ReactNode;
+  enableTranslator?: boolean;
 }
 
 const InputField = ({
-  label = '',
-  errorText = '',
+  label,
+  errorText,
   type = 'text',
   iconClickHandler,
   icon,
+  enableTranslator,
   ...rest
 }: InputFieldProps) => {
   return (
@@ -42,11 +45,18 @@ const InputField = ({
       />
 
       <button
-        className="absolute right-[0.8rem] top-[0.8rem]"
+        className="absolute right-[0.8rem] top-[0.8rem] text-neutral-300"
         onClick={iconClickHandler}
       >
         {icon}
       </button>
+
+      {enableTranslator && (
+        <button className="text-neutral-300 flex absolute right-[0.5rem] -top-12">
+          <TranslatorIcon />
+          {/* <TranslatorIcon2 /> */}
+        </button>
+      )}
     </div>
   );
 };
