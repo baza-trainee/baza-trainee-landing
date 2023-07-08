@@ -1,7 +1,5 @@
 'use client';
-import { LogOutIcon, MultiArrow } from '@/components/common/icons';
-import IconInner from '@/components/common/icons/Spinner/inner';
-import IconOuter from '@/components/common/icons/Spinner/outer';
+import { LogOutIcon, LogoBlack, MultiArrow } from '@/components/common/icons';
 import { localStorageHandler } from '@/utils/localStorageHandler';
 import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useEffect, useState } from 'react';
@@ -36,40 +34,28 @@ function Sidebar() {
 
   useEffect(() => {
     const value = localStorageHandler.getItem('isAdminSideBarOpen');
-    value && setIsSidebarOpen(value as boolean);
+    value && setIsSidebarOpen(!!value);
   }, []);
 
   return (
     <div
-      className={`flex flex-col transition-all  duration-300  
-      ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.55rem]'}
+      className={`flex flex-col transition-all duration-300 shrink-0 
+      ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}
       `}
     >
-      <div className={`w-full ${styles['sidebar-logo']}`}>
-        <button
-          className={styles['sidebar-logo__link']}
-          onClick={toggleSidebar}
-        >
-          <div className={styles['spinner-container']}>
-            <IconOuter
-              className={`${styles['spinner-outer']} ${
-                isSidebarOpen ? styles['spinner-outer--rotate'] : ''
-              }`}
-              width={68}
-              height={68}
-            />
-            <IconInner
-              className={styles['spinner-inner']}
-              width={68}
-              height={68}
-            />
-          </div>
-        </button>
+      <div
+        className={`py-7 h-[10.4rem] bg-yellow-500
+        ${isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'}
+        `}
+      >
+        <LogoBlack width="6.8rem" open={isSidebarOpen} />
       </div>
 
-      <div className={`border-r border-neutral-300 ${styles['sidebar-menu']}`}>
+      <div
+        className={`border-r border-neutral-300 flex flex-col items-center gap-16 h-full`}
+      >
         <button
-          className={styles['sidebar-logo__close-svg']}
+          className="h-16 w-16 bg-neutral-800 flex-center rounded-bl-lg rounded-tl-lg self-end"
           onClick={toggleSidebar}
         >
           <MultiArrow
@@ -79,17 +65,17 @@ function Sidebar() {
           />
         </button>
 
-        <ul className={styles['sidebar-list']}>
-          {sidebarSectionsList.map((item) => (
+        <nav className="flex flex-col gap-[1.6rem]">
+          {sidebarSectionsList.map((item, i) => (
             <MenuItem
-              key={item.id}
+              key={`key_menu_item_${i}_${item.id}`}
               sidebarSection={item}
               page={page}
               isSidebarOpen={isSidebarOpen}
               handleClick={handleClick}
             />
           ))}
-        </ul>
+        </nav>
 
         <button className={styles['log-out']}>
           <LogOutIcon className={styles['log-out__icon']} />
