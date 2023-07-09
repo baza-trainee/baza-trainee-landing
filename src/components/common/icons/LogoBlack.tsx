@@ -9,7 +9,7 @@ const Lines = ({ className, ...props }: Props) => (
     xmlns="http://www.w3.org/2000/svg"
     className={className}
     viewBox="0 0 78 78"
-    fill="#232323"
+    fill="currentColor"
     fillRule="evenodd"
     clipRule="evenodd"
     {...props}
@@ -31,7 +31,7 @@ const Title = ({ className, open, ...props }: Props) => (
     xmlns="http://www.w3.org/2000/svg"
     className={className}
     viewBox={open ? `3 0 78 78` : '0 0 78 78'}
-    fill="#232323"
+    fill="currentColor"
     fillRule="evenodd"
     clipRule="evenodd"
     {...props}
@@ -76,17 +76,13 @@ const Title = ({ className, open, ...props }: Props) => (
 );
 
 export const LogoBlack = ({
+  className,
   width = '7.8rem',
   height = '7.8rem',
   open, // ...props
-}: Props) => {
-  return (
-    <div className={`relative`} style={{ width, height }}>
-      <Lines
-        className={`absolute transition-all duration-300 
-        ${open ? ' rotate-[0.333turn] ' : ''}`}
-      />
-      <Title className='absolute' open={open} />
-    </div>
-  );
-};
+}: Props) => (
+  <div className={`relative ${className}`} style={{ width, height }}>
+    <Lines className={`absolute transition-all duration-300 ${open && 'rotate-[0.333turn]'}`} />
+    <Title open={open} />
+  </div>
+);

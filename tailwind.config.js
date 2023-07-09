@@ -68,14 +68,6 @@ module.exports = {
           'rgba(255, 255, 255, 0.02) 100%',
         ],
       },
-      mixin: {
-        'center-block': {
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

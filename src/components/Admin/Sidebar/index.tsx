@@ -21,7 +21,7 @@ function Sidebar() {
   const [page, setPage] = useState<string>(getPath());
   const router = useRouter();
 
-  const handleClick = (e: MouseEvent<HTMLLIElement>) => {
+  const handleClick = (e: MouseEvent<HTMLLIElement | HTMLButtonElement>) => {
     e.stopPropagation();
     setPage(e.currentTarget.id);
     router.push(`admin/${e.currentTarget.id}`);
@@ -39,33 +39,27 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col transition-all duration-300 shrink-0 
+      className={`flex shrink-0 flex-col transition-all duration-300 
       ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}
       `}
     >
       <div
-        className={`py-7 h-[10.4rem] bg-yellow-500
+        className={`h-[10.4rem] bg-yellow-500 py-7 duration-300
         ${isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'}
         `}
       >
         <LogoBlack width="6.8rem" open={isSidebarOpen} />
       </div>
 
-      <div
-        className={`border-r border-neutral-300 flex flex-col items-center gap-16 h-full`}
-      >
+      <div className="flex h-full flex-col items-center gap-16 border-r border-neutral-300">
         <button
-          className="h-16 w-16 bg-neutral-800 flex-center rounded-bl-lg rounded-tl-lg self-end"
+          className="flex-center h-16 w-16 self-end rounded-bl-lg rounded-tl-lg bg-neutral-800 text-white"
           onClick={toggleSidebar}
         >
-          <MultiArrow
-            direction="right"
-            open={isSidebarOpen}
-            className="text-white"
-          />
+          <MultiArrow direction="right" open={isSidebarOpen} />
         </button>
 
-        <nav className="flex flex-col gap-[1.6rem]">
+        <ul className="flex flex-col gap-[1.6rem]">
           {sidebarSectionsList.map((item, i) => (
             <MenuItem
               key={`key_menu_item_${i}_${item.id}`}
@@ -75,7 +69,7 @@ function Sidebar() {
               handleClick={handleClick}
             />
           ))}
-        </nav>
+        </ul>
 
         <button className={styles['log-out']}>
           <LogOutIcon className={styles['log-out__icon']} />

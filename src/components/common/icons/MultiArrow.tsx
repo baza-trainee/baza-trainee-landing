@@ -38,7 +38,7 @@ export const MultiArrow = ({
       width={bigSize ? "4.4rem" : "2rem"}
       height={bigSize ? "4.4rem" : "2rem"}
       fill="none"
-      className={`transition-all duration-200 ${deg} ${className}`}
+      className={`transition-all duration-300 ${deg} ${className}`}
       viewBox="0 0 24 24"
       {...props}
     >

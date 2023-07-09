@@ -1,21 +1,22 @@
-
 import SliderMenuArrow from '@/components/common/icons/SliderMenuArrow';
 import { MouseEvent, useState } from 'react';
 import sidebarSectionsList from '../sidebarSectionsList';
 import SubmenuItem from './SubmenuItem';
 import styles from './styles.module.scss';
 
+interface IMenuItem {
+  sidebarSection: (typeof sidebarSectionsList)[number];
+  page: string;
+  isSidebarOpen: boolean;
+  handleClick: (_e: MouseEvent<HTMLButtonElement | HTMLLIElement>) => void;
+}
+
 function MenuItem({
   sidebarSection,
   page,
   isSidebarOpen,
   handleClick,
-}: {
-  sidebarSection: (typeof sidebarSectionsList)[number];
-  page: string;
-  isSidebarOpen: boolean;
-  handleClick: (_e: MouseEvent<HTMLLIElement>) => void;
-}) {
+}: IMenuItem) {
   const { id, iconName: IconComponent, text, submenu } = sidebarSection;
   const [isSubmenuClose, setIsSubmenuClose] = useState(true);
 
@@ -31,24 +32,25 @@ function MenuItem({
   };
 
   return (
-    <li id={id} className={styles['sidebar-list__item']} onClick={handleClick}>
-      <button
-        className={`${styles['sidebar-list__button']} ${
-          isSidebarOpen ? styles['sidebar-list__button--extended'] : ''
-        }  ${isSelected() ? styles['sidebar-list__button--accent'] : ''} ${
-          isSubmenuClose ? styles['submenu-closed'] : ''
-        }`}
-      >
-        <IconComponent className={styles['sidebar-list__item-icon']} />
-        <p className={styles['sidebar-list__text']}>{text}</p>
-        {submenu && (
-          <SliderMenuArrow
-            className={`${styles['sidebar-logo__close-svg']}`}
-            onClick={submenuArrowClickHandler}
-          />
-        )}
-      </button>
+    <button
+      id={id}
+      className={`flex-center h-[4rem] w-[4.7rem] gap-3 rounded-[0.4rem] bg-white px-[1.2rem] duration-300
+      ${isSidebarOpen ? 'w-[17.7rem]' : 'w-[4.7rem]'}   
+      ${isSelected() ? styles['sidebar-list__button--accent'] : ''} 
+      ${isSubmenuClose ? styles['submenu-closed'] : ''}`}
+      onClick={handleClick}
+    >
+      <IconComponent className={styles['sidebar-list__item-icon']} />
+      <span className={styles['sidebar-list__text']}>{text}</span>
+
       {submenu && (
+        <SliderMenuArrow
+          className={`${styles['sidebar-logo__close-svg']}`}
+          onClick={submenuArrowClickHandler}
+        />
+      )}
+
+      {/* {submenu && (
         <ul className={styles['sidebar-list__submenu']}>
           {submenu.map((submenuEl) => (
             <SubmenuItem
@@ -60,8 +62,8 @@ function MenuItem({
             />
           ))}
         </ul>
-      )}
-    </li>
+      )} */}
+    </button>
   );
 }
 

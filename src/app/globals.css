@@ -13,10 +13,17 @@ body {
   @apply bg-white;
 }
 
-@layer utilities{
-  .flex-center{
+@layer utilities {
+  .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .block-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
