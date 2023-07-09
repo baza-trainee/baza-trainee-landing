@@ -5,6 +5,7 @@ export * from './buttons/DonateButton';
 export * from './buttons/ParticipantButtonLink';
 export * from './buttons/PrimaryButton';
 export * from './buttons/SupportBazaButton';
+export * from './buttons/AdminPanelButton';
 
 export * from './inputs/InputField';
 export * from './inputs/PasswordInput';

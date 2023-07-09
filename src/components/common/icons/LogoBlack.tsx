@@ -76,7 +76,7 @@ const Title = ({ className, open, ...props }: Props) => (
 );
 
 export const LogoBlack = ({
-  className,
+  className = '',
   width = '7.8rem',
   height = '7.8rem',
   open, // ...props

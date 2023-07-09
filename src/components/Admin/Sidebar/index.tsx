@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import sidebarSectionsList from './sidebarSectionsList';
-import styles from './styles.module.scss';
+import { AdminPanelButton } from '@/components/atomic';
 
 function Sidebar() {
   const path = usePathname();
@@ -39,7 +39,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex shrink-0 flex-col transition-all duration-300 
+      className={`flex shrink-0 flex-col transition-all duration-[3000
       ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}
       `}
     >
@@ -71,10 +71,14 @@ function Sidebar() {
           ))}
         </ul>
 
-        <button className={styles['log-out']}>
-          <LogOutIcon className={styles['log-out__icon']} />
-          <p className={styles['log-out__text']}>{'Вийти'}</p>
-        </button>
+        <AdminPanelButton
+          variant="secondary"
+          icon={<LogOutIcon />}
+          iconOnly={!isSidebarOpen}
+          className='duration-1000'
+        >
+          Вийти
+        </AdminPanelButton>
       </div>
     </div>
   );

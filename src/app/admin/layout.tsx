@@ -11,9 +11,7 @@ export default function AdminPageLayout({
 }) {
   return (
     <main className="flex h-full bg-base-dark">
-      <Sidebar />
-
-      {children}
+      <Sidebar /> {children}
     </main>
   );
 }

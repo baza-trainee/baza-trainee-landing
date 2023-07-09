@@ -8,7 +8,7 @@ interface Props extends SVGProps<SVGSVGElement> {
 
 export const MultiArrow = ({
   direction,
-  className,
+  className = '',
   bigSize,
   open,
   ...props
@@ -35,8 +35,8 @@ export const MultiArrow = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={bigSize ? "4.4rem" : "2rem"}
-      height={bigSize ? "4.4rem" : "2rem"}
+      width={bigSize ? '4.4rem' : '2rem'}
+      height={bigSize ? '4.4rem' : '2rem'}
       fill="none"
       className={`transition-all duration-300 ${deg} ${className}`}
       viewBox="0 0 24 24"

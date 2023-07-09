@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
 export type TButtonProps = PropsWithChildren & {
   onClick?: () => void;
@@ -6,4 +6,7 @@ export type TButtonProps = PropsWithChildren & {
   disabled?: boolean;
   size?: 'L' | 'M';
   linkTo?: string;
+  variant?: 'primary' | 'secondary';
+  icon?: ReactNode;
+  iconOnly?: boolean;
 };
