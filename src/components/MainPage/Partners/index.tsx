@@ -4,6 +4,9 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { GlobalContext } from '@/store/globalContext';
+import Image from 'next/image';
+import { useContext } from 'react';
 
 const nestedElemStyle = 'h-40 w-11/12 bg-neutral-75 text-center py-4';
 
@@ -28,6 +31,7 @@ export const Partners = ({
     };
   };
 }) => {
+  const { partners } = useContext(GlobalContext);
   return (
     <section className="mb-[12rem]" id="partners">
       <ContainerMaxW1200 className="flex-col">
@@ -36,7 +40,23 @@ export const Partners = ({
         </h2>
 
         <Slider {...sliderSettings}>
-          <Link className="" href="#">
+          {partners?.map(
+            (partner: { _id: string; imageUrl: string; homeUrl: string }) => (
+              <Link key={partner._id} className="" href={partner.homeUrl}>
+                {/* <div className={nestedElemStyle}>{partner.imageUrl}</div> */}
+                <div className={nestedElemStyle}>
+                  <Image
+                    src={`${partner.homeUrl}/${partner.imageUrl}`}
+                    height={200}
+                    width={200}
+                    alt="partner"
+                  />
+                </div>
+                {/* {partner.homeUrl} */}
+              </Link>
+            )
+          )}
+          {/* <Link className="" href="#">
             <div className={nestedElemStyle}>1</div>
           </Link>
 
@@ -74,7 +94,7 @@ export const Partners = ({
 
           <Link className="" href="#">
             <div className={nestedElemStyle}>10</div>
-          </Link>
+          </Link> */}
         </Slider>
       </ContainerMaxW1200>
     </section>

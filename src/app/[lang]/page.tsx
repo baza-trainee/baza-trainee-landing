@@ -19,6 +19,8 @@ export default async function Home({ params }: { params: { lang: string } }) {
     { title: dict.navbar.contacts, href: '#footer' },
   ];
 
+  // console.log(heroSliders, status);
+
   return (
     <>
       <Header navLinks={navLinks} />
@@ -33,3 +35,18 @@ export default async function Home({ params }: { params: { lang: string } }) {
     </>
   );
 }
+
+// export const getServerSideProps: GetServerSideProps<{
+//   { props: { heroSliders: any; status: number; }; }
+// }> = async () => {
+//   const { data, status } = await axios.get(
+//     'https://baza.foradmin.fun/heroslider'
+//   );
+//   console.log('Data', data);
+//   return {
+//     props: {
+//       heroSliders: data,
+//       status: status,
+//     },
+//   };
+// };

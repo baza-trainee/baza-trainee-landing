@@ -9,6 +9,14 @@ module.exports = {
     defaultLocale: 'ua',
     localeDetection: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'www.linkedin.com',
+      },
+      { hostname: 'example.com' },
+    ],
+  },
   trailingSlash: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
