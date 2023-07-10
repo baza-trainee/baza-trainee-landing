@@ -1,11 +1,11 @@
 'use client';
-import { LogOutIcon, LogoBlack, MultiArrow } from '@/components/common/icons';
+import { AdminPanelButton, AdminPanelMenuItem } from '@/components/atomic';
+import { LogOutIcon, LogoMain, MultiArrow } from '@/components/common/icons';
 import { localStorageHandler } from '@/utils/localStorageHandler';
 import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import sidebarSectionsList from './sidebarSectionsList';
-import { AdminPanelButton } from '@/components/atomic';
 
 function Sidebar() {
   const path = usePathname();
@@ -39,7 +39,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex shrink-0 flex-col transition-all duration-[3000
+      className={`duration-[3000 flex shrink-0 flex-col transition-all
       ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}
       `}
     >
@@ -48,7 +48,7 @@ function Sidebar() {
         ${isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'}
         `}
       >
-        <LogoBlack width="6.8rem" open={isSidebarOpen} />
+        <LogoMain width="6.8rem" open={isSidebarOpen} />
       </div>
 
       <div className="flex h-full flex-col items-center gap-16 border-r border-neutral-300">
@@ -59,6 +59,19 @@ function Sidebar() {
           <MultiArrow direction="right" open={isSidebarOpen} />
         </button>
 
+        <nav className='flex flex-col gap-[1.6rem]'>
+          {sidebarSectionsList.map((item, i) => (
+            <AdminPanelMenuItem
+              key={`key_menu_item2_${i}_${item.id}`}
+              sidebarSection={item}
+              // page={page}
+              iconOnly={!isSidebarOpen}
+              // handleClick={handleClick}
+            />
+          ))}
+        </nav>
+
+        {/* <hr className="w-full" />
         <ul className="flex flex-col gap-[1.6rem]">
           {sidebarSectionsList.map((item, i) => (
             <MenuItem
@@ -69,13 +82,13 @@ function Sidebar() {
               handleClick={handleClick}
             />
           ))}
-        </ul>
+        </ul> */}
 
         <AdminPanelButton
           variant="secondary"
           icon={<LogOutIcon />}
           iconOnly={!isSidebarOpen}
-          className='duration-1000'
+          // className='duration-1000'
         >
           Вийти
         </AdminPanelButton>

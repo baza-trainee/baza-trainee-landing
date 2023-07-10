@@ -75,14 +75,18 @@ const Title = ({ className, open, ...props }: Props) => (
   </svg>
 );
 
-export const LogoBlack = ({
+export const LogoMain = ({
   className = '',
   width = '7.8rem',
   height = '7.8rem',
   open, // ...props
 }: Props) => (
   <div className={`relative ${className}`} style={{ width, height }}>
-    <Lines className={`absolute transition-all duration-300 ${open && 'rotate-[0.333turn]'}`} />
+    <Lines
+      className={`absolute transition-all duration-300 ${
+        open && 'rotate-[0.333turn]'
+      }`}
+    />
     <Title open={open} />
   </div>
 );

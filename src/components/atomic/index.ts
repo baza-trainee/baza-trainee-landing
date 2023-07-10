@@ -6,6 +6,7 @@ export * from './buttons/ParticipantButtonLink';
 export * from './buttons/PrimaryButton';
 export * from './buttons/SupportBazaButton';
 export * from './buttons/AdminPanelButton';
+export * from './buttons/AdminPanelMenuItem';
 
 export * from './inputs/InputField';
 export * from './inputs/PasswordInput';

@@ -17,7 +17,7 @@ function MenuItem({
   isSidebarOpen,
   handleClick,
 }: IMenuItem) {
-  const { id, iconName: IconComponent, text, submenu } = sidebarSection;
+  const { id, icon: IconComponent, text, submenu } = sidebarSection;
   const [isSubmenuClose, setIsSubmenuClose] = useState(true);
 
   const isSelected = () => {

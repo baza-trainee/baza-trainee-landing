@@ -10,10 +10,10 @@ import {
 } from '@/components/common/icons/index';
 
 const sidebarSectionsList = [
-  { id: 'slider', iconName: SliderIcon, text: 'Слайдер' },
+  { id: 'slider', icon: SliderIcon, text: 'Слайдер' },
   {
     id: 'projects',
-    iconName: ProjectIcon,
+    icon: ProjectIcon,
     text: 'Проєкти',
     submenu: [
       {
@@ -30,12 +30,12 @@ const sidebarSectionsList = [
       },
     ],
   },
-  { id: 'counter', iconName: CounterIcon, text: 'Каунтер' },
-  { id: 'partners', iconName: PartnerIcon, text: 'Партнери' },
-  { id: 'testimonials', iconName: RecallIcon, text: 'Відгуки' },
-  { id: 'docs', iconName: ReportIcon, text: 'Документи' },
-  { id: 'contacts', iconName: ContactIcon, text: 'Контакти' },
-  { id: 'settings', iconName: SettingsIcon, text: 'Налаштування' },
+  { id: 'counter', icon: CounterIcon, text: 'Каунтер' },
+  { id: 'partners', icon: PartnerIcon, text: 'Партнери' },
+  { id: 'testimonials', icon: RecallIcon, text: 'Відгуки' },
+  { id: 'docs', icon: ReportIcon, text: 'Документи' },
+  { id: 'contacts', icon: ContactIcon, text: 'Контакти' },
+  { id: 'settings', icon: SettingsIcon, text: 'Налаштування' },
 ];
 
 export default sidebarSectionsList;

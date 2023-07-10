@@ -1,6 +1,7 @@
 import Authorization from '@/components/AdminPage/Authorization';
 import {
   AdminPanelButton,
+  AdminPanelMenuItem,
   InputField,
   PasswordInput,
 } from '@/components/atomic';
@@ -13,13 +14,15 @@ const AdminMainPage = () => {
 
       <div className="m-16">
         {/* <PasswordInput placeholder="Pass" enableTranslator /> */}
-        <AdminPanelButton
+        {/* <AdminPanelButton
           variant="secondary"
-          icon={<LogOutIcon />}
-        disabled
-        >
+          disabled
+          >
           Текст
-        </AdminPanelButton>
+        </AdminPanelButton> */}
+        {/* <AdminPanelMenuItem
+        icon={<LogOutIcon />}
+        /> */}
       </div>
     </section>
   );

@@ -15,22 +15,22 @@ export const AdminPanelButton: FC<TButtonProps> = ({
   iconOnly,
   ...rest
 }) => {
-const buttonClasses = `h-[5.6rem] shrink-0 items-center justify-center
+const buttonClasses = `relative flex-center gap-[1.2rem] h-[5.6rem] shrink-0 pr-[3.2rem]
     ${icon ? 'pl-[1.2rem]' : 'pl-[3.2rem]'}
-    ${icon && iconOnly ? 'pr-[1.2rem]' : 'pr-[3.2rem]'}
+    ${icon && iconOnly && 'w-[4.7rem]'}
     ${variant === 'primary' && (disabled ? primaryEnabled : primaryDisabled)}
     ${variant === 'secondary' && (disabled ? secondaryEnabled : secondaryDisabled)}
-    rounded-[0.4rem] border text-[2.2rem] font-semibold ${className}`
+    rounded-[0.4rem] border text-[2.2rem] font-semibold overflow-hidden ${className}`
 
   return (
     <button className={buttonClasses} disabled={disabled} {...rest}>
-      {icon ? (
-        <div className="flex max-h-[2.4rem] items-center gap-[1.2rem] text-inherit">
-          {icon} {!iconOnly && children}
-        </div>
-      ) : (
-        children
-      )}
+      {icon && <div className={`h-[2.4rem] w-[2.4rem] ${iconOnly && "block-center"}`}>
+        {icon}
+      </div>}
+      
+      <span className={`transition-transform ${icon && iconOnly ? 'scale-0' : 'scale-100'}`}>
+        {children}
+      </span>
     </button>
   );
 };
