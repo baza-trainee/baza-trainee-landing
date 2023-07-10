@@ -1,7 +1,7 @@
 import Authorization from '@/components/AdminPage/Authorization';
 import {
   AdminPanelButton,
-  AdminPanelMenuItem,
+  // AdminPanelMenuItem,
   InputField,
   PasswordInput,
 } from '@/components/atomic';

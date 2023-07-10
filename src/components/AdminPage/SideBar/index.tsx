@@ -1,13 +1,14 @@
 'use client';
-import { AdminPanelButton, AdminPanelMenuItem } from '@/components/atomic';
+import { MouseEvent, useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { AdminPanelButton } from '@/components/atomic';
+import { SideBarMenuItem } from './SideBarMenuItem';
 import { LogOutIcon, LogoMain, MultiArrow } from '@/components/common/icons';
 import { localStorageHandler } from '@/utils/localStorageHandler';
-import { usePathname, useRouter } from 'next/navigation';
-import { MouseEvent, useEffect, useState } from 'react';
-import MenuItem from './MenuItem';
-import sidebarSectionsList from './sidebarSectionsList';
+import { sidebarSectionsList } from './sidebarSectionsList';
 
-function Sidebar() {
+const Sidebar = () => {
   const path = usePathname();
   const getPath = () => {
     const regex = /\/([^\\/]+)$/;
@@ -59,9 +60,9 @@ function Sidebar() {
           <MultiArrow direction="right" open={isSidebarOpen} />
         </button>
 
-        <nav className='flex flex-col gap-[1.6rem]'>
+        <nav className="flex flex-col gap-[1.6rem]">
           {sidebarSectionsList.map((item, i) => (
-            <AdminPanelMenuItem
+            <SideBarMenuItem
               key={`key_menu_item2_${i}_${item.id}`}
               sidebarSection={item}
               // page={page}
@@ -88,13 +89,12 @@ function Sidebar() {
           variant="secondary"
           icon={<LogOutIcon />}
           iconOnly={!isSidebarOpen}
-          // className='duration-1000'
         >
           Вийти
         </AdminPanelButton>
       </div>
     </div>
   );
-}
+};
 
-export default Sidebar;
+export { Sidebar };

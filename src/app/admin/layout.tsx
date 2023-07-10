@@ -1,4 +1,4 @@
-import Sidebar from '@/components/Admin/Sidebar';
+import { Sidebar } from '@/components/AdminPage/SideBar';
 
 export const metadata = {
   title: 'Baza-Trainee',

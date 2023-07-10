@@ -1,7 +1,7 @@
 import SliderMenuArrow from '@/components/common/icons/SliderMenuArrow';
 import { MouseEvent, useState } from 'react';
-import sidebarSectionsList from '../sidebarSectionsList';
-import SubmenuItem from './SubmenuItem';
+import { sidebarSectionsList } from '../sidebarSectionsList';
+// import SubmenuItem from '../SubmenuItem';
 import styles from './styles.module.scss';
 
 interface IMenuItem {
@@ -40,7 +40,11 @@ function MenuItem({
       ${isSubmenuClose ? styles['submenu-closed'] : ''}`}
       onClick={handleClick}
     >
-      <IconComponent className={styles['sidebar-list__item-icon']} />
+      {IconComponent && (
+        <IconComponent
+        // className={styles['sidebar-list__item-icon']}
+        />
+      )}
       <span className={styles['sidebar-list__text']}>{text}</span>
 
       {submenu && (
