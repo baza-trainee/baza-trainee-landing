@@ -23,12 +23,8 @@ export const sidebarSectionsList: TsidebarSection[] = [
         id: 'members',
       },
       {
-        text: 'Ролі',
-        id: 'roles',
-      },
-      {
-        text: 'Стек',
-        id: 'stack',
+        text: 'Спеціалізація',
+        id: 'speciality',
       },
     ],
   },

@@ -19,7 +19,7 @@ export const SubMenuToggleButton = (props: IProps) => {
                 : `right-[1.2rem] ${isSelected && 'text-white'}`
             }`}
     >
-      <MultiArrow direction={isSubMenuOpen && !iconOnly ? 'bottom' : 'right'} />
+      <MultiArrow direction={isSubMenuOpen ? iconOnly ? 'left' : 'bottom' : 'right'} />
     </button>
   );
 };
