@@ -10,7 +10,7 @@ export default function AdminPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex h-full bg-base-dark">
+    <main className="flex bg-base-dark">
       <Sidebar /> {children}
     </main>
   );

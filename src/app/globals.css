@@ -9,8 +9,8 @@ html {
 
 body {
   @apply text-[1.6rem] text-neutral-800;
-  @apply h-screen;
   @apply bg-white;
+  @apply min-h-screen;
 }
 
 @layer utilities {
