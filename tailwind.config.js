@@ -5,7 +5,6 @@ module.exports = {
     extend: {
       colors: {
         white: '#FCFCFC',
-        black: '#151515',
         yellow: {
           500: '#FFD210',
           600: '#FFBD00',
@@ -47,6 +46,9 @@ module.exports = {
           light: '#14FF18',
           dark: '#1CD41F',
         },
+        black: '#151515',
+        'light-mode-primaryblue': '#009aff',
+        'dark-gray': '#262626',
       },
       fontFamily: {
         secondary: ['var(--font-inter)'],

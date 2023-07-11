@@ -12,6 +12,13 @@ export { default as SliderIcon } from './SliderIcon';
 export { default as SliderMenuArrow } from './SliderMenuArrow';
 
 export * from './ArrowBottomIcon';
-export * from './LogoBlack';
+export * from './CancelIcon';
 export * from './CloseMainIcon';
+export * from './ErrorIcon';
+export * from './InfoIcon';
+export * from './LogoBlack';
+export * from './OkIcon';
 export * from './RotaryArrow';
+export * from './SubmitIcon';
+export * from './SuccessIcon';
+export * from './WarningIcon';

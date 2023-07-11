@@ -1,9 +1,10 @@
-import Authorization from '@/components/AdminPage/Authorization';
+import { AlertWindow } from '../../components/atomic/AlertWindow';
 import styles from './styles.module.scss';
 const AdminLogin = () => {
   return (
     <div className={styles.container}>
-      <Authorization />
+      {/*<Authorization />*/}
+      <AlertWindow />
     </div>
   );
 };
