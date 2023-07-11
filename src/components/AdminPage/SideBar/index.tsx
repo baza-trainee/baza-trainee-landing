@@ -17,7 +17,7 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    const value = localStorageHandler.getItem('isAdminSideBarOpen');
+    const value = localStorageHandler.getItem('isAdminSideBarOpen', false);
     value && setIsSidebarOpen(!!value);
   }, []);
 
