@@ -1,11 +1,11 @@
 export const localStorageHandler = {
-  getItem<T>(key: string, fallbackValue: T): T | null | boolean {
+  getItem<T>(key: string, fallbackValue: T): T {
     try {
       const serializedValue = localStorage.getItem(key);
 
-      return serializedValue === null
-        ? null
-        : (JSON.parse(serializedValue) as T);
+      return serializedValue
+        ? (JSON.parse(serializedValue) as T)
+        : fallbackValue;
     } catch (e) {
       console.error(`Error while getting localStorage item: ${e}`);
       return fallbackValue;
