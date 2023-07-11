@@ -22,8 +22,8 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className={`duration-[3000 flex min-h-screen shrink-0 flex-col transition-all ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}`}>
-      <div className={`h-[10.4rem] bg-yellow-500 py-7 duration-300 ${isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'}`}>
+    <div className={`flex min-h-screen shrink-0 flex-col transition-all ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}`}>
+      <div className={`h-[10.4rem] bg-yellow-500 py-7 ${isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'}`}>
         <LogoMain width="6.8rem" open={isSidebarOpen} />
       </div>
 
