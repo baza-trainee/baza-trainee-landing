@@ -28,7 +28,7 @@ export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="relative">
+    <section className="relative text-white">
       <Slider {...settings} afterChange={setCurrentSlide} lazyLoad="ondemand">
         {slides.map((slide: TSlide) => (
           <SingleSlide key={`key_${slide.title}`} slideData={slide} />
