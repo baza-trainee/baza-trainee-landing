@@ -51,7 +51,7 @@ module.exports = {
         'dark-gray': '#262626',
       },
       fontFamily: {
-        secondary: ['var(--font-inter)'],
+        // secondary: ['var(--font-inter)'],
       },
       linearGradientColors: {
         black: [
@@ -69,14 +69,6 @@ module.exports = {
           'rgba(252, 252, 252, 0) 60%',
           'rgba(255, 255, 255, 0.02) 100%',
         ],
-      },
-      mixin: {
-        'center-block': {
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

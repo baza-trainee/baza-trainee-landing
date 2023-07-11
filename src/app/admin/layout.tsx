@@ -1,22 +1,17 @@
-import Sidebar from '@/components/Admin/Sidebar';
-import styles from './styles.module.scss';
+import { Sidebar } from '@/components/AdminPage/SideBar';
 
 export const metadata = {
   title: 'Baza-Trainee',
-  description: 'Baza-Trainee',
 };
 
-export default function RootLayout({
+export default function AdminPageLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={styles.main}>
-        <Sidebar />
-        {children}
-      </body>
-    </html>
+    <main className="flex bg-base-dark">
+      <Sidebar /> {children}
+    </main>
   );
 }

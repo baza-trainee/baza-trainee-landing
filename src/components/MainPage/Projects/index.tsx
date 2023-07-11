@@ -1,7 +1,7 @@
 'use client';
 
 import ProjectCard from '@/components/common/ProjectCard';
-import { ArrowBottomIcon } from '@/components/common/icons';
+import { MultiArrow } from '@/components/common/icons';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { useState } from 'react';
 import { projects } from './projects';
@@ -68,7 +68,7 @@ const Projects = () => {
               <span className={styles['projects-section__load-more__text']}>
                 Більше проєктів
               </span>
-              <ArrowBottomIcon />
+              <MultiArrow direction="bottom" />
             </button>
           </div>
         )}

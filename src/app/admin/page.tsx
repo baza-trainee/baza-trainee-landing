@@ -1,12 +1,25 @@
 import { AlertWindow } from '../../components/atomic/AlertWindow';
-import styles from './styles.module.scss';
-const AdminLogin = () => {
+
+const AdminMainPage = () => {
   return (
-    <div className={styles.container}>
-      {/*<Authorization />*/}
-      <AlertWindow />
-    </div>
+    <section className="w-full">
+      {/* <Authorization /> */}
+
+      <div className="m-16">
+        {/* <PasswordInput placeholder="Pass" enableTranslator /> */}
+        {/* <AdminPanelButton
+          variant="secondary"
+          disabled
+          >
+          Текст
+        </AdminPanelButton> */}
+        {/* <AdminPanelMenuItem
+        icon={<LogOutIcon />}
+        /> */}
+        <AlertWindow />
+      </div>
+    </section>
   );
 };
 
-export default AdminLogin;
+export default AdminMainPage;

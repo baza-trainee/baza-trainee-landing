@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-import { LogoBlack } from '@/components/common/icons';
+import { LogoMain } from '@/components/common/icons';
 
-import LanguageSelector from './LanguageSelector';
 import { ContainerMaxW1200 } from '@/components/atomic';
+import LanguageSelector from './LanguageSelector';
 
 const navLinks = [
   { title: 'ПРОЕКТИ', href: '#projects' },
@@ -20,7 +20,7 @@ export const Header = () => {
     <header className="min-h-[10.4rem] bg-yellow-500 py-5" id="header">
       <ContainerMaxW1200 className="items-center justify-between">
         <Link href="/">
-          <LogoBlack />
+          <LogoMain />
         </Link>
 
         <nav className="relative flex flex-col md:flex-row md:gap-12 lg:gap-[5.6rem] ">

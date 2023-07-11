@@ -1,3 +1,4 @@
+'use client';
 import EyeClosed from '@/components/common/icons/EyeClosed';
 import EyeOpen from '@/components/common/icons/EyeOpen';
 import { useEffect, useState } from 'react';
