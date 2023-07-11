@@ -26,7 +26,7 @@ export default async function Home({
     <>
       <Header navLinks={navLinks} />
       <HeroSlider lang={params.lang} dictionary={dict} />
-      <Projects dictionary={dict} />
+      <Projects lang={params.lang} dictionary={dict} />
       <Statistics dictionary={dict} />
       <Forms dictionary={dict} />
       <Partners dictionary={dict} />
