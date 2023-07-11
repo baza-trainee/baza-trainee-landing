@@ -4,12 +4,14 @@ import { ContainerMaxW1200 } from '@/components/atomic';
 import ProjectCard from '@/components/common/ProjectCard';
 import { ArrowBottomIcon } from '@/components/common/icons';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
-import { useState } from 'react';
-import { projects } from './projects';
+import { useContext, useState } from 'react';
+// import { projects } from './projects';
+import { GlobalContext } from '@/store/globalContext';
 import styles from './styles.module.scss';
 
 export const Projects = ({
   dictionary,
+  lang,
 }: {
   dictionary: {
     navbar: {
@@ -67,7 +69,9 @@ export const Projects = ({
       };
     };
   };
+  lang: 'en' | 'pl' | 'ua';
 }) => {
+  const { projects } = useContext(GlobalContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
@@ -75,7 +79,7 @@ export const Projects = ({
     event.preventDefault();
     setSearchQuery(event.target.value);
     const filtered = projects.filter((project) =>
-      project.description
+      project.title[lang]
         .trim()
         .toLowerCase()
         .includes(event.target.value.trim().toLowerCase())
@@ -114,11 +118,9 @@ export const Projects = ({
           </form>
         </div>
         <>
-          {filteredProjects.length === 0 && (
-            <p>Sorry! There are no projects.</p>
-          )}
+          {projects.length === 0 && <p>Sorry! There are no projects.</p>}
           <ul className={styles['projects-section__projects-container']}>
-            {filteredProjects.map((project) => (
+            {projects.map((project) => (
               <ProjectCard
                 dictionary={dictionary}
                 key={project._id}

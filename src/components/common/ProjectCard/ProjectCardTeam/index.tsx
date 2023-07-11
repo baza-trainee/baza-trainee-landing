@@ -7,11 +7,35 @@ const ProjectCardTeam = ({
 }: {
   onShowTeamHandler: () => void;
   project: {
-    stack: string[];
-    teamMembers: {
-      role: { name: string; _id: string };
-      user: { _id: string; link: string; name: string };
-    }[];
+    // stack: string[];
+    // teamMembers: {
+    //   role: { name: string; _id: string };
+    //   user: { _id: string; link: string; name: string };
+    // }[];
+    _id: string;
+    complexity: number;
+    creationDate: number;
+    imageUrl: string;
+    isTeamRequired: boolean;
+    launchDate?: number;
+    deployUrl?: string;
+    teamMembers:
+      | {
+          user: {
+            _id: string;
+            name: string;
+          };
+          role: {
+            _id: string;
+            name: string;
+          };
+        }[]
+      | [];
+    title: {
+      en: string;
+      pl: string;
+      ua: string;
+    };
   };
 }) => {
   const roles = [
@@ -49,7 +73,7 @@ const ProjectCardTeam = ({
   return (
     <div className={styles['thumb']}>
       <div className={styles['thumb__text-container']}>
-        <p>Stack: {project.stack.join(', ')}</p>
+        {/* <p>Stack: {project.stack.join(', ')}</p> */}
         <button
           className={styles['thumb__close-icon']}
           onClick={onShowTeamHandler}

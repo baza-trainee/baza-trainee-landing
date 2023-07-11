@@ -3,8 +3,6 @@ import LevelIcon from '@/components/common/icons/LevelIcon';
 import StartIcon from '@/components/common/icons/StartIcon';
 import TimeIcon from '@/components/common/icons/TimeIcon';
 import projectCycle from '@/utils/developmentTimeCalculator';
-import formatDate from '@/utils/formatDate';
-import ProjectCardStatus from './projectStatus';
 import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onShowTeamHandler,
@@ -14,11 +12,30 @@ const ProjectCardContent = ({
 }: {
   onShowTeamHandler: () => void;
   project: {
-    status: string;
-    description: string;
-    link: string;
-    createdAt: string;
+    _id: string;
     complexity: number;
+    creationDate: number;
+    imageUrl: string;
+    isTeamRequired: boolean;
+    launchDate?: number;
+    deployUrl?: string;
+    teamMembers:
+      | {
+          user: {
+            _id: string;
+            name: string;
+          };
+          role: {
+            _id: string;
+            name: string;
+          };
+        }[]
+      | [];
+    title: {
+      en: string;
+      pl: string;
+      ua: string;
+    };
   };
   isMembersVIsible: boolean;
   dictionary: {
@@ -62,20 +79,20 @@ const ProjectCardContent = ({
         ]
       }
     >
-      <ProjectCardStatus dictionary={dictionary} statusName={project.status} />
+      {/* <ProjectCardStatus dictionary={dictionary} statusName={project.status} /> */}
       <div className={styles['projects-section__projects-item__container']}>
-        <h4 className={styles['projects-section__projects-item__title']}>
+        {/* <h4 className={styles['projects-section__projects-item__title']}>
           {project.description}
-        </h4>
-        {project.status === 'active' && (
+        </h4> */}
+        {/* {project.status === 'active' && (
           <a
-            href={project.link}
+            href={project.deployUrl}
             className={styles['projects-section__projects-item__link']}
             target="_blank"
           >
-            {project.link}
+            {project.deployUrl}
           </a>
-        )}
+        )} */}
       </div>
 
       <div className={styles['projects-section__info']}>
@@ -85,7 +102,7 @@ const ProjectCardContent = ({
               <StartIcon />
               <p>{dictionary.projects.projectStart}</p>
             </div>
-            <p>{formatDate(project.createdAt, dictionary)}</p>
+            {/* <p>{formatDate(project.launchDate, dictionary)}</p> */}
           </li>
           <li className={styles['projects-section__info__list-item']}>
             <div className={styles['projects-section__info__list-container']}>
@@ -109,7 +126,7 @@ const ProjectCardContent = ({
           </li>
         </ul>
       </div>
-      {project.status === 'active' && (
+      {/* {project.status === 'active' && (
         <>
           <div className={styles['projects-section__team']}>
             <button
@@ -121,7 +138,7 @@ const ProjectCardContent = ({
             </button>
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 };

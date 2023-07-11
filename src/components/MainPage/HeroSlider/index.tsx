@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Slider from 'react-slick';
 
 import {
@@ -9,6 +9,7 @@ import {
   SlickArrow,
 } from '@/components/atomic';
 
+import { GlobalContext } from '@/store/globalContext';
 import { TSlide } from '@/types';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
@@ -26,6 +27,7 @@ const settings = {
 
 export const HeroSlider = ({
   dictionary,
+  lang,
 }: {
   dictionary: {
     navbar: {
@@ -68,14 +70,20 @@ export const HeroSlider = ({
       button: string;
     };
   };
+  lang: 'en' | 'pl' | 'ua';
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const translatedSlides = getTranslatedSlides(slides, dictionary);
+  const { sliders } = useContext(GlobalContext);
   return (
     <section className="relative">
       <Slider {...settings} afterChange={setCurrentSlide} lazyLoad="ondemand">
-        {translatedSlides.map((slide: TSlide) => (
-          <SingleSlide key={`key_${slide.title}`} slideData={slide} />
+        {sliders.map((slide) => (
+          <SingleSlide
+            key={`key_${slide._id}`}
+            slideLang={lang}
+            slideData={slide}
+          />
         ))}
       </Slider>
 

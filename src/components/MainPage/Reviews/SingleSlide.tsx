@@ -1,8 +1,26 @@
-import Image from 'next/image';
-import { TSlide } from '@/types';
-
-export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
-  const { image, title, text, specialization } = slideData;
+export const SingleSlide = ({
+  slideData,
+  lang,
+}: {
+  slideData: {
+    __v: number;
+    _id: string;
+    date: number;
+    imageUrl: string;
+    name: {
+      en: string;
+      pl: string;
+      ua: string;
+    };
+    review: {
+      en: string;
+      pl: string;
+      ua: string;
+    };
+  };
+  lang: 'en' | 'ua' | 'pl';
+}) => {
+  const { imageUrl, review, name } = slideData;
 
   return (
     <div
@@ -10,15 +28,15 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
       gap-[2rem] text-neutral-700 sm:flex-row md:gap-[4.8rem] lg:flex-nowrap xl:w-[80rem]"
     >
       <div className="relative h-48 w-48 shrink-0">
-        <Image src={image} alt={'customer'} fill className="rounded-full" />
+        {/* <Image src={imageUrl} alt={'customer'} fill className="rounded-full" /> */}
       </div>
 
       <div className="whitespace-nowrap font-secondary text-[2rem]">
-        <h4 className="">{title}</h4>
-        <p className="">{specialization}</p>
+        <h4 className="">{name[lang]}</h4>
+        {/* <p className="">{specialization}</p> */}
       </div>
 
-      <span className="font-secondary">{text}</span>
+      <span className="font-secondary">{review[lang]}</span>
     </div>
   );
 };

@@ -1,13 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
-import { TSlide } from '@/types';
+import { GlobalContext } from '@/store/globalContext';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
 
 const sliderSettings = {
   dots: true,
@@ -20,16 +19,20 @@ const sliderSettings = {
 
 export const Reviews = ({
   dictionary,
+  lang,
 }: {
   dictionary: {
     reviews: {
       title: string;
     };
   };
+  lang: 'en' | 'ua' | 'pl';
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const customPaging = (i: number) => Dot(i, currentSlide);
+
+  const { testimonials } = useContext(GlobalContext);
 
   return (
     <section className="my-48">
@@ -45,8 +48,8 @@ export const Reviews = ({
             afterChange={(index) => setCurrentSlide(index)}
             lazyLoad="ondemand"
           >
-            {slides.map((review: TSlide, index) => (
-              <SingleSlide slideData={review} key={index + 'key'} />
+            {testimonials.map((review, index) => (
+              <SingleSlide lang={lang} slideData={review} key={index + 'key'} />
             ))}
           </Slider>
         </div>

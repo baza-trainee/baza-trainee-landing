@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import { useState } from 'react';
 import ProjectCardContent from './ProjectCardContent';
 import ProjectCardTeam from './ProjectCardTeam';
@@ -9,17 +8,41 @@ const ProjectCard = ({
   dictionary,
 }: {
   project: {
-    imageUrl: string;
-    stack: string[];
-    status: string;
-    description: string;
-    link: string;
-    createdAt: string;
+    // imageUrl: string;
+    // stack: string[];
+    // status: string;
+    // description: string;
+    // link: string;
+    // createdAt: string;
+    // complexity: number;
+    // teamMembers: {
+    //   role: { name: string; _id: string };
+    //   user: { _id: string; link: string; name: string };
+    // }[];
+    _id: string;
     complexity: number;
-    teamMembers: {
-      role: { name: string; _id: string };
-      user: { _id: string; link: string; name: string };
-    }[];
+    creationDate: number;
+    imageUrl: string;
+    isTeamRequired: boolean;
+    launchDate?: number;
+    deployUrl?: string;
+    teamMembers:
+      | {
+          user: {
+            _id: string;
+            name: string;
+          };
+          role: {
+            _id: string;
+            name: string;
+          };
+        }[]
+      | [];
+    title: {
+      en: string;
+      pl: string;
+      ua: string;
+    };
   };
   dictionary: {
     monthsNames: {
@@ -62,12 +85,13 @@ const ProjectCard = ({
             styles['projects-section__projects-item__project-card-image']
           }
         >
-          <Image
+          {/* <Image
             src={project.imageUrl}
             alt="Project Image"
             width={378}
             height={464}
-          />
+          /> */}
+          <div className="bg-red-500"></div>
           <div
             className={
               styles['projects-section__projects-item__project-card-content']

@@ -5,8 +5,14 @@ const ProjectTeamMembers = ({
 }: {
   roleName: string;
   teamMembers: {
-    role: { name: string; _id: string };
-    user: { _id: string; link: string; name: string };
+    user: {
+      _id: string;
+      name: string;
+    };
+    role: {
+      _id: string;
+      name: string;
+    };
   }[];
 }) => {
   const members = teamMembers.filter((member) => member.role.name === roleName);
@@ -17,7 +23,7 @@ const ProjectTeamMembers = ({
         <li key={member.user._id}>
           <a
             className={styles['thumb__container__body__link']}
-            href={member.user.link}
+            // href={member.user.link}
             target="_blank"
           >
             {member.user.name}

@@ -9,7 +9,11 @@ import { Reviews } from '@/components/MainPage/Reviews';
 import { Statistics } from '@/components/MainPage/Statistics';
 import { getDictionary } from './dictionaries';
 
-export default async function Home({ params }: { params: { lang: string } }) {
+export default async function Home({
+  params,
+}: {
+  params: { lang: 'en' | 'pl' | 'ua' };
+}) {
   const dict = await getDictionary(params.lang);
 
   const navLinks = [
@@ -18,19 +22,16 @@ export default async function Home({ params }: { params: { lang: string } }) {
     { title: dict.navbar.participate, href: '#forms' },
     { title: dict.navbar.contacts, href: '#footer' },
   ];
-
-  // console.log(heroSliders, status);
-
   return (
     <>
       <Header navLinks={navLinks} />
-      <HeroSlider dictionary={dict} />
+      <HeroSlider lang={params.lang} dictionary={dict} />
       <Projects dictionary={dict} />
       <Statistics dictionary={dict} />
       <Forms dictionary={dict} />
       <Partners dictionary={dict} />
       <Achievements dictionary={dict} />
-      <Reviews dictionary={dict} />
+      <Reviews lang={params.lang} dictionary={dict} />
       <Footer dictionary={dict} />
     </>
   );
