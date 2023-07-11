@@ -1,20 +1,19 @@
 import { CustomArrowProps } from 'react-slick';
-import { RotaryArrow } from '../common/icons';
+import { MultiArrow } from '../../common/icons';
 
 interface IProps extends CustomArrowProps {
   direction: 'left' | 'right';
-  color?: string;
 }
 
-export const SlickArrow = ({ onClick, direction, color }: IProps) =>
+export const SlickArrow = ({ onClick, direction }: IProps) =>
   onClick && (
-    <RotaryArrow
+    <MultiArrow
       direction={direction}
-      className={`absolute cursor-pointer
+      className={`absolute z-10 cursor-pointer
       ${direction === 'left' && 'left-[5%] xl:left-[10%]'} 
       ${direction === 'right' && 'right-[5%] xl:right-[10%]'} 
-      top-1/2 z-10 -translate-y-1/2`}
+      top-1/2 -translate-y-1/2`}
       onClick={onClick}
-      color={color}
+      bigSize
     />
   );

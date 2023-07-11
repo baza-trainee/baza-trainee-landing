@@ -1,11 +1,31 @@
 import Authorization from '@/components/AdminPage/Authorization';
-import styles from './styles.module.scss';
-const AdminLogin = () => {
+import {
+  AdminPanelButton,
+  // AdminPanelMenuItem,
+  InputField,
+  PasswordInput,
+} from '@/components/atomic';
+import { LogOutIcon } from '@/components/common/icons';
+
+const AdminMainPage = () => {
   return (
-    <div className={styles.container}>
-      <Authorization />
-    </div>
+    <section className="w-full">
+      {/* <Authorization /> */}
+
+      <div className="m-16">
+        {/* <PasswordInput placeholder="Pass" enableTranslator /> */}
+        {/* <AdminPanelButton
+          variant="secondary"
+          disabled
+          >
+          Текст
+        </AdminPanelButton> */}
+        {/* <AdminPanelMenuItem
+        icon={<LogOutIcon />}
+        /> */}
+      </div>
+    </section>
   );
 };
 
-export default AdminLogin;
+export default AdminMainPage;

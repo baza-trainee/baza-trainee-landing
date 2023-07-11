@@ -14,8 +14,8 @@ const sliderSettings = {
   autoplay: true,
   speed: 1000,
   autoplaySpeed: 5000,
-  nextArrow: <SlickArrow direction="right" color="#101010" />,
-  prevArrow: <SlickArrow direction="left" color="#101010" />,
+  nextArrow: <SlickArrow direction="right" />,
+  prevArrow: <SlickArrow direction="left" />,
 };
 
 export const Reviews = () => {

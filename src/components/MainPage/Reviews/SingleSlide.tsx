@@ -14,12 +14,12 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
         <Image src={image} alt={'customer'} fill objectFit="cover" quality={85}/>
       </div>
 
-      <div className="whitespace-nowrap font-secondary text-[2rem]">
+      <div className="font-secondary whitespace-nowrap text-[2rem]">
         <h4 className="">{title}</h4>
         <p className="">{specialization}</p>
       </div>
 
-      <span className="font-secondary">{text}</span>
+      <span>{text}</span>
     </div>
   );
 };
