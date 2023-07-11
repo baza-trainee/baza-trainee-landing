@@ -1,5 +1,5 @@
 export const localStorageHandler = {
-  getItem<T>(key: string): T | null | boolean {
+  getItem<T>(key: string, fallbackValue: T): T | null | boolean {
     try {
       const serializedValue = localStorage.getItem(key);
 
@@ -8,7 +8,7 @@ export const localStorageHandler = {
         : (JSON.parse(serializedValue) as T);
     } catch (e) {
       console.error(`Error while getting localStorage item: ${e}`);
-      return false;
+      return fallbackValue;
     }
   },
 
