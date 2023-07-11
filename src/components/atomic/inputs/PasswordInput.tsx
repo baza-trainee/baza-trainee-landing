@@ -5,7 +5,7 @@ import { InputField } from './InputField';
 import { Eyes } from '@/components/common/icons';
 
 export const PasswordInput = ({ ...rest }) => {
-  const [inputType, setInputType] = useState<string>('password');
+  const [inputType, setInputType] = useState<'text' | 'password'>('password');
 
   const iconClickHandler = () => {
     setInputType((prev) => (prev === 'password' ? 'text' : 'password'));

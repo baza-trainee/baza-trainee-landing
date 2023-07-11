@@ -21,11 +21,12 @@ const InputField = ({
 }: InputFieldProps) => {
   return (
     <div
-      className={`relative mt-[2.8rem] mb-[2.2rem] max-w-[32.6rem]
+      className={`relative mb-[2.2rem] mt-[2.8rem] max-w-[32.6rem]
       ${errorText && 'text-critic-light'}`}
     >
-      <label className="absolute -top-[2.8rem]">{label}</label>
+      {label && <label className="absolute -top-[2.8rem]">{label}</label>}
 
+      {/* Without conditional rendering */}
       <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
         {errorText}
       </span>
@@ -36,7 +37,7 @@ const InputField = ({
         ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}
         ${
           errorText
-            ? 'border-critic-light focus:outline-critic-light caret-critic-light'
+            ? 'border-critic-light caret-critic-light focus:outline-critic-light'
             : 'border-neutral-300 focus:outline-neutral-300'
         }
         `}
@@ -44,15 +45,18 @@ const InputField = ({
         {...rest}
       />
 
-      <button
-        className="absolute right-[0.8rem] top-[0.8rem] text-neutral-300"
-        onClick={iconClickHandler}
-      >
-        {icon}
-      </button>
+      {icon && (
+        <button
+          className="absolute right-[0.8rem] top-[0.8rem] text-neutral-300"
+          onClick={iconClickHandler}
+          disabled={!iconClickHandler}
+        >
+          {icon}
+        </button>
+      )}
 
       {enableTranslator && (
-        <button className="text-neutral-300 flex absolute right-[0.5rem] -top-12">
+        <button className="absolute -top-12 right-[0.5rem] flex text-neutral-300">
           <TranslatorIcon />
           {/* <TranslatorIcon2 /> */}
         </button>
