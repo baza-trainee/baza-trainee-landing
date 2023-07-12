@@ -7,49 +7,52 @@ import {
   WarningIcon,
 } from '../common/icons';
 
-export interface IStateInfoProps {
+interface IStateInfoProps {
   state?: 'error' | 'info' | 'success' | 'warning' | 'submit';
 }
+
+const options = {
+  info: {
+    color: 'blue',
+    icon: InfoIcon,
+  },
+  error: {
+    color: 'critic-light',
+    icon: ErrorIcon,
+  },
+  success: {
+    color: 'success-dark',
+    icon: SuccessIcon,
+  },
+  warning: {
+    color: 'yellow-800',
+    icon: WarningIcon,
+  },
+  submit: {
+    color: 'yellow-800',
+    icon: SubmitIcon,
+  },
+};
 
 export const AlertWindow = ({
   state = 'success',
   ...props
 }: IStateInfoProps): React.JSX.Element => {
-  const options = {
-    info: {
-      color: 'blue',
-      icon: InfoIcon,
-    },
-    error: {
-      color: 'critic-light',
-      icon: ErrorIcon,
-    },
-    success: {
-      color: 'success-dark',
-      icon: SuccessIcon,
-    },
-    warning: {
-      color: 'yellow-800',
-      icon: WarningIcon,
-    },
-    submit: {
-      color: 'yellow-800',
-      icon: SubmitIcon,
-    },
-  };
+ 
+  const { color, icon: IconComponent } = options[state];
 
-  const IconComponent = options[state].icon;
+  
   
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div
-        className={`flex w-[38.7rem] flex-col  items-center justify-center rounded-md border border-solid border-${options[state].color} bg-white p-[2.4rem]`}
+        className={`flex w-[38.7rem] flex-col  items-center justify-center rounded-md border border-solid border-${color} bg-white p-[2.4rem]`}
       >
         <div className="flex w-full justify-between">
-          <IconComponent className={`fill-${options[state].color}`} />
+          <IconComponent className={`fill-${color}`} />
           <div className="w-[30rem]">
             <div
-              className={`text text-left text-[2.2rem] font-semibold text-${options[state].color}`}
+              className={`text text-left text-[2.2rem] font-semibold text-${color}`}
             >
               Інформація
             </div>
