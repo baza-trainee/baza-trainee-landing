@@ -1,4 +1,5 @@
 'use client';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import {
   CancelIcon,
   ErrorIcon,
@@ -31,18 +32,14 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
   onOkClickHandler,
   onCancelClickHandler,
 }) => {
-  const okClickHandler = () => {
-    onOkClickHandler?.();
-  };
-
-  const cancelClickHandler = () => {
-    onCancelClickHandler?.();
-  };
-
   const { color, icon: IconComponent, cancel } = options[state];
+  const bodyScrollLockRef = useBodyScrollLock(true);
 
   return (
-    <div className="backdrop-brightness-10 fixed inset-0 flex items-center justify-center backdrop-blur-sm">
+    <div
+      className="backdrop-brightness-10 fixed inset-0 flex items-center justify-center backdrop-blur-sm"
+      ref={bodyScrollLockRef}
+    >
       <div
         role="dialog"
         aria-modal="true"
@@ -66,7 +63,7 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
         <div className="mt-[1.7rem] flex">
           <button
             className="flex cursor-pointer items-center text-success-dark"
-            onClick={okClickHandler}
+            onClick={onOkClickHandler}
           >
             <OkIcon />
             <span className="ml-[0.8rem]">Ok</span>
@@ -74,7 +71,7 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
           {cancel && (
             <button
               className="ml-[4rem] flex cursor-pointer items-center text-critic-light"
-              onClick={cancelClickHandler}
+              onClick={onCancelClickHandler}
             >
               <CancelIcon />
               <span className="ml-[0.8rem]">Скасувати</span>
