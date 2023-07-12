@@ -17,8 +17,8 @@ export * from './RecallIcon';
 export * from './ReportIcon';
 export * from './SettingsIcon';
 export * from './SliderIcon';
-export * from './SubmitIcon';
 export * from './SuccessIcon';
 export * from './TranslatorIcon';
 export * from './TranslatorIcon2';
 export * from './WarningIcon';
+

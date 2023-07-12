@@ -1,5 +1,3 @@
-import { AlertWindow } from '../../components/atomic/AlertWindow';
-
 const AdminMainPage = () => {
   return (
     <section className="w-full">
@@ -16,7 +14,6 @@ const AdminMainPage = () => {
         {/* <AdminPanelMenuItem
         icon={<LogOutIcon />}
         /> */}
-        <AlertWindow />
       </div>
     </section>
   );
