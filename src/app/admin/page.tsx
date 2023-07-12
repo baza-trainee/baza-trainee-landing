@@ -16,7 +16,7 @@ const AdminMainPage = () => {
         {/* <AdminPanelMenuItem
         icon={<LogOutIcon />}
         /> */}
-        <AlertWindow />
+        <AlertWindow state='warning'/>
       </div>
     </section>
   );
