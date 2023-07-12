@@ -12,7 +12,7 @@ export interface IStateInfoProps {
 }
 
 export const AlertWindow = ({
-  state = 'error',
+  state = 'success',
   ...props
 }: IStateInfoProps): React.JSX.Element => {
   const options = {
@@ -33,28 +33,23 @@ export const AlertWindow = ({
       icon: WarningIcon,
     },
     submit: {
-      color: 'dark',
+      color: 'yellow-800',
       icon: SubmitIcon,
     },
   };
 
   const IconComponent = options[state].icon;
-  const textData = {
-    border: `border-${options[state].color}`,
-    fill: `fill-${options[state].color}`,
-    textColor: `text-${options[state].color}`,
-  };
-
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div
-        className={`flex w-[38.7rem] flex-col  items-center justify-center rounded-md border border-solid ${textData.border} bg-white p-[2.4rem]`}
+        className={`flex w-[38.7rem] flex-col  items-center justify-center rounded-md border border-solid border-${options[state].color} bg-white p-[2.4rem]`}
       >
         <div className="flex w-full justify-between">
-          <IconComponent className={`${textData.fill}`} />
+          <IconComponent className={`fill-${options[state].color}`} />
           <div className="w-[30rem]">
             <div
-              className={`text text-left text-[2.2rem] font-semibold ${textData.textColor}`}
+              className={`text text-left text-[2.2rem] font-semibold text-${options[state].color}`}
             >
               Інформація
             </div>

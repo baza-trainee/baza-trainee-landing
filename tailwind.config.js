@@ -46,7 +46,6 @@ module.exports = {
           light: '#14FF18',
           dark: '#1CD41F',
         },
-        black: '#151515',
         blue: '#009aff',
         dark: '#262626',
       },
@@ -78,4 +77,8 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(border|text|fill)-(blue|critic-light|success-dark|yellow-800|dark)/,
+    },]
 };
