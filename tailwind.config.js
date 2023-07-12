@@ -47,8 +47,8 @@ module.exports = {
           dark: '#1CD41F',
         },
         black: '#151515',
-        'light-mode-primaryblue': '#009aff',
-        'dark-gray': '#262626',
+        blue: '#009aff',
+        dark: '#262626',
       },
       fontFamily: {
         // secondary: ['var(--font-inter)'],
