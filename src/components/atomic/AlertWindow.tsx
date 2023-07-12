@@ -34,8 +34,8 @@ export const AlertWindow: React.FC = () => {
   const { state, title, textInfo, func } = alertInfo;
   const { color, icon: IconComponent, cancel } = options[state];
 
-  const confirmHandler = async (isAccepted: boolean) => {
-    if (isAccepted && func) await func();
+  const confirmHandler = (isAccepted: boolean) => {
+    if (isAccepted && func) func();
     setAlertInfo(null);
   };
 
