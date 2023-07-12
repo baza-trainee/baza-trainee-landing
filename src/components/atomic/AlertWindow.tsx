@@ -31,7 +31,6 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
   onOkClickHandler,
   onCancelClickHandler,
 }) => {
-  
   const okClickHandler = () => {
     onOkClickHandler?.();
   };
@@ -45,37 +44,41 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
   return (
     <div className="backdrop-brightness-10 fixed inset-0 flex items-center justify-center backdrop-blur-sm">
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="alert-window-title"
         className={`flex w-[38.7rem] flex-col items-center justify-center rounded-md border border-solid border-${color} bg-white p-[2.4rem]`}
       >
         <div className="flex w-full justify-between">
           <IconComponent className={`fill-${color}`} />
           <div className="w-[30rem]">
-            <div
+            <h2
+              id="alert-window-title"
               className={`text text-left text-[2.2rem] font-semibold text-${color}`}
             >
               {title}
-            </div>
-            <div className="text-dark-gray mt-[1.2rem] text-left text-[1.6rem] font-normal leading-[3.2rem]">
+            </h2>
+            <p className="text-dark-gray mt-[1.2rem] text-left text-[1.6rem] font-normal leading-[3.2rem]">
               {textInfo}
-            </div>
+            </p>
           </div>
         </div>
         <div className="mt-[1.7rem] flex">
-          <div
+          <button
             className="flex cursor-pointer items-center text-success-dark"
             onClick={okClickHandler}
           >
             <OkIcon />
             <span className="ml-[0.8rem]">Ok</span>
-          </div>
+          </button>
           {cancel && (
-            <div
+            <button
               className="ml-[4rem] flex cursor-pointer items-center text-critic-light"
               onClick={cancelClickHandler}
             >
               <CancelIcon />
               <span className="ml-[0.8rem]">Скасувати</span>
-            </div>
+            </button>
           )}
         </div>
       </div>
