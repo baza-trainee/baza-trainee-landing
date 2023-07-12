@@ -1,5 +1,7 @@
 'use client';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { GlobalContext } from '@/store/globalContext';
+import { useContext } from 'react';
 import {
   CancelIcon,
   ErrorIcon,
@@ -17,23 +19,25 @@ const options = {
   submit: { color: 'yellow-800', icon: SuccessIcon, cancel: true },
 };
 
-interface IStateInfoProps {
+export type TAlertInfoState = {
   state: keyof typeof options;
   title: string;
   textInfo: string;
-  onOkClickHandler?: () => void;
-  onCancelClickHandler?: () => void;
-}
+  func?: () => void;
+};
 
-export const AlertWindow: React.FC<IStateInfoProps> = ({
-  state = 'info',
-  title,
-  textInfo,
-  onOkClickHandler,
-  onCancelClickHandler,
-}) => {
-  const { color, icon: IconComponent, cancel } = options[state];
+export const AlertWindow: React.FC = () => {
+  const { alertInfo, setAlertInfo } = useContext(GlobalContext);
   const bodyScrollLockRef = useBodyScrollLock(true);
+  if (alertInfo === null) return;
+
+  const { state, title, textInfo, func } = alertInfo;
+  const { color, icon: IconComponent, cancel } = options[state];
+
+  const confirmHandler = async (isAccepted: boolean) => {
+    if (isAccepted && func) await func();
+    setAlertInfo(null);
+  };
 
   return (
     <div
@@ -63,7 +67,7 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
         <div className="mt-[1.7rem] flex">
           <button
             className="flex cursor-pointer items-center text-success-dark"
-            onClick={onOkClickHandler}
+            onClick={() => confirmHandler(true)}
           >
             <OkIcon />
             <span className="ml-[0.8rem]">Ok</span>
@@ -71,7 +75,7 @@ export const AlertWindow: React.FC<IStateInfoProps> = ({
           {cancel && (
             <button
               className="ml-[4rem] flex cursor-pointer items-center text-critic-light"
-              onClick={onCancelClickHandler}
+              onClick={() => confirmHandler(false)}
             >
               <CancelIcon />
               <span className="ml-[0.8rem]">Скасувати</span>
