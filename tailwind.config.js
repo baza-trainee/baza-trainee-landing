@@ -48,6 +48,7 @@ module.exports = {
         },
         blue: '#009aff',
         dark: '#262626',
+        'admin-header': '#3D4756',
       },
       fontFamily: {
         // secondary: ['var(--font-inter)'],
@@ -79,6 +80,8 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /(border|text|fill)-(blue|critic-light|success-dark|yellow-800|dark)/,
-    },]
+      pattern:
+        /(border|text|fill)-(blue|critic-light|success-dark|yellow-800|dark)/,
+    },
+  ],
 };
