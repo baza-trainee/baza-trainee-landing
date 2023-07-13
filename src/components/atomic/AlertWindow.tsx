@@ -28,7 +28,8 @@ export type TAlertInfoState = {
 
 export const AlertWindow: React.FC = () => {
   const { alertInfo, setAlertInfo } = useContext(GlobalContext);
-  const bodyScrollLockRef = useBodyScrollLock(true);
+  const bodyScrollLockRef = useBodyScrollLock(Boolean(alertInfo));
+
   if (alertInfo === null) return;
 
   const { state, title, textInfo, func } = alertInfo;
