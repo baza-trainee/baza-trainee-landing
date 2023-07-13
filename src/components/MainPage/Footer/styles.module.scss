@@ -48,16 +48,10 @@
   }
 }
 
-
-.footer-list--underlined .footer-list__link {
-  text-decoration: underline;
-}
-
 .footer-list__link {
   color: $color-white;
   font-size: 1.6rem;
   line-height: 1.9rem;
-  text-decoration: none;
 
   &:hover,
   &:focus {
@@ -104,4 +98,3 @@
     }
   }
 }
-
