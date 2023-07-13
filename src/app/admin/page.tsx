@@ -1,12 +1,3 @@
-import Authorization from '@/components/AdminPage/Authorization';
-import {
-  AdminPanelButton,
-  // AdminPanelMenuItem,
-  InputField,
-  PasswordInput,
-} from '@/components/atomic';
-import { LogOutIcon } from '@/components/common/icons';
-
 const AdminMainPage = () => {
   return (
     <section className="w-full">

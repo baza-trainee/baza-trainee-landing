@@ -1,6 +1,7 @@
 import { StoreProvider } from '@/store/globalContext';
 import { Exo_2 } from 'next/font/google';
 
+import { AlertWindow } from '@/components/atomic';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import './globals.css';
@@ -24,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body className={exo2.className}>{children}</body>
+        <body className={exo2.className}>
+          <AlertWindow />
+          {children}
+        </body>
       </StoreProvider>
     </html>
   );
