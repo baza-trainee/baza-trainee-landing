@@ -1,10 +1,9 @@
-import { TranslatorIcon, TranslatorIcon2 } from '@/components/common/icons';
-import { ReactNode } from 'react';
+import { TranslatorIcon } from '@/components/common/icons';
+import { InputHTMLAttributes, ReactNode } from 'react';
 
-interface InputFieldProps {
+interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   errorText?: string;
-  type?: string;
   iconClickHandler?: () => void;
   icon?: ReactNode;
   enableTranslator?: boolean;
