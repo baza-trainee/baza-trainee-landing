@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply text-[62.5%]; /* 10px */
+  @apply min-w-[400px];
+}
+
+body {
+  @apply text-[1.6rem] text-neutral-800;
+  @apply bg-white;
+  @apply min-h-screen;
+}
+
+@layer utilities {
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .block-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

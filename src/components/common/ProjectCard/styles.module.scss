@@ -1,0 +1,21 @@
+.projects-section {
+  &__projects-item {
+    width: 37.8rem;
+    height: 46.4rem;
+    color: $color-white;
+    position: relative;
+    overflow: hidden;
+    padding: 2.4rem;
+    &__project-card-image {
+      position: relative;
+      height: 46.4rem;
+    }
+    &__project-card-content {
+      position: absolute;
+      top: 0rem;
+      width: 37.8rem;
+      height: 46.4rem;
+      padding: 2.5rem;
+    }
+  }
+}
