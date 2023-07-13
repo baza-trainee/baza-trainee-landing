@@ -31,7 +31,7 @@ export const sidebarSectionsList: TsidebarSection[] = [
   { id: 'counter', icon: CounterIcon, text: 'Каунтер' },
   { id: 'partners', icon: PartnerIcon, text: 'Партнери' },
   { id: 'testimonials', icon: RecallIcon, text: 'Відгуки' },
-  { id: 'docs', icon: ReportIcon, text: 'Документи' },
+  { id: 'documents', icon: ReportIcon, text: 'Документи' },
   { id: 'contacts', icon: ContactIcon, text: 'Контакти' },
   { id: 'settings', icon: SettingsIcon, text: 'Налаштування' },
 ];

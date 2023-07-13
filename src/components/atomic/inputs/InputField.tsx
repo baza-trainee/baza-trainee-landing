@@ -1,10 +1,10 @@
-import { TranslatorIcon, TranslatorIcon2 } from '@/components/common/icons';
-import { ReactNode } from 'react';
+'use client';
+import { TranslatorIcon } from '@/components/common/icons';
+import { InputHTMLAttributes, ReactNode } from 'react';
 
-interface InputFieldProps {
+interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   errorText?: string;
-  type?: string;
   iconClickHandler?: () => void;
   icon?: ReactNode;
   enableTranslator?: boolean;
@@ -47,7 +47,7 @@ const InputField = ({
 
       {icon && (
         <button
-          className="absolute right-[0.8rem] top-[0.8rem] text-neutral-300"
+          className="absolute right-[0.8rem] top-[0.8rem] text-neutral-800 disabled:text-neutral-300"
           onClick={iconClickHandler}
           disabled={!iconClickHandler}
         >
