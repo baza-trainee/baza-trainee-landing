@@ -1,7 +1,11 @@
+'use client';
 import { InputField } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { UploadIcon } from '@/components/common/icons/UploadIcon';
 export const Documents = () => {
+  const click = () => {
+    console.log(11111);
+  };
   return (
     <div className="w-full px-[2.4rem] py-[3.2rem]">
       <AdminTitle>Документи</AdminTitle>
@@ -24,7 +28,8 @@ export const Documents = () => {
           />
           <InputField
             label="Privacy Policy"
-            icon={<UploadIcon className="fill-neutral-800" />}
+            icon={<UploadIcon />}
+            iconClickHandler={click}
             placeholder="Завантажте документ"
           />
           <InputField

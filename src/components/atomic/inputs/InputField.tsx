@@ -1,3 +1,4 @@
+'use client';
 import { TranslatorIcon } from '@/components/common/icons';
 import { InputHTMLAttributes, ReactNode } from 'react';
 
@@ -46,7 +47,7 @@ const InputField = ({
 
       {icon && (
         <button
-          className="absolute right-[0.8rem] top-[0.8rem] text-neutral-300"
+          className="absolute right-[0.8rem] top-[0.8rem] text-neutral-800 disabled:text-neutral-300"
           onClick={iconClickHandler}
           disabled={!iconClickHandler}
         >
