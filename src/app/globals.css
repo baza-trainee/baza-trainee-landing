@@ -27,3 +27,7 @@ body {
     transform: translate(-50%, -50%);
   }
 }
+
+input[type='file']::file-selector-button {
+  display: none;
+}
