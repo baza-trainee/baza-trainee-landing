@@ -21,4 +21,5 @@ export * from './SuccessIcon';
 export * from './TranslatorIcon';
 export * from './TranslatorIcon2';
 export * from './WarningIcon';
+export * from './UploadIcon';
 

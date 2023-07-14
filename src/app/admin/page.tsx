@@ -1,3 +1,5 @@
+import { Documents } from '@/components/AdminPage/Documents';
+
 const AdminMainPage = () => {
   return (
     <section className="w-full">
@@ -11,9 +13,7 @@ const AdminMainPage = () => {
           >
           Текст
         </AdminPanelButton> */}
-        {/* <AdminPanelMenuItem
-        icon={<LogOutIcon />}
-        /> */}
+        <Documents />
       </div>
     </section>
   );
