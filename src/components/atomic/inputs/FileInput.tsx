@@ -2,9 +2,6 @@
 
 import { useRef } from 'react';
 
-import { UploadIcon } from '@/components/common/icons';
-import { InputField } from './InputField';
-
 export const FileInput = ({ ...rest }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -14,14 +11,13 @@ export const FileInput = ({ ...rest }) => {
     }
   };
 
-  return (
-    <InputField
+  return null;
+  /*    <InputField
       forwardedRef={fileInputRef}
       type="file"
       iconClickHandler={handlerClick}
       readOnly
       icon={<UploadIcon />}
       {...rest}
-    />
-  );
+    />*/
 };

@@ -1,32 +1,45 @@
 'use client';
 
 import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { FileInput } from '@/components/atomic/inputs';
+import { FileInput, InputField } from '@/components/atomic/inputs';
 import { UploadIcon } from '@/components/common/icons/UploadIcon';
+import { useState } from 'react';
 
 export const Documents = () => {
   const click = () => {
     console.log(11111);
   };
+  const [reportValue, setReportValue] = useState<File | null>(null);
+  const [text, setText] = useState<string>('');
 
   return (
     <div className="w-full px-[2.4rem] py-[3.2rem]">
       <AdminTitle>Документи</AdminTitle>
-  
+
       <div>
-        <FileInput
+        <InputField
           name="reporting"
-          label="Звітність"
-          icon={<UploadIcon />}
-          placeholder="Завантажте документ"
-          />
+          title="Звітність"
+          inputType="file"
+          value={reportValue ? reportValue.name : ''}
+          setValue={setReportValue}
+          placeholderText="Завантажте документ"
+        />
         <FileInput
           name="statute"
-          label="Статут"
+          title="Статут"
           icon={<UploadIcon />}
-          placeholder="Завантажте документ"
+          placeholderText="Завантажте документ"
         />
-       
+        <InputField
+          name="test"
+          title="TestText"
+          inputType="date"
+          value={text}
+          setValue={setText}
+          placeholderText="Введіть щось"
+        />
+
         <div className="flex w-full gap-5">
           <FileInput
             label="Політика конфіденційності"
@@ -45,7 +58,7 @@ export const Documents = () => {
             placeholder="Завантажте документ"
           />
         </div>
-     
+
         <div className="flex gap-5">
           <FileInput
             label="Правила користування сайтом"
