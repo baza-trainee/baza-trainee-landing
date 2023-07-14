@@ -115,14 +115,16 @@ const InputField = ({
 
   return (
     <div
-      className={`relative mb-[2.2rem] mt-[2.8rem] max-w-[32.6rem] 
+      className={`relative mt-[2.8rem] w-full max-w-[32.6rem]
       ${errorText ? 'text-critic-light' : ''} `}
     >
       {title && <h4 className="absolute -top-[2.8rem]">{title}</h4>}
 
-      <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
-        {errorText}
-      </span>
+      {errorText && (
+        <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
+          {errorText}
+        </span>
+      )}
       <div className={`${''} `}>
         <div
           className={`absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300  `}
