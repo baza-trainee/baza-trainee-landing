@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { InputField } from './InputField';
-import { Eyes } from '@/components/common/icons';
 
 export const PasswordInput = ({ ...rest }) => {
   const [inputType, setInputType] = useState<'text' | 'password'>('password');
@@ -11,12 +9,11 @@ export const PasswordInput = ({ ...rest }) => {
     setInputType((prev) => (prev === 'password' ? 'text' : 'password'));
   };
 
-  return (
-    <InputField
+  return null;
+  /*   <InputField
       icon={<Eyes open={inputType !== 'password'} />}
       type={inputType}
       iconClickHandler={iconClickHandler}
       {...rest}
-    />
-  );
+    />*/
 };

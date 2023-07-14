@@ -34,7 +34,7 @@ export const Documents = () => {
         <InputField
           name="test"
           title="TestText"
-          inputType="date"
+          inputType="en"
           value={text}
           setValue={setText}
           placeholderText="Введіть щось"

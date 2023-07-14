@@ -2,6 +2,7 @@ export * from './CancelIcon';
 export * from './CloseMainIcon';
 export * from './ContactIcon';
 export * from './CounterIcon';
+export * from './DateIcon';
 export * from './ErrorIcon';
 export * from './Eyes';
 export { default as FacebookIcon } from './FacebookIcon';
@@ -20,6 +21,5 @@ export * from './SliderIcon';
 export * from './SuccessIcon';
 export * from './TranslatorIcon';
 export * from './TranslatorIcon2';
-export * from './WarningIcon';
 export * from './UploadIcon';
-
+export * from './WarningIcon';

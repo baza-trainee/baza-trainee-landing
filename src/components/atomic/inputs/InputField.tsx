@@ -5,7 +5,11 @@ import {
   ReactNode,
 } from 'react';
 
-import { TranslatorIcon, UploadIcon } from '@/components/common/icons';
+import {
+  DateIcon,
+  TranslatorIcon,
+  UploadIcon,
+} from '@/components/common/icons';
 import EyeClosed from '@/components/common/icons/EyeClosed';
 import EyeOpen from '@/components/common/icons/EyeOpen';
 
@@ -15,7 +19,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholderText?: string;
   iconClickHandler?: () => void;
   //icon?: ReactNode;
-  enableTranslator?: boolean;
+  //enableTranslator?: boolean;
   forwardedRef?: ForwardedRef<HTMLInputElement>;
   setValue: any;
   inputType: any;
@@ -30,13 +34,15 @@ const InputField = ({
   inputType = 'text',
   //iconClickHandler,
   //icon,
-  enableTranslator,
+  //enableTranslator,
   //forwardedRef,
   name,
   ...rest
 }: InputFieldProps) => {
   let icon: ReactNode;
   let type: string;
+  let isIconActive = true;
+  let isTranslateShow = false;
 
   switch (inputType) {
     case 'file':
@@ -56,27 +62,34 @@ const InputField = ({
 
     case 'en':
       type = 'text';
-      icon = <UploadIcon />; //Change to right icon
+      isIconActive = false;
+      isTranslateShow = true;
+      icon = <p className="text-[2rem] font-semibold">EN</p>;
       break;
 
     case 'ua':
       type = 'text';
-      icon = <UploadIcon />; //Change to right icon
+      isIconActive = false;
+      isTranslateShow = true;
+      icon = <p className="text-[2rem] font-semibold">UA</p>;
       break;
 
     case 'pl':
       type = 'text';
-      icon = <UploadIcon />; //Change to right icon
+      isIconActive = false;
+      isTranslateShow = true;
+      icon = <p className="text-[2rem] font-semibold">PL</p>;
       break;
 
-    case 'calendar':
+    case 'date':
       type = 'date';
-      icon = <UploadIcon />; //Change to right icon
+      icon = <DateIcon />;
       break;
 
     default:
       type = 'text';
-      icon = <UploadIcon />; //Change to right icon
+      isIconActive = false;
+      icon = null;
       break;
   }
 
@@ -110,12 +123,17 @@ const InputField = ({
       <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
         {errorText}
       </span>
-      <div>
-        <div className="absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300">
-          <label htmlFor={name}>
+      <div className={`${''} `}>
+        <div
+          className={`absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300  `}
+        >
+          <label
+            htmlFor={name}
+            className="absolute right-[0.8rem] flex h-full items-center"
+          >
             {icon && (
               <button
-                className="absolute right-[0.8rem] top-[0.8rem] cursor-pointer disabled:text-neutral-300"
+                className={`${isIconActive ? `` : ' text-neutral-300'}`}
                 //onClick={iconClickHandler}
                 //disabled={!iconClickHandler}
               >
@@ -128,7 +146,9 @@ const InputField = ({
             id={name}
             //ref={forwardedRef}
             name={name || title}
-            className={`h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
+            className={`${
+              isIconActive ? 'cursor-pointer' : 'cursor-auto'
+            } h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
               type === 'file' ? 'opacity-0' : ''
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
             onChange={inputChangeHandler}
@@ -155,7 +175,7 @@ const InputField = ({
           {value || placeholderText}
         </div>
       </div>
-      {enableTranslator && (
+      {isTranslateShow && (
         <button className="absolute -top-12 right-[0.5rem] flex text-neutral-300">
           <TranslatorIcon />
         </button>
