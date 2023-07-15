@@ -3,6 +3,7 @@ import {
   ForwardedRef,
   InputHTMLAttributes,
   ReactNode,
+  useContext,
 } from 'react';
 
 import {
@@ -12,6 +13,8 @@ import {
 } from '@/components/common/icons';
 import EyeClosed from '@/components/common/icons/EyeClosed';
 import EyeOpen from '@/components/common/icons/EyeOpen';
+import { GlobalContext } from '@/store/globalContext';
+import { formatBytes } from '@/utils/formatBytes';
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
@@ -23,6 +26,8 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   forwardedRef?: ForwardedRef<HTMLInputElement>;
   setValue: any;
   inputType: any;
+  maxSize?: number;
+  name: string;
 }
 
 const InputField = ({
@@ -32,6 +37,7 @@ const InputField = ({
   value,
   setValue,
   inputType = 'text',
+  maxSize = 1000,
   //iconClickHandler,
   //icon,
   //enableTranslator,
@@ -43,6 +49,7 @@ const InputField = ({
   let type: string;
   let isIconActive = true;
   let isTranslateShow = false;
+  const { setAlertInfo } = useContext(GlobalContext);
 
   switch (inputType) {
     case 'file':
@@ -97,9 +104,20 @@ const InputField = ({
     switch (type) {
       case 'file':
         {
-          e.currentTarget.files
-            ? setValue(e.currentTarget.files[0])
-            : setValue(null);
+          const files = e.currentTarget.files;
+          if (files && files[0].size <= maxSize) {
+            setValue(files[0]);
+          } else {
+            setValue(null);
+          }
+          if (files && files[0].size >= maxSize)
+            setAlertInfo({
+              state: 'error',
+              title: 'Перевищення розміру файлу',
+              textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
+                maxSize
+              )}`,
+            });
         }
         break;
       case 'text':
@@ -131,11 +149,11 @@ const InputField = ({
         >
           <label
             htmlFor={name}
-            className="absolute right-[0.8rem] flex h-full items-center"
+            className="absolute right-[0.8rem] flex h-full items-center "
           >
             {icon && (
               <button
-                className={`${isIconActive ? `` : ' text-neutral-300'}`}
+                className={`${isIconActive ? `` : ' text-neutral-300'} `}
                 //onClick={iconClickHandler}
                 //disabled={!iconClickHandler}
               >
@@ -157,13 +175,14 @@ const InputField = ({
             placeholder={placeholderText}
             //title={value || placeholderText} FixIt
             type={type}
+            {...rest}
           />
         </div>
         <div
           //ref={forwardedRef}
           className={`
-        h-full w-full rounded-[0.4rem] border
-        ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}
+        h-full w-full  overflow-hidden rounded-[0.4rem] border
+        ${icon ? 'mr-[4.7rem] py-[0.8rem] pl-[0.8rem]' : 'p-[0.8rem]'}
         ${
           errorText
             ? 'border-critic-light caret-critic-light focus:outline-critic-light'
@@ -172,7 +191,6 @@ const InputField = ({
               }`
         }
         `}
-          {...rest}
         >
           {value || placeholderText}
         </div>
