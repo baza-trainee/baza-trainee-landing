@@ -26,11 +26,7 @@ export const useAPI = <T,>(
         setIsError(false);
         setIsLoading(true);
         const response = await method(body.current);
-
-        if (response.status === 200 || response.status === 201) {
-          setData(response.data);
-          setIsError(false);
-        }
+        setData(response.data);
       } catch (error: any) {
         setData({
           message: error.message,
@@ -53,7 +49,7 @@ export const useAPI = <T,>(
     return () => {
       setDoFetch(false);
     };
-  }, [doFetch]);
+  }, [data, doFetch, method]);
 
-  return [dispatch, data, isLoading, isError];
+  return [dispatch, data, isError, isLoading];
 };

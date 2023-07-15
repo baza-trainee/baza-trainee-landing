@@ -120,13 +120,11 @@ const InputField = ({
             });
         }
         break;
-      case 'text':
+
+      default:
         {
           setValue(e.currentTarget.value);
         }
-        break;
-
-      default:
         break;
     }
   };
@@ -167,7 +165,7 @@ const InputField = ({
             //ref={forwardedRef}
             name={name || title}
             className={`${
-              isIconActive ? 'cursor-pointer' : 'cursor-auto'
+              /* isIconActive ? 'cursor-pointer' : 'cursor-auto'*/ ''
             } h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
               type === 'file' ? 'opacity-0' : ''
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
