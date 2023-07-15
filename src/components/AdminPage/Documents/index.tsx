@@ -4,7 +4,9 @@ import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
-import { useState } from 'react';
+import { documentsApi } from '@/utils/API/documents';
+import { useAPI } from '@/utils/hooks/useAPI';
+import { useEffect, useState } from 'react';
 
 export const Documents = () => {
   const [reportValue, setReportValue] = useState<File | null>(null);
@@ -15,6 +17,7 @@ export const Documents = () => {
   const [termsUaValue, setTermsUaValue] = useState<File | null>(null);
   const [termsEnValue, setTermsEnValue] = useState<File | null>(null);
   const [termsPlValue, setTermsPlValue] = useState<File | null>(null);
+  const [dispatch, data, isError] = useAPI(documentsApi.update);
 
   const resetHandler = () => {
     setReportValue(null);
@@ -27,7 +30,13 @@ export const Documents = () => {
     setTermsPlValue(null);
   };
 
+  useEffect(() => {
+    if (!isError && data) alert(`Login successful ${JSON.stringify(data)}`);
+    if (isError) alert(`Is error successful ${JSON.stringify(data)}`);
+  }, [isError, data]);
+
   const handleSubmit = () => {
+    console.log('first');
     const formData = new FormData();
     reportValue && formData.append('report', reportValue);
     statuteValue && formData.append('statute', statuteValue);
@@ -37,6 +46,8 @@ export const Documents = () => {
     termsEnValue && formData.append('termsOfUse[en]', termsEnValue);
     termsUaValue && formData.append('termsOfUse[ua]', termsUaValue);
     termsPlValue && formData.append('termsOfUse[pl]', termsPlValue);
+    console.log(formData);
+    dispatch(formData);
   };
 
   return (
@@ -136,7 +147,9 @@ export const Documents = () => {
         </div>
       </form>
       <div className="flex gap-[1.8rem] pt-[3.6rem]">
-        <AdminPanelButton type="submit">Зберегти зміни</AdminPanelButton>
+        <AdminPanelButton type="submit" onClick={handleSubmit}>
+          Зберегти зміни
+        </AdminPanelButton>
         <AdminPanelButton variant="secondary" onClick={resetHandler}>
           Скасувати
         </AdminPanelButton>

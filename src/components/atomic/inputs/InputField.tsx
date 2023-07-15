@@ -16,7 +16,7 @@ import EyeOpen from '@/components/common/icons/EyeOpen';
 import { GlobalContext } from '@/store/globalContext';
 import { formatBytes } from '@/utils/formatBytes';
 
-interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
   placeholderText?: string;
@@ -25,7 +25,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   //enableTranslator?: boolean;
   forwardedRef?: ForwardedRef<HTMLInputElement>;
   setValue: any;
-  inputType: any;
+  inputType?: any;
   maxSize?: number;
   name: string;
 }
@@ -38,7 +38,7 @@ const InputField = ({
   setValue,
   inputType = 'text',
   maxSize = 1000,
-  //iconClickHandler,
+  iconClickHandler,
   //icon,
   //enableTranslator,
   //forwardedRef,
@@ -154,7 +154,7 @@ const InputField = ({
             {icon && (
               <button
                 className={`${isIconActive ? `` : ' text-neutral-300'} `}
-                //onClick={iconClickHandler}
+                onClick={iconClickHandler}
                 //disabled={!iconClickHandler}
               >
                 {icon}

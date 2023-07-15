@@ -87,6 +87,20 @@ export interface IRole extends CommonResponseBase {
 export interface IStack extends CommonResponseBase {
   name: String;
 }
+export interface IDocuments<T> extends CommonResponseBase {
+  report: T;
+  statute: T;
+  privacyPolicy: {
+    en: T;
+    pl: T;
+    ua: T;
+  };
+  termsOfUse: {
+    en: T;
+    pl: T;
+    ua: T;
+  };
+}
 
 export interface IMember extends CommonResponseBase {
   name: titleLanguagesTypes;

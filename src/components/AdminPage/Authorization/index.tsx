@@ -1,8 +1,8 @@
 'use client';
 
 import AdminButton from '@/components/common/AdminButton';
-import AdminTitle from '@/components/common/AdminTitle';
-import TextInput from '@/components/common/InputFields/TextInput';
+
+import { AdminTitle, InputField, PasswordInput } from '@/components/atomic';
 import auth from '@/utils/API/auth';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -75,9 +75,27 @@ const Authorization = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.frame}>
-        <AdminTitle title={'Вхід'} />
+    <div className="flex min-h-[100vh] items-center justify-center">
+      <div className="flex flex-col gap-[3.2rem] rounded-xl border border-neutral-300 bg-base-dark p-8 ">
+        <AdminTitle className="mb-0">Вхід</AdminTitle>
+        <InputField
+          title="Логін"
+          value={login}
+          setValue={setLogin}
+          inputType="text"
+          name="login"
+          placeholderText="Введіть логін"
+        />
+        <PasswordInput
+          name="report"
+          title="Пароль"
+          value={login}
+          setValue={setPassword}
+          maxSize={44}
+          placeholderText="Введіть пароль"
+        />
+
+        {/*
         <TextInput
           title={'Логін'}
           errorText={loginError}
@@ -92,7 +110,7 @@ const Authorization = () => {
           type={'password'}
           value={password}
           onChange={passwordChangeHandler}
-        />
+  />*/}
         <Link href={recoverLink} className={styles.text}>
           Забули пароль?
         </Link>
