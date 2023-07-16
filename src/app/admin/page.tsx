@@ -1,22 +1,12 @@
-import { Documents } from '@/components/AdminPage/Documents';
+'use client';
+import { sidebarSectionsList } from '@/components/AdminPage/SideBar/sidebarSectionsList';
+import { useRouter } from 'next/navigation';
 
 const AdminMainPage = () => {
-  return (
-    <section className="w-full">
-      {/* <Authorization /> */}
-
-      <div className="m-16">
-        {/* <PasswordInput placeholder="Pass" enableTranslator /> */}
-        {/* <AdminPanelButton
-          variant="secondary"
-          disabled
-          >
-          Текст
-        </AdminPanelButton> */}
-        <Documents />
-      </div>
-    </section>
-  );
+  const { push } = useRouter();
+  const id = sidebarSectionsList[0].id;
+  push(`/admin/${id}`);
+  return null;
 };
 
 export default AdminMainPage;

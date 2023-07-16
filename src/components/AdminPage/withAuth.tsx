@@ -15,8 +15,9 @@ export const WithAuth = ({ children }: { children: ReactNode }) => {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/user`
       );
       const res = await response.json();
+
       console.log(res);
-      if (res?.name) {
+      if (!res?.name) {
         router.push('/');
       } else {
         setData(res);
