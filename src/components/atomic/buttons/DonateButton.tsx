@@ -1,7 +1,8 @@
-import { FC } from 'react';
-import { TButtonProps } from '../types';
+import { ButtonHTMLAttributes, FC } from 'react';
 
-export const DonateButton: FC<TButtonProps> = ({
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const MyButton: FC<ButtonProps> = ({
   children,
   className = '',
   ...otherProps

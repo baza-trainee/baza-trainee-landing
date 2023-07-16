@@ -1,7 +1,9 @@
-import { FC } from 'react';
-import { TButtonProps } from '../types';
+import { ButtonHTMLAttributes, FC } from 'react';
 
-export const SupportBazaButton: FC<TButtonProps> = ({
+type SupportBazaButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  size?: 'M' | 'L';
+};
+export const SupportBazaButton: FC<SupportBazaButtonProps> = ({
   children,
   className = '',
   size = 'L',
