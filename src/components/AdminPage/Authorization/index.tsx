@@ -1,12 +1,17 @@
 'use client';
 
-import AdminButton from '@/components/common/AdminButton';
-
-import { AdminTitle, InputField, PasswordInput } from '@/components/atomic';
+import {
+  AdminPanelButton,
+  AdminTitle,
+  InputField,
+  PasswordInput,
+} from '@/components/atomic';
 import { GlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
+import { localStorageHandler } from '@/utils/localStorageHandler';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 
 const recoverLink = 'https://youtu.be/dQw4w9WgXcQ'; // TODO: Replace with actual recover link
@@ -16,11 +21,15 @@ const Authorization = () => {
   const [password, setPassword] = useState<string>('');
   const [dispatch, data, isError] = useAPI(auth.logIn);
   const { setAlertInfo } = useContext(GlobalContext);
+  const { push } = useRouter();
 
   useEffect(() => {
-    console.log(data);
-    console.log(isError);
-    if (!isError && data) alert(`Login successful ${JSON.stringify(data)}`);
+    if (!isError && data) {
+      push('/admin');
+      localStorageHandler.setItem('token', data.token);
+      localStorageHandler.setItem('id', data._id);
+    }
+
     if (isError) {
       if (data.status === 500) {
         setAlertInfo({
@@ -36,7 +45,7 @@ const Authorization = () => {
         });
       }
     }
-  }, [isError, data, setAlertInfo]);
+  }, [isError, data, setAlertInfo, push]);
 
   const loginHandler = async () => {
     dispatch({ email, password });
@@ -44,7 +53,7 @@ const Authorization = () => {
 
   return (
     <div className="flex min-h-[100vh] items-center justify-center">
-      <div className="flex flex-col gap-[3.2rem] rounded-xl border border-neutral-300 bg-base-dark p-8 ">
+      <div className="flex w-[36.6rem] flex-col gap-[3.2rem] rounded-xl border border-neutral-300 bg-base-dark p-8 ">
         <AdminTitle>Вхід</AdminTitle>
         <InputField
           title="Логін"
@@ -67,7 +76,7 @@ const Authorization = () => {
         >
           Забули пароль?
         </Link>
-        <AdminButton title={'Увійти'} onClick={loginHandler} />
+        <AdminPanelButton onClick={loginHandler}>Увійти</AdminPanelButton>
       </div>
     </div>
   );
