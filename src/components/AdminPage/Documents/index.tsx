@@ -4,11 +4,13 @@ import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
+import { GlobalContext } from '@/store/globalContext';
 import { documentsApi } from '@/utils/API/documents';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 export const Documents = () => {
+  const { setAlertInfo } = useContext(GlobalContext);
   const [reportValue, setReportValue] = useState<File | null>(null);
   const [statuteValue, setStatuteValue] = useState<File | null>(null);
   const [privacyUaValue, setPrivacyUaValue] = useState<File | null>(null);
@@ -31,8 +33,19 @@ export const Documents = () => {
   };
 
   useEffect(() => {
-    if (!isError && data) alert(`Login successful ${JSON.stringify(data)}`);
-    if (isError) alert(`Is error successful ${JSON.stringify(data)}`);
+    console.log(data);
+    if (!isError && data)
+      setAlertInfo({
+        state: 'info',
+        title: 'Документи оновленні успішно',
+        textInfo: `${data}`,
+      });
+    if (isError)
+      setAlertInfo({
+        state: 'info',
+        title: 'Документи оновленні успішно',
+        textInfo: `${data}`,
+      });
   }, [isError, data]);
 
   const handleSubmit = () => {
@@ -46,7 +59,7 @@ export const Documents = () => {
     termsEnValue && formData.append('termsOfUse[en]', termsEnValue);
     termsUaValue && formData.append('termsOfUse[ua]', termsUaValue);
     termsPlValue && formData.append('termsOfUse[pl]', termsPlValue);
-    console.log(formData);
+    console.log(formData.values.toString());
     dispatch(formData);
   };
 

@@ -16,6 +16,10 @@ module.exports = {
         source: '/api/v1/:path*',
         destination: `${url}/api/v1/:path*`,
       },
+      {
+        source: '/admin/api/v1/:path*',
+        destination: `${url}/api/v1/:path*`,
+      },
     ];
   },
   async middleware() {
@@ -23,7 +27,8 @@ module.exports = {
       target: url,
       changeOrigin: true,
       cookieDomainRewrite: '', // Enable cookie sharing
-      secure: true, // If the backend is not using HTTPS
+      secure: true,
+      // If the backend is not using HTTPS
     });
 
     return {
