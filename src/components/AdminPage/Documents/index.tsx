@@ -6,30 +6,25 @@ import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
 import { GlobalContext } from '@/store/globalContext';
 import { documentsApi } from '@/utils/API/documents';
+import { formatBytes } from '@/utils/formatBytes';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
+
+type TFormData = {
+  [key: string]: File | null;
+};
 
 export const Documents = () => {
   const { setAlertInfo } = useContext(GlobalContext);
-  const [reportValue, setReportValue] = useState<File | null>(null);
-  const [statuteValue, setStatuteValue] = useState<File | null>(null);
-  const [privacyUaValue, setPrivacyUaValue] = useState<File | null>(null);
-  const [privacyEnValue, setPrivacyEnValue] = useState<File | null>(null);
-  const [privacyPlValue, setPrivacyPlValue] = useState<File | null>(null);
-  const [termsUaValue, setTermsUaValue] = useState<File | null>(null);
-  const [termsEnValue, setTermsEnValue] = useState<File | null>(null);
-  const [termsPlValue, setTermsPlValue] = useState<File | null>(null);
+
+  const [formData, setFormData] = useState<TFormData>({});
+  const [filesUpdated, setFilesUpdated] = useState(0);
   const [dispatch, data, isError] = useAPI(documentsApi.update);
 
+  const maxFileSize = SETTINGS.fileSizeLimits.report;
+
   const resetHandler = () => {
-    setReportValue(null);
-    setStatuteValue(null);
-    setPrivacyUaValue(null);
-    setPrivacyEnValue(null);
-    setPrivacyPlValue(null);
-    setTermsUaValue(null);
-    setTermsEnValue(null);
-    setTermsPlValue(null);
+    setFormData({});
   };
 
   useEffect(() => {
@@ -38,7 +33,7 @@ export const Documents = () => {
       setAlertInfo({
         state: 'info',
         title: 'Документи оновленні успішно',
-        textInfo: `Документи оновленні`,
+        textInfo: `Оновлено ${filesUpdated} документ(ів)`,
       });
       resetHandler();
     }
@@ -48,19 +43,42 @@ export const Documents = () => {
         title: 'Помилка при оновленні документів',
         textInfo: 'Спробуйте пізніше',
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
   const handleSubmit = () => {
-    const formData = new FormData();
-    reportValue && formData.append('report', reportValue);
-    statuteValue && formData.append('statute', statuteValue);
-    privacyEnValue && formData.append('privacyPolicy[en]', privacyEnValue);
-    privacyUaValue && formData.append('privacyPolicy[ua]', privacyUaValue);
-    privacyPlValue && formData.append('privacyPolicy[pl]', privacyPlValue);
-    termsEnValue && formData.append('termsOfUse[en]', termsEnValue);
-    termsUaValue && formData.append('termsOfUse[ua]', termsUaValue);
-    termsPlValue && formData.append('termsOfUse[pl]', termsPlValue);
-    dispatch(formData);
+    const form = new FormData();
+    setFilesUpdated(0);
+    for (const key in formData) {
+      if (formData[key] !== null) {
+        form.append(key, formData[key] as Blob);
+        setFilesUpdated((prev) => prev + 1);
+      }
+    }
+
+    dispatch(form);
+  };
+
+  const onInputChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    name: string,
+    maxSize: number
+  ) => {
+    const files = e.currentTarget.files;
+    if (files && files[0]?.size <= maxSize) {
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: null }));
+    }
+    console.log('first', formData);
+    if (files && files[0]?.size >= maxSize)
+      setAlertInfo({
+        state: 'error',
+        title: 'Перевищення розміру файлу',
+        textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
+          maxSize
+        )}`,
+      });
   };
 
   return (
@@ -74,8 +92,8 @@ export const Documents = () => {
             title="Звітність"
             inputType="file"
             accept=".pdf"
-            value={reportValue ? reportValue.name : ''}
-            setValue={setReportValue}
+            value={formData['report']?.name}
+            onChange={(e) => onInputChange(e, 'report', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
@@ -87,8 +105,8 @@ export const Documents = () => {
             title="Статут"
             inputType="file"
             accept=".pdf"
-            value={statuteValue ? statuteValue.name : ''}
-            setValue={setStatuteValue}
+            value={formData['statute']?.name}
+            onChange={(e) => onInputChange(e, 'statute', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
@@ -100,8 +118,8 @@ export const Documents = () => {
             title="Політика конфіденційності"
             inputType="file"
             accept=".pdf"
-            value={privacyUaValue ? privacyUaValue.name : ''}
-            setValue={setPrivacyUaValue}
+            value={formData['privacyPolicy[ua]']?.name}
+            onChange={(e) => onInputChange(e, 'privacyPolicy[ua]', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
@@ -110,8 +128,8 @@ export const Documents = () => {
             title="Privacy Policy"
             inputType="file"
             accept=".pdf"
-            value={privacyEnValue ? privacyEnValue.name : ''}
-            setValue={setPrivacyEnValue}
+            value={formData['privacyPolicy[en]']?.name}
+            onChange={(e) => onInputChange(e, 'privacyPolicy[en]', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
@@ -120,20 +138,21 @@ export const Documents = () => {
             title="Polityka prywatności"
             inputType="file"
             accept=".pdf"
-            value={privacyPlValue ? privacyPlValue.name : ''}
-            setValue={setPrivacyPlValue}
+            value={formData['privacyPolicy[pl]']?.name}
+            onChange={(e) => onInputChange(e, 'privacyPolicy[pl]', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
         </div>
+
         <div className="flex w-full flex-wrap gap-5 bg-base-dark px-[1.2rem] py-8">
           <InputField
             name="terms-ua"
             title="Правила користування сайтом"
             inputType="file"
             accept=".pdf"
-            value={termsUaValue ? termsUaValue.name : ''}
-            setValue={setTermsUaValue}
+            value={formData['termsOfUse[ua]']?.name}
+            onChange={(e) => onInputChange(e, 'termsOfUse[ua]', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
@@ -142,8 +161,8 @@ export const Documents = () => {
             title="Terms of use of the site"
             inputType="file"
             accept=".pdf"
-            value={termsEnValue ? termsEnValue.name : ''}
-            setValue={setTermsEnValue}
+            value={formData['termsOfUse[en]']?.name}
+            onChange={(e) => onInputChange(e, 'termsOfUse[en]', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
@@ -152,8 +171,8 @@ export const Documents = () => {
             title="Warunki korzystania z serwisu"
             inputType="file"
             accept=".pdf"
-            value={termsPlValue ? termsPlValue.name : ''}
-            setValue={setTermsPlValue}
+            value={formData['termsOfUse[en]']?.name}
+            onChange={(e) => onInputChange(e, 'termsOfUse[en]', maxFileSize)}
             maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />

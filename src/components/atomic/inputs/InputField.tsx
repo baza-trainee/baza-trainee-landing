@@ -1,9 +1,9 @@
 import {
-  ChangeEvent,
   ForwardedRef,
   InputHTMLAttributes,
   ReactNode,
   useContext,
+  useId,
 } from 'react';
 
 import {
@@ -14,7 +14,6 @@ import {
 import EyeClosed from '@/components/common/icons/EyeClosed';
 import EyeOpen from '@/components/common/icons/EyeOpen';
 import { GlobalContext } from '@/store/globalContext';
-import { formatBytes } from '@/utils/formatBytes';
 
 export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
@@ -24,7 +23,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   //icon?: ReactNode;
   //enableTranslator?: boolean;
   forwardedRef?: ForwardedRef<HTMLInputElement>;
-  setValue: any;
+  //setValue: any;
   inputType?: any;
   maxSize?: number;
   name: string;
@@ -35,7 +34,7 @@ const InputField = ({
   errorText,
   placeholderText,
   value,
-  setValue,
+  //setValue,
   inputType = 'text',
   maxSize = 1000,
   iconClickHandler,
@@ -45,6 +44,7 @@ const InputField = ({
   name,
   ...rest
 }: InputFieldProps) => {
+  const id = useId();
   let icon: ReactNode;
   let type: string;
   let isIconActive = true;
@@ -99,7 +99,7 @@ const InputField = ({
       icon = null;
       break;
   }
-
+  /*
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     switch (type) {
       case 'file':
@@ -128,7 +128,7 @@ const InputField = ({
         break;
     }
   };
-
+*/
   return (
     <div
       className={`relative mt-[2.8rem] w-full max-w-[32.6rem]
@@ -146,7 +146,7 @@ const InputField = ({
           className={`absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300  `}
         >
           <label
-            htmlFor={name}
+            htmlFor={id}
             className="absolute right-[0.8rem] flex h-full items-center "
           >
             {icon && (
@@ -161,7 +161,7 @@ const InputField = ({
           </label>
 
           <input
-            id={name}
+            id={id}
             //ref={forwardedRef}
             name={name || title}
             className={`${
@@ -169,7 +169,7 @@ const InputField = ({
             } h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
               type === 'file' ? 'opacity-0' : ''
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
-            onChange={inputChangeHandler}
+            //onChange={inputChangeHandler} //fix change
             placeholder={placeholderText}
             title={placeholderText}
             type={type}
