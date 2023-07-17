@@ -83,7 +83,7 @@ export const Documents = () => {
 
   return (
     <div className="w-full bg-base-light px-[2.4rem] py-[3.2rem]">
-      <AdminTitle>Документи</AdminTitle>
+      <AdminTitle className="mb-[4.5rem] ml-[1.2rem]">Документи</AdminTitle>
 
       <form className="flex flex-col gap-[2.4rem]" onSubmit={handleSubmit}>
         <div className="bg-base-dark px-[1.2rem] py-8">
