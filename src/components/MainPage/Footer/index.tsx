@@ -1,8 +1,7 @@
-import FacebookIcon from '@/components/common/icons/FacebookIcon';
-import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import { ContainerMaxW1200 } from '@/components/atomic';
+import { FacebookIcon, LinkedInIcon } from '@/components/common/icons';
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import { ContainerMaxW1200 } from '@/components/atomic';
 
 const anchoreLinksList = [
   { title: 'Проєкти', href: '#projects' },

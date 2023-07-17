@@ -1,12 +1,10 @@
-'use client';
-import { sidebarSectionsList } from '@/components/AdminPage/SideBar/sidebarSectionsList';
-import { useRouter } from 'next/navigation';
-
 const AdminMainPage = () => {
-  const { push } = useRouter();
+  /*const { push } = useRouter();
+  const path = usePathname();
   const id = sidebarSectionsList[0].id;
   push(`/admin/${id}`);
-  return null;
+  console.log(path);
+  return null;*/
 };
 
 export default AdminMainPage;

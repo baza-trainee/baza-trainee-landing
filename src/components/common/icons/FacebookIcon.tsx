@@ -1,4 +1,4 @@
-const FacebookIcon = ({ className }: { className: string }) => {
+export const FacebookIcon = ({ className }: { className: string }) => {
   return (
     <svg
       viewBox="0 0 32 32"
@@ -9,5 +9,3 @@ const FacebookIcon = ({ className }: { className: string }) => {
     </svg>
   );
 };
-
-export default FacebookIcon;

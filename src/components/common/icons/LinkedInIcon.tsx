@@ -1,4 +1,4 @@
-const LinkedInIcon = ({ className }: { className: string }) => {
+export const LinkedInIcon = ({ className }: { className: string }) => {
   return (
     <svg
       viewBox="0 0 28 28"
@@ -9,5 +9,3 @@ const LinkedInIcon = ({ className }: { className: string }) => {
     </svg>
   );
 };
-
-export default LinkedInIcon;

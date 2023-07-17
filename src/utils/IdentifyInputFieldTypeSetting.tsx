@@ -1,6 +1,9 @@
-import { DateIcon, UploadIcon } from '@/components/common/icons';
-import EyeClosed from '@/components/common/icons/EyeClosed';
-import EyeOpen from '@/components/common/icons/EyeOpen';
+import {
+  DateIcon,
+  EyeClosed,
+  EyeOpen,
+  UploadIcon,
+} from '@/components/common/icons';
 import { ReactNode } from 'react';
 
 export const IdentifyInputFieldTypeSetting = (inputType: string) => {

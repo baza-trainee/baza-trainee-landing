@@ -7,12 +7,12 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   errorText?: string;
   placeholderText?: string;
   iconClickHandler?: () => void;
-  inputType?: any;
+  inputType?: string;
   maxSize?: number;
   name: string;
 }
 
-const InputField = ({
+export const InputField = ({
   title,
   errorText,
   placeholderText,
@@ -23,50 +23,42 @@ const InputField = ({
   ...rest
 }: InputFieldProps) => {
   const id = useId();
-
   const { icon, type, isIconActive, isTranslateShow } =
     IdentifyInputFieldTypeSetting(inputType);
 
   return (
     <div
-      className={`relative mt-[2.8rem] w-full max-w-[32.6rem]
-      ${errorText ? 'text-critic-light' : ''} `}
+      className={`relative mt-[2.8rem] w-full max-w-[32.6rem] ${
+        errorText ? 'text-critic-light' : ''
+      }`}
     >
       {title && <h4 className="absolute -top-[2.8rem]">{title}</h4>}
-
       {errorText && (
         <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
           {errorText}
         </span>
       )}
-      <div className={`${''} `}>
-        <div
-          className={`absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300  `}
-        >
+      <div>
+        <div className="absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300">
           <label
             htmlFor={id}
-            className="absolute right-[0.8rem] flex h-full items-center "
+            className="absolute right-[0.8rem] flex h-full items-center"
           >
             {icon && (
               <button
-                className={`${isIconActive ? `` : ' text-neutral-300'} `}
+                className={`${isIconActive ? '' : ' text-neutral-300'} `}
                 onClick={iconClickHandler}
-                //disabled={!iconClickHandler}
               >
                 {icon}
               </button>
             )}
           </label>
-
           <input
             id={id}
             name={name || title}
-            className={`${
-              /* isIconActive ? 'cursor-pointer' : 'cursor-auto'*/ ''
-            } h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
+            className={`h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
               type === 'file' ? 'opacity-0' : ''
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
-            //onChange={inputChangeHandler} //fix change
             placeholder={placeholderText}
             title={placeholderText}
             type={type}
@@ -75,16 +67,16 @@ const InputField = ({
         </div>
         <div
           className={`
-        h-full w-full  overflow-hidden rounded-[0.4rem] border
-        ${icon ? 'mr-[4.7rem] py-[0.8rem] pl-[0.8rem]' : 'p-[0.8rem]'}
-        ${
-          errorText
-            ? 'border-critic-light caret-critic-light focus:outline-critic-light'
-            : `border-neutral-300 focus:outline-neutral-300 ${
-                value ? '' : 'text-neutral-300'
-              }`
-        }
-        `}
+            h-full w-full overflow-hidden rounded-[0.4rem] border
+            ${icon ? 'mr-[4.7rem] py-[0.8rem] pl-[0.8rem]' : 'p-[0.8rem]'}
+            ${
+              errorText
+                ? 'border-critic-light caret-critic-light focus:outline-critic-light'
+                : `border-neutral-300 focus:outline-neutral-300 ${
+                    value ? '' : 'text-neutral-300'
+                  }`
+            }
+          `}
         >
           {value || placeholderText}
         </div>
@@ -99,5 +91,3 @@ const InputField = ({
 };
 
 InputField.displayName = 'InputField';
-
-export { InputField };

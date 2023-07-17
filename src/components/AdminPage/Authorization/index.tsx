@@ -9,10 +9,10 @@ import {
 import { GlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { localStorageHandler } from '@/utils/localStorageHandler';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
+import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
 
 const recoverLink = '#'; // TODO: Replace with actual recover link
 
@@ -25,9 +25,8 @@ const Authorization = () => {
 
   useEffect(() => {
     if (!isError && data) {
-      push('/admin');
-      localStorageHandler.setItem('token', data.token);
-      localStorageHandler.setItem('id', data._id);
+      const id = sidebarSectionsList[0].id;
+      push(`/admin/${id}`);
     }
 
     if (isError) {
@@ -48,7 +47,15 @@ const Authorization = () => {
   }, [isError, data, setAlertInfo, push]);
 
   const loginHandler = async () => {
-    dispatch({ email, password });
+    if (email && password) {
+      dispatch({ email, password });
+    } else {
+      setAlertInfo({
+        state: 'info',
+        title: 'Не заповнені поля',
+        textInfo: `Поля логін та пароль повинні бути заповнені`,
+      });
+    }
   };
 
   return (
@@ -58,7 +65,7 @@ const Authorization = () => {
         <InputField
           title="Логін"
           value={email}
-          setValue={setEmail}
+          onChange={(e) => setEmail(e.target.value)}
           inputType="text"
           name="login"
           placeholderText="Введіть логін"
@@ -67,7 +74,7 @@ const Authorization = () => {
           name="password"
           title="Пароль"
           value={password}
-          setValue={setPassword}
+          onChange={(e) => setPassword(e.target.value)}
           placeholderText="Введіть пароль"
         />
         <Link
