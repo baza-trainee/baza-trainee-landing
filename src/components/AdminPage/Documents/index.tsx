@@ -34,12 +34,14 @@ export const Documents = () => {
 
   useEffect(() => {
     console.log(data);
-    if (!isError && data)
+    if (!isError && data) {
       setAlertInfo({
         state: 'info',
         title: 'Документи оновленні успішно',
         textInfo: `Документи оновленні`,
       });
+      resetHandler();
+    }
     if (isError)
       setAlertInfo({
         state: 'error',
@@ -59,7 +61,6 @@ export const Documents = () => {
     termsUaValue && formData.append('termsOfUse[ua]', termsUaValue);
     termsPlValue && formData.append('termsOfUse[pl]', termsPlValue);
     dispatch(formData);
-    resetHandler();
   };
 
   return (
