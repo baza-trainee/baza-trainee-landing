@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 
-const recoverLink = 'https://youtu.be/dQw4w9WgXcQ'; // TODO: Replace with actual recover link
+const recoverLink = '#'; // TODO: Replace with actual recover link
 
 const Authorization = () => {
   const [email, setEmail] = useState<string>('');
@@ -40,8 +40,8 @@ const Authorization = () => {
       } else {
         setAlertInfo({
           state: 'error',
-          title: 'Помилка в логіні та/або паролі',
-          textInfo: `Перевірте логін та пароль і спробуйте ще раз`,
+          title: 'Невірні облікові дані',
+          textInfo: `Надані облікові дані невірні. Будь ласка, перевірте своє імʼя користувача та пароль і спробуйте ще раз`,
         });
       }
     }
