@@ -171,7 +171,7 @@ const InputField = ({
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
             onChange={inputChangeHandler}
             placeholder={placeholderText}
-            //title={value || placeholderText} FixIt
+            title={placeholderText}
             type={type}
             {...rest}
           />

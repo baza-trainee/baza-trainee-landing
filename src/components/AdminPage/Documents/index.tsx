@@ -38,18 +38,17 @@ export const Documents = () => {
       setAlertInfo({
         state: 'info',
         title: 'Документи оновленні успішно',
-        textInfo: `${data}`,
+        textInfo: `Документи оновленні`,
       });
     if (isError)
       setAlertInfo({
-        state: 'info',
-        title: 'Документи оновленні успішно',
-        textInfo: `${data}`,
+        state: 'error',
+        title: 'Помилка при оновленні документів',
+        textInfo: 'Спробуйте пізніше',
       });
-  }, [isError, data]);
+  }, [isError, data, setAlertInfo]);
 
   const handleSubmit = () => {
-    console.log('first');
     const formData = new FormData();
     reportValue && formData.append('report', reportValue);
     statuteValue && formData.append('statute', statuteValue);
@@ -59,8 +58,8 @@ export const Documents = () => {
     termsEnValue && formData.append('termsOfUse[en]', termsEnValue);
     termsUaValue && formData.append('termsOfUse[ua]', termsUaValue);
     termsPlValue && formData.append('termsOfUse[pl]', termsPlValue);
-    console.log(formData.values.toString());
     dispatch(formData);
+    resetHandler();
   };
 
   return (
