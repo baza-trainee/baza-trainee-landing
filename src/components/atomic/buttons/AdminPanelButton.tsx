@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
 const primaryEnabled = 'bg-neutral-75 text-neutral-300';
 const primaryDisabled =
@@ -7,8 +7,17 @@ const secondaryEnabled = 'border-neutral-300 text-neutral-300';
 const secondaryDisabled =
   'border-neutral-800 bg-white text-neutral-800 hover:bg-neutral-500 hover:text-white';
 
-export const AdminPanelButton: FC<any> = ({
-  //fix any
+interface AdminPanelButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  className?: string;
+  variant?: 'primary' | 'secondary';
+  icon?: ReactNode;
+  disabled?: boolean;
+  iconOnly?: boolean;
+}
+
+export const AdminPanelButton: FC<AdminPanelButtonProps> = ({
   children,
   className = '',
   variant = 'primary',
