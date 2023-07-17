@@ -1,29 +1,12 @@
-import {
-  ForwardedRef,
-  InputHTMLAttributes,
-  ReactNode,
-  useContext,
-  useId,
-} from 'react';
-
-import {
-  DateIcon,
-  TranslatorIcon,
-  UploadIcon,
-} from '@/components/common/icons';
-import EyeClosed from '@/components/common/icons/EyeClosed';
-import EyeOpen from '@/components/common/icons/EyeOpen';
-import { GlobalContext } from '@/store/globalContext';
+import { TranslatorIcon } from '@/components/common/icons';
+import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
+import { InputHTMLAttributes, useId } from 'react';
 
 export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
   placeholderText?: string;
   iconClickHandler?: () => void;
-  //icon?: ReactNode;
-  //enableTranslator?: boolean;
-  forwardedRef?: ForwardedRef<HTMLInputElement>;
-  //setValue: any;
   inputType?: any;
   maxSize?: number;
   name: string;
@@ -34,101 +17,16 @@ const InputField = ({
   errorText,
   placeholderText,
   value,
-  //setValue,
   inputType = 'text',
-  maxSize = 1000,
   iconClickHandler,
-  //icon,
-  //enableTranslator,
-  //forwardedRef,
   name,
   ...rest
 }: InputFieldProps) => {
   const id = useId();
-  let icon: ReactNode;
-  let type: string;
-  let isIconActive = true;
-  let isTranslateShow = false;
-  const { setAlertInfo } = useContext(GlobalContext);
 
-  switch (inputType) {
-    case 'file':
-      type = 'file';
-      icon = <UploadIcon />;
-      break;
+  const { icon, type, isIconActive, isTranslateShow } =
+    IdentifyInputFieldTypeSetting(inputType);
 
-    case 'password-close':
-      type = 'password';
-      icon = <EyeClosed />;
-      break;
-
-    case 'password-open':
-      type = 'text';
-      icon = <EyeOpen />;
-      break;
-
-    case 'en':
-      type = 'text';
-      isIconActive = false;
-      isTranslateShow = true;
-      icon = <p className="text-[2rem] font-semibold">EN</p>;
-      break;
-
-    case 'ua':
-      type = 'text';
-      isIconActive = false;
-      isTranslateShow = true;
-      icon = <p className="text-[2rem] font-semibold">UA</p>;
-      break;
-
-    case 'pl':
-      type = 'text';
-      isIconActive = false;
-      isTranslateShow = true;
-      icon = <p className="text-[2rem] font-semibold">PL</p>;
-      break;
-
-    case 'date':
-      type = 'date';
-      icon = <DateIcon />;
-      break;
-
-    default:
-      type = 'text';
-      isIconActive = false;
-      icon = null;
-      break;
-  }
-  /*
-  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    switch (type) {
-      case 'file':
-        {
-          const files = e.currentTarget.files;
-          if (files && files[0].size <= maxSize) {
-            setValue(files[0]);
-          } else {
-            setValue(null);
-          }
-          if (files && files[0].size >= maxSize)
-            setAlertInfo({
-              state: 'error',
-              title: 'Перевищення розміру файлу',
-              textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
-                maxSize
-              )}`,
-            });
-        }
-        break;
-
-      default:
-        {
-          setValue(e.currentTarget.value);
-        }
-        break;
-    }
-  };
-*/
   return (
     <div
       className={`relative mt-[2.8rem] w-full max-w-[32.6rem]
@@ -162,7 +60,6 @@ const InputField = ({
 
           <input
             id={id}
-            //ref={forwardedRef}
             name={name || title}
             className={`${
               /* isIconActive ? 'cursor-pointer' : 'cursor-auto'*/ ''
@@ -177,7 +74,6 @@ const InputField = ({
           />
         </div>
         <div
-          //ref={forwardedRef}
           className={`
         h-full w-full  overflow-hidden rounded-[0.4rem] border
         ${icon ? 'mr-[4.7rem] py-[0.8rem] pl-[0.8rem]' : 'p-[0.8rem]'}
