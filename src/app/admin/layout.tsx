@@ -1,5 +1,5 @@
 import { Sidebar } from '@/components/AdminPage/SideBar';
-import { WithAuth } from '@/components/AdminPage/withAuth';
+import { WithAuth } from '@/components/AdminPage/WithAuth';
 
 export const metadata = {
   title: 'Baza-Trainee',

@@ -7,9 +7,6 @@ module.exports = {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import "@/styles/styles.scss";`,
   },
-  experimental: {
-    serverActions: true,
-  },
   async rewrites() {
     return [
       {
@@ -26,9 +23,8 @@ module.exports = {
     const proxy = createProxyMiddleware({
       target: url,
       changeOrigin: true,
-      cookieDomainRewrite: '', // Enable cookie sharing
+      cookieDomainRewrite: '',
       secure: true,
-      // If the backend is not using HTTPS
     });
 
     return {

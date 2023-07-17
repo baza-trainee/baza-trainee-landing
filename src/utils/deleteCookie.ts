@@ -1,5 +1,3 @@
-'use server';
-
 import { cookies } from 'next/dist/client/components/headers';
 
 export async function deleteTokenCookie() {
