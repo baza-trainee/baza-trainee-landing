@@ -88,7 +88,6 @@ export const Documents = () => {
       <form className="flex flex-col gap-[2.4rem]" onSubmit={handleSubmit}>
         <div className="bg-base-dark px-[1.2rem] py-8">
           <InputField
-            name="report"
             title="Звітність"
             inputType="file"
             accept=".pdf"
@@ -101,7 +100,6 @@ export const Documents = () => {
 
         <div className="bg-base-dark px-[1.2rem] py-8">
           <InputField
-            name="statute"
             title="Статут"
             inputType="file"
             accept=".pdf"
@@ -114,7 +112,6 @@ export const Documents = () => {
 
         <div className="flex w-full flex-wrap gap-5 bg-base-dark px-[1.2rem] py-8">
           <InputField
-            name="privacy-ua"
             title="Політика конфіденційності"
             inputType="file"
             accept=".pdf"
@@ -124,7 +121,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
           <InputField
-            name="privacy-en"
             title="Privacy Policy"
             inputType="file"
             accept=".pdf"
@@ -134,7 +130,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
           <InputField
-            name="privacy-pl"
             title="Polityka prywatności"
             inputType="file"
             accept=".pdf"
@@ -147,7 +142,6 @@ export const Documents = () => {
 
         <div className="flex w-full flex-wrap gap-5 bg-base-dark px-[1.2rem] py-8">
           <InputField
-            name="terms-ua"
             title="Правила користування сайтом"
             inputType="file"
             accept=".pdf"
@@ -157,7 +151,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
           <InputField
-            name="terms-en"
             title="Terms of use of the site"
             inputType="file"
             accept=".pdf"
@@ -167,7 +160,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
           <InputField
-            name="terms-pl"
             title="Warunki korzystania z serwisu"
             inputType="file"
             accept=".pdf"

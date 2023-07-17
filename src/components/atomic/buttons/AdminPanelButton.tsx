@@ -5,7 +5,7 @@ const primaryDisabled =
   'bg-neutral-800 text-white hover:bg-white hover:text-neutral-800';
 const secondaryEnabled = 'border-neutral-300 text-neutral-300';
 const secondaryDisabled =
-  'border-neutral-800 bg-white text-neutral-800 hover:bg-neutral-800 hover:text-white';
+  'border-neutral-800 bg-white text-neutral-800 hover:bg-neutral-500 hover:text-white';
 
 export const AdminPanelButton: FC<any> = ({
   //fix any
@@ -35,7 +35,7 @@ export const AdminPanelButton: FC<any> = ({
       {...rest}
     >
       {icon && (
-        <div className={`h-[2.4rem] w-[2.4rem] ${iconOnly && 'block-center'}`}>
+        <div className={` h-[2.4rem] w-[2.4rem] ${iconOnly && 'block-center'}`}>
           {icon}
         </div>
       )}
