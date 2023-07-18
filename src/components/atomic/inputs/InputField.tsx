@@ -8,7 +8,6 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholderText?: string;
   iconClickHandler?: () => void;
   inputType?: string;
-  maxSize?: number;
 }
 
 export const InputField = ({
@@ -53,7 +52,7 @@ export const InputField = ({
           </label>
           <input
             id={id}
-            className={`h-full w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
+            className={` w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
               type === 'file' ? 'opacity-0' : ''
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
             placeholder={placeholderText}

@@ -93,7 +93,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['report']?.name}
             onChange={(e) => onInputChange(e, 'report', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
         </div>
@@ -105,7 +104,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['statute']?.name}
             onChange={(e) => onInputChange(e, 'statute', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
         </div>
@@ -117,7 +115,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['privacyPolicy[ua]']?.name}
             onChange={(e) => onInputChange(e, 'privacyPolicy[ua]', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
           <InputField
@@ -126,7 +123,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['privacyPolicy[en]']?.name}
             onChange={(e) => onInputChange(e, 'privacyPolicy[en]', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
           <InputField
@@ -135,7 +131,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['privacyPolicy[pl]']?.name}
             onChange={(e) => onInputChange(e, 'privacyPolicy[pl]', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
         </div>
@@ -147,7 +142,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['termsOfUse[ua]']?.name}
             onChange={(e) => onInputChange(e, 'termsOfUse[ua]', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
           <InputField
@@ -156,7 +150,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['termsOfUse[en]']?.name}
             onChange={(e) => onInputChange(e, 'termsOfUse[en]', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
           <InputField
@@ -165,7 +158,6 @@ export const Documents = () => {
             accept=".pdf"
             value={formData['termsOfUse[en]']?.name}
             onChange={(e) => onInputChange(e, 'termsOfUse[en]', maxFileSize)}
-            maxSize={SETTINGS.fileSizeLimits.report}
             placeholderText="Завантажте документ"
           />
         </div>
