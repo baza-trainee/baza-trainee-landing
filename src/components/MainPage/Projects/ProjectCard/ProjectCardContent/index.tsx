@@ -1,4 +1,4 @@
-import ProjectComplexity from '@/components/common/ProjectCard/ProjectComplexity';
+import ProjectComplexity from '../ProjectComplexity';
 import LevelIcon from '@/components/common/icons/LevelIcon';
 import StartIcon from '@/components/common/icons/StartIcon';
 import TimeIcon from '@/components/common/icons/TimeIcon';

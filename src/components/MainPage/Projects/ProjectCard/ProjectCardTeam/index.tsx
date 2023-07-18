@@ -1,5 +1,5 @@
-import ProjectTeamMembers from '@/components/common/ProjectCard/ProjectTeamMembers';
-import CloseIcon from '../../icons/CloseIcon';
+import CloseIcon from '@/components/common/icons/CloseIcon';
+import ProjectTeamMembers from '../ProjectTeamMembers';
 import styles from './styles.module.scss';
 const ProjectCardTeam = ({
   onShowTeamHandler,
