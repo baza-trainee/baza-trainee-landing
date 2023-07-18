@@ -18,12 +18,12 @@ export const IdentifyInputFieldTypeSetting = (inputType: string) => {
       icon = <UploadIcon />;
       break;
 
-    case 'password-close':
+    case 'password-hide':
       type = 'password';
       icon = <EyeClosed />;
       break;
 
-    case 'password-open':
+    case 'password-show':
       type = 'text';
       icon = <EyeOpen />;
       break;
