@@ -30,11 +30,13 @@ module.exports = {
     return [
       {
         source: '/api/v1/:path*',
-        destination: `${url}/api/v1/:path*`,
+        destination: `/api/v1/:path*`,
+        //destination: `${url}/api/v1/:path*`, Build issue: `destination` does not start with `/`, `http://`, or `https://` for route {"source":"/api/v1/:path*","destination":"undefined/api/v1/:path*"}
       },
       {
         source: '/admin/api/v1/:path*',
-        destination: `${url}/api/v1/:path*`,
+        destination: `/api/v1/:path*`,
+        // destination: `${url}/api/v1/:path*`,//Build issue: `destination` does not start with `/`, `http://`, or `https://` for route {"source":"/api/v1/:path*","destination":"undefined/api/v1/:path*"}
       },
     ];
   },
