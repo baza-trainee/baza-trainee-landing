@@ -108,7 +108,7 @@ export const Documents = () => {
           />
         </div>
 
-        <div className="flex w-full flex-wrap gap-5 bg-base-dark px-[1.2rem] py-8">
+        <div className="flex w-full flex-wrap gap-[2.4rem] bg-base-dark px-[1.2rem] py-8">
           <InputField
             title="Політика конфіденційності"
             inputType="file"
@@ -135,7 +135,7 @@ export const Documents = () => {
           />
         </div>
 
-        <div className="flex w-full flex-wrap gap-5 bg-base-dark px-[1.2rem] py-8">
+        <div className="flex w-full flex-wrap gap-[2.4rem] bg-base-dark px-[1.2rem] py-8">
           <InputField
             title="Правила користування сайтом"
             inputType="file"
