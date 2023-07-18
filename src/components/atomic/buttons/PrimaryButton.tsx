@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { TButtonProps } from '../types';
+import { ButtonHTMLAttributes, FC } from 'react';
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const PrimaryButton: FC<TButtonProps> = ({
+export const PrimaryButton: FC<ButtonProps> = ({
   children,
   className = '',
   ...otherProps

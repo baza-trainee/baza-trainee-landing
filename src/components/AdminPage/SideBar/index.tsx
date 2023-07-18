@@ -1,14 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { localStorageHandler } from '@/utils/localStorageHandler';
+import { useEffect, useState } from 'react';
 
 import { AdminPanelButton } from '@/components/atomic';
-import { SideBarMenuItem } from './SideBarMenuItem';
 import { LogOutIcon, LogoMain, MultiArrow } from '@/components/common/icons';
+import { deleteTokenCookie } from '@/utils/deleteCookie';
+import { useRouter } from 'next/navigation';
+import { SideBarMenuItem } from './SideBarMenuItem';
 import { sidebarSectionsList } from './sidebarSectionsList';
 
 const Sidebar = () => {
+  const { push } = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const toggleSidebar = () => {
@@ -21,9 +24,22 @@ const Sidebar = () => {
     value && setIsSidebarOpen(!!value);
   }, []);
 
+  const handleLogOut = () => {
+    deleteTokenCookie();
+    push('/');
+  };
+
   return (
-    <div className={`flex min-h-screen shrink-0 flex-col transition-all ${isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'}`}>
-      <div className={`h-[10.4rem] bg-yellow-500 py-7 ${isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'}`}>
+    <div
+      className={`flex min-h-screen shrink-0 flex-col transition-all ${
+        isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'
+      }`}
+    >
+      <div
+        className={`h-[10.4rem] bg-yellow-500 py-7 ${
+          isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'
+        }`}
+      >
         <LogoMain width="6.8rem" open={isSidebarOpen} />
       </div>
 
@@ -44,14 +60,16 @@ const Sidebar = () => {
             />
           ))}
         </nav>
-
-        <AdminPanelButton
-          variant="secondary"
-          icon={<LogOutIcon />}
-          iconOnly={!isSidebarOpen}
-        >
-          Вийти
-        </AdminPanelButton>
+        <form action={handleLogOut}>
+          <AdminPanelButton
+            variant="secondary"
+            icon={<LogOutIcon />}
+            iconOnly={!isSidebarOpen}
+            type="submit"
+          >
+            Вийти
+          </AdminPanelButton>
+        </form>
       </div>
     </div>
   );

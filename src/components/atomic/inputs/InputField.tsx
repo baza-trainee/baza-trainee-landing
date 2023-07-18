@@ -1,64 +1,85 @@
-import { TranslatorIcon, TranslatorIcon2 } from '@/components/common/icons';
-import { ReactNode } from 'react';
+import { TranslatorIcon } from '@/components/common/icons';
+import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
+import { InputHTMLAttributes, useId } from 'react';
 
-interface InputFieldProps {
-  label?: string;
+export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+  title?: string;
   errorText?: string;
-  type?: string;
+  placeholderText?: string;
   iconClickHandler?: () => void;
-  icon?: ReactNode;
-  enableTranslator?: boolean;
+  inputType?: string;
 }
 
-const InputField = ({
-  label,
+export const InputField = ({
+  title,
   errorText,
-  type = 'text',
+  placeholderText,
+  value,
+  inputType = 'text',
   iconClickHandler,
-  icon,
-  enableTranslator,
   ...rest
 }: InputFieldProps) => {
+  const id = useId();
+  const { icon, type, isIconActive, isTranslateShow } =
+    IdentifyInputFieldTypeSetting(inputType);
+
   return (
     <div
-      className={`relative mb-[2.2rem] mt-[2.8rem] max-w-[32.6rem]
-      ${errorText && 'text-critic-light'}`}
+      className={`relative mt-[2.8rem] w-full max-w-[32.6rem] ${
+        errorText ? 'text-critic-light' : ''
+      }`}
     >
-      {label && <label className="absolute -top-[2.8rem]">{label}</label>}
-
-      {/* Without conditional rendering */}
-      <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
-        {errorText}
-      </span>
-
-      <input
-        className={`
-        h-[4rem] w-full rounded-[0.4rem] border
-        ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}
-        ${
-          errorText
-            ? 'border-critic-light caret-critic-light focus:outline-critic-light'
-            : 'border-neutral-300 focus:outline-neutral-300'
-        }
-        `}
-        type={type}
-        {...rest}
-      />
-
-      {icon && (
-        <button
-          className="absolute right-[0.8rem] top-[0.8rem] text-neutral-300"
-          onClick={iconClickHandler}
-          disabled={!iconClickHandler}
-        >
-          {icon}
-        </button>
+      {title && <h4 className="absolute -top-[2.8rem]">{title}</h4>}
+      {errorText && (
+        <span className="absolute -bottom-[2.2rem] text-[1.2rem]">
+          {errorText}
+        </span>
       )}
-
-      {enableTranslator && (
+      <div>
+        <div className="absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300">
+          <label
+            htmlFor={id}
+            className="absolute right-[0.8rem] flex h-full items-center"
+          >
+            {icon && (
+              <button
+                className={`${isIconActive ? '' : ' text-neutral-300'} `}
+                onClick={iconClickHandler}
+              >
+                {icon}
+              </button>
+            )}
+          </label>
+          <input
+            id={id}
+            className={` w-full rounded-[0.4rem] border border-neutral-300 outline-0 placeholder:text-neutral-300 focus:outline-neutral-300 ${
+              type === 'file' ? 'opacity-0' : ''
+            } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
+            placeholder={placeholderText}
+            title={title}
+            type={type}
+            {...rest}
+          />
+        </div>
+        <div
+          className={`
+            h-full w-full overflow-hidden rounded-[0.4rem] border
+            ${icon ? 'mr-[4.7rem] py-[0.8rem] pl-[0.8rem]' : 'p-[0.8rem]'}
+            ${
+              errorText
+                ? 'border-critic-light caret-critic-light focus:outline-critic-light'
+                : `border-neutral-300 focus:outline-neutral-300 ${
+                    value ? '' : 'text-neutral-300'
+                  }`
+            }
+          `}
+        >
+          {value || placeholderText}
+        </div>
+      </div>
+      {isTranslateShow && (
         <button className="absolute -top-12 right-[0.5rem] flex text-neutral-300">
           <TranslatorIcon />
-          {/* <TranslatorIcon2 /> */}
         </button>
       )}
     </div>
@@ -66,5 +87,3 @@ const InputField = ({
 };
 
 InputField.displayName = 'InputField';
-
-export { InputField };

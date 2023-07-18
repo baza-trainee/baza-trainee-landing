@@ -42,7 +42,7 @@ export const AlertWindow: React.FC = () => {
 
   return (
     <div
-      className="backdrop-brightness-10 fixed inset-0 flex items-center justify-center backdrop-blur-sm"
+      className="backdrop-brightness-10 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
       ref={bodyScrollLockRef}
     >
       <div

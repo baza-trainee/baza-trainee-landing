@@ -1,21 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { InputField } from './InputField';
-import { Eyes } from '@/components/common/icons';
+import { InputField, InputFieldProps } from './InputField';
 
-export const PasswordInput = ({ ...rest }) => {
-  const [inputType, setInputType] = useState<'text' | 'password'>('password');
+export const PasswordInput = ({ ...rest }: InputFieldProps) => {
+  const [inputType, setInputType] = useState<'password-show' | 'password-hide'>(
+    'password-hide'
+  );
 
   const iconClickHandler = () => {
-    setInputType((prev) => (prev === 'password' ? 'text' : 'password'));
+    setInputType((prev) =>
+      prev === 'password-show' ? 'password-hide' : 'password-show'
+    );
   };
 
   return (
     <InputField
-      icon={<Eyes open={inputType !== 'password'} />}
-      type={inputType}
       iconClickHandler={iconClickHandler}
+      inputType={inputType}
       {...rest}
     />
   );

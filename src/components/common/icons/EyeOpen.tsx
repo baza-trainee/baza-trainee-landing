@@ -1,4 +1,4 @@
-const EyeOpen = ({ fill = '#121212', width = 24, height = 24 }) => (
+export const EyeOpen = ({ fill = '#121212', width = 24, height = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -18,4 +18,4 @@ const EyeOpen = ({ fill = '#121212', width = 24, height = 24 }) => (
     />
   </svg>
 );
-export default EyeOpen;
+

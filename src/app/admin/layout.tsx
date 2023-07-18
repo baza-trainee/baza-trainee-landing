@@ -1,17 +1,18 @@
 import { Sidebar } from '@/components/AdminPage/SideBar';
+import { WithAuth } from '@/components/AdminPage/WithAuth';
 
 export const metadata = {
   title: 'Baza-Trainee',
 };
 
-export default function AdminPageLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function AdminPageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="flex bg-base-dark">
-      <Sidebar /> {children}
-    </main>
+    <WithAuth>
+      <main className="flex bg-base-dark">
+        <Sidebar /> {children}
+      </main>
+    </WithAuth>
   );
 }
+
+export default AdminPageLayout;
