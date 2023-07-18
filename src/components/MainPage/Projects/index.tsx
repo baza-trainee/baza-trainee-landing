@@ -1,57 +1,22 @@
 'use client';
 
 import ProjectCard from '@/components/common/ProjectCard';
-import { MultiArrow } from '@/components/common/icons';
-import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { useState } from 'react';
-import { projects } from './projects';
+import { TProjects, projects } from './projects';
 import styles from './styles.module.scss';
-import { ContainerMaxW1200 } from '@/components/atomic';
+import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
+import { SearchBar } from './SearchBar';
 
 const Projects = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredProjects, setFilteredProjects] = useState(projects);
-
-  const handleSearchChange = (event: any) => {
-    event.preventDefault();
-    setSearchQuery(event.target.value);
-    const filtered = projects.filter((project) =>
-      project.description
-        .trim()
-        .toLowerCase()
-        .includes(event.target.value.trim().toLowerCase())
-    );
-    setFilteredProjects(filtered);
-  };
+  const [filteredProjects, setFilteredProjects] = useState<TProjects>(projects);
 
   return (
-    <section className={styles['projects-section']} id="projects">
-      <ContainerMaxW1200 className="flex-col">
-        <h3 className={styles['projects-section__title']}>Проєкти</h3>
-        <div className={styles['projects-section__form-container']}>
-          <form className={styles['projects-section__form']}>
-            <input
-              type="text"
-              name="search"
-              id="search-input"
-              className={styles['projects-section__form__input']}
-              placeholder="Введіть ключове слово для пошуку"
-              pattern="[а-яА-Яa-zA-ZҐґЄєІіЇї]{2,50}"
-              title="Поле пошуку приймає ключові слова від 2-х до 50-ти символів. Поле пошуку приймає латиницю і кирилицю"
-              minLength={2}
-              maxLength={50}
-              value={searchQuery}
-              onChange={handleSearchChange}
-              required
-            />
-            <button
-              type="submit"
-              className={styles['projects-section__form__button']}
-            >
-              <MagnifierIcon />
-            </button>
-          </form>
-        </div>
+    <section className="pt-48" id="projects">
+      <ContainerMaxW1200 className="flex-col gap-[3.2rem]">
+        <h3 className="mx-auto text-[3.8rem] font-bold">Проєкти</h3>
+
+        <SearchBar setFilteredProjects={setFilteredProjects} />
+
         <>
           {filteredProjects.length === 0 && (
             <p>Sorry! There are no projects.</p>
@@ -62,16 +27,8 @@ const Projects = () => {
             ))}
           </ul>
         </>
-        {filteredProjects.length !== 0 && (
-          <div className={styles['projects-section__load-more__container']}>
-            <button className={styles['projects-section__load-more']}>
-              <span className={styles['projects-section__load-more__text']}>
-                Більше проєктів
-              </span>
-              <MultiArrow direction="bottom" />
-            </button>
-          </div>
-        )}
+
+        {filteredProjects.length > 8 && <MoreProjectsButton />}
       </ContainerMaxW1200>
     </section>
   );

@@ -1134,3 +1134,5 @@ export const projects = [
     updatedAt: '2023-05-27T16:25:16.057Z',
   },
 ];
+
+export type TProjects = typeof projects;

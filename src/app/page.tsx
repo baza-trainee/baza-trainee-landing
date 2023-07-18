@@ -19,7 +19,7 @@ export default function Home() {
       <Partners />
       <Achievements />
       <Reviews />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
