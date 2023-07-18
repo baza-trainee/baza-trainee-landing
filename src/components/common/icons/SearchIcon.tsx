@@ -1,7 +1,5 @@
 import { SVGProps } from 'react';
 
-// interface Props extends SVGProps<SVGSVGElement>
-
 export const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg

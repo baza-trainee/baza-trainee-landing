@@ -1,11 +1,11 @@
 'use client';
 
-import ProjectCard from '@/components/common/ProjectCard';
 import { useState } from 'react';
 import { TProjects, projects } from './projects';
 import styles from './styles.module.scss';
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
 import { SearchBar } from './SearchBar';
+import ProjectCard from './ProjectCard';
 
 const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState<TProjects>(projects);
