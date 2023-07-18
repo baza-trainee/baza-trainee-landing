@@ -9,5 +9,25 @@ html {
 
 body {
   @apply text-[1.6rem] text-neutral-800;
-  @apply h-screen;
+  @apply bg-white;
+  @apply min-h-screen;
+}
+
+@layer utilities {
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .block-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+input[type='file']::file-selector-button {
+  display: none;
 }

@@ -2,7 +2,7 @@
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import ProjectCard from '@/components/common/ProjectCard';
-import { ArrowBottomIcon } from '@/components/common/icons';
+import { MultiArrow } from '@/components/common/icons';
 import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
 import { useContext, useState } from 'react';
 // import { projects } from './projects';
@@ -136,7 +136,7 @@ export const Projects = ({
               <span className={styles['projects-section__load-more__text']}>
                 {dictionary.moreProjects}
               </span>
-              <ArrowBottomIcon />
+              <MultiArrow direction="bottom" />
             </button>
           </div>
         )}

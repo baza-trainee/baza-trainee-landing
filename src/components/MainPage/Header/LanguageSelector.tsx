@@ -3,7 +3,7 @@
 import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
 import { useContext, useState } from 'react';
 
-import { ArrowBottomIcon } from '@/components/common/icons';
+import { MultiArrow } from '@/components/common/icons';
 import { useRouter } from 'next/navigation';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
@@ -39,7 +39,7 @@ const LanguageSelector = () => {
       <button className={btnStyle} id="active-lang" onClick={handleMenuClick}>
         {landingLanguage.toUpperCase()}
 
-        <ArrowBottomIcon open={isMenuOpen} />
+        <MultiArrow direction="bottom" open={isMenuOpen} />
       </button>
 
       <ul className={menuStyle} id="lang-list">

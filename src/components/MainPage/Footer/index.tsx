@@ -1,7 +1,6 @@
 'use client';
 import { ContainerMaxW1200 } from '@/components/atomic';
-import FacebookIcon from '@/components/common/icons/FacebookIcon';
-import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import { FacebookIcon, LinkedInIcon } from '@/components/common/icons';
 import { GlobalContext } from '@/store/globalContext';
 import Link from 'next/link';
 import { useContext } from 'react';

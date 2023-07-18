@@ -38,7 +38,7 @@ export const SingleSlide = ({
         />
       </div>
 
-      <div className="whitespace-nowrap font-secondary text-[2rem]">
+      <div className="font-secondary whitespace-nowrap text-[2rem]">
         <h4 className="">{name[lang]}</h4>
         {/* <p className="">{specialization}</p> */}
       </div>

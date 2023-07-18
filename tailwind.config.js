@@ -5,7 +5,6 @@ module.exports = {
     extend: {
       colors: {
         white: '#FCFCFC',
-        black: '#151515',
         yellow: {
           500: '#FFD210',
           600: '#FFBD00',
@@ -47,9 +46,12 @@ module.exports = {
           light: '#14FF18',
           dark: '#1CD41F',
         },
+        blue: '#009aff',
+        dark: '#262626',
+        'admin-header': '#3D4756',
       },
       fontFamily: {
-        secondary: ['var(--font-inter)'],
+        // secondary: ['var(--font-inter)'],
       },
       linearGradientColors: {
         black: [
@@ -68,14 +70,6 @@ module.exports = {
           'rgba(255, 255, 255, 0.02) 100%',
         ],
       },
-      mixin: {
-        'center-block': {
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -84,4 +78,10 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern:
+        /(border|text|fill)-(blue|critic-light|success-dark|yellow-800|dark)/,
+    },
+  ],
 };

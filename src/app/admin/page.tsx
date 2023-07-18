@@ -1,11 +1,10 @@
-import Authorization from '@/components/AdminPage/Authorization';
-import styles from './styles.module.scss';
-const AdminLogin = () => {
-  return (
-    <div className={styles.container}>
-      <Authorization />
-    </div>
-  );
+const AdminMainPage = () => {
+  /*const { push } = useRouter();
+  const path = usePathname();
+  const id = sidebarSectionsList[0].id;
+  push(`/admin/${id}`);
+  console.log(path);
+  return null;*/
 };
 
-export default AdminLogin;
+export default AdminMainPage;

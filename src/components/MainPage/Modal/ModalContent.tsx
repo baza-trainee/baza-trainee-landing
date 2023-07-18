@@ -1,12 +1,12 @@
+import { SupportBazaButton } from '@/components/atomic';
+import { CloseMainIcon } from '@/components/common/icons';
+import usePaymentHandler from '@/hooks/usePayment';
 import { MouseEvent, MutableRefObject } from 'react';
 
 import Link from 'next/link';
 
-import { SupportBazaButton } from '@/components/atomic';
-import { CloseMainIcon } from '@/components/common/icons';
-
 interface IModalContent {
-  handlerShowModal: (e: MouseEvent<HTMLDivElement>) => void;
+  handlerShowModal: (_e: MouseEvent<HTMLDivElement>) => void;
   handleIconClick: () => void;
   bodyScrollLockRef: MutableRefObject<any>;
   dictionary: {
@@ -26,19 +26,21 @@ interface IModalContent {
 }
 
 const linkStyle =
-  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300';
+  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300 hover:bg-neutral-300 hover:text-white';
 
 export const ModalContent = (props: IModalContent) => {
   const { handlerShowModal, handleIconClick, bodyScrollLockRef } = props;
+  const { paymentAmount, handlePayment, handleAmountChange } =
+    usePaymentHandler();
 
   return (
     <section
-      className="duration-250 fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
+      className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >
       <div
-        className="relative w-[79.2rem] rounded-xl bg-white px-28 py-40"
+        className="relative w-[79.2rem] rounded-xl bg-white px-28 py-[12.8rem]"
         id="modalWindow"
       >
         <CloseMainIcon

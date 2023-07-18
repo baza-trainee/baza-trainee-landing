@@ -1,13 +1,13 @@
-const PartnerIcon = ({ className }: { className: string }) => {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      <path d="M5 4V1C5 0.44772 5.44772 0 6 0H14C14.5523 0 15 0.44772 15 1V4H19C19.5523 4 20 4.44772 20 5V19C20 19.5523 19.5523 20 19 20H1C0.44772 20 0 19.5523 0 19V5C0 4.44772 0.44772 4 1 4H5ZM2 15V18H18V15H2ZM2 13H18V6H2V13ZM7 2V4H13V2H7ZM9 10H11V12H9V10Z" />
-    </svg>
-  );
-};
+import { SVGProps } from 'react';
 
-export default PartnerIcon;
+export const PartnerIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M7 5V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4ZM4 16v3h16v-3H4Zm0-2h16V7H4v7ZM9 3v2h6V3H9Zm2 8h2v2h-2v-2Z" />
+  </svg>
+);

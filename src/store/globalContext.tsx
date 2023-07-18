@@ -1,5 +1,6 @@
 'use client';
 
+import { TAlertInfoState } from '@/components/atomic/AlertWindow';
 import axios from 'axios';
 import {
   Dispatch,
@@ -11,6 +12,7 @@ import {
 } from 'react';
 
 export type TLandingLanguage = 'ua' | 'en' | 'pl';
+export type TAlertInfo = null | TAlertInfoState;
 
 export interface IStoreContextType {
   landingLanguage: TLandingLanguage;
@@ -107,6 +109,8 @@ export interface IStoreContextType {
   };
   setLandingLanguage: Dispatch<SetStateAction<TLandingLanguage>>;
   setIsLandingModalShown: Dispatch<SetStateAction<boolean>>;
+  alertInfo: TAlertInfo;
+  setAlertInfo: Dispatch<SetStateAction<TAlertInfo>>;
 }
 
 export const GlobalContext = createContext<IStoreContextType>(
@@ -135,6 +139,7 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
     members: 0,
     employed: 0,
   });
+  const [alertInfo, setAlertInfo] = useState<TAlertInfo>(null);
   const [info, setInfo] = useState<{
     contacts: {
       contactsDataList: {
@@ -275,6 +280,8 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
     achievements,
     isLandingModalShown,
     setIsLandingModalShown,
+    alertInfo,
+    setAlertInfo,
   };
 
   return (
