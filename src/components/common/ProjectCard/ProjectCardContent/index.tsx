@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onShowTeamHandler,
   project,
+  lang,
   isMembersVIsible,
   dictionary,
 }: {
@@ -37,6 +38,7 @@ const ProjectCardContent = ({
       ua: string;
     };
   };
+  lang: 'en' | 'ua' | 'pl';
   isMembersVIsible: boolean;
   dictionary: {
     monthsNames: {
@@ -81,9 +83,9 @@ const ProjectCardContent = ({
     >
       {/* <ProjectCardStatus dictionary={dictionary} statusName={project.status} /> */}
       <div className={styles['projects-section__projects-item__container']}>
-        {/* <h4 className={styles['projects-section__projects-item__title']}>
-          {project.description}
-        </h4> */}
+        <h4 className={styles['projects-section__projects-item__title']}>
+          {project.title[lang]}
+        </h4>
         {/* {project.status === 'active' && (
           <a
             href={project.deployUrl}
@@ -125,6 +127,15 @@ const ProjectCardContent = ({
             </div>
           </li>
         </ul>
+      </div>
+      <div className={styles['projects-section__team']}>
+        <button
+          className={styles['projects-section__team__btn']}
+          id="team-btn"
+          onClick={onShowTeamHandler}
+        >
+          {dictionary.projects.projectTeam}
+        </button>
       </div>
       {/* {project.status === 'active' && (
         <>

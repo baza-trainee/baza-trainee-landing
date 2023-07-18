@@ -1,14 +1,15 @@
 .projects-section {
   &__projects-item {
     width: 37.8rem;
-    height: 46.4rem;
+    height: 50rem;
     color: $color-white;
     position: relative;
     overflow: hidden;
     padding: 2.4rem;
     &__project-card-image {
       position: relative;
-      height: 46.4rem;
+      height: 48rem;
+      border-radius: 0.25rem;
     }
     &__project-card-content {
       position: absolute;

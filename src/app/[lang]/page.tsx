@@ -41,7 +41,7 @@ export default async function Home({
 //   { props: { heroSliders: any; status: number; }; }
 // }> = async () => {
 //   const { data, status } = await axios.get(
-//     'https://baza.foradmin.fun/heroslider'
+//     'https://baza-trainee.tech/api/v1/heroslider'
 //   );
 //   console.log('Data', data);
 //   return {

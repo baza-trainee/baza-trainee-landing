@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import counterHandler from '@/utils/counterHandler';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { GlobalContext } from '@/store/globalContext';
 
 const projects = 7;
 const members = 420;
@@ -26,6 +27,8 @@ export const Achievements = ({
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false);
+
+  const { achievements } = useContext(GlobalContext);
 
   const achievementData = [
     { count: projectsCount, text: dictionary.stats.completedProjects },
@@ -68,15 +71,24 @@ export const Achievements = ({
   return (
     <section className="bg-yellow-500 py-[5.2rem]" ref={componentRef}>
       <ContainerMaxW1200 className="justify-between">
-        {achievementData.map(({ count, plusVisible, text }, i) => (
-          <div key={`achievement_key_${count + i}`} className={'text-center'}>
-            <p className={'text-[5.6rem] font-semibold'}>
-              {count}
-              {plusVisible && '+'}
-            </p>
-
-            <p className={'text-[2rem] font-medium uppercase'}>{text}</p>
-          </div>
+        {[achievements].map((achievement, i) => (
+          <>
+            {Object.keys(achievement).map((_, index) => (
+              <div
+                key={`achievement_key_${Object.keys(achievement)[i] + i}`}
+                className={'text-center'}
+              >
+                <p key={index} className={'text-[5.6rem] font-semibold'}>
+                  {Object.values(achievement)[i]}
+                </p>
+                <p className={'text-[2rem] font-medium uppercase'}>
+                  {' '}
+                  {Object.keys(achievement)[index]}
+                </p>
+              </div>
+            ))}
+            {/* {plusVisible && '+'} */}
+          </>
         ))}
       </ContainerMaxW1200>
     </section>

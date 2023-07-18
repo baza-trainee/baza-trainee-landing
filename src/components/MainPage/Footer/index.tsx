@@ -1,7 +1,10 @@
+'use client';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import FacebookIcon from '@/components/common/icons/FacebookIcon';
 import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+import { GlobalContext } from '@/store/globalContext';
 import Link from 'next/link';
+import { useContext } from 'react';
 import styles from './styles.module.scss';
 
 const contactsDataList = [
@@ -51,6 +54,8 @@ export const Footer = ({
     { title: dictionary.footer.statute, href: '/' },
     { title: dictionary.footer.accountability, href: '/' },
   ];
+
+  const { info } = useContext(GlobalContext);
   return (
     <footer className="bg-neutral-700 py-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
@@ -119,15 +124,16 @@ export const Footer = ({
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--social']}`}
             >
-              {socialsMediaList.map(({ id, iconName: IconComponent, href }) => (
-                <li key={id} className={styles['footer-list__item--social']}>
-                  <Link href={href} className={styles['footer-social-link']}>
-                    <IconComponent
-                      className={styles['footer-social-link__svg']}
-                    />
-                  </Link>
-                </li>
-              ))}
+              {/* {[info].map(({ contacts, documents }, i) => (
+                // <li key={contacts.} className={styles['footer-list__item--social']}>
+                //   <Link href={href} className={styles['footer-social-link']}>
+                //     <IconComponent
+                //       className={styles['footer-social-link__svg']}
+                //     />
+                //   </Link>
+                // </li>
+                <li key={i}>{contacts.contactsDataList.phone1}</li>
+              ))} */}
             </ul>
           </div>
         </div>

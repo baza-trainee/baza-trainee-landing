@@ -1,12 +1,16 @@
 'use client';
+import Image from 'next/image';
 import { useState } from 'react';
 import ProjectCardContent from './ProjectCardContent';
 import ProjectCardTeam from './ProjectCardTeam';
 import styles from './styles.module.scss';
+
 const ProjectCard = ({
   project,
   dictionary,
+  lang,
 }: {
+  lang: 'en' | 'ua' | 'pl';
   project: {
     // imageUrl: string;
     // stack: string[];
@@ -85,19 +89,19 @@ const ProjectCard = ({
             styles['projects-section__projects-item__project-card-image']
           }
         >
-          {/* <Image
-            src={project.imageUrl}
+          <Image
+            src={`https://baza-trainee.tech/api/v1/files/${project.imageUrl}`}
             alt="Project Image"
-            width={378}
-            height={464}
-          /> */}
-          <div className="bg-red-500"></div>
+            fill
+          />
+          {/* <div className="bg-red-500"></div> */}
           <div
             className={
               styles['projects-section__projects-item__project-card-content']
             }
           >
             <ProjectCardContent
+              lang={lang}
               dictionary={dictionary}
               onShowTeamHandler={handleShowTeam}
               project={project}

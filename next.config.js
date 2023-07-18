@@ -15,6 +15,8 @@ module.exports = {
         hostname: 'www.linkedin.com',
       },
       { hostname: 'example.com' },
+      { hostname: 'e.ua' },
+      { hostname: 'baza-trainee.tech' },
     ],
   },
   trailingSlash: true,

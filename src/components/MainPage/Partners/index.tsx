@@ -38,65 +38,26 @@ export const Partners = ({
         <h2 className="mb-[3.2rem] text-center text-6xl font-bold">
           {dictionary.partners.title}
         </h2>
-
-        <Slider {...sliderSettings}>
-          {partners?.map(
-            (partner: { _id: string; imageUrl: string; homeUrl: string }) => (
-              <Link key={partner._id} className="" href={partner.homeUrl}>
-                {/* <div className={nestedElemStyle}>{partner.imageUrl}</div> */}
-                <div className={nestedElemStyle}>
-                  <Image
-                    src={`${partner.homeUrl}/${partner.imageUrl}`}
-                    height={200}
-                    width={200}
-                    alt="partner"
-                  />
-                </div>
-                {/* {partner.homeUrl} */}
-              </Link>
-            )
-          )}
-          {/* <Link className="" href="#">
-            <div className={nestedElemStyle}>1</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>2</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>3</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>4</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>5</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>6</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>7</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>8</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>9</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>10</div>
-          </Link> */}
-        </Slider>
       </ContainerMaxW1200>
+      <Slider {...sliderSettings}>
+        {partners?.map(
+          (partner: { _id: string; imageUrl: string; homeUrl: string }) => (
+            <Link key={partner._id} className="mb-5" href={partner.homeUrl}>
+              {/* <div className={nestedElemStyle}>{partner.imageUrl}</div> */}
+              <div className={nestedElemStyle}>
+                <Image
+                  // https://baza-trainee.tech/api/v1/files/
+                  src={`https://baza-trainee.tech/api/v1/files/${partner.imageUrl}`}
+                  height={100}
+                  width={200}
+                  alt="partner"
+                />
+              </div>
+              {/* {partner.homeUrl} */}
+            </Link>
+          )
+        )}
+      </Slider>
     </section>
   );
 };

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export const SingleSlide = ({
   slideData,
   lang,
@@ -28,7 +30,12 @@ export const SingleSlide = ({
       gap-[2rem] text-neutral-700 sm:flex-row md:gap-[4.8rem] lg:flex-nowrap xl:w-[80rem]"
     >
       <div className="relative h-48 w-48 shrink-0">
-        {/* <Image src={imageUrl} alt={'customer'} fill className="rounded-full" /> */}
+        <Image
+          src={`https://baza-trainee.tech/api/v1/files/${imageUrl}`}
+          alt={'customer'}
+          fill
+          className="rounded-full"
+        />
       </div>
 
       <div className="whitespace-nowrap font-secondary text-[2rem]">

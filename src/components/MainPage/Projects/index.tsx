@@ -122,6 +122,7 @@ export const Projects = ({
           <ul className={styles['projects-section__projects-container']}>
             {projects.map((project) => (
               <ProjectCard
+                lang={lang}
                 dictionary={dictionary}
                 key={project._id}
                 project={project}

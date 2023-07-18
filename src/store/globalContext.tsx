@@ -73,6 +73,38 @@ export interface IStoreContextType {
       }[]
     | never[]
     | [];
+  achievements: {
+    projects: number;
+    members: number;
+    employed: number;
+  };
+  info: {
+    contacts: {
+      contactsDataList: {
+        phone1: number;
+        phone2: number;
+        email: string;
+      };
+      socialsMediaList: {
+        linkedin: string;
+        facebook: string;
+      };
+    };
+    documents: {
+      report: string;
+      statute: string;
+      privacyPolicy: {
+        en: string;
+        pl: string;
+        ua: string;
+      };
+      termsOfUse: {
+        en: string;
+        pl: string;
+        ua: string;
+      };
+    };
+  };
   setLandingLanguage: Dispatch<SetStateAction<TLandingLanguage>>;
   setIsLandingModalShown: Dispatch<SetStateAction<boolean>>;
 }
@@ -98,18 +130,84 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
   >([]);
   const [testimonials, setTestimonials] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [achievements, setAchievements] = useState({
+    projects: 0,
+    members: 0,
+    employed: 0,
+  });
+  const [info, setInfo] = useState<{
+    contacts: {
+      contactsDataList: {
+        phone1: number;
+        phone2: number;
+        email: string;
+      };
+      socialsMediaList: {
+        linkedin: string;
+        facebook: string;
+      };
+    };
+    documents: {
+      report: string;
+      statute: string;
+      privacyPolicy: {
+        en: string;
+        pl: string;
+        ua: string;
+      };
+      termsOfUse: {
+        en: string;
+        pl: string;
+        ua: string;
+      };
+    };
+  }>({
+    contacts: {
+      contactsDataList: {
+        phone1: 0,
+        phone2: 380222222222,
+        email: 'example@example.com',
+      },
+      socialsMediaList: {
+        linkedin: 'https://www.la-la-la-la-la-la.com',
+        facebook: 'https://www.123456789.com',
+      },
+    },
+    documents: {
+      report: 'report.pdf',
+      statute: 'statute.pdf',
+      privacyPolicy: {
+        en: 'privacy_en.pdf',
+        pl: 'privacy_pl.pdf',
+        ua: 'privacy_ua.pdf',
+      },
+      termsOfUse: {
+        en: 'terms_en.pdf',
+        pl: 'terms_pl.pdf',
+        ua: 'terms_ua.pdf',
+      },
+    },
+  });
 
   const getSliders = async () => {
     const { data, status } = await axios.get(
-      'https://baza.foradmin.fun/heroslider'
+      'https://baza-trainee.tech/api/v1/heroslider'
     );
-    console.log('Data', data);
+    console.log('sliders', data);
     setSliders(data);
+  };
+
+  const getAchievements = async () => {
+    const { data, status } = await axios.get(
+      'https://baza-trainee.tech/api/v1/achievements'
+    );
+    console.log('achievements', data);
+    setAchievements(data);
   };
 
   const getPartners = async () => {
     const { data, status } = await axios.get(
-      'https://baza.foradmin.fun/partners'
+      'https://baza-trainee.tech/api/v1/partners'
     );
     // console.log('Data(partners)', data);
     // setPartners(data);
@@ -120,7 +218,7 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
 
   const getTestimonials = async () => {
     const { data, status } = await axios.get(
-      'https://baza.foradmin.fun/testimonials'
+      'https://baza-trainee.tech/api/v1/testimonials'
     );
     console.log('reviews', data);
     setTestimonials(data);
@@ -128,10 +226,24 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
 
   const getProjects = async () => {
     const { data, status } = await axios.get(
-      'https://baza.foradmin.fun/projects'
+      'https://baza-trainee.tech/api/v1/projects'
     );
     console.log('projects', data);
     setProjects(data);
+  };
+
+  const getInfo = async () => {
+    const response = await axios.get(
+      'https://baza-trainee.tech/api/v1/contacts'
+    );
+    const { data, status } = await axios.get(
+      'https://baza-trainee.tech/api/v1/documents'
+    );
+    console.log('documents and contacts', data, response.data);
+    setInfo({
+      documents: data,
+      contacts: response.data,
+    });
   };
 
   useEffect(() => {
@@ -141,6 +253,8 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
     getPartners();
     getTestimonials();
     getProjects();
+    getAchievements();
+    getInfo();
   }, []);
 
   useEffect(() => {
@@ -157,6 +271,8 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
     testimonials,
     setLandingLanguage,
     partners,
+    info,
+    achievements,
     isLandingModalShown,
     setIsLandingModalShown,
   };
