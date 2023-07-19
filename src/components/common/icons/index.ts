@@ -18,6 +18,7 @@ export * from './Partner';
 export * from './ProjectIcon';
 export * from './RecallIcon';
 export * from './ReportIcon';
+export * from './RightIcon';
 export * from './SettingsIcon';
 export * from './SliderIcon';
 export * from './SuccessIcon';
