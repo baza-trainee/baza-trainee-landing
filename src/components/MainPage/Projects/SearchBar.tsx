@@ -1,14 +1,15 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+'use client'
 
-import { projects} from './projects';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
+import { projects } from './projects';
 
 import styles from './styles.module.scss';
 import { SearchIcon } from '@/components/common/icons';
 import { TProjects } from './types';
 
 interface IProps {
-  setFilteredProjects: Dispatch<SetStateAction<TProjects[]>>
+  setFilteredProjects?: Dispatch<SetStateAction<TProjects[]>>;
 }
 
 export const SearchBar = ({ setFilteredProjects }: IProps) => {
@@ -22,7 +23,7 @@ export const SearchBar = ({ setFilteredProjects }: IProps) => {
         .toLowerCase()
         .includes(event.target.value.trim().toLowerCase())
     );
-    setFilteredProjects(filtered);
+    setFilteredProjects && setFilteredProjects(filtered);
   };
 
   return (
@@ -46,7 +47,7 @@ export const SearchBar = ({ setFilteredProjects }: IProps) => {
           type="submit"
           className={styles['projects-section__form__button']}
         >
-          <SearchIcon className='text-neutral-500' />
+          <SearchIcon className="text-neutral-500" />
         </button>
       </form>
     </div>

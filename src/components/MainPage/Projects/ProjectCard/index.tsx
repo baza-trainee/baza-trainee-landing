@@ -33,12 +33,16 @@ const ProjectCard = ({
             styles['projects-section__projects-item__project-card-image']
           }
         >
-          <Image
-            src={project.imageUrl}
-            alt="Project Image"
-            width={378}
-            height={464}
-          />
+          <div className="relative h-[46.4rem] w-[37.8rem] ">
+            <Image
+              src={project.imageUrl}
+              alt="Project Image"
+              // width={378}
+              // height={464}
+              fill
+              objectFit="cover"
+            />
+          </div>
           <div
             className={
               styles['projects-section__projects-item__project-card-content']

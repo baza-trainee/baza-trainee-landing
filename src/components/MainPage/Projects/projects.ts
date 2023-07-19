@@ -183,7 +183,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d6',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/b_reviews.jpg',
     status: 'under-development',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -265,7 +265,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/c_reviews.jpg',
     status: 'formation-of-the-team',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -347,7 +347,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/carousel-slide-2.png',
     status: 'active',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -1134,3 +1134,5 @@ export const projects = [
     updatedAt: '2023-05-27T16:25:16.057Z',
   },
 ];
+
+export type TProjects = typeof projects;
