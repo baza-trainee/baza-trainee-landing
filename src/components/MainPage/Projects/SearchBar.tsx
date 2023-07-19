@@ -1,13 +1,14 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 
-import { projects ,TProjects} from './projects';
+import { projects} from './projects';
 
 
 import styles from './styles.module.scss';
 import { SearchIcon } from '@/components/common/icons';
+import { TProjects } from './types';
 
 interface IProps {
-  setFilteredProjects: Dispatch<SetStateAction<TProjects>>
+  setFilteredProjects: Dispatch<SetStateAction<TProjects[]>>
 }
 
 export const SearchBar = ({ setFilteredProjects }: IProps) => {
