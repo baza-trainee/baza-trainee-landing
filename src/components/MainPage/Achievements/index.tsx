@@ -40,6 +40,18 @@ export const Achievements = ({
     { count: haveJobCount, text: dictionary.stats.employed },
   ];
 
+  const achievementsTexts = [
+    {
+      text: dictionary.stats.completedProjects,
+    },
+    {
+      text: dictionary.stats.involvedParticipants,
+    },
+    {
+      text: dictionary.stats.employed,
+    },
+  ];
+
   useEffect(() => {
     const options = {
       threshold: 0.2,
@@ -83,7 +95,7 @@ export const Achievements = ({
                 </p>
                 <p className={'text-[2rem] font-medium uppercase'}>
                   {' '}
-                  {Object.keys(achievement)[index]}
+                  {achievementsTexts[index].text}
                 </p>
               </div>
             ))}
