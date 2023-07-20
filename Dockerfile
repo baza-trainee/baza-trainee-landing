@@ -5,7 +5,6 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install husky
 COPY . .
-ENV HUSKY_SKIP_INSTALL=1
 RUN npm install
 RUN npm run build
 
