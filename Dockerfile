@@ -10,7 +10,7 @@ FROM node:16-alpine AS server
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 COPY --from=builder /app/.next ./.next
 COPY public ./public 
 EXPOSE 3000
