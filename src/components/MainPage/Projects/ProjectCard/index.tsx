@@ -1,68 +1,49 @@
 'use client';
-import Image from 'next/image';
+
 import { useState } from 'react';
+import Image from 'next/image';
 import ProjectCardContent from './ProjectCardContent';
 import ProjectCardTeam from './ProjectCardTeam';
-import styles from './styles.module.scss';
-const ProjectCard = ({
-  project,
-}: {
-  project: {
-    imageUrl: string;
-    stack: string[];
-    status: string;
-    description: string;
-    link: string;
-    createdAt: string;
-    complexity: number;
-    teamMembers: {
-      role: { name: string; _id: string };
-      user: { _id: string; link: string; name: string };
-    }[];
-  };
-}) => {
+import { ProjectStatus } from './ProjectStatus';
+import { TProjects } from '../types';
+
+const ProjectCard = ({ project }: { project: TProjects }) => {
   const [isMembersVIsible, setIsMembersVIsible] = useState(false);
   const handleShowTeam = () => {
     setIsMembersVIsible((prev) => !prev);
   };
+
   return (
-    <>
-      <li>
-        <div
-          className={
-            styles['projects-section__projects-item__project-card-image']
-          }
-        >
-          <div className="relative h-[46.4rem] w-[37.8rem] ">
-            <Image
-              src={project.imageUrl}
-              alt="Project Image"
-              // width={378}
-              // height={464}
-              fill
-              objectFit="cover"
-            />
-          </div>
-          <div
-            className={
-              styles['projects-section__projects-item__project-card-content']
-            }
-          >
+    <li>
+      <div className="relative h-[46.4rem] w-[37.8rem] overflow-hidden rounded-md">
+        <Image
+          src={project.imageUrl}
+          alt="Project Image"
+          fill
+          objectFit="cover"
+        />
+        <div className="absolute h-full w-full bg-gradient-to-tr from-neutral-500 brightness-50" />
+
+        <div className="flex h-full w-full flex-col justify-between p-[2.4rem]">
+          <ProjectStatus statusName={'active'} />
+
+          <div className=" h-1/2 w-full border border-neutral-900">
             <ProjectCardContent
               onShowTeamHandler={handleShowTeam}
               project={project}
               isMembersVIsible={isMembersVIsible}
             />
-            {isMembersVIsible && (
-              <ProjectCardTeam
-                onShowTeamHandler={handleShowTeam}
-                project={project}
-              />
-            )}
           </div>
         </div>
-      </li>
-    </>
+      </div>
+
+      {/* {isMembersVIsible && (
+          <ProjectCardTeam
+            onShowTeamHandler={handleShowTeam}
+            project={project}
+          />
+        )} */}
+    </li>
   );
 };
 

@@ -37,6 +37,11 @@ export const Projects = async () => {
 
   return (
     <section className="pt-48" id="projects">
+      {/* <div className='mx-auto relative'>
+
+      <ProjectCard  project={projects[0]} />
+      </div> */}
+
       <ContainerMaxW1200 className="flex-col items-center gap-[3.2rem]">
         <h3 className="text-[3.8rem] font-bold">Проєкти</h3>
 

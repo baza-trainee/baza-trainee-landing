@@ -4,7 +4,6 @@ import StartIcon from '@/components/common/icons/StartIcon';
 import TimeIcon from '@/components/common/icons/TimeIcon';
 import projectCycle from '@/utils/developmentTimeCalculator';
 import formatDate from '@/utils/formatDate';
-import ProjectCardStatus from './projectStatus';
 import styles from './styles.module.scss';
 const ProjectCardContent = ({
   onShowTeamHandler,
@@ -33,7 +32,7 @@ const ProjectCardContent = ({
         ]
       }
     >
-      <ProjectCardStatus statusName={project.status} />
+   
       <div className={styles['projects-section__projects-item__container']}>
         <h4 className={styles['projects-section__projects-item__title']}>
           {project.description}
