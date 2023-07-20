@@ -1,10 +1,12 @@
+
 FROM node:16-alpine AS builder
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install husky
-RUN npm install
 COPY . .
+ENV HUSKY_SKIP_INSTALL=1
+RUN npm install
 RUN npm run build
 
 FROM node:16-alpine AS server
@@ -13,7 +15,6 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci --omit=dev
 COPY --from=builder /app/.next ./.next
-COPY public ./public 
+COPY public ./public
 EXPOSE 3000
-
 CMD ["npm", "start"]
