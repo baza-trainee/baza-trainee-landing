@@ -1,5 +1,5 @@
 
-FROM node:16-alpine AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
@@ -9,7 +9,7 @@ ENV HUSKY_SKIP_INSTALL=1
 RUN npm install
 RUN npm run build
 
-FROM node:16-alpine AS server
+FROM node:18-alpine AS server
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
