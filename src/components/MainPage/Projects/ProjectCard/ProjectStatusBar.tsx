@@ -1,4 +1,4 @@
-export const ProjectStatus = ({ statusName }: { statusName: string }) => {
+export const ProjectStatusBar = ({ statusName }: { statusName: string }) => {
   const isActive = statusName === 'active';
   const isDevelopment = statusName === 'under-development';
   const isFormation = statusName === 'formation-of-the-team';

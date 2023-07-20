@@ -1,19 +1,9 @@
 import CloseIcon from '@/components/common/icons/CloseIcon';
 import ProjectTeamMembers from '../ProjectTeamMembers';
 import styles from './styles.module.scss';
-const ProjectCardTeam = ({
-  onShowTeamHandler,
-  project,
-}: {
-  onShowTeamHandler: () => void;
-  project: {
-    stack: string[];
-    teamMembers: {
-      role: { name: string; _id: string };
-      user: { _id: string; link: string; name: string };
-    }[];
-  };
-}) => {
+import { ICardContent } from '../../types';
+
+const ProjectCardTeam = ({ handleShowTeam, project }: ICardContent) => {
   const roles = [
     {
       id: 1,
@@ -52,7 +42,7 @@ const ProjectCardTeam = ({
         <p>Stack: {project.stack.join(', ')}</p>
         <button
           className={styles['thumb__close-icon']}
-          onClick={onShowTeamHandler}
+          onClick={handleShowTeam}
         >
           <CloseIcon />
         </button>

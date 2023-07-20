@@ -2,15 +2,17 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import ProjectCardContent from './ProjectCardContent';
-import ProjectCardTeam from './ProjectCardTeam';
-import { ProjectStatus } from './ProjectStatus';
+
+import { ProjectCardContent } from './ProjectCardContent';
+
 import { TProjects } from '../types';
+import ProjectCardTeam from './ProjectCardTeam';
 
 const ProjectCard = ({ project }: { project: TProjects }) => {
-  const [isMembersVIsible, setIsMembersVIsible] = useState(false);
+  const [isMembersVisible, setIsMembersVisible] = useState(false);
+
   const handleShowTeam = () => {
-    setIsMembersVIsible((prev) => !prev);
+    setIsMembersVisible((prev) => !prev);
   };
 
   return (
@@ -24,25 +26,20 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
         />
         <div className="absolute h-full w-full bg-gradient-to-tr from-neutral-500 brightness-50" />
 
-        <div className="flex h-full w-full flex-col justify-between p-[2.4rem]">
-          <ProjectStatus statusName={'active'} />
-
-          <div className=" h-1/2 w-full border border-neutral-900">
-            <ProjectCardContent
-              onShowTeamHandler={handleShowTeam}
+        <div className="relative h-full p-[2.4rem] text-white">
+          {isMembersVisible ? (
+            <ProjectCardTeam
               project={project}
-              isMembersVIsible={isMembersVIsible}
+              handleShowTeam={handleShowTeam}
             />
-          </div>
+          ) : (
+            <ProjectCardContent
+              project={project}
+              handleShowTeam={handleShowTeam}
+            />
+          )}
         </div>
       </div>
-
-      {/* {isMembersVIsible && (
-          <ProjectCardTeam
-            onShowTeamHandler={handleShowTeam}
-            project={project}
-          />
-        )} */}
     </li>
   );
 };

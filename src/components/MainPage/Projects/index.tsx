@@ -32,24 +32,20 @@ export const Projects = async () => {
   // const [filteredProjects1, setFilteredProjects] =
   //   useState<TProjects[]>(projects);
 
-  const response: TProjects[] = await getProjects();
-  const filteredProjects = [...response, ...projects];
+  // const response: TProjects[] = await getProjects();
+  // const filteredProjects = [...response, ...projects];
+  const filteredProjects = projects;
 
   return (
     <section className="pt-48" id="projects">
-      {/* <div className='mx-auto relative'>
-
-      <ProjectCard  project={projects[0]} />
-      </div> */}
-
       <ContainerMaxW1200 className="flex-col items-center gap-[3.2rem]">
         <h3 className="text-[3.8rem] font-bold">Проєкти</h3>
 
-        <div className="lg:self-start">
+        {/* <div className="lg:self-start">
           <SearchBar
-          // setFilteredProjects={setFilteredProjects}
+          setFilteredProjects={setFilteredProjects}
           />
-        </div>
+        </div> */}
 
         {filteredProjects.length === 0 && (
           <h3 className="text-[3.8rem]">Sorry! There are no projects.</h3>
@@ -61,7 +57,7 @@ export const Projects = async () => {
           ))}
         </ul>
 
-        {filteredProjects.length > 8 && <MoreProjectsButton />}
+        {filteredProjects.length > 9 && <MoreProjectsButton />}
       </ContainerMaxW1200>
     </section>
   );

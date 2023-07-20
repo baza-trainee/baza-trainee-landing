@@ -24,3 +24,8 @@ export type TProjects = {
   createdAt: string;
   updatedAt: string;
 };
+
+export interface ICardContent {
+  handleShowTeam: () => void;
+  project: TProjects;
+}

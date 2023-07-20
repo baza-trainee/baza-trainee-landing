@@ -2,7 +2,7 @@ import {
   ContactIcon,
   CounterIcon,
   PartnerIcon,
-  ProjectIcon,
+  ProjectsIcon,
   RecallIcon,
   ReportIcon,
   SettingsIcon,
@@ -15,7 +15,7 @@ export const sidebarSectionsList: TsidebarSection[] = [
   { id: 'slider', icon: SliderIcon, text: 'Слайдер' },
   {
     id: 'projects',
-    icon: ProjectIcon,
+    icon: ProjectsIcon,
     text: 'Проєкти',
     submenu: [
       {
