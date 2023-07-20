@@ -1,5 +1,5 @@
 'use client';
-
+/*
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { InputField } from '@/components/atomic/inputs';
@@ -9,22 +9,23 @@ import contactsApi from '@/utils/API/contacts';
 import { formatBytes } from '@/utils/formatBytes';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
-
+*/
 type TFormData = {
-  [key: string]: File | null;
+  [key: string]: string | null;
 };
 
 export const Contacts = () => {
+  /*
   const { setAlertInfo } = useContext(GlobalContext);
 
-  const [formData, setFormData] = useState<TFormData>({});
+  const [contactsData, setContactsData] = useState<any>({}); //fix type
   const [filesUpdated, setFilesUpdated] = useState(0);
   const [dispatch, data, isError] = useAPI(contactsApi.update);
 
   const maxFileSize = SETTINGS.fileSizeLimits.report;
 
   const resetHandler = () => {
-    setFormData({});
+    setContactsData({});
   };
 
   useEffect(() => {
@@ -32,16 +33,17 @@ export const Contacts = () => {
     if (!isError && data) {
       setAlertInfo({
         state: 'info',
-        title: 'Документи оновленні успішно',
-        textInfo: `Оновлено ${filesUpdated} документ(ів)`,
+        title: 'Контакти оновленні успішно',
+        textInfo: `Оновлено ${filesUpdated} контакт(ів)`,
       });
       resetHandler();
     }
     if (isError)
       setAlertInfo({
         state: 'error',
-        title: 'Помилка при оновленні документів',
-        textInfo: 'Спробуйте пізніше',
+        title: 'Помилка при оновленні контактів',
+        textInfo:
+          'Під час оновлення списку контактів сталася помилка. Спробуйте, будь ласка, пізніше',
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
@@ -66,11 +68,11 @@ export const Contacts = () => {
   ) => {
     const files = e.currentTarget.files;
     if (files && files[0]?.size <= maxSize) {
-      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+      //  setContactsData((prev) => ({ ...prev, [name]: files[0] }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: null }));
+      setContactsData((prev) => ({ ...prev, [name]: null }));
     }
-    console.log('first', formData);
+
     if (files && files[0]?.size >= maxSize)
       setAlertInfo({
         state: 'error',
@@ -91,13 +93,13 @@ export const Contacts = () => {
             <InputField
               title="Телефон"
               inputType="right"
-              value={formData['phone1']?.name}
+              value={setContactsData['phone1']?.name}
               onChange={(e) => onInputChange(e, 'phone1', maxFileSize)} //fix
               placeholderText="Введіть телефон"
             />
             <InputField
               inputType="right"
-              value={formData['phone2']?.name}
+              value={setContactsData['phone2']?.name}
               onChange={(e) => onInputChange(e, 'phone2', maxFileSize)} //fix
               placeholderText="Введіть телефон"
             />
@@ -106,21 +108,21 @@ export const Contacts = () => {
             <InputField
               title="Електронна пошта"
               inputType="right"
-              value={formData['email']?.name}
+              value={setContactsData['email']?.name}
               onChange={(e) => onInputChange(e, 'email', maxFileSize)}
               placeholderText="Введіть електронну пошту"
             />
             <InputField
               title="Facebook"
               inputType="right"
-              value={formData['facebook']?.name}
+              value={setContactsData['facebook']?.name}
               onChange={(e) => onInputChange(e, 'facebook', maxFileSize)}
               placeholderText="Додайте посилання"
             />
             <InputField
               title="Linkedin"
               inputType="right"
-              value={formData['linkedin']?.name}
+              value={setContactsData['linkedin']?.name}
               onChange={(e) => onInputChange(e, 'linkedin', maxFileSize)}
               placeholderText="Додайте посилання"
             />
@@ -136,5 +138,5 @@ export const Contacts = () => {
         </AdminPanelButton>
       </div>
     </div>
-  );
+  );*/
 };
