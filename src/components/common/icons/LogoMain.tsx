@@ -4,10 +4,9 @@ interface Props extends SVGProps<SVGSVGElement> {
   open?: boolean;
 }
 
-const Lines = ({ className, ...props }: Props) => (
+const Lines = (props: Props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className={className}
     viewBox="0 0 78 78"
     fill="currentColor"
     fillRule="evenodd"
@@ -26,10 +25,9 @@ const Lines = ({ className, ...props }: Props) => (
   </svg>
 );
 
-const Title = ({ className, open, ...props }: Props) => (
+const Title = ({ open, ...props }: Props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className={className}
     viewBox={open ? `3 0 78 78` : '0 0 78 78'}
     fill="currentColor"
     fillRule="evenodd"

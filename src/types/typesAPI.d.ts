@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { Url } from 'url';
 
 export interface IErrorResponse {
   message: String;
@@ -38,19 +39,17 @@ export interface IUpdateEmployedRequest {
   employed: Number;
 }
 
-export interface IUpdateContactsRequest {
-  contacts: {
-    contactsDataList: {
-      phone1: String | Number;
-      phone2: String | Number;
-      email: String;
-    };
-    socialsMediaList: {
-      linkedin: String;
-      facebook: String;
-    };
+export type TContactsInfo = {
+  contactsDataList: {
+    phone1: String | Number;
+    phone2: String | Number;
+    email: String;
   };
-}
+  socialsMediaList: {
+    linkedin: Url;
+    facebook: Url;
+  };
+};
 
 export interface IHeroSlider extends CommonResponseBase {
   title: titleLanguagesTypes;

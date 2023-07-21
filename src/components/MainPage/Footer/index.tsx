@@ -1,14 +1,16 @@
-'use client';
-// import { ContainerMaxW1200 } from '@/components/atomic';
-// import FacebookIcon from '@/components/common/icons/FacebookIcon';
-// import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
-import contactsApi from '@/utils/API/contacts';
-import { useAPI } from '@/utils/hooks/useAPI';
+// 'use client';
+
 import Image from 'next/image';
-import { ContainerMaxW1200 } from '@/components/atomic';
-import { FacebookIcon, LinkedInIcon } from '@/components/common/icons';
 import Link from 'next/link';
-import { useEffect } from 'react';
+
+import { ContainerMaxW1200 } from '@/components/atomic';
+import {
+  FacebookIcon,
+  LinkedInIcon,
+  LogoFooter,
+} from '@/components/common/icons';
+
+import { TContactsInfo } from '@/types';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
@@ -24,44 +26,38 @@ const officialDocsList = [
   { title: 'Звітність', href: '/' },
 ];
 
-export const Footer = () => {
-  const [
-    getContactsData,
-    contactsData,
-    isContactsDataLoading,
-    isContactsDataError,
-  ] = useAPI(contactsApi.getData);
+const getContacts = async () => {
+  const noData = {
+    contactsDataList: {
+      phone1: 'n/a',
+      phone2: 'n/a',
+      email: 'n/a',
+    },
+    socialsMediaList: {
+      linkedin: '#',
+      facebook: '#',
+    },
+  };
 
-  useEffect(() => {
-    getContactsData();
-  }, []);
+  const res = await fetch('https://baza-trainee.tech/api/v1/contacts', {
+    cache: 'no-cache',
+  });
 
-  if (!contactsData || isContactsDataLoading) {
-    return <div>Loading...</div>;
-  }
+  return res.ok ? await res.json() : noData;
+};
 
-  if (!contactsApi || isContactsDataError) {
-    return <div>Error</div>;
-  }
+export const Footer = async () => {
+  const contactsInfo: TContactsInfo = await getContacts();
 
   return (
-    <footer className="bg-neutral-700 py-16" id="footer">
+    <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
-        {/* needs refactoring ! */}
-
-        <div className={styles['footer-wrapper']}>
-          <div className={styles['footer-section']}>
-            <Link href="#header" className={styles['footer-logo']}>
-              <Image
-                className={styles['footer-logo__svg']}
-                src="/svg/logo-footer.svg"
-                alt="Main logo"
-                width={122}
-                height={122}
-              />
-            </Link>
+        <div className="flex flex-col justify-between gap-[3.2rem] sm:h-[18.4rem] sm:flex-row">
+          <div className="lg:w-full text-white">
+            <LogoFooter/>
           </div>
-          <div className={styles['footer-section']}>
+
+          <div className="lg:w-full">
             <ul className={styles['footer-list']}>
               {anchoreLinksList.map(({ title, href }) => (
                 <li key={title + href} className={styles['footer-list__item']}>
@@ -73,7 +69,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className={styles['footer-section']}>
+          <div className="lg:w-full">
             <ul
               className={`${styles['footer-list']} [&>*:nth-child(-n+2)]:underline`}
             >
@@ -90,7 +86,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className={styles['footer-section']}>
+          <div className="lg:w-full">
             <ul
               className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
             >
@@ -105,7 +101,7 @@ export const Footer = () => {
                   height={48}
                 />
                 <span className={styles['footer-list__text']}>
-                  {contactsData.contacts.contactsDataList.phone1}
+                  {contactsInfo.contactsDataList.phone1 + ''}
                 </span>
               </li>
               <li
@@ -119,7 +115,7 @@ export const Footer = () => {
                   height={48}
                 />
                 <span className={styles['footer-list__text']}>
-                  {contactsData.contacts.contactsDataList.phone2}
+                  {contactsInfo.contactsDataList.phone2 + ''}
                 </span>
               </li>
               <li
@@ -133,7 +129,7 @@ export const Footer = () => {
                   height={48}
                 />
                 <span className={styles['footer-list__text']}>
-                  {contactsData.contacts.contactsDataList.email}
+                  {contactsInfo.contactsDataList.email}
                 </span>
               </li>
             </ul>
@@ -143,7 +139,7 @@ export const Footer = () => {
             >
               <li className={styles['footer-list__item--social']}>
                 <Link
-                  href={contactsData.contacts.socialsMediaList.linkedin}
+                  href={contactsInfo.socialsMediaList.linkedin}
                   className={styles['footer-social-link']}
                 >
                   <LinkedInIcon className={styles['footer-social-link__svg']} />
@@ -151,7 +147,7 @@ export const Footer = () => {
               </li>
               <li className={styles['footer-list__item--social']}>
                 <Link
-                  href={contactsData.contacts.socialsMediaList.facebook}
+                  href={contactsInfo.socialsMediaList.facebook}
                   className={styles['footer-social-link']}
                 >
                   <FacebookIcon className={styles['footer-social-link__svg']} />
@@ -161,9 +157,9 @@ export const Footer = () => {
           </div>
         </div>
 
-        <p className="text-[1.4rem] text-neutral-75">
+        <span className="mt-12 text-[1.4rem] text-neutral-75 sm:mt-0">
           Розробка BazaTraineeUkraine 2023 Усі права захищені.
-        </p>
+        </span>
       </ContainerMaxW1200>
     </footer>
   );
