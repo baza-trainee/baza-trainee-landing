@@ -1,14 +1,21 @@
 import { StoreProvider } from '@/store/globalContext';
-import { exo2, inter } from './fonts';
+import { Exo_2 } from 'next/font/google';
 
-import './globals.css';
-import 'slick-carousel/slick/slick.css';
+import { AlertWindow } from '@/components/atomic';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import './globals.css';
 
 export const metadata = {
   title: 'Baza-Trainee',
   description: 'Baza-Trainee',
 };
+
+const exo2 = Exo_2({
+  weight: ['400', '500', '600', '700', '800', '900'],
+  subsets: ['cyrillic', 'latin'],
+  display: 'swap',
+});
 
 export default function RootLayout({
   children,
@@ -18,7 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body className={`${inter.variable} ${exo2.className}`}>
+        <body className={exo2.className}>
+          <AlertWindow />
           {children}
         </body>
       </StoreProvider>

@@ -1,13 +1,13 @@
-const ProjectIcon = ({ className }: { className: string }) => {
-  return (
-    <svg
-      viewBox="0 0 18 20"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      <path d="M2 6V18H16V6H2ZM2 4H16V2H2V4ZM17 20H1C0.44772 20 0 19.5523 0 19V1C0 0.44772 0.44772 0 1 0H17C17.5523 0 18 0.44772 18 1V19C18 19.5523 17.5523 20 17 20ZM4 8H8V12H4V8ZM4 14H14V16H4V14ZM10 9H14V11H10V9Z" />
-    </svg>
-  );
-};
+import { SVGProps } from 'react';
 
-export default ProjectIcon;
+export const ProjectIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M5 8v12h14V8H5Zm0-2h14V4H5v2Zm15 16H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1ZM7 10h4v4H7v-4Zm0 6h10v2H7v-2Zm6-5h4v2h-4v-2Z" />
+  </svg>
+);

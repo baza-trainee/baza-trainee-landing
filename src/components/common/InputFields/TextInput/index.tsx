@@ -1,5 +1,6 @@
-import EyeClosed from '@/components/common/icons/EyeClosed';
-import EyeOpen from '@/components/common/icons/EyeOpen';
+'use client';
+
+import { EyeClosed, EyeOpen } from '@/components/common/icons';
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 

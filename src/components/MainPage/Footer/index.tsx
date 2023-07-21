@@ -1,10 +1,12 @@
 'use client';
-import { ContainerMaxW1200 } from '@/components/atomic';
-import FacebookIcon from '@/components/common/icons/FacebookIcon';
-import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
+// import { ContainerMaxW1200 } from '@/components/atomic';
+// import FacebookIcon from '@/components/common/icons/FacebookIcon';
+// import LinkedInIcon from '@/components/common/icons/LinkedInIcon';
 import contactsApi from '@/utils/API/contacts';
 import { useAPI } from '@/utils/hooks/useAPI';
 import Image from 'next/image';
+import { ContainerMaxW1200 } from '@/components/atomic';
+import { FacebookIcon, LinkedInIcon } from '@/components/common/icons';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import styles from './styles.module.scss';
