@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { redirect } from 'next/navigation';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  return res.redirect('/');
+export async function POST(request: Request) {
+  redirect('/');
 }
