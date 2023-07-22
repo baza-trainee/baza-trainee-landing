@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const url = process.env.NEXT_PUBLIC_SERVER_URL || '';
+
 const maxPayment = 10_000_000;
 
 const usePaymentHandler = (urlBase = url) => {
@@ -19,7 +20,8 @@ const usePaymentHandler = (urlBase = url) => {
           amount: paymentAmount + '00',
           currency: 'UAH',
           //response_url: `${window.location.href}`,
-          response_url: `${window.location.href}api/payment-complete`,
+          //response_url: `${window.location.href}api/payment-complete`,
+          response_url: 'https://baza-trainee.tech/api/v1/complete', //FIX
         });
 
         const checkoutUrl = response.data.response?.checkout_url;
