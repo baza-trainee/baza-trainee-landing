@@ -19,8 +19,6 @@ const usePaymentHandler = (urlBase = url) => {
           order_desc: 'Baza trainee support',
           amount: paymentAmount + '00',
           currency: 'UAH',
-          //response_url: `${window.location.href}`,
-          //response_url: `${window.location.href}api/payment-complete`,
           response_url: 'https://baza-trainee.tech/api/v1/payment/complete', //FIX
         });
 
