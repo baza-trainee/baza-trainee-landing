@@ -39,7 +39,7 @@ export const HeroSlider = () => {
       <Slider
         {...settings}
         afterChange={setCurrentSlide}
-        lazyLoad="ondemand"
+        lazyLoad='progressive'
         ref={slickRef}
       >
         {slides.map((slide: TSlide) => (
