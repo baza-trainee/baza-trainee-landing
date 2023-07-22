@@ -21,7 +21,7 @@ const usePaymentHandler = (urlBase = url) => {
           currency: 'UAH',
           //response_url: `${window.location.href}`,
           //response_url: `${window.location.href}api/payment-complete`,
-          response_url: 'https://baza-trainee.tech/api/v1/complete', //FIX
+          response_url: 'https://baza-trainee.tech/api/v1/payment/complete', //FIX
         });
 
         const checkoutUrl = response.data.response?.checkout_url;
