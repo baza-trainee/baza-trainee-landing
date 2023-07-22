@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
-import { TSlide } from '@/types';
+import { TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
@@ -35,7 +35,7 @@ export const Reviews = () => {
             afterChange={(index) => setCurrentSlide(index)}
             lazyLoad="progressive"
           >
-            {slides.map((review: TSlide, index) => (
+            {slides.map((review: TSlideReview, index) => (
               <SingleSlide slideData={review} key={index + 'key'} />
             ))}
           </Slider>
