@@ -19,7 +19,7 @@ const usePaymentHandler = (urlBase = url) => {
           amount: paymentAmount + '00',
           currency: 'UAH',
           //response_url: `${window.location.href}`,
-          response_url: `${window.location.href}/api/payment-complete`,
+          response_url: `${window.location.href}api/payment-complete`,
         });
 
         const checkoutUrl = response.data.response?.checkout_url;
