@@ -11,7 +11,14 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
       gap-[2rem] text-neutral-700 sm:flex-row md:gap-[4.8rem] lg:flex-nowrap xl:w-[80rem]"
     >
       <div className="relative h-48 w-48 shrink-0 overflow-hidden rounded-full">
-        <Image src={image} alt={'customer'} fill objectFit="cover" quality={85}/>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          objectFit="cover"
+          quality={85}
+          priority
+        />
       </div>
 
       <div className="font-secondary whitespace-nowrap text-[2rem]">
