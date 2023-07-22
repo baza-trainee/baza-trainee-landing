@@ -2,7 +2,7 @@ export const slides = [
   {
     image: '/img/carousel-slide-1.png',
     title: 'Baza Trainee Ukraine',
-    text: 'Громадська організація, яка має на меті  отримання першого досвіду роботи тими, хто починає свій шлях в IT',
+    text: 'Громадська організація, яка має на меті  отримання першого досвіду роботи тими, хто починає свій шлях в IT.',
   },
   {
     image: '/img/carousel-slide-2.png',
