@@ -77,12 +77,15 @@ const Authorization = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholderText="Введіть пароль"
         />
-        <Link
-          href={recoverLink}
-          className="text-[1.6rem] text-neutral-600 underline"
-        >
-          Забули пароль?
-        </Link>
+        <div>
+          <Link
+            href={recoverLink}
+            className="text-[1.6rem] text-neutral-600 underline"
+          >
+            Забули пароль?
+          </Link>
+        </div>
+
         <AdminPanelButton onClick={loginHandler}>Увійти</AdminPanelButton>
       </div>
     </div>
