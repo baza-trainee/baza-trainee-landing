@@ -1,10 +1,12 @@
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const url = process.env.NEXT_PUBLIC_SERVER_URL || '';
 const maxPayment = 10_000_000;
 
 const usePaymentHandler = (urlBase = url) => {
+  const router = useRouter();
   const [paymentAmount, setPaymentAmount] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -16,12 +18,13 @@ const usePaymentHandler = (urlBase = url) => {
           order_desc: 'Baza trainee support',
           amount: paymentAmount + '00',
           currency: 'UAH',
-          response_url: window.location.href,
+          //response_url: `${window.location.href}`,
+          response_url: `${window.location.href}/api/payment-complete`,
         });
 
         const checkoutUrl = response.data.response?.checkout_url;
         if (checkoutUrl) {
-          window.location.href = checkoutUrl;
+          router.push(checkoutUrl);
         }
       } catch (error) {
         setErrorMessage('Error occurred while processing payment');
