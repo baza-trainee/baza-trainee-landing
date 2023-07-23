@@ -11,7 +11,7 @@ import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
+import { KeyboardEvent, useContext, useEffect, useState } from 'react';
 import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
 
 const recoverLink = '#'; // TODO: Replace with actual recover link
@@ -58,6 +58,13 @@ const Authorization = () => {
     }
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      loginHandler();
+    }
+  };
+
   return (
     <div className="flex min-h-[100vh] items-center justify-center">
       <div className="flex w-[36.6rem] flex-col gap-[3.2rem] rounded-xl border border-neutral-300 bg-base-dark p-8 ">
@@ -69,6 +76,7 @@ const Authorization = () => {
           inputType="text"
           name="login"
           placeholderText="Введіть логін"
+          onKeyDown={handleKeyDown}
         />
         <PasswordInput
           name="password"
@@ -76,6 +84,7 @@ const Authorization = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholderText="Введіть пароль"
+          onKeyDown={handleKeyDown}
         />
         <div>
           <Link
