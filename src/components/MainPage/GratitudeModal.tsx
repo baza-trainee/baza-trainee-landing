@@ -20,7 +20,7 @@ export const GratitudeModal = () => {
     }
   };
 
-  return !isPaymentSuccess ? (
+  return isPaymentSuccess ? (
     <section
       className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
