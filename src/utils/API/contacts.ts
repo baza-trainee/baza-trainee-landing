@@ -1,15 +1,17 @@
-import { IUpdateContactsRequest } from '@/types/typesAPI';
+import { TContactsInfo } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
-const contactsApi = {
-  getData() {
-    return bazaAPI.get('/contacts');
+export const contactsApi = {
+  async getData() {
+    const res = await fetch('https://baza-trainee.tech/api/v1/contacts', {
+      cache: 'no-cache',
+    });
+    return res.ok ? await res.json() : null;
   },
-  update({ contacts }: IUpdateContactsRequest) {
+
+  update({ contacts }: { contacts: TContactsInfo }) {
     return bazaAPI.patch('/contacts', {
       contacts,
     });
   },
-};
-
-export default contactsApi;
+}

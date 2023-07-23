@@ -20,7 +20,7 @@ export const Header = () => {
     <header className="min-h-[10.4rem] bg-yellow-500 py-5" id="header">
       <ContainerMaxW1200 className="items-center justify-between">
         <Link href="/">
-          <LogoMain />
+          <LogoMain className="h-[7.2rem] w-[7.2rem]" />
         </Link>
 
         <nav className="relative flex flex-col md:flex-row md:gap-12 lg:gap-[5.6rem] ">
