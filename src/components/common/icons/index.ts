@@ -1,5 +1,5 @@
 export * from './CancelIcon';
-export * from './CloseMainIcon';
+export * from './CloseIcon';
 export * from './ContactIcon';
 export * from './CounterIcon';
 export * from './DateIcon';

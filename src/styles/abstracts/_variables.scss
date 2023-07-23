@@ -27,20 +27,3 @@ $border-white: 1.5px solid $color-white;
 
 // FONTS
 $font-secondary: 'Inter', sans-serif;
-
-// Linear-gradients
-$linear-gradient-black: linear-gradient(
-  33.27deg,
-  rgba(6, 6, 6, 0.95) 8.04%,
-  rgba(6, 6, 6, 0.4465) 104.18%
-);
-$linear-gradient-white: linear-gradient(
-  90deg,
-  rgba(255, 255, 255, 0.02) 0%,
-  rgba(252, 252, 252, 0) 40%,
-  rgba(252, 252, 252, 1) 40%,
-  rgba(252, 252, 252, 1) 50%,
-  rgba(252, 252, 252, 1) 60%,
-  rgba(252, 252, 252, 0) 60%,
-  rgba(255, 255, 255, 0.02) 100%
-);

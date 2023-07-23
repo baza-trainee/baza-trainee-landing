@@ -1,10 +1,8 @@
 // 'use client';
 
-import { useState } from 'react';
-import { projects } from './projects';
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
-import { SearchBar } from './SearchBar';
-import ProjectCard from './ProjectCard';
+import { ProjectCard } from './ProjectCard';
+import { projects } from './projects';
 import { TProjects } from './types';
 
 const getProjects = async () => {

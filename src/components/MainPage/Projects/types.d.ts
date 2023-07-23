@@ -1,10 +1,10 @@
-type TTeamMember = {
+export type TTeamMember = {
   _id: string;
   name: string;
   link: string;
 };
 
-type TTeamMemberRole = Omit<TTeamMember, 'link'>;
+export type TTeamMemberRole = Omit<TTeamMember, 'link'>;
 
 export type TProjects = {
   _id: string;

@@ -1,20 +1,19 @@
-const CloseIcon = () => {
-  return (
-    <svg
-      id="close"
-      width="24"
-      height="24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M18 6 6 18M6 6l12 12"
-        stroke="#FCFCFC"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-};
-export default CloseIcon;
+import { SVGProps } from 'react';
+
+export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 44 44"
+    width={44}
+    height={44}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M33 11 11 33m0-22 22 22"
+    />
+  </svg>
+);

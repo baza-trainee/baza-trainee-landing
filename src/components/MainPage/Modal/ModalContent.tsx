@@ -1,5 +1,5 @@
 import { SupportBazaButton } from '@/components/atomic';
-import { CloseMainIcon } from '@/components/common/icons';
+import { CloseIcon } from '@/components/common/icons';
 import usePaymentHandler from '@/hooks/usePayment';
 import { MouseEvent, MutableRefObject } from 'react';
 
@@ -29,8 +29,8 @@ export const ModalContent = (props: IModalContent) => {
         className="relative w-[79.2rem] rounded-xl bg-white px-28 py-[12.8rem]"
         id="modalWindow"
       >
-        <CloseMainIcon
-          className="absolute right-10 top-10 cursor-pointer"
+        <CloseIcon
+          className="absolute right-10 top-10 cursor-pointer stroke-1"
           onClick={handleIconClick}
         />
 

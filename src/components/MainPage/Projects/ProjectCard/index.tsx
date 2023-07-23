@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
+import { ProjectCardTeam } from '../ProjectCardTeam';
 import { TProjects } from '../types';
-import ProjectCardTeam from './ProjectCardTeam';
 
 const ProjectCard = ({ project }: { project: TProjects }) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
@@ -23,8 +23,9 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
           alt="Project Image"
           fill
           objectFit="cover"
+          className={isMembersVisible ? 'sepia-[50%]' : ''}
         />
-        <div className="absolute h-full w-full bg-gradient-to-tr from-neutral-500 brightness-50" />
+        <div className="absolute h-full w-full bg-gradient-to-tr from-black" />
 
         <div className="relative h-full p-[2.4rem] text-white">
           {isMembersVisible ? (
@@ -44,4 +45,4 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
   );
 };
 
-export default ProjectCard;
+export { ProjectCard };

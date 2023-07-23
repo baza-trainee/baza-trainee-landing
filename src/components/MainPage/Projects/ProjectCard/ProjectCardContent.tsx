@@ -30,23 +30,23 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
           <div className="flex items-center gap-2">
             <ProjectStartIcon />
-            <p>Старт проєкту</p>
-            <p className="ml-auto font-medium">
+            <span>Старт проєкту</span>
+            <span className="ml-auto font-medium">
               {formatDate(project.createdAt)}
-            </p>
+            </span>
           </div>
 
           <div className="flex items-center gap-2">
             <ProjectDurationIcon />
-            <p>Тривалість</p>
-            <p className="ml-auto font-medium">
+            <span>Тривалість</span>
+            <span className="ml-auto font-medium">
               {projectCycle(project)} тижнів
-            </p>
+            </span>
           </div>
 
           <div className="flex items-center gap-2">
             <ProjectComplexityIcon />
-            <p>Складність</p>
+            <span>Складність</span>
             <div className="ml-auto">
               <ProjectComplexity count={project.complexity} />
             </div>
@@ -66,4 +66,5 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
     </div>
   );
 };
+
 export { ProjectCardContent };
