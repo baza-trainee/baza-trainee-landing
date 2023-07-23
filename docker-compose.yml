@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  baza-front:
+    env_file:
+      - .env
+    build: .
+    container_name: baza-front
+    restart: unless-stopped
+    ports:
+      - 49352:3000
+    networks:
+      - localnet
+
+networks:
+  localnet:
+    external: true
+    name: localnet

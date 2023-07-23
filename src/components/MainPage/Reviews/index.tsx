@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
-import { slides } from './slides';
-import { TSlide } from '@/types';
+import { TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
+import { slides } from './slides';
 
 const sliderSettings = {
   dots: true,
@@ -33,9 +33,9 @@ export const Reviews = () => {
             {...sliderSettings}
             customPaging={customPaging}
             afterChange={(index) => setCurrentSlide(index)}
-            lazyLoad="ondemand"
+            lazyLoad="progressive"
           >
-            {slides.map((review: TSlide, index) => (
+            {slides.map((review: TSlideReview, index) => (
               <SingleSlide slideData={review} key={index + 'key'} />
             ))}
           </Slider>
