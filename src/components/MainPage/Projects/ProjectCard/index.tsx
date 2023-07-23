@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
-import { ProjectCardTeam } from '../ProjectCardTeam';
 import { TProjects } from '../types';
+import { ProjectCardTeam } from './ProjectCardTeam';
 
 const ProjectCard = ({ project }: { project: TProjects }) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);

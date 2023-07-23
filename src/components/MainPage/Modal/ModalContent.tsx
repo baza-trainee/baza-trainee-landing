@@ -1,7 +1,10 @@
-import { SupportBazaButton } from '@/components/atomic';
-import { CloseIcon } from '@/components/common/icons';
-import usePaymentHandler from '@/hooks/usePayment';
 import { MouseEvent, MutableRefObject } from 'react';
+
+import usePaymentHandler from '@/hooks/usePayment';
+
+import { SupportBazaButton } from '@/components/atomic';
+
+import { CloseIcon } from '@/components/common/icons';
 
 const paymentAmountData = ['100', '200', '500', '1000'];
 
@@ -51,6 +54,7 @@ export const ModalContent = (props: IModalContent) => {
                 {el} ГРН
               </button>
             ))}
+           
             <input
               type="text"
               pattern="[0-9]"

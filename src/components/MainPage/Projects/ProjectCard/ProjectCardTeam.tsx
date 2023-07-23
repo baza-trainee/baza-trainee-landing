@@ -1,6 +1,6 @@
 import { CloseIcon } from '@/components/common/icons';
-import { ProjectTeamMembers } from './ProjectCard/ProjectTeamMembers';
-import { ICardContent } from './types';
+import { ICardContent } from '../types';
+import { ProjectTeamMembers } from './ProjectTeamMembers';
 
 const roles = [
   {
