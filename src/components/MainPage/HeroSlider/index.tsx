@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Slider from 'react-slick';
 
 import {
@@ -9,11 +9,11 @@ import {
   SlickArrow,
 } from '@/components/atomic';
 
+import { TSlide } from '@/types';
 import { Modal } from '../Modal';
+import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
-import { TSlide } from '@/types';
-import { Dots } from './Dots';
 
 const settings = {
   infinite: false,
@@ -26,10 +26,22 @@ const settings = {
 
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const slickRef = useRef<Slider | null>(null);
+
+  const goToSlide = (slideIndex: number) => {
+    if (slickRef.current) {
+      slickRef.current.slickGoTo(slideIndex);
+    }
+  };
 
   return (
     <section className="relative text-white">
-      <Slider {...settings} afterChange={setCurrentSlide} lazyLoad="ondemand">
+      <Slider
+        {...settings}
+        afterChange={setCurrentSlide}
+        lazyLoad="progressive"
+        ref={slickRef}
+      >
         {slides.map((slide: TSlide) => (
           <SingleSlide key={`key_${slide.title}`} slideData={slide} />
         ))}
@@ -37,7 +49,7 @@ export const HeroSlider = () => {
 
       <div className="bg-yellow-500">
         <ContainerMaxW1200 className="h-[8.8rem] items-center justify-between">
-          <Dots currentSlide={currentSlide} />
+          <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
           <Modal>
             <PrimaryButton>Фондувати</PrimaryButton>

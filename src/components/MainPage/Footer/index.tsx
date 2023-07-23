@@ -1,125 +1,118 @@
-import { ContainerMaxW1200 } from '@/components/atomic';
-import { FacebookIcon, LinkedInIcon } from '@/components/common/icons';
 import Link from 'next/link';
-import styles from './styles.module.scss';
 
-const anchoreLinksList = [
+import { contactsApi } from '@/utils/API/contacts';
+import { TContactsInfo } from '@/types';
+
+import { ContainerMaxW1200 } from '@/components/atomic';
+import {
+  FacebookIcon,
+  LinkedInIcon,
+  LogoMain,
+  MailIcon,
+  PhoneIcon,
+} from '@/components/common/icons';
+
+const anchorLinksList = [
   { title: 'Проєкти', href: '#projects' },
   { title: 'Партнери', href: '#partners' },
   { title: 'Взяти участь', href: '#forms' },
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/' },
-  { title: 'Правила користування сайтом', href: '/' },
-  { title: 'Статут', href: '/' },
-  { title: 'Звітність', href: '/' },
+  { title: 'Політика конфіденційності', href: '/docs/policy.pdf' },
+  { title: 'Правила користування сайтом', href: '/docs/rules.pdf' },
+  { title: 'Статут', href: '#' },
+  { title: 'Звітність', href: '#' },
 ];
 
-const contactsDataList = [
-  { type: 'phone', data: '+38 063 628 6630' },
-  { type: 'phone', data: '+38 067 568 1788' },
-  { type: 'mail', data: 'info@baza-trainee.site' },
-];
+const getContacts = async () => {
+  const noData = {
+    contactsDataList: {
+      phone1: 'n/a',
+      phone2: 'n/a',
+      email: 'n/a',
+    },
+    socialsMediaList: {
+      linkedin: '#',
+      facebook: '#',
+    },
+  };
 
-const socialsMediaList = [
-  {
-    id: 1,
-    iconName: LinkedInIcon,
-    href: '/',
-  },
-  {
-    id: 2,
-    iconName: FacebookIcon,
-    href: '/',
-  },
-];
+  try {
+    return await contactsApi.getData();
+  } catch (_) {
+    return noData;
+  }
+};
 
-export const Footer = () => {
+export const Footer = async () => {
+  const contactsInfo: TContactsInfo = await getContacts();
+
   return (
-    <footer className="bg-neutral-700 py-16" id="footer">
+    <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
-        {/* needs refactoring ! */}
+        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row">
+          <div className="lg:w-full ">
+            <LogoMain className="h-32 w-32 md:h-[12.4rem] md:w-[12.4rem]" />
+          </div>
 
-        <div className={styles['footer-wrapper']}>
-          <div className={styles['footer-section']}>
-            <Link href="#header" className={styles['footer-logo']}>
-              <img
-                className={styles['footer-logo__svg']}
-                src="/svg/logo-footer.svg"
-                alt="Main logo"
-              />
+          <div className="flex flex-col gap-4 lg:w-full">
+            {anchorLinksList.map(({ title, href }) => (
+              <Link href={href} key={title + href}>
+                {title}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-4 lg:w-full">
+            {officialDocsList.map(({ title, href }, i) => (
+              <Link
+                key={title + href}
+                href={href}
+                className={i < 2 ? 'underline underline-offset-8' : ''}
+              >
+                {title}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-4 lg:w-full">
+            <Link
+              href={'tel:' + contactsInfo.contactsDataList.phone1}
+              className="flex gap-3"
+            >
+              <PhoneIcon />
+              <span>{contactsInfo.contactsDataList.phone1 + ''}</span>
             </Link>
-          </div>
-          <div className={styles['footer-section']}>
-            <ul
-              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
+            <Link
+              href={'tel:' + contactsInfo.contactsDataList.phone2}
+              className="flex gap-3"
             >
-              {anchoreLinksList.map(({ title, href }) => (
-                <li key={title + href} className={styles['footer-list__item']}>
-                  <Link href={href} className={styles['footer-list__link']}>
-                    {title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className={styles['footer-section']}>
-            <ul
-              className={`${styles['footer-list']} ${styles['footer-list--underlined']}`}
+              <PhoneIcon />
+              <span>{contactsInfo.contactsDataList.phone2 + ''}</span>
+            </Link>
+            <Link
+              href={'mailto:' + contactsInfo.contactsDataList.email}
+              className="flex gap-3"
             >
-              {officialDocsList.map(({ title, href }) => (
-                <li key={title + href} className={styles['footer-list__item']}>
-                  <Link
-                    href={href}
-                    className={`${styles['footer-list__link']}`}
-                  >
-                    {title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <MailIcon />
+              <span>{contactsInfo.contactsDataList.email + ''}</span>
+            </Link>
+
+            <div className="mt-[3.2rem] flex gap-[3.2rem] sm:mt-auto">
+              <Link href={contactsInfo.socialsMediaList.linkedin}>
+                <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
+              </Link>
+              <Link href={contactsInfo.socialsMediaList.facebook}>
+                <FacebookIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
+              </Link>
+            </div>
           </div>
+        </nav>
 
-          <div className={styles['footer-section']}>
-            <ul
-              className={`${styles['footer-list']} ${styles['footer-list--contacts']}`}
-            >
-              {contactsDataList.map(({ type, data }) => (
-                <li
-                  key={data}
-                  className={`${styles['footer-list__item']} ${styles['footer-list__item--contacts']}`}
-                >
-                  <img
-                    className={styles['footer-list__icon']}
-                    src={`/svg/${type}.svg`}
-                    alt={`${type} icon`}
-                  />
-                  <span className={styles['footer-list__text']}>{data}</span>
-                </li>
-              ))}
-            </ul>
-
-            <ul
-              className={`${styles['footer-list']} ${styles['footer-list--social']}`}
-            >
-              {socialsMediaList.map(({ id, iconName: IconComponent, href }) => (
-                <li key={id} className={styles['footer-list__item--social']}>
-                  <Link href={href} className={styles['footer-social-link']}>
-                    <IconComponent
-                      className={styles['footer-social-link__svg']}
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <p className="text-[1.4rem] text-neutral-75">
+        <span className="mt-12 text-[1.4rem] text-neutral-75 sm:mt-0">
           Розробка BazaTraineeUkraine 2023 Усі права захищені.
-        </p>
+        </span>
       </ContainerMaxW1200>
     </footer>
   );
