@@ -25,6 +25,5 @@ export * from './TranslatorIcon';
 export * from './TranslatorIcon2';
 export * from './UploadIcon';
 export * from './WarningIcon';
-export * from './LogoFooter';
 export * from './PhoneIcon';
 export * from './MailIcon';

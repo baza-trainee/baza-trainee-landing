@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios';
-import { Url } from 'url';
 
 export interface IErrorResponse {
   message: String;
@@ -46,8 +45,8 @@ export type TContactsInfo = {
     email: String;
   };
   socialsMediaList: {
-    linkedin: Url;
-    facebook: Url;
+    linkedin: string;
+    facebook: string;
   };
 };
 

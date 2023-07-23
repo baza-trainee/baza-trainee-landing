@@ -7,22 +7,22 @@ import { ContainerMaxW1200 } from '@/components/atomic';
 import {
   FacebookIcon,
   LinkedInIcon,
-  LogoFooter,
+  LogoMain,
   MailIcon,
   PhoneIcon,
 } from '@/components/common/icons';
 
-const anchoreLinksList = [
+const anchorLinksList = [
   { title: 'Проєкти', href: '#projects' },
   { title: 'Партнери', href: '#partners' },
   { title: 'Взяти участь', href: '#forms' },
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/' },
-  { title: 'Правила користування сайтом', href: '/' },
-  { title: 'Статут', href: '/' },
-  { title: 'Звітність', href: '/' },
+  { title: 'Політика конфіденційності', href: '/docs/policy.pdf' },
+  { title: 'Правила користування сайтом', href: '/docs/rules.pdf' },
+  { title: 'Статут', href: '#' },
+  { title: 'Звітність', href: '#' },
 ];
 
 const getContacts = async () => {
@@ -51,13 +51,13 @@ export const Footer = async () => {
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
-        <nav className="flex flex-col justify-between gap-[3.2rem] sm:h-[18.4rem] sm:flex-row">
-          <div className="lg:w-full">
-            <LogoFooter />
+        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row">
+          <div className="lg:w-full ">
+            <LogoMain className="h-32 w-32 md:h-[12.4rem] md:w-[12.4rem]" />
           </div>
 
           <div className="flex flex-col gap-4 lg:w-full">
-            {anchoreLinksList.map(({ title, href }) => (
+            {anchorLinksList.map(({ title, href }) => (
               <Link href={href} key={title + href}>
                 {title}
               </Link>
@@ -92,7 +92,7 @@ export const Footer = async () => {
               <span>{contactsInfo.contactsDataList.phone2 + ''}</span>
             </Link>
             <Link
-              href={'mail:' + contactsInfo.contactsDataList.email}
+              href={'mailto:' + contactsInfo.contactsDataList.email}
               className="flex gap-3"
             >
               <MailIcon />
