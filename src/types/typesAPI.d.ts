@@ -41,8 +41,8 @@ export interface IUpdateEmployedRequest {
 
 export type TContactsInfo = {
   contactsDataList: {
-    phone1: String | Number;
-    phone2: String | Number;
+    phone1: Number;
+    phone2: Number;
     email: String;
   };
   socialsMediaList: {

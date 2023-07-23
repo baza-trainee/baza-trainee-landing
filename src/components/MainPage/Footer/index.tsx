@@ -1,7 +1,8 @@
-// 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { contactsApi } from '@/utils/API/contacts';
+import { TContactsInfo } from '@/types';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
@@ -10,7 +11,6 @@ import {
   LogoFooter,
 } from '@/components/common/icons';
 
-import { TContactsInfo } from '@/types';
 import styles from './styles.module.scss';
 
 const anchoreLinksList = [
@@ -39,11 +39,11 @@ const getContacts = async () => {
     },
   };
 
-  const res = await fetch('https://baza-trainee.tech/api/v1/contacts', {
-    cache: 'no-cache',
-  });
-
-  return res.ok ? await res.json() : noData;
+  try {
+    return await contactsApi.getData();
+  } catch (_) {
+    return noData;
+  }
 };
 
 export const Footer = async () => {
@@ -53,8 +53,8 @@ export const Footer = async () => {
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
         <div className="flex flex-col justify-between gap-[3.2rem] sm:h-[18.4rem] sm:flex-row">
-          <div className="lg:w-full text-white">
-            <LogoFooter/>
+          <div className="text-white lg:w-full">
+            <LogoFooter />
           </div>
 
           <div className="lg:w-full">
