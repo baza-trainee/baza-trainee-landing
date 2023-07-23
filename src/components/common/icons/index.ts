@@ -8,6 +8,7 @@ export * from './EyeClosed';
 export * from './EyeOpen';
 export * from './Eyes';
 export * from './FacebookIcon';
+export * from './GratitudeIcon';
 export * from './InfoIcon';
 export * from './LinkedInIcon';
 export * from './LogOutIcon';
