@@ -19,7 +19,7 @@ const anchorLinksList = [
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/?document=policy1.pdf' },
+  { title: 'Політика конфіденційності', href: '/?document=policy.pdf' },
   { title: 'Правила користування сайтом', href: '/?document=rules.pdf' },
   { title: 'Статут', href: '#' },
   { title: 'Звітність', href: '#' },
@@ -33,7 +33,7 @@ const getContacts = async () => {
       email: 'n/a',
     },
     socialsMediaList: {
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/company/baza-trainee/',
       facebook: '#',
     },
   };
@@ -51,14 +51,18 @@ export const Footer = async () => {
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
-        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row">
+        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row ">
           <div className="lg:w-full ">
             <LogoMain className="h-32 w-32 md:h-[12.4rem] md:w-[12.4rem]" />
           </div>
 
           <div className="flex flex-col gap-4 lg:w-full">
             {anchorLinksList.map(({ title, href }) => (
-              <Link href={href} key={title + href}>
+              <Link
+                href={href}
+                key={title + href}
+                className="visited:text-yellow-800 hover:text-yellow-500"
+              >
                 {title}
               </Link>
             ))}
@@ -69,7 +73,9 @@ export const Footer = async () => {
               <Link
                 key={title + href}
                 href={href}
-                className={i < 2 ? 'underline underline-offset-8' : ''}
+                className={`${
+                  i < 2 ? 'underline underline-offset-8' : ''
+                } visited:text-yellow-800 hover:text-yellow-500`}
               >
                 {title}
               </Link>
