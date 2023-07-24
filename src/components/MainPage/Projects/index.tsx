@@ -1,15 +1,14 @@
-// 'use client';
-
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
 import { ProjectCard } from './ProjectCard';
 import { projects } from './projects';
 import { TProjects } from './types';
+import { SETTINGS } from '@/config/settings';
 
 const getProjects = async () => {
   const response = await fetch(
     'https://baza-trainee.tech/api/v1/projects',
     // `${process.env.NEXT_PUBLIC_SERVER_URL}/projects`,
-    { cache: 'no-store' }
+    { next: { revalidate: SETTINGS.delayRevalidation } }
   );
 
   if (!response.ok) {
