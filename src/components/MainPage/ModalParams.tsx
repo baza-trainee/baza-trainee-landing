@@ -2,8 +2,9 @@
 
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { PDFView } from '../common/PdfView';
 import { CloseMainIcon } from '../common/icons';
+import { Gratitude } from './Gratitude';
+import { PDFView } from './PdfView';
 
 export const ModalParams = () => {
   const params = useSearchParams();
@@ -22,7 +23,7 @@ export const ModalParams = () => {
     }
   };
 
-  return (
+  return isPaymentSuccess || document ? (
     <section
       className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30  backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
@@ -33,8 +34,8 @@ export const ModalParams = () => {
           className="absolute right-10 top-10 cursor-pointer "
           onClick={handlerShowModal}
         />
-        <PDFView />
+        {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
       </div>
     </section>
-  );
+  ) : null;
 };

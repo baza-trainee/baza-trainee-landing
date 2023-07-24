@@ -2,19 +2,14 @@
 
 import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import Spinner from './icons/Spinner';
+import Spinner from '../common/icons/Spinner';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-export function PDFView() {
+export const PDFView = ({ document }: { document: string | null }) => {
   const [numPages, setNumPages] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(1);
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
-  }
-
-  function changePage(offset: number) {
-    setPageNumber((prevPageNumber) => prevPageNumber + offset);
   }
 
   return (
@@ -52,9 +47,11 @@ export function PDFView() {
       </Document>*/}
       <Document
         loading={<Spinner title="Документ завантажується" />}
-        file="./docs/policy.pdf"
+        file={`./docs/${document}`}
         onLoadSuccess={onDocumentLoadSuccess}
-        error={<div>Не вдалося завантажити файл</div>}
+        error={
+          <div className="text-3xl font-bold">Не вдалося завантажити файл</div>
+        }
         className={'flex flex-col items-center justify-center '}
       >
         {Array.from(new Array(numPages), (el, index) => (
@@ -69,4 +66,4 @@ export function PDFView() {
       </Document>
     </div>
   );
-}
+};

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import { contactsApi } from '@/utils/API/contacts';
 import { TContactsInfo } from '@/types';
+import { contactsApi } from '@/utils/API/contacts';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
@@ -19,8 +19,8 @@ const anchorLinksList = [
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/docs/policy.pdf' },
-  { title: 'Правила користування сайтом', href: '/docs/rules.pdf' },
+  { title: 'Політика конфіденційності', href: '/?document=policy1.pdf' },
+  { title: 'Правила користування сайтом', href: '/?document=rules.pdf' },
   { title: 'Статут', href: '#' },
   { title: 'Звітність', href: '#' },
 ];
@@ -77,27 +77,18 @@ export const Footer = async () => {
           </div>
 
           <div className="flex flex-col gap-4 lg:w-full">
-            <Link
-              href={'tel:' + contactsInfo.contactsDataList.phone1}
-              className="flex gap-3"
-            >
+            <p className="flex gap-3">
               <PhoneIcon />
               <span>{contactsInfo.contactsDataList.phone1 + ''}</span>
-            </Link>
-            <Link
-              href={'tel:' + contactsInfo.contactsDataList.phone2}
-              className="flex gap-3"
-            >
+            </p>
+            <p className="flex gap-3">
               <PhoneIcon />
               <span>{contactsInfo.contactsDataList.phone2 + ''}</span>
-            </Link>
-            <Link
-              href={'mailto:' + contactsInfo.contactsDataList.email}
-              className="flex gap-3"
-            >
+            </p>
+            <p className="flex gap-3">
               <MailIcon />
               <span>{contactsInfo.contactsDataList.email + ''}</span>
-            </Link>
+            </p>
 
             <div className="mt-[3.2rem] flex gap-[3.2rem] sm:mt-auto">
               <Link href={contactsInfo.socialsMediaList.linkedin}>
