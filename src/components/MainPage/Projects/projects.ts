@@ -2,7 +2,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d65',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/var-5.png',
     status: 'active',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -183,7 +183,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d6',
     title: '1112363',
-    imageUrl: '/img/b_reviews.jpg',
+    imageUrl: '/img/var-2.png',
     status: 'under-development',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -265,7 +265,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d',
     title: '1112363',
-    imageUrl: '/img/c_reviews.jpg',
+    imageUrl: '/img/var-3.png',
     status: 'formation-of-the-team',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
