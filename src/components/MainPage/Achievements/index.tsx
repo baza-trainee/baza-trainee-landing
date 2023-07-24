@@ -6,9 +6,9 @@ import counterHandler from '@/utils/counterHandler';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 
-const projects = 7;
+const projects = 14;
 const members = 420;
-const haveJob = 212;
+const haveJob = 14;
 
 export const Achievements = () => {
   const componentRef = useRef(null);
@@ -18,7 +18,7 @@ export const Achievements = () => {
   const [isCountFinish, setIsCountFinish] = useState(false);
 
   const achievementData = [
-    { count: projectsCount, text: 'Виконаних проєктів' },
+    { count: projectsCount, text: 'Проєктів' },
     {
       count: membersCount,
       text: 'Залучених учасників',
@@ -57,7 +57,7 @@ export const Achievements = () => {
 
   return (
     <section className="bg-yellow-500 py-[5.2rem]" ref={componentRef}>
-      <ContainerMaxW1200 className="justify-between">
+      <ContainerMaxW1200 className="flex-col justify-between gap-16 sm:flex-row">
         {achievementData.map(({ count, plusVisible, text }, i) => (
           <div key={`achievement_key_${count + i}`} className={'text-center'}>
             <p className={'text-[5.6rem] font-semibold'}>
