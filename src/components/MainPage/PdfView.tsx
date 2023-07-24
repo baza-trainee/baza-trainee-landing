@@ -14,37 +14,6 @@ export const PDFView = ({ document }: { document: string | null }) => {
 
   return (
     <div className=" flex h-full w-full flex-col items-center justify-center ">
-      {/*<Document
-        loading={<Spinner title="Документ завантажується" />}
-        file="./docs/policy.pdf"
-        onLoadSuccess={onDocumentLoadSuccess}
-        className={'flex flex-col items-center justify-center'}
-      >
-        <Page
-          pageNumber={pageNumber}
-          renderAnnotationLayer={false}
-          renderTextLayer={false}
-        />
-        <div className="flex items-center justify-center">
-          <AdminPanelButton
-            type="button"
-            disabled={pageNumber <= 1}
-            onClick={(_e) => changePage(-1)}
-          >
-            {'<'}
-          </AdminPanelButton>
-          <p className=" p-4 text-3xl font-bold">
-            Сторінка {pageNumber || (numPages ? 1 : '--')} з {numPages || '--'}
-          </p>
-          <AdminPanelButton
-            type="button"
-            disabled={pageNumber >= numPages}
-            onClick={(_e) => changePage(1)}
-          >
-            {'>'}
-          </AdminPanelButton>
-        </div>
-      </Document>*/}
       <Document
         loading={<Spinner title="Документ завантажується" />}
         file={`./docs/${document}`}
