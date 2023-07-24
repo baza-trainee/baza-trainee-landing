@@ -18,7 +18,7 @@ export function PDFView() {
   }
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
+    <div className=" flex h-full w-full flex-col items-center justify-center ">
       {/*<Document
         loading={<Spinner title="Документ завантажується" />}
         file="./docs/policy.pdf"
@@ -54,7 +54,8 @@ export function PDFView() {
         loading={<Spinner title="Документ завантажується" />}
         file="./docs/policy.pdf"
         onLoadSuccess={onDocumentLoadSuccess}
-        className={'flex flex-col items-center justify-center'}
+        error={<div>Не вдалося завантажити файл</div>}
+        className={'flex flex-col items-center justify-center '}
       >
         {Array.from(new Array(numPages), (el, index) => (
           <Page
@@ -62,6 +63,7 @@ export function PDFView() {
             pageNumber={index + 1}
             renderAnnotationLayer={false}
             renderTextLayer={false}
+            scale={1.5}
           />
         ))}
       </Document>
