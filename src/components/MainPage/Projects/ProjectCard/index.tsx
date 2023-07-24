@@ -35,7 +35,7 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
           ${
             isMembersVisible
               ? 'to-[#00000077]'
-              : 'via-black via-20% to-[#CFA249] opacity-70'
+              : 'via-black via-20% to-[#cfa249e0] opacity-80 group-hover:to-transparent group-hover:via-0%'
           }`}
         />
 
