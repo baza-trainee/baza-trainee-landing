@@ -2,7 +2,7 @@ import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 
 export const Forms = () => {
   return (
-    <section className="text-center">
+    <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">
         <h2 className="mb-9 text-[3rem] font-bold md:text-[4rem]">
           Baza Trainee Ukraine запрошує приєднатись до команди
