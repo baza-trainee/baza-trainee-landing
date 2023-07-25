@@ -26,6 +26,22 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply w-3;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    @apply rounded-md bg-white;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-yellow-200;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-yellow-300;
+  }
 }
 
 input[type='file']::file-selector-button {

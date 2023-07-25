@@ -35,4 +35,7 @@ module.exports = {
       '/api/v1': proxy,
     };
   },
+  images: {
+    domains: ['baza-trainee.tech'],
+  },
 };

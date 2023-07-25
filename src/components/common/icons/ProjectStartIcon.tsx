@@ -1,11 +1,10 @@
 import { SVGProps } from 'react';
 
-export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
+export const ProjectStartIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 44 44"
-    width={44}
-    height={44}
+    width={24}
+    height={24}
     fill="none"
     {...props}
   >
@@ -13,7 +12,8 @@ export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M33 11 11 33m0-22 22 22"
+      strokeWidth={1.5}
+      d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM16 2v4M8 2v4M3 10h18"
     />
   </svg>
 );

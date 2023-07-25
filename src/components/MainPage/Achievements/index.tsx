@@ -57,7 +57,7 @@ export const Achievements = () => {
 
   return (
     <section className="bg-yellow-500 py-[5.2rem]" ref={componentRef}>
-      <ContainerMaxW1200 className="justify-between">
+      <ContainerMaxW1200 className="justify-between flex-col md:flex-row">
         {achievementData.map(({ count, plusVisible, text }, i) => (
           <div key={`achievement_key_${count + i}`} className={'text-center'}>
             <p className={'text-[5.6rem] font-semibold'}>

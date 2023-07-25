@@ -2,7 +2,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d65',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/var-5.png',
     status: 'active',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -14,7 +14,7 @@ export const projects = [
       {
         user: {
           _id: '6471fa06933513f26024a990',
-          name: 'some name',
+          name: 'some test test big name some test test big name ooo',
           link: 'https://www.linkedin.com/feed/',
         },
         role: {
@@ -183,7 +183,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d6',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/var-2.png',
     status: 'under-development',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -265,7 +265,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9d',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/var-3.png',
     status: 'formation-of-the-team',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -347,7 +347,7 @@ export const projects = [
   {
     _id: '64722eec6db949039aff9',
     title: '1112363',
-    imageUrl: '/img/var-1.png',
+    imageUrl: '/img/carousel-slide-2.png',
     status: 'active',
     stack: ['HTML', 'CSS', 'TS', 'Node', 'MongoDB', 'React'],
     link: 'https://murrfecto.site',
@@ -1134,3 +1134,5 @@ export const projects = [
     updatedAt: '2023-05-27T16:25:16.057Z',
   },
 ];
+
+export type TProjects = typeof projects;

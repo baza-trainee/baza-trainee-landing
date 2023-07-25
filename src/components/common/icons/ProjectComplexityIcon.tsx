@@ -1,19 +1,19 @@
 import { SVGProps } from 'react';
 
-export const CloseMainIcon = (props: SVGProps<SVGSVGElement>) => (
+export const ProjectComplexityIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={44}
-    height={44}
+    width={24}
+    height={24}
     fill="none"
     {...props}
   >
     <path
-      stroke="#121212"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
-      d="M33 11 11 33m0-22 22 22"
+      d="M18 20V10M12 20V4M6 20v-6"
     />
   </svg>
 );
