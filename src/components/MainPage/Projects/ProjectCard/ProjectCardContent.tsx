@@ -55,7 +55,6 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
           {project.status === 'active' && (
             <button
               className="self-start border-b text-[2rem] font-medium"
-              id="team-btn"
               onClick={handleShowTeam}
             >
               Команда проєкту

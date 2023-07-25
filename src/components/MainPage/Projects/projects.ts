@@ -14,7 +14,7 @@ export const projects = [
       {
         user: {
           _id: '6471fa06933513f26024a990',
-          name: 'some name',
+          name: 'some test test big name some test test big name ooo',
           link: 'https://www.linkedin.com/feed/',
         },
         role: {

@@ -37,11 +37,9 @@ export const ProjectCardTeam = ({ handleShowTeam, project }: ICardContent) => {
         <CloseIcon className="h-[2.4rem] w-[2.4rem] stroke-2" />
       </button>
 
-      <p className="mb-7 w-5/6 font-semibold">
-        Stack: {project.stack.join(', ')}
-      </p>
+      <p className="mb-7 w-full text-3xl font-semibold">Команда проєкту</p>
 
-      <div className="scrollbar flex h-5/6 w-[33rem] flex-col gap-[1.6rem] overflow-auto">
+      <div className="scrollbar flex h-[90%] flex-col gap-[1.6rem] overflow-y-scroll">
         {roles.map((role) => (
           <div key={role.id + role.role}>
             <h4 className="font-semibold">{role.text}</h4>
