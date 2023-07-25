@@ -1,8 +1,9 @@
 'use client';
 
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { CloseMainIcon } from '../common/icons';
+import { CloseIcon } from '../common/icons';
 import { Gratitude } from './Gratitude';
 import { PDFView } from './PdfView';
 
@@ -13,29 +14,33 @@ export const ModalParams = () => {
   const isPaymentSuccess = params.get('payment') === 'success';
   const document = params.get('document');
 
-  const bodyScrollLockRef = useBodyScrollLock(true);
+  const bodyScrollLockRef = useBodyScrollLock(isPaymentSuccess || !!document);
 
   const handlerShowModal = (
     e: React.MouseEvent<HTMLElement | SVGSVGElement>
   ) => {
     if (e.target === e.currentTarget) {
+      e.preventDefault();
       router.push(pathname);
     }
   };
 
   return isPaymentSuccess || document ? (
-    <section
+    <Link
+      href={'/'}
+      scroll={false}
+      //onClick={handlerShowModal}
       className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30  backdrop-blur-2xl backdrop-filter"
-      onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >
-      <div className="scrollbar relative max-h-[80%] max-w-[80%] overflow-auto rounded-xl bg-white p-12 px-[6.85rem] py-[12.8rem]">
-        <CloseMainIcon
-          className="absolute right-10 top-10 cursor-pointer "
-          onClick={handlerShowModal}
-        />
+      <Link
+        className="scrollbar relative max-h-[80%] max-w-[80%] overflow-auto rounded-xl bg-white p-12 px-[6.85rem] py-[12.8rem]"
+        href={'/'}
+        scroll={false}
+      >
+        <CloseIcon className="absolute right-10 top-10 cursor-pointer " />
         {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
-      </div>
-    </section>
+      </Link>
+    </Link>
   ) : null;
 };

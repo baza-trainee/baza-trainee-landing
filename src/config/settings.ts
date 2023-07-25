@@ -8,4 +8,5 @@ export const SETTINGS = {
     heroSliderPhoto: 1 * 1024 * 1024,
   },
   textToTranslateMaxLength: 700,
+  delayRevalidation: 120,
 };

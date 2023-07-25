@@ -19,8 +19,8 @@ const anchorLinksList = [
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/?document=policy.pdf' },
-  { title: 'Правила користування сайтом', href: '/?document=rules.pdf' },
+  { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
+  { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
   { title: 'Статут', href: '#' },
   { title: 'Звітність', href: '#' },
 ];
@@ -73,6 +73,7 @@ export const Footer = async () => {
               <Link
                 key={title + href}
                 href={href}
+                scroll={false}
                 className={`${
                   i < 2 ? 'underline underline-offset-8' : ''
                 } visited:text-yellow-800 hover:text-yellow-500`}

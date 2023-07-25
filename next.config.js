@@ -46,4 +46,7 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: ['baza-trainee.tech'],
+  },
 };
