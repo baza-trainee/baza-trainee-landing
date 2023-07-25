@@ -3,24 +3,15 @@ import { MultiArrow } from '../../common/icons';
 
 interface IProps extends CustomArrowProps {
   direction: 'left' | 'right';
-  type: 'hero' | 'testimonials';
+  classProp: string;
 }
 
-export const SlickArrow = ({ onClick, direction, type }: IProps) => {
-  const options = {
-    hero: { normal: '5%', xl: '10%' },
-    testimonials: { normal: '0', xl: '0' },
-  };
-  const xl = options[type].xl;
-  const normal = options[type].normal;
-  return (
-    onClick && (
-      <MultiArrow
-        direction={direction}
-        className={`absolute z-10 cursor-pointer ${direction}-[${normal}] xl:${direction}-[${xl}] top-1/2 -translate-y-1/2`}
-        onClick={onClick}
-        bigSize
-      />
-    )
+export const SlickArrow = ({ onClick, direction, classProp }: IProps) =>
+  onClick && (
+    <MultiArrow
+      direction={direction}
+      className={`absolute top-1/2 z-10 -translate-y-1/2 cursor-pointer ${classProp}`}
+      onClick={onClick}
+      bigSize
+    />
   );
-};
