@@ -1,41 +1,38 @@
-import { MouseEvent, MutableRefObject } from 'react';
-
-import usePaymentHandler from '@/hooks/usePayment';
-
 import { SupportBazaButton } from '@/components/atomic';
-
 import { CloseIcon } from '@/components/common/icons';
+import usePaymentHandler from '@/hooks/usePayment';
+import { MouseEvent } from 'react';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
 const paymentAmountData = ['100', '200', '500', '1000'];
 
 interface IModalContent {
   handlerShowModal: (_e: MouseEvent<HTMLDivElement>) => void;
   handleIconClick: () => void;
-  bodyScrollLockRef: MutableRefObject<any>;
 }
 
 const linkStyle =
-  'flex w-[17.4rem] items-center justify-center rounded-[0.4rem] border-2 border-neutral-300 hover:bg-neutral-300 hover:text-white';
+  'flex-center w-[17.4rem] rounded-[0.4rem] border-2 border-neutral-300 hover:bg-neutral-300 hover:text-white';
 
 export const ModalContent = (props: IModalContent) => {
-  const { handlerShowModal, handleIconClick, bodyScrollLockRef } = props;
+  const bodyScrollLockRef = useBodyScrollLock(true);
+  const { handlerShowModal, handleIconClick } = props;
   const { paymentAmount, handlePayment, handleAmountChange } =
     usePaymentHandler();
 
   return (
     <section
-      className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
+      className="flex-center fixed left-0 top-0 z-20 h-screen w-screen bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >
-      <div
-        className="relative w-[79.2rem] rounded-xl bg-white px-28 py-[12.8rem]"
-        id="modalWindow"
-      >
-        <CloseIcon
-          className="absolute right-10 top-10 cursor-pointer stroke-1"
+      <div className="relative w-[79.2rem] rounded-xl bg-white px-28 py-[12.8rem]">
+        <button
+          className="absolute right-10 top-10 cursor-pointer"
           onClick={handleIconClick}
-        />
+        >
+          <CloseIcon />
+        </button>
 
         <div className="px-[3.5rem] py-[2.4rem] text-center text-[2.4rem] text-neutral-800">
           <h2 className="mb-[4.4rem] font-semibold uppercase leading-tight">
@@ -54,7 +51,7 @@ export const ModalContent = (props: IModalContent) => {
                 {el} ГРН
               </button>
             ))}
-           
+
             <input
               type="text"
               pattern="[0-9]"
