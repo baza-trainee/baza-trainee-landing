@@ -21,26 +21,27 @@ export const ModalParams = () => {
   ) => {
     if (e.target === e.currentTarget) {
       e.preventDefault();
-      router.push(pathname);
+      router.push(pathname, { scroll: false });
     }
   };
 
   return isPaymentSuccess || document ? (
-    <Link
-      href={'/'}
-      scroll={false}
-      //onClick={handlerShowModal}
-      className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30  backdrop-blur-2xl backdrop-filter"
+    <section
+      onClick={handlerShowModal}
+      className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75  bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       ref={bodyScrollLockRef}
     >
-      <Link
+      <div
         className="scrollbar relative max-h-[80%] max-w-[80%] overflow-auto rounded-xl bg-white p-12 px-[6.85rem] py-[12.8rem]"
-        href={'/'}
-        scroll={false}
+        onClick={(e) => e.stopPropagation()}
       >
-        <CloseIcon className="absolute right-10 top-10 cursor-pointer " />
-        {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
-      </Link>
-    </Link>
+        <Link href={'/'} scroll={false}>
+          <CloseIcon className="absolute right-10 top-10 cursor-pointer " />
+        </Link>
+        <div>
+          {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
+        </div>
+      </div>
+    </section>
   ) : null;
 };
