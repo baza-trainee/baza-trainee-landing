@@ -3,14 +3,14 @@ import { MultiArrow } from '../../common/icons';
 
 interface IProps extends CustomArrowProps {
   direction: 'left' | 'right';
-  classProp: string;
+  className: string;
 }
 
-export const SlickArrow = ({ onClick, direction, classProp }: IProps) =>
+export const SlickArrow = ({ onClick, direction, className }: IProps) =>
   onClick && (
     <MultiArrow
       direction={direction}
-      className={`absolute top-1/2 z-10 -translate-y-1/2 cursor-pointer ${classProp}`}
+      className={`absolute top-1/2 z-10 -translate-y-1/2 cursor-pointer ${className}`}
       onClick={onClick}
       bigSize
     />

@@ -21,10 +21,10 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   nextArrow: (
-    <SlickArrow direction="right" classProp="right-[5%] xl:right-[15%]" />
+    <SlickArrow direction="right" className="right-[5%] xl:right-[15%]" />
   ),
   prevArrow: (
-    <SlickArrow direction="left" classProp="left-[5%] xl:left-[15%]" />
+    <SlickArrow direction="left" className="left-[5%] xl:left-[15%]" />
   ),
 };
 
