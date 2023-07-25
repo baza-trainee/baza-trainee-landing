@@ -5,7 +5,9 @@ function IconInner({ ...args }) {
       imageRendering="optimizeQuality"
       shapeRendering="geometricPrecision"
       textRendering="geometricPrecision"
-      //      viewBox="0 0 67.72 67.76"
+      width="67"
+      height="67"
+      viewBox="0 0 67 67"
       {...args}
     >
       <g>

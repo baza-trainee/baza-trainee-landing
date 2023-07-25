@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
-import { contactsApi } from '@/utils/API/contacts';
 import { TContactsInfo } from '@/types';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
-  FacebookIcon,
   LinkedInIcon,
   LogoMain,
   MailIcon,
   PhoneIcon,
+  TelegramIcon,
 } from '@/components/common/icons';
+import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 
 const anchorLinksList = [
   { title: 'Проєкти', href: '#projects' },
@@ -19,30 +19,30 @@ const anchorLinksList = [
 ];
 
 const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '/docs/policy.pdf' },
-  { title: 'Правила користування сайтом', href: '/docs/rules.pdf' },
+  { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
+  { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
   { title: 'Статут', href: '#' },
   { title: 'Звітність', href: '#' },
 ];
 
 const getContacts = async () => {
-  const noData = {
+  const noData: TContactsInfo = {
     contactsDataList: {
-      phone1: 'n/a',
-      phone2: 'n/a',
-      email: 'n/a',
+      phone1: 380636286630,
+      phone2: 380675681788,
+      email: 'info@baza-trainee.site',
     },
     socialsMediaList: {
-      linkedin: '#',
-      facebook: '#',
+      linkedin: 'https://www.linkedin.com/company/baza-trainee/',
+      facebook: 'https://t.me/+CBXkAJlsCy83ZDYy',
     },
   };
-
+  return noData; /*
   try {
     return await contactsApi.getData();
   } catch (_) {
     return noData;
-  }
+  }*/
 };
 
 export const Footer = async () => {
@@ -51,14 +51,18 @@ export const Footer = async () => {
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col text-white">
-        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row">
-          <div className="lg:w-full ">
+        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row ">
+          <Link href={'/'} className="lg:w-full ">
             <LogoMain className="h-32 w-32 md:h-[12.4rem] md:w-[12.4rem]" />
-          </div>
+          </Link>
 
           <div className="flex flex-col gap-4 lg:w-full">
             {anchorLinksList.map(({ title, href }) => (
-              <Link href={href} key={title + href}>
+              <Link
+                href={href}
+                key={title + href}
+                className="visited:text-yellow-800 hover:text-yellow-500"
+              >
                 {title}
               </Link>
             ))}
@@ -69,7 +73,10 @@ export const Footer = async () => {
               <Link
                 key={title + href}
                 href={href}
-                className={i < 2 ? 'underline underline-offset-8' : ''}
+                scroll={false}
+                className={`${
+                  i < 2 ? 'underline underline-offset-8' : ''
+                } visited:text-yellow-800 hover:text-yellow-500`}
               >
                 {title}
               </Link>
@@ -77,34 +84,29 @@ export const Footer = async () => {
           </div>
 
           <div className="flex flex-col gap-4 lg:w-full">
-            <Link
-              href={'tel:' + contactsInfo.contactsDataList.phone1}
-              className="flex gap-3"
-            >
+            <p className="flex gap-3">
               <PhoneIcon />
-              <span>{contactsInfo.contactsDataList.phone1 + ''}</span>
-            </Link>
-            <Link
-              href={'tel:' + contactsInfo.contactsDataList.phone2}
-              className="flex gap-3"
-            >
+              <span>
+                {formatPhoneNumber(contactsInfo.contactsDataList.phone1)}
+              </span>
+            </p>
+            <p className="flex gap-3">
               <PhoneIcon />
-              <span>{contactsInfo.contactsDataList.phone2 + ''}</span>
-            </Link>
-            <Link
-              href={'mailto:' + contactsInfo.contactsDataList.email}
-              className="flex gap-3"
-            >
+              <span>
+                {formatPhoneNumber(contactsInfo.contactsDataList.phone2)}
+              </span>
+            </p>
+            <p className="flex gap-3">
               <MailIcon />
               <span>{contactsInfo.contactsDataList.email + ''}</span>
-            </Link>
+            </p>
 
             <div className="mt-[3.2rem] flex gap-[3.2rem] sm:mt-auto">
               <Link href={contactsInfo.socialsMediaList.linkedin}>
                 <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
               </Link>
               <Link href={contactsInfo.socialsMediaList.facebook}>
-                <FacebookIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
+                <TelegramIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
               </Link>
             </div>
           </div>

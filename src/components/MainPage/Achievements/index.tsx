@@ -6,9 +6,9 @@ import counterHandler from '@/utils/counterHandler';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 
-const projects = 7;
+const projects = 14;
 const members = 420;
-const haveJob = 212;
+const haveJob = 14;
 
 export const Achievements = () => {
   const componentRef = useRef(null);
@@ -18,7 +18,7 @@ export const Achievements = () => {
   const [isCountFinish, setIsCountFinish] = useState(false);
 
   const achievementData = [
-    { count: projectsCount, text: 'Виконаних проєктів' },
+    { count: projectsCount, text: 'Проєктів' },
     {
       count: membersCount,
       text: 'Залучених учасників',
