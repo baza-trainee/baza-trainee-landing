@@ -5,15 +5,16 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { CloseMainIcon } from '../common/icons';
 import { Gratitude } from './Gratitude';
 import { PDFView } from './PdfView';
+import { createPortal } from 'react-dom';
 
 export const ModalParams = () => {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   const isPaymentSuccess = params.get('payment') === 'success';
-  const document = params.get('document');
+  const doc = params.get('document');
 
-  const bodyScrollLockRef = useBodyScrollLock(true);
+  const bodyScrollLockRef = useBodyScrollLock(!!doc || isPaymentSuccess);
 
   const handlerShowModal = (
     e: React.MouseEvent<HTMLElement | SVGSVGElement>
@@ -23,19 +24,23 @@ export const ModalParams = () => {
     }
   };
 
-  return isPaymentSuccess || document ? (
+  const Modal = () => (
     <section
-      className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75 bg-opacity-30  backdrop-blur-2xl backdrop-filter"
+      className="flex-center fixed left-0 top-0 z-20 h-screen w-screen bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >
-      <div className="scrollbar relative max-h-[80%] max-w-[80%] overflow-auto rounded-xl bg-white p-12 px-[6.85rem] py-[12.8rem]">
-        <CloseMainIcon
-          className="absolute right-10 top-10 cursor-pointer "
-          onClick={handlerShowModal}
-        />
-        {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
+      <div className="relative z-30 max-h-[80%] max-w-[80%] overflow-y-scroll rounded-xl bg-white px-[6.85rem] py-[12.8rem]">
+        <button className="absolute right-10 top-10" onClick={handlerShowModal}>
+          <CloseMainIcon />
+        </button>
+
+        {isPaymentSuccess ? <Gratitude /> : <PDFView document={doc} />}
       </div>
     </section>
-  ) : null;
+  );
+
+  return isPaymentSuccess || doc
+    ? createPortal(<Modal />, document.body)
+    : null;
 };
