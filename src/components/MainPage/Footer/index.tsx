@@ -4,11 +4,11 @@ import { TContactsInfo } from '@/types';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
-  FacebookIcon,
   LinkedInIcon,
   LogoMain,
   MailIcon,
   PhoneIcon,
+  TelegramIcon,
 } from '@/components/common/icons';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 
@@ -34,7 +34,7 @@ const getContacts = async () => {
     },
     socialsMediaList: {
       linkedin: 'https://www.linkedin.com/company/baza-trainee/',
-      facebook: '#',
+      facebook: 'https://t.me/+CBXkAJlsCy83ZDYy',
     },
   };
   return noData; /*
@@ -106,7 +106,7 @@ export const Footer = async () => {
                 <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
               </Link>
               <Link href={contactsInfo.socialsMediaList.facebook}>
-                <FacebookIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
+                <TelegramIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
               </Link>
             </div>
           </div>
