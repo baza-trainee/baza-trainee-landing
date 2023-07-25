@@ -21,7 +21,7 @@ const sliderSettings = {
 
 export const Partners = () => {
   return (
-    <section className="mb-[12rem]" id="partners">
+    <section>
       <ContainerMaxW1200 className="flex-col">
         <h2 className="mb-[3.2rem] text-center text-6xl font-bold">Партнери</h2>
 

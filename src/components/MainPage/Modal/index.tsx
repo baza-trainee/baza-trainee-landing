@@ -2,12 +2,10 @@
 
 import { MouseEvent, ReactElement, cloneElement, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { ModalContent } from './ModalContent';
 
 export const Modal = ({ children }: { children: ReactElement }) => {
   const [isLandingModalShown, setIsLandingModalShown] = useState(false);
-  const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
 
   const handlerShowModal = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -31,7 +29,6 @@ export const Modal = ({ children }: { children: ReactElement }) => {
           <ModalContent
             handlerShowModal={handlerShowModal}
             handleIconClick={handleIconClick}
-            bodyScrollLockRef={bodyScrollLockRef}
           />,
           document.body
         )}

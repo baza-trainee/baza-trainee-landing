@@ -24,7 +24,7 @@ export const Reviews = () => {
   const customPaging = (i: number) => Dot(i, currentSlide);
 
   return (
-    <section className="my-48">
+    <section>
       <ContainerMaxW1200>
         <div className="w-full">
           <h3 className="mb-12 text-center text-6xl font-bold">Відгуки</h3>
