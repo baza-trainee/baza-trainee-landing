@@ -20,8 +20,8 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  nextArrow: <SlickArrow direction="right" />,
-  prevArrow: <SlickArrow direction="left" />,
+  nextArrow: <SlickArrow direction="right" type="hero" />,
+  prevArrow: <SlickArrow direction="left" type="hero" />,
 };
 
 export const HeroSlider = () => {
