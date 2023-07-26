@@ -9,18 +9,27 @@ import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
 
-const sliderSettings = {
-  dots: true,
-  
-  autoplay: true,
-  speed: 1000,
-  autoplaySpeed: 5000,
-  nextArrow: <SlickArrow direction="right" classProp="right-0" />,
-  prevArrow: <SlickArrow direction="left" classProp="left-0 " />,
-};
-
 export const Reviews = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderSettings = {
+    dots: true,
+
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 5000,
+    nextArrow: (
+      <SlickArrow
+        direction="right"
+        classProp={`right-0 ${currentSlide === slides.length - 1 && 'hidden'}`}
+      />
+    ),
+    prevArrow: (
+      <SlickArrow
+        direction="left"
+        classProp={`left-0 ${currentSlide === 0 && 'hidden'}`}
+      />
+    ),
+  };
 
   const customPaging = (i: number) => Dot(i, currentSlide);
 
@@ -29,7 +38,6 @@ export const Reviews = () => {
       <ContainerMaxW1200>
         <div className="w-full">
           <h3 className="mb-12 text-center text-6xl font-bold">Відгуки</h3>
-          {currentSlide}
           <Slider
             {...sliderSettings}
             customPaging={customPaging}
