@@ -15,19 +15,6 @@ import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
 
-const settings = {
-  infinite: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  nextArrow: (
-    <SlickArrow direction="right" classProp="right-[5%] xl:right-[15%]" />
-  ),
-  prevArrow: (
-    <SlickArrow direction="left" classProp="left-[5%] xl:left-[15%]" />
-  ),
-};
-
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
@@ -38,8 +25,31 @@ export const HeroSlider = () => {
     }
   };
 
+  const settings = {
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 5000,
+    nextArrow: (
+      <SlickArrow
+        direction="right"
+        classProp={`right-[5%] xl:right-[15%] ${
+          currentSlide === slides.length - 1 && 'hidden'
+        }`}
+      />
+    ),
+    prevArrow: (
+      <SlickArrow
+        direction="left"
+        classProp={`left-[5%] xl:left-[15%] ${currentSlide === 0 && 'hidden'}`}
+      />
+    ),
+  };
+
   return (
-    <section className="relative text-white">
+    <section className="relative text-white ">
       <Slider
         {...settings}
         afterChange={setCurrentSlide}

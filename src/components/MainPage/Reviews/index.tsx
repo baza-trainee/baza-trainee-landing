@@ -11,6 +11,7 @@ import { slides } from './slides';
 
 const sliderSettings = {
   dots: true,
+  
   autoplay: true,
   speed: 1000,
   autoplaySpeed: 5000,
@@ -28,7 +29,7 @@ export const Reviews = () => {
       <ContainerMaxW1200>
         <div className="w-full">
           <h3 className="mb-12 text-center text-6xl font-bold">Відгуки</h3>
-
+          {currentSlide}
           <Slider
             {...sliderSettings}
             customPaging={customPaging}
