@@ -47,6 +47,7 @@ export type TContactsInfo = {
   socialsMediaList: {
     linkedin: string;
     facebook: string;
+    telegram: string;
   };
 };
 
