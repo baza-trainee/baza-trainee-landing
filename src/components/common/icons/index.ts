@@ -33,3 +33,4 @@ export * from './TranslatorIcon';
 export * from './TranslatorIcon2';
 export * from './UploadIcon';
 export * from './WarningIcon';
+export * from './MenuIcon';
