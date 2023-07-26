@@ -15,15 +15,14 @@ export const Header = () => {
           <LogoMain className="h-[4.2rem] w-[4.2rem] md:h-[7.8rem] md:w-[7.8rem]" />
         </Link>
 
-        <HeaderLinks className="hidden flex-col md:flex-row md:gap-[3.2rem] lg:flex lg:gap-[5.6rem]" />
+        <HeaderLinks className="hidden gap-[5.6rem] lg:flex" />
 
         <div className="sm:ml-auto sm:mr-20 lg:mx-0">
           <LanguageSelector />
         </div>
 
         <div className="lg:hidden">
-          <HeaderMenuButton/>
-            {/* <HeaderLinks className="relative flex flex-col gap-[3.2rem]" /> */}
+          <HeaderMenuButton />
         </div>
       </ContainerMaxW1200>
     </header>
