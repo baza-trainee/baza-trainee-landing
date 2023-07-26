@@ -17,7 +17,7 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
 
   return (
     <li>
-      <div className="group relative h-[46.4rem] w-[37.8rem] overflow-hidden rounded-md">
+      <div className="group relative h-[46.4rem] w-[37.8rem] overflow-hidden rounded-md cursor-default">
         <Image
           src={project.imageUrl}
           alt="Project Image"
