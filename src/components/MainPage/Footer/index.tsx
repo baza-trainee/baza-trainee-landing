@@ -34,7 +34,8 @@ const getContacts = async () => {
     },
     socialsMediaList: {
       linkedin: 'https://www.linkedin.com/company/baza-trainee/',
-      facebook: 'https://t.me/+CBXkAJlsCy83ZDYy',
+      facebook: '#',
+      telegram: 'https://t.me/+CBXkAJlsCy83ZDYy',
     },
   };
   return noData; /*
@@ -102,10 +103,16 @@ export const Footer = async () => {
             </p>
 
             <div className="mt-[3.2rem] flex gap-[3.2rem] sm:mt-auto">
-              <Link href={contactsInfo.socialsMediaList.linkedin}>
+              <Link
+                href={contactsInfo.socialsMediaList.linkedin}
+                target="blank"
+              >
                 <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
               </Link>
-              <Link href={contactsInfo.socialsMediaList.facebook}>
+              <Link
+                href={contactsInfo.socialsMediaList.telegram}
+                target="blank"
+              >
                 <TelegramIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
               </Link>
             </div>
