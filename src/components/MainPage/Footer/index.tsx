@@ -30,7 +30,7 @@ const getContacts = async () => {
     contactsDataList: {
       phone1: 380636286630,
       phone2: 380675681788,
-      email: 'info@baza-trainee.site',
+      email: 'info@baza-trainee.tech',
     },
     socialsMediaList: {
       linkedin: 'https://www.linkedin.com/company/baza-trainee/',
