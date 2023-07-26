@@ -46,6 +46,18 @@ const getContacts = async () => {
   }*/
 };
 
+const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
+  <Link
+    href={href}
+    {...args}
+    className={`visited:text-yellow-800 hover:text-yellow-500 ${
+      underline ? 'underline underline-offset-8' : ''
+    }`}
+  >
+    {title}
+  </Link>
+);
+
 export const Footer = async () => {
   const contactsInfo: TContactsInfo = await getContacts();
 
@@ -59,28 +71,19 @@ export const Footer = async () => {
           <div className="flex w-full flex-col flex-wrap justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row ">
             <div className="flex flex-col gap-4 lg:w-64">
               {anchorLinksList.map(({ title, href }) => (
-                <Link
-                  href={href}
-                  key={title + href}
-                  className="visited:text-yellow-800 hover:text-yellow-500"
-                >
-                  {title}
-                </Link>
+                <FooterLink href={href} key={title + href} title={title} />
               ))}
             </div>
 
             <div className="flex flex-col gap-4 lg:w-96">
               {officialDocsList.map(({ title, href }, i) => (
-                <Link
+                <FooterLink
                   key={title + href}
                   href={href}
+                  title={title}
                   scroll={false}
-                  className={`${
-                    i < 2 ? 'underline underline-offset-8' : ''
-                  } visited:text-yellow-800 hover:text-yellow-500`}
-                >
-                  {title}
-                </Link>
+                  underline={i < 2}
+                />
               ))}
             </div>
 
