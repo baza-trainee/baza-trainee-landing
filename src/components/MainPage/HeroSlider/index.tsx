@@ -22,6 +22,7 @@ export const HeroSlider = () => {
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
       slickRef.current.slickGoTo(slideIndex);
+      console.log(slickRef.current);
     }
   };
 

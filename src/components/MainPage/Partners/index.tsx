@@ -11,11 +11,11 @@ const sliderSettings = {
   dots: false,
   arrows: false,
   autoplay: true,
-  autoplaySpeed: 6000,
+  autoplaySpeed: 4000,
   speed: 2000,
   slidesToShow: 5,
-  slidesToScroll: 5,
-  infinite: true,
+  slidesToScroll: 1,
+  infinite: false,
   draggable: false,
 };
 
