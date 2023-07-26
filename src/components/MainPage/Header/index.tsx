@@ -18,7 +18,7 @@ export const Header = () => {
         <HeaderLinks className="hidden gap-[5.6rem] lg:flex" />
 
         <div className="sm:ml-auto sm:mr-20 lg:mx-0">
-          <LanguageSelector />
+          {/* <LanguageSelector /> */}
         </div>
 
         <div className="lg:hidden">
