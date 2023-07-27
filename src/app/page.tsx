@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      {/* <main className="mb-36 flex flex-col gap-32 md:mb-40 md:gap-44 xl:mb-48 xl:gap-52">
+      <main className="mb-36 flex flex-col gap-32 md:mb-40 md:gap-44 xl:mb-48 xl:gap-52">
         <HeroSlider />
         <Projects />
         <SupportBaza />
@@ -23,7 +23,7 @@ export default function Home() {
         <Partners />
         <Achievements />
         <Reviews />
-      </main> */}
+      </main>
       <Footer />
 
       <ModalParams />
