@@ -12,7 +12,7 @@ export const Header = () => {
     <header className="h-[10rem] bg-yellow-500 md:h-[10.4rem]" id="header">
       <ContainerMaxW1200 className="h-full items-center justify-between">
         <Link href="/">
-          <LogoMain className="h-[4.2rem] w-[4.2rem] md:h-[7.8rem] md:w-[7.8rem]" />
+          <LogoMain className="h-[4.2rem] w-[4.2rem] sm:h-[7.8rem] sm:w-[7.8rem]" />
         </Link>
 
         <HeaderLinks className="hidden gap-[5.6rem] lg:flex" />
