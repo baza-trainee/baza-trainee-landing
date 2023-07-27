@@ -5,7 +5,7 @@ export const SupportBaza = () => {
   return (
     <section>
       <ContainerMaxW1200>
-        <Modal>
+        <Modal content="donate">
           <SupportBazaButton className="m-auto">
             Підтримати Baza Trainee Ukraine
           </SupportBazaButton>

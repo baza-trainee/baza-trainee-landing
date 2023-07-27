@@ -34,7 +34,7 @@ export const ProjectCardTeam = ({ handleShowTeam, project }: ICardContent) => {
   return (
     <>
       <button className="absolute right-[2rem]" onClick={handleShowTeam}>
-        <CloseIcon smallSize />
+        <CloseIcon size='S' />
       </button>
 
       <p className="mb-7 w-full text-3xl font-semibold">Команда проєкту</p>

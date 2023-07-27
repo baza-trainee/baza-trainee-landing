@@ -40,7 +40,7 @@ export const HeroSlider = () => {
   };
 
   return (
-    <section className="relative text-white ">
+    <section className="relative text-white">
       <div className="relative">
         <div className="absolute z-20 h-full w-full">
           <ContainerMaxW1200 className="absolute h-full items-center justify-between text-white">
@@ -48,14 +48,14 @@ export const HeroSlider = () => {
               <MultiArrow
                 direction="left"
                 bigSize
-                className={` ${currentSlide === 0 && 'hidden'}`}
+                className={`${currentSlide === 0 && 'hidden'}`}
               />
             </button>
             <button onClick={() => arrowHandler('next')}>
               <MultiArrow
                 direction="right"
                 bigSize
-                className={` ${currentSlide === slides.length - 1 && 'hidden'}`}
+                className={`${currentSlide === slides.length - 1 && 'hidden'}`}
               />
             </button>
           </ContainerMaxW1200>
@@ -77,7 +77,7 @@ export const HeroSlider = () => {
         <ContainerMaxW1200 className="h-[8.8rem] items-center justify-between">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          <Modal>
+          <Modal content="donate">
             <PrimaryButton>Фондувати</PrimaryButton>
           </Modal>
         </ContainerMaxW1200>
