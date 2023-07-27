@@ -63,19 +63,19 @@ export const Footer = async () => {
 
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
-      <ContainerMaxW1200 className="flex-col text-white">
-        <nav className="flex flex-col justify-between gap-[3.2rem] sm:min-h-[18.4rem] sm:flex-row ">
-          <Link href={'/'} className="lg:w-full ">
-            <LogoMain className="h-32 w-32 md:h-[12.4rem] md:w-[12.4rem]" />
+      <ContainerMaxW1200 className="flex-col text-white gap-12 lg:gap-0">
+        <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
+          <Link href={'/'} className="sm:row-span-2">
+            <LogoMain className="h-32 w-32 sm:h-[12.4rem] sm:w-[12.4rem]" />
           </Link>
 
-          <div className="flex flex-col gap-4 lg:w-full">
+          <div className="flex flex-col gap-4 lg:row-span-2 lg:w-full">
             {anchorLinksList.map(({ title, href }) => (
               <FooterLink href={href} key={title + href} title={title} />
             ))}
           </div>
 
-          <div className="flex flex-col gap-4 lg:w-full">
+          <div className="flex flex-col gap-4 lg:row-span-2 lg:w-full">
             {officialDocsList.map(({ title, href }, i) => (
               <FooterLink
                 key={title + href}
@@ -104,25 +104,19 @@ export const Footer = async () => {
               <MailIcon className="shrink-0" />
               <span>{contactsInfo.contactsDataList.email + ''}</span>
             </p>
+          </div>
 
-            <div className="mt-[3.2rem] flex gap-[3.2rem] sm:mt-auto">
-              <Link
-                href={contactsInfo.socialsMediaList.linkedin}
-                target="blank"
-              >
-                <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
-              </Link>
-              <Link
-                href={contactsInfo.socialsMediaList.telegram}
-                target="blank"
-              >
-                <TelegramIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
-              </Link>
-            </div>
+          <div className=" flex gap-[3.2rem] ">
+            <Link href={contactsInfo.socialsMediaList.linkedin} target="blank">
+              <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
+            </Link>
+            <Link href={contactsInfo.socialsMediaList.telegram} target="blank">
+              <TelegramIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
+            </Link>
           </div>
         </nav>
 
-        <span className="mt-12 text-[1.4rem] text-neutral-75 sm:mt-0">
+        <span className="text-[1.4rem] text-neutral-75 sm:mt-0">
           Розробка BazaTraineeUkraine 2023 Усі права захищені.
         </span>
       </ContainerMaxW1200>
