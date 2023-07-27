@@ -1,8 +1,9 @@
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
 import { ProjectCard } from './ProjectCard';
 import { projects } from './projects';
-import { TProjects } from './types';
+
 import { SETTINGS } from '@/config/settings';
+import { IProject } from '@/types';
 
 const getProjects = async () => {
   const response = await fetch(
@@ -15,9 +16,9 @@ const getProjects = async () => {
     throw new Error('Failed to fetch data');
   }
 
-  const result: TProjects[] = await response.json();
+  const result: IProject[] = await response.json();
 
-  const modResult: TProjects[] = result.map((item: TProjects) => {
+  const modResult: IProject[] = result.map((item: IProject) => {
     item.imageUrl = 'https://baza-trainee.tech/api/v1/files/' + item.imageUrl;
     return item;
   });
@@ -49,7 +50,7 @@ export const Projects = async () => {
         )}
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-          {filteredProjects.map((project: TProjects) => (
+          {filteredProjects.map((project: IProject) => (
             <ProjectCard key={project._id} project={project} />
           ))}
         </ul>
