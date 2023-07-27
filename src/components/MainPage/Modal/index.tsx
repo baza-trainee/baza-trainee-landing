@@ -1,11 +1,21 @@
 'use client';
 
-import { MouseEvent, ReactElement, cloneElement, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ModalContent } from './ModalContent';
+import { MouseEvent, ReactElement, cloneElement, isValidElement, useState } from 'react';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
-export const Modal = ({ children }: { children: ReactElement }) => {
-  const [isLandingModalShown, setIsLandingModalShown] = useState(false);
+import { CloseIcon } from '@/components/common/icons';
+import { ContentDonate } from './ContentDonate';
+
+type Props = {
+  children: ReactElement;
+  content: 'donate' | ReactElement;
+  open?: boolean;
+};
+
+export const Modal = ({ children, content, open = false }: Props) => {
+  const [isLandingModalShown, setIsLandingModalShown] = useState(open);
+  const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
 
   const handlerShowModal = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -17,6 +27,27 @@ export const Modal = ({ children }: { children: ReactElement }) => {
     setIsLandingModalShown((prevState) => !prevState);
   };
 
+  const ModalLayout = () => (
+    <section
+      className="flex-center fixed left-0 top-0 z-20 h-full w-full min-w-[40rem] bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
+      onClick={handlerShowModal}
+      ref={bodyScrollLockRef}
+    >
+      <div className="relative z-30 m-8 min-h-[39rem] w-[39rem] cursor-default rounded-xl bg-white sm:w-[65.6rem] xl:w-[79.2rem]">
+        <button
+          className="absolute right-[1.6rem] top-[1.6rem] sm:right-[2.8rem] sm:top-[2.8rem]"
+          onClick={handleIconClick}
+        >
+          <CloseIcon className="sm:hidden" size="M" />
+          <CloseIcon className="hidden sm:block" />
+        </button>
+
+        {content === 'donate' && <ContentDonate />}
+        {isValidElement(content) && content}
+      </div>
+    </section>
+  );
+
   return (
     <>
       {children &&
@@ -24,14 +55,7 @@ export const Modal = ({ children }: { children: ReactElement }) => {
           onClick: handlerShowModal,
         })}
 
-      {isLandingModalShown &&
-        createPortal(
-          <ModalContent
-            handlerShowModal={handlerShowModal}
-            handleIconClick={handleIconClick}
-          />,
-          document.body
-        )}
+      {isLandingModalShown && createPortal(<ModalLayout />, document.body)}
     </>
   );
 };

@@ -21,7 +21,7 @@ export const HeaderMenuButton = () => {
   return (
     <>
       <button className="" onClick={toggleMenu}>
-        {!isOpen ? <MenuIcon /> : <CloseIcon smallSize />}
+        {!isOpen ? <MenuIcon /> : <CloseIcon size="S" />}
       </button>
 
       <div
