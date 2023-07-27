@@ -1,4 +1,4 @@
-export const formatDate = (dateString: string) => {
+export const formatDate = (dateString: string | number) => {
   const monthNames = [
     'січня',
     'лютого',

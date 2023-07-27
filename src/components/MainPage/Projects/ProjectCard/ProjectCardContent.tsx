@@ -32,7 +32,7 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
             <ProjectStartIcon />
             <span>Старт проєкту</span>
             <span className="ml-auto font-medium">
-              {formatDate(project.createdAt)}
+              {formatDate(project.creationDate)}
             </span>
           </div>
 
@@ -52,7 +52,7 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
             </div>
           </div>
 
-          {project.status === 'active' && (
+          {project.teamMembers.length > 0 && (
             <button
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}
