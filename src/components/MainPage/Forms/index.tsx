@@ -8,9 +8,7 @@ export const Forms = () => {
           Baza Trainee Ukraine запрошує приєднатись до команди
         </h2>
 
-        <p className="mb-[4.8rem] text-[2.4rem]">
-          Оберіть свою участь в проєкті
-        </p>
+        <p className="mb-[4.8rem] text-[2.4rem]">Оберіть свою роль у проєкті</p>
 
         <nav className="flex flex-wrap justify-center gap-[3.2rem] md:flex-nowrap">
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1QsjBjv90-GNkMN_fm2-Nsn0ROlx-yHiyYyou2_oyH2Q/edit">
