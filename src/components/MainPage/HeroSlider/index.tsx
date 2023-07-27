@@ -1,10 +1,10 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import Slider from 'react-slick';
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
 import { TSlide } from '@/types';
+import { useRef, useState } from 'react';
+import Slider from 'react-slick';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
@@ -33,8 +33,6 @@ export const HeroSlider = () => {
 
   const arrowHandler = (direction: 'next' | 'prev') => {
     if (slickRef.current) {
-      console.log(direction);
-
       direction === 'next'
         ? slickRef.current.slickNext()
         : slickRef.current.slickPrev();
