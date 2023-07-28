@@ -26,7 +26,7 @@ const ProjectCard = ({ project }: { project: IProject }) => {
           className={
             isMembersVisible
               ? 'contrast-50 grayscale-[.3]'
-              : 'contrast-50 grayscale group-hover:grayscale-0'
+              : 'contrast-50 grayscale group-hover:contrast-100 group-hover:grayscale-0'
           }
         />
 

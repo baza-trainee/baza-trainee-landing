@@ -21,7 +21,7 @@ const anchorLinksList = [
 const officialDocsList = [
   { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
   { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
-  { title: 'Статут', href: '#' },
+  { title: 'Статут', href: '?document=statut.pdf' },
   { title: 'Звітність', href: '#' },
 ];
 
@@ -50,7 +50,7 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   <Link
     href={href}
     {...args}
-    className={`visited:text-yellow-800 hover:text-yellow-500 ${
+    className={`hover:text-yellow-500 active:text-yellow-800 ${
       underline ? 'underline underline-offset-8' : ''
     }`}
   >
@@ -63,7 +63,7 @@ export const Footer = async () => {
 
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
-      <ContainerMaxW1200 className="flex-col text-white gap-12 lg:gap-0">
+      <ContainerMaxW1200 className="flex-col gap-12 text-white lg:gap-0">
         <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
           <Link href={'/'} className="sm:row-span-2">
             <LogoMain className="h-32 w-32 sm:h-[12.4rem] sm:w-[12.4rem]" />

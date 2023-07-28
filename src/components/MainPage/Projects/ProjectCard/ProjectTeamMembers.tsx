@@ -9,7 +9,9 @@ type TProps = {
 };
 
 export const ProjectTeamMembers = ({ roleName, teamMembers }: TProps) => {
-  const members = teamMembers.filter((member) => member.role.name === roleName);
+  const members = teamMembers
+    .filter((member) => member.role.name === roleName)
+    .sort((a, b) => a.user.name.localeCompare(b.user.name));
 
   return members.map((member) => (
     <a
