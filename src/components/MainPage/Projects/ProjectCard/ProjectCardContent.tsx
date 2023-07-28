@@ -37,9 +37,7 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
           <div className="flex items-center gap-2">
             <ProjectDurationIcon />
             <span>Тривалість</span>
-            <span className="ml-auto font-medium">
-              {projectCycle(project)} тижнів
-            </span>
+            <span className="ml-auto font-medium">{projectCycle(project)}</span>
           </div>
 
           <div className="flex items-center gap-2">
