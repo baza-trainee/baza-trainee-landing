@@ -1,3 +1,5 @@
+import { IProject } from '@/types';
+
 export const projects = [
   {
     _id: '1',
@@ -12,6 +14,7 @@ export const projects = [
     teamMembers: [
       {
         user: {
+          _id: '',
           name: 'Ольга Іванова',
           link: 'https://www.linkedin.com/in/ivolga-kyiv/',
         },
@@ -687,4 +690,4 @@ export const projects = [
     complexity: 2,
     teamMembers: [],
   },
-];
+] as IProject[];
