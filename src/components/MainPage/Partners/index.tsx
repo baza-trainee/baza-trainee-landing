@@ -13,10 +13,11 @@ const sliderSettings = {
   autoplay: true,
   autoplaySpeed: 4000,
   speed: 2000,
-  slidesToShow: 5,
+  slidesToShow: 4,
   slidesToScroll: 1,
   infinite: true,
   draggable: true,
+
   responsive: [
     {
       breakpoint: 1300,
@@ -38,19 +39,19 @@ export const Partners = () => {
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">
-        <h2 className=" text-center text-6xl font-bold">Партнери</h2>
-
-        <Slider {...sliderSettings}>
+        <h2 className="text-center text-6xl font-bold">Партнери</h2>
+        <Slider {...sliderSettings} lazyLoad="progressive">
           {partners.map((partner) => (
             <Link
-              className="mt-[3.2rem] flex justify-center"
-              href={partner.homeUrl}
               key={partner._id}
+              href={partner.homeUrl}
               target="_blank"
+              className="mt-[3.2rem]"
             >
               <Image
                 width={214}
                 height={100}
+                sizes="(max-width: 214px)"
                 className={
                   'py-4 contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
                 }

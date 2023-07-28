@@ -8,8 +8,20 @@ export const projects = [
     description: 'Сайт притулку для вуличних тварин Murrfecto',
     creationDate: 1682283600000,
     launchDate: 1686517200000,
-    complexity: 1,
-    teamMembers: [],
+    complexity: 2,
+    teamMembers: [
+      /*{
+        user: {
+          _id: '6471fa06933513f26024a99',
+          name: 'some name',
+          link: 'https://www.linkedin.com/feed/',
+        },
+        role: {
+          _id: '6471f9a29c17ac2190eb879',
+          name: 'PM',
+        },
+      },  */
+    ],
   },
   {
     _id: '2',
@@ -112,58 +124,3 @@ export const projects = [
 ];
 
 export type TProjects = typeof projects;
-
-/*teamMembers: [
-      {
-        user: {
-          _id: '6471fa06933513f26024a99',
-          name: 'some name',
-          link: 'https://www.linkedin.com/feed/',
-        },
-        role: {
-          _id: '6471f9a29c17ac2190eb879',
-          name: 'PM',
-        },
-      }, 
-//formation-of-the-team
-const inputDate = '15 липня 2023';
-const weeks = 4;
-const ukrainianMonths = [
-  'січня',
-  'лютого',
-  'березня',
-  'квітня',
-  'травня',
-  'червня',
-  'липня',
-  'серпня',
-  'вересня',
-  'жовтня',
-  'листопада',
-  'грудня',
-];
-
-// Function to convert the Ukrainian date string to milliseconds since Unix Epoch
-const convertUkrainianDateToMilliseconds = (dateString: string) => {
-  const dateParts = dateString.split(' ');
-  const day = parseInt(dateParts[0], 10);
-  const month = ukrainianMonths.indexOf(dateParts[1]);
-  const year = parseInt(dateParts[2], 10);
-
-  const dateObject = new Date(year, month, day);
-  return dateObject.getTime();
-};
-
-// Convert the input date to milliseconds since Unix Epoch
-const resultMilliseconds = convertUkrainianDateToMilliseconds(inputDate);
-
-console.log(resultMilliseconds); // Output: 1671840000000
-
-//const weeks = 21;
-const weeksToMilliseconds = weeks * 7 * 24 * 60 * 60 * 1000;
-
-// Add the milliseconds for 7 weeks to the current date
-const futureDateMilliseconds = resultMilliseconds + weeksToMilliseconds;
-
-console.log(futureDateMilliseconds);
-*/
