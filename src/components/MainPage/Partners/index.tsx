@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
-
-const nestedElemStyle = 'h-40 w-11/12 bg-neutral-75 text-center py-4';
+import Image from 'next/image';
+import { partners } from './partners';
 
 const sliderSettings = {
   dots: false,
@@ -15,8 +15,8 @@ const sliderSettings = {
   speed: 2000,
   slidesToShow: 5,
   slidesToScroll: 1,
-  infinite: false,
-  draggable: false,
+  infinite: true,
+  draggable: true,
   responsive: [
     {
       breakpoint: 1300,
@@ -41,47 +41,32 @@ export const Partners = () => {
         <h2 className=" text-center text-6xl font-bold">Партнери</h2>
 
         <Slider {...sliderSettings}>
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>1</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>2</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>3</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>4</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>5</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>6</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>7</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>8</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>9</div>
-          </Link>
-
-          <Link className="mt-[3.2rem]" href="#">
-            <div className={nestedElemStyle}>10</div>
-          </Link>
+          {partners.map((partner) => (
+            <Link
+              className="mt-[3.2rem] flex justify-center"
+              href={partner.homeUrl}
+              key={partner._id}
+              target="_blank"
+            >
+              <Image
+                width={214}
+                height={100}
+                className={
+                  'py-4 contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
+                }
+                src={partner.imageUrl}
+                alt={partner.name}
+              />
+            </Link>
+          ))}
         </Slider>
       </ContainerMaxW1200>
     </section>
   );
 };
+
+/*className={
+            isMembersVisible
+              ? 'contrast-50 grayscale-[.3]'
+              : 'contrast-50 grayscale group-hover:grayscale-0'
+          } */
