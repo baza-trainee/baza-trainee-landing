@@ -3,7 +3,7 @@
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
 import { TSlide } from '@/types';
-import { useMemo, useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
@@ -20,7 +20,14 @@ const settings = {
   arrows: false,
 };
 
-export const HeroSlider = () => {
+const ModalComponent = () => (
+  <Modal content="donate">
+    <PrimaryButton>Фондувати</PrimaryButton>
+  </Modal>
+);
+const MemoizedModal = memo(ModalComponent);
+
+const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
 
@@ -38,15 +45,6 @@ export const HeroSlider = () => {
         : slickRef.current.slickPrev();
     }
   };
-
-  const memoizedModal = useMemo(
-    () => (
-      <Modal content="donate">
-        <PrimaryButton>Фондувати</PrimaryButton>
-      </Modal>
-    ),
-    []
-  );
 
   return (
     <section className="relative text-white">
@@ -83,12 +81,14 @@ export const HeroSlider = () => {
       </div>
 
       <div className="bg-yellow-500">
-        <ContainerMaxW1200 className="min-h-[8.8rem] sm:items-center sm:justify-between gap-[2.4rem] py-[1.6rem] sm:py-0 flex-col sm:flex-row">
+        <ContainerMaxW1200 className="min-h-[8.8rem] flex-col gap-[2.4rem] py-[1.6rem] sm:flex-row sm:items-center sm:justify-between sm:py-0">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          {memoizedModal}
+          <MemoizedModal />
         </ContainerMaxW1200>
       </div>
     </section>
   );
 };
+
+export { HeroSlider };
