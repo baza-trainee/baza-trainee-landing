@@ -527,7 +527,7 @@ export const projects = [
       },
       {
         user: {
-          name: 'Олексій Бурис (AllanQ)',
+          name: 'Олексій Бурис',
           link: 'https://www.linkedin.com/in/oleksii-burys-allanq',
         },
         role: {
