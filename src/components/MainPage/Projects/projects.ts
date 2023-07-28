@@ -78,7 +78,8 @@ export const projects = [
     imageUrl: '/img/projects/feeda-1.png',
     status: 'under-development',
     link: ' ',
-    description: 'Feeda - платформа для обробки заявок Baza Trainee',
+    description:
+      'Feeda - платформа для обробки заявок на участь у Baza Trainee',
     creationDate: 1687208400000,
     launchDate: 1691442000000,
     complexity: 2,

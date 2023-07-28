@@ -12,19 +12,17 @@ import { ProjectStatusBar } from './ProjectStatusBar';
 
 const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
   return (
-    <div className="flex h-full flex-col justify-between">
+    <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar statusName={project.status} />
 
-      <div className="h-3/5 w-full">
-        <div className="mb-[1.6rem] h-36">
+      <div className="flex w-full flex-col gap-[1.6rem]">
+        <div className="h-[11rem]">
           <h4 className="text-[2.4rem] font-bold leading-[3rem]">
             {project.description}
           </h4>
-          {project.status === 'active' && (
-            <a href={project.link} target="_blank">
-              {project.link}
-            </a>
-          )}
+          <a href={project.link} target="_blank" className="mt-[0.8rem]">
+            {project.link ? project.link : ''}
+          </a>
         </div>
 
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
