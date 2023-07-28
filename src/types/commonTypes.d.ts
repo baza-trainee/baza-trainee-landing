@@ -12,5 +12,3 @@ export type TSlideReview = {
   review: string;
   imageUrl: string;
 };
-
-
