@@ -3,7 +3,7 @@
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
 import { TSlide } from '@/types';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
@@ -38,6 +38,15 @@ export const HeroSlider = () => {
         : slickRef.current.slickPrev();
     }
   };
+
+  const memoizedModal = useMemo(
+    () => (
+      <Modal content="donate">
+        <PrimaryButton>Фондувати</PrimaryButton>
+      </Modal>
+    ),
+    []
+  );
 
   return (
     <section className="relative text-white">
@@ -74,12 +83,10 @@ export const HeroSlider = () => {
       </div>
 
       <div className="bg-yellow-500">
-        <ContainerMaxW1200 className="h-[8.8rem] items-center justify-between">
+        <ContainerMaxW1200 className="min-h-[8.8rem] sm:items-center sm:justify-between gap-[2.4rem] py-[1.6rem] sm:py-0 flex-col sm:flex-row">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          <Modal content="donate">
-            <PrimaryButton>Фондувати</PrimaryButton>
-          </Modal>
+          {memoizedModal}
         </ContainerMaxW1200>
       </div>
     </section>

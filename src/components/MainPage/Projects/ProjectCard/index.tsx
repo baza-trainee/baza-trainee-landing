@@ -17,7 +17,7 @@ const ProjectCard = ({ project }: { project: IProject }) => {
 
   return (
     <li>
-      <div className="group relative h-[46.4rem] w-[37.8rem] cursor-default overflow-hidden rounded-md">
+      <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md border">
         <Image
           src={project.imageUrl}
           alt="Project Image"
