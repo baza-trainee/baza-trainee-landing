@@ -39,35 +39,28 @@ export const Partners = () => {
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">
-        <h2 className="text-center text-6xl font-bold">Партнери</h2>
-        <Slider {...sliderSettings} lazyLoad="progressive">
-          {partners.map((partner) => (
-            <Link
-              key={partner._id}
-              href={partner.homeUrl}
-              target="_blank"
-              className="mt-[3.2rem]"
-            >
-              <Image
-                width={214}
-                height={100}
-                sizes="(max-width: 214px)"
-                className={
-                  'py-4 contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
-                }
-                src={partner.imageUrl}
-                alt={partner.name}
-              />
-            </Link>
-          ))}
-        </Slider>
+        <div className=" max-w-full">
+          <h2 className="mb-[3.2rem] text-center text-6xl font-bold">
+            Партнери
+          </h2>
+          <Slider {...sliderSettings} lazyLoad="progressive">
+            {partners.map((partner) => (
+              <Link key={partner._id} href={partner.homeUrl} target="_blank">
+                <Image
+                  width={214}
+                  height={100}
+                  sizes="(max-width: 214px)"
+                  className={
+                    'm-auto py-4 contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
+                  }
+                  src={partner.imageUrl}
+                  alt={partner.name}
+                />
+              </Link>
+            ))}
+          </Slider>
+        </div>
       </ContainerMaxW1200>
     </section>
   );
 };
-
-/*className={
-            isMembersVisible
-              ? 'contrast-50 grayscale-[.3]'
-              : 'contrast-50 grayscale group-hover:grayscale-0'
-          } */
