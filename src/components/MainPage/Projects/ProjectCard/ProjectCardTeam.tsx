@@ -3,12 +3,14 @@ import { ICardContent } from '../types';
 import { ProjectTeamMembers } from './ProjectTeamMembers';
 
 export const ProjectCardTeam = ({ handleShowTeam, project }: ICardContent) => {
-  const roles = project.teamMembers.reduce((acc: string[], cur) => {
-    if (!acc.includes(cur.role.name)) {
-      acc.push(cur.role.name);
-    }
-    return acc;
-  }, []);
+  const roles = project.teamMembers
+    .reduce((acc: string[], cur) => {
+      if (!acc.includes(cur.role.name)) {
+        acc.push(cur.role.name);
+      }
+      return acc;
+    }, [])
+    .sort();
 
   return (
     <>
