@@ -28,7 +28,7 @@ export const projects = [
     title: 'Ataka Help',
     imageUrl: '/img/projects/atack.png',
     status: 'active',
-    link: 'https://atakahelp.site',
+    link: 'https://ataka-help.tech',
     description: 'Платформа про види кібершахрайства AtakaHelp',
     creationDate: 1683493200000,
     launchDate: 1687726800000,
@@ -44,7 +44,7 @@ export const projects = [
     description: 'Лендинг - платформа Baza Trainee Ukraine',
     creationDate: 1683234000000,
     launchDate: 1687467600000,
-    complexity: 5,
+    complexity: 3,
     teamMembers: [],
   },
   {
@@ -56,7 +56,7 @@ export const projects = [
     description: 'Читозаврик - веб-додаток з книжковими вікторинами для дітей',
     creationDate: 1685566800000,
     launchDate: 0,
-    complexity: 3,
+    complexity: 5,
     teamMembers: [],
   },
   {
@@ -80,7 +80,7 @@ export const projects = [
     description: 'Сайт притулку для вуличних тварин Big Lapa',
     creationDate: 1685566800000,
     launchDate: 0,
-    complexity: 1,
+    complexity: 2,
     teamMembers: [],
   },
   {
@@ -105,7 +105,7 @@ export const projects = [
     description: 'Книжка їде за кордон - портал гуманітарної допомоги',
     creationDate: 1688245200000,
     launchDate: 0,
-    complexity: 1,
+    complexity: 2,
     teamMembers: [],
   },
   {
@@ -121,5 +121,3 @@ export const projects = [
     teamMembers: [],
   },
 ];
-
-export type TProjects = typeof projects;
