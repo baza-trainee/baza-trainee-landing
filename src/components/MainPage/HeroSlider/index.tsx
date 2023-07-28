@@ -50,20 +50,18 @@ const HeroSlider = () => {
     <section className="relative text-white">
       <div className="relative">
         <div className="absolute z-20 h-full w-full">
-          <ContainerMaxW1200 className="absolute h-full items-center justify-between text-white">
-            <button onClick={() => arrowHandler('prev')}>
-              <MultiArrow
-                direction="left"
-                bigSize
-                className={`${currentSlide === 0 && 'hidden'}`}
-              />
+          <ContainerMaxW1200 className="h-full w-full items-center">
+            <button
+              onClick={() => arrowHandler('prev')}
+              className={`${currentSlide === 0 && 'hidden'}`}
+            >
+              <MultiArrow direction="left" bigSize />
             </button>
-            <button onClick={() => arrowHandler('next')}>
-              <MultiArrow
-                direction="right"
-                bigSize
-                className={`${currentSlide === slides.length - 1 && 'hidden'}`}
-              />
+            <button
+              onClick={() => arrowHandler('next')}
+              className={`ml-auto ${currentSlide === slides.length - 1 && 'hidden'}`}
+            >
+              <MultiArrow direction="right" bigSize />
             </button>
           </ContainerMaxW1200>
         </div>
