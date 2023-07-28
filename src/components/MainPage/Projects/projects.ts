@@ -53,7 +53,7 @@ export const projects = [
     imageUrl: '/img/projects/zavr.png',
     status: 'under-development',
     link: ' ',
-    description: 'Веб-додаток для дітей Читозаврик',
+    description: 'Читозаврик - веб-додаток з книжковими вікторинами для дітей',
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 3,
