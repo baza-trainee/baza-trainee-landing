@@ -50,7 +50,7 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   <Link
     href={href}
     {...args}
-    className={`visited:text-yellow-800 hover:text-yellow-500 ${
+    className={`hover:text-yellow-500 active:text-yellow-800 ${
       underline ? 'underline underline-offset-8' : ''
     }`}
   >
