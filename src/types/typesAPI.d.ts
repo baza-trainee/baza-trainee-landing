@@ -61,7 +61,7 @@ export interface IPartner extends CommonResponseBase {
   homeUrl?: string;
   imageUrl: string;
 }
-
+/*
 export interface IProject extends CommonResponseBase {
   title: titleLanguagesTypes;
   imageUrl: string;
@@ -77,6 +77,29 @@ export interface IProject extends CommonResponseBase {
       role: { _id?: string; name: string };
     }
   ];
+}*/
+
+export interface IProject {
+  _id: string;
+  title: string;
+  imageUrl: string;
+  status: string;
+  link: string;
+  description: string;
+  creationDate: number;
+  launchDate: number;
+  complexity: number;
+  teamMembers: Array<{
+    user: {
+      _id: string;
+      name: string;
+      link: string;
+    };
+    role: {
+      _id: string;
+      name: string;
+    };
+  }>;
 }
 
 export interface IRole extends CommonResponseBase {

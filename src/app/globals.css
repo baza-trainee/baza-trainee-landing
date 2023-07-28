@@ -30,11 +30,11 @@ body {
   .scrollbar::-webkit-scrollbar {
     @apply w-3;
   }
-  
+
   .scrollbar::-webkit-scrollbar-track {
     @apply rounded-md bg-white;
   }
-  
+
   .scrollbar::-webkit-scrollbar-thumb {
     @apply rounded-md bg-yellow-200;
   }

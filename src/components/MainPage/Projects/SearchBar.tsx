@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import { projects } from './projects';
 
-import styles from './styles.module.scss';
 import { SearchIcon } from '@/components/common/icons';
-import { TProjects } from './types';
+import { IProject } from '@/types';
+import styles from './styles.module.scss';
 
 interface IProps {
-  setFilteredProjects?: Dispatch<SetStateAction<TProjects[]>>;
+  setFilteredProjects?: Dispatch<SetStateAction<IProject[]>>;
 }
 
 export const SearchBar = ({ setFilteredProjects }: IProps) => {
