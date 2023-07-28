@@ -17,7 +17,7 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
 
   return (
     <li>
-      <div className="group relative h-[46.4rem] w-[37.8rem] overflow-hidden rounded-md cursor-default">
+      <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md border">
         <Image
           src={project.imageUrl}
           alt="Project Image"
@@ -35,7 +35,7 @@ const ProjectCard = ({ project }: { project: TProjects }) => {
           ${
             isMembersVisible
               ? 'to-[#00000077]'
-              : 'via-black via-20% to-[#cfa249e0] opacity-80 group-hover:to-transparent group-hover:via-0%'
+              : 'via-black via-20% to-[#cfa249e0] opacity-80 group-hover:via-0% group-hover:to-transparent'
           }`}
         />
 
