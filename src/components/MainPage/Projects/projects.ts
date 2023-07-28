@@ -29,7 +29,7 @@ export const projects = [
     imageUrl: '/img/projects/atack.png',
     status: 'active',
     link: 'https://atakahelp.site',
-    description: 'Платформа про види кібершахрайства Ataka Help',
+    description: 'Платформа про види кібершахрайства AtakaHelp',
     creationDate: 1683493200000,
     launchDate: 1687726800000,
     complexity: 2,
