@@ -41,7 +41,7 @@ export const projects = [
     imageUrl: '/img/projects/baza.png',
     status: 'active',
     link: 'https://baza-trainee.tech',
-    description: 'Лендинг - платформа Baza Trainee Ukraine',
+    description: 'Платформа для Baza Trainee Ukraine',
     creationDate: 1683234000000,
     launchDate: 1687467600000,
     complexity: 3,
