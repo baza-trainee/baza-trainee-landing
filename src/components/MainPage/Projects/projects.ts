@@ -69,7 +69,7 @@ export const projects = [
       },
       {
         user: {
-          name: 'Ковальова Марина',
+          name: 'Марина Ковальова',
           link: 'https://www.linkedin.com/in/marina-kovaleva-b7470b166/',
         },
         role: {
@@ -289,7 +289,7 @@ export const projects = [
       },
       {
         user: {
-          name: 'Кійко Ольга',
+          name: 'Ольга Кійко',
           link: 'https://www.linkedin.com/in/olha-kiiko-8a0471262',
         },
         role: {
