@@ -24,7 +24,9 @@ const usePaymentHandler = (urlBase = url) => {
 
         const checkoutUrl = response.data.response?.checkout_url;
         if (checkoutUrl) {
-          router.push(checkoutUrl);
+          //redirect(checkoutUrl);
+          router.replace(checkoutUrl);
+          //router.push(checkoutUrl);
         }
       } catch (error) {
         setErrorMessage('Error occurred while processing payment');
