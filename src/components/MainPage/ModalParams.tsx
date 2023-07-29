@@ -40,6 +40,7 @@ export const ModalParams = () => {
         <Link
           href={'/'}
           scroll={false}
+          replace
           className="absolute right-3 top-3 z-50 cursor-pointer md:right-10 md:top-10 "
         >
           <CloseIcon />

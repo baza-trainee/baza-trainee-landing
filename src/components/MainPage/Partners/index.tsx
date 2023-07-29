@@ -26,10 +26,22 @@ const sliderSettings = {
       },
     },
     {
-      breakpoint: 900,
+      breakpoint: 950,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 750,
       settings: {
         slidesToShow: 2,
-        rows: 2,
+      },
+    },
+    {
+      breakpoint: 485,
+      settings: {
+        slidesToShow: 1,
+        //        rows: 2,
       },
     },
   ],
@@ -45,13 +57,20 @@ export const Partners = () => {
           </h2>
           <Slider {...sliderSettings} lazyLoad="progressive">
             {partners.map((partner) => (
-              <Link key={partner._id} href={partner.homeUrl} target="_blank">
+              <Link
+                key={partner._id}
+                href={partner.homeUrl}
+                target="_blank"
+                className="relative h-[10rem] w-[16.5rem] md:h-[10rem] md:w-[21.4rem]"
+                style={{ width: 'min-content' }}
+              >
                 <Image
-                  width={214}
-                  height={100}
-                  sizes="(max-width: 214px)"
+                  fill
+                  //  width={214}
+                  //  height={100}
+                  //sizes="(max-width: 214px)"
                   className={
-                    'm-auto py-4 contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
+                    'm-auto object-contain  contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
                   }
                   src={partner.imageUrl}
                   alt={partner.name}
