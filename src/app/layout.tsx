@@ -10,11 +10,6 @@ export const metadata = {
   title: 'Baza-Trainee',
   description:
     'Baza-Trainee Ukraine | Тренувальна платформа для українців, які опановують шлях в сферу ІТ, незалежно від віку і досвіду- трейні, джуніори, світчери, ментори.',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
 };
 
 const exo2 = Exo_2({

@@ -11,24 +11,14 @@ import { slides } from './slides';
 
 export const Reviews = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const sliderSettings = {
     dots: true,
-
     autoplay: true,
     speed: 1000,
     autoplaySpeed: 5000,
-    nextArrow: (
-      <SlickArrow
-        direction="right"
-        classProp={`right-0 ${currentSlide === slides.length - 1 && 'hidden'}`}
-      />
-    ),
-    prevArrow: (
-      <SlickArrow
-        direction="left"
-        classProp={`left-0 ${currentSlide === 0 && 'hidden'}`}
-      />
-    ),
+    nextArrow: <SlickArrow direction="right" />,
+    prevArrow: <SlickArrow direction="left" />,
   };
 
   const customPaging = (i: number) => Dot(i, currentSlide);
@@ -41,7 +31,7 @@ export const Reviews = () => {
           <Slider
             {...sliderSettings}
             customPaging={customPaging}
-            afterChange={(index) => setCurrentSlide(index)}
+            afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
             {slides.map((review: TSlideReview, index) => (
