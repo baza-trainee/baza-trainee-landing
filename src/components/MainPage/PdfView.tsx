@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { RefObject, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import Spinner from '../common/icons/Spinner';
 
@@ -11,9 +11,15 @@ export const PDFView = ({ document }: { document: string | null }) => {
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
+  const pdfWrapperRef = useRef<HTMLDivElement | null>(
+    null
+  ) as RefObject<HTMLDivElement>;
 
   return (
-    <div className=" flex h-full w-full flex-col items-center justify-center ">
+    <div
+      className="flex h-full w-full flex-col items-center justify-center"
+      ref={pdfWrapperRef}
+    >
       <Document
         loading={<Spinner title="Документ завантажується" />}
         file={`./docs/${document}`}
@@ -21,7 +27,7 @@ export const PDFView = ({ document }: { document: string | null }) => {
         error={
           <div className="text-3xl font-bold">Не вдалося завантажити файл</div>
         }
-        className={'flex flex-col items-center justify-center '}
+        className={'flex w-full flex-col items-center justify-center p-5 '}
       >
         {Array.from(new Array(numPages), (el, index) => (
           <Page
@@ -29,7 +35,8 @@ export const PDFView = ({ document }: { document: string | null }) => {
             pageNumber={index + 1}
             renderAnnotationLayer={false}
             renderTextLayer={false}
-            scale={1.5}
+            width={pdfWrapperRef?.current?.getBoundingClientRect()?.width}
+            //scale={3}
           />
         ))}
       </Document>
