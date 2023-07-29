@@ -564,7 +564,7 @@ export const projects = [
       {
         user: {
           name: 'Кирило Матвієнко',
-          link: 'https://www.linkedin.com/in/%D0%BA%D0%B8%D1%80%D0%B8%D0%BB%D0%BB-%D0%BC%D0%B0%D1%82%D0%B2%D1%96%D0%B5%D0%BD%D0%BA%D0%BE-b03668262/',
+          link: 'https://www.linkedin.com/in/кирилл-матвиенко-b03668262/',
         },
         role: {
           name: 'Quality Assurance',
@@ -600,7 +600,7 @@ export const projects = [
       {
         user: {
           name: 'Інна Ладика',
-          link: 'https://www.linkedin.com/in/inna-ladyka-a09343241?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bk%2BRuEcQuSpW1U27zFIyRRg%3D%3D',
+          link: 'https://www.linkedin.com/in/inna-ladyka-a09343241',
         },
         role: {
           name: 'Quality Assurance',
@@ -610,6 +610,33 @@ export const projects = [
         user: {
           name: 'Ольга Хавроненко',
           link: 'https://www.linkedin.com/in/%D0%BElha-khavronenko-1b8146266',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Вікторія Єфименко',
+          link: 'https://www.linkedin.com/in/victoriayefimenko/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Володимир Робота',
+          link: 'https://www.linkedin.com/in/rabota-vladimir-aa3a34225/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Ірина Кореліна',
+          link: 'https://www.linkedin.com/in/iryna-korelina-17ba40236/',
         },
         role: {
           name: 'Quality Assurance',
