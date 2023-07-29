@@ -13,9 +13,9 @@ export const Statistics = () => {
         quality={90}
       />
 
-      <ContainerMaxW1200 className="min-h-[14.4rem] items-center justify-center text-center">
-        <h2 className="mx-36 my-12 text-[3.2rem] font-bold uppercase">
-          5 проектів та 3 команди чекають на тебе
+      <ContainerMaxW1200 className="flex-center min-h-[14.4rem] text-center">
+        <h2 className="mx-[5.95rem] my-12 text-[3.2rem] font-bold uppercase">
+          5 проєктів та 3 команди чекають на тебе
         </h2>
       </ContainerMaxW1200>
     </section>

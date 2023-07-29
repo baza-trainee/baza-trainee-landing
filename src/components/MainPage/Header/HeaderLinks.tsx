@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
 const navLinks = [
-  { title: 'ПРОЕКТИ', href: '#projects' },
+  { title: 'ПРОЄКТИ', href: '#projects' },
   { title: 'ПАРТНЕРИ', href: '#partners' },
   { title: 'ВЗЯТИ УЧАСТЬ', href: '#forms' },
   { title: 'КОНТАКТИ', href: '#footer' },
