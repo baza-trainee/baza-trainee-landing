@@ -36,7 +36,7 @@ export const ModalParams = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <Link href={'/'} scroll={false}>
-          <CloseIcon className="absolute right-10 top-10 cursor-pointer " />
+          <CloseIcon className="absolute right-3 top-3 cursor-pointer md:right-10 md:top-10 " />
         </Link>
         <div>
           {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
