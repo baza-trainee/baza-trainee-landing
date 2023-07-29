@@ -24,8 +24,9 @@ const usePaymentHandler = (urlBase = url) => {
 
         const checkoutUrl = response.data.response?.checkout_url;
         if (checkoutUrl) {
-          //redirect(checkoutUrl);
-          router.replace(checkoutUrl);
+          window.location.href = checkoutUrl;
+          //redirect(checkoutUrl, 'push');
+          //router.replace(checkoutUrl);
           //router.push(checkoutUrl);
         }
       } catch (error) {
