@@ -1,11 +1,28 @@
 'use client';
 
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+//import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { CloseIcon } from '../common/icons';
 import { Gratitude } from './Gratitude';
 import { PDFView } from './PdfView';
+
+const useBodyScrollLock = (shouldLock: boolean) => {
+  useEffect(() => {
+    const originalOverflow = window.getComputedStyle(document.body).overflow;
+    if (shouldLock) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originalOverflow;
+    }
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [shouldLock]);
+};
+
+export default useBodyScrollLock;
 
 export const ModalParams = () => {
   const params = useSearchParams();
@@ -14,7 +31,8 @@ export const ModalParams = () => {
   const isPaymentSuccess = params.get('payment') === 'success';
   const document = params.get('document');
 
-  const bodyScrollLockRef = useBodyScrollLock(isPaymentSuccess || !!document);
+  //const bodyScrollLockRef = useBodyScrollLock(isPaymentSuccess || !!document);
+  useBodyScrollLock(isPaymentSuccess || !!document);
 
   const handlerShowModal = (
     e: React.MouseEvent<HTMLElement | SVGSVGElement>
@@ -29,7 +47,7 @@ export const ModalParams = () => {
     <section
       onClick={handlerShowModal}
       className="duration-250  fixed left-0 top-0 z-20 flex h-screen w-screen items-center justify-center bg-neutral-75  bg-opacity-30 backdrop-blur-2xl " //backdrop-filter
-      ref={bodyScrollLockRef}
+      //ref={bodyScrollLockRef}
     >
       <div
         className="scrollbar relative h-screen w-screen overflow-auto rounded-xl bg-white p-12 md:h-[80%] md:w-[80%] md:px-[6.85rem] md:py-[12.8rem]"
