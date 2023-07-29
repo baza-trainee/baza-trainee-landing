@@ -40,7 +40,7 @@ export const Partners = () => {
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">
         <div className=" max-w-full">
-          <h2 className="mb-[3.2rem] text-center text-6xl font-bold">
+          <h2 className="mb-[3.8rem] text-center text-6xl font-bold">
             Партнери
           </h2>
           <Slider {...sliderSettings} lazyLoad="progressive">
