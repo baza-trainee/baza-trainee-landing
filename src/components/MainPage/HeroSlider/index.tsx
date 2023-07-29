@@ -49,23 +49,6 @@ const HeroSlider = () => {
   return (
     <section className="relative text-white">
       <div className="relative">
-        <div className="absolute z-20 h-full w-full">
-          <ContainerMaxW1200 className="h-full w-full items-center">
-            <button
-              onClick={() => arrowHandler('prev')}
-              className={`${currentSlide === 0 && 'hidden'}`}
-            >
-              <MultiArrow direction="left" bigSize />
-            </button>
-            <button
-              onClick={() => arrowHandler('next')}
-              className={`ml-auto ${currentSlide === slides.length - 1 && 'hidden'}`}
-            >
-              <MultiArrow direction="right" bigSize />
-            </button>
-          </ContainerMaxW1200>
-        </div>
-
         <Slider
           {...settings}
           afterChange={setCurrentSlide}
@@ -76,6 +59,23 @@ const HeroSlider = () => {
             <SingleSlide key={`key_${slide.title}`} slideData={slide} />
           ))}
         </Slider>
+
+        <div className="absolute bottom-[2.7rem] w-full md:bottom-[8.4rem] xl:bottom-0 xl:h-full">
+          <ContainerMaxW1200 className="w-[19.4rem] md:w-full xl:h-full items-center">
+            <button
+              onClick={() => arrowHandler('prev')}
+              className={`mr-auto ${currentSlide === 0 ? 'hidden' : ''}`}
+            >
+              <MultiArrow direction="left" bigSize />
+            </button>
+            <button
+              onClick={() => arrowHandler('next')}
+              className={`ml-auto ${currentSlide === slides.length - 1 ? 'hidden' : ''}`}
+            >
+              <MultiArrow direction="right" bigSize />
+            </button>
+          </ContainerMaxW1200>
+        </div>
       </div>
 
       <div className="bg-yellow-500">
