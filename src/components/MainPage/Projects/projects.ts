@@ -60,11 +60,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Юлія Романовська',
-          link: '', // LinkedIn link missing in the provided data
+          name: 'Іван Миронюк',
+          link: 'https://www.linkedin.com/in/ivan-myroniuk-84009525b/',
         },
         role: {
-          name: 'Front-end',
+          name: 'Back-end',
         },
       },
       {
