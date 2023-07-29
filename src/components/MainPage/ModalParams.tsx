@@ -45,9 +45,8 @@ export const ModalParams = () => {
         >
           <CloseIcon />
         </Link>
-        <div>
-          {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
-        </div>
+
+        {isPaymentSuccess ? <Gratitude /> : <PDFView document={document} />}
       </div>
     </section>
   ) : null;
