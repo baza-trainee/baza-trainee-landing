@@ -27,7 +27,7 @@ export const Header = ({
         </div>
 
         <div className="lg:hidden">
-          <HeaderMenuButton />
+          <HeaderMenuButton navLinks={navLinks} />
         </div>
       </ContainerMaxW1200>
     </header>
