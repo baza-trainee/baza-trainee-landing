@@ -16,7 +16,7 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplaySpeed: 5000,
+  autoplaySpeed: 10000,
   arrows: false,
 };
 
@@ -61,7 +61,7 @@ const HeroSlider = () => {
         </Slider>
 
         <div className="absolute bottom-[2.7rem] w-full md:bottom-[8.4rem] xl:bottom-0 xl:h-full">
-          <ContainerMaxW1200 className="w-[19.4rem] md:w-full xl:h-full items-center">
+          <ContainerMaxW1200 className="w-[19.4rem] items-center md:w-full xl:h-full">
             <button
               onClick={() => arrowHandler('prev')}
               className={`mr-auto ${currentSlide === 0 ? 'hidden' : ''}`}
