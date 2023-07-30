@@ -58,7 +58,12 @@ export const Projects = async ({
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
           {translatedProjects.map((project: IProject) => (
-            <ProjectCard lang={lang} key={project._id} project={project} dict={dict} />
+            <ProjectCard
+              lang={lang}
+              key={project._id}
+              project={project}
+              dict={dict}
+            />
           ))}
         </ul>
 
