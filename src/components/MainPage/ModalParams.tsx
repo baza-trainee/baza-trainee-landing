@@ -34,7 +34,9 @@ export const ModalParams = () => {
       //ref={bodyScrollLockRef}
     >
       <div
-        className="scrollbar relative h-screen w-screen overflow-auto rounded-xl bg-white p-12 md:h-[80%] md:w-[80%] md:px-[6.85rem] md:py-[12.8rem]"
+        className={`scrollbar relative h-screen w-screen overflow-auto rounded-xl bg-white p-12 ${
+          isPaymentSuccess ? 'md:h-fit md:w-fit' : 'md:h-[80%] md:w-[80%]'
+        } md:px-[6.85rem] md:py-[12.8rem]`}
         onClick={(e) => e.stopPropagation()}
       >
         <Link
