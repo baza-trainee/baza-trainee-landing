@@ -38,30 +38,34 @@ export const PDFView = ({ document }: { document: string | null }) => {
   }, [pdfWrapperRef]);
 
   return (
-    <div
-      className="flex h-full w-full flex-col items-center justify-center"
-      ref={pdfWrapperRef}
-    >
-      <Document
-        loading={<Spinner title="Документ завантажується" />}
-        file={`./docs/${document}`}
-        onLoadSuccess={onDocumentLoadSuccess}
-        error={
-          <div className="text-3xl font-bold">Не вдалося завантажити файл</div>
-        }
-        className={'flex w-full flex-col items-center justify-center p-5 '}
+    <div>
+      <div
+        className="flex h-full w-full flex-col items-center justify-center"
+        ref={pdfWrapperRef}
       >
-        {Array.from(new Array(numPages), (el, index) => (
-          <Page
-            key={`page_${index + 1}`}
-            pageNumber={index + 1}
-            renderAnnotationLayer={false}
-            renderTextLayer={false}
-            width={width}
-            //scale={3}
-          />
-        ))}
-      </Document>
+        <Document
+          loading={<Spinner title="Документ завантажується" />}
+          file={`./docs/${document}`}
+          onLoadSuccess={onDocumentLoadSuccess}
+          error={
+            <div className="text-3xl font-bold">
+              Не вдалося завантажити файл
+            </div>
+          }
+          className={'flex w-full flex-col items-center justify-center p-5 '}
+        >
+          {Array.from(new Array(numPages), (el, index) => (
+            <Page
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+              width={width}
+              //scale={3}
+            />
+          ))}
+        </Document>
+      </div>
     </div>
   );
 };
