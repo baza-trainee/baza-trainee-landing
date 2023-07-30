@@ -6,7 +6,7 @@ export const SupportBaza = ({ dict }: { dict: TDictionary }) => {
   return (
     <section>
       <ContainerMaxW1200>
-        <Modal content="donate">
+        <Modal dict={dict} content="donate">
           <SupportBazaButton className="m-auto">
             {dict.invite.supportBazaTrainee}
           </SupportBazaButton>
