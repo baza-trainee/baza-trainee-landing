@@ -18,7 +18,7 @@ export const ContentDonate = () => {
         Оберіть суму, якою ВИ хочете підтримати Baza Trainee Ukraine
       </h2>
 
-      <div className="my-[4.8rem] grid grid-cols-3 gap-[3rem] font-medium uppercase sm:h-[19.2rem]">
+      <div className="my-[4.8rem] grid h-[10.8rem] grid-cols-3 gap-[3.2rem] font-medium uppercase sm:h-[19.2rem]">
         {paymentAmountData.map((el, index) => (
           <DonateButton
             className={el === paymentAmount ? 'bg-neutral-800 text-white' : ''}
