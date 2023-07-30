@@ -70,9 +70,7 @@ const HeroSlider = () => {
             </button>
             <button
               onClick={() => arrowHandler('next')}
-              className={`ml-auto ${
-                currentSlide === slides.length - 1 ? 'hidden' : ''
-              }`}
+              className={`ml-auto ${currentSlide === slides.length - 1 ? 'hidden' : ''}`}
             >
               <MultiArrow direction="right" bigSize />
             </button>
