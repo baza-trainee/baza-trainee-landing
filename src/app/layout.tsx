@@ -21,7 +21,7 @@ const exo2 = Exo_2({
 const IconLink = ({ theme }: { theme: 'light' | 'dark' }) => (
   <link
     rel="icon"
-    href={`favicons/${theme}/icon.svg?v=${Math.random()}`}
+    href={`favicons/${theme}/icon.svg`}
     type="image/svg+xml"
     media={`(prefers-color-scheme: ${theme})`}
   />
