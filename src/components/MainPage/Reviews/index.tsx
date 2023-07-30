@@ -16,7 +16,7 @@ export const Reviews = () => {
     dots: true,
     autoplay: true,
     speed: 1000,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 10000,
     nextArrow: <SlickArrow direction="right" />,
     prevArrow: <SlickArrow direction="left" />,
   };
