@@ -722,7 +722,7 @@ export const projects = [
     link: 'https://obijmy59.online/',
     description: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
     creationDate: 1689368400000,
-    launchDate: 0,
+    launchDate: 1690705554200,
     complexity: 2,
     teamMembers: [],
   },
