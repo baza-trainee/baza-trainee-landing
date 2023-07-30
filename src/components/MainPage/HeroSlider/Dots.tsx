@@ -7,14 +7,17 @@ export const Dots = ({
   currentSlide: number;
   goToSlide: (_slideIndex: number) => void;
 }) => (
-  <div className="flex gap-4">
+  <div className="flex items-center gap-[0.8rem]">
     {slides.map((_, index) => (
       <button
         onClick={() => goToSlide(index)}
         key={`key_${index + currentSlide}`}
-        className={`relative h-[2rem] w-[2rem] rounded-full border border-neutral-800 hover:cursor-pointer ${
-          index === currentSlide && 'bg-neutral-800'
-        }`}
+        className={`relative rounded-full border border-neutral-800 hover:cursor-pointer 
+          ${
+            index === currentSlide
+              ? 'h-[2rem] w-[2rem] bg-neutral-800'
+              : 'h-[1.6rem] w-[1.6rem]'
+          }`}
       ></button>
     ))}
   </div>

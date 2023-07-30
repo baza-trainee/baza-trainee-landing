@@ -29,11 +29,11 @@ export const Modal = ({ children, content, open = false }: Props) => {
 
   const ModalLayout = () => (
     <section
-      className="flex-center fixed left-0 top-0 z-20 h-full w-full min-w-[40rem] bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
+      className="flex-center fixed left-0 top-0 z-20 h-full w-full min-w-[38.4rem] bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >
-      <div className="relative z-30 m-8 min-h-[39rem] w-[39rem] cursor-default rounded-xl bg-white sm:w-[65.6rem] xl:w-[79.2rem]">
+      <div className="relative z-30 m-8 min-h-[39rem] w-[38.4rem] cursor-default rounded-xl bg-white sm:w-[65.6rem] xl:w-[79.2rem]">
         <button
           className="absolute right-[1.6rem] top-[1.6rem] sm:right-[2.8rem] sm:top-[2.8rem]"
           onClick={handleIconClick}
