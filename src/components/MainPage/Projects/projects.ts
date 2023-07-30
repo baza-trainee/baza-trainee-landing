@@ -690,7 +690,7 @@ export const projects = [
       'Feeda - платформа для обробки заявок на участь у Baza Trainee',
     creationDate: 1687208400000,
     launchDate: 0,
-    complexity: 2,
+    complexity: 3,
     teamMembers: [],
   },
   {
