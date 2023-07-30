@@ -2,13 +2,13 @@
 
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
-import { TSlide } from '@/types';
+import { TDictionary, TSlide } from '@/types';
 import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
+import { getTranslatedSlides, slides } from './slides';
 
 const settings = {
   infinite: true,
@@ -20,16 +20,23 @@ const settings = {
   arrows: false,
 };
 
-const ModalComponent = () => (
-  <Modal content="donate">
-    <PrimaryButton>Фондувати</PrimaryButton>
+const ModalComponent = ({ dict }: { dict: TDictionary }) => (
+  <Modal content="donate" dict={dict}>
+    <PrimaryButton>{dict.toFund}</PrimaryButton>
   </Modal>
 );
 const MemoizedModal = memo(ModalComponent);
 
-const HeroSlider = () => {
+const HeroSlider = ({
+  dict,
+  lang,
+}: {
+  dict: TDictionary;
+  lang: 'ua' | 'en' | 'pl';
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
+  const translatedSlides = getTranslatedSlides(slides, dict);
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -55,13 +62,17 @@ const HeroSlider = () => {
           lazyLoad="progressive"
           ref={slickRef}
         >
-          {slides.map((slide: TSlide) => (
-            <SingleSlide key={`key_${slide.title}`} slideData={slide} />
+          {translatedSlides.map((translatedSlide: TSlide) => (
+            <SingleSlide
+              key={`key_${translatedSlide.title}`}
+              slideData={translatedSlide}
+              slideLang={lang}
+            />
           ))}
         </Slider>
 
         <div className="absolute bottom-[2.7rem] w-full md:bottom-[8.4rem] xl:bottom-0 xl:h-full">
-          <ContainerMaxW1200 className="w-[19.4rem] md:w-full xl:h-full items-center">
+          <ContainerMaxW1200 className="w-[19.4rem] items-center md:w-full xl:h-full">
             <button
               onClick={() => arrowHandler('prev')}
               className={`mr-auto ${currentSlide === 0 ? 'hidden' : ''}`}
@@ -70,7 +81,9 @@ const HeroSlider = () => {
             </button>
             <button
               onClick={() => arrowHandler('next')}
-              className={`ml-auto ${currentSlide === slides.length - 1 ? 'hidden' : ''}`}
+              className={`ml-auto ${
+                currentSlide === slides.length - 1 ? 'hidden' : ''
+              }`}
             >
               <MultiArrow direction="right" bigSize />
             </button>
@@ -82,7 +95,7 @@ const HeroSlider = () => {
         <ContainerMaxW1200 className="min-h-[8.8rem] flex-col gap-[2.4rem] py-[1.6rem] sm:flex-row sm:items-center sm:justify-between sm:py-0">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          <MemoizedModal />
+          <MemoizedModal dict={dict} />
         </ContainerMaxW1200>
       </div>
     </section>

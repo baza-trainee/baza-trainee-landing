@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
-import { TSlideReview } from '@/types';
+import { TDictionary, TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
+import { getTranslateReviews, slides } from './slides';
 
-export const Reviews = () => {
+export const Reviews = ({ dict }: { dict: TDictionary }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderSettings = {
@@ -23,18 +23,22 @@ export const Reviews = () => {
 
   const customPaging = (i: number) => Dot(i, currentSlide);
 
+  const translateReviews = getTranslateReviews(slides, dict);
+
   return (
     <section>
       <ContainerMaxW1200>
         <div className="w-full">
-          <h3 className="mb-12 text-center text-6xl font-bold">Відгуки</h3>
+          <h3 className="mb-12 text-center text-6xl font-bold">
+            {dict.reviews.title}
+          </h3>
           <Slider
             {...sliderSettings}
             customPaging={customPaging}
             afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
-            {slides.map((review: TSlideReview, index) => (
+            {translateReviews.map((review: TSlideReview, index) => (
               <SingleSlide slideData={review} key={index + 'key'} />
             ))}
           </Slider>

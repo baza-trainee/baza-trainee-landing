@@ -1,7 +1,11 @@
 import { IProject } from '@/types';
 
-const projectCycle = (project: IProject) => {
-  const weekWordForms = ['тиждень', 'тижні', 'тижнів'];
+const projectCycle = (project: IProject, lang: 'ua' | 'en' | 'pl') => {
+  const weekWordForms = {
+    en: ['week', 'weeks', 'weeks'],
+    ua: ['тиждень', 'тижні', 'тижнів'],
+    pl: ['tydzień', 'tygodnie', 'tygodnie'],
+  };
   const creationDate = project.creationDate;
   const launchDate = project.launchDate ? project.launchDate : Date.now();
 
@@ -21,6 +25,6 @@ const projectCycle = (project: IProject) => {
     formIndex = 2;
   }
 
-  return `${numOfWeeks} ${weekWordForms[formIndex]}`;
+  return `${numOfWeeks} ${weekWordForms[lang][formIndex]}`;
 };
 export default projectCycle;

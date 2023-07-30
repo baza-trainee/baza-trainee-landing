@@ -5,10 +5,18 @@ import { useState } from 'react';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
-import { IProject } from '@/types';
+import { IProject, TDictionary } from '@/types';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
-const ProjectCard = ({ project }: { project: IProject }) => {
+const ProjectCard = ({
+  project,
+  dict,
+  lang,
+}: {
+  project: IProject;
+  dict: TDictionary;
+  lang: 'ua' | 'en' | 'pl';
+}) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 
   const handleShowTeam = () => {
@@ -42,11 +50,15 @@ const ProjectCard = ({ project }: { project: IProject }) => {
         <div className="relative h-full p-[2.4rem] text-white">
           {isMembersVisible ? (
             <ProjectCardTeam
+              lang={lang}
+              dict={dict}
               project={project}
               handleShowTeam={handleShowTeam}
             />
           ) : (
             <ProjectCardContent
+              lang={lang}
+              dict={dict}
               project={project}
               handleShowTeam={handleShowTeam}
             />

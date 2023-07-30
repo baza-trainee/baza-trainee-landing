@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { TContactsInfo } from '@/types';
+import { TContactsInfo, TDictionary } from '@/types';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
@@ -11,19 +11,6 @@ import {
   TelegramIcon,
 } from '@/components/common/icons';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
-
-const anchorLinksList = [
-  { title: 'Проєкти', href: '#projects' },
-  { title: 'Партнери', href: '#partners' },
-  { title: 'Взяти участь', href: '#forms' },
-];
-
-const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
-  { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
-  { title: 'Статут', href: '?document=statut.pdf' },
-  { title: 'Звітність', href: '#' },
-];
 
 const getContacts = async () => {
   const noData: TContactsInfo = {
@@ -58,8 +45,20 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   </Link>
 );
 
-export const Footer = async () => {
+export const Footer = async ({ dict }: { dict: TDictionary }) => {
   const contactsInfo: TContactsInfo = await getContacts();
+  const anchorLinksList = [
+    { title: dict.footer.projects, href: '#projects' },
+    { title: dict.footer.partners, href: '#partners' },
+    { title: dict.footer.participate, href: '#forms' },
+  ];
+
+  const officialDocsList = [
+    { title: dict.footer.privacyPolicy, href: '?document=policy.pdf' },
+    { title: dict.footer.rulesForUsingTheSite, href: '?document=rules.pdf' },
+    { title: dict.footer.statute, href: '?document=statut.pdf' },
+    { title: dict.footer.accountability, href: '#' },
+  ];
 
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
@@ -117,7 +116,7 @@ export const Footer = async () => {
         </nav>
 
         <span className="text-[1.4rem] text-neutral-75 sm:mt-0">
-          Розробка BazaTraineeUkraine 2023 Усі права захищені.
+          {dict.footer.allRightsReserved}
         </span>
       </ContainerMaxW1200>
     </footer>
