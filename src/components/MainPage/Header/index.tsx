@@ -25,27 +25,6 @@ export const Header = () => {
       <div className="lg:hidden">
         <HeaderDropdownMenu />
       </div>
-
-      {/* <div
-        className="absolute z-50 h-5 w-5 border  border-red-600"
-        id="dropMenuPortal"
-      /> */}
     </header>
   );
 };
-
-// export const Header = () => {
-//   return (
-//     <header
-//       className="relative h-[10rem] bg-yellow-500 md:h-[10.4rem]"
-//       id="header"
-//     >
-//       <div className="relative mx-auto w-96">
-//         <div
-//           className="absolute h-10 w-screen border  border-red-600"
-//           id="dropMenuPortal"
-//         />
-//       </div>
-//     </header>
-//   );
-// };
