@@ -11,7 +11,7 @@ const navLinks = [
 const linkStyle =
   "relative text-[2rem] font-semibold transition-all duration-300 after:absolute after:-bottom-2 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] hover:scale-105 after:hover:scale-100 whitespace-nowrap after:border-black";
 
-export const HeaderLinks = ({className}: HTMLAttributes<HTMLElement>) => {
+export const HeaderLinks = ({ className }: HTMLAttributes<HTMLElement>) => {
   return (
     <nav className={className}>
       {navLinks.map((link) => (

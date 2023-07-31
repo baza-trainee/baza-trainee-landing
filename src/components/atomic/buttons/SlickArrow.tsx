@@ -24,7 +24,9 @@ export const SlickArrow = (props: IProps) => {
           ${direction === 'left' && 'left-0'}
           ${direction === 'right' && 'right-0'}
           ${direction === 'left' && currentSlide === 0 && 'hidden'}
-          ${direction === 'right' && currentSlide === slideCount - 1 && 'hidden'}
+          ${
+            direction === 'right' && currentSlide === slideCount - 1 && 'hidden'
+          }
         `}
     />
   );
