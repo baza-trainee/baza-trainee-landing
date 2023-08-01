@@ -61,6 +61,7 @@ export interface IHeroSlider extends CommonResponseBase {
 export interface IPartner extends CommonResponseBase {
   homeUrl?: String;
   imageUrl: String;
+  name: String;
 }
 
 export interface IProject extends CommonResponseBase {
