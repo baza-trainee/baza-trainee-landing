@@ -40,7 +40,7 @@ export default function RootLayout({
       </head>
 
       <StoreProvider>
-        <body className={`${exo2.className} scrollbar`}>
+        <body className={exo2.className + ' scrollbar'}>
           <AlertWindow />
           {children}
         </body>
