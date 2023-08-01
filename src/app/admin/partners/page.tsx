@@ -1,5 +1,5 @@
-import { PartnersList } from '@/components/AdminPage/Partners';
+import { PartnersPage } from '@/components/AdminPage/Partners';
 
 export default function Partners() {
-  return <PartnersList />;
+  return <PartnersPage />;
 }
