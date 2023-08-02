@@ -2,7 +2,7 @@
 
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
-import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
+import { SearchIcon } from '@/components/common/icons';
 import { PartnerActionProps } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
@@ -55,7 +55,7 @@ export const PartnersList = ({
                 required
               />
               <button type='submit'>
-                <MagnifierIcon />
+                <SearchIcon />
               </button>
             </form>
           </div>
