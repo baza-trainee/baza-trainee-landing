@@ -59,13 +59,14 @@ export const PartnersList = ({
               </button>
             </form>
           </div>
-          <div className='flex min-w-[1138px] flex-wrap gap-[1.1rem] gap-y-9'>
+          <div className='flex min-w-[1138px] max-h-[781px] flex-wrap gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto scrollbar'>
             <div className='flex items-center justify-center bg-base-dark px-[8px]'>
               <AdminPanelButton
                 type='submit'
                 onClick={handleAddPartnerClick}
                 variant='secondary'
                 icon={<PlusIcon />}
+                className='pr-[2.8rem]'
               >
                 Додати партнера
               </AdminPanelButton>
