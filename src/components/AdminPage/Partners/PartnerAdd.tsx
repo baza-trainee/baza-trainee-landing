@@ -36,12 +36,10 @@ export const PartnerAdd = ({ cancelAdd }: PartnerAddProps) => {
     }
 
     if (isFormValid) {
-      const newPartner = new FormData();
-      for (const key in formData) {
-        if (formData[key] !== null) {
-          newPartner.append(key, formData[key] as Blob);
-        }
-      }
+      const newPartner = new FormData() as any;
+      newPartner.append('name', formData.name);
+      newPartner.append('file', formData.file as Blob);
+      newPartner.append('homeUrl', formData.homeUrl);
       setAlertInfo({
         state: 'success',
         title: 'Успіх',
@@ -53,8 +51,8 @@ export const PartnerAdd = ({ cancelAdd }: PartnerAddProps) => {
   };
 
   return (
-    <div className='w-full bg-base-light'>
-      <AdminTitle className='mb-[2.4rem] ml-[0.4rem] mt-[0.9rem] tracking-wide'>
+    <div className="w-full bg-base-light">
+      <AdminTitle className="mb-[2.4rem] ml-[0.4rem] mt-[0.9rem] tracking-wide">
         Додати партнера
       </AdminTitle>
       <PartnerForm
@@ -63,15 +61,15 @@ export const PartnerAdd = ({ cancelAdd }: PartnerAddProps) => {
         isFormValid={isFormValid}
         handleFieldChange={handleFieldChange}
       />
-      <div className='ml-3.5 flex gap-[1.5rem] pt-[2.2rem]'>
+      <div className="ml-3.5 flex gap-[1.5rem] pt-[2.2rem]">
         <AdminPanelButton
-          type='submit'
-          className='pl-[6.8rem] pr-[6.8rem]'
+          type="submit"
+          className="pl-[6.8rem] pr-[6.8rem]"
           onClick={handleSubmit}
         >
           Додати
         </AdminPanelButton>
-        <AdminPanelButton onClick={cancelAdd} variant='secondary'>
+        <AdminPanelButton onClick={cancelAdd} variant="secondary">
           Скасувати
         </AdminPanelButton>
       </div>
