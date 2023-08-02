@@ -2,17 +2,16 @@ import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 
 export const Forms = () => {
   return (
-    <section className="my-48 text-center" id="forms">
+    <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">
-        <h2 className="mb-9 text-[3rem] font-bold md:text-[4rem]">
-          Baza Trainee Ukraine запрошує приєднатись до команди
+        <h2 className="mb-10 text-[3.8rem] font-bold md:text-[4rem] md:mx-44 lg:mx-0">
+          Baza Trainee Ukraine запрошує приєднатись{' '}
+          <span className="whitespace-nowrap">до команди</span>
         </h2>
 
-        <p className="mb-[4.8rem] text-[2.4rem]">
-          Оберіть свою участь в проєкті
-        </p>
+        <p className="mb-[4.8rem] text-[2.4rem]">Обери свою роль у проєкті</p>
 
-        <nav className="flex flex-wrap justify-center gap-[3.2rem] md:flex-nowrap">
+        <nav className="flex flex-wrap justify-center gap-[2rem] md:flex-nowrap xl:gap-[3.2rem]">
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1QsjBjv90-GNkMN_fm2-Nsn0ROlx-yHiyYyou2_oyH2Q/edit">
             Я учасник
           </ParticipantButtonLink>

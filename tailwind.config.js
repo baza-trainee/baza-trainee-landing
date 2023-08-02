@@ -53,23 +53,6 @@ module.exports = {
       fontFamily: {
         // secondary: ['var(--font-inter)'],
       },
-      linearGradientColors: {
-        black: [
-          '33.27deg',
-          'rgba(6, 6, 6, 0.95) 8.04%',
-          'rgba(6, 6, 6, 0.4465) 104.18%',
-        ],
-        white: [
-          '90deg',
-          'rgba(255, 255, 255, 0.02) 0%',
-          'rgba(252, 252, 252, 0) 40%',
-          'rgba(252, 252, 252, 1) 40%',
-          'rgba(252, 252, 252, 1) 50%',
-          'rgba(252, 252, 252, 1) 60%',
-          'rgba(252, 252, 252, 0) 60%',
-          'rgba(255, 255, 255, 0.02) 100%',
-        ],
-      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

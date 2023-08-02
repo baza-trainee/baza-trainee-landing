@@ -40,7 +40,7 @@ const Sidebar = () => {
           isSidebarOpen ? 'pl-[3.2rem]' : 'pl-[2.4rem]'
         }`}
       >
-        <LogoMain width="6.8rem" open={isSidebarOpen} />
+        <LogoMain className="h-[6.8rem] w-[6.8rem]" open={isSidebarOpen} />
       </div>
 
       <div className="flex h-full flex-col items-center gap-16 border-r border-neutral-300 pb-16">

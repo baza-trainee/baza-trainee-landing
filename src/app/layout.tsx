@@ -8,7 +8,8 @@ import './globals.css';
 
 export const metadata = {
   title: 'Baza-Trainee',
-  description: 'Baza-Trainee',
+  description:
+    'Baza-Trainee Ukraine | Тренувальна платформа для українців, які опановують шлях в сферу ІТ, незалежно від віку і досвіду- трейні, джуніори, світчери, ментори.',
 };
 
 const exo2 = Exo_2({
@@ -17,6 +18,15 @@ const exo2 = Exo_2({
   display: 'swap',
 });
 
+const IconLink = ({ theme }: { theme: 'light' | 'dark' }) => (
+  <link
+    rel="icon"
+    href={`favicons/${theme}/icon.svg`}
+    type="image/svg+xml"
+    media={`(prefers-color-scheme: ${theme})`}
+  />
+);
+
 export default function RootLayout({
   children,
 }: {
@@ -24,8 +34,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <IconLink theme="light" />
+        <IconLink theme="dark" />
+      </head>
+
       <StoreProvider>
-        <body className={exo2.className}>
+        <body className={exo2.className + ' scrollbar'}>
           <AlertWindow />
           {children}
         </body>

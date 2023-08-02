@@ -4,68 +4,81 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
-
-const nestedElemStyle = 'h-40 w-11/12 bg-neutral-75 text-center py-4';
+import Image from 'next/image';
+import { partners } from './partners';
 
 const sliderSettings = {
   dots: false,
   arrows: false,
   autoplay: true,
-  autoplaySpeed: 6000,
+  autoplaySpeed: 4000,
   speed: 2000,
-  slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToShow: 4,
+  slidesToScroll: 1,
   infinite: true,
-  draggable: false,
+  draggable: true,
+
+  responsive: [
+    {
+      breakpoint: 1300,
+      settings: {
+        slidesToShow: 4,
+      },
+    },
+    {
+      breakpoint: 950,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 750,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 485,
+      settings: {
+        slidesToShow: 1,
+        //        rows: 2,
+      },
+    },
+  ],
 };
 
 export const Partners = () => {
   return (
-    <section className="mb-[12rem]" id="partners">
+    <section id="partners">
       <ContainerMaxW1200 className="flex-col">
-        <h2 className="mb-[3.2rem] text-center text-6xl font-bold">Партнери</h2>
-
-        <Slider {...sliderSettings}>
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>1</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>2</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>3</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>4</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>5</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>6</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>7</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>8</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>9</div>
-          </Link>
-
-          <Link className="" href="#">
-            <div className={nestedElemStyle}>10</div>
-          </Link>
-        </Slider>
+        <div className=" max-w-full">
+          <h2 className="mb-[3.8rem] text-center text-6xl font-bold">
+            Партнери
+          </h2>
+          <Slider {...sliderSettings} lazyLoad="progressive">
+            {partners.map((partner) => (
+              <Link
+                key={partner._id}
+                href={partner.homeUrl}
+                target="_blank"
+                className="relative h-[10rem] w-[16.5rem] md:h-[10rem] md:w-[21.4rem]"
+                style={{ width: 'min-content' }}
+              >
+                <Image
+                  fill
+                  //  width={214}
+                  //  height={100}
+                  //sizes="(max-width: 214px)"
+                  className={
+                    'm-auto object-contain  contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
+                  }
+                  src={partner.imageUrl}
+                  alt={partner.name}
+                />
+              </Link>
+            ))}
+          </Slider>
+        </div>
       </ContainerMaxW1200>
     </section>
   );

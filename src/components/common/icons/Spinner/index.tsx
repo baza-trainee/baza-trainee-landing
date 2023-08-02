@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import IconInner from './inner';
 import IconOuter from './outer';
-import styles from './styles.module.scss';
 
 const Spinner = ({ title = 'Loading' }) => {
   const [dots, setDots] = useState('');
@@ -22,16 +21,12 @@ const Spinner = ({ title = 'Loading' }) => {
   }, []);
 
   return (
-    <div className={styles['spinner']}>
-      <div className={styles['spinner-container']}>
-        <div className={styles['spinner-outer']}>
-          <IconOuter fill={'#121212'} />
-        </div>
-        <div className={styles['spinner-inner']}>
-          <IconInner fill={'#121212'} />
-        </div>
+    <div className="relative flex h-48 w-[30rem] items-center">
+      <div className="relative bottom-12">
+        <IconOuter fill={'#121212'} className="absolute animate-spin" />
+        <IconInner fill={'#121212'} className="absolute top-0" />
       </div>
-      <h1 className={styles['spinner-header'] + 'text-[4rem]'}>
+      <h1 className="absolute left-28 text-[2rem] font-bold">
         {title}
         {dots}
       </h1>

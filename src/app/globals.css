@@ -4,7 +4,7 @@
 
 html {
   @apply text-[62.5%]; /* 10px */
-  @apply min-w-[400px];
+  @apply min-w-[300px];
 }
 
 body {
@@ -25,6 +25,22 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply rounded-md bg-white;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-yellow-200;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-yellow-300;
   }
 }
 
