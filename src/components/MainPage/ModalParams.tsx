@@ -40,7 +40,7 @@ export const ModalParams = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <Link
-          href={'/'}
+          href={pathname}
           scroll={false}
           replace
           className="absolute right-3 top-3 z-50 cursor-pointer md:right-10 md:top-10 "

@@ -1,31 +1,31 @@
 import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
+import { TDictionary } from '@/types';
 
-export const Forms = () => {
+export const Forms = ({ dict }: { dict: TDictionary }) => {
   return (
     <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">
-        <h2 className="mb-10 text-[3.8rem] font-bold md:text-[4rem] md:mx-44 lg:mx-0">
-          Baza Trainee Ukraine запрошує приєднатись{' '}
-          <span className="whitespace-nowrap">до команди</span>
+        <h2 className="mb-10 text-[3.8rem] font-bold md:text-[4rem]">
+          {dict.invite.bazaTraineeInvite}
         </h2>
 
-        <p className="mb-[4.8rem] text-[2.4rem]">Обери свою роль у проєкті</p>
+        <p className="mb-[4.8rem] text-[2.4rem]">{dict.invite.chooseRole}</p>
 
         <nav className="flex flex-wrap justify-center gap-[2rem] md:flex-nowrap xl:gap-[3.2rem]">
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1QsjBjv90-GNkMN_fm2-Nsn0ROlx-yHiyYyou2_oyH2Q/edit">
-            Я учасник
+            {dict.invite.role.participant}
           </ParticipantButtonLink>
 
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1Y_3FiBw_TYl8BvGq-tA_fcLmULz6p9K8T4WPuLmoc_k/edit">
-            Я Ментор
+            {dict.invite.role.mentor}
           </ParticipantButtonLink>
 
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1Z2zOR8_WgCtq8cQ5ihsJKLUrfxIWA_Iq-rQiuXNd21Y/edit">
-            Я партнер
+            {dict.invite.role.partner}
           </ParticipantButtonLink>
 
           <ParticipantButtonLink linkTo="https://docs.google.com/forms/d/1gbHRVDY2kPOZe9D5GzLoFqJbzZxfR_xwXgMTOnmDttM/edit">
-            Я замовник
+            {dict.invite.role.customer}
           </ParticipantButtonLink>
         </nav>
       </ContainerMaxW1200>

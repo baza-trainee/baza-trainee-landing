@@ -1,0 +1,255 @@
+{
+  "navbar": {
+    "projects": "Projekty",
+    "partners": "Partnerzy",
+    "participate": "Weź udział",
+    "contacts": "Kontakt"
+  },
+  "monthsNames": {
+    "january": "styczeń ",
+    "february": "luty ",
+    "march": "marsz ",
+    "april": "kwiecień",
+    "may": "móc",
+    "june": "czerwiec",
+    "july": "lipiec",
+    "august": "sierpień",
+    "september": "wrzesień",
+    "october": "październik",
+    "november": "listopad",
+    "december": "grudzień"
+  },
+  "heroSlider": {
+    "firstSlide": {
+      "title": "Baza Trainee Ukraine",
+      "description": "Organizacja publiczna, której celem jest zapewnienie pierwszego doświadczenia zawodowego osobom rozpoczynającym pracę w branży IT."
+    },
+    "secondSlide": {
+      "title": "Nasz cel",
+      "description": "Połączenie tych kategorii we wspólnych działaniach w sposób przynoszący korzyści obu stronom. Dla pierwszej grupy oznacza to zdobycie prawdziwego praktycznego doświadczenia w tworzeniu projektu na żywo, podczas gdy dla drugiej grupy oznacza to otrzymanie funkcjonalnego produktu cyfrowego, który działa i przyczynia się do rozwoju inicjatywy społecznej."
+    },
+    "thirdSlide": {
+      "title": "O nas",
+      "description": "Inicjatywa Baza Trainee Ukraine jako platforma edukacyjno-szkoleniowa jest odpowiedzią na zapotrzebowanie społeczne, które pojawiło się na Ukrainie w latach 2022-2023 na zatrudnienie w obszarze technologii informatycznych. Jest to strona internetowa, która łączy dwie grupy społeczne użytkowników."
+    },
+    "fourthSlide": {
+      "title": "Zasady działania",
+      "description": "Przeszkolenie uczestnika w obszarze technologii, które są mu już znane i ułatwienie mu zatrudnienia. Podczas realizacji projektu zastosuj technologie, w których uczestnik chce dalej się rozwijać. Najistotniejsze będzie dostarczenie klientowi rozwiązania wysokiej jakości."
+    },
+    "fifthSlide": {
+      "title": "Nasza grupa docelowa",
+      "description": "Ukraińcy, którzy zdobywają umiejętności w dziedzinie IT, niezależnie od ich wieku i poziomu doświadczenia, stanowią jedną stronę naszej grupy docelowej. Obejmuje to stażystów, juniorów, osoby zmieniające karierę i mentorów. Z drugiej strony, nasza grupa odbiorców składa się z organizacji charytatywnych, społeczności wolontariuszy i inicjatyw obywatelskich na Ukrainie, które są zaangażowane w filantropię, wolontariat i inicjatywy społeczne. Naszym celem jest połączenie tych dwóch grup i stworzenie możliwości współpracy, dzielenia się wiedzą i rozwoju umiejętności w sektorze IT."
+    }
+  },
+  "moreProjects": "Więcej projektów",
+  "projects": {
+    "projectStart": "Start projektu",
+    "projectCycle": "Cykl projektu",
+    "duration": "Czas trwania",
+    "complexity": "Złożoność",
+    "projectTeam": "Zespół",
+    "list": {
+      "murrfecto": {
+        "title": "Miejsce schroniska dla zwierząt ulicznych Murrfecto",
+        "status": "Zakończony",
+        "statusVal": "active",
+        "teamMembers": [
+          "Olga Iwanowa",
+          "Zuzanna Salata",
+          "Iryna Stolarowa",
+          "Switłana Makarenko (Batrak)",
+          "Iwan Mireniuk",
+          "Iwan Mireniuk",
+          "Marina Kowalowa",
+          "Olga Sydorenko",
+          "Tonya Siwa",
+          "Jugen Serdiuk",
+          "Jugen Serdiuk",
+          "Ihor Droniszyniec",
+          "Olena Nowaczenko",
+          "Lesia Czernyk",
+          "Inna Fomenko",
+          "Oksana Derkach",
+          "Jarina Bieriezowska"
+        ]
+      },
+      "atakahelp": {
+        "title": "Platforma o rodzajach oszustw internetowych AtakaHelp",
+        "status": "Zakończony",
+        "statusVal": "active",
+        "teamMembers": [
+          "Olga Iwanowa",
+          "Sałatka Zuzanna",
+          "Elina Tryberg",
+          "Dmytro Szlenskowy",
+          "Wiktoria Podstrel",
+          "Switłana Makarenko (Bajrak)",
+          "Iryna Kolesnyk",
+          "Anna Łysak",
+          "Witalij Wiesztobej",
+          "Marina Kowalowa",
+          "Serhij Julaj",
+          "Jegor Tweritinow",
+          "Olga Kijko",
+          "Iryna Zozulia",
+          "Olena Krasnożan",
+          "Mariana Hirska",
+          "Marina Lebyd",
+          "Iryna Łozowa",
+          "Natalia Didenko",
+          "Jarina Bieriezowska",
+          "Roman Malik",
+          "Julia Woźniakowska",
+          "Tymofij Zaliszczuk",
+          "Andrij Czerkasow",
+          "Natalii Kachan",
+          "Inna Fomenko",
+          "Kostiantyn Olchowyk"
+        ]
+      },
+      "bazatrainee": {
+        "title": "Platforma dla Praktykantów Baza Ukraina",
+        "status": "Zakończony",
+        "statusVal": "active",
+        "teamMembers": [
+          "Olga Iwanowa",
+          "Sałatka Zuzanna",
+          "Iryna Stolarowa",
+          "Switłana Makarenko (Batrak)",
+          "Ihor Droniszyniec",
+          "Mychajło Fisiuk",
+          "Aleksander Neszczadin",
+          "Diana Forostyan",
+          "Ihor Droniszyniec",
+          "Anna Kłyba",
+          "Aleksy Burys",
+          "Natalia Kuksowa",
+          "Rostisław Bagniuk",
+          "Jarina Bieriezowska",
+          "Kiryło Matwienko",
+          "Natalia Zołotuchina",
+          "Kateryna Rubanik",
+          "Jewhen Poleżajew",
+          "Inna Ladyka",
+          "Olga Chawronenko",
+          "Wiktoria Jefimenko",
+          "Władimir Robota",
+          "Iryna Corelina"
+        ]
+      },
+      "cheetosaurus": {
+        "title": "Cheetosaurus - aplikacja internetowa z quizami książkowymi dla dzieci",
+        "status": "W budowie",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "1001-songs": {
+        "title": "1001 piosenek - zbiór witryn z autentycznymi ukraińskimi piosenkami",
+        "status": "W budowie",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "biglapa": {
+        "title": "Strona schroniska dla zwierząt ulicznych Big Lapa",
+        "status": "W budowie",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "feeda": {
+        "title": "Feeda to platforma do rozpatrywania wniosków o udział w Baza Trainee",
+        "status": "W budowie",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "bookAbroad": {
+        "title": "Książka wyjeżdża za granicę - portal pomocy humanitarnej",
+        "status": "W budowie",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "fundraisingLP": {
+        "title": "Lądowanie - zbiórka pieniędzy dla 59 Brygady 'Stalowej Broni'",
+        "status": "Zakończony",
+        "statusVal": "active",
+        "teamMembers": []
+      }
+    },
+    "status": {
+      "teamFormation": "Tworzenie zespołu",
+      "underDevelopment": "W trakcie opracowywania",
+      "completed": "Ukończone"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "Jak wesprzeć Baza Trainee Ukraina",
+    "teamsWaitForYou": "5 projektów i 3 zespoły czekają na Ciebie",
+    "bazaTraineeInvite": "Baza Trainee Ukraine zaprasza do dołączenia do zespołu",
+    "chooseRole": "Wybierz swoją rolę w projekcie",
+    "role": {
+      "participant": "Jestem uczestnikiem",
+      "mentor": "Jestem mentorem",
+      "partner": "Jestem partnerem",
+      "customer": "Jestem klientem"
+    }
+  },
+  "partners": {
+    "title": "Partnerzy"
+  },
+  "stats": {
+    "completedProjects": "Ukończone projekty",
+    "involvedParticipants": "Uczestnicy",
+    "employed": "Osoby zatrudnione "
+  },
+  "reviews": {
+    "title": "Recenzje",
+    "list": [
+      {
+        "name": "Olena",
+        "role": "uczestnik, kontrola jakości",
+        "date": "czerwiec 2023",
+        "review": "Przez ostatnie dwa tygodnie codziennie myślałem, że powinienem był przyjść do Bazy choćby po to, by uświadomić sobie, jak ważna jest praca projektanta w tworzeniu oprogramowania"
+      },
+      {
+        "name": "Witalij",
+        "role": "BF",
+        "date": "maj 2023",
+        "review": "Projekt budowany jest na zasadzie win-win, kiedy obie strony wzmacniają się wzajemnie dla dobra społeczności. Świetny pomysł!"
+      },
+      {
+        "name": "Irina",
+        "role": "uczestnik, front-end",
+        "date": "maj 2023",
+        "review": "Podczas pierwszego spotkania zespół projektowy omówił, przemyślał i wybrał język programowania. Wygodnie, że nie muszę uczyć się od nowa, ćwiczę umiejętności Reacta"
+      }
+    ]
+  },
+  "modal": {
+    "title": "Wybierz kwotę, którą chcesz wesprzeć Baza Trainee Ukraine.",
+    "description": "Kwota jest pobierana jednorazowo, jeśli chcesz wystawić abonament, potrzebujesz ..",
+    "sums": {
+      "100": "100 UAH",
+      "200": "200 UAH",
+      "500": "500 UAH",
+      "1000": "1000 UAH",
+      "otherSum": "Inna kwota w UAH"
+    },
+    "button": "Wsparcie Baza Trainee Ukraine "
+  },
+  "footer": {
+    "projects": "Projekty",
+    "partners": "Partnerzy",
+    "participate": "Weź udział",
+    "privacyPolicy": "Polityka prywatności",
+    "rulesForUsingTheSite": "Zasady korzystania z serwisu",
+    "statute": "Statut",
+    "accountability": "Odpowiedzialność",
+    "allRightsReserved": "BazaTraineeUkraine 2023 Wszelkie prawa zastrzeżone"
+  },
+  "notFound": {
+    "title": "Ta strona nie została znaleziona.",
+    "description": "Nie mogliśmy znaleźć strony, której szukasz",
+    "button": "Powrót do strony głównej"
+  },
+  "toFund": "Finansowanie",
+  "enterKeywordForSearch": "Wprowadź słowo kluczowe aby wyszukać"
+}

@@ -1,8 +1,9 @@
 import Image from 'next/image';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { TDictionary } from '@/types';
 
-export const Statistics = () => {
+export const Statistics = ({ dict }: { dict: TDictionary }) => {
   return (
     <section className="relative">
       <Image
@@ -14,9 +15,8 @@ export const Statistics = () => {
       />
 
       <ContainerMaxW1200 className="flex-center min-h-[14.4rem] text-center">
-        <h2 className="mx-[5.95rem] my-12 text-[3.2rem] font-bold uppercase md:mx-44">
-          5 проєктів та 3 команди чекають{' '}
-          <span className="whitespace-nowrap">на тебе</span>
+        <h2 className="mx-[5.95rem] my-12 text-[3.2rem] font-bold uppercase">
+          {dict.invite.teamsWaitForYou}
         </h2>
       </ContainerMaxW1200>
     </section>

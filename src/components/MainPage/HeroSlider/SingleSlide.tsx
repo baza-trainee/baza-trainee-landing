@@ -2,7 +2,13 @@ import Image from 'next/image';
 
 import { TSlide } from '@/types';
 
-export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
+export const SingleSlide = ({
+  slideData,
+  slideLang,
+}: {
+  slideData: TSlide;
+  slideLang: 'en' | 'pl' | 'ua';
+}) => {
   const { image, title, text } = slideData;
 
   return (

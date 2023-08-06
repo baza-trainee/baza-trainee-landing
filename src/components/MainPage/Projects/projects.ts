@@ -1,4 +1,4 @@
-import { IProject } from '@/types';
+import { IProject, TDictionary } from '@/types';
 
 export const projects = [
   {
@@ -6,6 +6,7 @@ export const projects = [
     title: 'Murrfecto',
     imageUrl: '/img/projects/murrfecto.png',
     status: 'active',
+    statusVal: 'active',
     link: 'https://murrfecto.site',
     description: 'Сайт притулку для вуличних тварин Murrfecto',
     creationDate: 1682283600000,
@@ -173,6 +174,7 @@ export const projects = [
     title: 'Ataka Help',
     imageUrl: '/img/projects/atack.png',
     status: 'active',
+    statusVal: 'active',
     link: 'https://ataka-help.tech',
     description: 'Платформа про види кібершахрайства AtakaHelp',
     creationDate: 1683493200000,
@@ -429,6 +431,7 @@ export const projects = [
     title: 'baza',
     imageUrl: '/img/projects/baza.png',
     status: 'active',
+    statusVal: 'active',
     link: 'https://baza-trainee.tech',
     description: 'Платформа для Baza Trainee Ukraine',
     creationDate: 1683234000000,
@@ -648,7 +651,8 @@ export const projects = [
     _id: '2',
     title: 'Читозаврик',
     imageUrl: '/img/projects/zavr.png',
-    status: 'under-development',
+    status: '',
+    statusVal: 'under-development',
     link: ' ',
     description: 'Читозаврик - веб-додаток з книжковими вікторинами для дітей',
     creationDate: 1685566800000,
@@ -661,6 +665,7 @@ export const projects = [
     title: '1001 songs',
     imageUrl: '/img/projects/1001songs.jpg',
     status: 'under-development',
+    statusVal: 'under-development',
     link: ' ',
     description: '1001 songs - сайт-колекція українських автентичних пісень ',
     creationDate: 1685566800000,
@@ -673,6 +678,7 @@ export const projects = [
     title: 'Big Lapa',
     imageUrl: '/img/projects/lapa.png',
     status: 'under-development',
+    statusVal: 'under-development',
     link: ' ',
     description: 'Сайт притулку для вуличних тварин Big Lapa',
     creationDate: 1685566800000,
@@ -685,6 +691,7 @@ export const projects = [
     title: 'feeda',
     imageUrl: '/img/projects/feeda-1.png',
     status: 'under-development',
+    statusVal: 'under-development',
     link: ' ',
     description:
       'Feeda - платформа для обробки заявок на участь у Baza Trainee',
@@ -698,6 +705,7 @@ export const projects = [
     title: 'book',
     imageUrl: '/img/projects/book.jpg',
     status: 'under-development',
+    statusVal: 'under-development',
     link: ' ',
     description: 'Книжка їде за кордон - портал гуманітарної допомоги',
     creationDate: 1688245200000,
@@ -709,8 +717,9 @@ export const projects = [
     _id: '9',
     title: 'arms',
     imageUrl: '/img/projects/arms.jpg',
-    status: 'under-development',
-    link: ' ',
+    status: 'active',
+    statusVal: 'active',
+    link: 'https://obijmy59.online/',
     description: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
     creationDate: 1689368400000,
     launchDate: 1690705554200,
@@ -718,3 +727,77 @@ export const projects = [
     teamMembers: [],
   },
 ] as IProject[];
+
+export const getTranslatedProjects = (
+  dict: TDictionary,
+  projects: IProject[]
+) => {
+  // projects[0].title = dict.projects.list.murrfecto.title;
+  // projects[0].status = dict.projects.list.murrfecto.status;
+  // projects[0].teamMembers.map(
+  //   (teamMember, i) =>
+  //     (teamMember.user.name =
+  //       dict.projects.list.murrfecto.teamMembers['user2']?.name)
+  // );
+  for (let i: number = 0; i < projects.length; i++) {
+    if (i === 0) {
+      projects[i].description = dict.projects.list.murrfecto.title;
+      projects[i].status = dict.projects.list.murrfecto.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.murrfecto.teamMembers[i];
+      });
+      // for (let x: number = 0; x < projects[i].teamMembers.length; x++) {
+      //   projects[i].teamMembers[x].user.name = dict
+      // }
+    } else if (i === 1) {
+      projects[i].description = dict.projects.list.atakahelp.title;
+      projects[i].status = dict.projects.list.atakahelp.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.atakahelp.teamMembers[i];
+      });
+    } else if (i === 2) {
+      projects[i].description = dict.projects.list.bazatrainee.title;
+      projects[i].status = dict.projects.list.bazatrainee.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.bazatrainee.teamMembers[i];
+      });
+    } else if (i === 3) {
+      projects[i].description = dict.projects.list.cheetosaurus.title;
+      projects[i].status = dict.projects.list.cheetosaurus.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.cheetosaurus.teamMembers[i];
+      });
+    } else if (i === 4) {
+      projects[i].description = dict.projects.list['1001-songs']?.title;
+      projects[i].status = dict.projects.list['1001-songs']?.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list['1001-songs']?.teamMembers[i];
+      });
+    } else if (i === 5) {
+      projects[i].description = dict.projects.list.biglapa?.title;
+      projects[i].status = dict.projects.list.biglapa?.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.biglapa.teamMembers[i];
+      });
+    } else if (i === 6) {
+      projects[i].description = dict.projects.list.feeda?.title;
+      projects[i].status = dict.projects.list.feeda?.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.feeda.teamMembers[i];
+      });
+    } else if (i === 7) {
+      projects[i].description = dict.projects.list.bookAbroad?.title;
+      projects[i].status = dict.projects.list.bookAbroad?.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.bookAbroad?.teamMembers[i];
+      });
+    } else if (i === 8) {
+      projects[i].description = dict.projects.list.fundraisingLP?.title;
+      projects[i].status = dict.projects.list.fundraisingLP?.status;
+      projects[i].teamMembers.map((teamMember, i) => {
+        teamMember.user.name = dict.projects.list.fundraisingLP?.teamMembers[i];
+      });
+    }
+  }
+  return projects;
+};

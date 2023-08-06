@@ -4,7 +4,11 @@ import { CloseIcon, MenuIcon } from '@/components/common/icons';
 import { useEffect, useRef, useState } from 'react';
 import { HeaderLinks } from './HeaderLinks';
 
-export const HeaderDropdownMenu = () => {
+export const HeaderMenuButton = ({
+  navLinks,
+}: {
+  navLinks: { title: string; href: string }[];
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropMenuRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +46,10 @@ export const HeaderDropdownMenu = () => {
             : 'invisible scale-y-90 opacity-0 duration-0 ease-in'
         }`}
       >
-        <HeaderLinks className="mx-auto flex w-fit flex-col items-center gap-[3.2rem]" />
+        <HeaderLinks
+          navLinks={navLinks}
+          className="mx-auto flex w-fit flex-col items-center gap-[3.2rem]"
+        />
       </div>
     </>
   );

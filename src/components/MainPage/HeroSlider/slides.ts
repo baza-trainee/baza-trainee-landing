@@ -1,3 +1,5 @@
+import { TDictionary } from '@/types';
+
 export const slides = [
   {
     image: '/img/carousel-slide-1.png',
@@ -25,3 +27,37 @@ export const slides = [
     text: 'Тренувати учасника на основі технологій, якими він володіє на даний момент, і сприяти його працевлаштуванню. Застосовувати при створенні проєкту технології, які хоче розвивати учасник, перенавчання не відбувається. Забезпечити замовника якісним цифровим продуктом.',
   },
 ];
+
+export const getTranslatedSlides = (
+  slides: { image: string; title: string; text: string }[],
+  dict: TDictionary
+) => {
+  // const translatedSlides = slides.map((slide, i) => {
+  //   slide.title = dict[i]?.title
+  // })
+  for (let i in slides) {
+    switch (i) {
+      case '0':
+        slides[i].title = dict?.heroSlider?.firstSlide?.title;
+        slides[i].text = dict?.heroSlider?.firstSlide?.description;
+        break;
+      case '1':
+        slides[i].title = dict?.heroSlider?.secondSlide?.title;
+        slides[i].text = dict?.heroSlider?.secondSlide?.description;
+        break;
+      case '2':
+        slides[i].title = dict?.heroSlider?.thirdSlide?.title;
+        slides[i].text = dict.heroSlider?.thirdSlide?.description;
+        break;
+      case '3':
+        slides[i].title = dict?.heroSlider?.fourthSlide?.title;
+        slides[i].text = dict?.heroSlider?.fourthSlide?.description;
+        break;
+      case '4':
+        slides[i].title = dict?.heroSlider?.fifthSlide?.title;
+        slides[i].text = dict?.heroSlider?.fifthSlide?.description;
+        break;
+    }
+  }
+  return slides;
+};
