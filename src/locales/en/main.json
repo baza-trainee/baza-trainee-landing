@@ -1,0 +1,256 @@
+{
+  "navbar": {
+    "projects": "Projects",
+    "partners": "Partners",
+    "participate": "To Participate",
+    "contacts": "Contacts"
+  },
+  "monthsNames": {
+    "january": "january",
+    "february": "february",
+    "march": "march",
+    "april": "april",
+    "may": "may",
+    "june": "june",
+    "july": "july",
+    "august": "august",
+    "september": "september",
+    "october": "october",
+    "november": "november",
+    "december": "december"
+  },
+  "heroSlider": {
+    "firstSlide": {
+      "title": "Baza Trainee Ukraine",
+      "description": "A public organization aimed at providing initial work experience for those who are starting their journey in IT."
+    },
+    "secondSlide": {
+      "title": "Our Goal",
+      "description": "To combine these categories in joint activities in a way that benefits both sides. For the first group, it means gaining real practical experience in creating a live project, while for the second group, it involves receiving a functional digital product that works and contributes to the development of a social initiative."
+    },
+    "thirdSlide": {
+      "title": "About",
+      "description": "Baza Trainee Ukraine initiative as an educational and training platform is a response to the societal demand that has emerged in Ukraine in 2022-2023 regarding employment in the field of information technology. It represents a website that brings together two social groups as its users."
+    },
+    "fourthSlide": {
+      "title": "Principle of Action",
+      "description": "Train the participant based on the technologies they currently possess and facilitate their employment. When creating a project, apply the technologies that the participant wants to develop further, retraining does not take place. To provide the customer with a high-quality digital product."
+    },
+    "fifthSlide": {
+      "title": "Our target audience",
+      "description": "Ukrainians who are acquiring skills in the IT field, regardless of their age and experience level, form one side of our target audience. This includes trainees, juniors, career switchers, and mentors. On the other side, our audience consists of charitable organizations, volunteering communities, and civic initiatives in Ukraine that are involved in philanthropy, volunteering, and community-driven initiatives. Our goal is to bring together these two groups and create opportunities for collaboration, knowledge sharing, and skill development within the IT sector."
+    }
+  },
+  "moreProjects": "More projects",
+  "projects": {
+    "projectStart": "Project start",
+    "projectCycle": "Project cycle",
+    "duration": "Duration",
+    "complexity": "Complexity",
+    "projectTeam": "Project team",
+    "list": {
+      "murrfecto": {
+        "title": "Website of a shelter for street animals Murrfecto",
+        "status": "Done",
+        "statusVal": "active",
+        "teamMembers": [
+          "Olga Ivanova",
+          "Susanna Salata",
+          "Iryna Stolyarova",
+          "Svitlana Makarenko (Batrak)",
+          "Ivan Mironyuk",
+          "Ivan Mironyuk",
+          "Marina Kovaleva",
+          "Olga Sydorenko",
+          "Tonya Siva",
+          "Yugen Serdyuk",
+          "Yugen Serdyuk",
+          "Ihor Dronishynets",
+          "Olena Novachenko",
+          "Lesia Chernykh",
+          "Inna Fomenko",
+          "Oksana Derkach",
+          "Yarina Berezovska"
+        ]
+      },
+      "atakahelp": {
+        "title": "Platform about types of cyber fraud AtakaHelp",
+        "status": "Done",
+        "statusVal": "active",
+        "teamMembers": [
+          "Olga Ivanova",
+          "Susanna Salad",
+          "Elina Tryberg",
+          "Dmytro Shlenskovy",
+          "Viktoria Podstrel",
+          "Svitlana Makarenko (Bayrak)",
+          "Iryna Kolesnyk",
+          "Anna Lysak",
+          "Vitaly Veshtobey",
+          "Marina Kovaleva",
+          "Serhiy Julai",
+          "Egor Tveritinov",
+          "Olga Kiyko",
+          "Iryna Zozulya",
+          "Olena Krasnozhan",
+          "Maryana Hirska",
+          "Marina Lebyd",
+          "Iryna Lozova",
+          "Natalia Didenko",
+          "Yarina Berezovska",
+          "Roman Malik",
+          "Yulia Wozniakivska",
+          "Timofiy Zalishchuk",
+          "Andrii Cherkasov",
+          "Natalia Kachan",
+          "Inna Fomenko",
+          "Kostyantyn Olkhovyk"
+        ]
+      },
+      "bazatrainee": {
+        "title": "Platform for Baza Trainee Ukraine",
+        "status": "Done",
+        "statusVal": "active",
+        "teamMembers": [
+          "Olga Ivanova",
+          "Susanna Salad",
+          "Iryna Stolyarova",
+          "Svitlana Makarenko (Batrak)",
+          "Ihor Dronishynets",
+          "Mykhailo Fysyuk",
+
+          "Alexander Neshchadin",
+          "Diana Forostyan",
+          "Ihor Dronishynets",
+          "Anna Klyba",
+          "Aleksii Burys",
+          "Natalia Kuksova",
+          "Rostislav Bagnyuk",
+          "Yarina Berezovska",
+          "Kyrylo Matvienko",
+          "Natalia Zolotukhina",
+          "Kateryna Rubanik",
+          "Yevhen Polezhaev",
+          "Inna Ladyka",
+          "Olga Khavronenko",
+          "Viktoria Yefimenko",
+          "Vladimir Robota",
+          "Iryna Corelina"
+        ]
+      },
+      "cheetosaurus": {
+        "title": "Cheetosaurus - a web application with book quizzes for children",
+        "status": "Under development",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "1001-songs": {
+        "title": "1001 songs - a site-collection of authentic Ukrainian songs",
+        "status": "Under development",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "biglapa": {
+        "title": "The website of the shelter for street animals Big Lapa",
+        "status": "Under development",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "feeda": {
+        "title": "Feeda is a platform for processing applications for participation in Baza Trainee",
+        "status": "Under development",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "bookAbroad": {
+        "title": "The book goes abroad - a humanitarian aid portal",
+        "status": "Under development",
+        "statusVal": "under-development",
+        "teamMembers": []
+      },
+      "fundraisingLP": {
+        "title": "Landing - fundraising for the 59th Brigade 'Steel Arms'",
+        "status": "Done",
+        "statusVal": "active",
+        "teamMembers": []
+      }
+    },
+    "status": {
+      "teamFormation": "Team formation",
+      "underDevelopment": "Under development",
+      "completed": "Completed"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "To support Baza Trainee Ukraine",
+    "teamsWaitForYou": "5 projects and 3 teams are waiting for you",
+    "bazaTraineeInvite": "Baza Trainee Ukraine invites you to join the team",
+    "chooseRole": "Choose your role in the project",
+    "role": {
+      "participant": "I am a participant",
+      "mentor": "I am a mentor",
+      "partner": "I am a partner",
+      "customer": "I am a customer"
+    }
+  },
+  "partners": {
+    "title": "Partners"
+  },
+  "stats": {
+    "completedProjects": "completed projects",
+    "involvedParticipants": "involved participants",
+    "employed": "employed"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "list": [
+      {
+        "name": "Olena",
+        "role": "participant, QA",
+        "date": "June 2023",
+        "review": "For the past two weeks, I've been thinking every day that I should have come to the Base at least in order to realize the importance of the designer's work in software development"
+      },
+      {
+        "name": "Vitaly",
+        "role": "BF",
+        "date": "May 2023",
+        "review": "The project is built on the principle of win-win, when both parties strengthen each other for the benefit of the community. Great idea!"
+      },
+      {
+        "name": "Irina",
+        "role": "participant, Front-end",
+        "date": "May 2023",
+        "review": "During the first meeting, the project team discussed, reasoned and chose a programming language. It's convenient that I don't have to relearn, I'm practicing React skills"
+      }
+    ]
+  },
+  "modal": {
+    "title": "Choose the amount you would like to support Baza Trainee Ukraine with.",
+    "description": "The amount is debited once, if you want to issue a subscription, you need ..",
+    "sums": {
+      "100": "100 UAH",
+      "200": "200 UAH",
+      "500": "500 UAH",
+      "1000": "1000 UAH",
+      "otherSum": "A different amount in UAH "
+    },
+    "button": "To support Baza Trainee Ukraine"
+  },
+  "footer": {
+    "projects": "Projects",
+    "partners": "Partners",
+    "participate": "To Participate",
+    "privacyPolicy": "Privacy Policy",
+    "rulesForUsingTheSite": "Rules for using the site",
+    "statute": "Statute",
+    "accountability": "Accountability",
+    "allRightsReserved": "Developed by BazaTraineeUkraine 2023 All rights reserved"
+  },
+  "notFound": {
+    "title": "This page was not found.",
+    "description": "We could not find the page you are looking for. An error may have occurred",
+    "button": "Return to the main page"
+  },
+  "toFund": "To Fund",
+  "enterKeywordForSearch": "Enter a keyword for search"
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { createPortal } from 'react-dom';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import {
   MouseEvent,
   ReactElement,
@@ -8,18 +8,20 @@ import {
   isValidElement,
   useState,
 } from 'react';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { createPortal } from 'react-dom';
 
 import { CloseIcon } from '@/components/common/icons';
+import { TDictionary } from '@/types';
 import { ContentDonate } from './ContentDonate';
 
 type Props = {
   children: ReactElement;
   content: 'donate' | ReactElement;
   open?: boolean;
+  dict: TDictionary;
 };
 
-export const Modal = ({ children, content, open = false }: Props) => {
+export const Modal = ({ children, content, open = false, dict }: Props) => {
   const [isLandingModalShown, setIsLandingModalShown] = useState(open);
   const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
 
@@ -48,7 +50,7 @@ export const Modal = ({ children, content, open = false }: Props) => {
           <CloseIcon className="hidden sm:block" />
         </button>
 
-        {content === 'donate' && <ContentDonate />}
+        {content === 'donate' && <ContentDonate dict={dict} />}
         {isValidElement(content) && content}
       </div>
     </section>

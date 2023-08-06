@@ -5,26 +5,28 @@ import { useEffect, useRef, useState } from 'react';
 import counterHandler from '@/utils/counterHandler';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { TDictionary } from '@/types';
 
 const projects = 14;
 const members = 420;
 const haveJob = 14;
 
-export const Achievements = () => {
+export const Achievements = ({ dict }: { dict: TDictionary }) => {
   const componentRef = useRef(null);
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false);
 
+  //Set text of achievement as text of dictionary of locale file
   const achievementData = [
-    { count: projectsCount, text: 'Проєктів' },
+    { count: projectsCount, text: dict.stats.completedProjects },
     {
       count: membersCount,
-      text: 'Залучених учасників',
+      text: dict.stats.involvedParticipants,
       plusVisible: isCountFinish,
     },
-    { count: haveJobCount, text: 'Працевлаштовано' },
+    { count: haveJobCount, text: dict.stats.employed },
   ];
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+import { TDictionary } from '@/types';
+
 export const slides = [
   {
     name: 'Олена',
@@ -24,3 +26,22 @@ export const slides = [
     imageUrl: '/img/b_reviews.jpg',
   },
 ];
+
+export const getTranslateReviews = (
+  slides: {
+    name: string;
+    role: string;
+    date: string;
+    review: string;
+    imageUrl: string;
+  }[],
+  dict: TDictionary
+) => {
+  dict.reviews.list.map((listItem, i) => {
+    slides[i].name = listItem.name;
+    slides[i].date = listItem.date;
+    slides[i].review = listItem.review;
+    slides[i].role = listItem.role;
+  });
+  return slides;
+};

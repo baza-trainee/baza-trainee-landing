@@ -84,6 +84,7 @@ export interface IProject {
   title: string;
   imageUrl: string;
   status: string;
+  statusVal: 'active' | 'under-development' | 'formation';
   link: string;
   description: string;
   creationDate: number;

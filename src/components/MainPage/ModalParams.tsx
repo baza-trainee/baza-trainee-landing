@@ -2,13 +2,14 @@
 
 //import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useBodyScrollLockSimple } from '@/hooks/useBodyScrollLockSimple';
+import { TDictionary } from '@/types';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { CloseIcon } from '../common/icons';
 import { Gratitude } from './Gratitude';
 import { PDFView } from './PdfView';
 
-export const ModalParams = () => {
+export const ModalParams = ({ dict }: { dict: TDictionary }) => {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -40,7 +41,7 @@ export const ModalParams = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <Link
-          href={'/'}
+          href={pathname}
           scroll={false}
           replace
           className="absolute right-3 top-3 z-50 cursor-pointer md:right-10 md:top-10 "

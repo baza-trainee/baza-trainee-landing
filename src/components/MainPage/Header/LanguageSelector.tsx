@@ -1,9 +1,10 @@
 'use client';
 
 import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
-import { useContext, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 
 import { MultiArrow } from '@/components/common/icons';
+import { useRouter } from 'next/navigation';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 
@@ -13,9 +14,10 @@ const btnStyle =
 const underLineStyle =
   "relative after:absolute after:bottom-0 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] after:hover:scale-100";
 
-const LanguageSelector = () => {
+export const LanguageSelector = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { landingLanguage, setLandingLanguage } = useContext(GlobalContext);
+  const { push } = useRouter();
 
   const handleLanguageClick = (lang: TLandingLanguage) => {
     setLandingLanguage(lang);
@@ -24,6 +26,12 @@ const LanguageSelector = () => {
 
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
+  };
+
+  const handleLangSwitch = (e: FormEvent, lang: 'en' | 'pl' | 'ua') => {
+    e.preventDefault();
+    handleLanguageClick(lang);
+    push(`/${lang}/`);
   };
 
   const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] pr-[0.5rem]  ${
@@ -47,7 +55,7 @@ const LanguageSelector = () => {
             <li key={`key_${lang}`}>
               <button
                 className={btnStyle}
-                onClick={() => handleLanguageClick(lang)}
+                onClick={(e) => handleLangSwitch(e, lang)}
               >
                 <span className={underLineStyle}>{lang.toUpperCase()}</span>
               </button>
@@ -57,5 +65,3 @@ const LanguageSelector = () => {
     </div>
   );
 };
-
-export default LanguageSelector;
