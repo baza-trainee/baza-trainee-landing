@@ -17,5 +17,3 @@ export const RecallIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-
-

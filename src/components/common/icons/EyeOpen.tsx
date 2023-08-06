@@ -18,4 +18,3 @@ export const EyeOpen = ({ fill = '#121212', width = 24, height = 24 }) => (
     />
   </svg>
 );
-

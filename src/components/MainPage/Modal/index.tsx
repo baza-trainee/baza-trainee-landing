@@ -1,7 +1,13 @@
 'use client';
 
 import { createPortal } from 'react-dom';
-import { MouseEvent, ReactElement, cloneElement, isValidElement, useState } from 'react';
+import {
+  MouseEvent,
+  ReactElement,
+  cloneElement,
+  isValidElement,
+  useState,
+} from 'react';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
 import { CloseIcon } from '@/components/common/icons';
