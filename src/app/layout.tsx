@@ -18,6 +18,15 @@ const exo2 = Exo_2({
   display: 'swap',
 });
 
+const IconLink = ({ theme }: { theme: 'light' | 'dark' }) => (
+  <link
+    rel="icon"
+    href={`favicons/${theme}/icon.svg`}
+    type="image/svg+xml"
+    media={`(prefers-color-scheme: ${theme})`}
+  />
+);
+
 export default function RootLayout({
   children,
 }: {
@@ -25,8 +34,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <IconLink theme="light" />
+        <IconLink theme="dark" />
+      </head>
+
       <StoreProvider>
-        <body className={`${exo2.className} scrollbar`}>
+        <body className={exo2.className + ' scrollbar'}>
           <AlertWindow />
           {children}
         </body>

@@ -20,6 +20,10 @@
 .DS_Store
 *.pem
 
+# Editor directories
+.vscode/*
+!.vscode/extensions.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*

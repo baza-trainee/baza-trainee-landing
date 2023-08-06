@@ -7,7 +7,6 @@ export const Forms = ({ dict }: { dict: TDictionary }) => {
       <ContainerMaxW1200 className="flex-col">
         <h2 className="mb-10 text-[3.8rem] font-bold md:text-[4rem]">
           {dict.invite.bazaTraineeInvite}
-          {/* <span className="whitespace-nowrap">до команди</span> */}
         </h2>
 
         <p className="mb-[4.8rem] text-[2.4rem]">{dict.invite.chooseRole}</p>
