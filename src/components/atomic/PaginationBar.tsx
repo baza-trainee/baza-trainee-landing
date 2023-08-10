@@ -33,7 +33,7 @@ export const PaginationBar = ({
         <MultiArrow
           direction='left'
           bigSize
-          color={`${currentPage === 1 ? '#B1B1B1' : ''}`}
+          className={currentPage === 1 ? 'text-neutral-100' : ''}
         />
       </button>
       <div className='flex gap-6'>
@@ -53,7 +53,7 @@ export const PaginationBar = ({
         <MultiArrow
           direction='right'
           bigSize
-          color={`${currentPage === totalPages ? '#B1B1B1' : ''}`}
+          className={currentPage === totalPages ? 'text-neutral-100' : ''}
         />
       </button>
     </div>

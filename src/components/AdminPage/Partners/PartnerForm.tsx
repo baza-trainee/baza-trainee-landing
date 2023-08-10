@@ -62,7 +62,11 @@ export const PartnerForm = ({
           </form>
         </div>
         <div className='mt-16 flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2'>
-          {isFormValid ? <CheckIcon fill={'#1CD41F'} /> : <CheckIcon />}
+          {isFormValid ? (
+            <CheckIcon className='text-success-dark'/>
+          ) : (
+            <CheckIcon className='text-neutral-100' />
+          )}
         </div>
       </div>
     </>
