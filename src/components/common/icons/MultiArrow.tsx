@@ -4,7 +4,6 @@ interface Props extends SVGProps<SVGSVGElement> {
   direction: 'top' | 'bottom' | 'left' | 'right';
   bigSize?: boolean;
   open?: boolean;
-  color?: string;
 }
 
 export const MultiArrow = ({
@@ -12,7 +11,6 @@ export const MultiArrow = ({
   className = '',
   bigSize,
   open,
-  color,
   ...props
 }: Props) => {
   let deg = '';
@@ -45,7 +43,7 @@ export const MultiArrow = ({
       {...props}
     >
       <path
-        stroke={color || 'currentColor'}
+        stroke='currentColor'
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={bigSize ? '' : 2}
