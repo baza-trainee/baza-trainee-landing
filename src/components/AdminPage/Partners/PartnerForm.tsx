@@ -31,7 +31,7 @@ export const PartnerForm = ({
             className='flex flex-wrap gap-[2.5rem] py-5 pl-4'
             onSubmit={handleSubmit}
           >
-            <label htmlFor='' className='flex flex-col'>
+            <label className='flex flex-col'>
               Назва
               <input
                 type='text'
@@ -49,7 +49,7 @@ export const PartnerForm = ({
               onChange={handleImageChange}
               placeholderText='Завантажте зображення'
             />
-            <label htmlFor='' className='flex flex-col'>
+            <label className='flex flex-col'>
               Сайт партнера
               <input
                 type='text'
