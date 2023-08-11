@@ -1,6 +1,8 @@
 import { InputField } from '@/components/atomic';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
+import { GlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
+import { useContext } from 'react';
 
 export const PartnerForm = ({
   handleSubmit,
@@ -8,6 +10,7 @@ export const PartnerForm = ({
   isFormValid,
   handleFieldChange,
 }: PartnerFormProps) => {
+  const { setAlertInfo } = useContext(GlobalContext);
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleFieldChange('name', event.target.value);
   };
@@ -18,8 +21,18 @@ export const PartnerForm = ({
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      const imageFile = event.target.files[0];
-      handleFieldChange('file', imageFile);
+      const file = event.target.files[0];
+      const extension = file.name.split('.')[1];
+
+      if (extension !== 'jpeg' && extension !== 'png' && extension !== 'webp') {
+        setAlertInfo({
+          state: 'error',
+          title: 'Не вірний формат файлу',
+          textInfo: 'Допустимі формати файлів – JPEG, PNG, WEBP',
+        });
+      } else {
+        handleFieldChange('file', file);
+      }
     }
   };
 
@@ -44,8 +57,12 @@ export const PartnerForm = ({
             <InputField
               title='Логотип'
               inputType='file'
-              accept='image/*'
-              value={formData.file instanceof File ? formData.file.name : formData.file || ''}
+              accept='image/jpeg, image/png, image/webp'
+              value={
+                formData.file instanceof File
+                  ? formData.file.name
+                  : formData.file || ''
+              }
               onChange={handleImageChange}
               placeholderText='Завантажте зображення'
             />
@@ -63,7 +80,7 @@ export const PartnerForm = ({
         </div>
         <div className='mt-16 flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2'>
           {isFormValid ? (
-            <CheckIcon className='text-success-dark'/>
+            <CheckIcon className='text-success-dark' />
           ) : (
             <CheckIcon className='text-neutral-100' />
           )}
