@@ -17,7 +17,7 @@ export const Header = ({
   return (
     <header className="h-[10rem] bg-yellow-500 md:h-[10.4rem]" id="header">
       <ContainerMaxW1200 className="h-full items-center justify-between">
-        <Link href={pathname}>
+        <Link href={pathname} className="cursor-pointer">
           <LogoMain className="h-[4.2rem] w-[4.2rem] sm:h-[7.8rem] sm:w-[7.8rem]" />
         </Link>
 
