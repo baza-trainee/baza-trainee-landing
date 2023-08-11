@@ -6,7 +6,6 @@ import { usePartnerForm } from '@/hooks/usePartnerForm';
 import { GlobalContext } from '@/store/globalContext';
 import { PartnerEditProps } from '@/types';
 import partnersApi from '@/utils/API/partners';
-import { fetchAndCreateFile } from '@/utils/fetchAndCreateFile';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useContext, useEffect } from 'react';
 import { PartnerForm } from './PartnerForm';
@@ -28,9 +27,8 @@ export const PartnerEdit = ({
   useEffect(() => {
     if (partnerData) {
       handleFieldChange('name', partnerData.name);
-      handleFieldChange('file', new File([], ''));
       handleFieldChange('homeUrl', partnerData.homeUrl);
-      fetchAndCreateFile(partnerData, handleFieldChange);
+      handleFieldChange('file', partnerData.imageUrl);
     }
   }, [partnerData]);
 
@@ -46,11 +44,9 @@ export const PartnerEdit = ({
 
     if (isFormValid) {
       const newPartner = new FormData();
-      for (const key in formData) {
-        if (formData[key] !== null) {
-          newPartner.append(key, formData[key] as Blob);
-        }
-      }
+      newPartner.append('name', formData.name);
+      newPartner.append('homeUrl', formData.homeUrl);
+      newPartner.append('file', formData.file as Blob);
 
       setAlertInfo({
         state: 'success',
