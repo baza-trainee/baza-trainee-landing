@@ -45,7 +45,7 @@ export const PartnerForm = ({
               title='Логотип'
               inputType='file'
               accept='image/*'
-              value={formData['file']?.name}
+              value={formData.file instanceof File ? formData.file.name : formData.file || ''}
               onChange={handleImageChange}
               placeholderText='Завантажте зображення'
             />
