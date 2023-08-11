@@ -27,7 +27,7 @@ export const AdminPanelButton: FC<AdminPanelButtonProps> = ({
   const buttonClasses = `
     relative flex-center gap-[1.2rem] h-[5.6rem] shrink-0 pr-[3.2rem]
     ${icon ? 'pl-[1.2rem]' : 'pl-[3.2rem]'}
-    ${iconOnly && icon ? 'w-[4.7rem] block-center' : ''}
+    ${iconOnly && icon ? 'w-[4.7rem]' : ''}
     ${variant === 'primary' ? primary : secondary}
     rounded-[0.4rem] border text-[2.2rem] font-semibold overflow-hidden transition-colors ${className}
 `;
