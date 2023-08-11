@@ -11,6 +11,7 @@ import {
   TelegramIcon,
 } from '@/components/common/icons';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
+import { headers } from 'next/headers';
 
 const getContacts = async () => {
   const noData: TContactsInfo = {
@@ -46,6 +47,8 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
 );
 
 export const Footer = async ({ dict }: { dict: TDictionary }) => {
+  const headersList = headers();
+  const pathname = headersList.get('x-invoke-path') || '';
   const contactsInfo: TContactsInfo = await getContacts();
   const anchorLinksList = [
     { title: dict.footer.projects, href: '#projects' },
@@ -64,7 +67,7 @@ export const Footer = async ({ dict }: { dict: TDictionary }) => {
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col gap-12 text-white lg:gap-0">
         <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
-          <Link href={'/'} className="sm:row-span-2">
+          <Link href={pathname} className="sm:row-span-2">
             <LogoMain className="h-32 w-32 sm:h-[12.4rem] sm:w-[12.4rem]" />
           </Link>
 
