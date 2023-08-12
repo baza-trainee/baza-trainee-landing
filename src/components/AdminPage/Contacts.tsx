@@ -60,10 +60,13 @@ export const Contacts = () => {
     //dispatch(form);
   };
 
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>, name: string) => {
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const [category, keyName] = name.split(' ');
+
     setContactsData((prev: any) => ({
       ...prev,
-      [name]: e.currentTarget.value,
+      [category]: { ...prev[category], [keyName]: value },
     }));
   };
 
@@ -76,38 +79,43 @@ export const Contacts = () => {
           <div className="flex flex-wrap gap-[2.4rem]">
             <InputField
               title="Телефон"
+              name="contactsDataList phone1"
               inputType="right"
-              value={contactsData['contactsDataList[phone1]']}
-              onChange={(e) => onInputChange(e, 'contactsDataList[phone1]')} //fix
+              value={contactsData.contactsDataList?.phone1}
+              onChange={onInputChange} //fix
               placeholderText="Введіть телефон"
             />
             <InputField
               inputType="right"
-              value={contactsData['contactsDataList[phone2]']}
-              onChange={(e) => onInputChange(e, 'contactsDataList[phone2]')} //fix
+              name="contactsDataList phone2"
+              value={contactsData.contactsDataList?.phone2}
+              onChange={onInputChange} //fix
               placeholderText="Введіть телефон"
             />
           </div>
           <div className="flex flex-wrap gap-[2.4rem]">
             <InputField
               title="Електронна пошта"
+              name="contactsDataList email"
               inputType="right"
-              value={contactsData['contactsDataList[email]']}
-              onChange={(e) => onInputChange(e, 'contactsDataList[email]')}
+              value={contactsData.contactsDataList?.email}
+              onChange={onInputChange}
               placeholderText="Введіть електронну пошту"
             />
             <InputField
               title="Facebook"
               inputType="right"
-              value={contactsData['socialsMediaList[facebook]']}
-              onChange={(e) => onInputChange(e, 'socialsMediaList[facebook]')}
+              name="socialsMediaList facebook"
+              value={contactsData.socialsMediaList?.facebook}
+              onChange={onInputChange}
               placeholderText="Додайте посилання"
             />
             <InputField
               title="Linkedin"
               inputType="right"
-              value={contactsData['socialsMediaList[linkedin]']}
-              onChange={(e) => onInputChange(e, 'socialsMediaList[linkedin]')}
+              name="socialsMediaList linkedin"
+              value={contactsData.socialsMediaList?.linkedin}
+              onChange={onInputChange}
               placeholderText="Додайте посилання"
             />
           </div>
