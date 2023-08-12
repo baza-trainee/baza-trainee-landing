@@ -1,21 +1,19 @@
 'use client';
-/*
+
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
 import { GlobalContext } from '@/store/globalContext';
-import contactsApi from '@/utils/API/contacts';
-import { formatBytes } from '@/utils/formatBytes';
+import { contactsApi } from '@/utils/API/contacts';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
-*/
+
 type TFormData = {
   [key: string]: string | null;
 };
 
 export const Contacts = () => {
-  /*
   const { setAlertInfo } = useContext(GlobalContext);
 
   const [contactsData, setContactsData] = useState<any>({}); //fix type
@@ -49,6 +47,8 @@ export const Contacts = () => {
   }, [isError, data, setAlertInfo]);
 
   const handleSubmit = () => {
+    console.log(contactsData);
+    /*
     const form = new FormData();
     setFilesUpdated(0);
     for (const key in formData) {
@@ -56,31 +56,15 @@ export const Contacts = () => {
         form.append(key, formData[key] as Blob);
         setFilesUpdated((prev) => prev + 1);
       }
-    }
-
+    }*/
     //dispatch(form);
   };
 
-  const onInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    name: string,
-    maxSize: number
-  ) => {
-    const files = e.currentTarget.files;
-    if (files && files[0]?.size <= maxSize) {
-      //  setContactsData((prev) => ({ ...prev, [name]: files[0] }));
-    } else {
-      setContactsData((prev) => ({ ...prev, [name]: null }));
-    }
-
-    if (files && files[0]?.size >= maxSize)
-      setAlertInfo({
-        state: 'error',
-        title: 'Перевищення розміру файлу',
-        textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
-          maxSize
-        )}`,
-      });
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>, name: string) => {
+    setContactsData((prev: any) => ({
+      ...prev,
+      [name]: e.currentTarget.value,
+    }));
   };
 
   return (
@@ -93,14 +77,14 @@ export const Contacts = () => {
             <InputField
               title="Телефон"
               inputType="right"
-              value={setContactsData['phone1']?.name}
-              onChange={(e) => onInputChange(e, 'phone1', maxFileSize)} //fix
+              value={contactsData['contactsDataList[phone1]']}
+              onChange={(e) => onInputChange(e, 'contactsDataList[phone1]')} //fix
               placeholderText="Введіть телефон"
             />
             <InputField
               inputType="right"
-              value={setContactsData['phone2']?.name}
-              onChange={(e) => onInputChange(e, 'phone2', maxFileSize)} //fix
+              value={contactsData['contactsDataList[phone2]']}
+              onChange={(e) => onInputChange(e, 'contactsDataList[phone2]')} //fix
               placeholderText="Введіть телефон"
             />
           </div>
@@ -108,22 +92,22 @@ export const Contacts = () => {
             <InputField
               title="Електронна пошта"
               inputType="right"
-              value={setContactsData['email']?.name}
-              onChange={(e) => onInputChange(e, 'email', maxFileSize)}
+              value={contactsData['contactsDataList[email]']}
+              onChange={(e) => onInputChange(e, 'contactsDataList[email]')}
               placeholderText="Введіть електронну пошту"
             />
             <InputField
               title="Facebook"
               inputType="right"
-              value={setContactsData['facebook']?.name}
-              onChange={(e) => onInputChange(e, 'facebook', maxFileSize)}
+              value={contactsData['socialsMediaList[facebook]']}
+              onChange={(e) => onInputChange(e, 'socialsMediaList[facebook]')}
               placeholderText="Додайте посилання"
             />
             <InputField
               title="Linkedin"
               inputType="right"
-              value={setContactsData['linkedin']?.name}
-              onChange={(e) => onInputChange(e, 'linkedin', maxFileSize)}
+              value={contactsData['socialsMediaList[linkedin]']}
+              onChange={(e) => onInputChange(e, 'socialsMediaList[linkedin]')}
               placeholderText="Додайте посилання"
             />
           </div>
@@ -138,5 +122,5 @@ export const Contacts = () => {
         </AdminPanelButton>
       </div>
     </div>
-  );*/
+  );
 };

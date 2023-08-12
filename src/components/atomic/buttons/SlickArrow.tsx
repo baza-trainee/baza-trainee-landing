@@ -5,15 +5,27 @@ interface IProps extends CustomArrowProps {
   direction: 'left' | 'right';
 }
 
-export const SlickArrow = ({ onClick, direction }: IProps) =>
-  onClick && (
+export const SlickArrow = (props: IProps) => {
+  const {
+    onClick,
+    direction,
+    currentSlide,
+    slideCount = 0,
+    className: stub,
+  } = props;
+
+  return (
     <MultiArrow
       direction={direction}
-      className={`absolute z-10 cursor-pointer
-      ${direction === 'left' && 'left-[5%] xl:left-[10%]'} 
-      ${direction === 'right' && 'right-[5%] xl:right-[10%]'} 
-      top-1/2 -translate-y-1/2`}
       onClick={onClick}
       bigSize
+      className={`
+          absolute top-[15%] z-10 -translate-y-1/2 cursor-pointer md:top-1/2
+          ${direction === 'left' && 'left-0'}
+          ${direction === 'right' && 'right-0'}
+          ${direction === 'left' && currentSlide === 0 && 'hidden'}
+          ${direction === 'right' && currentSlide === slideCount - 1 && 'hidden'}
+        `}
     />
   );
+};

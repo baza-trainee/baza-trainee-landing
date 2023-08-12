@@ -1,80 +1,62 @@
-'use client';
-
-import ProjectCard from '@/components/common/ProjectCard';
-import { MultiArrow } from '@/components/common/icons';
-import MagnifierIcon from '@/components/common/icons/MagnifierIcon';
-import { useState } from 'react';
+import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
+import { ProjectCard } from './ProjectCard';
 import { projects } from './projects';
-import styles from './styles.module.scss';
-import { ContainerMaxW1200 } from '@/components/atomic';
 
-const Projects = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredProjects, setFilteredProjects] = useState(projects);
+import { SETTINGS } from '@/config/settings';
+import { IProject } from '@/types';
 
-  const handleSearchChange = (event: any) => {
-    event.preventDefault();
-    setSearchQuery(event.target.value);
-    const filtered = projects.filter((project) =>
-      project.description
-        .trim()
-        .toLowerCase()
-        .includes(event.target.value.trim().toLowerCase())
-    );
-    setFilteredProjects(filtered);
-  };
+const getProjects = async () => {
+  const response = await fetch(
+    'https://baza-trainee.tech/api/v1/projects',
+    // `${process.env.NEXT_PUBLIC_SERVER_URL}/projects`,
+    { next: { revalidate: SETTINGS.delayRevalidation } }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  const result: IProject[] = await response.json();
+
+  const modResult: IProject[] = result.map((item: IProject) => {
+    item.imageUrl = 'https://baza-trainee.tech/api/v1/files/' + item.imageUrl;
+    return item;
+  });
+
+  return modResult;
+};
+
+export const Projects = async () => {
+  // const [filteredProjects1, setFilteredProjects] =
+  //   useState<TProjects[]>(projects);
+
+  // const response: TProjects[] = await getProjects();
+  // const filteredProjects = [...response, ...projects];
+  const filteredProjects = projects;
 
   return (
-    <section className={styles['projects-section']} id="projects">
-      <ContainerMaxW1200 className="flex-col">
-        <h3 className={styles['projects-section__title']}>Проєкти</h3>
-        <div className={styles['projects-section__form-container']}>
-          <form className={styles['projects-section__form']}>
-            <input
-              type="text"
-              name="search"
-              id="search-input"
-              className={styles['projects-section__form__input']}
-              placeholder="Введіть ключове слово для пошуку"
-              pattern="[а-яА-Яa-zA-ZҐґЄєІіЇї]{2,50}"
-              title="Поле пошуку приймає ключові слова від 2-х до 50-ти символів. Поле пошуку приймає латиницю і кирилицю"
-              minLength={2}
-              maxLength={50}
-              value={searchQuery}
-              onChange={handleSearchChange}
-              required
-            />
-            <button
-              type="submit"
-              className={styles['projects-section__form__button']}
-            >
-              <MagnifierIcon />
-            </button>
-          </form>
-        </div>
-        <>
-          {filteredProjects.length === 0 && (
-            <p>Sorry! There are no projects.</p>
-          )}
-          <ul className={styles['projects-section__projects-container']}>
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project._id} project={project} />
-            ))}
-          </ul>
-        </>
-        {filteredProjects.length !== 0 && (
-          <div className={styles['projects-section__load-more__container']}>
-            <button className={styles['projects-section__load-more']}>
-              <span className={styles['projects-section__load-more__text']}>
-                Більше проєктів
-              </span>
-              <MultiArrow direction="bottom" />
-            </button>
-          </div>
+    <section id="projects">
+      <ContainerMaxW1200 className="flex-col items-center gap-[3.2rem]">
+        <h3 className="text-[3.8rem] font-bold">Проєкти</h3>
+
+        {/* <div className="lg:self-start">
+          <SearchBar
+          setFilteredProjects={setFilteredProjects}
+          />
+        </div> */}
+
+        {filteredProjects.length === 0 && (
+          <h3 className="text-[3.8rem]">Sorry! There are no projects.</h3>
         )}
+
+        <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
+          {filteredProjects.map((project: IProject) => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
+        </ul>
+
+        {filteredProjects.length > 9 && <MoreProjectsButton />}
       </ContainerMaxW1200>
     </section>
   );
 };
-
-export default Projects;

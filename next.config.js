@@ -3,6 +3,7 @@ const path = require('path');
 const url = process.env.NEXT_PUBLIC_PROXY_URL;
 
 module.exports = {
+  output: 'standalone',
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import "@/styles/styles.scss";`,
@@ -33,5 +34,19 @@ module.exports = {
     return {
       '/api/v1': proxy,
     };
+  },
+  future: {
+    webpack5: true,
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.node/,
+      use: 'raw-loader',
+    });
+
+    return config;
+  },
+  images: {
+    domains: ['baza-trainee.tech'],
   },
 };

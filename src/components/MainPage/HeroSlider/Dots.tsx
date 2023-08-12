@@ -1,14 +1,24 @@
 import { slides } from './slides';
 
-export const Dots = ({ currentSlide }: { currentSlide: number }) => (
-  <div className="flex gap-4">
+export const Dots = ({
+  currentSlide,
+  goToSlide,
+}: {
+  currentSlide: number;
+  goToSlide: (_slideIndex: number) => void;
+}) => (
+  <div className="flex items-center gap-[0.8rem]">
     {slides.map((_, index) => (
-      <div
+      <button
+        onClick={() => goToSlide(index)}
         key={`key_${index + currentSlide}`}
-        className={`relative h-[2rem] w-[2rem] rounded-full border border-neutral-800 ${
-          index === currentSlide && 'bg-neutral-800'
-        }`}
-      />
+        className={`relative rounded-full border border-neutral-800 hover:cursor-pointer 
+          ${
+            index === currentSlide
+              ? 'h-[2rem] w-[2rem] bg-neutral-800'
+              : 'h-[1.6rem] w-[1.6rem]'
+          }`}
+      ></button>
     ))}
   </div>
 );
