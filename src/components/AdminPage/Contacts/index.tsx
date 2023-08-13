@@ -2,7 +2,7 @@
 
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { InputField } from '@/components/atomic/inputs';
+import { TextInputField } from '@/components/atomic/inputs';
 import { GlobalContext } from '@/store/globalContext';
 import { contactsApi } from '@/utils/API/contacts';
 import {
@@ -11,7 +11,13 @@ import {
   validateUrl,
 } from '@/utils/InputValidations';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 type TFormData = {
   [key: string]: string | null;
@@ -37,7 +43,7 @@ export const Contacts = () => {
     setErrorsData(errorsSample);
   };
 
-  const validationHandler = () => {
+  const validationHandler = useCallback(() => {
     let errors = errorsSample;
     let errorCount = 0;
 
@@ -83,15 +89,8 @@ export const Contacts = () => {
     setErrorsData((prev) => ({ ...prev, ...errors }));
     const isFormValid = Boolean(!errorCount);
 
-    if (!isFormValid)
-      setAlertInfo({
-        state: 'error',
-        title: 'Помилка при оновленні контактів',
-        textInfo: 'Перед надсиланням форми, будь ласка, виправте усі помилки',
-      });
-
     return isFormValid;
-  };
+  }, [contactsData]);
 
   useEffect(() => {
     console.log('data', data);
@@ -119,11 +118,16 @@ export const Contacts = () => {
     const normalizedValue = keyName.match(/phone/)
       ? value.replace(/\D/g, '')
       : value;
+
     setContactsData((prev: any) => ({
       ...prev,
       [category]: { ...prev[category], [keyName]: normalizedValue },
     }));
   };
+
+  useEffect(() => {
+    validationHandler();
+  }, [contactsData, validationHandler]);
 
   const handleSubmit = (
     event:
@@ -135,6 +139,12 @@ export const Contacts = () => {
     console.log('contactsData', contactsData);
     const isFormValid = validationHandler();
     console.log('isFormValid', isFormValid);
+    if (!isFormValid)
+      setAlertInfo({
+        state: 'error',
+        title: 'Помилка при оновленні контактів',
+        textInfo: 'Перед надсиланням форми, будь ласка, виправте усі помилки',
+      });
     isFormValid && dispatch(contactsData);
   };
 
@@ -145,51 +155,52 @@ export const Contacts = () => {
       <form className="flex flex-col gap-[2.4rem]" onSubmit={handleSubmit}>
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
           <div className="flex flex-wrap gap-[2.4rem]">
-            <InputField
+            <TextInputField
               title="Телефон"
+              pattern="[0-9]"
               name="contactsDataList phone1"
-              inputType="right"
+              inputType="pen"
               errorText={errorsData.phone1}
               value={contactsData.contactsDataList?.phone1}
-              onChange={onInputChange} //fix
-              placeholderText="Введіть телефон"
+              onChange={onInputChange}
+              placeholder="Введіть телефон"
             />
-            <InputField
-              inputType="right"
+            <TextInputField
+              inputType="pen"
               errorText={errorsData.phone2}
               name="contactsDataList phone2"
               value={contactsData.contactsDataList?.phone2}
-              onChange={onInputChange} //fix
-              placeholderText="Введіть телефон"
+              onChange={onInputChange}
+              placeholder="Введіть телефон"
             />
           </div>
           <div className="flex flex-wrap gap-[2.4rem]">
-            <InputField
+            <TextInputField
               title="Електронна пошта"
               name="contactsDataList email"
-              inputType="right"
+              inputType="pen"
               errorText={errorsData.email}
               value={contactsData.contactsDataList?.email}
               onChange={onInputChange}
-              placeholderText="Введіть електронну пошту"
+              placeholder="Введіть електронну пошту"
             />
-            <InputField
+            <TextInputField
               title="Facebook"
-              inputType="right"
+              inputType="pen"
               name="socialsMediaList facebook"
               errorText={errorsData.facebook}
               value={contactsData.socialsMediaList?.facebook}
               onChange={onInputChange}
-              placeholderText="Додайте посилання"
+              placeholder="Додайте посилання"
             />
-            <InputField
+            <TextInputField
               title="Linkedin"
-              inputType="right"
+              inputType="pen"
               name="socialsMediaList linkedin"
               errorText={errorsData.linkedin}
               value={contactsData.socialsMediaList?.linkedin}
               onChange={onInputChange}
-              placeholderText="Додайте посилання"
+              placeholder="Додайте посилання"
             />
           </div>
         </div>

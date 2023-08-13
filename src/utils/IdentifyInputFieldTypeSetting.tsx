@@ -2,7 +2,7 @@ import {
   DateIcon,
   EyeClosed,
   EyeOpen,
-  RightIcon,
+  PenIcon,
   UploadIcon,
 } from '@/components/common/icons';
 
@@ -56,10 +56,10 @@ export const IdentifyInputFieldTypeSetting = (inputType: string) => {
       icon = <DateIcon />;
       break;
 
-    case 'right':
+    case 'pen':
       type = 'text';
       isIconActive = false;
-      icon = <RightIcon />;
+      icon = <PenIcon />;
       break;
 
     default:
