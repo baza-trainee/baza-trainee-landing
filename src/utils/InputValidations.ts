@@ -4,7 +4,7 @@ export const validateEmail = (email: string) => {
 };
 
 export const validatePhone = (phone: string) => {
-  const phonePattern = /^380\d{7}$/;
+  const phonePattern = /^380\d{9}$/;
   return phonePattern.test(phone);
 };
 
