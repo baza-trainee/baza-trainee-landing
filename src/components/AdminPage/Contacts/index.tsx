@@ -6,33 +6,20 @@ import { TextInputField } from '@/components/atomic/inputs';
 import { GlobalContext } from '@/store/globalContext';
 import { TContactsInfo } from '@/types';
 import { contactsApi } from '@/utils/API/contacts';
-import {
-  validateEmail,
-  validatePhone,
-  validateUrl,
-} from '@/utils/InputValidations';
 import { useAPI } from '@/utils/hooks/useAPI';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import {
-  ChangeEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-
-const errorsSample = {
-  phone1: '',
-  phone2: '',
-  email: '',
-  facebook: '',
-  linkedin: '',
-};
+  contactsValidationHandler,
+  errorsSample,
+} from './contactsValidationHandler';
 
 export const Contacts = () => {
   const { setAlertInfo } = useContext(GlobalContext);
 
   const [contactsData, setContactsData] = useState<TContactsInfo>({});
   const [errorsData, setErrorsData] = useState(errorsSample);
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const [dispatch, data, isError] = useAPI(contactsApi.update);
 
   const resetHandler = () => {
@@ -40,57 +27,7 @@ export const Contacts = () => {
     setErrorsData(errorsSample);
   };
 
-  const validationHandler = useCallback(() => {
-    let errors = errorsSample;
-    let errorCount = 0;
-
-    const {
-      contactsDataList: { email = '', phone1 = '', phone2 = '' } = {},
-      socialsMediaList: { linkedin = '', facebook = '' } = {},
-    } = contactsData || {};
-
-    if (email && !validateEmail(email)) {
-      errors.email = 'Будь ласка, введіть дійсну адресу електронної пошти.';
-      errorCount++;
-    } else {
-      errors.email = '';
-    }
-
-    if (phone1 && !validatePhone(phone1)) {
-      errors.phone1 = 'Номер повинен бути у форматі 381234567890';
-      errorCount++;
-    } else {
-      errors.phone1 = '';
-    }
-
-    if (phone2 && !validatePhone(phone2)) {
-      errors.phone2 = 'Номер повинен бути у форматі 381234567890';
-      errorCount++;
-    } else {
-      errors.phone2 = '';
-    }
-
-    if (linkedin && !validateUrl(linkedin)) {
-      errors.linkedin = 'Будь ласка, введіть правильну URL-адресу.';
-      errorCount++;
-    } else {
-      errors.linkedin = '';
-    }
-
-    if (facebook && !validateUrl(facebook)) {
-      errors.facebook = 'Будь ласка, введіть правильну URL-адресу.';
-      errorCount++;
-    } else {
-      errors.facebook = '';
-    }
-    setErrorsData((prev) => ({ ...prev, ...errors }));
-    const isFormValid = Boolean(!errorCount);
-
-    return isFormValid;
-  }, [contactsData]);
-
   useEffect(() => {
-    console.log('data', data);
     if (!isError && data) {
       setAlertInfo({
         state: 'info',
@@ -127,8 +64,16 @@ export const Contacts = () => {
   };
 
   useEffect(() => {
-    validationHandler();
-  }, [contactsData, validationHandler]);
+    const isNoErrors = contactsValidationHandler(contactsData, setErrorsData);
+    const isContactsDataList = contactsData?.contactsDataList
+      ? !!Object.values(contactsData?.contactsDataList).join()
+      : true;
+    const isSocialsMediaList = contactsData?.socialsMediaList
+      ? !!Object.values(contactsData?.socialsMediaList).join()
+      : true;
+
+    setIsFormValid(isNoErrors && isContactsDataList && isSocialsMediaList);
+  }, [contactsData]);
 
   const handleSubmit = (
     event:
@@ -136,16 +81,7 @@ export const Contacts = () => {
       | React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-    console.log('errorsData', errorsData);
-    console.log('contactsData', contactsData);
-    const isFormValid = validationHandler();
-    console.log('isFormValid', isFormValid);
-    if (!isFormValid)
-      setAlertInfo({
-        state: 'error',
-        title: 'Помилка при оновленні контактів',
-        textInfo: 'Перед надсиланням форми, будь ласка, виправте усі помилки',
-      });
+
     isFormValid && dispatch(contactsData);
   };
 
@@ -158,11 +94,10 @@ export const Contacts = () => {
           <div className="flex flex-wrap gap-[2.4rem]">
             <TextInputField
               title="Телефон"
-              pattern="[0-9]"
               name="contactsDataList phone1"
               inputType="pen"
               errorText={errorsData.phone1}
-              value={contactsData.contactsDataList?.phone1}
+              value={contactsData.contactsDataList?.phone1 || ''}
               onChange={onInputChange}
               placeholder="Введіть телефон"
             />
@@ -170,7 +105,7 @@ export const Contacts = () => {
               inputType="pen"
               errorText={errorsData.phone2}
               name="contactsDataList phone2"
-              value={contactsData.contactsDataList?.phone2}
+              value={contactsData.contactsDataList?.phone2 || ''}
               onChange={onInputChange}
               placeholder="Введіть телефон"
             />
@@ -207,7 +142,11 @@ export const Contacts = () => {
         </div>
       </form>
       <div className="flex gap-[1.8rem] pt-[3.6rem]">
-        <AdminPanelButton type="submit" onClick={handleSubmit}>
+        <AdminPanelButton
+          type="submit"
+          onClick={handleSubmit}
+          disabled={!isFormValid}
+        >
           Зберегти зміни
         </AdminPanelButton>
         <AdminPanelButton variant="secondary" onClick={resetHandler}>
