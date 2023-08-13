@@ -4,6 +4,7 @@ import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { TextInputField } from '@/components/atomic/inputs';
 import { GlobalContext } from '@/store/globalContext';
+import { TContactsInfo } from '@/types';
 import { contactsApi } from '@/utils/API/contacts';
 import {
   validateEmail,
@@ -19,10 +20,6 @@ import {
   useState,
 } from 'react';
 
-type TFormData = {
-  [key: string]: string | null;
-};
-
 const errorsSample = {
   phone1: '',
   phone2: '',
@@ -34,7 +31,7 @@ const errorsSample = {
 export const Contacts = () => {
   const { setAlertInfo } = useContext(GlobalContext);
 
-  const [contactsData, setContactsData] = useState<any>({}); //fix type
+  const [contactsData, setContactsData] = useState<TContactsInfo>({});
   const [errorsData, setErrorsData] = useState(errorsSample);
   const [dispatch, data, isError] = useAPI(contactsApi.update);
 
@@ -119,10 +116,14 @@ export const Contacts = () => {
       ? value.replace(/\D/g, '')
       : value;
 
-    setContactsData((prev: any) => ({
-      ...prev,
-      [category]: { ...prev[category], [keyName]: normalizedValue },
-    }));
+    setContactsData((prev: any) => {
+      const updatedCategory = { ...prev[category], [keyName]: normalizedValue };
+      if (normalizedValue === '') {
+        delete updatedCategory[keyName];
+      }
+
+      return { ...prev, [category]: updatedCategory };
+    });
   };
 
   useEffect(() => {
