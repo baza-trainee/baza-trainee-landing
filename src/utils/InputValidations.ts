@@ -3,9 +3,10 @@ export const validateEmail = (email: string) => {
   return emailPattern.test(email);
 };
 
-export const validatePhone = (phone: string) => {
+export const validatePhone = (phone: number) => {
+  const value = phone.toString();
   const phonePattern = /^380\d{9}$/;
-  return phonePattern.test(phone);
+  return phonePattern.test(value);
 };
 
 export const validateUrl = (url: string) => {
