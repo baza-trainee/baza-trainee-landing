@@ -16,7 +16,9 @@ import {
 export const Contacts = () => {
   const { setAlertInfo } = useContext(GlobalContext);
 
-  const [contactsData, setContactsData] = useState<TContactsInfo>({});
+  const [contactsData, setContactsData] = useState<TContactsInfo>(
+    {} as TContactsInfo
+  );
   const [errorsData, setErrorsData] = useState(errorsSample);
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -53,7 +55,7 @@ export const Contacts = () => {
       ? value.replace(/\D/g, '')
       : value;
 
-    setContactsData((prev: any) => {
+    setContactsData((prev) => {
       const updatedCategory = { ...prev[category], [keyName]: normalizedValue };
       if (normalizedValue === '') {
         delete updatedCategory[keyName];

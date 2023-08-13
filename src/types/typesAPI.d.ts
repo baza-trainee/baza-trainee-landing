@@ -39,6 +39,7 @@ export interface IUpdateEmployedRequest {
 }
 
 export type TContactsInfo = {
+  [key: string]: any;
   contactsDataList?: {
     phone1?: number;
     phone2?: number;
