@@ -69,12 +69,12 @@ export const Contacts = () => {
     const isNoErrors = contactsValidationHandler(contactsData, setErrorsData);
     const isContactsDataList = contactsData?.contactsDataList
       ? !!Object.values(contactsData?.contactsDataList).join()
-      : true;
+      : false;
     const isSocialsMediaList = contactsData?.socialsMediaList
       ? !!Object.values(contactsData?.socialsMediaList).join()
-      : true;
+      : false;
 
-    setIsFormValid(isNoErrors && isContactsDataList && isSocialsMediaList);
+    setIsFormValid(isNoErrors && (isContactsDataList || isSocialsMediaList));
   }, [contactsData]);
 
   const handleSubmit = (
@@ -123,11 +123,11 @@ export const Contacts = () => {
               placeholder="Введіть електронну пошту"
             />
             <TextInputField
-              title="Facebook"
+              title="Telegram"
               inputType="pen"
-              name="socialsMediaList facebook"
-              errorText={errorsData.facebook}
-              value={contactsData.socialsMediaList?.facebook}
+              name="socialsMediaList telegram"
+              errorText={errorsData.telegram}
+              value={contactsData.socialsMediaList?.telegram}
               onChange={onInputChange}
               placeholder="Додайте посилання"
             />
