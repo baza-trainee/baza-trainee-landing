@@ -3,14 +3,14 @@
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { SearchIcon } from '@/components/common/icons';
-import { PartnerActionProps } from '@/types';
+import { PartnerActionProps, PartnerData } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
+import { paginate } from '@/utils/paginate';
 import { useEffect, useState } from 'react';
+import { PaginationBar } from '../../atomic/PaginationBar';
 import { PlusIcon } from '../../common/icons/PlusIcon';
 import { PartnerItem } from './PartnerItem';
-import { PaginationBar } from '../../atomic/PaginationBar';
-import { paginate } from '@/utils/paginate';
 
 export const PartnersList = ({
   handleAddPartnerClick,
@@ -23,11 +23,18 @@ export const PartnersList = ({
     totalPages: 1,
     totalResults: 1,
   });
+  const [searchData, setSearchData] = useState('');
 
   const pageSize = 23;
   const paginatedPosts = data?.results
     ? paginate(data.results, pagination.currentPage, pageSize)
     : [];
+
+  const partnerData = searchData
+    ? data?.results.filter((partner: PartnerData) =>
+        partner.name.toLowerCase().includes(searchData.toLowerCase())
+      )
+    : paginatedPosts;
 
   useEffect(() => {
     dispatch();
@@ -60,6 +67,10 @@ export const PartnersList = ({
     }
   };
 
+  const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchData(event.target.value);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -78,8 +89,8 @@ export const PartnersList = ({
                 name='search'
                 className='w-[306px] bg-white text-neutral-500 outline-none'
                 placeholder='Введіть ключове слово для пошуку'
-                // value={}
-                // onChange={}
+                value={searchData}
+                onChange={handleChangeSearch}
                 required
               />
               <button type='submit'>
@@ -87,7 +98,7 @@ export const PartnersList = ({
               </button>
             </form>
           </div>
-          <div className='flex h-[725px] min-w-[1138px] flex-wrap gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto scrollbar'>
+          <div className='scrollbar flex h-[725px] min-w-[1138px] flex-wrap gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto'>
             <div className='flex h-[100px] items-center justify-center bg-base-dark px-[8px]'>
               <AdminPanelButton
                 type='submit'
@@ -100,7 +111,7 @@ export const PartnersList = ({
               </AdminPanelButton>
             </div>
             {data &&
-              paginatedPosts.map((partner: any) => (
+              partnerData.map((partner: any) => (
                 <PartnerItem
                   key={partner._id}
                   id={partner._id}
