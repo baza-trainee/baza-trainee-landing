@@ -464,6 +464,24 @@ export const projects = [
       },
       {
         user: {
+          name: 'Світлана Денисова',
+          link: 'https://www.linkedin.com/in/lanadenysova/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Анастасія Антонів',
+          link: 'https://www.linkedin.com/in/anastasiia-antoniv-36b523270/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
           name: 'Світлана Макаренко (Батрак)',
           link: 'https://www.linkedin.com/in/svetlana-makarenko-batrak-044850261/',
         },
@@ -709,12 +727,183 @@ export const projects = [
     _id: '9',
     title: 'arms',
     imageUrl: '/img/projects/arms.jpg',
-    status: 'under-development',
-    link: ' ',
+    status: 'active',
+    link: 'https://obijmy59.online',
     description: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
     creationDate: 1689368400000,
     launchDate: 1690705554200,
     complexity: 2,
-    teamMembers: [],
+    teamMembers: [
+      {
+        user: {
+          name: 'Данило Осадченко',
+          link: 'https://www.linkedin.com/in/danylo-osadchenko/',
+        },
+        role: {
+          name: 'Back-end',
+        },
+      },
+      {
+        user: {
+          name: 'Богдан Таран',
+          link: 'https://www.linkedin.com/in/bohdan-taran-2168b1220',
+        },
+        role: {
+          name: 'Business Analyst',
+        },
+      },
+      {
+        user: {
+          name: 'Сусанна Салата',
+          link: 'https://www.linkedin.com/in/susanna-salata/',
+        },
+        role: {
+          name: 'BA/PM Mentor',
+        },
+      },
+      {
+        user: {
+          name: 'Остап Сенюк',
+          link: 'https://www.linkedin.com/in/ostap-seniuk/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Вікторія Джус',
+          link: 'https://www.linkedin.com/in/victoriadzhus/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Марія Попова',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Інна Кіян',
+          link: 'https://www.linkedin.com/in/inna-kiyan-586138263/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Анастасія Ворона',
+          link: 'https://www.linkedin.com/in/anastasiia-vorona-6a5165220/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Сергій Онопрієнко',
+          link: 'https://www.linkedin.com/in/serhii-onopriienko-099215174/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: 'Максим Кубалко',
+          link: 'https://www.linkedin.com/in/maksym-kulbako-69028847',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: 'Ольга Іванова',
+          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+        },
+        role: {
+          name: 'Product Owner',
+        },
+      },
+      {
+        user: {
+          name: 'Світлана Дяченко',
+          link: 'https://www.linkedin.com/in/svitlanadiachenko/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Олена Чорнобривець',
+          link: 'http://www.linkedin.com/in/olenachornobryvets',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Катерина Жарова',
+          link: 'https://www.linkedin.com/in/kateryna-zharova/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Сергій Штефан-Антонюк',
+          link: 'https://www.linkedin.com/in/serhii-shtefan-antoniuk-91610b258?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfvGVVsReQpuZ9lDTBekIFA%3D%3D',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Лілія Олійник',
+          link: 'https://sk.linkedin.com/in/lily-oliynyk-299605282',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Павло Хлебніков',
+          link: 'https://www.linkedin.com/in/pavelkhlebnikov/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Тетяна Ковальська',
+          link: 'http://linkedin.com/in/tetiana-kovalska-43b32022b',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Валентин Елькін',
+          link: 'https://www.linkedin.com/in/valentyn-yelkin-295637261/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+    ],
   },
 ] as IProject[];
