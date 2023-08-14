@@ -1,4 +1,5 @@
 import { InputField } from '@/components/atomic';
+import { TextInputField } from '@/components/atomic/inputs';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import { SETTINGS } from '@/config/settings';
 import { GlobalContext } from '@/store/globalContext';
@@ -10,6 +11,7 @@ export const PartnerForm = ({
   handleSubmit,
   formData,
   isFormValid,
+  errors,
   handleFieldChange,
 }: PartnerFormProps) => {
   const { setAlertInfo } = useContext(GlobalContext);
@@ -48,19 +50,18 @@ export const PartnerForm = ({
             className='flex flex-wrap gap-[2.5rem] py-5 pl-4'
             onSubmit={handleSubmit}
           >
-            <label className='flex flex-col'>
-              Назва
-              <input
-                type='text'
-                value={formData.name}
-                placeholder='Введіть назву'
-                onChange={handleNameChange}
-                className='mt-2 w-full rounded-[0.4rem] border border-neutral-300 py-[0.8rem] pl-[0.8rem] pr-[11.7rem] outline-0 placeholder:text-neutral-300 focus:outline-neutral-300'
-              />
-            </label>
+            <TextInputField
+              title='Назва'
+              inputType='text'
+              errorText={errors.name}
+              value={formData.name}
+              onChange={handleNameChange}
+              placeholder='Введіть назву'
+            />
             <InputField
               title='Логотип'
               inputType='file'
+              errorText={errors.file}
               accept='image/*'
               value={
                 formData.file instanceof File
@@ -70,16 +71,14 @@ export const PartnerForm = ({
               onChange={handleImageChange}
               placeholderText='Завантажте зображення'
             />
-            <label className='flex flex-col'>
-              Сайт партнера
-              <input
-                type='text'
-                value={formData.homeUrl}
-                placeholder='Додайте посилання'
-                onChange={handleWebsiteChange}
-                className='mt-2 w-full rounded-[0.4rem] border border-neutral-300 py-[0.8rem] pl-[0.8rem] pr-[11.7rem] outline-0 placeholder:text-neutral-300 focus:outline-neutral-300'
-              />
-            </label>
+            <TextInputField
+              title='Сайт партнера'
+              inputType='text'
+              errorText={errors.website}
+              value={formData.homeUrl}
+              onChange={handleWebsiteChange}
+              placeholder='Додайте посилання'
+            />
           </form>
         </div>
         <div className='mt-16 flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2'>
