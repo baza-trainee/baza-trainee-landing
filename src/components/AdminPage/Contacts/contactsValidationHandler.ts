@@ -10,7 +10,7 @@ export const errorsSample = {
   phone1: '',
   phone2: '',
   email: '',
-  facebook: '',
+  telegram: '',
   linkedin: '',
 };
 
@@ -23,7 +23,7 @@ export const contactsValidationHandler = (
 
   const {
     contactsDataList: { email = '', phone1 = '', phone2 = '' } = {},
-    socialsMediaList: { linkedin = '', facebook = '' } = {},
+    socialsMediaList: { linkedin = '', telegram = '' } = {},
   } = contactsData || {};
 
   if (email && !validateEmail(email)) {
@@ -54,11 +54,11 @@ export const contactsValidationHandler = (
     errors.linkedin = '';
   }
 
-  if (facebook && !validateUrl(facebook)) {
-    errors.facebook = 'Будь ласка, введіть правильну URL-адресу.';
+  if (telegram && !validateUrl(telegram)) {
+    errors.telegram = 'Будь ласка, введіть правильну URL-адресу.';
     errorCount++;
   } else {
-    errors.facebook = '';
+    errors.telegram = '';
   }
   setErrorsData((prev) => ({ ...prev, ...errors }));
   const isFormValid = Boolean(!errorCount);
