@@ -11,7 +11,7 @@ export interface PartnerActionProps {
 }
 
 export interface PartnerAddProps {
-  cancelAdd: React.MouseEventHandler<HTMLButtonElement>;
+  cancelAdd: () => void;
 }
 
 export interface PartnerEditProps {
