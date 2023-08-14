@@ -1,6 +1,10 @@
 import { InputField } from '@/components/atomic';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
+import { SETTINGS } from '@/config/settings';
+import { GlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
+import { formatBytes } from '@/utils/formatBytes';
+import { useContext } from 'react';
 
 export const PartnerForm = ({
   handleSubmit,
@@ -8,6 +12,9 @@ export const PartnerForm = ({
   isFormValid,
   handleFieldChange,
 }: PartnerFormProps) => {
+  const { setAlertInfo } = useContext(GlobalContext);
+  const maxFileSize = SETTINGS.fileSizeLimits.partnerLogo;
+
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleFieldChange('name', event.target.value);
   };
@@ -19,7 +26,17 @@ export const PartnerForm = ({
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      handleFieldChange('file', file);
+      if (file.size >= maxFileSize) {
+        setAlertInfo({
+          state: 'error',
+          title: 'Перевищення розміру файлу',
+          textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
+            maxFileSize
+          )}`,
+        });
+      } else {
+        handleFieldChange('file', file);
+      }
     }
   };
 
