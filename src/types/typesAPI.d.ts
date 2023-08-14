@@ -39,15 +39,16 @@ export interface IUpdateEmployedRequest {
 }
 
 export type TContactsInfo = {
-  contactsDataList: {
-    phone1: number;
-    phone2: number;
-    email: string;
+  [key: string]: any;
+  contactsDataList?: {
+    phone1?: number;
+    phone2?: number;
+    email?: string;
   };
-  socialsMediaList: {
-    linkedin: string;
-    facebook: string;
-    telegram: string;
+  socialsMediaList?: {
+    linkedin?: string;
+    facebook?: string;
+    telegram?: string;
   };
 };
 

@@ -17,6 +17,7 @@ export * from './MenuIcon';
 export * from './MultiArrow';
 export * from './OkIcon';
 export * from './Partner';
+export * from './PenIcon';
 export * from './PhoneIcon';
 export * from './ProjectComplexityIcon';
 export * from './ProjectDurationIcon';
