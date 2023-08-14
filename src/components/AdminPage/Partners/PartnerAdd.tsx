@@ -13,7 +13,7 @@ import { PartnerForm } from './PartnerForm';
 export const PartnerAdd = ({ cancelAdd }: PartnerAddProps) => {
   const [dispatch] = useAPI(partnersApi.createNew);
   const { setAlertInfo } = useContext(GlobalContext);
-  const { formData, isFormValid, handleFieldChange } = usePartnerForm({
+  const { formData, isFormValid, errors, handleFieldChange } = usePartnerForm({
     name: '',
     file: null,
     homeUrl: '',
@@ -52,6 +52,7 @@ export const PartnerAdd = ({ cancelAdd }: PartnerAddProps) => {
       <PartnerForm
         handleSubmit={handleSubmit}
         formData={formData}
+        errors={errors}
         isFormValid={isFormValid}
         handleFieldChange={handleFieldChange}
       />

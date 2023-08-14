@@ -18,7 +18,7 @@ export const PartnerEdit = ({
   const [dispatch] = useAPI(partnersApi.updateById);
   const { setAlertInfo } = useContext(GlobalContext);
 
-  const { formData, isFormValid, handleFieldChange } = usePartnerForm({
+  const { formData, isFormValid, errors, handleFieldChange } = usePartnerForm({
     name: '',
     file: null,
     homeUrl: '',
@@ -71,6 +71,7 @@ export const PartnerEdit = ({
         handleSubmit={handleSubmit}
         formData={formData}
         isFormValid={isFormValid}
+        errors={errors}
         handleFieldChange={handleFieldChange}
       />
       <div className='ml-4 mt-[2.1rem] flex gap-[1.5rem]'>

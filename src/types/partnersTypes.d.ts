@@ -31,10 +31,17 @@ export interface PartnerItemProps {
 export interface PartnerFormProps {
   formData: PartnerData;
   isFormValid: boolean;
+  errors: Errors;
   handleFieldChange: FieldChangeHandler;
   handleSubmit: () => void;
 }
 
 export interface FieldChangeHandler {
   (field: keyof PartnerData, value: string | File | null): void;
+}
+
+export interface Errors {
+  name?: string;
+  file?: string;
+  website?: string;
 }
