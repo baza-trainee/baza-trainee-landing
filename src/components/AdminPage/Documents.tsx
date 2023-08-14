@@ -85,7 +85,7 @@ export const Documents = () => {
     <div className="w-full bg-base-light px-[2.4rem] py-[3.2rem]">
       <AdminTitle className="mb-[4.5rem] ml-[1.2rem]">Документи</AdminTitle>
 
-      <form className="flex flex-col gap-[2.4rem]" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-16" onSubmit={handleSubmit}>
         <div className="bg-base-dark px-[1.2rem] py-8">
           <InputField
             title="Звітність"
@@ -96,7 +96,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
         </div>
-
         <div className="bg-base-dark px-[1.2rem] py-8">
           <InputField
             title="Статут"
@@ -107,7 +106,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
         </div>
-
         <div className="flex w-full flex-wrap gap-[2.4rem] bg-base-dark px-[1.2rem] py-8">
           <InputField
             title="Політика конфіденційності"
@@ -134,7 +132,6 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
         </div>
-
         <div className="flex w-full flex-wrap gap-[2.4rem] bg-base-dark px-[1.2rem] py-8">
           <InputField
             title="Правила користування сайтом"
@@ -161,15 +158,15 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
         </div>
+        <div className="flex gap-[1.8rem]">
+          <AdminPanelButton type="submit" onClick={handleSubmit}>
+            Зберегти зміни
+          </AdminPanelButton>
+          <AdminPanelButton variant="secondary" onClick={resetHandler}>
+            Скасувати
+          </AdminPanelButton>
+        </div>
       </form>
-      <div className="flex gap-[1.8rem] pt-[3.6rem]">
-        <AdminPanelButton type="submit" onClick={handleSubmit}>
-          Зберегти зміни
-        </AdminPanelButton>
-        <AdminPanelButton variant="secondary" onClick={resetHandler}>
-          Скасувати
-        </AdminPanelButton>
-      </div>
     </div>
   );
 };

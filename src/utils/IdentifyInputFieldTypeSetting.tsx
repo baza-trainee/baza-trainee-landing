@@ -2,8 +2,10 @@ import {
   DateIcon,
   EyeClosed,
   EyeOpen,
+  PenIcon,
   UploadIcon,
 } from '@/components/common/icons';
+
 import { ReactNode } from 'react';
 
 export const IdentifyInputFieldTypeSetting = (inputType: string) => {
@@ -52,6 +54,12 @@ export const IdentifyInputFieldTypeSetting = (inputType: string) => {
     case 'date':
       type = 'date';
       icon = <DateIcon />;
+      break;
+
+    case 'pen':
+      type = 'text';
+      isIconActive = false;
+      icon = <PenIcon />;
       break;
 
     default:

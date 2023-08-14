@@ -1,4 +1,3 @@
-import { TContactsInfo } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 export const contactsApi = {
@@ -9,9 +8,7 @@ export const contactsApi = {
     return res.ok ? await res.json() : null;
   },
 
-  update({ contacts }: { contacts: TContactsInfo }) {
-    return bazaAPI.patch('/contacts', {
-      contacts,
-    });
+  async update<T>(contacts: T) {
+    return await bazaAPI.patch('/contacts', contacts);
   },
-}
+};
