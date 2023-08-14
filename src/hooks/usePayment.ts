@@ -31,7 +31,6 @@ const usePaymentHandler = (urlBase = url) => {
         const response = await axios.post(`${urlBase}/payment`, paymentData);
 
         const checkoutUrl = response.data?.invoiceUrl;
-        console.log(response);
         if (checkoutUrl) {
           window.location.href = checkoutUrl;
           //redirect(checkoutUrl, 'push');
