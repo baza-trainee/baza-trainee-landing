@@ -23,7 +23,7 @@ export const usePartnerForm = (initialFormData: PartnerData) => {
     const newErrors: Errors = {};
 
     if (name && name.length < 2) {
-      newErrors.name = 'Ім’я має бути не менше 2 символів';
+      newErrors.name = 'Назва має бути не менше 2 символів';
     }
 
     if (file && file === null) {
