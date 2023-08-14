@@ -1,8 +1,6 @@
 import { InputField } from '@/components/atomic';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
-import { GlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
-import { useContext } from 'react';
 
 export const PartnerForm = ({
   handleSubmit,
@@ -10,7 +8,6 @@ export const PartnerForm = ({
   isFormValid,
   handleFieldChange,
 }: PartnerFormProps) => {
-  const { setAlertInfo } = useContext(GlobalContext);
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleFieldChange('name', event.target.value);
   };
@@ -22,17 +19,7 @@ export const PartnerForm = ({
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      const extension = file.name.split('.')[1];
-
-      if (extension !== 'jpeg' && extension !== 'png' && extension !== 'webp') {
-        setAlertInfo({
-          state: 'error',
-          title: 'Не вірний формат файлу',
-          textInfo: 'Допустимі формати файлів – JPEG, PNG, WEBP',
-        });
-      } else {
-        handleFieldChange('file', file);
-      }
+      handleFieldChange('file', file);
     }
   };
 
@@ -57,7 +44,7 @@ export const PartnerForm = ({
             <InputField
               title='Логотип'
               inputType='file'
-              accept='image/jpeg, image/png, image/webp'
+              accept='image/*'
               value={
                 formData.file instanceof File
                   ? formData.file.name
