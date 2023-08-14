@@ -2,7 +2,9 @@ import { FieldChangeHandler, PartnerData, Errors } from '@/types';
 import { useEffect, useState } from 'react';
 import { validateWebsite } from '../utils/validateWebsite';
 
-export const usePartnerForm = (initialFormData: PartnerData) => {
+const initialState: PartnerData = { name: '', file: null, homeUrl: '' };
+
+export const usePartnerForm = (initialFormData: PartnerData = initialState) => {
   const [formData, setFormData] = useState<PartnerData>(initialFormData);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [errors, setErrors] = useState<Errors>({

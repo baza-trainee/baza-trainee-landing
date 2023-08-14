@@ -58,11 +58,11 @@ export interface IHeroSlider extends CommonResponseBase {
   imageUrl?: string;
 }
 
-export interface IPartner extends CommonResponseBase {
-  homeUrl?: String;
-  imageUrl: String;
-  name: String;
-}
+// export interface IPartner extends CommonResponseBase {
+//   homeUrl?: String;
+//   imageUrl: String;
+//   name: String;
+// }
 /*
 export interface IProject extends CommonResponseBase {
   title: titleLanguagesTypes;
@@ -157,7 +157,7 @@ export type responseDataType =
   | IUser
   | IAchievement
   | IHeroSlider
-  | IPartner
+  // | IPartner
   | IProject
   | IRole
   | IStack
@@ -166,7 +166,7 @@ export type responseDataType =
   | IErrorResponse
   | Array<
       | IHeroSlider
-      | IPartner
+      // | IPartner
       | IProject
       | IRole
       | IStack
