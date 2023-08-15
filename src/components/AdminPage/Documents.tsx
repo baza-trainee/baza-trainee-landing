@@ -19,6 +19,7 @@ export const Documents = () => {
 
   const [formData, setFormData] = useState<TFormData>({});
   const [filesUpdated, setFilesUpdated] = useState(0);
+  const [isFormValid, setIsFormValid] = useState(false);
   const [dispatch, data, isError] = useAPI(documentsApi.update);
 
   const maxFileSize = SETTINGS.fileSizeLimits.report;
@@ -26,6 +27,12 @@ export const Documents = () => {
   const resetHandler = () => {
     setFormData({});
   };
+
+  useEffect(() => {
+    const isFormData = !!Object.values(formData).join();
+
+    setIsFormValid(isFormData);
+  }, [formData]);
 
   useEffect(() => {
     console.log(data);
@@ -56,7 +63,7 @@ export const Documents = () => {
       }
     }
 
-    dispatch(form);
+    isFormValid && dispatch(form);
   };
 
   const onInputChange = (
@@ -159,7 +166,11 @@ export const Documents = () => {
           />
         </div>
         <div className="ml-5 flex gap-[1.8rem]">
-          <AdminPanelButton type="submit" onClick={handleSubmit}>
+          <AdminPanelButton
+            type="submit"
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+          >
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>
