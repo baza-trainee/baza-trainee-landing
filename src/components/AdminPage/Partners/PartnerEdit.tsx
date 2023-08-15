@@ -10,11 +10,7 @@ import { useAPI } from '@/utils/hooks/useAPI';
 import { useContext, useEffect } from 'react';
 import { PartnerForm } from './PartnerForm';
 
-export const PartnerEdit = ({
-  cancelEdit,
-  id,
-  partnerData,
-}: PartnerEditProps) => {
+export const PartnerEdit = ({ cancelEdit, id, partnerData }: any) => {
   const [dispatch] = useAPI(partnersApi.updateById);
   const { setAlertInfo } = useContext(GlobalContext);
 
@@ -63,8 +59,8 @@ export const PartnerEdit = ({
   }
 
   return (
-    <div className='w-full bg-base-light'>
-      <AdminTitle className='mb-9 ml-[0.8rem] tracking-wide'>
+    <div className="w-full bg-base-light">
+      <AdminTitle className="mb-9 ml-[0.8rem] tracking-wide">
         Редагування
       </AdminTitle>
       <PartnerForm
@@ -74,15 +70,15 @@ export const PartnerEdit = ({
         errors={errors}
         handleFieldChange={handleFieldChange}
       />
-      <div className='ml-4 mt-[2.1rem] flex gap-[1.5rem]'>
+      <div className="ml-4 mt-[2.1rem] flex gap-[1.5rem]">
         <AdminPanelButton
-          type='submit'
-          className='pl-[3.5rem] pr-[3.5rem]'
+          type="submit"
+          className="pl-[3.5rem] pr-[3.5rem]"
           onClick={handleSubmit}
         >
           Зберегти зміни
         </AdminPanelButton>
-        <AdminPanelButton onClick={cancelEdit} variant='secondary'>
+        <AdminPanelButton onClick={cancelEdit} variant="secondary">
           Скасувати
         </AdminPanelButton>
       </div>
