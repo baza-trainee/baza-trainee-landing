@@ -4,14 +4,14 @@ import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { TextInputField } from '@/components/atomic/inputs';
 import { GlobalContext } from '@/store/globalContext';
-import { contactsApi } from '@/utils/API/contacts';
+import achievementsApi from '@/utils/API/achievements';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 
 export const CounterEdit = () => {
   const { setAlertInfo } = useContext(GlobalContext);
   const [employed, setEmployed] = useState('');
-  const [dispatch, data, isError] = useAPI(contactsApi.update);
+  const [dispatch, data, isError] = useAPI(achievementsApi.updateEmployed);
 
   const resetHandler = () => setEmployed('');
 
@@ -25,17 +25,17 @@ export const CounterEdit = () => {
     if (!isError && data) {
       setAlertInfo({
         state: 'info',
-        title: 'Контакти оновленні успішно',
-        textInfo: `Контакти оновлено`,
+        title: 'Дані оновленні успішно',
+        textInfo: `Кількість працевлаштованих оновлено`,
       });
       resetHandler();
     }
     if (isError)
       setAlertInfo({
         state: 'error',
-        title: 'Помилка при оновленні контактів',
+        title: 'Помилка при оновленні кількості працевлаштованих',
         textInfo:
-          'Під час оновлення списку контактів сталася помилка. Спробуйте, будь ласка, пізніше',
+          'Під час оновлення кількості працевлаштованих сталася помилка. Спробуйте, будь ласка, пізніше',
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
@@ -47,7 +47,10 @@ export const CounterEdit = () => {
   ) => {
     event.preventDefault();
 
-    employed && dispatch(Number(employed));
+    if (employed) {
+      const data = { employed: Number(employed) };
+      dispatch(data);
+    }
   };
 
   return (
@@ -67,7 +70,7 @@ export const CounterEdit = () => {
           </div>
         </div>
 
-        <div className="flex gap-[1.8rem]">
+        <div className="ml-5 flex gap-[1.8rem]">
           <AdminPanelButton
             type="submit"
             onClick={handleSubmit}
