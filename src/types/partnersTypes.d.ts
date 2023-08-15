@@ -2,7 +2,7 @@ export interface PartnerData {
   name: string;
   file: File | null;
   homeUrl: string;
-  [key: string]: string | File | null;
+  // [key: string]: string | File | null;
 }
 
 export interface PartnerActionProps {

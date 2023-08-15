@@ -7,7 +7,9 @@ const partnersApi = {
     return bazaAPI.get('/partners');
   },
   createNew(partner: PartnerData) {
-    return bazaAPI.post('/partners', partner);
+    return bazaAPI.post('/partners', partner, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
   getById(id: byIdRequest) {
     return bazaAPI.get(`/partners/${id}`);
