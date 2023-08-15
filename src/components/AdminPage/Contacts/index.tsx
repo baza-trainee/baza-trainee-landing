@@ -45,7 +45,6 @@ export const Contacts = () => {
         textInfo:
           'Під час оновлення списку контактів сталася помилка. Спробуйте, будь ласка, пізніше',
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -143,7 +142,7 @@ export const Contacts = () => {
           </div>
         </div>
 
-        <div className="flex gap-[1.8rem]">
+        <div className="ml-5 flex gap-[1.8rem]">
           <AdminPanelButton
             type="submit"
             onClick={handleSubmit}

@@ -1,4 +1,4 @@
-import { CounterEdit } from '@/components/AdminPage/Counter';
+import { CounterEdit } from '@/components/AdminPage/CounterEdit';
 
 export default function Counter() {
   return <CounterEdit />;

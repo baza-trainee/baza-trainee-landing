@@ -158,7 +158,7 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
         </div>
-        <div className="flex gap-[1.8rem]">
+        <div className="ml-5 flex gap-[1.8rem]">
           <AdminPanelButton type="submit" onClick={handleSubmit}>
             Зберегти зміни
           </AdminPanelButton>

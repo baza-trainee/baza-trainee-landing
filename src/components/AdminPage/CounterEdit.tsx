@@ -37,7 +37,6 @@ export const CounterEdit = () => {
         textInfo:
           'Під час оновлення кількості працевлаштованих сталася помилка. Спробуйте, будь ласка, пізніше',
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
   const handleSubmit = (
