@@ -1,3 +1,5 @@
-export default function Projects() {
-  return <>Projects</>;
+import { AdminPageProjects } from '@/components/AdminPage/Projects';
+
+export default function AdminProjects() {
+  return <AdminPageProjects />;
 }
