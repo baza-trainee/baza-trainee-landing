@@ -3,8 +3,7 @@
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useState } from 'react';
-import { PartnerAdd } from './PartnerAdd';
-import { PartnerEdit } from './PartnerEdit';
+import { PartnerEditor } from './PartnerEditor';
 import { PartnersList } from './PartnersList';
 
 export const PartnersPage = () => {
@@ -39,10 +38,11 @@ export const PartnersPage = () => {
           handleEditPartnerClick={handleEditPartnerClick}
         />
       ) : addNewPartner ? (
-        <PartnerAdd cancelAdd={cancelAdd} />
+        <PartnerEditor mode='add' cancelAction={cancelAdd} />
       ) : (
-        <PartnerEdit
-          cancelEdit={cancelEdit}
+        <PartnerEditor
+          mode='edit'
+          cancelAction={cancelEdit}
           id={partnerId}
           partnerData={data}
         />
