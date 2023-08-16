@@ -39,11 +39,7 @@ export const CounterEdit = () => {
       });
   }, [isError, data, setAlertInfo]);
 
-  const handleSubmit = (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (employed) {
@@ -70,11 +66,7 @@ export const CounterEdit = () => {
         </div>
 
         <div className="ml-5 flex gap-[1.8rem]">
-          <AdminPanelButton
-            type="submit"
-            onClick={handleSubmit}
-            disabled={!employed}
-          >
+          <AdminPanelButton type="submit" disabled={!employed}>
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>

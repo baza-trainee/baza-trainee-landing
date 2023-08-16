@@ -53,7 +53,8 @@ export const Documents = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const form = new FormData();
     setFilesUpdated(0);
     for (const key in formData) {
@@ -166,11 +167,7 @@ export const Documents = () => {
           />
         </div>
         <div className="ml-5 flex gap-[1.8rem]">
-          <AdminPanelButton
-            type="submit"
-            onClick={handleSubmit}
-            disabled={!isFormValid}
-          >
+          <AdminPanelButton type="submit" disabled={!isFormValid}>
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>

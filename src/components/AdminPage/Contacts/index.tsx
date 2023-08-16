@@ -76,11 +76,7 @@ export const Contacts = () => {
     setIsFormValid(isNoErrors && (isContactsDataList || isSocialsMediaList));
   }, [contactsData]);
 
-  const handleSubmit = (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     isFormValid && dispatch(contactsData);
@@ -143,11 +139,7 @@ export const Contacts = () => {
         </div>
 
         <div className="ml-5 flex gap-[1.8rem]">
-          <AdminPanelButton
-            type="submit"
-            onClick={handleSubmit}
-            disabled={!isFormValid}
-          >
+          <AdminPanelButton type="submit" disabled={!isFormValid}>
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>
