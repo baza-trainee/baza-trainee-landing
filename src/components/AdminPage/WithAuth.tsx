@@ -14,7 +14,7 @@ export const WithAuth = ({ children }: { children: ReactNode }) => {
       );
       console.log(response);
       if (response.ok) {
-        router.push('/admin');
+        //router.push('/admin');
         setIsShow(true);
       } else {
         router.push('/');
