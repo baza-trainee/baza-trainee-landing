@@ -13,8 +13,6 @@ export const PaginationBar = ({
   onPageChange,
   className = '',
 }: PaginationBarProps) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-
   const handlePrevPage = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
@@ -36,18 +34,10 @@ export const PaginationBar = ({
           className={currentPage === 1 ? 'text-neutral-100' : ''}
         />
       </button>
-      <div className='flex gap-6'>
-        {pages.map((page) => (
-          <button
-            key={page}
-            className={`text-center text-4xl font-bold ${
-              currentPage === page ? 'text-neutral-900' : 'text-zinc-400'
-            }`}
-            onClick={() => onPageChange(page)}
-          >
-            {page}
-          </button>
-        ))}
+      <div className='flex gap-6 items-center'>
+        <p className='text-center text-4xl text-neutral-900'>
+          {currentPage} з {totalPages}
+        </p>
       </div>
       <button onClick={handleNextPage} disabled={currentPage === totalPages}>
         <MultiArrow
