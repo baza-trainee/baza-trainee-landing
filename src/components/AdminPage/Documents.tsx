@@ -19,6 +19,7 @@ export const Documents = () => {
 
   const [formData, setFormData] = useState<TFormData>({});
   const [filesUpdated, setFilesUpdated] = useState(0);
+  const [isFormValid, setIsFormValid] = useState(false);
   const [dispatch, data, isError] = useAPI(documentsApi.update);
 
   const maxFileSize = SETTINGS.fileSizeLimits.report;
@@ -26,6 +27,12 @@ export const Documents = () => {
   const resetHandler = () => {
     setFormData({});
   };
+
+  useEffect(() => {
+    const isFormData = !!Object.values(formData).join();
+
+    setIsFormValid(isFormData);
+  }, [formData]);
 
   useEffect(() => {
     console.log(data);
@@ -46,7 +53,8 @@ export const Documents = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const form = new FormData();
     setFilesUpdated(0);
     for (const key in formData) {
@@ -56,7 +64,7 @@ export const Documents = () => {
       }
     }
 
-    dispatch(form);
+    isFormValid && dispatch(form);
   };
 
   const onInputChange = (
@@ -158,8 +166,8 @@ export const Documents = () => {
             placeholderText="Завантажте документ"
           />
         </div>
-        <div className="flex gap-[1.8rem]">
-          <AdminPanelButton type="submit" onClick={handleSubmit}>
+        <div className="ml-5 flex gap-[1.8rem]">
+          <AdminPanelButton type="submit" disabled={!isFormValid}>
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>
