@@ -15,7 +15,6 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
           objectFit: 'cover',
         }}
         quality={90}
-        priority
       />
 
       <div className="relative w-2/3 max-w-[79rem] text-white">

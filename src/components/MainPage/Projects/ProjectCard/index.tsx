@@ -26,7 +26,6 @@ const ProjectCard = ({ project }: { project: IProject }) => {
           style={{
             objectFit: 'cover',
           }}
-          priority
           className={
             isMembersVisible
               ? 'contrast-50 grayscale-[.3]'
