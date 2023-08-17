@@ -21,14 +21,16 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
           <h4 className="text-[2.4rem] font-bold leading-[3rem]">
             {project.description}
           </h4>
-          <Link
-            href={project.link}
-            target="_blank"
-            className="mt-[0.8rem]"
-            aria-label={`Visit ${project.link}`}
-          >
-            {project.link ? project.link : ''}
-          </Link>
+          {project.link && (
+            <Link
+              href={project.link}
+              target="_blank"
+              className="mt-[0.8rem]"
+              aria-label={`Visit ${project.link}`}
+            >
+              {project.link ? project.link : ''}
+            </Link>
+          )}
         </div>
 
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
