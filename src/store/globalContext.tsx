@@ -28,18 +28,10 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
   const [landingLanguage, setLandingLanguage] =
     useState<TLandingLanguage>('ua');
   const [alertInfo, setAlertInfo] = useState<TAlertInfo>(null);
-
   useEffect(() => {
-    const landingLanguage = localStorage.getItem('landingLanguage');
-    landingLanguage && setLandingLanguage(landingLanguage as TLandingLanguage);
+    const landingLang = localStorage.getItem('landingLanguage');
+    landingLang && setLandingLanguage(landingLang as TLandingLanguage);
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      'landingLanguage',
-      landingLanguage as TLandingLanguage
-    );
-  }, [landingLanguage]);
 
   const contextValue = {
     landingLanguage,

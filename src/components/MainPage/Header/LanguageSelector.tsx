@@ -6,7 +6,7 @@ import { FormEvent, useContext, useState } from 'react';
 import { MultiArrow } from '@/components/common/icons';
 import { useRouter } from 'next/navigation';
 
-const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
+const languageOptions: TLandingLanguage[] = ['en', 'ua', 'pl'];
 
 const btnStyle =
   'z-10 flex cursor-pointer items-center gap-3 bg-transparent pl-5 text-[2rem] font-semibold h-[3.3rem] w-32';
@@ -28,9 +28,14 @@ export const LanguageSelector = () => {
     setIsMenuOpen((state) => !state);
   };
 
-  const handleLangSwitch = (e: FormEvent, lang: 'en' | 'pl' | 'ua') => {
+  const handleLangSwitch = (e: FormEvent, lang: TLandingLanguage) => {
     e.preventDefault();
     handleLanguageClick(lang);
+    localStorage.setItem(
+      'landingLanguage',
+      lang
+      // landingLanguage as TLandingLanguage
+    );
     push(`/${lang}/`);
   };
 

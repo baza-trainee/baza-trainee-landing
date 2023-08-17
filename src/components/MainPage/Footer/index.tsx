@@ -93,26 +93,40 @@ export const Footer = async ({ dict }: { dict: TDictionary }) => {
             <p className="flex gap-3">
               <PhoneIcon />
               <span className="shrink whitespace-nowrap">
-                {formatPhoneNumber(contactsInfo.contactsDataList.phone1)}
+                {formatPhoneNumber(contactsInfo.contactsDataList!.phone1!)}
               </span>
             </p>
             <p className="flex gap-3">
               <PhoneIcon />
               <span className="shrink whitespace-nowrap">
-                {formatPhoneNumber(contactsInfo.contactsDataList.phone2)}
+                {formatPhoneNumber(contactsInfo.contactsDataList!.phone2!)}
               </span>
             </p>
             <p className="flex gap-3">
               <MailIcon className="shrink-0" />
-              <span>{contactsInfo.contactsDataList.email + ''}</span>
+              <span>{contactsInfo.contactsDataList!.email + ''}</span>
             </p>
           </div>
 
           <div className=" flex gap-[3.2rem] ">
-            <Link href={contactsInfo.socialsMediaList.linkedin} target="blank">
+            <Link
+              href={
+                contactsInfo.socialsMediaList!.linkedin
+                  ? contactsInfo.socialsMediaList!.linkedin
+                  : ''
+              }
+              target="blank"
+            >
               <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
             </Link>
-            <Link href={contactsInfo.socialsMediaList.telegram} target="blank">
+            <Link
+              href={
+                contactsInfo.socialsMediaList!.telegram
+                  ? contactsInfo.socialsMediaList!.telegram
+                  : ''
+              }
+              target="blank"
+            >
               <TelegramIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
             </Link>
           </div>
