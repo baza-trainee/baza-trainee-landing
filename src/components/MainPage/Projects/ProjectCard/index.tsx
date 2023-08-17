@@ -21,7 +21,6 @@ const ProjectCard = ({ project }: { project: IProject }) => {
         <Image
           src={project.imageUrl}
           alt="Project Image"
-          priority
           fill
           sizes="(min-width: 300px) 100%"
           style={{
