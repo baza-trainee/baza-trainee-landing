@@ -25,7 +25,7 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
             href={project.link}
             target="_blank"
             className="mt-[0.8rem]"
-            aria-label={`Visit ${project.title} site`}
+            aria-label={`Visit ${project.link}`}
           >
             {project.link ? project.link : ''}
           </Link>
