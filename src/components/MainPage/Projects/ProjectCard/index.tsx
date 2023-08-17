@@ -22,7 +22,10 @@ const ProjectCard = ({ project }: { project: IProject }) => {
           src={project.imageUrl}
           alt="Project Image"
           fill
-          objectFit="cover"
+          sizes="(min-width: 300px) 100%"
+          style={{
+            objectFit: 'cover',
+          }}
           className={
             isMembersVisible
               ? 'contrast-50 grayscale-[.3]'

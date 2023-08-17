@@ -64,12 +64,14 @@ const HeroSlider = () => {
           <ContainerMaxW1200 className="w-[19.4rem] items-center md:w-full xl:h-full">
             <button
               onClick={() => arrowHandler('prev')}
+              aria-label="Previous slide"
               className={`mr-auto ${currentSlide === 0 ? 'hidden' : ''}`}
             >
               <MultiArrow direction="left" bigSize />
             </button>
             <button
               onClick={() => arrowHandler('next')}
+              aria-label="Next slide"
               className={`ml-auto ${
                 currentSlide === slides.length - 1 ? 'hidden' : ''
               }`}

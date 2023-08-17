@@ -5,7 +5,7 @@ export const slides = [
     date: 'червень 2023',
     review:
       '“Я останні два тижні щодня думаю про те, що на Базу варто було прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ”',
-    imageUrl: '/img/c_reviews.jpg',
+    imageUrl: '/img/c_reviews.webp',
   },
   {
     name: 'Віталій',
@@ -13,7 +13,7 @@ export const slides = [
     date: 'травень 2023',
     review:
       '“Проєкт побудовано за принципом win-win, коли обидві сторони підсилюють один одного на користь спільноти. Чудова ідея!”',
-    imageUrl: '/img/a_reviews.jpg',
+    imageUrl: '/img/a_reviews.webp',
   },
   {
     name: 'Ірина',
@@ -21,6 +21,6 @@ export const slides = [
     date: 'травень 2023',
     review:
       '“Під час першої зустрічі команди проєкту обговорили, аргументували і обрали мову програмування. Зручно, що не треба перевчатись, я практикую навички по React”',
-    imageUrl: '/img/b_reviews.jpg',
+    imageUrl: '/img/b_reviews.webp',
   },
 ];

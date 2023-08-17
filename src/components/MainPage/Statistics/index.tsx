@@ -6,10 +6,13 @@ export const Statistics = () => {
   return (
     <section className="relative">
       <Image
-        src={'/img/statBg.jpg'}
-        alt={''}
+        src={'/img/statBg.webp'}
+        alt={'statistic background'}
         fill
-        objectFit="cover"
+        style={{
+          objectFit: 'cover',
+        }}
+        sizes="(min-width: 300px) 100vw"
         quality={90}
       />
 

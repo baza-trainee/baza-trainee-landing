@@ -29,7 +29,7 @@ export const Modal = ({ children, content, open = false }: Props) => {
 
   const ModalLayout = () => (
     <section
-      className="flex-center fixed left-0 top-0 z-20 h-full w-full min-w-[38.4rem] bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
+      className="flex-center fixed left-0 top-0 z-50 h-full w-full min-w-[38.4rem] bg-neutral-75 bg-opacity-30 backdrop-blur-2xl backdrop-filter"
       onClick={handlerShowModal}
       ref={bodyScrollLockRef}
     >

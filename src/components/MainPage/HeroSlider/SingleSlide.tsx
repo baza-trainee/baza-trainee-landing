@@ -10,10 +10,12 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
       <Image
         src={image}
         fill
-        alt={title}
-        objectFit="cover"
-        quality={85}
         priority
+        alt={title}
+        style={{
+          objectFit: 'cover',
+        }}
+        quality={90}
       />
 
       <div className="relative w-2/3 max-w-[79rem] text-white">
