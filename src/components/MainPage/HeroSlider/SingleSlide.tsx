@@ -1,8 +1,13 @@
+import { TSlide } from '@/types';
 import Image from 'next/image';
 
-import { TSlide } from '@/types';
-
-export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
+export const SingleSlide = ({
+  slideData,
+  index,
+}: {
+  slideData: TSlide;
+  index: number;
+}) => {
   const { image, title, text } = slideData;
 
   return (
@@ -10,7 +15,7 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
       <Image
         src={image}
         fill
-        priority
+        priority={index === 0}
         alt={title}
         style={{
           objectFit: 'cover',
