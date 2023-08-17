@@ -11,6 +11,7 @@ export const Dots = ({
     {slides.map((_, index) => (
       <button
         onClick={() => goToSlide(index)}
+        aria-label={`Go to ${index + 1} slide`}
         key={`key_${index + currentSlide}`}
         className={`relative rounded-full border border-neutral-800 hover:cursor-pointer 
           ${

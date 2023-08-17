@@ -30,6 +30,7 @@ export const HeaderDropdownMenu = () => {
       <button
         className="absolute right-[1.6rem] top-[3.8rem] md:right-[2.4rem] md:top-[4rem]"
         onClick={toggleMenu}
+        aria-label="Menu"
       >
         {!isOpen ? <MenuIcon /> : <CloseIcon size="S" />}
       </button>

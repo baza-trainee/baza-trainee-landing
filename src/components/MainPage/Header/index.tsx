@@ -11,7 +11,7 @@ export const Header = () => {
       id="header"
     >
       <ContainerMaxW1200 className="h-full items-center justify-between">
-        <a href="/">
+        <a href="/" aria-label="Main page">
           <LogoMain className="h-[4.2rem] w-[4.2rem] sm:h-[7.8rem] sm:w-[7.8rem]" />
         </a>
 
