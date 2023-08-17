@@ -55,8 +55,12 @@ const HeroSlider = () => {
           lazyLoad="progressive"
           ref={slickRef}
         >
-          {slides.map((slide: TSlide) => (
-            <SingleSlide key={`key_${slide.title}`} slideData={slide} />
+          {slides.map((slide: TSlide, index) => (
+            <SingleSlide
+              key={`key_${slide.title}`}
+              slideData={slide}
+              index={index}
+            />
           ))}
         </Slider>
 
