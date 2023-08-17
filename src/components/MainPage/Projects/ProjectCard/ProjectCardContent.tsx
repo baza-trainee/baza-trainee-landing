@@ -6,6 +6,7 @@ import {
 
 import projectCycle from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
+import Link from 'next/link';
 import { ICardContent } from '../types';
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
@@ -20,9 +21,14 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
           <h4 className="text-[2.4rem] font-bold leading-[3rem]">
             {project.description}
           </h4>
-          <a href={project.link} target="_blank" className="mt-[0.8rem]">
+          <Link
+            href={project.link}
+            target="_blank"
+            className="mt-[0.8rem]"
+            aria-label={`Visit ${project.title} site`}
+          >
             {project.link ? project.link : ''}
-          </a>
+          </Link>
         </div>
 
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
