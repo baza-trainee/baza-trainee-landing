@@ -66,6 +66,7 @@ export const Partners = () => {
               >
                 <Image
                   fill
+                  sizes="(min-width: 300px) 100%"
                   //  width={214}
                   //  height={100}
                   //sizes="(max-width: 214px)"

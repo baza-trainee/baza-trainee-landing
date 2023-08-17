@@ -11,8 +11,10 @@ export const SingleSlide = ({ slideData }: { slideData: TSlide }) => {
         src={image}
         fill
         alt={title}
-        objectFit="cover"
-        quality={85}
+        style={{
+          objectFit: 'cover',
+        }}
+        quality={90}
         priority
       />
 
