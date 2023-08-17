@@ -13,7 +13,7 @@ export const Dots = ({
         onClick={() => goToSlide(index)}
         aria-label={`Go to ${index + 1} slide`}
         key={`key_${index + currentSlide}`}
-        className="h-[5rem] w-[5rem] sm:h-[2rem] sm:w-[2rem]"
+        className="flex h-[5rem] w-[5rem] items-center justify-center sm:h-[2rem] sm:w-[2rem]"
       >
         <div
           className={`relative rounded-full border border-neutral-800 hover:cursor-pointer 
