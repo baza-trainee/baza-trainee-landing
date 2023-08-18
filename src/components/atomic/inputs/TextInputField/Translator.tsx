@@ -1,3 +1,5 @@
+'use client';
+
 import { TranslatorIcon } from '@/components/common/icons';
 import { GlobalContext } from '@/store/globalContext';
 import { translateApi } from '@/utils/API/translate';
@@ -23,7 +25,9 @@ export const Translator = ({
   useEffect(() => {
     console.log(data);
     if (!isError && data) {
-      data && setTranslatedValue && setTranslatedValue(data, fieldName);
+      data &&
+        setTranslatedValue &&
+        setTranslatedValue(data.translated, fieldName);
     }
     if (isError)
       setAlertInfo({
@@ -40,7 +44,7 @@ export const Translator = ({
 
   return (
     <button
-      className="absolute -top-12 right-[0.5rem] flex text-neutral-300"
+      className="absolute right-[0.5rem] top-0 flex text-neutral-300"
       onClick={handleTranslate}
     >
       <TranslatorIcon />

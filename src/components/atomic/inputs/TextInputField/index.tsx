@@ -37,7 +37,7 @@ export const TextInputField = ({
 
   return (
     <div
-      className={`relative w-full max-w-[32.6rem] ${
+      className={`h-content: relative  w-full max-w-[32.6rem] ${
         errorText ? 'text-critic-light' : ''
       }`}
     >
