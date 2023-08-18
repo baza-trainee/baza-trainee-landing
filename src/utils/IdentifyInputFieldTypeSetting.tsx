@@ -37,7 +37,7 @@ export const IdentifyInputFieldTypeSetting = (inputType: string) => {
       icon = <p className="text-[2rem] font-semibold">EN</p>;
       break;
 
-    case 'ua':
+    case 'uk':
       type = 'text';
       isIconActive = false;
       isTranslateShow = true;
