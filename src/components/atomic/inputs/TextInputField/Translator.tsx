@@ -43,7 +43,7 @@ export const Translator = ({
 
   return (
     <button
-      className="absolute right-[0.5rem] top-0 flex text-neutral-300"
+      className="absolute right-[0.5rem] top-0 text-neutral-300"
       onClick={handleTranslate}
     >
       <TranslatorIcon />
