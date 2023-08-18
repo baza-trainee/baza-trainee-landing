@@ -16,7 +16,7 @@ export default function Testimonials() {
   };
 
   return (
-    <>
+    <div className="flex flex-wrap">
       <TextInputField
         title="Телефон"
         name="contactsDataList phone1"
@@ -46,6 +46,6 @@ export default function Testimonials() {
         name="contactsDataList phone2"
         placeholder="Введіть телефон"
       />
-    </>
+    </div>
   );
 }

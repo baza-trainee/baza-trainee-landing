@@ -23,7 +23,6 @@ export const Translator = ({
   const { setAlertInfo } = useContext(GlobalContext);
 
   useEffect(() => {
-    console.log(data);
     if (!isError && data) {
       data &&
         setTranslatedValue &&
