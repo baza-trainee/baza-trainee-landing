@@ -1,5 +1,5 @@
+import { IProject } from '@/types';
 import {
-  IProject,
   byIdRequest,
   searchProjectRequest,
   updateByIdRequest,
