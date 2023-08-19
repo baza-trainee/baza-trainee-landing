@@ -6,19 +6,7 @@ import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useContext, useEffect } from 'react';
 import { PartnerForm } from './PartnerForm';
-
-interface PartnerDataEdit {
-  name: string;
-  imageUrl: string;
-  homeUrl: string;
-}
-
-interface PartnerEditorProps {
-  mode: 'add' | 'edit';
-  cancelAction: () => void;
-  id?: string;
-  partnerData?: PartnerDataEdit;
-}
+import { PartnerEditorProps } from '@/types';
 
 export const PartnerEditor = ({
   mode,
@@ -77,7 +65,9 @@ export const PartnerEditor = ({
 
   return (
     <div className='w-full bg-base-light'>
-      <AdminTitle className='mb-9 ml-[0.8rem] tracking-wide'>
+      <AdminTitle
+        className={`mb-9 ml-[0.8rem] tracking-wide ${isNew ? 'mt-4' : ''}`}
+      >
         {isNew ? 'Додати партнера' : 'Редагування'}
       </AdminTitle>
       <PartnerForm
@@ -86,19 +76,15 @@ export const PartnerEditor = ({
         isFormValid={isFormValid}
         errors={errors}
         handleFieldChange={handleFieldChange}
+        isNew={isNew}
       />
-      <div className='ml-4 mt-[2.1rem] flex gap-[1.5rem]'>
-        <AdminPanelButton
-          type='submit'
-          className='pl-[3.5rem] pr-[3.5rem]'
-          onClick={handleSubmit}
-        >
-          {isNew ? 'Додати' : 'Зберегти зміни'}
-        </AdminPanelButton>
-        <AdminPanelButton onClick={cancelAction} variant='secondary'>
-          Скасувати
-        </AdminPanelButton>
-      </div>
+      <AdminPanelButton
+        onClick={cancelAction}
+        variant='secondary'
+        className={`mt-[-7.7rem] ${isNew ? 'ml-96' : 'ml-[25rem]'}`}
+      >
+        Скасувати
+      </AdminPanelButton>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { InputField } from '@/components/atomic';
+import { AdminPanelButton, InputField } from '@/components/atomic';
 import { TextInputField } from '@/components/atomic/inputs';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import { SETTINGS } from '@/config/settings';
@@ -13,6 +13,7 @@ export const PartnerForm = ({
   isFormValid,
   errors,
   handleFieldChange,
+  isNew,
 }: PartnerFormProps) => {
   const { setAlertInfo } = useContext(GlobalContext);
   const maxFileSize = SETTINGS.fileSizeLimits.partnerLogo;
@@ -45,40 +46,47 @@ export const PartnerForm = ({
   return (
     <>
       <div className='flex max-w-[1102px] justify-between py-[2.1rem]'>
-        <div className='max-w-[1050px] flex-1 bg-base-dark'>
+        <div className='max-w-[1050px] flex-1'>
           <form
-            className='flex flex-wrap gap-[2.5rem] py-5 pl-4'
             onSubmit={handleSubmit}
           >
-            <TextInputField
-              title='Назва'
-              inputType='text'
-              errorText={errors.name}
-              value={formData.name}
-              onChange={handleNameChange}
-              placeholder='Введіть назву'
-            />
-            <InputField
-              title='Логотип'
-              inputType='file'
-              errorText={errors.file}
-              accept='image/*'
-              value={
-                formData.file instanceof File
-                  ? formData.file.name
-                  : formData.file || ''
-              }
-              onChange={handleImageChange}
-              placeholderText='Завантажте зображення'
-            />
-            <TextInputField
-              title='Сайт партнера'
-              inputType='text'
-              errorText={errors.website}
-              value={formData.homeUrl}
-              onChange={handleWebsiteChange}
-              placeholder='Додайте посилання'
-            />
+            <div className='flex flex-wrap gap-[2.5rem] py-5 pl-4 bg-base-dark'>
+              <TextInputField
+                title='Назва'
+                inputType='text'
+                errorText={errors.name}
+                value={formData.name}
+                onChange={handleNameChange}
+                placeholder='Введіть назву'
+              />
+              <InputField
+                title='Логотип'
+                inputType='file'
+                errorText={errors.file}
+                accept='image/*'
+                value={
+                  formData.file instanceof File
+                    ? formData.file.name
+                    : formData.file || ''
+                }
+                onChange={handleImageChange}
+                placeholderText='Завантажте зображення'
+              />
+              <TextInputField
+                title='Сайт партнера'
+                inputType='text'
+                errorText={errors.website}
+                value={formData.homeUrl}
+                onChange={handleWebsiteChange}
+                placeholder='Додайте посилання'
+              />
+            </div>
+            <AdminPanelButton
+              type='submit'
+              className={`mt-10 ${isNew? 'pl-[6.5rem] pr-[6.5rem] ml-4' : 'ml-[1.4rem]'}`}
+            >
+              {isNew ? 'Додати' : 'Зберегти зміни'}
+            </AdminPanelButton>
           </form>
         </div>
         <div className='mt-16 flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2'>
