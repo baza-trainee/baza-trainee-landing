@@ -1,17 +1,24 @@
-import { TranslatorIcon } from '@/components/common/icons';
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
 import { InputHTMLAttributes, useId } from 'react';
+import { Translator } from './Translator';
 
 interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
   inputType?: string;
+  translateValue?: string;
+  name?: string;
+  setTranslatedValue?: (_data: string, _name: string) => void;
 }
 
 export const TextInputField = ({
   title,
   errorText,
   inputType = 'text',
+  translateValue = '',
+  name,
+  setTranslatedValue,
+
   ...rest
 }: TextInputFieldProps) => {
   const id = useId();
@@ -30,7 +37,7 @@ export const TextInputField = ({
 
   return (
     <div
-      className={`relative w-full max-w-[32.6rem] ${
+      className={`relative  w-full max-w-[32.6rem] ${
         errorText ? 'text-critic-light' : ''
       }`}
     >
@@ -47,7 +54,13 @@ export const TextInputField = ({
             </div>
           )}
         </label>
-        <input id={id} className={inputClassNames} type={type} {...rest} />
+        <input
+          id={id}
+          className={inputClassNames}
+          type={type}
+          name={name}
+          {...rest}
+        />
       </div>
 
       {errorText && (
@@ -57,9 +70,12 @@ export const TextInputField = ({
       )}
 
       {isTranslateShow && (
-        <button className="absolute -top-12 right-[0.5rem] flex text-neutral-300">
-          <TranslatorIcon />
-        </button>
+        <Translator
+          translateValue={translateValue}
+          setTranslatedValue={setTranslatedValue}
+          fieldName={name}
+          lang={inputType}
+        />
       )}
     </div>
   );

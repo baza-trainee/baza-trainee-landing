@@ -55,8 +55,12 @@ const HeroSlider = () => {
           lazyLoad="progressive"
           ref={slickRef}
         >
-          {slides.map((slide: TSlide) => (
-            <SingleSlide key={`key_${slide.title}`} slideData={slide} />
+          {slides.map((slide: TSlide, index) => (
+            <SingleSlide
+              key={`key_${slide.title}`}
+              slideData={slide}
+              index={index}
+            />
           ))}
         </Slider>
 
@@ -64,12 +68,14 @@ const HeroSlider = () => {
           <ContainerMaxW1200 className="w-[19.4rem] items-center md:w-full xl:h-full">
             <button
               onClick={() => arrowHandler('prev')}
+              aria-label="Previous slide"
               className={`mr-auto ${currentSlide === 0 ? 'hidden' : ''}`}
             >
               <MultiArrow direction="left" bigSize />
             </button>
             <button
               onClick={() => arrowHandler('next')}
+              aria-label="Next slide"
               className={`ml-auto ${
                 currentSlide === slides.length - 1 ? 'hidden' : ''
               }`}

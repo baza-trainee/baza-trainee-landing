@@ -4,7 +4,7 @@ export const projects = [
   {
     _id: '1',
     title: 'Murrfecto',
-    imageUrl: '/img/projects/murrfecto.png',
+    imageUrl: '/img/projects/murrfecto.webp',
     status: 'active',
     link: 'https://murrfecto.site',
     description: 'Сайт притулку для вуличних тварин Murrfecto',
@@ -171,7 +171,7 @@ export const projects = [
   {
     _id: '4',
     title: 'Ataka Help',
-    imageUrl: '/img/projects/atack.png',
+    imageUrl: '/img/projects/atack.webp',
     status: 'active',
     link: 'https://ataka-help.tech',
     description: 'Платформа про види кібершахрайства AtakaHelp',
@@ -427,7 +427,7 @@ export const projects = [
   {
     _id: '6',
     title: 'baza',
-    imageUrl: '/img/projects/baza.png',
+    imageUrl: '/img/projects/baza.webp',
     status: 'active',
     link: 'https://baza-trainee.tech',
     description: 'Платформа для Baza Trainee Ukraine',
@@ -665,9 +665,9 @@ export const projects = [
   {
     _id: '2',
     title: 'Читозаврик',
-    imageUrl: '/img/projects/zavr.png',
+    imageUrl: '/img/projects/zavr.webp',
     status: 'under-development',
-    link: ' ',
+    link: '',
     description: 'Читозаврик - веб-додаток з книжковими вікторинами для дітей',
     creationDate: 1685566800000,
     launchDate: 0,
@@ -677,9 +677,9 @@ export const projects = [
   {
     _id: '5',
     title: '1001 songs',
-    imageUrl: '/img/projects/1001songs.jpg',
+    imageUrl: '/img/projects/1001songs.webp',
     status: 'under-development',
-    link: ' ',
+    link: '',
     description: '1001 songs - сайт-колекція українських автентичних пісень ',
     creationDate: 1685566800000,
     launchDate: 0,
@@ -689,9 +689,9 @@ export const projects = [
   {
     _id: '3',
     title: 'Big Lapa',
-    imageUrl: '/img/projects/lapa.png',
+    imageUrl: '/img/projects/lapa.webp',
     status: 'under-development',
-    link: ' ',
+    link: '',
     description: 'Сайт притулку для вуличних тварин Big Lapa',
     creationDate: 1685566800000,
     launchDate: 0,
@@ -701,9 +701,9 @@ export const projects = [
   {
     _id: '7',
     title: 'feeda',
-    imageUrl: '/img/projects/feeda-1.png',
+    imageUrl: '/img/projects/feeda-1.webp',
     status: 'under-development',
-    link: ' ',
+    link: '',
     description:
       'Feeda - платформа для обробки заявок на участь у Baza Trainee',
     creationDate: 1687208400000,
@@ -714,9 +714,9 @@ export const projects = [
   {
     _id: '8',
     title: 'book',
-    imageUrl: '/img/projects/book.jpg',
+    imageUrl: '/img/projects/book.webp',
     status: 'under-development',
-    link: ' ',
+    link: '',
     description: 'Книжка їде за кордон - портал гуманітарної допомоги',
     creationDate: 1688245200000,
     launchDate: 0,
@@ -726,7 +726,7 @@ export const projects = [
   {
     _id: '9',
     title: 'arms',
-    imageUrl: '/img/projects/arms.jpg',
+    imageUrl: '/img/projects/arms.webp',
     status: 'active',
     link: 'https://obijmy59.online',
     description: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
