@@ -9,16 +9,6 @@ export interface PartnerActionProps {
   handleEditPartnerClick: (id: string) => void;
 }
 
-export interface PartnerAddProps {
-  cancelAdd: () => void;
-}
-
-export interface PartnerEditProps {
-  id: string;
-  partnerData: PartnerData;
-  cancelEdit: React.MouseEventHandler<HTMLButtonElement>;
-}
-
 export interface PartnerItemProps {
   id: string;
   name: string;
@@ -27,12 +17,26 @@ export interface PartnerItemProps {
   handleDataUpdate: () => void;
 }
 
+export interface PartnerDataEdit {
+  name: string;
+  imageUrl: string;
+  homeUrl: string;
+}
+
+export interface PartnerEditorProps {
+  mode: 'add' | 'edit';
+  cancelAction: () => void;
+  id?: string;
+  partnerData?: PartnerDataEdit;
+}
+
 export interface PartnerFormProps {
   formData: PartnerData;
   isFormValid: boolean;
   errors: Errors;
   handleFieldChange: FieldChangeHandler;
   handleSubmit: () => void;
+  isNew: boolean;
 }
 
 export interface FieldChangeHandler {
