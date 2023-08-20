@@ -45,6 +45,7 @@ export const Translator = ({
     <button
       className="absolute right-[0.5rem] top-0 text-neutral-300"
       onClick={handleTranslate}
+      disabled={!translateValue}
     >
       <TranslatorIcon />
     </button>

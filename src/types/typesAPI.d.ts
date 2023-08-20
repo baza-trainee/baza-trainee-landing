@@ -133,8 +133,11 @@ export interface IMember extends CommonResponseBase {
 export interface ITestimonial extends CommonResponseBase {
   name: titleLanguagesTypes;
   review: titleLanguagesTypes;
+  _id: string;
+  role: 'string';
   date: number;
-  imageUrl: string;
+  imageUrl: 'string';
+  __v: number;
 }
 
 export interface IUser extends CommonResponseBase {

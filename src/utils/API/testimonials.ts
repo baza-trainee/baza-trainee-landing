@@ -2,8 +2,15 @@ import { ITestimonial, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const testimonialsApi = {
-  getAll() {
+  getAll2() {
     return bazaAPI.get('/testimonials');
+  },
+  async getAll() {
+    const res = await fetch('https://baza-trainee.tech/api/v1/testimonials', {
+      cache: 'no-cache',
+    });
+    const result = res.json() as unknown as ITestimonial[];
+    return res.ok ? result : [];
   },
 
   createNew(testimonial: ITestimonial) {
