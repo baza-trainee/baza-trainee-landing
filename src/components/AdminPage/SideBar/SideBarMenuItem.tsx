@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { SubMenu } from './SubMenu';
 import { SubMenuToggleButton } from './SubMenuToggleButton';
@@ -24,7 +24,7 @@ const SideBarMenuItem = (props: IProps) => {
   };
 
   useEffect(() => {
-    const isActive = pathname.endsWith(id);
+    const isActive = pathname.includes(id);
     setIsSelected(isActive);
     !isActive && iconOnly && setIsSubMenuOpen(false);
   }, [pathname, id]);
@@ -35,14 +35,20 @@ const SideBarMenuItem = (props: IProps) => {
         href={'/admin/' + id}
         className={`flex h-[4rem] shrink-0 items-center gap-[0.8rem] overflow-hidden rounded-[0.4rem] pl-[1.2rem] 
           ${iconOnly ? 'w-[4.7rem]' : 'w-[17.7rem]'}
-          ${isSelected ? 'bg-neutral-800 text-white' : 'bg-white hover:bg-yellow-500'}`}
+          ${
+            isSelected
+              ? 'bg-neutral-800 text-white'
+              : 'bg-white hover:bg-yellow-500'
+          }`}
       >
         <div className={`h-[2.4rem] w-[2.4rem]`}>
           {IconComponent && <IconComponent />}
         </div>
 
         <span
-          className={`transition-transform ${iconOnly ? 'scale-0' : 'scale-100'}`}
+          className={`transition-transform ${
+            iconOnly ? 'scale-0' : 'scale-100'
+          }`}
         >
           {text}
         </span>
