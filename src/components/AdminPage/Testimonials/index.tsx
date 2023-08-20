@@ -40,7 +40,9 @@ export const Testimonials_main = async ({
               <div className="flex gap-[1.2rem]">
                 <SingleSlide slideData={el} lang={lang} />
                 <div className="flex items-end justify-end gap-[1rem]">
-                  <ActionAdminPanelButton icon={<EditIcon />} />
+                  <Link href={`edit/${el._id}`}>
+                    <ActionAdminPanelButton icon={<EditIcon />} />
+                  </Link>
                   <ActionAdminPanelButton icon={<DeleteIcon />} />
                 </div>
               </div>

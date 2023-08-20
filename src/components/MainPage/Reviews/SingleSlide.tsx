@@ -17,7 +17,7 @@ export const SingleSlide = ({
       <div className="relative h-48 w-48 shrink-0 overflow-hidden rounded-full">
         <Image
           src={`${url}/api/v1/files/${imageUrl}`}
-          alt={name.ua}
+          alt={name[lang]}
           fill
           sizes="(min-width: 300px) 120px"
           style={{
