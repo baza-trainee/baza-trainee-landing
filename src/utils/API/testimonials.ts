@@ -6,11 +6,16 @@ const testimonialsApi = {
     return bazaAPI.get('/testimonials');
   },
   async getAll() {
-    const res = await fetch('https://baza-trainee.tech/api/v1/testimonials', {
-      cache: 'no-cache',
-    });
-    const result = res.json() as unknown as ITestimonial[];
-    return res.ok ? result : [];
+    try {
+      const res = await fetch('https://baza-trainee.tech/api/v1/testimonials', {
+        cache: 'no-cache',
+      });
+      const result = res.json() as unknown as ITestimonial[];
+      return res.ok ? result : [];
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
   },
 
   createNew(testimonial: ITestimonial) {

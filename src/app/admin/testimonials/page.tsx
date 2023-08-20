@@ -1,5 +1,8 @@
-import { Testimonials_main } from '@/components/AdminPage/Testimonials';
+'use client';
+import { useRouter } from 'next/navigation';
 
 export default function Testimonials() {
-  return <Testimonials_main />;
+  const router = useRouter();
+  router.replace('testimonials/ua');
+  return null;
 }

@@ -3,7 +3,13 @@ import Image from 'next/image';
 import { ITestimonial } from '@/types';
 const url = process.env.NEXT_PUBLIC_PROXY_URL;
 
-export const SingleSlide = ({ slideData }: { slideData: ITestimonial }) => {
+export const SingleSlide = ({
+  slideData,
+  lang,
+}: {
+  slideData: ITestimonial;
+  lang: 'ua' | 'en' | 'pl';
+}) => {
   const { role, date, review, imageUrl, name } = slideData;
 
   return (
@@ -22,12 +28,12 @@ export const SingleSlide = ({ slideData }: { slideData: ITestimonial }) => {
       </div>
 
       <div className="w-80 self-start whitespace-nowrap md:self-center">
-        <h4 className="text-[2rem] font-medium">{name.ua}</h4>
+        <h4 className="text-[2rem] font-medium">{name[lang]}</h4>
         <p>{role}</p>
         <p className="text-[1.4rem] text-neutral-400">{date}</p>
       </div>
 
-      <span className="w-full">{review.ua}</span>
+      <span className="w-full">{review[lang]}</span>
     </div>
   );
 };

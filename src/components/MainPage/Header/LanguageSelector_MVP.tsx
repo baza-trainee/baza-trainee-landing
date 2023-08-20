@@ -4,7 +4,6 @@ import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
 import { useContext, useState } from 'react';
 
 import { MultiArrow } from '@/components/common/icons';
-import Link from 'next/link';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 
@@ -14,17 +13,9 @@ const btnStyle =
 const underLineStyle =
   "relative after:absolute after:bottom-0 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] after:hover:scale-100";
 
-export const LanguageSelector = () => {
+export const LanguageSelector_MVP = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { landingLanguage, setLandingLanguage } = useContext(GlobalContext);
-
-  const getLang = () => {
-    const url = new URL(window.location.href).pathname;
-    const segments = url.split('/');
-    const languageCode = segments[segments.length - 1];
-    return languageCode;
-  };
-  const language = getLang();
 
   const handleLanguageClick = (lang: TLandingLanguage) => {
     setLandingLanguage(lang);
@@ -44,19 +35,22 @@ export const LanguageSelector = () => {
   return (
     <div className="relative">
       <button className={btnStyle} id="active-lang" onClick={handleMenuClick}>
-        {language.toUpperCase()}
+        {landingLanguage.toUpperCase()}
 
         <MultiArrow direction="bottom" open={isMenuOpen} />
       </button>
 
       <ul className={menuStyle} id="lang-list">
         {languageOptions
-          .filter((lang) => lang !== language)
+          .filter((lang) => lang !== landingLanguage)
           .map((lang) => (
             <li key={`key_${lang}`}>
-              <Link href={lang} className={btnStyle}>
+              <button
+                className={btnStyle}
+                onClick={() => handleLanguageClick(lang)}
+              >
                 <span className={underLineStyle}>{lang.toUpperCase()}</span>
-              </Link>
+              </button>
             </li>
           ))}
       </ul>
