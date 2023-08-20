@@ -3,6 +3,8 @@ export * from './CloseIcon';
 export * from './ContactIcon';
 export * from './CounterIcon';
 export * from './DateIcon';
+export * from './DeleteIcon';
+export * from './EditIcon';
 export * from './ErrorIcon';
 export * from './EyeClosed';
 export * from './EyeOpen';

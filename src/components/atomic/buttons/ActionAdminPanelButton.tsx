@@ -1,6 +1,5 @@
 interface ActionButtonProps {
   icon: React.ReactNode;
-  onClick: () => void;
   className?: string;
 }
 

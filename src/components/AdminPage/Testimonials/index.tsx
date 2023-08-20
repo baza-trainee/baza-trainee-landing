@@ -2,23 +2,16 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
+import { ActionAdminPanelButton } from '@/components/atomic/buttons/ActionAdminPanelButton';
+import { DeleteIcon, EditIcon } from '@/components/common/icons';
 import testimonialsApi from '@/utils/API/testimonials';
+import Link from 'next/link';
 
 const itemContainerStyle =
-  'flex h-[19.6rem] w-[111.8] items-center justify-center rounded bg-base-dark shadow-md';
+  'flex h-[19.6rem] max-w-[111.8] items-center justify-center rounded bg-base-dark shadow-md ';
+
 export const Testimonials_main = async () => {
   const testimonialsData = await testimonialsApi.getAll();
-  //console.log(testimonialsData);
-  const getTestimonials = async () => {
-    try {
-      const result = await testimonialsApi.getAll();
-
-      return result;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
 
   return (
     <>
@@ -31,13 +24,21 @@ export const Testimonials_main = async () => {
         </div>
         <div className="flex flex-col gap-[3.2rem]">
           <div className={itemContainerStyle}>
-            <AdminPanelButton variant="secondary">
-              + Додати відгук
-            </AdminPanelButton>
+            <Link href={'/admin/testimonials/create'}>
+              <AdminPanelButton variant="secondary">
+                + Додати відгук
+              </AdminPanelButton>
+            </Link>
           </div>
           {testimonialsData.map((el) => (
             <div className={itemContainerStyle} key={el._id}>
-              <SingleSlide slideData={el} />
+              <div className="flex gap-[1.2rem]">
+                <SingleSlide slideData={el} />
+                <div className="flex items-end justify-end gap-[1rem]">
+                  <ActionAdminPanelButton icon={<EditIcon />} />
+                  <ActionAdminPanelButton icon={<DeleteIcon />} />
+                </div>
+              </div>
             </div>
           ))}
         </div>
