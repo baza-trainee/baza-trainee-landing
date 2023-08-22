@@ -3,18 +3,18 @@
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { TextInputField } from '@/components/atomic/inputs';
-import { GlobalContext } from '@/store/globalContext';
+import { useGlobalContext } from '@/store/globalContext';
 import { TContactsInfo } from '@/types';
 import { contactsApi } from '@/utils/API/contacts';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import {
   contactsValidationHandler,
   errorsSample,
 } from './contactsValidationHandler';
 
 export const Contacts = () => {
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
 
   const [contactsData, setContactsData] = useState<TContactsInfo>(
     {} as TContactsInfo

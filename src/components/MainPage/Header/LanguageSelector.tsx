@@ -1,7 +1,7 @@
 'use client';
 
-import { GlobalContext, TLandingLanguage } from '@/store/globalContext';
-import { useContext, useState } from 'react';
+import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
+import { useState } from 'react';
 
 import { MultiArrow } from '@/components/common/icons';
 
@@ -15,7 +15,7 @@ const underLineStyle =
 
 const LanguageSelector = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { landingLanguage, setLandingLanguage } = useContext(GlobalContext);
+  const { landingLanguage, setLandingLanguage } = useGlobalContext();
 
   const handleLanguageClick = (lang: TLandingLanguage) => {
     setLandingLanguage(lang);

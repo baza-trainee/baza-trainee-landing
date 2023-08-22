@@ -6,6 +6,7 @@ import {
   PropsWithChildren,
   SetStateAction,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from 'react';
@@ -20,9 +21,9 @@ export interface IStoreContextType {
   setAlertInfo: Dispatch<SetStateAction<TAlertInfo>>;
 }
 
-export const GlobalContext = createContext<IStoreContextType>(
-  {} as IStoreContextType
-);
+const GlobalContext = createContext<IStoreContextType>({} as IStoreContextType);
+
+export const useGlobalContext = () => useContext(GlobalContext);
 
 export const StoreProvider = ({ children }: PropsWithChildren) => {
   const [landingLanguage, setLandingLanguage] =
