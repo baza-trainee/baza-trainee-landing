@@ -42,7 +42,7 @@ export const DateInput = ({
       <div className={inputContainerClasses}>
         <div className=" absolute right-[0.8rem] ">
           <input
-            className="input-icon absolute right-0 top-0 h-full w-full opacity-0"
+            className="calendar-picker-icon absolute right-0 top-0 h-full w-full opacity-0"
             type="date"
             name={name}
             value={value}

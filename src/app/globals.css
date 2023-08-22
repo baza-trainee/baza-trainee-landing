@@ -48,7 +48,7 @@ input[type='file']::file-selector-button {
   display: none;
 }
 
-.input-icon::-webkit-calendar-picker-indicator {
+.calendar-picker-icon::-webkit-calendar-picker-indicator {
   position: absolute;
   left: 0;
   top: 0;
