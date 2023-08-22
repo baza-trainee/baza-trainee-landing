@@ -1,9 +1,10 @@
 import { projects } from '@/components/MainPage/Projects/projects';
+import { ProjectCard } from '@/components/MainPage/Projects/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
+import { ButtonsOverlay } from './ButtonsOverlay';
+
 import { IProject } from '@/types';
-import { ProjectCardWithButtons } from './ProjectCardWithButtons';
-import { ProjectCard } from '@/components/MainPage/Projects/ProjectCard';
 
 export const AdminPageProjects = () => {
   return (
@@ -22,9 +23,9 @@ export const AdminPageProjects = () => {
         </li>
 
         {projects.map((project: IProject) => (
-          <ProjectCardWithButtons key={project._id}>
+          <ButtonsOverlay key={project._id}>
             <ProjectCard project={project} />
-          </ProjectCardWithButtons>
+          </ButtonsOverlay>
         ))}
       </ul>
     </section>
