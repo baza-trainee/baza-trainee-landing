@@ -33,23 +33,23 @@ export const DateInput = ({
 
   return (
     <div className={inputWrapperClasses}>
-      {title && <h4 className="absolute left-0 top-0">{title}</h4>}
+      {!!title && <h4 className="absolute left-0 top-0">{title}</h4>}
 
       <div className={inputContainerClasses}>
-        <div className="absolute right-[0.8rem]">
+        <div className="absolute right-[0.8rem] cursor-pointer">
           <input
-            className="absolute left-0 right-0 h-full w-full cursor-pointer opacity-0"
+            className="absolute right-0 top-0 h-full w-full cursor-pointer  opacity-0"
             type="date"
             name={name}
             value={value}
             {...rest}
           />
-          <DateIcon />
+          <DateIcon className=" cursor-pointer" />
         </div>
         {value}
       </div>
 
-      {errorText && (
+      {!!errorText && (
         <span className="absolute bottom-0 left-0 text-[1.2rem]">
           {errorText}
         </span>
