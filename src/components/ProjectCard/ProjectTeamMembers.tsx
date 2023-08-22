@@ -1,4 +1,4 @@
-import { TTeamMember, TTeamMemberRole } from '../../../../types/projectsTypes';
+import { TTeamMember, TTeamMemberRole } from '../../types/projectsTypes';
 
 type TProps = {
   roleName: string;

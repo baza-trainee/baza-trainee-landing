@@ -1,5 +1,5 @@
 import { CloseIcon } from '@/components/common/icons';
-import { ICardContent } from '../../../../types/projectsTypes';
+import { ICardContent } from '../../types/projectsTypes';
 import { ProjectTeamMembers } from './ProjectTeamMembers';
 
 export const ProjectCardTeam = ({ handleShowTeam, project }: ICardContent) => {
