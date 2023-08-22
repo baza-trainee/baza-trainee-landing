@@ -33,7 +33,7 @@ export const LanguageSelector = () => {
       const languageCode = segments[segments.length - 1];
       const isLangCorrect = langArr.includes(languageCode);
       const normalizedLang = isLangCorrect ? languageCode : 'ua';
-      !isLangCorrect && router.replace(normalizedLang);
+
       setCurLang(normalizedLang as TLang);
     };
     getLang();
