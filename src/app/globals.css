@@ -47,3 +47,12 @@ body {
 input[type='file']::file-selector-button {
   display: none;
 }
+
+.input-icon::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
