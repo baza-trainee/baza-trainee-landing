@@ -1,7 +1,7 @@
 'use client';
 
 import { projects } from '@/components/MainPage/Projects/projects';
-import { ProjectCard } from '@/components/MainPage/Projects/ProjectCard';
+import { ProjectCard } from '@/components/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
@@ -25,9 +25,9 @@ export const AdminPageProjects = () => {
   useEffect(() => {
     isError &&
       setAlertInfo({
-        state: data.message,
-        title: data.statusText,
-        textInfo: data.status,
+        state: 'error',
+        title: 'Непередбачувана помилка на сервері',
+        textInfo: data?.message,
       });
   }, [isError]);
 
@@ -42,15 +42,16 @@ export const AdminPageProjects = () => {
           </AdminPanelButton>
         </li>
 
-        {/* {Array.isArray(data?.result) &&
-          data.results.length > 0 &&
+        {Array.isArray(data?.results) &&
+          // data.results.length > 0 &&
+          // data.results.map((projects: IProject) => {
+          //   console.log(projects);
+          // })
           data.results.map((project: IProject) => (
             <ButtonsOverlay key={project._id}>
               <ProjectCard project={project} />
             </ButtonsOverlay>
-          ))} */}
-
-        {isError && data.error}
+          ))}
       </ul>
     </section>
   );

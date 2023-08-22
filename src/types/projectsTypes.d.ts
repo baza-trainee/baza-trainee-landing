@@ -4,6 +4,7 @@ export type IProject = {
   imageUrl: string;
   status: string;
   link: string;
+  deployUrl?: string;
   description: string;
   creationDate: number;
   launchDate: number;

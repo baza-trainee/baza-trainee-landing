@@ -29,7 +29,7 @@ type Props = {
 };
 
 export const ButtonsOverlay = ({ children }: Props) => (
-  <div className="relative">
+  <div className="group relative">
     {children}
 
     <div className="absolute right-8 top-8 flex flex-col gap-3">

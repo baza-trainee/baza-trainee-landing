@@ -9,7 +9,7 @@ import { bazaAPI } from './config';
 const projectsApi = {
   getAll(page?: number) {
     const queryParam = page ? `?page=${page}` : '';
-    return bazaAPI.get(`/projec1ts${queryParam}`);
+    return bazaAPI.get(`/projects${queryParam}`);
   },
 
   createNew(project: IProject) {
