@@ -182,5 +182,6 @@ export type TDictionary = {
     button: string;
   };
   toFund: string;
+  currency: string;
   enterKeywordForSearch: string;
 };

@@ -227,10 +227,6 @@
     "title": "Wybierz kwotę, którą chcesz wesprzeć Baza Trainee Ukraine.",
     "description": "Kwota jest pobierana jednorazowo, jeśli chcesz wystawić abonament, potrzebujesz ..",
     "sums": {
-      "100": "100 UAH",
-      "200": "200 UAH",
-      "500": "500 UAH",
-      "1000": "1000 UAH",
       "otherSum": "Inna kwota w UAH"
     },
     "button": "Wsparcie Baza Trainee Ukraine "
@@ -251,5 +247,6 @@
     "button": "Powrót do strony głównej"
   },
   "toFund": "Finansowanie",
+  "currency": "UAH",
   "enterKeywordForSearch": "Wprowadź słowo kluczowe aby wyszukać"
 }

@@ -228,10 +228,6 @@
     "title": "Choose the amount you would like to support Baza Trainee Ukraine with.",
     "description": "The amount is debited once, if you want to issue a subscription, you need ..",
     "sums": {
-      "100": "100 UAH",
-      "200": "200 UAH",
-      "500": "500 UAH",
-      "1000": "1000 UAH",
       "otherSum": "A different amount in UAH "
     },
     "button": "To support Baza Trainee Ukraine"
@@ -252,5 +248,6 @@
     "button": "Return to the main page"
   },
   "toFund": "To Fund",
+  "currency": "UAH",
   "enterKeywordForSearch": "Enter a keyword for search"
 }
