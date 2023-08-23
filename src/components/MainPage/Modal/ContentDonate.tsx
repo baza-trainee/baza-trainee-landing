@@ -5,15 +5,12 @@ import {
 } from '@/components/atomic';
 
 import usePaymentHandler from '@/hooks/usePayment';
+
+const paymentAmountData = ['100', '200', '500', '1000'];
+
 import { TDictionary } from '@/types';
 
 export const ContentDonate = ({ dict }: { dict: TDictionary }) => {
-  const paymentAmountData = [
-    dict.modal.sums['100'],
-    dict.modal.sums['200'],
-    dict.modal.sums['500'],
-    dict.modal.sums['1000'],
-  ];
   const { paymentAmount, handlePayment, handleAmountChange } =
     usePaymentHandler();
 
@@ -30,7 +27,7 @@ export const ContentDonate = ({ dict }: { dict: TDictionary }) => {
             key={index + el}
             onClick={() => handleAmountChange(el)}
           >
-            {el}
+            {el} {dict.currency}
           </DonateButton>
         ))}
 
