@@ -1,6 +1,6 @@
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
 import { InputHTMLAttributes, useId } from 'react';
-import { Translator } from './Translator';
+import { Translator } from '../Translator';
 
 interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
