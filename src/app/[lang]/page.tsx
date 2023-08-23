@@ -9,23 +9,18 @@ import { Projects } from '@/components/MainPage/Projects';
 import { Reviews } from '@/components/MainPage/Reviews';
 import { Statistics } from '@/components/MainPage/Statistics';
 import { SupportBaza } from '@/components/MainPage/SupportBaza';
-import { getDictionary } from './dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
+import { translatePages } from '@/utils/API/translate';
 
 export default async function Home({
   params,
 }: {
-  params: { lang: 'ua' | 'en' | 'pl' };
+  params: { lang: TLandingLanguage };
 }) {
-  const dict = await getDictionary(params.lang);
-  const navLinks = [
-    { title: dict.navbar.projects, href: '#projects' },
-    { title: dict.navbar.partners, href: '#partners' },
-    { title: dict.navbar.participate, href: '#forms' },
-    { title: dict.navbar.contacts, href: '#footer' },
-  ];
+  const dict = await translatePages(params.lang);
   return (
     <>
-      <Header navLinks={navLinks} />
+      <Header dict={dict} />
       <main className="mb-36 flex flex-col gap-32 md:mb-40 md:gap-44 xl:mb-48 xl:gap-52">
         <HeroSlider lang={params.lang} dict={dict} />
         <Projects lang={params.lang} dict={dict} />
