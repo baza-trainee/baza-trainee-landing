@@ -1,13 +1,15 @@
-import Image from 'next/image';
-
+import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
+import Image from 'next/image';
 
 export const SingleSlide = ({
   slideData,
   slideLang,
+  index,
 }: {
   slideData: TSlide;
-  slideLang: 'en' | 'pl' | 'ua';
+  slideLang: TLandingLanguage;
+  index: number;
 }) => {
   const { image, title, text } = slideData;
 
@@ -16,10 +18,12 @@ export const SingleSlide = ({
       <Image
         src={image}
         fill
+        priority={index === 0}
         alt={title}
-        objectFit="cover"
-        quality={85}
-        priority
+        style={{
+          objectFit: 'cover',
+        }}
+        quality={90}
       />
 
       <div className="relative w-2/3 max-w-[79rem] text-white md:w-2/3 lg:w-2/3 xl:w-2/3">

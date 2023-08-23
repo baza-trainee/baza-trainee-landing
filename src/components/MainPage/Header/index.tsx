@@ -1,19 +1,27 @@
+'use client';
 import { LogoMain } from '@/components/common/icons';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
-import { headers } from 'next/headers';
+import { TDictionary } from '@/types';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { HeaderMenuButton } from './HeaderDropdownMenu';
 import { HeaderLinks } from './HeaderLinks';
 import { LanguageSelector } from './LanguageSelector';
 
-export const Header = ({
-  navLinks,
-}: {
-  navLinks: { title: string; href: string }[];
-}) => {
-  const headersList = headers();
-  const pathname = headersList.get('x-invoke-path') || '';
+export const Header = ({ dict }: { dict: TDictionary }) => {
+  // const headersList = headers();
+  // const pathname = headersList.get('x-invoke-path') || '';
+  const navLinks = [
+    {
+      title: dict.navbar.projects,
+      href: '#projects',
+    },
+    { title: dict.navbar.partners, href: '#partners' },
+    { title: dict.navbar.participate, href: '#forms' },
+    { title: dict.navbar.contacts, href: '#footer' },
+  ];
+  const pathname = usePathname();
   return (
     <header className="h-[10rem] bg-yellow-500 md:h-[10.4rem]" id="header">
       <ContainerMaxW1200 className="h-full items-center justify-between">

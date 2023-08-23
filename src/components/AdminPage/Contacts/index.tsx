@@ -45,7 +45,6 @@ export const Contacts = () => {
         textInfo:
           'Під час оновлення списку контактів сталася помилка. Спробуйте, будь ласка, пізніше',
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -77,11 +76,7 @@ export const Contacts = () => {
     setIsFormValid(isNoErrors && (isContactsDataList || isSocialsMediaList));
   }, [contactsData]);
 
-  const handleSubmit = (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     isFormValid && dispatch(contactsData);
@@ -143,12 +138,8 @@ export const Contacts = () => {
           </div>
         </div>
 
-        <div className="flex gap-[1.8rem]">
-          <AdminPanelButton
-            type="submit"
-            onClick={handleSubmit}
-            disabled={!isFormValid}
-          >
+        <div className="ml-5 flex gap-[1.8rem]">
+          <AdminPanelButton type="submit" disabled={!isFormValid}>
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>

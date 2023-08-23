@@ -15,4 +15,3 @@ export const SupportBaza = ({ dict }: { dict: TDictionary }) => {
     </section>
   );
 };
-``;

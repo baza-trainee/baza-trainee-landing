@@ -12,9 +12,11 @@ export const SingleSlide = ({ slideData }: { slideData: TSlideReview }) => {
           src={imageUrl}
           alt={name}
           fill
-          objectFit="cover"
+          sizes="(min-width: 300px) 120px"
+          style={{
+            objectFit: 'cover',
+          }}
           quality={85}
-          priority
         />
       </div>
 
