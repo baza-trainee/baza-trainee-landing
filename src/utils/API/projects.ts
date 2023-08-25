@@ -1,5 +1,6 @@
 import { IProject } from '@/types';
 import {
+  TResponseProjects,
   byIdRequest,
   searchProjectRequest,
   updateByIdRequest,
@@ -7,9 +8,9 @@ import {
 import { bazaAPI } from './config';
 
 const projectsApi = {
-  getAll(page?: number) {
-    const queryParam = page ? `?page=${page}` : '';
-    return bazaAPI.get(`/projects${queryParam}`);
+  getAll(limit?: number) {
+    const queryParam = limit ? `?limit=${limit}` : '';
+    return bazaAPI.get<TResponseProjects>(`/projects${queryParam}`);
   },
 
   createNew(project: IProject) {

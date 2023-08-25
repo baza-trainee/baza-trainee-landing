@@ -151,3 +151,12 @@ export type responseDataType =
       | ITestimonial
     >
   | null;
+
+export type TResponseProjects = {
+  results: IProject[];
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalResults: number;
+  };
+};

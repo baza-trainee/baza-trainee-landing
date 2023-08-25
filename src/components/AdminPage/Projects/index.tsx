@@ -11,23 +11,32 @@ import { useAPI } from '@/utils/hooks/useAPI';
 import projectsApi from '@/utils/API/projects';
 import { useEffect, useState } from 'react';
 import { useGlobalContext } from '@/store/globalContext';
+import { useProjectsSWR } from '@/hooks/useProjectsSWR';
+import { networkStatusUk } from '@/utils/errorHandler';
 
 export const AdminPageProjects = () => {
   const { setAlertInfo } = useGlobalContext();
-  const [dispatch, data, isError] = useAPI(projectsApi.getAll);
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [
+  //   dispatch,
+  //   data,
+  //   // isError
+  // ] = useAPI(projectsApi.getAll);
+  const [showedItems, setShowedItems] = useState();
 
-  useEffect(() => {
-    dispatch(currentPage);
-    console.log(data);
-  }, [currentPage]);
+  const { projects, isLoading, isError } = useProjectsSWR();
+
+  // useEffect(() => {
+  //   dispatch(showedItems);
+  //   // console.log(data);
+  // }, [showedItems]);
 
   useEffect(() => {
     isError &&
       setAlertInfo({
         state: 'error',
-        title: 'Непередбачувана помилка на сервері',
-        textInfo: data?.message,
+        title: networkStatusUk[isError?.status || 500],
+        textInfo:
+          'Не вдалося отримати перелік проєктів. Спробуйте трохи пізніше.',
       });
   }, [isError]);
 
@@ -42,12 +51,9 @@ export const AdminPageProjects = () => {
           </AdminPanelButton>
         </li>
 
-        {Array.isArray(data?.results) &&
-          // data.results.length > 0 &&
-          // data.results.map((projects: IProject) => {
-          //   console.log(projects);
-          // })
-          data.results.map((project: IProject) => (
+        {projects &&
+          projects?.results &&
+          projects.results.map((project: IProject) => (
             <ButtonsOverlay key={project._id}>
               <ProjectCard project={project} />
             </ButtonsOverlay>
