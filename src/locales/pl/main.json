@@ -6,18 +6,34 @@
     "contacts": "Kontakt"
   },
   "monthsNames": {
-    "january": "styczeń ",
-    "february": "luty ",
-    "march": "marsz ",
-    "april": "kwiecień",
-    "may": "móc",
-    "june": "czerwiec",
-    "july": "lipiec",
-    "august": "sierpień",
-    "september": "wrzesień",
-    "october": "październik",
-    "november": "listopad",
-    "december": "grudzień"
+    "nouns": [
+      "styczeń",
+      "luty",
+      "marsz",
+      "kwiecień",
+      "móc",
+      "czerwiec",
+      "lipiec",
+      "sierpień",
+      "wrzesień",
+      "październik",
+      "listopad",
+      "grudzień"
+    ],
+    "spelled": [
+      "styczeń",
+      "luty",
+      "marzec",
+      "kwiecień",
+      "maj",
+      "czerwiec",
+      "lipiec",
+      "sierpień",
+      "wrzesień",
+      "październik",
+      "listopad",
+      "grudzień"
+    ]
   },
   "heroSlider": {
     "firstSlide": {
