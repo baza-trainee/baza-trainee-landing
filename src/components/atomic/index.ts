@@ -7,6 +7,7 @@ export * from './buttons/PrimaryButton';
 export * from './buttons/SlickArrow';
 export * from './buttons/SupportBazaButton';
 export * from './buttons/MoreProjectsButton';
+export * from './buttons/EditDeleteButton';
 
 export * from './inputs/InputField';
 export * from './inputs/PasswordInput';

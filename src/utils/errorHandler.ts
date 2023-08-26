@@ -42,27 +42,29 @@ export const networkStatusUk: { [key: number]: string } = {
   511: 'Необхідна аутентифікація мережі',
 };
 
-const paintedLog = (name: string, data: any) =>
+export const paintedLog = (name: string, data: any) =>
   console.warn(
     `%c${name}`,
     'color: lightgrey; background-color: #8d0200; padding: 4px',
     data
   );
 
-export const errorHandler = (error: AxiosError) => {
-  const { response, request, message } = error;
-  console.log('Full AxiosError instance >>', error);
+export const errorHandler = (error: any) => {
+  if (error instanceof AxiosError) {
+    const { response, request, message } = error;
+    console.log('Full AxiosError instance >>', error);
 
-  if (response) {
-    paintedLog('response err data >>', response?.data);
-    paintedLog('response status >>', response?.status);
-    paintedLog('response err headers >>', response?.headers);
-  } else if (request) {
-    paintedLog('request status >>', request?.status);
-    paintedLog('request err data >>', request);
+    if (response) {
+      paintedLog('response err data >>', response?.data);
+      paintedLog('response status >>', response?.status);
+      paintedLog('response err headers >>', response?.headers);
+    } else if (request) {
+      paintedLog('request status >>', request?.status);
+      paintedLog('request err data >>', request);
+    } else {
+      paintedLog('err message >>', message);
+    }
   } else {
-    paintedLog('err message >>', message);
+    paintedLog('Unknown error >>', error);
   }
-
-  throw error;
 };
