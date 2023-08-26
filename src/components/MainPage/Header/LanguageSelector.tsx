@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 const languageOptions: TLandingLanguage[] = ['en', 'ua', 'pl'];
 
 const btnStyle =
-  'z-10 flex cursor-pointer items-center gap-3 bg-transparent pl-5 text-[2rem] font-semibold h-[3.3rem] w-32';
+  'z-10 flex cursor-pointer focus:border-none focus:shadow-none focus:outline-none items-center gap-3 bg-transparent pl-5 text-[2rem] font-semibold h-[3.3rem] w-32';
 
 const underLineStyle =
   "relative after:absolute after:bottom-0 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] after:hover:scale-100";
