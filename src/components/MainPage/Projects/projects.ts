@@ -4,7 +4,7 @@ export const projects = [
   {
     _id: '1',
     title: 'Murrfecto',
-    imageUrl: '/img/projects/murrfecto.png',
+    imageUrl: '/img/projects/murrfecto.webp',
     status: 'active',
     statusVal: 'active',
     link: 'https://murrfecto.site',
@@ -172,7 +172,7 @@ export const projects = [
   {
     _id: '4',
     title: 'Ataka Help',
-    imageUrl: '/img/projects/atack.png',
+    imageUrl: '/img/projects/atack.webp',
     status: 'active',
     statusVal: 'active',
     link: 'https://ataka-help.tech',
@@ -429,7 +429,7 @@ export const projects = [
   {
     _id: '6',
     title: 'baza',
-    imageUrl: '/img/projects/baza.png',
+    imageUrl: '/img/projects/baza.webp',
     status: 'active',
     statusVal: 'active',
     link: 'https://baza-trainee.tech',
@@ -650,7 +650,7 @@ export const projects = [
   {
     _id: '2',
     title: 'Читозаврик',
-    imageUrl: '/img/projects/zavr.png',
+    imageUrl: '/img/projects/zavr.webp',
     status: '',
     statusVal: 'under-development',
     link: ' ',
@@ -663,7 +663,7 @@ export const projects = [
   {
     _id: '5',
     title: '1001 songs',
-    imageUrl: '/img/projects/1001songs.jpg',
+    imageUrl: '/img/projects/1001songs.webp',
     status: 'under-development',
     statusVal: 'under-development',
     link: ' ',
@@ -676,7 +676,7 @@ export const projects = [
   {
     _id: '3',
     title: 'Big Lapa',
-    imageUrl: '/img/projects/lapa.png',
+    imageUrl: '/img/projects/lapa.webp',
     status: 'under-development',
     statusVal: 'under-development',
     link: ' ',
@@ -689,7 +689,7 @@ export const projects = [
   {
     _id: '7',
     title: 'feeda',
-    imageUrl: '/img/projects/feeda-1.png',
+    imageUrl: '/img/projects/feeda-1.webp',
     status: 'under-development',
     statusVal: 'under-development',
     link: ' ',
@@ -703,7 +703,7 @@ export const projects = [
   {
     _id: '8',
     title: 'book',
-    imageUrl: '/img/projects/book.jpg',
+    imageUrl: '/img/projects/book.webp',
     status: 'under-development',
     statusVal: 'under-development',
     link: ' ',
@@ -716,7 +716,7 @@ export const projects = [
   {
     _id: '9',
     title: 'arms',
-    imageUrl: '/img/projects/arms.jpg',
+    imageUrl: '/img/projects/arms.webp',
     status: 'active',
     statusVal: 'active',
     link: 'https://obijmy59.online/',

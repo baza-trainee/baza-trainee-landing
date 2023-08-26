@@ -7,7 +7,7 @@ export const Statistics = ({ dict }: { dict: TDictionary }) => {
   return (
     <section className="relative">
       <Image
-        src={'/img/statBg.jpg'}
+        src={'/img/statBg.webp'}
         alt={''}
         fill
         objectFit="cover"
