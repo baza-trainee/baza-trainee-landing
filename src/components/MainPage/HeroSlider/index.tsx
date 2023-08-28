@@ -1,14 +1,16 @@
 'use client';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
-import { TDictionary, TSlide } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
+import { TSlide } from '@/types';
 import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
-import { getTranslatedSlides, slides } from './slides';
+import { slides } from './slides';
 
 const settings = {
   infinite: true,
@@ -20,23 +22,19 @@ const settings = {
   arrows: false,
 };
 
-const ModalComponent = ({ dict }: { dict: TDictionary }) => (
-  <Modal content="donate" dict={dict}>
-    <PrimaryButton>{dict.toFund}</PrimaryButton>
-  </Modal>
-);
+const ModalComponent = async ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = await dictionaries[lang]();
+  return (
+    <Modal content="donate" lang={lang}>
+      <PrimaryButton>{dict.toFund}</PrimaryButton>
+    </Modal>
+  );
+};
 const MemoizedModal = memo(ModalComponent);
 
-const HeroSlider = ({
-  dict,
-  lang,
-}: {
-  dict: TDictionary;
-  lang: 'ua' | 'en' | 'pl';
-}) => {
+const HeroSlider = ({ lang }: { lang: 'ua' | 'en' | 'pl' }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
-  const translatedSlides = getTranslatedSlides(slides, dict);
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -62,10 +60,10 @@ const HeroSlider = ({
           lazyLoad="progressive"
           ref={slickRef}
         >
-          {translatedSlides.map((translatedSlide: TSlide, i: number) => (
+          {slides.map((slide: TSlide, i: number) => (
             <SingleSlide
-              key={`key_${translatedSlide.title}`}
-              slideData={translatedSlide}
+              key={`key_${slide.title[lang]}`}
+              slideData={slide}
               index={i}
               slideLang={lang}
             />
@@ -96,7 +94,7 @@ const HeroSlider = ({
         <ContainerMaxW1200 className="min-h-[8.8rem] flex-col gap-[2.4rem] py-[1.6rem] sm:flex-row sm:items-center sm:justify-between sm:py-0">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          <MemoizedModal dict={dict} />
+          <MemoizedModal lang={lang} />
         </ContainerMaxW1200>
       </div>
     </section>

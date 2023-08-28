@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-import { TContactsInfo, TDictionary } from '@/types';
+import { TContactsInfo } from '@/types';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
   LinkedInIcon,
@@ -10,6 +11,7 @@ import {
   PhoneIcon,
   TelegramIcon,
 } from '@/components/common/icons';
+import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 import { headers } from 'next/headers';
 
@@ -46,20 +48,30 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   </Link>
 );
 
-export const Footer = async ({ dict }: { dict: TDictionary }) => {
+export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
   const headersList = headers();
   const pathname = headersList.get('x-invoke-path') || '';
   const contactsInfo: TContactsInfo = await getContacts();
+  const dict = await dictionaries[lang]();
   const anchorLinksList = [
-    { title: dict.footer.projects, href: '#projects' },
-    { title: dict.footer.partners, href: '#partners' },
-    { title: dict.footer.participate, href: '#forms' },
+    { title: dict.footer?.projects, href: '#projects' },
+    { title: dict.footer?.partners, href: '#partners' },
+    { title: dict.footer?.participate, href: '#forms' },
   ];
 
   const officialDocsList = [
-    { title: dict.footer.privacyPolicy, href: '?document=policy.pdf' },
-    { title: dict.footer.rulesForUsingTheSite, href: '?document=rules.pdf' },
-    { title: dict.footer.statute, href: '?document=statut.pdf' },
+    {
+      title: dict.footer.privacyPolicy,
+      href: '?document=policy.pdf',
+    },
+    {
+      title: dict.footer.rulesForUsingTheSite,
+      href: '?document=rules.pdf',
+    },
+    {
+      title: dict.footer.statute,
+      href: '?document=statut.pdf',
+    },
     { title: dict.footer.accountability, href: '#' },
   ];
 

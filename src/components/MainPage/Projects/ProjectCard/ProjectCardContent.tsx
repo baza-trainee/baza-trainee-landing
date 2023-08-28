@@ -20,14 +20,14 @@ const ProjectCardContent = ({
   return (
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar
-        statusName={project.status}
+        statusName={project.status[lang]}
         statusVal={project.statusVal}
       />
 
       <div className="flex w-full flex-col gap-[1.6rem]">
         <div className="h-[11rem]">
           <h4 className="text-[2.4rem] font-bold leading-[3rem]">
-            {project.description}
+            {project.description[lang]}
           </h4>
           {project.link && (
             <Link

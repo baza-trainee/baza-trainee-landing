@@ -10,28 +10,30 @@ import { Reviews } from '@/components/MainPage/Reviews';
 import { Statistics } from '@/components/MainPage/Statistics';
 import { SupportBaza } from '@/components/MainPage/SupportBaza';
 import { TLandingLanguage } from '@/store/globalContext';
-import { translatePages } from '@/utils/API/translate';
+
+export async function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];
+}
 
 export default async function Home({
-  params,
+  params: { lang },
 }: {
   params: { lang: TLandingLanguage };
 }) {
-  const dict = await translatePages(params.lang);
   return (
     <>
-      <Header dict={dict} />
+      <Header lang={lang} />
       <main className="mb-36 flex flex-col gap-32 md:mb-40 md:gap-44 xl:mb-48 xl:gap-52">
-        <HeroSlider lang={params.lang} dict={dict} />
-        <Projects lang={params.lang} dict={dict} />
-        <SupportBaza dict={dict} />
-        <Statistics dict={dict} />
-        <Forms dict={dict} />
-        <Partners dict={dict} />
-        <Achievements dict={dict} />
-        <Reviews dict={dict} />
+        <HeroSlider lang={lang} />
+        <Projects lang={lang} />
+        <SupportBaza lang={lang} />
+        <Statistics lang={lang} />
+        <Forms lang={lang} />
+        <Partners lang={lang} />
+        <Achievements lang={lang} />
+        <Reviews lang={lang} />
       </main>
-      <Footer dict={dict} />
+      <Footer lang={lang} />
 
       <ModalParams />
     </>

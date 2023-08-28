@@ -1,9 +1,11 @@
 import Image from 'next/image';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
 
-export const Statistics = ({ dict }: { dict: TDictionary }) => {
+export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = await dictionaries[lang]();
   return (
     <section className="relative">
       <Image

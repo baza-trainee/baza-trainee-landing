@@ -6,6 +6,7 @@ export const ProjectCardTeam = ({
   handleShowTeam,
   project,
   dict,
+  lang,
 }: ICardContent) => {
   const roles = project.teamMembers
     .reduce((acc: string[], cur) => {
@@ -15,7 +16,7 @@ export const ProjectCardTeam = ({
       return acc;
     }, [])
     .sort();
-
+  console.log('roles', project.teamMembers);
   return (
     <>
       <button className="absolute right-[2rem]" onClick={handleShowTeam}>
@@ -32,6 +33,7 @@ export const ProjectCardTeam = ({
             <h4 className="font-semibold">{role}</h4>
 
             <ProjectTeamMembers
+              lang={lang}
               roleName={role}
               teamMembers={project.teamMembers}
             />

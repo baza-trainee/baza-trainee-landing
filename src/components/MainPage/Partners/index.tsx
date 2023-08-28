@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
 import Image from 'next/image';
 import { partners } from './partners';
 
@@ -48,7 +49,8 @@ const sliderSettings = {
   ],
 };
 
-export const Partners = ({ dict }: { dict: TDictionary }) => {
+export const Partners = async ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = await dictionaries[lang]();
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">

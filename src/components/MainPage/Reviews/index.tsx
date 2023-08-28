@@ -1,16 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
+import { TLandingLanguage } from '@/store/globalContext';
 import { TDictionary, TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
-import { getTranslateReviews, slides } from './slides';
+import { slides } from './slides';
 
-export const Reviews = ({ dict }: { dict: TDictionary }) => {
+export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [dict, setDict] = useState<TDictionary>();
 
   const sliderSettings = {
     dots: true,
@@ -21,16 +24,22 @@ export const Reviews = ({ dict }: { dict: TDictionary }) => {
     prevArrow: <SlickArrow direction="left" />,
   };
 
+  const getDictionary = async () => {
+    setDict(await dictionaries[lang]());
+  };
+
   const customPaging = (i: number) => Dot(i, currentSlide);
 
-  const translateReviews = getTranslateReviews(slides, dict);
+  useEffect(() => {
+    getDictionary();
+  }, []);
 
   return (
     <section>
       <ContainerMaxW1200>
         <div className="w-full">
           <h3 className="mb-12 text-center text-6xl font-bold">
-            {dict.reviews.title}
+            {dict?.reviews.title}
           </h3>
           <Slider
             {...sliderSettings}
@@ -38,8 +47,8 @@ export const Reviews = ({ dict }: { dict: TDictionary }) => {
             afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
-            {translateReviews.map((review: TSlideReview, index) => (
-              <SingleSlide slideData={review} key={index + 'key'} />
+            {slides.map((review: TSlideReview, index) => (
+              <SingleSlide slideData={review} lang={lang} key={index + 'key'} />
             ))}
           </Slider>
         </div>

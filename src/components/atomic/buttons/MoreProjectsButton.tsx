@@ -1,13 +1,15 @@
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { MultiArrow } from '@/components/common/icons';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
 
-export const MoreProjectsButton = ({
+export const MoreProjectsButton = async ({
   open = false,
-  dict,
+  lang,
 }: {
   open: boolean;
-  dict: TDictionary;
+  lang: TLandingLanguage;
 }) => {
+  const dict = await dictionaries[lang]();
   return (
     <button
       className="relative mx-auto h-32 max-w-fit rounded-md px-[0.8rem]

@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
+import { TLandingLanguage } from '@/store/globalContext';
 import { IProject, TDictionary } from '@/types';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
@@ -15,7 +16,7 @@ const ProjectCard = ({
 }: {
   project: IProject;
   dict: TDictionary;
-  lang: 'ua' | 'en' | 'pl';
+  lang: TLandingLanguage;
 }) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 

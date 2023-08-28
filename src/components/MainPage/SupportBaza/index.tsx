@@ -1,12 +1,14 @@
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, SupportBazaButton } from '@/components/atomic';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
 import { Modal } from '../Modal';
 
-export const SupportBaza = ({ dict }: { dict: TDictionary }) => {
+export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = await dictionaries[lang]();
   return (
     <section>
       <ContainerMaxW1200>
-        <Modal dict={dict} content="donate">
+        <Modal lang={lang} content="donate">
           <SupportBazaButton className="m-auto">
             {dict.invite.supportBazaTrainee}
           </SupportBazaButton>

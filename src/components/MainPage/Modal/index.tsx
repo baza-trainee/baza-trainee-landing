@@ -11,17 +11,17 @@ import {
 import { createPortal } from 'react-dom';
 
 import { CloseIcon } from '@/components/common/icons';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
 import { ContentDonate } from './ContentDonate';
 
 type Props = {
   children: ReactElement;
   content: 'donate' | ReactElement;
   open?: boolean;
-  dict: TDictionary;
+  lang: TLandingLanguage;
 };
 
-export const Modal = ({ children, content, open = false, dict }: Props) => {
+export const Modal = ({ children, content, open = false, lang }: Props) => {
   const [isLandingModalShown, setIsLandingModalShown] = useState(open);
   const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
 
@@ -50,7 +50,7 @@ export const Modal = ({ children, content, open = false, dict }: Props) => {
           <CloseIcon className="hidden sm:block" />
         </button>
 
-        {content === 'donate' && <ContentDonate dict={dict} />}
+        {content === 'donate' && <ContentDonate lang={lang} />}
         {isValidElement(content) && content}
       </div>
     </section>

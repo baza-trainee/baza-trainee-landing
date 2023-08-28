@@ -4,35 +4,46 @@ import { useEffect, useRef, useState } from 'react';
 
 import counterHandler from '@/utils/counterHandler';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { TLandingLanguage } from '@/store/globalContext';
 import { TDictionary } from '@/types';
 
 const projects = 14;
 const members = 420;
 const haveJob = 14;
 
-export const Achievements = ({ dict }: { dict: TDictionary }) => {
+export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const componentRef = useRef(null);
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false);
+  const [dict, setDict] = useState<TDictionary>();
 
-  //Set text of achievement as text of dictionary of locale file
+  const getDictionary = async () => {
+    setDict(await dictionaries[lang]());
+  };
+  //Set text of achievement as text of dictionaries[lang]()ionary of locale file
   const achievementData = [
-    { count: projectsCount, text: dict.stats.completedProjects },
+    {
+      count: projectsCount,
+      text: dict?.stats.completedProjects,
+    },
     {
       count: membersCount,
-      text: dict.stats.involvedParticipants,
+      text: dict?.stats.involvedParticipants,
       plusVisible: isCountFinish,
     },
-    { count: haveJobCount, text: dict.stats.employed },
+    { count: haveJobCount, text: dict?.stats.employed },
   ];
 
   useEffect(() => {
     const options = {
       threshold: 0.2,
     };
+
+    getDictionary();
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       if (entries[0].isIntersecting) {

@@ -1,41 +1,47 @@
 export type TSlide = {
-  title: string;
+  title: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
   specialization?: string;
-  text: string;
+  text: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
   image: string;
 };
 
 export type TSlideReview = {
-  name: string;
-  role: string;
-  date: string;
-  review: string;
+  name: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  role: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  date: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  review: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
   imageUrl: string;
 };
 
 export type TDictionary = {
   heroSlider: {
-    firstSlide: {
-      title: string;
-      description: string;
-    };
-    secondSlide: {
-      title: string;
-      description: string;
-    };
-    thirdSlide: {
-      title: string;
-      description: string;
-    };
-    fourthSlide: {
-      title: string;
-      description: string;
-    };
-    fifthSlide: {
-      title: string;
-      description: string;
-    };
-  };
+    title: string;
+    description: string;
+  }[];
   navbar: {
     projects: string;
     partners: string;

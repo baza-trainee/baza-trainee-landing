@@ -9,7 +9,7 @@ const Page404 = () => {
         <p className={styles.error__description}>
           Ми не змогли знайти сторінку, яку Ви шукаєте. Можливо, сталася помилка
         </p>
-        <a href="/" className={styles['error__back-home-link']}>
+        <a href="/ua" className={styles['error__back-home-link']}>
           Повернутись на головну
         </a>
       </div>

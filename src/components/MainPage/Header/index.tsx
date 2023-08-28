@@ -1,17 +1,16 @@
-'use client';
 import { LogoMain } from '@/components/common/icons';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
+import { headers } from 'next/headers';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { HeaderMenuButton } from './HeaderDropdownMenu';
 import { HeaderLinks } from './HeaderLinks';
 import { LanguageSelector } from './LanguageSelector';
 
-export const Header = ({ dict }: { dict: TDictionary }) => {
-  // const headersList = headers();
-  // const pathname = headersList.get('x-invoke-path') || '';
+export const Header = async ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = await dictionaries[lang]();
   const navLinks = [
     {
       title: dict.navbar.projects,
@@ -21,7 +20,8 @@ export const Header = ({ dict }: { dict: TDictionary }) => {
     { title: dict.navbar.participate, href: '#forms' },
     { title: dict.navbar.contacts, href: '#footer' },
   ];
-  const pathname = usePathname();
+  const headersList = headers();
+  const pathname = headersList.get('x-invoke-path') || '';
   return (
     <header className="h-[10rem] bg-yellow-500 md:h-[10.4rem]" id="header">
       <ContainerMaxW1200 className="h-full items-center justify-between">

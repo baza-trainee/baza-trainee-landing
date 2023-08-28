@@ -1,9 +1,11 @@
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
 import { ProjectCard } from './ProjectCard';
-import { getTranslatedProjects, projects } from './projects';
+import { projects } from './projects';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { SETTINGS } from '@/config/settings';
-import { IProject, TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
+import { IProject } from '@/types';
 
 const getProjects = async () => {
   const response = await fetch(
@@ -26,20 +28,14 @@ const getProjects = async () => {
   return modResult;
 };
 
-export const Projects = async ({
-  lang,
-  dict,
-}: {
-  lang: 'ua' | 'en' | 'pl';
-  dict: TDictionary;
-}) => {
+export const Projects = async ({ lang }: { lang: TLandingLanguage }) => {
   // const [filteredProjects1, setFilteredProjects] =
   //   useState<TProjects[]>(projects);
 
   // const response: TProjects[] = await getProjects();
   // const filteredProjects = [...response, ...projects];
   const filteredProjects = projects;
-  const translatedProjects = getTranslatedProjects(dict, filteredProjects);
+  const dict = await dictionaries[lang]();
 
   return (
     <section id="projects">
@@ -52,12 +48,12 @@ export const Projects = async ({
           />
         </div> */}
 
-        {translatedProjects.length === 0 && (
-          <h3 className="text-[3.8rem]">Sorry! There are no projects.</h3>
+        {filteredProjects.length === 0 && (
+          <h3 className="text-[3.8rem]">{dict.noProjects}</h3>
         )}
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-          {translatedProjects.map((project: IProject) => (
+          {filteredProjects.map((project: IProject) => (
             <ProjectCard
               lang={lang}
               key={project._id}
@@ -67,8 +63,8 @@ export const Projects = async ({
           ))}
         </ul>
 
-        {translatedProjects.length > 9 && (
-          <MoreProjectsButton open={false} dict={dict} />
+        {filteredProjects.length > 9 && (
+          <MoreProjectsButton open={false} lang={lang} />
         )}
       </ContainerMaxW1200>
     </section>

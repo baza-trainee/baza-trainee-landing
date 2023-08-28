@@ -1,7 +1,9 @@
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
-import { TDictionary } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
 
-export const Forms = ({ dict }: { dict: TDictionary }) => {
+export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = await dictionaries[lang]();
   return (
     <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">

@@ -5,20 +5,22 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { projects } from './projects';
 
 import { SearchIcon } from '@/components/common/icons';
+import { TLandingLanguage } from '@/store/globalContext';
 import { IProject } from '@/types';
 import styles from './styles.module.scss';
 
 interface IProps {
   setFilteredProjects?: Dispatch<SetStateAction<IProject[]>>;
+  lang?: TLandingLanguage;
 }
 
-export const SearchBar = ({ setFilteredProjects }: IProps) => {
+export const SearchBar = ({ setFilteredProjects, lang }: IProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const handleSearchChange = (event: any) => {
     event.preventDefault();
     setSearchQuery(event.target.value);
     const filtered = projects.filter((project) =>
-      project.description
+      project.description[lang || 'ua']
         .trim()
         .toLowerCase()
         .includes(event.target.value.trim().toLowerCase())
