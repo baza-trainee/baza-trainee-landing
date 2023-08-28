@@ -11,8 +11,11 @@ export const SubMenu = (props: IProps) => {
   return (
     <div
       className={`
-        ${iconOnly && 'absolute -top-[1.6rem] left-40 rounded-md border border-neutral-300 bg-base-dark px-5 pb-5 pt-3'}
-        transition-all`}
+        ${
+          iconOnly &&
+          'absolute -top-[1.6rem] left-40 rounded-md border border-neutral-300 bg-base-dark px-5 pb-5 pt-3'
+        }
+        z-10 shadow-lg transition-all`}
     >
       {submenu.map((item, i) => (
         <div

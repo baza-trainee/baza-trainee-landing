@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-export const networkStatusUk: { [key: number]: string } = {
+export const networkStatusesUk: { [key: number]: string } = {
   400: 'Помилковий запит',
   401: 'Не авторизований',
   402: 'Потрібна оплата',

@@ -1,18 +1,16 @@
 'use client';
 
-import { projects } from '@/components/MainPage/Projects/projects';
 import { ProjectCard } from '@/components/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
 
-import { IProject } from '@/types';
-import { useAPI } from '@/utils/hooks/useAPI';
-import projectsApi from '@/utils/API/projects';
-import { useEffect, useState } from 'react';
-import { useGlobalContext } from '@/store/globalContext';
 import { useProjectsSWR } from '@/hooks/useProjectsSWR';
-import { networkStatusUk } from '@/utils/errorHandler';
+import { useGlobalContext } from '@/store/globalContext';
+import { IProject } from '@/types';
+import { networkStatusesUk } from '@/utils/errorHandler';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export const AdminPageProjects = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -34,7 +32,7 @@ export const AdminPageProjects = () => {
     isError &&
       setAlertInfo({
         state: 'error',
-        title: networkStatusUk[isError?.status || 500],
+        title: networkStatusesUk[isError?.status || 500],
         textInfo:
           'Не вдалося отримати перелік проєктів. Спробуйте трохи пізніше.',
       });
@@ -42,13 +40,17 @@ export const AdminPageProjects = () => {
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
-      <div className="mb-[4.4rem] text-[3.2rem] font-bold">Проєкти</div>
+      <h2 className="mb-[4.4rem] text-[3.2rem] font-bold text-admin-header">
+        Проєкти
+      </h2>
 
       <ul className="flex w-full flex-wrap gap-[2.4rem]">
         <li className="flex-center w-[37.8rem]">
-          <AdminPanelButton icon={<PlusIcon />} variant="secondary">
-            Додати проєкт
-          </AdminPanelButton>
+          <Link href={'/admin/projects/add'}>
+            <AdminPanelButton icon={<PlusIcon />} variant="secondary">
+              Додати проєкт
+            </AdminPanelButton>
+          </Link>
         </li>
 
         {projects &&

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useSWR, { mutate } from 'swr';
 
 import { bazaAPI } from '@/utils/API/config';
@@ -5,7 +6,6 @@ import { errorHandler } from '@/utils/errorHandler';
 
 import { TResponseProjects, byIdRequest } from '@/types';
 import { AxiosError } from 'axios';
-import { useEffect } from 'react';
 
 const projectsEndpoint = '/projects';
 
@@ -15,7 +15,7 @@ const getAllProjects = async (limit?: number) => {
 };
 
 const deleteById = async (id: string) => {
-  return bazaAPI.delete(projectsEndpoint + '/' + id);
+  return await bazaAPI.delete(projectsEndpoint + '/3' + id);
 };
 
 // const updateById = async ([id, payload]: updateByIdRequest) => {
