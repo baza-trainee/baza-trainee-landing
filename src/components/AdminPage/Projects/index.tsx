@@ -1,19 +1,19 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useProjectsSWR } from '@/hooks/useProjectsSWR';
+import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { useGlobalContext } from '@/store/globalContext';
 import { networkStatusesUk } from '@/utils/errorHandler';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { ProjectCard } from '@/components/ProjectCard';
-import { ButtonsOverlay } from './ButtonsOverlay';
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
+import { ButtonsOverlay } from './ButtonsOverlay';
 
 import { IProject } from '@/types';
 
-export const AdminPageProjects = () => {
+export const AdminProjects = () => {
   const { setAlertInfo } = useGlobalContext();
   // const [
   //   dispatch,
@@ -22,7 +22,7 @@ export const AdminPageProjects = () => {
   // ] = useAPI(projectsApi.getAll);
   const [showedItems, setShowedItems] = useState();
 
-  const { projects, isLoading, isError } = useProjectsSWR();
+  const { data: projects, isLoading, isError } = useProjectsSWR();
 
   // useEffect(() => {
   //   dispatch(showedItems);

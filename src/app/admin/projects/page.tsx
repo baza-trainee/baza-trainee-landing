@@ -1,5 +1,5 @@
-import { AdminPageProjects } from '@/components/AdminPage/Projects';
+import { AdminProjects } from '@/components/AdminPage/Projects';
 
-export default function AdminProjects() {
-  return <AdminPageProjects />;
+export default function ProjectsPage() {
+  return <AdminProjects />;
 }

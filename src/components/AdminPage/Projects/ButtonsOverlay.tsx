@@ -1,8 +1,8 @@
-import { ReactElement } from 'react';
 import Link from 'next/link';
+import { ReactElement } from 'react';
 
-import { useProjectsSWR } from '@/hooks/useProjectsSWR';
 import { EditDeleteButton } from '@/components/atomic';
+import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
 export const ButtonsOverlay = ({ children }: { children: ReactElement }) => {
   const { handlerDeleteProject } = useProjectsSWR();

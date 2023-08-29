@@ -50,7 +50,7 @@ export const useProjectsSWR = () => {
   };
 
   return {
-    projects: data,
+    data,
     isLoading,
     isError: error,
     handlerDeleteProject,
