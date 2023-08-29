@@ -1,16 +1,17 @@
 'use client';
 
-import { ProjectCard } from '@/components/ProjectCard';
-import { AdminPanelButton } from '@/components/atomic';
-import { PlusIcon } from '@/components/common/icons';
-import { ButtonsOverlay } from './ButtonsOverlay';
-
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useProjectsSWR } from '@/hooks/useProjectsSWR';
 import { useGlobalContext } from '@/store/globalContext';
-import { IProject } from '@/types';
 import { networkStatusesUk } from '@/utils/errorHandler';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+
+import { ProjectCard } from '@/components/ProjectCard';
+import { ButtonsOverlay } from './ButtonsOverlay';
+import { AdminPanelButton } from '@/components/atomic';
+import { PlusIcon } from '@/components/common/icons';
+
+import { IProject } from '@/types';
 
 export const AdminPageProjects = () => {
   const { setAlertInfo } = useGlobalContext();

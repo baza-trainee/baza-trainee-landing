@@ -15,7 +15,7 @@ const getAllProjects = async (limit?: number) => {
 };
 
 const deleteById = async (id: string) => {
-  return await bazaAPI.delete(projectsEndpoint + '/3' + id);
+  return await bazaAPI.delete(projectsEndpoint + '/' + id);
 };
 
 // const updateById = async ([id, payload]: updateByIdRequest) => {
