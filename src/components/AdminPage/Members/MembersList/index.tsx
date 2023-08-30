@@ -1,12 +1,10 @@
-import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
+import { IMember } from '@/types';
 
-export const MembersList = () => {
-  const { data: members, isLoading, isError } = useMembersSWR();
-
+export const MembersList = ({ members }: { members: IMember[] }) => {
   return (
-    <table className='w-full' >
+    <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
       <ListHeader />
 
       <tbody>

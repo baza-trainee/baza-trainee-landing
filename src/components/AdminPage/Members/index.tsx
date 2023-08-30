@@ -3,11 +3,12 @@
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useGlobalContext } from '@/store/globalContext';
 import { networkStatusesUk } from '@/utils/errorHandler';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 
 import { AdminPanelButton, SearchBar } from '@/components/atomic';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { MembersList } from './MembersList';
+import { IMember } from '@/types';
 
 export const Members = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -15,7 +16,17 @@ export const Members = () => {
   const [showedItems, setShowedItems] = useState();
 
   const { data: members, isLoading, isError } = useMembersSWR();
-  const [filteredMembers, setFilteredMembers] = useState(members);
+  const [filteredMembers, setFilteredMembers] = useState<IMember[]>(
+    members || []
+  );
+
+  const updateFilteredMembers = (filteredData: IMember[]) => {
+    setFilteredMembers(filteredData);
+  };
+
+  useEffect(() => {
+    members && setFilteredMembers(members);
+  }, [members]);
 
   useEffect(() => {
     isError &&
@@ -23,7 +34,7 @@ export const Members = () => {
         state: 'error',
         title: networkStatusesUk[isError?.status || 500],
         textInfo:
-          'Не вдалося отримати перелік проєктів. Спробуйте трохи пізніше.',
+          'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
       });
   }, [isError]);
 
@@ -34,19 +45,18 @@ export const Members = () => {
 
         <div className="ml-auto ">
           <SearchBar
-            data={[]}
-            onFilter={function (filteredData: unknown[]): void {
-              throw new Error('Function not implemented.');
-            }}
+            searchFor={'members'}
+            data={members}
+            updateData={updateFilteredMembers}
           />
         </div>
 
-        <div className="rounded-md bg-yellow-500 py-5 h-[5.6rem]">
+        <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
           <LanguageSelector />
         </div>
       </div>
 
-      <MembersList/>
+      <MembersList members={filteredMembers} />
     </section>
   );
 };

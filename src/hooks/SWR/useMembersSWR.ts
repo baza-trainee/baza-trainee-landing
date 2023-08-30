@@ -38,10 +38,8 @@ export const useMembersSWR = () => {
   const handlerDeleteMember = async (id: string) => {
     try {
       const newMembers = data?.filter((member) => member._id !== id) || [];
-
-      const options = { optimisticData: { ...data, results: newMembers } };
-
-      mutate(membersEndpoint, await deleteById(id), options);
+      await deleteById(id);
+      mutate(membersEndpoint, newMembers, { revalidate: false });
     } catch (error) {
       errorHandler(error);
     }
@@ -51,6 +49,7 @@ export const useMembersSWR = () => {
     data,
     isLoading,
     isError: error,
+    mutate,
     handlerDeleteMember,
   };
 };

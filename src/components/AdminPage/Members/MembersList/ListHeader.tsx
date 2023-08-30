@@ -1,22 +1,33 @@
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 
+const cellStyle = 'border-none p-0';
+const bgStyle = 'mb-10 flex h-[7.2rem] items-center bg-yellow-200';
+
 export const ListHeader = () => {
   return (
     <thead>
-      <div className="flex w-full rounded-md bg-yellow-200 px-2 py-3">
-        <tr>
-          <th>
-            <input type="checkbox" />
+      <tr>
+        <th className={cellStyle + ' w-full'}>
+          <div className={bgStyle + ' rounded-s-md pl-5'}>
+            <span>Прізвище та Ім’я</span>
+          </div>
+        </th>
+
+        {false && ( // TODO: to implement logic when this component will be reusing in "project"
+          <th className={cellStyle + ' w-1/4'}>
+            <div className={bgStyle}>
+              <span>Спеціалізація</span>
+            </div>
           </th>
-          <th>
-            <span className="ml-11 mr-auto">Прізвище та Ім’я</span>
-          </th>
-          <th>
+        )}
+
+        <th className={cellStyle + ' w-[18rem]'}>
+          <div className={bgStyle + ' justify-center rounded-e-md'}>
             <AdminPanelButton icon={<PlusIcon />}>Додати</AdminPanelButton>
-          </th>
-        </tr>
-      </div>
+          </div>
+        </th>
+      </tr>
     </thead>
   );
 };

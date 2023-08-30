@@ -8,20 +8,29 @@ type Props = {
   member: IMember;
 };
 
+const cellStyle = 'border-none p-0';
+const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
+
 export const ListRow = ({ member }: Props) => {
   return (
-    <div className="flex w-full rounded-md bg-neutral-50 px-2 py-3">
-      <tr>
-        <td>
-          <input type="checkbox" />
+    <tr>
+      <td className={cellStyle}>
+        <div className={bgStyle + ' rounded-s-md pl-5'}>
+          <span>{member.name.ua}</span>
+        </div>
+      </td>
+
+      {false && ( // TODO: to implement logic when this component will be reusing in "project"
+        <td className={cellStyle}>
+          <div className={bgStyle}>{/* Спеціалізація */}</div>
         </td>
-        <td>
-          <span className="ml-11 mr-auto">{member.name.ua}</span>
-        </td>
-        <td>
+      )}
+
+      <td className={cellStyle}>
+        <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>
           <ActionBtns id={member._id!} />
-        </td>
-      </tr>
-    </div>
+        </div>
+      </td>
+    </tr>
   );
 };
