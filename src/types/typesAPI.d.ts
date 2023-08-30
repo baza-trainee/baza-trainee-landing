@@ -82,18 +82,35 @@ export interface IProject extends CommonResponseBase {
 
 export interface IProject {
   _id: string;
-  title: string;
+  title: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
   imageUrl: string;
-  status: string;
+  status: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  statusVal: 'active' | 'under-development' | 'formation-of-the-team';
   link: string;
-  description: string;
+  description: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
   creationDate: number;
   launchDate: number;
   complexity: number;
   teamMembers: Array<{
     user: {
       _id: string;
-      name: string;
+      name: {
+        en: string;
+        pl: string;
+        ua: string;
+      };
       link: string;
     };
     role: {

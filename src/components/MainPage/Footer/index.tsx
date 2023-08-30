@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { TContactsInfo } from '@/types';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
   LinkedInIcon,
@@ -10,20 +11,9 @@ import {
   PhoneIcon,
   TelegramIcon,
 } from '@/components/common/icons';
+import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
-
-const anchorLinksList = [
-  { title: 'Проєкти', href: '#projects' },
-  { title: 'Партнери', href: '#partners' },
-  { title: 'Взяти участь', href: '#forms' },
-];
-
-const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
-  { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
-  { title: 'Статут', href: '?document=statut.pdf' },
-  { title: 'Звітність', href: '#' },
-];
+import { headers } from 'next/headers';
 
 const getContacts = async () => {
   const noData: TContactsInfo = {
@@ -58,14 +48,41 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   </Link>
 );
 
-export const Footer = async () => {
+export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
+  const headersList = headers();
+  const pathname = headersList.get('x-invoke-path') || '';
   const contactsInfo: TContactsInfo = await getContacts();
+  const dict = await dictionaries[lang]();
+  const anchorLinksList = [
+    { title: dict.footer?.projects, href: '#projects' },
+    { title: dict.footer?.partners, href: '#partners' },
+    { title: dict.footer?.participate, href: '#forms' },
+  ];
 
+  const officialDocsList = [
+    {
+      title: dict.footer.privacyPolicy,
+      href: '?document=policy.pdf',
+    },
+    {
+      title: dict.footer.rulesForUsingTheSite,
+      href: '?document=rules.pdf',
+    },
+    {
+      title: dict.footer.statute,
+      href: '?document=statut.pdf',
+    },
+    { title: dict.footer.accountability, href: '#' },
+  ];
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col gap-12 text-white lg:gap-0">
         <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
-          <Link href={'/'} className="sm:row-span-2" aria-label="Main page">
+          <Link
+            href={pathname}
+            className="sm:row-span-2"
+            aria-label="Main page"
+          >
             <LogoMain className="h-32 w-32 sm:h-[12.4rem] sm:w-[12.4rem]" />
           </Link>
 
@@ -141,7 +158,7 @@ export const Footer = async () => {
         </nav>
 
         <span className="text-[1.4rem] text-neutral-75 sm:mt-0">
-          Розробка BazaTraineeUkraine 2023 Усі права захищені.
+          {dict.footer.allRightsReserved}
         </span>
       </ContainerMaxW1200>
     </footer>

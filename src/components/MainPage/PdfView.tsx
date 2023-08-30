@@ -1,20 +1,37 @@
 'use client';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
+import { TDictionary } from '@/types';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import Spinner from '../common/icons/Spinner';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-export const PDFView = ({ document }: { document: string | null }) => {
+export const PDFView = ({
+  document,
+  lang,
+}: {
+  document: string | null;
+  lang: TLandingLanguage;
+}) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
+  const [dict, setDict] = useState<TDictionary>();
+  async function getDictionary() {
+    setDict(await dictionaries[lang]());
+  }
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
   const pdfWrapperRef = useRef<HTMLDivElement | null>(
     null
   ) as RefObject<HTMLDivElement>;
+
+  useEffect(() => {
+    getDictionary();
+  }, []);
 
   useEffect(() => {
     const getWidth = () =>
@@ -44,13 +61,11 @@ export const PDFView = ({ document }: { document: string | null }) => {
         ref={pdfWrapperRef}
       >
         <Document
-          loading={<Spinner title="Документ завантажується" />}
+          loading={<Spinner title={dict?.spinner.loading} />}
           file={`./docs/${document}`}
           onLoadSuccess={onDocumentLoadSuccess}
           error={
-            <div className="text-3xl font-bold">
-              Не вдалося завантажити файл
-            </div>
+            <div className="text-3xl font-bold">{dict?.spinner.error}</div>
           }
           className={'flex w-full flex-col items-center justify-center p-5 '}
         >

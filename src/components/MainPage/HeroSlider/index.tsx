@@ -1,9 +1,11 @@
 'use client';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
-import { TSlide } from '@/types';
-import { memo, useRef, useState } from 'react';
+import { TLandingLanguage } from '@/store/globalContext';
+import { TDictionary, TSlide } from '@/types';
+import { memo, useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { Modal } from '../Modal';
 import { Dots } from './Dots';
@@ -20,14 +22,25 @@ const settings = {
   arrows: false,
 };
 
-const ModalComponent = () => (
-  <Modal content="donate">
-    <PrimaryButton>Фондувати</PrimaryButton>
-  </Modal>
-);
+const ModalComponent = ({ lang }: { lang: TLandingLanguage }) => {
+  const [dict, setDict] = useState<TDictionary>();
+  const getDictionary = async () => {
+    setDict(await dictionaries[lang]());
+  };
+
+  useEffect(() => {
+    getDictionary();
+  }, []);
+
+  return (
+    <Modal content="donate" lang={lang}>
+      <PrimaryButton>{dict?.toFund}</PrimaryButton>
+    </Modal>
+  );
+};
 const MemoizedModal = memo(ModalComponent);
 
-const HeroSlider = () => {
+const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
 
@@ -57,9 +70,10 @@ const HeroSlider = () => {
         >
           {slides.map((slide: TSlide, index) => (
             <SingleSlide
-              key={`key_${slide.title}`}
+              key={`key_${slide.title[lang]}`}
               slideData={slide}
               index={index}
+              slideLang={lang}
             />
           ))}
         </Slider>
@@ -90,7 +104,7 @@ const HeroSlider = () => {
         <ContainerMaxW1200 className="min-h-[8.8rem] flex-col gap-[2.4rem] py-[1.6rem] sm:flex-row sm:items-center sm:justify-between sm:py-0">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          <MemoizedModal />
+          <MemoizedModal lang={lang} />
         </ContainerMaxW1200>
       </div>
     </section>

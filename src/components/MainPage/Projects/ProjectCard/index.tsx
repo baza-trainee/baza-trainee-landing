@@ -5,12 +5,18 @@ import { useState } from 'react';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
+import { TLandingLanguage } from '@/store/globalContext';
 import { IProject } from '@/types';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
-const ProjectCard = ({ project }: { project: IProject }) => {
+const ProjectCard = ({
+  project,
+  lang,
+}: {
+  project: IProject;
+  lang: TLandingLanguage;
+}) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
-
   const handleShowTeam = () => {
     setIsMembersVisible((prev) => !prev);
   };
@@ -46,11 +52,13 @@ const ProjectCard = ({ project }: { project: IProject }) => {
           {isMembersVisible ? (
             <ProjectCardTeam
               project={project}
+              lang={lang}
               handleShowTeam={handleShowTeam}
             />
           ) : (
             <ProjectCardContent
               project={project}
+              lang={lang}
               handleShowTeam={handleShowTeam}
             />
           )}

@@ -1,16 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
-import { TSlideReview } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
+import { TDictionary, TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
 
-export const Reviews = () => {
+export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [dict, setDict] = useState<TDictionary>();
 
   const sliderSettings = {
     dots: true,
@@ -21,13 +24,23 @@ export const Reviews = () => {
     prevArrow: <SlickArrow direction="left" />,
   };
 
+  const getDictionary = async () => {
+    setDict(await dictionaries[lang]());
+  };
+
   const customPaging = (i: number) => Dot(i, currentSlide);
+
+  useEffect(() => {
+    getDictionary();
+  }, []);
 
   return (
     <section>
       <ContainerMaxW1200>
         <div className="w-full">
-          <h3 className="mb-12 text-center text-6xl font-bold">Відгуки</h3>
+          <h3 className="mb-12 text-center text-6xl font-bold">
+            {dict?.reviews.title}
+          </h3>
           <Slider
             {...sliderSettings}
             customPaging={customPaging}
@@ -35,7 +48,7 @@ export const Reviews = () => {
             lazyLoad="progressive"
           >
             {slides.map((review: TSlideReview, index) => (
-              <SingleSlide slideData={review} key={index + 'key'} />
+              <SingleSlide slideData={review} key={index + 'key'} lang={lang} />
             ))}
           </Slider>
         </div>
