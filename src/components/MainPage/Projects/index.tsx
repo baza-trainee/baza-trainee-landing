@@ -1,4 +1,5 @@
 'use client';
+
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
 import { ProjectCard } from './ProjectCard';
 
@@ -28,13 +29,18 @@ const getProjects = async () => {
   return modResult;
 };
 
+const ProjectsCountOnFirstLoad = 9;
+const ProjectsLoadMore = 3;
+
 export const Projects = () => {
-  const [visibleProjects, setVisibleProjects] = useState(projects.slice(0, 9));
+  const [visibleProjects, setVisibleProjects] = useState(
+    projects.slice(0, ProjectsCountOnFirstLoad)
+  );
 
   const loadMore = () => {
     const nextProjects = projects.slice(
       visibleProjects.length,
-      visibleProjects.length + 3
+      visibleProjects.length + ProjectsLoadMore
     );
     setVisibleProjects([...visibleProjects, ...nextProjects]);
   };
@@ -43,7 +49,14 @@ export const Projects = () => {
 
   // const response: TProjects[] = await getProjects();
   // const filteredProjects = [...response, ...projects];
-  const filteredProjects = projects.slice(0, 9);
+  //const filteredProjects = projects.slice(0, 9);
+  const animateDelay = (index: number) => {
+    const a =
+      visibleProjects.length > ProjectsCountOnFirstLoad
+        ? index - visibleProjects.length + ProjectsLoadMore
+        : index;
+    return a;
+  };
 
   return (
     <section id="projects">
@@ -56,13 +69,17 @@ export const Projects = () => {
           />
         </div> */}
 
-        {filteredProjects.length === 0 && (
+        {visibleProjects.length === 0 && (
           <h3 className="text-[3.8rem]">Sorry! There are no projects.</h3>
         )}
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-          {visibleProjects.map((project: IProject) => (
-            <ProjectCard key={project._id} project={project} />
+          {visibleProjects.map((project: IProject, index: number) => (
+            <ProjectCard
+              key={project._id}
+              project={project}
+              animationDelay={animateDelay(index)}
+            />
           ))}
         </ul>
 
