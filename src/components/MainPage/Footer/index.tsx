@@ -22,7 +22,7 @@ const officialDocsList = [
   { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
   { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
   { title: 'Статут', href: '?document=statut.pdf' },
-  { title: 'Звітність', href: '#' },
+  { title: 'Звітність', href: '?document=report.pdf' },
 ];
 
 const getContacts = async () => {
