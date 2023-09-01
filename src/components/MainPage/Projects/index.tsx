@@ -3,12 +3,11 @@
 import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
 import { ProjectCard } from './ProjectCard';
 
-import { SETTINGS } from '@/config/settings';
 import { IProject } from '@/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { projects } from './projects';
 
-const getProjects = async () => {
+/*const getProjects = async () => {
   const response = await fetch(
     'https://baza-trainee.tech/api/v1/projects',
     // `${process.env.NEXT_PUBLIC_SERVER_URL}/projects`,
@@ -27,15 +26,38 @@ const getProjects = async () => {
   });
 
   return modResult;
-};
+};*/
 
-const ProjectsCountOnFirstLoad = 9;
-const ProjectsLoadMore = 3;
+let ProjectsCountOnFirstLoad = 9;
+let ProjectsLoadMore = 3;
 
 export const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState(
-    projects.slice(0, ProjectsCountOnFirstLoad)
+    projects.slice(0, handleResize())
   );
+
+  function handleResize() {
+    const width = window.innerWidth;
+    if (width < 768) {
+      ProjectsCountOnFirstLoad = 3;
+      ProjectsLoadMore = 2;
+    } else if (width >= 768 && width < 1280) {
+      ProjectsCountOnFirstLoad = 4;
+      ProjectsLoadMore = 2;
+    } else {
+      ProjectsCountOnFirstLoad = 9;
+      ProjectsLoadMore = 3;
+    }
+
+    return ProjectsCountOnFirstLoad;
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const loadMore = () => {
     const nextProjects = projects.slice(
@@ -51,11 +73,11 @@ export const Projects = () => {
   // const filteredProjects = [...response, ...projects];
   //const filteredProjects = projects.slice(0, 9);
   const animateDelay = (index: number) => {
-    const a =
+    const delay =
       visibleProjects.length > ProjectsCountOnFirstLoad
         ? index - visibleProjects.length + ProjectsLoadMore
         : index;
-    return a;
+    return delay;
   };
 
   return (
