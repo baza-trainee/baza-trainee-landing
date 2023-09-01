@@ -2,7 +2,7 @@ import { AdminPanelButton, EditDeleteButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { IMember } from '@/types';
 import { type } from 'os';
-import { ActionBtns } from './ActionBtns';
+import { ActionBtns } from '../../../atomic/buttons/ActionBtns';
 
 type Props = {
   member: IMember;
@@ -28,7 +28,7 @@ export const ListRow = ({ member }: Props) => {
 
       <td className={cellStyle}>
         <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>
-          <ActionBtns id={member._id!} />
+          <ActionBtns id={member._id!} actionsFor="members" />
         </div>
       </td>
     </tr>

@@ -1,5 +1,6 @@
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
+import Link from 'next/link';
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-10 flex h-[7.2rem] items-center bg-yellow-200';
@@ -24,7 +25,9 @@ export const ListHeader = () => {
 
         <th className={cellStyle + ' w-[18rem]'}>
           <div className={bgStyle + ' justify-center rounded-e-md'}>
-            <AdminPanelButton icon={<PlusIcon />}>Додати</AdminPanelButton>
+            <Link href="/admin/members/add">
+              <AdminPanelButton icon={<PlusIcon />}>Додати</AdminPanelButton>
+            </Link>
           </div>
         </th>
       </tr>
