@@ -1,5 +1,4 @@
 export * from './ContainerMaxW1200';
-export * from './SearchBar';
 
 export * from './buttons/AdminPanelButton';
 export * from './buttons/DonateButton';
