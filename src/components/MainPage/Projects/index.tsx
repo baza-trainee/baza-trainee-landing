@@ -37,18 +37,19 @@ export const Projects = () => {
   );
 
   function handleResize() {
-    const width = window.innerWidth;
-    if (width < 768) {
-      ProjectsCountOnFirstLoad = 3;
-      ProjectsLoadMore = 2;
-    } else if (width >= 768 && width < 1280) {
-      ProjectsCountOnFirstLoad = 4;
-      ProjectsLoadMore = 2;
-    } else {
-      ProjectsCountOnFirstLoad = 9;
-      ProjectsLoadMore = 3;
+    if (typeof window !== 'undefined') {
+      const width = window.innerWidth;
+      if (width < 768) {
+        ProjectsCountOnFirstLoad = 3;
+        ProjectsLoadMore = 2;
+      } else if (width >= 768 && width < 1280) {
+        ProjectsCountOnFirstLoad = 4;
+        ProjectsLoadMore = 2;
+      } else {
+        ProjectsCountOnFirstLoad = 9;
+        ProjectsLoadMore = 3;
+      }
     }
-
     return ProjectsCountOnFirstLoad;
   }
 
