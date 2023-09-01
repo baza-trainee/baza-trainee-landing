@@ -2,7 +2,7 @@ import { IProject } from '@/types';
 
 export const projects = [
   {
-    _id: '1',
+    _id: crypto.randomUUID(),
     title: {
       en: 'Murrfecto',
       pl: 'Murrfecto',
@@ -250,7 +250,7 @@ export const projects = [
     ],
   },
   {
-    _id: '4',
+    _id: crypto.randomUUID(),
     title: {
       en: 'Ataka Help',
       pl: 'Ataka Help',
@@ -627,7 +627,7 @@ export const projects = [
     ],
   },
   {
-    _id: '6',
+    _id: crypto.randomUUID(),
     title: {
       en: 'baza',
       pl: 'baza',
@@ -952,7 +952,7 @@ export const projects = [
     ],
   },
   {
-    _id: '2',
+    _id: crypto.randomUUID(),
     title: {
       en: 'Cheetosaurus',
       pl: 'Cheetosaurus',
@@ -977,7 +977,7 @@ export const projects = [
     teamMembers: [],
   },
   {
-    _id: '5',
+    _id: crypto.randomUUID(),
     title: {
       en: '1001 songs',
       pl: '1001 songs',
@@ -1002,7 +1002,7 @@ export const projects = [
     teamMembers: [],
   },
   {
-    _id: '3',
+    _id: crypto.randomUUID(),
     title: {
       en: 'Big Lapa',
       pl: 'Big Lapa',
@@ -1027,7 +1027,7 @@ export const projects = [
     teamMembers: [],
   },
   {
-    _id: '7',
+    _id: crypto.randomUUID(),
     title: {
       en: 'feeda',
       pl: 'feeda',
@@ -1052,7 +1052,7 @@ export const projects = [
     teamMembers: [],
   },
   {
-    _id: '8',
+    _id: crypto.randomUUID(),
     title: {
       en: 'book',
       pl: 'książka',
@@ -1077,7 +1077,7 @@ export const projects = [
     teamMembers: [],
   },
   {
-    _id: '9',
+    _id: crypto.randomUUID(),
     title: {
       en: 'Landing - fundraising',
       pl: 'Landing - zbieranie funduszy',

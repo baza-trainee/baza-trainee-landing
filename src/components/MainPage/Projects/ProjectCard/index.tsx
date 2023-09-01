@@ -1,7 +1,7 @@
 'use client';
-
 import Image from 'next/image';
 import { useState } from 'react';
+import styles from './styles.module.scss';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
@@ -12,9 +12,11 @@ import { ProjectCardTeam } from './ProjectCardTeam';
 const ProjectCard = ({
   project,
   lang,
+  animationDelay,
 }: {
   project: IProject;
   lang: TLandingLanguage;
+  animationDelay?: number;
 }) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
   const handleShowTeam = () => {
@@ -22,7 +24,11 @@ const ProjectCard = ({
   };
 
   return (
-    <li>
+    <li
+      className={`${styles.animate}`}
+      style={{ animationDelay: `${animationDelay! / 8}s` }}
+    >
+      {/*<li className={styles['new-box']}>*/}
       <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md">
         <Image
           src={project.imageUrl}

@@ -59,6 +59,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           afterChange={setCurrentSlide}
           lazyLoad="progressive"
           ref={slickRef}
+          className="h-[50.4rem]"
         >
           {slides.map((slide: TSlide, index) => (
             <SingleSlide
