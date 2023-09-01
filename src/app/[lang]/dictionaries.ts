@@ -1,8 +1,14 @@
-export const dictionaries: any = {
-  en: () =>
-    import('../../locales/en/main.json').then((module) => module.default),
-  pl: () =>
-    import('../../locales/pl/main.json').then((module) => module.default),
-  ua: () =>
-    import('../../locales/ua/main.json').then((module) => module.default),
+import { TDictionary } from '@/types';
+import en from '../../locales/en/main.json';
+import pl from '../../locales/pl/main.json';
+import ua from '../../locales/ua/main.json';
+
+export const dictionaries: {
+  en: TDictionary;
+  pl: TDictionary;
+  ua: TDictionary;
+} = {
+  en,
+  pl,
+  ua,
 };

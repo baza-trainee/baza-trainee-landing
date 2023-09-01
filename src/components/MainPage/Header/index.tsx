@@ -5,23 +5,15 @@ import { LogoMain } from '@/components/common/icons';
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary } from '@/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { HeaderDropdownMenu } from './HeaderDropdownMenu';
 import { HeaderLinks } from './HeaderLinks';
 import LanguageSelector from './LanguageSelector';
 
 export const Header = ({ lang }: { lang: TLandingLanguage }) => {
   // const dict = await dictionaries[lang]();
-  const [dict, setDict] = useState<TDictionary>();
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-  useEffect(() => {
-    getDictionary();
-  }, []);
+  const dict = dictionaries[lang];
   const navLinks = [
     {
       title: dict?.navbar.projects,

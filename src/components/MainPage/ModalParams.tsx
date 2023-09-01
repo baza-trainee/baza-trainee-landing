@@ -50,7 +50,7 @@ export const ModalParams = ({ lang }: { lang: TLandingLanguage }) => {
         </Link>
 
         {isPaymentSuccess ? (
-          <Gratitude lang={lang} />
+          <Gratitude />
         ) : (
           <PDFView lang={lang} document={document} />
         )}

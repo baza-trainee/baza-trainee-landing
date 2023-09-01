@@ -52,7 +52,8 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
   const headersList = headers();
   const pathname = headersList.get('x-invoke-path') || '';
   const contactsInfo: TContactsInfo = await getContacts();
-  const dict = await dictionaries[lang]();
+  // const dict = await dictionaries[lang]();
+  const dict = dictionaries[lang];
   const anchorLinksList = [
     { title: dict.footer?.projects, href: '#projects' },
     { title: dict.footer?.partners, href: '#partners' },

@@ -6,8 +6,7 @@ import { projects } from './projects';
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { SETTINGS } from '@/config/settings';
 import { TLandingLanguage } from '@/store/globalContext';
-import { IProject, TDictionary } from '@/types';
-import { useEffect, useState } from 'react';
+import { IProject } from '@/types';
 
 const getProjects = async () => {
   const response = await fetch(
@@ -37,15 +36,7 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
   // const response: TProjects[] = await getProjects();
   // const filteredProjects = [...response, ...projects];
   const filteredProjects = projects;
-  const [dict, setDict] = useState<TDictionary>();
-
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
+  const dict = dictionaries[lang];
 
   return (
     <section id="projects">

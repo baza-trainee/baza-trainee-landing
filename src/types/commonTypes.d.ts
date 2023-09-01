@@ -38,10 +38,6 @@ export type TSlideReview = {
 };
 
 export type TDictionary = {
-  heroSlider: {
-    title: string;
-    description: string;
-  }[];
   navbar: {
     projects: string;
     partners: string;
@@ -60,62 +56,6 @@ export type TDictionary = {
     duration: string;
     complexity: string;
     projectTeam: string;
-    list: {
-      murrfecto: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: string[];
-      };
-      atakahelp: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: string[];
-      };
-      bazatrainee: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: string[];
-      };
-      cheetosaurus: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: [];
-      };
-      '1001-songs': {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: [];
-      };
-      biglapa: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: [];
-      };
-      feeda: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: [];
-      };
-      bookAbroad: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: [];
-      };
-      fundraisingLP: {
-        title: string;
-        status: string;
-        statusVal: 'under-development' | 'active' | 'formation';
-        teamMembers: [];
-      };
-    };
     status: {
       teamFormation: string;
       underDevelopment: string;
@@ -144,21 +84,11 @@ export type TDictionary = {
   };
   reviews: {
     title: string;
-    list: {
-      name: string;
-      role: string;
-      date: string;
-      review: string;
-    }[];
   };
   modal: {
     title: string;
     description: string;
     sums: {
-      '100': string;
-      '200': string;
-      '500': string;
-      '1000': string;
       otherSum: string;
     };
     button: string;

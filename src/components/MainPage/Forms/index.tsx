@@ -3,7 +3,7 @@ import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = await dictionaries[lang]();
+  const dict = dictionaries[lang];
   return (
     <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">

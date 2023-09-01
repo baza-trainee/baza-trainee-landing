@@ -6,11 +6,9 @@ import {
 } from '@/components/common/icons';
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
-import { TDictionary } from '@/types';
 import projectCycle from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { ICardContent } from '../types';
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
@@ -20,14 +18,7 @@ const ProjectCardContent = ({
   project,
   lang,
 }: ICardContent) => {
-  const [dict, setDict] = useState<TDictionary>();
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
+  const dict = dictionaries[lang];
   return (
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar

@@ -1,19 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary, TSlideReview } from '@/types';
+import { TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
 
 export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [dict, setDict] = useState<TDictionary>();
 
   const sliderSettings = {
     dots: true,
@@ -23,16 +22,8 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
     nextArrow: <SlickArrow direction="right" />,
     prevArrow: <SlickArrow direction="left" />,
   };
-
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-
+  const dict = dictionaries[lang];
   const customPaging = (i: number) => Dot(i, currentSlide);
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
 
   return (
     <section>

@@ -4,7 +4,7 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { Modal } from '../Modal';
 
 export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = await dictionaries[lang]();
+  const dict = dictionaries[lang];
   return (
     <section>
       <ContainerMaxW1200>

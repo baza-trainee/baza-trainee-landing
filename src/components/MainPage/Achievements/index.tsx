@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary } from '@/types';
 
 const projects = 14;
 const members = 420;
@@ -18,11 +17,8 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false);
-  const [dict, setDict] = useState<TDictionary>();
 
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
+  const dict = dictionaries[lang];
 
   const achievementData = [
     { count: projectsCount, text: dict?.stats.completedProjects },
@@ -33,10 +29,6 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
     },
     { count: haveJobCount, text: dict?.stats.employed },
   ];
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
 
   useEffect(() => {
     const options = {

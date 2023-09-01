@@ -2,8 +2,6 @@
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { MultiArrow } from '@/components/common/icons';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary } from '@/types';
-import { useEffect, useState } from 'react';
 
 export const MoreProjectsButton = ({
   open = false,
@@ -12,14 +10,7 @@ export const MoreProjectsButton = ({
   open?: boolean;
   lang: TLandingLanguage;
 }) => {
-  const [dict, setDict] = useState<TDictionary>();
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
+  const dict = dictionaries[lang];
 
   return (
     <button

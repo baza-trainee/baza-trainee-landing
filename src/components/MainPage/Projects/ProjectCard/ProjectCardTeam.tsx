@@ -1,8 +1,6 @@
 'use client';
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { CloseIcon } from '@/components/common/icons';
-import { TDictionary } from '@/types';
-import { useEffect, useState } from 'react';
 import { ICardContent } from '../types';
 import { ProjectTeamMembers } from './ProjectTeamMembers';
 
@@ -11,7 +9,6 @@ export const ProjectCardTeam = ({
   project,
   lang,
 }: ICardContent) => {
-  const [dict, setDict] = useState<TDictionary>();
   const roles = project.teamMembers
     .reduce((acc: string[], cur) => {
       if (!acc.includes(cur.role.name)) {
@@ -21,13 +18,7 @@ export const ProjectCardTeam = ({
     }, [])
     .sort();
 
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
+  const dict = dictionaries[lang];
 
   return (
     <>

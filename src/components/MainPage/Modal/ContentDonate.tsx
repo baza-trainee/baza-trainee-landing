@@ -7,23 +7,14 @@ import {
 
 import usePaymentHandler from '@/hooks/usePayment';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary } from '@/types';
-import { useEffect, useState } from 'react';
 
 const paymentAmountData = ['100', '200', '500', '1000'];
 
 export const ContentDonate = ({ lang }: { lang: TLandingLanguage }) => {
   const { paymentAmount, handlePayment, handleAmountChange } =
     usePaymentHandler();
-  const [dict, setDict] = useState<TDictionary>();
 
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
+  const dict = dictionaries[lang];
 
   return (
     <div className="mx-[1.6rem] my-40 text-center text-[2.4rem] text-neutral-800 sm:mx-[3.5rem] xl:mx-[10.3rem] xl:my-[12.8rem]">

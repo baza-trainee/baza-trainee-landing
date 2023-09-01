@@ -1,10 +1,15 @@
 'use client';
-import { GlobalContext } from '@/store/globalContext';
-import { useContext } from 'react';
+import { dictionaries } from '@/app/[lang]/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
+import { usePathname } from 'next/navigation';
 import styles from './styles.module.scss';
 
 const Page404 = () => {
-  const { dict } = useContext(GlobalContext);
+  const pathname = usePathname();
+  const lang = pathname
+    .substring(pathname.indexOf('ua' || 'pl' || 'en'), 3)
+    .replace('/', '');
+  const dict = dictionaries[lang as TLandingLanguage];
   // const getDictionary = async () => {
   //   const lang = (await localStorage.getItem('landingLanguage')) || 'ua';
   //   setDict(await dictionaries[lang]());

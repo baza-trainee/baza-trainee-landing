@@ -1,17 +1,9 @@
-import { dictionaries } from '@/app/[lang]/dictionaries';
-import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary } from '@/types';
+import { GlobalContext } from '@/store/globalContext';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
-export const Gratitude = ({ lang }: { lang: TLandingLanguage }) => {
-  const [dict, setDict] = useState<TDictionary>();
-  const getDictionary = async () => {
-    setDict(await dictionaries[lang]());
-  };
-  useEffect(() => {
-    getDictionary();
-  }, []);
+export const Gratitude = () => {
+  const { dict } = useContext(GlobalContext);
   return (
     <div className="flex h-full flex-col items-center justify-center px-[3.5rem] py-[2.4rem] uppercase text-neutral-800">
       <h2 className="text-[3.2rem] font-bold ">

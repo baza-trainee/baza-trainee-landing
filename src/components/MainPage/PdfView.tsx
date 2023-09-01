@@ -2,7 +2,6 @@
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TDictionary } from '@/types';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import Spinner from '../common/icons/Spinner';
@@ -18,20 +17,13 @@ export const PDFView = ({
 }) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
-  const [dict, setDict] = useState<TDictionary>();
-  async function getDictionary() {
-    setDict(await dictionaries[lang]());
-  }
+  const dict = dictionaries[lang];
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
   const pdfWrapperRef = useRef<HTMLDivElement | null>(
     null
   ) as RefObject<HTMLDivElement>;
-
-  useEffect(() => {
-    getDictionary();
-  }, []);
 
   useEffect(() => {
     const getWidth = () =>

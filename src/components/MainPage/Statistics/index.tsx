@@ -5,7 +5,7 @@ import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = await dictionaries[lang]();
+  const dict = dictionaries[lang];
   return (
     <section className="relative">
       <Image
