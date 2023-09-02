@@ -19,6 +19,7 @@ const ProjectCardContent = ({
   lang,
 }: ICardContent) => {
   const dict = dictionaries[lang];
+  const { projectStart, projectTeam, duration, complexity } = dict.projects;
   return (
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar
@@ -46,7 +47,7 @@ const ProjectCardContent = ({
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
           <div className="flex items-center gap-2">
             <ProjectStartIcon />
-            <span>{dict?.projects.projectStart}</span>
+            <span>{projectStart}</span>
             <span className="ml-auto font-medium">
               {formatDate(project.creationDate, 'spelled', dict)}
             </span>
@@ -54,7 +55,7 @@ const ProjectCardContent = ({
 
           <div className="flex items-center gap-2">
             <ProjectDurationIcon />
-            <span>{dict?.projects.duration}</span>
+            <span>{duration}</span>
             <span className="ml-auto font-medium">
               {projectCycle(project, lang)}
             </span>
@@ -62,7 +63,7 @@ const ProjectCardContent = ({
 
           <div className="flex items-center gap-2">
             <ProjectComplexityIcon />
-            <span>{dict?.projects.complexity}</span>
+            <span>{complexity}</span>
             <div className="ml-auto">
               <ProjectComplexity count={project.complexity} />
             </div>
@@ -73,7 +74,7 @@ const ProjectCardContent = ({
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}
             >
-              {dict?.projects.projectTeam}
+              {projectTeam}
             </button>
           )}
         </div>

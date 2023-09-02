@@ -23,15 +23,14 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
     prevArrow: <SlickArrow direction="left" />,
   };
   const dict = dictionaries[lang];
+  const { title } = dict.reviews;
   const customPaging = (i: number) => Dot(i, currentSlide);
 
   return (
     <section>
       <ContainerMaxW1200>
         <div className="w-full">
-          <h3 className="mb-12 text-center text-6xl font-bold">
-            {dict?.reviews.title}
-          </h3>
+          <h3 className="mb-12 text-center text-6xl font-bold">{title}</h3>
           <Slider
             {...sliderSettings}
             customPaging={customPaging}

@@ -5,12 +5,13 @@ import { Modal } from '../Modal';
 
 export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
+  const { supportBazaTrainee } = dict.invite;
   return (
     <section>
       <ContainerMaxW1200>
         <Modal content="donate" lang={lang}>
           <SupportBazaButton className="m-auto">
-            {dict.invite.supportBazaTrainee}
+            {supportBazaTrainee}
           </SupportBazaButton>
         </Modal>
       </ContainerMaxW1200>

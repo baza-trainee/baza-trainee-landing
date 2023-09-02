@@ -6,6 +6,7 @@ import { TLandingLanguage } from '@/store/globalContext';
 
 export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
+  const { teamsWaitForYou } = dict.invite;
   return (
     <section className="relative">
       <Image
@@ -21,7 +22,7 @@ export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
 
       <ContainerMaxW1200 className="flex-center min-h-[14.4rem] text-center">
         <h2 className="mx-[5.95rem] my-12 text-[3.2rem] font-bold uppercase md:mx-44">
-          {dict.invite.teamsWaitForYou}
+          {teamsWaitForYou}
         </h2>
       </ContainerMaxW1200>
     </section>

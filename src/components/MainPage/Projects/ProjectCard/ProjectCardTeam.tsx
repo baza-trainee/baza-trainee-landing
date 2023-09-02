@@ -19,6 +19,7 @@ export const ProjectCardTeam = ({
     .sort();
 
   const dict = dictionaries[lang];
+  const { projectTeam } = dict.projects;
 
   return (
     <>
@@ -26,9 +27,7 @@ export const ProjectCardTeam = ({
         <CloseIcon size="S" />
       </button>
 
-      <p className="mb-7 w-full text-3xl font-semibold">
-        {dict?.projects.projectTeam}
-      </p>
+      <p className="mb-7 w-full text-3xl font-semibold">{projectTeam}</p>
 
       <div className="scrollbar flex h-[90%] flex-col gap-[1.6rem] overflow-y-scroll">
         {roles.map((role) => (

@@ -14,14 +14,15 @@ import LanguageSelector from './LanguageSelector';
 export const Header = ({ lang }: { lang: TLandingLanguage }) => {
   // const dict = await dictionaries[lang]();
   const dict = dictionaries[lang];
+  const { projects, partners, participate, contacts } = dict.navbar;
   const navLinks = [
     {
-      title: dict?.navbar.projects,
+      title: projects,
       href: '#projects',
     },
-    { title: dict?.navbar.partners, href: '#partners' },
-    { title: dict?.navbar.participate, href: '#forms' },
-    { title: dict?.navbar.contacts, href: '#footer' },
+    { title: partners, href: '#partners' },
+    { title: participate, href: '#forms' },
+    { title: contacts, href: '#footer' },
   ];
   const pathname = usePathname();
   return (

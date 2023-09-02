@@ -19,15 +19,16 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const [isCountFinish, setIsCountFinish] = useState(false);
 
   const dict = dictionaries[lang];
+  const { completedProjects, involvedParticipants, employed } = dict.stats;
 
   const achievementData = [
-    { count: projectsCount, text: dict?.stats.completedProjects },
+    { count: projectsCount, text: completedProjects },
     {
       count: membersCount,
-      text: dict?.stats.involvedParticipants,
+      text: involvedParticipants,
       plusVisible: isCountFinish,
     },
-    { count: haveJobCount, text: dict?.stats.employed },
+    { count: haveJobCount, text: employed },
   ];
 
   useEffect(() => {

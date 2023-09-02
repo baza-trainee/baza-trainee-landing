@@ -24,9 +24,10 @@ const settings = {
 
 const ModalComponent = ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
+  const { toFund } = dict;
   return (
     <Modal content="donate" lang={lang}>
-      <PrimaryButton>{dict?.toFund}</PrimaryButton>
+      <PrimaryButton>{toFund}</PrimaryButton>
     </Modal>
   );
 };

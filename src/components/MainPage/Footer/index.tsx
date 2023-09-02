@@ -54,26 +54,36 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
   const contactsInfo: TContactsInfo = await getContacts();
   // const dict = await dictionaries[lang]();
   const dict = dictionaries[lang];
+  const {
+    projects,
+    partners,
+    participate,
+    privacyPolicy,
+    rulesForUsingTheSite,
+    statute,
+    accountability,
+    allRightsReserved,
+  } = dict.footer;
   const anchorLinksList = [
-    { title: dict.footer?.projects, href: '#projects' },
-    { title: dict.footer?.partners, href: '#partners' },
-    { title: dict.footer?.participate, href: '#forms' },
+    { title: projects, href: '#projects' },
+    { title: partners, href: '#partners' },
+    { title: participate, href: '#forms' },
   ];
 
   const officialDocsList = [
     {
-      title: dict.footer.privacyPolicy,
+      title: privacyPolicy,
       href: '?document=policy.pdf',
     },
     {
-      title: dict.footer.rulesForUsingTheSite,
+      title: rulesForUsingTheSite,
       href: '?document=rules.pdf',
     },
     {
-      title: dict.footer.statute,
+      title: statute,
       href: '?document=statut.pdf',
     },
-    { title: dict.footer.accountability, href: '#' },
+    { title: accountability, href: '#' },
   ];
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
@@ -159,7 +169,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
         </nav>
 
         <span className="text-[1.4rem] text-neutral-75 sm:mt-0">
-          {dict.footer.allRightsReserved}
+          {allRightsReserved}
         </span>
       </ContainerMaxW1200>
     </footer>

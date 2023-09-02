@@ -50,12 +50,13 @@ const sliderSettings = {
 
 export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
+  const { title } = dict.partners;
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">
         <div className=" max-w-full">
           <h2 className="mb-[3.8rem] text-center text-6xl font-bold">
-            {dict?.partners.title}
+            {title}
           </h2>
           <Slider {...sliderSettings} lazyLoad="progressive">
             {partners.map((partner) => (

@@ -4,16 +4,13 @@ import { useContext } from 'react';
 
 export const Gratitude = () => {
   const { dict } = useContext(GlobalContext);
+  const { firstPart, secondPart, title } = dict!.yourHelpIsWorth;
   return (
     <div className="flex h-full flex-col items-center justify-center px-[3.5rem] py-[2.4rem] uppercase text-neutral-800">
-      <h2 className="text-[3.2rem] font-bold ">
-        {dict?.yourHelpIsWorth.title}
-      </h2>
+      <h2 className="text-[3.2rem] font-bold ">{title}</h2>
       <p className="mt-11 max-w-[58.4rem] text-center text-[2.4rem] font-semibold md:mt-7 lg:mt-[4.8rem]">
-        {dict?.yourHelpIsWorth.firstPart}
-        <span className="sm:whitespace-nowrap">
-          {dict?.yourHelpIsWorth.secondPart}
-        </span>
+        {firstPart}
+        <span className="sm:whitespace-nowrap">{secondPart}</span>
       </p>
       <Image
         width={230}

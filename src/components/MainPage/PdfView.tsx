@@ -18,6 +18,7 @@ export const PDFView = ({
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
   const dict = dictionaries[lang];
+  const { loading, error } = dict.spinner;
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
@@ -53,12 +54,10 @@ export const PDFView = ({
         ref={pdfWrapperRef}
       >
         <Document
-          loading={<Spinner title={dict?.spinner.loading} />}
+          loading={<Spinner title={loading} />}
           file={`./docs/${document}`}
           onLoadSuccess={onDocumentLoadSuccess}
-          error={
-            <div className="text-3xl font-bold">{dict?.spinner.error}</div>
-          }
+          error={<div className="text-3xl font-bold">{error}</div>}
           className={'flex w-full flex-col items-center justify-center p-5 '}
         >
           {Array.from(new Array(numPages), (el, index) => (
