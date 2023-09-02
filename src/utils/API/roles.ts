@@ -1,4 +1,4 @@
-import { IRole, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IRole, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const rolesApi = {
@@ -10,11 +10,11 @@ const rolesApi = {
     return bazaAPI.post('/roles', role);
   },
 
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/roles/${id}`);
   },
 
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/roles/${id}`);
   },
 

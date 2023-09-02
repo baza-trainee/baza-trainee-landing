@@ -1,7 +1,6 @@
 import { IProject } from '@/types';
 import {
   TResponseProjects,
-  byIdRequest,
   searchProjectRequest,
   updateByIdRequest,
 } from '@/types/typesAPI';
@@ -21,11 +20,11 @@ const projectsApi = {
     return bazaAPI.get(`/projects/search?query=${query}`);
   },
 
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/projects/${id}`);
   },
 
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/projects/${id}`);
   },
 
