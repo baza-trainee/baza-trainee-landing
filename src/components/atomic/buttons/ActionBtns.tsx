@@ -1,36 +1,23 @@
-'use client';
-
 import Link from 'next/link';
 
-import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
-import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
-
-import { EditDeleteButton } from '@/components/atomic';
+import { EditDeleteButton } from './EditDeleteButton';
 
 type TProps = {
   actionsFor: 'projects' | 'members';
   id: string;
+  deleteAction: (id: string) => Promise<void>;
 };
 
-export const ActionBtns = ({ actionsFor, id }: TProps) => {
-  const { handlerDeleteMember } = useMembersSWR();
-  const { handlerDeleteProject } = useProjectsSWR();
-
-  const handleDelete = () => {
-    actionsFor === 'projects'
-      ? handlerDeleteProject(id)
-      : handlerDeleteMember(id);
-  };
-
+export const ActionBtns = ({ actionsFor, id, deleteAction }: TProps) => {
   return (
     <div
       className={`flex gap-3 ${actionsFor === 'projects' ? 'flex-col' : ''}`}
     >
-      <Link href={`/admin/${actionsFor}/edit/${id}`}>
+      <Link href={`/admin/${actionsFor}/${id}`}>
         <EditDeleteButton icon="edit" />
       </Link>
 
-      <EditDeleteButton icon="delete" onClick={handleDelete} />
+      <EditDeleteButton icon="delete" onClick={() => deleteAction(id)} />
     </div>
   );
 };

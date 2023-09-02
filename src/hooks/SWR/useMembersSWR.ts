@@ -1,34 +1,16 @@
 import { useEffect } from 'react';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 
-import { bazaAPI } from '@/utils/API/config';
+import { membersEndpoint, membersApi } from '@/utils/API/members';
 import { errorHandler } from '@/utils/errorHandler';
 
-import { IMember, byIdRequest } from '@/types';
 import { AxiosError } from 'axios';
-
-const membersEndpoint = '/members';
-
-const getAllMembers = async () => {
-  return await bazaAPI.get<IMember[]>(membersEndpoint);
-};
-
-const deleteById = async (id: string) => {
-  return await bazaAPI.delete(membersEndpoint + '/' + id);
-};
-
-// const updateById = async ([id, payload]: updateByIdRequest) => {
-//   return bazaAPI.patch(`/members/${id}`, payload);
-// };
-
-const fetcher = async () => {
-  return await getAllMembers().then((res) => res.data);
-};
+import { IMember } from '@/types';
 
 export const useMembersSWR = () => {
-  const { data, error, isLoading } = useSWR<IMember[], AxiosError>(
+  const { data, error, isLoading, mutate } = useSWR<IMember[], AxiosError>(
     membersEndpoint,
-    fetcher
+    membersApi.getAll
   );
 
   useEffect(() => {
@@ -37,10 +19,35 @@ export const useMembersSWR = () => {
 
   const handlerDeleteMember = async (id: string) => {
     try {
-      const newMembers = data?.filter((member) => member._id !== id) || [];
-      await deleteById(id);
-      mutate(membersEndpoint, newMembers, { revalidate: false });
+      const updatedMembers = data?.filter((member) => member._id !== id) || [];
+      mutate(updatedMembers, { revalidate: false });
+      await membersApi.deleteById(id);
     } catch (error) {
+      mutate();
+      errorHandler(error);
+    }
+  };
+
+  const handlerCreateMember = async (newMember: IMember) => {
+    try {
+      const updatedMembers = data ? [...data, newMember] : [newMember];
+      mutate(updatedMembers, { revalidate: false });
+      await membersApi.createNew(newMember);
+    } catch (error) {
+      mutate();
+      errorHandler(error);
+    }
+  };
+
+  const handlerUpdateMember = async (id: string, updatedMember: IMember) => {
+    try {
+      const updatedMembers = data?.map((member) =>
+        member._id === id ? updatedMember : member
+      );
+      mutate(updatedMembers, { revalidate: false });
+      await membersApi.updateById(id, updatedMember);
+    } catch (error) {
+      mutate();
       errorHandler(error);
     }
   };
@@ -49,7 +56,8 @@ export const useMembersSWR = () => {
     data,
     isLoading,
     isError: error,
-    mutate,
+    handlerCreateMember,
+    handlerUpdateMember,
     handlerDeleteMember,
   };
 };

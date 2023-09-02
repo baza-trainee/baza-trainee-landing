@@ -22,7 +22,12 @@ export const AdminProjects = () => {
   // ] = useAPI(projectsApi.getAll);
   const [showedItems, setShowedItems] = useState();
 
-  const { data: projects, isLoading, isError } = useProjectsSWR();
+  const {
+    data: projects,
+    isLoading,
+    isError,
+    handlerDeleteProject,
+  } = useProjectsSWR();
 
   // useEffect(() => {
   //   dispatch(showedItems);
@@ -57,7 +62,10 @@ export const AdminProjects = () => {
         {projects &&
           projects?.results &&
           projects.results.map((project: IProject) => (
-            <ButtonsOverlay key={project._id}>
+            <ButtonsOverlay
+              key={project._id}
+              deleteAction={handlerDeleteProject}
+            >
               <ProjectCard project={project} />
             </ButtonsOverlay>
           ))}

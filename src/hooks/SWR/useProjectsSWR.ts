@@ -4,7 +4,7 @@ import useSWR, { mutate } from 'swr';
 import { bazaAPI } from '@/utils/API/config';
 import { errorHandler } from '@/utils/errorHandler';
 
-import { TResponseProjects, byIdRequest } from '@/types';
+import { TResponseProjects } from '@/types';
 import { AxiosError } from 'axios';
 
 const projectsEndpoint = '/projects';

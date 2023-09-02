@@ -123,7 +123,6 @@ export interface IUser extends CommonResponseBase {
 }
 
 export type id = string | number;
-export type byIdRequest = id;
 export type updateByIdRequest = [id: id, payload: Object];
 export type searchProjectRequest = string;
 

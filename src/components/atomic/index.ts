@@ -11,6 +11,7 @@ export * from './buttons/EditDeleteButton';
 export * from './buttons/ActionBtns';
 
 export * from './inputs/InputField';
+export * from './inputs/TextInputField';
 export * from './inputs/PasswordInput';
 
 export * from './AdminTitle';

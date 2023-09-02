@@ -1,3 +1,4 @@
+import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
 import { IMember } from '@/types';
@@ -7,6 +8,8 @@ type TProps = {
 };
 
 export const MembersList = ({ members }: TProps) => {
+  const { handlerDeleteMember } = useMembersSWR();
+
   return (
     <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
       <ListHeader />
@@ -14,7 +17,11 @@ export const MembersList = ({ members }: TProps) => {
       <tbody>
         {members &&
           members?.map((member) => (
-            <ListRow key={member._id} member={member} />
+            <ListRow
+              key={member._id}
+              member={member}
+              deleteAction={handlerDeleteMember}
+            />
           ))}
       </tbody>
     </table>

@@ -2,7 +2,12 @@ import { ReactElement } from 'react';
 
 import { ActionBtns } from '@/components/atomic';
 
-export const ButtonsOverlay = ({ children }: { children: ReactElement }) => {
+type Props = {
+  children: ReactElement;
+  deleteAction: (id: string) => Promise<void>;
+};
+
+export const ButtonsOverlay = ({ children, deleteAction }: Props) => {
   const id = children.props.project._id;
 
   return (
@@ -10,7 +15,7 @@ export const ButtonsOverlay = ({ children }: { children: ReactElement }) => {
       {children}
 
       <div className="absolute right-8 top-8">
-        <ActionBtns actionsFor="projects" id={id} />
+        <ActionBtns actionsFor="projects" id={id} deleteAction={deleteAction} />
       </div>
     </div>
   );

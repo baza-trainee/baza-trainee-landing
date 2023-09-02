@@ -1,5 +1,5 @@
-import { MemberAdd } from "@/components/AdminPage/Members/MemberAdd";
+import { MemberEditor } from '@/components/AdminPage/Members/MemberEditor';
 
 export default function AddMemberPage() {
-  return <MemberAdd/>;
+  return <MemberEditor />;
 }

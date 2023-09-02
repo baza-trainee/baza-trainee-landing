@@ -1,5 +1,5 @@
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
-import { InputHTMLAttributes, useId } from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
 import { Translator } from './Translator';
 
 interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,16 +11,18 @@ interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   setTranslatedValue?: (_data: string, _name: string) => void;
 }
 
-export const TextInputField = ({
-  title,
-  errorText,
-  inputType = 'text',
-  translateValue = '',
-  name,
-  setTranslatedValue,
-
-  ...rest
-}: TextInputFieldProps) => {
+const InputField = (
+  {
+    title,
+    errorText,
+    inputType = 'text',
+    translateValue = '',
+    name,
+    setTranslatedValue,
+    ...rest
+  }: TextInputFieldProps,
+  ref: ForwardedRef<HTMLInputElement>
+) => {
   const id = useId();
   const { icon, type, isIconActive, isTranslateShow } =
     IdentifyInputFieldTypeSetting(inputType);
@@ -55,6 +57,7 @@ export const TextInputField = ({
           )}
         </label>
         <input
+          ref={ref}
           id={id}
           className={inputClassNames}
           type={type}
@@ -80,3 +83,5 @@ export const TextInputField = ({
     </div>
   );
 };
+
+export const TextInputField = forwardRef(InputField);
