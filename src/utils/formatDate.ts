@@ -15,7 +15,9 @@ export const formatDate = (
   const year = date.getFullYear();
   if (month === 'spelled') {
     return lang === 'en'
-      ? `${monthName} ${day}, ${year}`
+      ? `${
+          monthName.charAt(0).toUpperCase() + monthName.slice(1)
+        } ${day}, ${year}`
       : `${day} ${monthName} ${year}`;
   } else {
     return `${monthName} ${year}`;
