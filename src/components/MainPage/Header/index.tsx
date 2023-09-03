@@ -14,7 +14,8 @@ import LanguageSelector from './LanguageSelector';
 export const Header = ({ lang }: { lang: TLandingLanguage }) => {
   // const dict = await dictionaries[lang]();
   const dict = dictionaries[lang];
-  const { projects, partners, participate, contacts } = dict.navbar;
+  const { navbar } = dict || {};
+  const { projects, partners, participate, contacts } = navbar || {};
   const navLinks = [
     {
       title: projects,

@@ -26,7 +26,7 @@ export const SingleSlide = ({
         quality={90}
       />
 
-      <div className="relative w-[75%] max-w-[79rem] text-white md:w-2/3 lg:w-2/3 xl:w-2/3">
+      <div className="relative w-[85%] max-w-[79rem] text-white md:w-2/3 lg:w-2/3 xl:w-2/3">
         <h2 className="mb-5 text-center text-[3.8rem] font-bold">
           {title[slideLang]}
         </h2>

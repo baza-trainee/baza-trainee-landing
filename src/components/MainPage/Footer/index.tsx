@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import Link from 'next/link';
 
 import { TContactsInfo } from '@/types';
@@ -53,7 +54,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
   const pathname = headersList.get('x-invoke-path') || '';
   const contactsInfo: TContactsInfo = await getContacts();
   // const dict = await dictionaries[lang]();
-  const dict = dictionaries[lang];
+  const { footer } = dictionaries[lang] || {};
   const {
     projects,
     partners,
@@ -63,7 +64,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
     statute,
     accountability,
     allRightsReserved,
-  } = dict.footer;
+  } = footer || {};
   const anchorLinksList = [
     { title: projects, href: '#projects' },
     { title: partners, href: '#partners' },

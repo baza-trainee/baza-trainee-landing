@@ -5,7 +5,8 @@ import { Modal } from '../Modal';
 
 export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
-  const { supportBazaTrainee } = dict.invite;
+  const { invite } = dict || {};
+  const { supportBazaTrainee } = invite || {};
   return (
     <section>
       <ContainerMaxW1200>
@@ -18,4 +19,3 @@ export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
     </section>
   );
 };
-``;

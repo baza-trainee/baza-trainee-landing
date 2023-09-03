@@ -1,8 +1,11 @@
 'use client';
+import { dictionaries } from '@/app/[lang]/dictionaries';
 import { MultiArrow } from '@/components/common/icons';
+import { TLandingLanguage } from '@/store/globalContext';
 
 export const MoreProjectsButton = ({ ...rest }) => {
-  const { moreProjects } = rest.dict;
+  const dict = dictionaries[rest.lang as TLandingLanguage];
+  const { moreProjects } = dict;
   return (
     <button
       className="relative mx-auto h-32 max-w-fit rounded-md px-[0.8rem]

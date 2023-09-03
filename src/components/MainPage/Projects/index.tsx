@@ -85,13 +85,13 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
   const filteredProjects = projects;
   const dict = dictionaries[lang];
 
-  const navbar = dict.navbar;
-  const { noProjects } = dict;
+  const { navbar } = dict || {};
+  const { noProjects } = dict || {};
 
   return (
     <section id="projects">
       <ContainerMaxW1200 className="flex-col items-center gap-[3.2rem]">
-        <h3 className="text-[3.8rem] font-bold">{navbar.projects}</h3>
+        <h3 className="text-[3.8rem] font-bold">{navbar?.projects}</h3>
 
         {/* <div className="lg:self-start">
           <SearchBar

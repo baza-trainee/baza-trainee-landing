@@ -23,7 +23,8 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
     prevArrow: <SlickArrow direction="left" />,
   };
   const dict = dictionaries[lang];
-  const { title } = dict.reviews;
+  const { reviews } = dict || {};
+  const { title } = reviews || {};
   const customPaging = (i: number) => Dot(i, currentSlide);
 
   return (

@@ -19,7 +19,8 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const [isCountFinish, setIsCountFinish] = useState(false);
 
   const dict = dictionaries[lang];
-  const { completedProjects, involvedParticipants, employed } = dict.stats;
+  const { stats } = dict || {};
+  const { completedProjects, involvedParticipants, employed } = stats || {};
 
   const achievementData = [
     { count: projectsCount, text: completedProjects },

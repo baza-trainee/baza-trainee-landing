@@ -2,7 +2,7 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { IProject } from '@/types';
 
 const projectCycle = (project: IProject, lang: TLandingLanguage) => {
-  const weekWordForms = {
+  const weekWordForms: { en: string[]; ua: string[]; pl: string[] } = {
     en: ['week', 'weeks', 'weeks'],
     ua: ['тиждень', 'тижні', 'тижнів'],
     pl: ['tydzień', 'tygodnie', 'tygodnie'],
@@ -13,7 +13,7 @@ const projectCycle = (project: IProject, lang: TLandingLanguage) => {
   const cycleDuration = launchDate - creationDate;
   const numOfWeeks = Math.floor(cycleDuration / (1000 * 60 * 60 * 24 * 7));
 
-  let formIndex;
+  let formIndex: number = 0;
   if (numOfWeeks % 10 === 1 && numOfWeeks % 100 !== 11) {
     formIndex = 0;
   } else if (
@@ -25,7 +25,10 @@ const projectCycle = (project: IProject, lang: TLandingLanguage) => {
   } else {
     formIndex = 2;
   }
-
-  return `${numOfWeeks} ${weekWordForms[lang][formIndex]}`;
+  if (formIndex !== undefined) {
+    return `${numOfWeeks} ${weekWordForms[lang]}`;
+  } else {
+    return;
+  }
 };
 export default projectCycle;

@@ -4,8 +4,9 @@ import { TLandingLanguage } from '@/store/globalContext';
 
 export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
-  const { bazaTraineeInvite, chooseRole, role } = dict.invite;
-  const { participant, partner, mentor, customer } = role;
+  const { invite } = dict || {};
+  const { bazaTraineeInvite, chooseRole, role } = invite || {};
+  const { participant, partner, mentor, customer } = role || {};
   return (
     <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">
