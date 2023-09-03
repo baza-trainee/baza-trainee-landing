@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import Image from 'next/image';
 import { partners } from './partners';

@@ -1,9 +1,9 @@
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import {
   DonateButton,
   SupportBazaButton,
   donateStyle,
 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 
 import usePaymentHandler from '@/hooks/usePayment';
 import { TLandingLanguage } from '@/store/globalContext';

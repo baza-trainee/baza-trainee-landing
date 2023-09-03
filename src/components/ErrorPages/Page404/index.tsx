@@ -1,5 +1,5 @@
 'use client';
-import { dictionaries } from '@/app/[lang]/dictionaries';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TDictionary } from '@/types';
 import { usePathname } from 'next/navigation';

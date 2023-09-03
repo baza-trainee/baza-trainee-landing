@@ -6,7 +6,7 @@ import { IProject } from '@/types';
 import { useEffect, useState } from 'react';
 import { projects } from './projects';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 /*const getProjects = async () => {
@@ -113,11 +113,7 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
               animationDelay={animateDelay(index)}
             />
           ))}
-          {filteredProjects.map((project: IProject) => (
-            <ProjectCard key={project._id} project={project} lang={lang} />
-          ))}
         </ul>
-
         {projects.length > visibleProjects.length && (
           <MoreProjectsButton lang={lang} onClick={loadMore} />
         )}

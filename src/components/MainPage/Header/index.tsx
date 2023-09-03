@@ -2,8 +2,8 @@
 
 import { LogoMain } from '@/components/common/icons';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

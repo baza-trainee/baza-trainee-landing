@@ -5,7 +5,7 @@ import {
   ProjectStartIcon,
 } from '@/components/common/icons';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
+import { dictionaries } from '@/locales/dictionaries';
 import projectCycle from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';

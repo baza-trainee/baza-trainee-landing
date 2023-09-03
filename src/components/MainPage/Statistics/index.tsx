@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {

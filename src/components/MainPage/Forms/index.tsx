@@ -1,5 +1,5 @@
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {

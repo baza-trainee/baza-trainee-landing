@@ -1,9 +1,7 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import Link from 'next/link';
 
 import { TContactsInfo } from '@/types';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
   LinkedInIcon,
@@ -12,6 +10,7 @@ import {
   PhoneIcon,
   TelegramIcon,
 } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 import { headers } from 'next/headers';

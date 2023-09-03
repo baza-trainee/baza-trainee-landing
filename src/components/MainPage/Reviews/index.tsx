@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Slider from 'react-slick';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
 import { Dot } from './Dot';

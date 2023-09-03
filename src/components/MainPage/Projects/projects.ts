@@ -3,6 +3,165 @@ import { IProject } from '@/types';
 export const projects = [
   {
     _id: crypto.randomUUID(),
+    title: 'hust',
+    imageUrl: '/img/projects/hust.webp',
+    status: 'under-development',
+    link: '',
+    description: 'Хист - агрегатор ветеранських ініціатив',
+    creationDate: 1690848000000,
+    launchDate: 0,
+    complexity: 3,
+    teamMembers: [
+      {
+        user: {
+          name: 'Ольга Іванова',
+          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+        },
+        role: {
+          name: 'Product Owner',
+        },
+      },
+      {
+        user: {
+          name: 'Жанна Бєлан',
+          link: 'https://www.linkedin.com/in/joan-bielan-068434283/',
+        },
+        role: {
+          name: 'Project Manager',
+        },
+      },
+      {
+        user: {
+          name: 'Столярова Ірина',
+          link: 'https://www.linkedin.com/in/iryna-stoliarova/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Ольга Бутирська',
+          link: 'https://www.linkedin.com/in/olha-butyrska/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Джулія Каїн',
+          link: 'https://www.linkedin.com/in/julia-kain/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Олександра Терехова',
+          link: 'https://www.linkedin.com/in/%D0%BE%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0-%D1%82%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B2%D0%B0-4b483843/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: 'Данило Глушко',
+          link: '',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: 'Артем Шевчук',
+          link: 'https://www.linkedin.com/in/artem-shevchuk-b1955b190/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: 'Катерина Ланіна',
+          link: 'https://www.linkedin.com/in/kateryna-lanina/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: 'Даніл Здорик',
+          link: 'https://www.linkedin.com/in/zdoryk/',
+        },
+        role: {
+          name: 'Back-end',
+        },
+      },
+      {
+        user: {
+          name: 'Євген Блохін',
+          link: 'https://www.linkedin.com/in/ievgen-blokhin',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Лілія Бакалінська',
+          link: 'https://www.linkedin.com/in/liliia-bakalinska/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Ольга Савченко',
+          link: 'https://www.linkedin.com/in/olsavchenko/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: 'Яна Глазкова',
+          link: 'https://www.linkedin.com/in/%D1%8F%D0%BD%D0%B0-%D0%B3%D0%BB%D0%B0%D0%B7%D0%BA%D0%BE%D0%B2%D0%B0-241424281/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+    ],
+  },
+  {
+    _id: crypto.randomUUID(),
+    title: '57-42',
+    imageUrl: '/img/projects/57-42.webp',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    link: ' ',
+    description: {
+      en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
+      pl: 'Strona docelowa - zbiórka funduszy dla 57 Brygady, 42 Batalionu',
+      ua: 'Лендінг - збір коштів для 57-ї бригади 42 батальону',
+    },
+    creationDate: 1691539200000,
+    launchDate: 0,
+    complexity: 1,
+    teamMembers: [],
+  },
+  {
+    _id: crypto.randomUUID(),
     title: {
       en: 'Murrfecto',
       pl: 'Murrfecto',

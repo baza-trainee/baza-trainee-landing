@@ -1,7 +1,7 @@
 'use client';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { TAlertInfoState } from '@/components/atomic/AlertWindow';
+import { dictionaries } from '@/locales/dictionaries';
 import { TDictionary } from '@/types';
 import { useParams } from 'next/navigation';
 import {

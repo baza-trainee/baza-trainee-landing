@@ -1,8 +1,8 @@
 'use client';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
 import { memo, useRef, useState } from 'react';

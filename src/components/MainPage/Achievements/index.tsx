@@ -3,8 +3,8 @@
 import counterHandler from '@/utils/counterHandler';
 import { useEffect, useRef, useState } from 'react';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 const projects = 14;

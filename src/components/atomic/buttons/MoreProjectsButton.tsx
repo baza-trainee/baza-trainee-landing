@@ -1,6 +1,6 @@
 'use client';
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { MultiArrow } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const MoreProjectsButton = ({ ...rest }) => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { dictionaries } from '@/app/[lang]/dictionaries';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';

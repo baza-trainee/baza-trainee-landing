@@ -1,5 +1,5 @@
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, SupportBazaButton } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { Modal } from '../Modal';
 

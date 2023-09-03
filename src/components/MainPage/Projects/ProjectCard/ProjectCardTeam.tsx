@@ -1,6 +1,6 @@
 'use client';
-import { dictionaries } from '@/app/[lang]/dictionaries';
 import { CloseIcon } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
 import { ICardContent } from '../types';
 import { ProjectTeamMembers } from './ProjectTeamMembers';
 
