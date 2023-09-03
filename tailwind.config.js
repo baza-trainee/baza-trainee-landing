@@ -58,6 +58,10 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      boxShadow: {
+        '2sm':
+          '0px 4px 4px 0px rgba(234, 232, 232, 0.25), 0px 2px 12px 0px rgba(234, 232, 232, 0.25)',
+      },
     },
   },
   plugins: [],

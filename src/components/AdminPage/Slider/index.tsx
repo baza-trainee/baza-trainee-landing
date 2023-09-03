@@ -31,13 +31,19 @@ export const AdminHeroSlider = () => {
   console.log(curLang);
 
   return (
-    <div className="h-screen w-full px-10">
-      <header className="slider-header flex w-full basis-1 items-center justify-between">
+    <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">
+      <header
+        style={{ height: '104px' }}
+        className="slider-header mb-4 flex w-full basis-1 items-center justify-between"
+      >
         <AdminTitle title="Слайдер" />
         <LanguageSelector />
       </header>
-      <div className="slider-main flex h-auto flex-col gap-x-28">
-        <div className="slide-container h-px-100 flex w-full flex-col items-center justify-center bg-cover bg-no-repeat">
+      <div className="slider-main flex h-auto flex-col gap-y-28">
+        <div
+          style={{ height: '236px' }}
+          className="slide-container h-px-236 flex w-full items-center justify-center bg-base-dark shadow-2sm"
+        >
           <AdminPanelButton variant="secondary">
             + Додати слайд
           </AdminPanelButton>
@@ -46,8 +52,11 @@ export const AdminHeroSlider = () => {
           data.map((item: responseDataType) => (
             <div
               key={item._id}
-              style={{ backgroundImage: `url(${baseUrl + item.imageUrl})` }}
-              className="h-px-378 flex w-full flex-col items-center justify-center bg-cover bg-no-repeat"
+              style={{
+                backgroundImage: `url(${baseUrl + item.imageUrl})`,
+                height: '378px',
+              }}
+              className="slide-items h-px-378 relative flex w-full flex-col items-center justify-center bg-base-dark bg-cover bg-center bg-no-repeat"
             >
               <h2>{item.title[curLang]}</h2>
               <p>{item.subtitle[curLang]}</p>
