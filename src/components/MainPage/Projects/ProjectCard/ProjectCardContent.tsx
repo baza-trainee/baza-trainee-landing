@@ -47,7 +47,7 @@ const ProjectCardContent = ({
             <ProjectStartIcon />
             <span>{projectStart}</span>
             <span className="ml-auto font-medium">
-              {formatDate(project.creationDate, 'spelled', dict)}
+              {formatDate(project.creationDate, 'spelled', lang)}
             </span>
           </div>
 

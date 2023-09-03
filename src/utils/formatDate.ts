@@ -1,21 +1,24 @@
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
+
 export const formatDate = (
   dateString: string | number,
   month: 'spelled' | 'nouns' = 'spelled',
-  dict: any
+  lang: TLandingLanguage
 ) => {
-  if (dict) {
-    const monthNames = dict?.monthsNames;
-    if (!dateString) return '';
+  const monthNames = dictionaries[lang].monthsNames;
+  if (!dateString) return '';
 
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const monthName = monthNames[month][date?.getMonth()];
-    const year = date.getFullYear();
-    const result =
-      month === 'spelled'
-        ? `${day} ${monthName} ${year}`
-        : `${monthName} ${year}`;
-    return result;
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const monthName = monthNames[month][date?.getMonth()];
+  const year = date.getFullYear();
+  if (month === 'spelled') {
+    return lang === 'en'
+      ? `${monthName} ${day}, ${year}`
+      : `${day} ${monthName} ${year}`;
+  } else {
+    return `${monthName} ${year}`;
   }
 };
 
