@@ -39,18 +39,3 @@ export default async function Home({
     </>
   );
 }
-
-// export const getServerSideProps: GetServerSideProps<{
-//   { props: { heroSliders: any; status: number; }; }
-// }> = async () => {
-//   const { data, status } = await axios.get(
-//     'https://baza-trainee.tech/api/v1/heroslider'
-//   );
-//   console.log('Data', data);
-//   return {
-//     props: {
-//       heroSliders: data,
-//       status: status,
-//     },
-//   };
-// };

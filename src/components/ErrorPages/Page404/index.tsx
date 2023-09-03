@@ -1,6 +1,7 @@
 'use client';
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import { TDictionary } from '@/types';
 import { usePathname } from 'next/navigation';
 import styles from './styles.module.scss';
 
@@ -9,8 +10,7 @@ const Page404 = () => {
   const lang = pathname
     .substring(pathname.indexOf('ua' || 'pl' || 'en'), 3)
     .replace('/', '');
-  const dict = dictionaries[lang as TLandingLanguage];
-  const { title, description, button } = dict.notFound;
+  const dict: TDictionary = dictionaries[lang as TLandingLanguage];
   // const getDictionary = async () => {
   //   const lang = (await localStorage.getItem('landingLanguage')) || 'ua';
   //   setDict(await dictionaries[lang]());
@@ -19,10 +19,12 @@ const Page404 = () => {
     <section className={styles.error}>
       <div className="m-auto max-w-[120rem]">
         <p className={styles.error__digits}>404</p>
-        <h2 className={styles.error__title}>{title}</h2>
-        <p className={styles.error__description}>{description}</p>
+        <h2 className={styles.error__title}>{dict?.notFound?.title}</h2>
+        <p className={styles.error__description}>
+          {dict?.notFound?.description}
+        </p>
         <a href="/ua" className={styles['error__back-home-link']}>
-          {button}
+          {dict?.notFound?.button}
         </a>
       </div>
     </section>
