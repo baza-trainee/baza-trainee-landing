@@ -23,10 +23,7 @@ const ProjectCardContent = ({
   const { projectStart, projectTeam, duration, complexity } = projects || {};
   return (
     <div className="flex h-full flex-col justify-between ">
-      <ProjectStatusBar
-        statusName={project.status[lang]}
-        statusVal={project.statusVal}
-      />
+      <ProjectStatusBar project={project} lang={lang} />
 
       <div className="flex w-full flex-col gap-[1.6rem]">
         <div className="h-[11rem]">

@@ -93,13 +93,14 @@ export interface IProject {
     pl: string;
     ua: string;
   };
-  statusVal: 'active' | 'under-development' | 'formation-of-the-team';
+  statusVal: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
   link: string;
   description: {
     en: string;
     pl: string;
     ua: string;
   };
+  isTeamRequired: boolean;
   creationDate: number;
   launchDate: number;
   complexity: number;

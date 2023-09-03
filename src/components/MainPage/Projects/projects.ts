@@ -3,18 +3,35 @@ import { IProject } from '@/types';
 export const projects = [
   {
     _id: crypto.randomUUID(),
-    title: 'hust',
+    title: {
+      en: 'hust',
+      pl: 'hust',
+      ua: 'hust',
+    },
     imageUrl: '/img/projects/hust.webp',
-    status: 'under-development',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
     link: '',
-    description: 'Хист - агрегатор ветеранських ініціатив',
+    description: {
+      en: 'Khist is an aggregator of veteran initiatives',
+      pl: 'Khist - agregator inicjatyw dla weteranów',
+      ua: 'Хист - агрегатор ветеранських ініціатив',
+    },
     creationDate: 1690848000000,
     launchDate: 0,
     complexity: 3,
+    isTeamRequired: false,
     teamMembers: [
       {
         user: {
-          name: 'Ольга Іванова',
+          name: {
+            en: 'Olga Ivanova',
+            pl: 'Olga Iwanowa',
+            ua: 'Ольга Іванова',
+          },
           link: 'https://www.linkedin.com/in/ivolga-kyiv/',
         },
         role: {
@@ -23,7 +40,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Жанна Бєлан',
+          name: {
+            en: 'Zhanna Bielan',
+            pl: 'Zhanna Bielan',
+            ua: 'Жанна Бєлан',
+          },
           link: 'https://www.linkedin.com/in/joan-bielan-068434283/',
         },
         role: {
@@ -32,7 +53,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Столярова Ірина',
+          name: {
+            en: 'Iryna Stoliarova',
+            pl: 'Iryna Stoliarova',
+            ua: 'Столярова Ірина',
+          },
           link: 'https://www.linkedin.com/in/iryna-stoliarova/',
         },
         role: {
@@ -41,7 +66,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Ольга Бутирська',
+          name: {
+            en: 'Olha Butyrska',
+            pl: 'Olha Butyrska',
+            ua: 'Ольга Бутирська',
+          },
           link: 'https://www.linkedin.com/in/olha-butyrska/',
         },
         role: {
@@ -50,7 +79,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Джулія Каїн',
+          name: {
+            en: 'Julia Kain',
+            pl: 'Julia Kain',
+            ua: 'Джулія Каїн',
+          },
           link: 'https://www.linkedin.com/in/julia-kain/',
         },
         role: {
@@ -59,7 +92,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Олександра Терехова',
+          name: {
+            en: 'Oleksandra Tereshova',
+            pl: 'Oleksandra Tereshova',
+            ua: 'Олександра Терехова',
+          },
           link: 'https://www.linkedin.com/in/%D0%BE%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0-%D1%82%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B2%D0%B0-4b483843/',
         },
         role: {
@@ -68,7 +105,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Данило Глушко',
+          name: {
+            en: 'Danilo Glushko',
+            pl: 'Danilo Glushko',
+            ua: 'Данило Глушко',
+          },
           link: '',
         },
         role: {
@@ -77,7 +118,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Артем Шевчук',
+          name: {
+            en: 'Artem Shevchuk',
+            pl: 'Artem Shevchuk',
+            ua: 'Артем Шевчук',
+          },
           link: 'https://www.linkedin.com/in/artem-shevchuk-b1955b190/',
         },
         role: {
@@ -86,7 +131,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Катерина Ланіна',
+          name: {
+            en: 'Kateryna Lanina',
+            pl: 'Kateryna Lanina',
+            ua: 'Катерина Ланіна',
+          },
           link: 'https://www.linkedin.com/in/kateryna-lanina/',
         },
         role: {
@@ -95,7 +144,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Даніл Здорик',
+          name: {
+            en: 'Danil Zdorik',
+            pl: 'Danil Zdorik',
+            ua: 'Даніл Здорик',
+          },
           link: 'https://www.linkedin.com/in/zdoryk/',
         },
         role: {
@@ -104,7 +157,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Євген Блохін',
+          name: {
+            en: 'Yevhen Blokhin',
+            pl: 'Yevhen Blokhin',
+            ua: 'Євген Блохін',
+          },
           link: 'https://www.linkedin.com/in/ievgen-blokhin',
         },
         role: {
@@ -113,7 +170,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Лілія Бакалінська',
+          name: {
+            en: 'Liliia Bakalinska',
+            pl: 'Liliia Bakalinska',
+            ua: 'Лілія Бакалінська',
+          },
           link: 'https://www.linkedin.com/in/liliia-bakalinska/',
         },
         role: {
@@ -122,7 +183,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Ольга Савченко',
+          name: {
+            en: 'Olga Savchenko',
+            pl: 'Olga Savchenko',
+            ua: 'Ольга Савченко',
+          },
           link: 'https://www.linkedin.com/in/olsavchenko/',
         },
         role: {
@@ -131,7 +196,11 @@ export const projects = [
       },
       {
         user: {
-          name: 'Яна Глазкова',
+          name: {
+            en: 'Yana Glazkova',
+            pl: 'Yana Glazkova',
+            ua: 'Яна Глазкова',
+          },
           link: 'https://www.linkedin.com/in/%D1%8F%D0%BD%D0%B0-%D0%B3%D0%BB%D0%B0%D0%B7%D0%BA%D0%BE%D0%B2%D0%B0-241424281/',
         },
         role: {
@@ -142,7 +211,11 @@ export const projects = [
   },
   {
     _id: crypto.randomUUID(),
-    title: '57-42',
+    title: {
+      en: '57-42',
+      pl: '57-42',
+      ua: '57-42',
+    },
     imageUrl: '/img/projects/57-42.webp',
     status: {
       en: 'Under development',
@@ -158,6 +231,7 @@ export const projects = [
     creationDate: 1691539200000,
     launchDate: 0,
     complexity: 1,
+    isTeamRequired: false,
     teamMembers: [],
   },
   {
@@ -183,6 +257,7 @@ export const projects = [
     creationDate: 1682283600000,
     launchDate: 1686517200000,
     complexity: 2,
+    isTeamRequired: false,
     teamMembers: [
       {
         user: {
@@ -431,6 +506,7 @@ export const projects = [
     creationDate: 1683493200000,
     launchDate: 1687726800000,
     complexity: 2,
+    isTeamRequired: false,
     teamMembers: [
       {
         user: {
@@ -808,6 +884,7 @@ export const projects = [
     creationDate: 1683234000000,
     launchDate: 1687467600000,
     complexity: 3,
+    isTeamRequired: false,
     teamMembers: [
       {
         user: {
@@ -1133,6 +1210,7 @@ export const projects = [
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 5,
+    isTeamRequired: false,
     teamMembers: [],
   },
   {
@@ -1158,6 +1236,7 @@ export const projects = [
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 3,
+    isTeamRequired: false,
     teamMembers: [],
   },
   {
@@ -1183,6 +1262,7 @@ export const projects = [
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 2,
+    isTeamRequired: false,
     teamMembers: [],
   },
   {
@@ -1208,6 +1288,7 @@ export const projects = [
     creationDate: 1687208400000,
     launchDate: 0,
     complexity: 3,
+    isTeamRequired: false,
     teamMembers: [],
   },
   {
@@ -1233,6 +1314,7 @@ export const projects = [
     creationDate: 1688245200000,
     launchDate: 0,
     complexity: 2,
+    isTeamRequired: false,
     teamMembers: [],
   },
   {
@@ -1258,6 +1340,7 @@ export const projects = [
     creationDate: 1689368400000,
     launchDate: 1690705554200,
     complexity: 2,
+    isTeamRequired: false,
     teamMembers: [],
   },
 ] as IProject[];
