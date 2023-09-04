@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];
 }
 
-export default async function Home({
+export default function Home({
   params: { lang },
 }: {
   params: { lang: TLandingLanguage };
