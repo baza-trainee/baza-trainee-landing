@@ -64,7 +64,7 @@ export const AdminProjects = () => {
           projects.results.map((project: IProject) => (
             <ButtonsOverlay
               key={project._id}
-              deleteAction={handlerDeleteProject}
+              handleDelete={handlerDeleteProject}
             >
               <ProjectCard project={project} />
             </ButtonsOverlay>
