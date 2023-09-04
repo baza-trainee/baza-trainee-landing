@@ -3,11 +3,14 @@
 //import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useBodyScrollLockSimple } from '@/hooks/useBodyScrollLockSimple';
 import { TLandingLanguage } from '@/store/globalContext';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { CloseIcon } from '../common/icons';
 import { Gratitude } from './Gratitude';
-import { PDFView } from './PdfView';
+// import { PDFView } from './PdfView';
+
+const PDFView = dynamic(() => import('./PdfView').then((mod) => mod.PDFView));
 
 export const ModalParams = ({ lang }: { lang: TLandingLanguage }) => {
   const params = useSearchParams();
@@ -42,6 +45,7 @@ export const ModalParams = ({ lang }: { lang: TLandingLanguage }) => {
       >
         <Link
           href={pathname}
+          prefetch={false}
           scroll={false}
           replace
           className="absolute right-3 top-3 z-50 cursor-pointer md:right-10 md:top-10 "

@@ -4,7 +4,7 @@ import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 
-export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
+export const Statistics = ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
   const { invite } = dict || {};
   const { teamsWaitForYou } = invite || {};

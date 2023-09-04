@@ -1,4 +1,5 @@
 import { TLandingLanguage } from '@/store/globalContext';
+import { memo } from 'react';
 import { TTeamMember, TTeamMemberRole } from '../types';
 
 type TProps = {
@@ -10,7 +11,11 @@ type TProps = {
   lang: TLandingLanguage;
 };
 
-export const ProjectTeamMembers = ({ roleName, teamMembers, lang }: TProps) => {
+export const ProjectTeamMembers = memo(function ProjectTeamMembers({
+  roleName,
+  teamMembers,
+  lang,
+}: TProps) {
   const members = teamMembers
     .filter((member) => member.role.name === roleName)
     .sort((a, b) => a.user.name[lang].localeCompare(b.user.name[lang]));
@@ -25,4 +30,4 @@ export const ProjectTeamMembers = ({ roleName, teamMembers, lang }: TProps) => {
       {member.user.name[lang]}
     </a>
   ));
-};
+});

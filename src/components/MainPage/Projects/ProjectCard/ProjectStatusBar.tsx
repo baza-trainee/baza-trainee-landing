@@ -1,10 +1,12 @@
-export const ProjectStatusBar = ({
+import { memo } from 'react';
+
+export const ProjectStatusBar = memo(function ProjectStatusBar({
   statusName,
   statusVal,
 }: {
   statusName: string;
   statusVal: 'under-development' | 'active' | 'formation-of-the-team';
-}) => {
+}) {
   const isActive = statusVal === 'active';
   const isDevelopment = statusVal === 'under-development';
   const isFormation = statusVal === 'formation-of-the-team';
@@ -27,4 +29,4 @@ export const ProjectStatusBar = ({
       </span>
     </div>
   );
-};
+});

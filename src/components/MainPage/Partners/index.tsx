@@ -6,6 +6,7 @@ import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 import Image from 'next/image';
+import { memo } from 'react';
 import { partners } from './partners';
 
 const sliderSettings = {
@@ -48,7 +49,11 @@ const sliderSettings = {
   ],
 };
 
-export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
+export const Partners = memo(function Partners({
+  lang,
+}: {
+  lang: TLandingLanguage;
+}) {
   const dict = dictionaries[lang] || {};
   const { title } = dict.partners || {};
   return (
@@ -61,6 +66,7 @@ export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
           <Slider {...sliderSettings} lazyLoad="progressive">
             {partners.map((partner) => (
               <Link
+                prefetch={false}
                 key={partner._id}
                 href={partner.homeUrl}
                 aria-label={`Visit ${partner.name} site`}
@@ -72,9 +78,6 @@ export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
                   fill
                   sizes="(min-width: 300px) 100%"
                   aria-label={partner.name}
-                  //  width={214}
-                  //  height={100}
-                  //sizes="(max-width: 214px)"
                   className={
                     'm-auto object-contain  contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
                   }
@@ -88,4 +91,4 @@ export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
       </ContainerMaxW1200>
     </section>
   );
-};
+});

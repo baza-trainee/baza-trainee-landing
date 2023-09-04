@@ -1,13 +1,14 @@
 'use client';
-import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
-import { ProjectCard } from './ProjectCard';
+import { ContainerMaxW1200 } from '@/components/atomic';
+// import { ProjectCard } from './ProjectCard';
 
 import { IProject } from '@/types';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { projects } from './projects';
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import dynamic from 'next/dynamic';
 
 /*const getProjects = async () => {
   const response = await fetch(
@@ -30,10 +31,21 @@ import { TLandingLanguage } from '@/store/globalContext';
   return modResult;
 };*/
 
+const ProjectCard = dynamic(() =>
+  import('./ProjectCard').then((mod) => mod.ProjectCard)
+);
+const MoreProjectsButton = dynamic(() =>
+  import('@/components/atomic').then((mod) => mod.MoreProjectsButton)
+);
+
 let ProjectsCountOnFirstLoad = 9;
 let ProjectsLoadMore = 3;
 
-export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
+export const Projects = memo(function Projects({
+  lang,
+}: {
+  lang: TLandingLanguage;
+}) {
   const [visibleProjects, setVisibleProjects] = useState<IProject[]>(
     projects.slice(0, handleResize())
   );
@@ -120,4 +132,4 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
       </ContainerMaxW1200>
     </section>
   );
-};
+});

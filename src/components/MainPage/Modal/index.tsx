@@ -12,7 +12,8 @@ import { createPortal } from 'react-dom';
 
 import { CloseIcon } from '@/components/common/icons';
 import { TLandingLanguage } from '@/store/globalContext';
-import { ContentDonate } from './ContentDonate';
+// import { ContentDonate } from './ContentDonate';
+import dynamic from 'next/dynamic';
 
 type Props = {
   children: ReactElement;
@@ -20,6 +21,10 @@ type Props = {
   open?: boolean;
   lang: TLandingLanguage;
 };
+
+const ContentDonate = dynamic(() =>
+  import('./ContentDonate').then((mod) => mod.ContentDonate)
+);
 
 export const Modal = ({ children, content, lang, open = false }: Props) => {
   const [isLandingModalShown, setIsLandingModalShown] = useState(open);

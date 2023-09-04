@@ -10,8 +10,17 @@ import projectCycle from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';
 import { ICardContent } from '../types';
-import { ProjectComplexity } from './ProjectComplexity';
-import { ProjectStatusBar } from './ProjectStatusBar';
+// import { ProjectComplexity } from './ProjectComplexity';
+// import { ProjectStatusBar } from './ProjectStatusBar';
+import dynamic from 'next/dynamic';
+
+const ProjectStatusBar = dynamic(() =>
+  import('./ProjectStatusBar').then((mod) => mod.ProjectStatusBar)
+);
+
+const ProjectComplexity = dynamic(() =>
+  import('./ProjectComplexity').then((mod) => mod.ProjectComplexity)
+);
 
 const ProjectCardContent = ({
   handleShowTeam,
@@ -35,6 +44,7 @@ const ProjectCardContent = ({
           </h4>
           {project.link && (
             <Link
+              prefetch={false}
               href={project.link}
               target="_blank"
               className="mt-[0.8rem]"

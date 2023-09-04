@@ -1,8 +1,13 @@
 'use client';
 
 import { CloseIcon, MenuIcon } from '@/components/common/icons';
+import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
-import { HeaderLinks } from './HeaderLinks';
+// import { HeaderLinks } from './HeaderLinks';
+
+const HeaderLinks = dynamic(() =>
+  import('./HeaderLinks').then((mod) => mod.HeaderLinks)
+);
 
 export const HeaderDropdownMenu = ({
   navLinks,

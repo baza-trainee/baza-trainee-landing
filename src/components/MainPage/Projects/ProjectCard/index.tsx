@@ -3,11 +3,20 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styles from './styles.module.scss';
 
-import { ProjectCardContent } from './ProjectCardContent';
+// import { ProjectCardContent } from './ProjectCardContent';
 
 import { TLandingLanguage } from '@/store/globalContext';
 import { IProject } from '@/types';
-import { ProjectCardTeam } from './ProjectCardTeam';
+// import { ProjectCardTeam } from './ProjectCardTeam';
+import dynamic from 'next/dynamic';
+
+const ProjectCardTeam = dynamic(() =>
+  import('./ProjectCardTeam').then((mod) => mod.ProjectCardTeam)
+);
+
+const ProjectCardContent = dynamic(() =>
+  import('./ProjectCardContent').then((mod) => mod.ProjectCardContent)
+);
 
 const ProjectCard = ({
   project,

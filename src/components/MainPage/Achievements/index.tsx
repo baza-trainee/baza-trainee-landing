@@ -1,7 +1,7 @@
 'use client';
 
 import counterHandler from '@/utils/counterHandler';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
@@ -11,7 +11,11 @@ const projects = 14;
 const members = 420;
 const haveJob = 14;
 
-export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
+export const Achievements = memo(function Achievements({
+  lang,
+}: {
+  lang: TLandingLanguage;
+}) {
   const componentRef = useRef(null);
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
@@ -76,4 +80,4 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
       </ContainerMaxW1200>
     </section>
   );
-};
+});

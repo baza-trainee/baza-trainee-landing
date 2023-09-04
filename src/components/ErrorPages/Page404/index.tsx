@@ -13,10 +13,6 @@ const Page404 = () => {
   const dict: TDictionary = dictionaries[lang as TLandingLanguage];
   const { notFound } = dict || {};
   const { title, description, button } = notFound || {};
-  // const getDictionary = async () => {
-  //   const lang = (await localStorage.getItem('landingLanguage')) || 'ua';
-  //   setDict(await dictionaries[lang]());
-  // };
   return (
     <section className={styles.error}>
       <div className="m-auto max-w-[120rem]">

@@ -7,9 +7,18 @@ import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { HeaderDropdownMenu } from './HeaderDropdownMenu';
-import { HeaderLinks } from './HeaderLinks';
-import LanguageSelector from './LanguageSelector';
+// import { HeaderDropdownMenu } from './HeaderDropdownMenu';
+// import { HeaderLinks } from './HeaderLinks';
+// import LanguageSelector from './LanguageSelector';
+import dynamic from 'next/dynamic';
+
+const LanguageSelector = dynamic(() => import('./LanguageSelector'));
+const HeaderDropdownMenu = dynamic(() =>
+  import('./HeaderDropdownMenu').then((mod) => mod.HeaderDropdownMenu)
+);
+const HeaderLinks = dynamic(() =>
+  import('./HeaderLinks').then((mod) => mod.HeaderLinks)
+);
 
 export const Header = ({ lang }: { lang: TLandingLanguage }) => {
   // const dict = await dictionaries[lang]();
@@ -32,7 +41,7 @@ export const Header = ({ lang }: { lang: TLandingLanguage }) => {
       id="header"
     >
       <ContainerMaxW1200 className="h-full items-center justify-between">
-        <Link href={pathname} aria-label="Main page">
+        <Link prefetch={false} href={pathname} aria-label="Main page">
           <LogoMain className="h-[4.2rem] w-[4.2rem] sm:h-[7.8rem] sm:w-[7.8rem]" />
         </Link>
 

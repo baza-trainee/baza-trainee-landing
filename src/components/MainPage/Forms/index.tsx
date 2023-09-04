@@ -2,7 +2,7 @@ import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 
-export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
+export const Forms = ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
   const { invite } = dict || {};
   const { bazaTraineeInvite, chooseRole, role } = invite || {};

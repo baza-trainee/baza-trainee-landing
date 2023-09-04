@@ -1,17 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Slider from 'react-slick';
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
-import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
+import { ContainerMaxW1200 } from '@/components/atomic';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
 import { Dot } from './Dot';
-import { SingleSlide } from './SingleSlide';
+// import { SingleSlide } from './SingleSlide';
+import dynamic from 'next/dynamic';
 import { slides } from './slides';
 
-export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
+const SingleSlide = dynamic(() =>
+  import('./SingleSlide').then((mod) => mod.SingleSlide)
+);
+
+const SlickArrow = dynamic(() =>
+  import('@/components/atomic').then((mod) => mod.SlickArrow)
+);
+
+export const Reviews = memo(function Reviews({
+  lang,
+}: {
+  lang: TLandingLanguage;
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderSettings = {
@@ -46,4 +59,4 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
       </ContainerMaxW1200>
     </section>
   );
-};
+});

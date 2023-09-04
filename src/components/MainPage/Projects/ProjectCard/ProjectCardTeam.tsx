@@ -1,8 +1,13 @@
 'use client';
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { CloseIcon } from '@/components/common/icons';
+import dynamic from 'next/dynamic';
 import { ICardContent } from '../types';
-import { ProjectTeamMembers } from './ProjectTeamMembers';
+// import { ProjectTeamMembers } from './ProjectTeamMembers';
+
+const ProjectTeamMembers = dynamic(() =>
+  import('./ProjectTeamMembers').then((mod) => mod.ProjectTeamMembers)
+);
 
 export const ProjectCardTeam = ({
   handleShowTeam,

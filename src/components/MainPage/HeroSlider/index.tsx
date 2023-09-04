@@ -7,10 +7,19 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
 import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
-import { Modal } from '../Modal';
+// import { Modal } from '../Modal';
 import { Dots } from './Dots';
-import { SingleSlide } from './SingleSlide';
+// import { SingleSlide } from './SingleSlide';
+import dynamic from 'next/dynamic';
 import { slides } from './slides';
+
+const SingleSlide = dynamic(() =>
+  import('./SingleSlide').then((mod) => mod.SingleSlide)
+);
+
+const Modal = dynamic(() => import('../Modal').then((mod) => mod.Modal));
+
+// const Slider = dynamic(() => import('react-slick').then((mod) => mod.default));
 
 const settings = {
   infinite: true,
@@ -33,7 +42,11 @@ const ModalComponent = ({ lang }: { lang: TLandingLanguage }) => {
 };
 const MemoizedModal = memo(ModalComponent);
 
-const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
+const HeroSlider = memo(function HeroSlider({
+  lang,
+}: {
+  lang: TLandingLanguage;
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
 
@@ -103,6 +116,6 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
       </div>
     </section>
   );
-};
+});
 
 export { HeroSlider };

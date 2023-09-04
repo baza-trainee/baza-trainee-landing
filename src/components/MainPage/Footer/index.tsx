@@ -5,16 +5,37 @@ import { TContactsInfo } from '@/types';
 
 import { dictionaries } from '@/app/[lang]/dictionaries';
 import { ContainerMaxW1200 } from '@/components/atomic';
-import {
-  LinkedInIcon,
-  LogoMain,
-  MailIcon,
-  PhoneIcon,
-  TelegramIcon,
-} from '@/components/common/icons';
+// import {
+//   // LinkedInIcon,
+//   // LogoMain,
+//   // MailIcon,
+//   // PhoneIcon,
+//   // TelegramIcon,
+// } from '@/components/common/icons';
 import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
+import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
+
+const LinkedInIcon = dynamic(() =>
+  import('@/components/common/icons').then((mod) => mod.LinkedInIcon)
+);
+
+const LogoMain = dynamic(() =>
+  import('@/components/common/icons').then((mod) => mod.LogoMain)
+);
+
+const MailIcon = dynamic(() =>
+  import('@/components/common/icons').then((mod) => mod.MailIcon)
+);
+
+const PhoneIcon = dynamic(() =>
+  import('@/components/common/icons').then((mod) => mod.PhoneIcon)
+);
+
+const TelegramIcon = dynamic(() =>
+  import('@/components/common/icons').then((mod) => mod.TelegramIcon)
+);
 
 const getContacts = async () => {
   const noData: TContactsInfo = {
@@ -40,6 +61,7 @@ const getContacts = async () => {
 const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   <Link
     href={href}
+    prefetch={false}
     {...args}
     className={`hover:text-yellow-500 active:text-yellow-800 ${
       underline ? 'underline underline-offset-8' : ''
@@ -91,6 +113,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
       <ContainerMaxW1200 className="flex-col gap-12 text-white lg:gap-0">
         <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
           <Link
+            prefetch={false}
             href={pathname}
             className="sm:row-span-2"
             aria-label="Main page"
@@ -145,6 +168,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
 
           <div className=" flex gap-[3.2rem] ">
             <Link
+              prefetch={false}
               aria-label="Read more about us on Linkedin"
               href={
                 contactsInfo.socialsMediaList?.linkedin
@@ -156,6 +180,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
               <LinkedInIcon className="fill-yellow-500 hover:fill-yellow-700 active:fill-yellow-800" />
             </Link>
             <Link
+              prefetch={false}
               aria-label="Join us on Telegram"
               href={
                 contactsInfo.socialsMediaList?.telegram

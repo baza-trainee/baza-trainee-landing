@@ -19,16 +19,15 @@ const LanguageSelector = () => {
   const { landingLanguage, setLandingLanguage } = useContext(GlobalContext);
   const { push } = useRouter();
 
+  const handleMenuClick = () => {
+    setIsMenuOpen((state) => !state);
+  };
   const handleLanguageClick = (e: FormEvent, lang: TLandingLanguage) => {
     e.preventDefault();
     setLandingLanguage(lang);
     handleMenuClick();
     localStorage.setItem('landingLanguage', lang);
     push(`/${lang}/`);
-  };
-
-  const handleMenuClick = () => {
-    setIsMenuOpen((state) => !state);
   };
 
   const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] pr-[0.5rem]  ${
