@@ -89,11 +89,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col gap-12 text-white lg:gap-0">
         <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
-          <Link
-            href={pathname}
-            className="sm:row-span-2"
-            aria-label="Main page"
-          >
+          <Link href="/" className="sm:row-span-2" aria-label="Main page">
             <LogoMain className="h-32 w-32 sm:h-[12.4rem] sm:w-[12.4rem]" />
           </Link>
 
