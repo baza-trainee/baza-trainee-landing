@@ -222,7 +222,7 @@ export const projects = [
       pl: 'W budowie',
       ua: 'В розробці',
     },
-    link: ' ',
+    link: '',
     description: {
       en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
       pl: 'Strona docelowa - zbiórka funduszy dla 57 Brygady, 42 Batalionu',
@@ -1201,7 +1201,7 @@ export const projects = [
       ua: 'В розробці',
     },
     statusVal: 'under-development',
-    link: ' ',
+    link: '',
     description: {
       en: 'Cheetosaurus - a web application with book quizzes for children',
       pl: 'Cheetosaurus - aplikacja internetowa z quizami książkowymi dla dzieci',
@@ -1227,7 +1227,7 @@ export const projects = [
       ua: 'В розробці',
     },
     statusVal: 'under-development',
-    link: ' ',
+    link: '',
     description: {
       en: '1001 songs - a site-collection of authentic Ukrainian songs',
       pl: '1001 piosenek - zbiór witryn z autentycznymi ukraińskimi piosenkami',
@@ -1253,7 +1253,7 @@ export const projects = [
       ua: 'В розробці',
     },
     statusVal: 'under-development',
-    link: ' ',
+    link: '',
     description: {
       en: 'The website of the shelter for street animals Big Lapa',
       pl: 'Strona schroniska dla zwierząt ulicznych Big Lapa',
@@ -1279,7 +1279,7 @@ export const projects = [
       ua: 'В розробці',
     },
     statusVal: 'under-development',
-    link: ' ',
+    link: '',
     description: {
       en: 'Feeda is a platform for processing applications for participation in Baza Trainee',
       pl: 'Feeda to platforma do rozpatrywania wniosków o udział w Baza Trainee',
@@ -1305,7 +1305,7 @@ export const projects = [
       ua: 'В розробці',
     },
     statusVal: 'under-development',
-    link: ' ',
+    link: '',
     description: {
       en: 'The book goes abroad - a humanitarian aid portal',
       pl: 'Książka wyjeżdża za granicę - portal pomocy humanitarnej',
