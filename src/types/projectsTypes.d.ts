@@ -1,3 +1,11 @@
+export type TTeamMember = {
+  _id: string;
+  name: string;
+  link: string;
+};
+
+export type TTeamMemberRole = Omit<TTeamMember, 'link'>;
+
 export type IProject = {
   _id: string;
   title: string;
@@ -10,25 +18,10 @@ export type IProject = {
   launchDate: number;
   complexity: number;
   teamMembers: Array<{
-    user: {
-      _id: string;
-      name: string;
-      link: string;
-    };
-    role: {
-      _id: string;
-      name: string;
-    };
+    user: TTeamMember;
+    role: TTeamMemberRole;
   }>;
 };
-
-export type TTeamMember = {
-  _id: string;
-  name: string;
-  link: string;
-};
-
-export type TTeamMemberRole = Omit<TTeamMember, 'link'>;
 
 export interface ICardContent {
   handleShowTeam: () => void;

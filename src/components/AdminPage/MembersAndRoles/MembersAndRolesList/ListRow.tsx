@@ -1,21 +1,22 @@
 import { ActionBtns } from '@/components/atomic';
 
-import { IMember } from '@/types';
+import { IMember, IRole } from '@/types';
 
-type Props = {
-  member: IMember;
-  deleteAction: (id: string) => Promise<void>;
+type TProps = {
+  entity: 'members' | 'roles';
+  showedData: IMember | IRole;
+  deleteAction: (id: string) => void;
 };
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
-export const ListRow = ({ member, deleteAction }: Props) => {
+export const ListRow = ({ entity, showedData, deleteAction }: TProps) => {
   return (
     <tr>
       <td className={cellStyle}>
         <div className={bgStyle + ' rounded-s-md pl-5'}>
-          <span>{member.name.ua}</span>
+          <span>{showedData.name.ua}</span>
         </div>
       </td>
 
@@ -28,8 +29,8 @@ export const ListRow = ({ member, deleteAction }: Props) => {
       <td className={cellStyle}>
         <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>
           <ActionBtns
-            id={member._id!}
-            actionsFor="members"
+            id={showedData._id!}
+            entity={entity}
             deleteAction={deleteAction}
           />
         </div>

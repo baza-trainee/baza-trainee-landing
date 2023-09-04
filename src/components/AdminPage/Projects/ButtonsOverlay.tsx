@@ -15,7 +15,7 @@ export const ButtonsOverlay = ({ children, deleteAction }: Props) => {
       {children}
 
       <div className="absolute right-8 top-8">
-        <ActionBtns actionsFor="projects" id={id} deleteAction={deleteAction} />
+        <ActionBtns entity="projects" id={id} deleteAction={deleteAction} />
       </div>
     </div>
   );

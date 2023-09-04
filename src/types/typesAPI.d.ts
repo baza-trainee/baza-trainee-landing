@@ -12,10 +12,16 @@ interface CommonResponseBase {
   __v?: number;
 }
 
-type titleLanguagesTypes = {
+type TTitleLanguagesTypes = {
   en: string;
   pl: string;
   ua: string;
+};
+
+type TPagination = {
+  currentPage: number;
+  totalPages: number;
+  totalResults: number;
 };
 
 // Request types
@@ -54,8 +60,8 @@ export type TContactsInfo = {
 };
 
 export interface IHeroSlider extends CommonResponseBase {
-  title: titleLanguagesTypes;
-  subtitle: titleLanguagesTypes;
+  title: TTitleLanguagesTypes;
+  subtitle: TTitleLanguagesTypes;
   imageUrl?: string;
 }
 
@@ -65,7 +71,7 @@ export interface IPartner extends CommonResponseBase {
 }
 /*
 export interface IProject extends CommonResponseBase {
-  title: titleLanguagesTypes;
+  title: TTitleLanguagesTypes;
   imageUrl: string;
   deployUrl?: string;
   stack?: [{ _id?: string; name: string }];
@@ -82,7 +88,7 @@ export interface IProject extends CommonResponseBase {
 }*/
 
 export interface IRole extends CommonResponseBase {
-  name: titleLanguagesTypes;
+  name: TTitleLanguagesTypes;
 }
 
 export interface IStack extends CommonResponseBase {
@@ -104,13 +110,13 @@ export interface IDocuments<T> extends CommonResponseBase {
 }
 
 export interface IMember extends CommonResponseBase {
-  name: titleLanguagesTypes;
+  name: TTitleLanguagesTypes;
   profileUrl?: string;
 }
 
 export interface ITestimonial extends CommonResponseBase {
-  name: titleLanguagesTypes;
-  review: titleLanguagesTypes;
+  name: TTitleLanguagesTypes;
+  review: TTitleLanguagesTypes;
   date: number;
   imageUrl: string;
 }
@@ -153,9 +159,15 @@ export type responseDataType =
 
 export type TResponseProjects = {
   results: IProject[];
-  pagination: {
-    currentPage: number;
-    totalPages: number;
-    totalResults: number;
-  };
+  pagination: TPagination;
+};
+
+export type TResponseMembers = {
+  results: IMember[];
+  pagination: TPagination;
+};
+
+export type TResponseRoles = {
+  results: IRole[];
+  pagination: TPagination;
 };

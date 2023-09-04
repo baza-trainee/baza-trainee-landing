@@ -1,13 +1,11 @@
-import { IMember } from '@/types/typesAPI';
+import { IMember, TResponseMembers } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const membersEndpoint = '/members';
 
 const membersApi = {
-  async getAll() {
-    return await bazaAPI
-      .get<IMember[]>(membersEndpoint)
-      .then((res) => res.data);
+  async getAll(uri: string) {
+    return await bazaAPI.get<TResponseMembers>(uri).then((res) => res.data);
   },
 
   async createNew(member: IMember) {
@@ -19,7 +17,7 @@ const membersApi = {
   },
 
   async deleteById(id: string) {
-    return await bazaAPI.delete(`${membersEndpoint}/${id}`);
+    return await bazaAPI.delete(`${membersEndpoint}sd/${id}`);
   },
 
   async updateById(id: string, member: IMember) {

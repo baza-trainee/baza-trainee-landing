@@ -1,14 +1,15 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
-
-import { AdminPanelButton, TextInputField } from '@/components/atomic';
-import { IMember } from '@/types';
 import { paintedLog } from '@/utils/errorHandler';
+
+import { TextInputField } from '@/components/atomic';
+import { FormBtns } from './FormBtns';
+
+import { IMember } from '@/types';
 
 type TFormInput = {
   nameUk: string;
@@ -61,22 +62,19 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ id }: { id?: string }) => {
+export const MembersForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
-  const {
-    data: members,
-    handlerCreateMember,
-    handlerUpdateMember,
-  } = useMembersSWR();
+  const { data, handlerCreateMember, handlerUpdateMember } = useMembersSWR();
+  const members = data?.results;
 
-  const valuesIfIsAreEditedMember = createOptions(id, members);
+  const valuesIfItEditedMember = createOptions(id, members);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFormInput>(valuesIfIsAreEditedMember);
+  } = useForm<TFormInput>(valuesIfItEditedMember);
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const member: IMember = {
@@ -90,9 +88,9 @@ export const MemberForm = ({ id }: { id?: string }) => {
 
     try {
       if (id) {
-        await handlerUpdateMember(id, member);
+        handlerUpdateMember(id, member);
       } else {
-        await handlerCreateMember(member);
+        handlerCreateMember(member);
       }
 
       router.replace('.');
@@ -130,12 +128,7 @@ export const MemberForm = ({ id }: { id?: string }) => {
         />
       </div>
 
-      <div className="mt-14 flex gap-7">
-        <AdminPanelButton type="submit">Зберегти зміни</AdminPanelButton>
-        <Link href=".">
-          <AdminPanelButton variant="secondary">Скасувати</AdminPanelButton>
-        </Link>
-      </div>
+      <FormBtns />
     </form>
   );
 };

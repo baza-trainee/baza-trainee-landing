@@ -1,5 +1,5 @@
-import { Members } from '@/components/AdminPage/Members';
+import { MembersAndRoles } from '@/components/AdminPage/MembersAndRoles';
 
 export default function MembersPage() {
-  return <Members />;
+  return <MembersAndRoles entity={'members'} />;
 }

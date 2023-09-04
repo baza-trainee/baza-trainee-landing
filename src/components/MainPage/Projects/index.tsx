@@ -1,4 +1,8 @@
-import { ContainerMaxW1200, MoreProjectsButton } from '@/components/atomic';
+import {
+  ContainerMaxW1200,
+  MoreProjectsButton,
+  SearchBar,
+} from '@/components/atomic';
 import { ProjectCard } from './ProjectCard';
 import { projects } from './projects';
 

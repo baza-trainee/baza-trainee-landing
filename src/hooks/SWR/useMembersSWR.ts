@@ -1,55 +1,66 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
+import { useGlobalContext } from '@/store/globalContext';
 import { membersEndpoint, membersApi } from '@/utils/API/members';
-import { errorHandler } from '@/utils/errorHandler';
+import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError } from 'axios';
-import { IMember } from '@/types';
+import { AxiosError, AxiosResponse } from 'axios';
+import { IMember, TResponseMembers } from '@/types';
 
-export const useMembersSWR = () => {
-  const { data, error, isLoading, mutate } = useSWR<IMember[], AxiosError>(
-    membersEndpoint,
-    membersApi.getAll
-  );
+const useMembersSWR = () => {
+  const { setAlertInfo } = useGlobalContext();
+  const [search, setSearch] = useState('');
+
+  const swrKey = `${membersEndpoint}?search=${search}`;
+
+  const { data, error, isLoading, mutate } = useSWR<
+    TResponseMembers,
+    AxiosError
+  >(swrKey, membersApi.getAll, { keepPreviousData: true });
 
   useEffect(() => {
-    error && errorHandler(error);
+    if (!error) return;
+
+    errorHandler(error);
+    setAlertInfo({
+      state: 'error',
+      title: networkStatusesUk[error?.status || 500],
+      textInfo:
+        'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
+    });
   }, [error]);
 
-  const handlerDeleteMember = async (id: string) => {
-    try {
-      const updatedMembers = data?.filter((member) => member._id !== id) || [];
-      mutate(updatedMembers, { revalidate: false });
-      await membersApi.deleteById(id);
-    } catch (error) {
-      mutate();
-      errorHandler(error);
-    }
+  const updateAndMutate = (
+    updMembers: IMember[],
+    action: () => Promise<AxiosResponse<any, any>>
+  ) => {
+    mutate(action, {
+      optimisticData: { ...data!, results: updMembers },
+      revalidate: false,
+      populateCache: false,
+    });
   };
 
-  const handlerCreateMember = async (newMember: IMember) => {
-    try {
-      const updatedMembers = data ? [...data, newMember] : [newMember];
-      mutate(updatedMembers, { revalidate: false });
-      await membersApi.createNew(newMember);
-    } catch (error) {
-      mutate();
-      errorHandler(error);
-    }
+  const handlerDeleteMember = (id: string) => {
+    const updMembers = data?.results.filter((member) => member._id !== id);
+    updateAndMutate(updMembers!, () => membersApi.deleteById(id));
   };
 
-  const handlerUpdateMember = async (id: string, updatedMember: IMember) => {
-    try {
-      const updatedMembers = data?.map((member) =>
-        member._id === id ? updatedMember : member
-      );
-      mutate(updatedMembers, { revalidate: false });
-      await membersApi.updateById(id, updatedMember);
-    } catch (error) {
-      mutate();
-      errorHandler(error);
-    }
+  const handlerCreateMember = (newMember: IMember) => {
+    const updMembers = [...(data?.results || []), newMember];
+    updateAndMutate(updMembers, () => membersApi.createNew(newMember));
+  };
+
+  const handlerUpdateMember = (id: string, updMember: IMember) => {
+    const updMembers = data?.results.map((member) =>
+      member._id === id ? updMember : member
+    );
+    updateAndMutate(updMembers!, () => membersApi.updateById(id, updMember));
+  };
+
+  const handlerSearchMember = (search: string) => {
+    setSearch(search);
   };
 
   return {
@@ -59,5 +70,8 @@ export const useMembersSWR = () => {
     handlerCreateMember,
     handlerUpdateMember,
     handlerDeleteMember,
+    handlerSearchMember,
   };
 };
+
+export { useMembersSWR };
