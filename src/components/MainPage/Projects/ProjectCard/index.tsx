@@ -5,18 +5,20 @@ import styles from './styles.module.scss';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
+import { TLandingLanguage } from '@/store/globalContext';
 import { IProject } from '@/types';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
 const ProjectCard = ({
   project,
+  lang,
   animationDelay,
 }: {
   project: IProject;
-  animationDelay: number;
+  lang: TLandingLanguage;
+  animationDelay?: number;
 }) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
-
   const handleShowTeam = () => {
     setIsMembersVisible((prev) => !prev);
   };
@@ -24,7 +26,7 @@ const ProjectCard = ({
   return (
     <li
       className={`${styles.animate}`}
-      style={{ animationDelay: `${animationDelay / 8}s` }}
+      style={{ animationDelay: `${animationDelay! / 8}s` }}
     >
       {/*<li className={styles['new-box']}>*/}
       <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md">
@@ -56,11 +58,13 @@ const ProjectCard = ({
           {isMembersVisible ? (
             <ProjectCardTeam
               project={project}
+              lang={lang}
               handleShowTeam={handleShowTeam}
             />
           ) : (
             <ProjectCardContent
               project={project}
+              lang={lang}
               handleShowTeam={handleShowTeam}
             />
           )}

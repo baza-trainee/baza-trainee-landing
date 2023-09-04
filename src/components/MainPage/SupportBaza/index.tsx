@@ -1,17 +1,20 @@
 import { ContainerMaxW1200, SupportBazaButton } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import { Modal } from '../Modal';
 
-export const SupportBaza = () => {
+export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
+  const { supportBazaTrainee } = dictionaries[lang].invite || {};
+
   return (
     <section>
       <ContainerMaxW1200>
-        <Modal content="donate">
+        <Modal content="donate" lang={lang}>
           <SupportBazaButton className="m-auto">
-            Підтримати Baza Trainee Ukraine
+            {supportBazaTrainee}
           </SupportBazaButton>
         </Modal>
       </ContainerMaxW1200>
     </section>
   );
 };
-``;

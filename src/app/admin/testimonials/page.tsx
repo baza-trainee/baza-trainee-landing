@@ -8,10 +8,10 @@ export default function Testimonials() {
   const [en, setEn] = useState('');
   const [pl, setPl] = useState('');
 
-  const translatorHandleEn = (text: string, name: string) => {
+  const translatorHandleEn = (text: string, _name: string) => {
     setEn(text);
   };
-  const translatorHandlePl = (text: string, name: string) => {
+  const translatorHandlePl = (text: string, _name: string) => {
     setPl(text);
   };
 
