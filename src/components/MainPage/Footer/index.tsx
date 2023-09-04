@@ -13,7 +13,6 @@ import {
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
-import { headers } from 'next/headers';
 
 const getContacts = async () => {
   const noData: TContactsInfo = {
@@ -49,8 +48,6 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
 );
 
 export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
-  const headersList = headers();
-  const pathname = headersList.get('x-invoke-path') || '';
   const contactsInfo: TContactsInfo = await getContacts();
   // const dict = await dictionaries[lang]();
   const { footer } = dictionaries[lang] || {};
