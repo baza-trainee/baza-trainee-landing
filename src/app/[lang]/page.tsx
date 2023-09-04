@@ -10,6 +10,7 @@ import { Reviews } from '@/components/MainPage/Reviews';
 import { Statistics } from '@/components/MainPage/Statistics';
 import { SupportBaza } from '@/components/MainPage/SupportBaza';
 import { TLandingLanguage } from '@/store/globalContext';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];
@@ -20,22 +21,27 @@ export default function Home({
 }: {
   params: { lang: TLandingLanguage };
 }) {
-  return (
-    <>
-      <Header lang={lang} />
-      <main className="mb-36 flex flex-col gap-32 md:mb-40 md:gap-44 xl:mb-48 xl:gap-52">
-        <HeroSlider lang={lang} />
-        <Projects lang={lang} />
-        <SupportBaza lang={lang} />
-        <Statistics lang={lang} />
-        <Forms lang={lang} />
-        <Partners lang={lang} />
-        <Achievements lang={lang} />
-        <Reviews lang={lang} />
-      </main>
-      <Footer lang={lang} />
+  const langs = ['en', 'pl', 'ua'];
+  if (langs.includes(lang)) {
+    return (
+      <>
+        <Header lang={lang} />
+        <main className="mb-36 flex flex-col gap-32 md:mb-40 md:gap-44 xl:mb-48 xl:gap-52">
+          <HeroSlider lang={lang} />
+          <Projects lang={lang} />
+          <SupportBaza lang={lang} />
+          <Statistics lang={lang} />
+          <Forms lang={lang} />
+          <Partners lang={lang} />
+          <Achievements lang={lang} />
+          <Reviews lang={lang} />
+        </main>
+        <Footer lang={lang} />
 
-      <ModalParams lang={lang} />
-    </>
-  );
+        <ModalParams lang={lang} />
+      </>
+    );
+  } else {
+    notFound();
+  }
 }
