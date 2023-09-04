@@ -29,20 +29,18 @@ export const MembersAndRoles = ({ entity }: TProps) => {
 
   const showedData = entity === 'members' ? members : roles;
 
-  const deleteAction =
+  const handleDelete =
     entity === 'members' ? handlerDeleteMember : handlerDeleteRole;
 
   const handleSearch =
     entity === 'members' ? handlerSearchMember : handlerSearchRole;
-
-
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
       <div className="mb-[3.2rem] flex gap-[3.2rem]">
         <h2 className="text-[3.2rem] font-bold text-admin-header">{title}</h2>
 
-        <div className="ml-auto ">
+        <div className="ml-auto">
           <SearchBar handleSearch={handleSearch} />
         </div>
 
@@ -54,7 +52,7 @@ export const MembersAndRoles = ({ entity }: TProps) => {
       <MembersAndRolesList
         entity={entity}
         showedData={showedData}
-        deleteAction={deleteAction}
+        handleDelete={handleDelete}
       />
     </section>
   );

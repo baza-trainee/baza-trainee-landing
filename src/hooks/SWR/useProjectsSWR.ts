@@ -1,58 +1,77 @@
-import { useEffect } from 'react';
-import useSWR, { mutate } from 'swr';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
-import { bazaAPI } from '@/utils/API/config';
-import { errorHandler } from '@/utils/errorHandler';
+import { useGlobalContext } from '@/store/globalContext';
+import { projectsEndpoint, projectsApi } from '@/utils/API/projects';
+import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { TResponseProjects } from '@/types';
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
+import { IProject, TResponseProjects } from '@/types';
 
-const projectsEndpoint = '/projects';
+const useProjectsSWR = () => {
+  const { setAlertInfo } = useGlobalContext();
+  const [search, setSearch] = useState('');
 
-const getAllProjects = async (limit?: number) => {
-  const queryLimit = limit ? `?limit=${limit}` : '';
-  return await bazaAPI.get<TResponseProjects>(projectsEndpoint + queryLimit);
-};
+  const swrKey = `${projectsEndpoint}?search=${search}`;
 
-const deleteById = async (id: string) => {
-  return await bazaAPI.delete(projectsEndpoint + '/' + id);
-};
-
-// const updateById = async ([id, payload]: updateByIdRequest) => {
-//   return bazaAPI.patch(`/projects/${id}`, payload);
-// };
-
-const fetcher = async () => {
-  return await getAllProjects().then((res) => res.data);
-};
-
-export const useProjectsSWR = () => {
-  const { data, error, isLoading } = useSWR<TResponseProjects, AxiosError>(
-    projectsEndpoint,
-    fetcher
-  );
+  const { data, error, isLoading, mutate } = useSWR<
+    TResponseProjects,
+    AxiosError
+  >(swrKey, projectsApi.getAll, { keepPreviousData: true });
 
   useEffect(() => {
-    error && errorHandler(error);
+    if (!error) return;
+
+    errorHandler(error);
+    setAlertInfo({
+      state: 'error',
+      title: networkStatusesUk[error?.status || 500],
+      textInfo:
+        'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
+    });
   }, [error]);
 
-  const handlerDeleteProject = async (id: string) => {
-    try {
-      const newProjects =
-        data?.results.filter((project) => project._id !== id) || [];
+  const updateAndMutate = (
+    updProjects: IProject[],
+    action: () => Promise<AxiosResponse<any, any>>
+  ) => {
+    mutate(action, {
+      optimisticData: { ...data!, results: updProjects },
+      revalidate: false,
+      populateCache: false,
+    });
+  };
 
-      const options = { optimisticData: { ...data, results: newProjects } };
+  const handlerDeleteProject = (id: string) => {
+    const updProjects = data?.results.filter((member) => member._id !== id);
+    updateAndMutate(updProjects!, () => projectsApi.deleteById(id));
+  };
 
-      mutate(projectsEndpoint, await deleteById(id), options);
-    } catch (error) {
-      errorHandler(error);
-    }
+  const handlerCreateProject = (newProject: IProject) => {
+    const updProjects = [...(data?.results || []), newProject];
+    updateAndMutate(updProjects, () => projectsApi.createNew(newProject));
+  };
+
+  const handlerUpdateProject = (id: string, updProject: IProject) => {
+    const updProjects = data?.results.map((member) =>
+      member._id === id ? updProject : member
+    );
+    updateAndMutate(updProjects!, () => projectsApi.updateById(id, updProject));
+  };
+
+  const handlerSearchProject = (search: string) => {
+    setSearch(search);
   };
 
   return {
     data,
     isLoading,
     isError: error,
+    handlerCreateProject,
+    handlerUpdateProject,
     handlerDeleteProject,
+    handlerSearchProject,
   };
 };
+
+export { useProjectsSWR };

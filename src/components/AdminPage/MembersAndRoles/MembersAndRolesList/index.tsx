@@ -5,13 +5,13 @@ import { ListRow } from './ListRow';
 type TProps = {
   entity: 'members' | 'roles';
   showedData: IMember[] | IRole[];
-  deleteAction: (id: string) => void;
+  handleDelete: (id: string) => void;
 };
 
 export const MembersAndRolesList = ({
   entity,
   showedData,
-  deleteAction,
+  handleDelete,
 }: TProps) => {
   return (
     <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
@@ -24,7 +24,7 @@ export const MembersAndRolesList = ({
               entity={entity}
               key={item._id}
               showedData={item}
-              deleteAction={deleteAction}
+              handleDelete={handleDelete}
             />
           ))}
       </tbody>

@@ -5,13 +5,13 @@ import { IMember, IRole } from '@/types';
 type TProps = {
   entity: 'members' | 'roles';
   showedData: IMember | IRole;
-  deleteAction: (id: string) => void;
+  handleDelete: (id: string) => void;
 };
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
-export const ListRow = ({ entity, showedData, deleteAction }: TProps) => {
+export const ListRow = ({ entity, showedData, handleDelete }: TProps) => {
   return (
     <tr>
       <td className={cellStyle}>
@@ -31,7 +31,7 @@ export const ListRow = ({ entity, showedData, deleteAction }: TProps) => {
           <ActionBtns
             id={showedData._id!}
             entity={entity}
-            deleteAction={deleteAction}
+            handleDelete={handleDelete}
           />
         </div>
       </td>

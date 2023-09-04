@@ -97,7 +97,7 @@ export const Projects = () => {
           />
         </div> */}
 
-        {visibleProjects.length === 0 && <h3 className="text-[3.8rem]"></h3>}
+        {/* {visibleProjects.length === 0 && <h3 className="text-[3.8rem]">Sorry! There are no projects.</h3>} */}
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
           {visibleProjects.map((project: IProject, index: number) => (

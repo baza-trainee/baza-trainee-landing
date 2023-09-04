@@ -1,36 +1,30 @@
-import { IProject } from '@/types';
-import {
-  TResponseProjects,
-  searchProjectRequest,
-  updateByIdRequest,
-} from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
+import { IProject } from '@/types';
+import { TResponseProjects } from '@/types/typesAPI';
+
+const projectsEndpoint = '/projects';
+
 const projectsApi = {
-  getAll(limit?: number) {
-    const queryParam = limit ? `?limit=${limit}` : '';
-    return bazaAPI.get<TResponseProjects>(`/projects${queryParam}`);
+  async getAll(uri: string) {
+    return await bazaAPI.get<TResponseProjects>(uri).then((res) => res.data);
   },
 
-  createNew(project: IProject) {
-    return bazaAPI.post('/projects', project);
+  async createNew(project: IProject) {
+    return await bazaAPI.post(projectsEndpoint, project);
   },
 
-  search(query: searchProjectRequest) {
-    return bazaAPI.get(`/projects/search?query=${query}`);
+  async getById(id: string) {
+    return await bazaAPI.get(`${projectsEndpoint}/${id}`);
   },
 
-  getById(id: string) {
-    return bazaAPI.get(`/projects/${id}`);
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`${projectsEndpoint}/${id}`);
   },
 
-  deleteById(id: string) {
-    return bazaAPI.delete(`/projects/${id}`);
-  },
-
-  updateById([id, payload]: updateByIdRequest) {
-    return bazaAPI.patch(`/projects/${id}`, payload);
+  async updateById(id: string, project: IProject) {
+    return await bazaAPI.patch(`${projectsEndpoint}/${id}`, project);
   },
 };
 
-export default projectsApi;
+export { projectsEndpoint, projectsApi };

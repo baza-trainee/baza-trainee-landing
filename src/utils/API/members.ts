@@ -17,7 +17,7 @@ const membersApi = {
   },
 
   async deleteById(id: string) {
-    return await bazaAPI.delete(`${membersEndpoint}sd/${id}`);
+    return await bazaAPI.delete(`${membersEndpoint}/${id}`);
   },
 
   async updateById(id: string, member: IMember) {
