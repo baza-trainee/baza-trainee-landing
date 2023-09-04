@@ -82,7 +82,6 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
         : index;
     return delay;
   };
-  const filteredProjects = projects;
   const dict = dictionaries[lang];
 
   const { navbar } = dict || {};
@@ -99,7 +98,7 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
           />
         </div> */}
 
-        {filteredProjects.length === 0 && (
+        {visibleProjects.length === 0 && (
           <h3 className="text-[3.8rem]">{noProjects}</h3>
         )}
         {visibleProjects.length === 0 && <h3 className="text-[3.8rem]"></h3>}
@@ -112,9 +111,6 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
               project={project}
               animationDelay={animateDelay(index)}
             />
-          ))}
-          {filteredProjects.map((project: IProject) => (
-            <ProjectCard key={project._id} project={project} lang={lang} />
           ))}
         </ul>
 

@@ -26,7 +26,7 @@ const projectCycle = (project: IProject, lang: TLandingLanguage) => {
     formIndex = 2;
   }
   if (formIndex !== undefined) {
-    return `${numOfWeeks} ${weekWordForms[lang]}`;
+    return `${numOfWeeks} ${weekWordForms[lang][formIndex]}`;
   } else {
     return;
   }
