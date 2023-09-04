@@ -11,6 +11,7 @@ import { Statistics } from '@/components/MainPage/Statistics';
 import { SupportBaza } from '@/components/MainPage/SupportBaza';
 import { TLandingLanguage } from '@/store/globalContext';
 
+//Commented method to make page SSR
 // export function generateStaticParams() {
 //   return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];
 // }
