@@ -12,3 +12,17 @@ export type TSlideReview = {
   review: string;
   imageUrl: string;
 };
+
+type TAdminSlideTitle = {
+  ua: string;
+  pl: string;
+  en: string;
+};
+
+export type TAdminSlide = {
+  title: TAdminSlideTitle;
+  subtitle: TAdminSlideTitle;
+  imageUrl?: string;
+  __v: number;
+  _id: string;
+};
