@@ -1,9 +1,10 @@
 'use client';
-
 import Link from 'next/link';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import Image from 'next/image';
 import { partners } from './partners';
 
@@ -47,13 +48,14 @@ const sliderSettings = {
   ],
 };
 
-export const Partners = () => {
+export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
+  const { title } = dictionaries[lang].partners || {};
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">
         <div className=" max-w-full">
           <h2 className="mb-[3.8rem] text-center text-6xl font-bold">
-            Партнери
+            {title}
           </h2>
           <Slider {...sliderSettings} lazyLoad="progressive">
             {partners.map((partner) => (

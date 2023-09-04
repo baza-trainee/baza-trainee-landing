@@ -10,20 +10,9 @@ import {
   PhoneIcon,
   TelegramIcon,
 } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
-
-const anchorLinksList = [
-  { title: 'Проєкти', href: '#projects' },
-  { title: 'Партнери', href: '#partners' },
-  { title: 'Взяти участь', href: '#forms' },
-];
-
-const officialDocsList = [
-  { title: 'Політика конфіденційності', href: '?document=policy.pdf' },
-  { title: 'Правила користування сайтом', href: '?document=rules.pdf' },
-  { title: 'Статут', href: '?document=statut.pdf' },
-  { title: 'Звітність', href: '?document=report.pdf' },
-];
 
 const getContacts = async () => {
   const noData: TContactsInfo = {
@@ -58,14 +47,46 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   </Link>
 );
 
-export const Footer = async () => {
+export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
   const contactsInfo: TContactsInfo = await getContacts();
+  // const dict = await dictionaries[lang]();
+  const { footer } = dictionaries[lang] || {};
+  const {
+    projects,
+    partners,
+    participate,
+    privacyPolicy,
+    rulesForUsingTheSite,
+    statute,
+    accountability,
+    allRightsReserved,
+  } = footer || {};
+  const anchorLinksList = [
+    { title: projects, href: '#projects' },
+    { title: partners, href: '#partners' },
+    { title: participate, href: '#forms' },
+  ];
 
+  const officialDocsList = [
+    {
+      title: privacyPolicy,
+      href: '?document=policy.pdf',
+    },
+    {
+      title: rulesForUsingTheSite,
+      href: '?document=rules.pdf',
+    },
+    {
+      title: statute,
+      href: '?document=statut.pdf',
+    },
+    { title: accountability, href: '?document=report.pdf' },
+  ];
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
       <ContainerMaxW1200 className="flex-col gap-12 text-white lg:gap-0">
         <nav className="grid gap-[3.2rem] sm:min-h-[18.4rem] sm:grid-cols-3 sm:flex-row lg:grid-cols-4">
-          <Link href={'/'} className="sm:row-span-2" aria-label="Main page">
+          <Link href="/" className="sm:row-span-2" aria-label="Main page">
             <LogoMain className="h-32 w-32 sm:h-[12.4rem] sm:w-[12.4rem]" />
           </Link>
 
@@ -141,7 +162,7 @@ export const Footer = async () => {
         </nav>
 
         <span className="text-[1.4rem] text-neutral-75 sm:mt-0">
-          Розробка BazaTraineeUkraine 2023 Усі права захищені.
+          {allRightsReserved}
         </span>
       </ContainerMaxW1200>
     </footer>

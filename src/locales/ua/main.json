@@ -1,0 +1,110 @@
+{
+  "navbar": {
+    "projects": "Проєкти",
+    "partners": "Партнери",
+    "participate": "Взяти участь",
+    "contacts": "Контакти"
+  },
+  "monthsNames": {
+    "nouns": [
+      "січень",
+      "лютий",
+      "березень",
+      "квітень",
+      "травень",
+      "червень",
+      "липень",
+      "серпень",
+      "вересень",
+      "жовтень",
+      "листопад",
+      "грудень"
+    ],
+    "spelled": [
+      "січня",
+      "лютого",
+      "березня",
+      "квітня",
+      "травня",
+      "червня",
+      "липня",
+      "серпня",
+      "вересня",
+      "жовтня",
+      "листопада",
+      "грудня"
+    ]
+  },
+  "moreProjects": "Більше проєктів",
+  "noProjects": "Вибачте! Проєктів немає.",
+  "projects": {
+    "projectStart": "Старт проєкту",
+    "projectCycle": "Цикл проєкту",
+    "duration": "Тривалість",
+    "complexity": "Складність",
+    "projectTeam": "Команда проєкту",
+    "status": {
+      "teamFormation": "Формування команди",
+      "underDevelopment": "В розробці",
+      "completed": "Завершено"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "Підтримати Baza Trainee Ukraine",
+    "teamsWaitForYou": "5 проєктів і 3 команди чекають на тебе",
+    "bazaTraineeInvite": "Baza Trainee Ukraine запрошує приєднатись до команди",
+    "chooseRole": "Оберіть свою роль в проєкті",
+    "role": {
+      "participant": "Я учасник",
+      "mentor": "Я ментор",
+      "partner": "Я партнер",
+      "customer": "Я замовник"
+    }
+  },
+  "partners": {
+    "title": "Партнери"
+  },
+  "stats": {
+    "completedProjects": "виконаних проєктів",
+    "involvedParticipants": "залучених учасників",
+    "employed": "працевлаштовано"
+  },
+  "reviews": {
+    "title": "Відгуки"
+  },
+  "modal": {
+    "title": "Оберіть суму, якою ВИ хочете підтримати Baza Trainee Ukraine",
+    "description": "Сума списується одноразово, якщо бажаєте оформити підписку, потрібно ..",
+    "sums": {
+      "otherSum": "Інша сума грн"
+    },
+    "button": "Підтримати "
+  },
+  "footer": {
+    "projects": "Проєкти",
+    "partners": "Партнери",
+    "participate": "Взяти участь",
+    "privacyPolicy": "Політика конфіденційності",
+    "rulesForUsingTheSite": "Правила користування сайтом",
+    "statute": "Статут",
+    "accountability": "Звітність",
+    "allRightsReserved": "Розробка BazaTraineeUkraine 2023 Усі права захищені"
+  },
+  "notFound": {
+    "title": "Цю сторінку не знайдено",
+    "description": "Ми не змогли знайти сторінку, яку Ви шукаєте. Можливо, сталася помилка",
+    "button": "Повернутись на головну"
+  },
+  "toFund": "Фондувати",
+  "currency": "грн",
+  "enterKeywordForSearch": "Введіть ключове слово для пошуку",
+  "yourHelpIsWorth": {
+    "title": "Дякуємо!",
+    "firstPart": "Ваша допомога дуже важлива",
+    "secondPart": "для Baza Trainee Ukraine"
+  },
+  "spinner": {
+    "loading": "Документ завантажується",
+    "error": "Не вдалося завантажити файл"
+  }
+}

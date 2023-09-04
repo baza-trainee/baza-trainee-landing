@@ -1,30 +1,35 @@
 'use client';
 
+import counterHandler from '@/utils/counterHandler';
 import { useEffect, useRef, useState } from 'react';
 
-import counterHandler from '@/utils/counterHandler';
-
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 
 const projects = 14;
 const members = 420;
 const haveJob = 14;
 
-export const Achievements = () => {
+export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const componentRef = useRef(null);
   const [projectsCount, setProjectsCount] = useState(0);
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false);
 
+  const dict = dictionaries[lang];
+  const { stats } = dict || {};
+  const { completedProjects, involvedParticipants, employed } = stats || {};
+
   const achievementData = [
-    { count: projectsCount, text: 'Проєктів' },
+    { count: projectsCount, text: completedProjects },
     {
       count: membersCount,
-      text: 'Залучених учасників',
+      text: involvedParticipants,
       plusVisible: isCountFinish,
     },
-    { count: haveJobCount, text: 'Працевлаштовано' },
+    { count: haveJobCount, text: employed },
   ];
 
   useEffect(() => {
@@ -57,7 +62,7 @@ export const Achievements = () => {
 
   return (
     <section className="bg-yellow-500 py-[5.2rem]" ref={componentRef}>
-      <ContainerMaxW1200 className="justify-between flex-col md:flex-row">
+      <ContainerMaxW1200 className="flex-col justify-between md:flex-row">
         {achievementData.map(({ count, plusVisible, text }, i) => (
           <div key={`achievement_key_${count + i}`} className={'text-center'}>
             <p className={'text-[5.6rem] font-semibold'}>

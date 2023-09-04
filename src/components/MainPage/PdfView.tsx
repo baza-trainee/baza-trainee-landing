@@ -1,14 +1,23 @@
 'use client';
 
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import Spinner from '../common/icons/Spinner';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-export const PDFView = ({ document }: { document: string | null }) => {
+export const PDFView = ({
+  document,
+  lang,
+}: {
+  document: string | null;
+  lang: TLandingLanguage;
+}) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
+  const { loading, error } = dictionaries[lang].spinner;
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
@@ -44,14 +53,10 @@ export const PDFView = ({ document }: { document: string | null }) => {
         ref={pdfWrapperRef}
       >
         <Document
-          loading={<Spinner title="Документ завантажується" />}
+          loading={<Spinner title={loading} />}
           file={`./docs/${document}`}
           onLoadSuccess={onDocumentLoadSuccess}
-          error={
-            <div className="text-3xl font-bold">
-              Не вдалося завантажити файл
-            </div>
-          }
+          error={<div className="text-3xl font-bold">{error}</div>}
           className={'flex w-full flex-col items-center justify-center p-5 '}
         >
           {Array.from(new Array(numPages), (el, index) => (

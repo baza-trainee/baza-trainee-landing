@@ -1,19 +1,27 @@
 'use client';
 
-import { createPortal } from 'react-dom';
-import { MouseEvent, ReactElement, cloneElement, isValidElement, useState } from 'react';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import {
+  MouseEvent,
+  ReactElement,
+  cloneElement,
+  isValidElement,
+  useState,
+} from 'react';
+import { createPortal } from 'react-dom';
 
 import { CloseIcon } from '@/components/common/icons';
+import { TLandingLanguage } from '@/store/globalContext';
 import { ContentDonate } from './ContentDonate';
 
 type Props = {
   children: ReactElement;
   content: 'donate' | ReactElement;
   open?: boolean;
+  lang: TLandingLanguage;
 };
 
-export const Modal = ({ children, content, open = false }: Props) => {
+export const Modal = ({ children, content, lang, open = false }: Props) => {
   const [isLandingModalShown, setIsLandingModalShown] = useState(open);
   const bodyScrollLockRef = useBodyScrollLock(isLandingModalShown);
 
@@ -42,7 +50,7 @@ export const Modal = ({ children, content, open = false }: Props) => {
           <CloseIcon className="hidden sm:block" />
         </button>
 
-        {content === 'donate' && <ContentDonate />}
+        {content === 'donate' && <ContentDonate lang={lang} />}
         {isValidElement(content) && content}
       </div>
     </section>
