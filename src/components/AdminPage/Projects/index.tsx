@@ -66,7 +66,7 @@ export const AdminProjects = () => {
               key={project._id}
               handleDelete={handlerDeleteProject}
             >
-              <ProjectCard project={project} />
+              <ProjectCard project={project} lang={'ua'} />
             </ButtonsOverlay>
           ))}
       </ul>
