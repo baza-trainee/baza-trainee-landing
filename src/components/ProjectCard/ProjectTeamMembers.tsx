@@ -1,4 +1,5 @@
-import { TTeamMember, TTeamMemberRole } from '../../types/projectsTypes';
+import { TLandingLanguage } from '@/store/globalContext';
+import { TTeamMember, TTeamMemberRole } from '@/types';
 
 type TProps = {
   roleName: string;
@@ -6,12 +7,13 @@ type TProps = {
     role: TTeamMemberRole;
     user: TTeamMember;
   }[];
+  lang: TLandingLanguage;
 };
 
-export const ProjectTeamMembers = ({ roleName, teamMembers }: TProps) => {
+export const ProjectTeamMembers = ({ roleName, teamMembers, lang }: TProps) => {
   const members = teamMembers
     .filter((member) => member.role.name === roleName)
-    .sort((a, b) => a.user.name.localeCompare(b.user.name));
+    .sort((a, b) => a.user.name[lang].localeCompare(b.user.name[lang]));
 
   return members.map((member) => (
     <a
@@ -20,7 +22,7 @@ export const ProjectTeamMembers = ({ roleName, teamMembers }: TProps) => {
       href={member.user.link}
       target="_blank"
     >
-      {member.user.name}
+      {member.user.name[lang]}
     </a>
   ));
 };

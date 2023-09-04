@@ -12,7 +12,7 @@ interface CommonResponseBase {
   __v?: number;
 }
 
-type TTitleLanguagesTypes = {
+export type TTitleLanguagesTypes = {
   en: string;
   pl: string;
   ua: string;

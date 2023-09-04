@@ -1,34 +1,44 @@
+'use client';
 import {
   ProjectComplexityIcon,
   ProjectDurationIcon,
   ProjectStartIcon,
 } from '@/components/common/icons';
 
-import projectCycle from '@/utils/developmentTimeCalculator';
+import { dictionaries } from '@/locales/dictionaries';
+import { projectCycle } from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';
-import { ICardContent } from '../../types/projectsTypes';
+import { ICardContent } from '@/types';
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
 
-const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
+const ProjectCardContent = ({
+  handleShowTeam,
+  project,
+  lang = 'ua',
+}: ICardContent) => {
+  const { projectStart, projectTeam, duration, complexity } =
+    dictionaries[lang].projects || {};
+
   return (
     <div className="flex h-full flex-col justify-between ">
-      <ProjectStatusBar statusName={project.status || 'n/a'} />
+      <ProjectStatusBar project={project} lang={lang} />
 
       <div className="flex w-full flex-col gap-[1.6rem]">
         <div className="h-[11rem]">
           <h4 className="text-[2.4rem] font-bold leading-[3rem]">
-            {project.description || 'n/a'}
+            {/* {project.description[lang]} // TODO: implement logic when localization will be available */}
+            Опис проєкту
           </h4>
-          {project.deployUrl && (
+          {project.link && (
             <Link
-              href={project.deployUrl}
+              href={project.link}
               target="_blank"
               className="mt-[0.8rem]"
-              aria-label={`Visit ${project.deployUrl}`}
+              aria-label={`Visit ${project.link}`}
             >
-              {project.deployUrl}
+              {project.link ? project.link : ''}
             </Link>
           )}
         </div>
@@ -36,21 +46,23 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
           <div className="flex items-center gap-2">
             <ProjectStartIcon />
-            <span>Старт проєкту</span>
+            <span>{projectStart}</span>
             <span className="ml-auto font-medium">
-              {formatDate(project.creationDate)}
+              {formatDate(project.creationDate, 'spelled', lang)}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <ProjectDurationIcon />
-            <span>Тривалість</span>
-            <span className="ml-auto font-medium">{projectCycle(project)}</span>
+            <span>{duration}</span>
+            <span className="ml-auto font-medium">
+              {projectCycle(project, lang)}
+            </span>
           </div>
 
           <div className="flex items-center gap-2">
             <ProjectComplexityIcon />
-            <span>Складність</span>
+            <span>{complexity}</span>
             <div className="ml-auto">
               <ProjectComplexity count={project.complexity} />
             </div>
@@ -61,7 +73,7 @@ const ProjectCardContent = ({ handleShowTeam, project }: ICardContent) => {
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}
             >
-              Команда проєкту
+              {projectTeam}
             </button>
           )}
         </div>
