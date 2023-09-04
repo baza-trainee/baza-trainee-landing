@@ -80,7 +80,7 @@ export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
       title: statute,
       href: '?document=statut.pdf',
     },
-    { title: accountability, href: '#' },
+    { title: accountability, href: '?document=report.pdf' },
   ];
   return (
     <footer className="bg-neutral-700 pb-12 pt-16" id="footer">
