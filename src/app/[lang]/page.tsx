@@ -11,11 +11,11 @@ import { Statistics } from '@/components/MainPage/Statistics';
 import { SupportBaza } from '@/components/MainPage/SupportBaza';
 import { TLandingLanguage } from '@/store/globalContext';
 
-export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];
-}
+// export function generateStaticParams() {
+//   return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];
+// }
 
-export default async function Home({
+export default function Home({
   params: { lang },
 }: {
   params: { lang: TLandingLanguage };
