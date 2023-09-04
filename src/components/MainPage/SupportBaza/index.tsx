@@ -4,9 +4,8 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { Modal } from '../Modal';
 
 export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = dictionaries[lang];
-  const { invite } = dict || {};
-  const { supportBazaTrainee } = invite || {};
+  const { supportBazaTrainee } = dictionaries[lang].invite || {};
+
   return (
     <section>
       <ContainerMaxW1200>

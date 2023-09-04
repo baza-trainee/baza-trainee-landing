@@ -17,8 +17,7 @@ export const PDFView = ({
 }) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
-  const dict = dictionaries[lang];
-  const { loading, error } = dict.spinner;
+  const { loading, error } = dictionaries[lang].spinner;
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }

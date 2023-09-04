@@ -18,8 +18,7 @@ export const ProjectCardTeam = ({
     }, [])
     .sort();
 
-  const dict = dictionaries[lang];
-  const { projectTeam } = dict.projects;
+  const { projectTeam } = dictionaries[lang].projects;
 
   return (
     <>

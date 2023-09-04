@@ -2,10 +2,21 @@
 import { MultiArrow } from '@/components/common/icons';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-export const MoreProjectsButton = ({ ...rest }) => {
-  const dict = dictionaries[rest.lang as TLandingLanguage];
-  const { moreProjects } = dict;
+interface TMoreProjectsButtonProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  lang: TLandingLanguage;
+}
+
+export const MoreProjectsButton = ({
+  lang,
+  ...rest
+}: TMoreProjectsButtonProps) => {
+  const { moreProjects } = dictionaries[lang];
   return (
     <button
       className="relative mx-auto h-32 max-w-fit rounded-md px-[0.8rem]

@@ -49,8 +49,7 @@ const sliderSettings = {
 };
 
 export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = dictionaries[lang] || {};
-  const { title } = dict.partners || {};
+  const { title } = dictionaries[lang].partners || {};
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">

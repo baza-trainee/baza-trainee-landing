@@ -18,9 +18,8 @@ const ProjectCardContent = ({
   project,
   lang,
 }: ICardContent) => {
-  const dict = dictionaries[lang];
-  const { projects } = dict || {};
-  const { projectStart, projectTeam, duration, complexity } = projects || {};
+  const { projectStart, projectTeam, duration, complexity } =
+    dictionaries[lang].projects || {};
   return (
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar project={project} lang={lang} />

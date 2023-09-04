@@ -1,10 +1,9 @@
-import { GlobalContext } from '@/store/globalContext';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import Image from 'next/image';
-import { useContext } from 'react';
 
-export const Gratitude = () => {
-  const { dict } = useContext(GlobalContext);
-  const { firstPart, secondPart, title } = dict!.yourHelpIsWorth;
+export const Gratitude = ({ lang }: { lang: TLandingLanguage }) => {
+  const { firstPart, secondPart, title } = dictionaries[lang].yourHelpIsWorth;
   return (
     <div className="flex h-full flex-col items-center justify-center px-[3.5rem] py-[2.4rem] uppercase text-neutral-800">
       <h2 className="text-[3.2rem] font-bold ">{title}</h2>

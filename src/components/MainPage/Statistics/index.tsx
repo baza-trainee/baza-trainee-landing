@@ -5,9 +5,7 @@ import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = dictionaries[lang];
-  const { invite } = dict || {};
-  const { teamsWaitForYou } = invite || {};
+  const { teamsWaitForYou } = dictionaries[lang].invite || {};
   return (
     <section className="relative">
       <Image
