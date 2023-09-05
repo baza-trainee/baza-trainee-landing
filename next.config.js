@@ -1,4 +1,5 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
+/** @type {import('next').NextConfig} */
+
 const url = process.env.NEXT_PUBLIC_PROXY_URL;
 
 module.exports = {
@@ -17,21 +18,6 @@ module.exports = {
         destination: `${url}/api/v1/:path*`,
       },
     ];
-  },
-  async middleware() {
-    const proxy = createProxyMiddleware({
-      target: url,
-      changeOrigin: true,
-      cookieDomainRewrite: '',
-      secure: true,
-    });
-
-    return {
-      '/api/v1': proxy,
-    };
-  },
-  future: {
-    webpack5: true,
   },
   webpack: (config) => {
     config.module.rules.push({
