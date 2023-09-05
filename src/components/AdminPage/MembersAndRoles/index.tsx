@@ -16,18 +16,19 @@ export const MembersAndRoles = ({ entity }: TProps) => {
     handlerSearchMember,
     handlerDeleteMember,
   } = useMembersSWR();
-  const members = membersData?.results || [];
 
   const {
     data: rolesData,
     handlerDeleteRole,
     handlerSearchRole,
   } = useRolesSWR();
-  const roles = rolesData?.results || [];
 
   const title = entity === 'members' ? 'Учасники' : 'Спеціалізація';
 
-  const showedData = entity === 'members' ? members : roles;
+  const showedData =
+    entity === 'members'
+      ? membersData?.results || []
+      : rolesData?.results || [];
 
   const handleDelete =
     entity === 'members' ? handlerDeleteMember : handlerDeleteRole;

@@ -1,13 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
-import { paintedLog } from '@/utils/errorHandler';
 
-import { TextInputField } from '@/components/atomic';
-import { FormBtns } from './FormBtns';
+import { TextInputField, FormBtns } from '@/components/atomic';
 
 import { IMember } from '@/types';
 
@@ -86,17 +84,13 @@ export const MembersForm = ({ id }: { id?: string }) => {
       profileUrl: data.linkedin,
     };
 
-    try {
-      if (id) {
-        handlerUpdateMember(id, member);
-      } else {
-        handlerCreateMember(member);
-      }
-
-      router.replace('.');
-    } catch (e) {
-      paintedLog('Submit member error >>', e);
+    if (id) {
+      handlerUpdateMember(id, member);
+    } else {
+      handlerCreateMember(member);
     }
+
+    router.replace('.');
   };
 
   return (
@@ -128,7 +122,7 @@ export const MembersForm = ({ id }: { id?: string }) => {
         />
       </div>
 
-      <FormBtns />
+      <FormBtns isEditMode={!!id} />
     </form>
   );
 };

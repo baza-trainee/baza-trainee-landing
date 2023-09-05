@@ -1,5 +1,5 @@
-import { ProjectForm } from '@/components/AdminPage/Projects/ProjectForm';
+import { ProjectEditor } from '@/components/AdminPage/Projects/ProjectEditor';
 
 export default function AddProjectPage() {
-  return <ProjectForm />;
+  return <ProjectEditor />;
 }

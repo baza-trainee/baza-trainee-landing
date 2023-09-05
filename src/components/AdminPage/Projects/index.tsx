@@ -14,35 +14,9 @@ import { ButtonsOverlay } from './ButtonsOverlay';
 import { IProject } from '@/types';
 
 export const AdminProjects = () => {
-  const { setAlertInfo } = useGlobalContext();
-  // const [
-  //   dispatch,
-  //   data,
-  //   // isError
-  // ] = useAPI(projectsApi.getAll);
   const [showedItems, setShowedItems] = useState();
 
-  const {
-    data: projects,
-    isLoading,
-    isError,
-    handlerDeleteProject,
-  } = useProjectsSWR();
-
-  // useEffect(() => {
-  //   dispatch(showedItems);
-  //   // console.log(data);
-  // }, [showedItems]);
-
-  useEffect(() => {
-    isError &&
-      setAlertInfo({
-        state: 'error',
-        title: networkStatusesUk[isError?.status || 500],
-        textInfo:
-          'Не вдалося отримати перелік проєктів. Спробуйте трохи пізніше.',
-      });
-  }, [isError]);
+  const { data: projects, handlerDeleteProject } = useProjectsSWR();
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">

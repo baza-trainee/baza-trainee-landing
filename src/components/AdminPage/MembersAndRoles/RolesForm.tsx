@@ -1,13 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-import { paintedLog } from '@/utils/errorHandler';
 
 import { TextInputField } from '@/components/atomic';
-import { FormBtns } from './FormBtns';
+import { FormBtns } from '../../atomic/buttons/FormBtns';
 
 import { IMember, IRole } from '@/types';
 
@@ -72,17 +71,13 @@ export const RolesForm = ({ id }: { id?: string }) => {
       },
     };
 
-    try {
-      if (id) {
-        handlerUpdateRole(id, role);
-      } else {
-        handlerCreateRole(role);
-      }
-
-      router.replace('.');
-    } catch (e) {
-      paintedLog('Submit role error >>', e);
+    if (id) {
+      handlerUpdateRole(id, role);
+    } else {
+      handlerCreateRole(role);
     }
+
+    router.replace('.');
   };
 
   return (
@@ -109,7 +104,7 @@ export const RolesForm = ({ id }: { id?: string }) => {
         />
       </div>
 
-      <FormBtns />
+      <FormBtns isEditMode={!!id} />
     </form>
   );
 };

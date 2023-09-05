@@ -10,10 +10,13 @@ export * from './buttons/SupportBazaButton';
 export * from './buttons/MoreProjectsButton';
 export * from './buttons/EditDeleteButton';
 export * from './buttons/ActionBtns';
+export * from './buttons/FormBtns';
 
 export * from './inputs/InputField';
 export * from './inputs/TextInputField';
 export * from './inputs/PasswordInput';
+export * from './inputs/DateInput';
+export * from './inputs/FileInput';
 
 export * from './AdminTitle';
 export * from './AlertWindow';

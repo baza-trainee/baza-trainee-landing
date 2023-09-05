@@ -5,7 +5,7 @@ import { TFormTabs } from './types';
 //   setMode(mode === 'description' ? 'members' : 'description');
 // };
 
-export const ProjectFormTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
+export const ProjectEditorTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
   const buttonBaseStyle =
     'flex gap-5 rounded-tl-md rounded-tr-md border-l border-r border-t border-neutral-800 px-6 py-4 ';
 
