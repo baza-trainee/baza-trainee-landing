@@ -25,4 +25,6 @@ export type TAdminSlide = {
   imageUrl?: string;
   __v: number;
   _id: string;
+  key: string;
+  slideData: never;
 };
