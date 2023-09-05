@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
