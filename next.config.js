@@ -2,7 +2,14 @@
 
 const url = process.env.NEXT_PUBLIC_PROXY_URL;
 
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer({
+  env: {
+    NEXT_PUBLIC_ENV: 'PRODUCTION', // your next configs go here
+  },
   output: 'standalone',
   experimental: {
     serverActions: true,
@@ -30,4 +37,4 @@ module.exports = {
   images: {
     domains: ['baza-trainee.tech'],
   },
-};
+});
