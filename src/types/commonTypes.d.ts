@@ -28,3 +28,23 @@ export type TAdminSlide = {
   key: string;
   slideData: never;
 };
+
+export interface IAddEditSlideProps {
+  data?: {
+    title: {
+      ua: string;
+      en: string;
+      pl: string;
+    };
+    subtitle: {
+      ua: string;
+      en: string;
+      pl: string;
+    };
+    imageUrl: string;
+    _id: string;
+    _v: number;
+  };
+  title: string;
+  isEdit: boolean;
+}
