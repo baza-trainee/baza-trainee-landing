@@ -6,6 +6,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
 import {
+  CheckboxInput,
+  ComplexityInput,
   DateInput,
   FileInput,
   FormBtns,
@@ -113,24 +115,17 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         </div>
 
         <div className="col-span-2 flex gap-10">
-          <DateInput value={''} title="Старт проєкту" />
-          <DateInput value={''} title="Дата завершення проєкту" />
+          {/* <DateInput value={''} title="Старт проєкту" />
+          <DateInput value={''} title="Дата завершення проєкту" /> */}
         </div>
 
         <div className="col-span-2 flex gap-10">
-          <div className="flex w-full items-center justify-between">
-            <label htmlFor="isTeamRequired">Формування команди</label>
-            <input
-              type="checkbox"
-              id="isTeamRequired"
-              className="h-10 w-10 accent-dark"
-            />
-          </div>
-          <DateInput value={''} title="Дата завершення проєкту" />
+          <CheckboxInput placeholder="Формування команди" title="Стан" />
+          <ComplexityInput />
         </div>
 
         <div className="col-span-2 flex gap-10">
-          <TextInputField value={''} title="Адреса сайту" />
+          {/* <TextInputField value={''} title="Адреса сайту" /> */}
           <FileInput title="Обкладинка" />
         </div>
       </div>

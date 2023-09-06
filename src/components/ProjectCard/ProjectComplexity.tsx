@@ -1,10 +1,10 @@
 export const ProjectComplexity = ({ count }: { count: number }) => (
   <div className="flex gap-2">
-    {Array.from({ length: 5 }, (_, i) => (
+    {[1, 2, 3, 4, 5].map((value) => (
       <div
-        key={i}
+        key={value}
         className={`h-8 w-8 rounded-full border-2 border-white ${
-          i < count && 'bg-white'
+          value < count && 'bg-white'
         }`}
       />
     ))}

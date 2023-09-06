@@ -6,10 +6,10 @@ import {
 } from '@/components/common/icons';
 
 import { dictionaries } from '@/locales/dictionaries';
+import { ICardContent } from '@/types';
 import { projectCycle } from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';
-import { ICardContent } from '@/types';
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
 
@@ -83,3 +83,4 @@ const ProjectCardContent = ({
 };
 
 export { ProjectCardContent };
+
