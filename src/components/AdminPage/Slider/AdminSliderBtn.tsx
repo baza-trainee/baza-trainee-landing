@@ -1,4 +1,4 @@
-import heroSliderApi from '@/utils/API/heroSlider';
+import { heroSliderApi } from '@/utils/API/heroSlider';
 import { ReactElement } from 'react';
 
 type Props = {

@@ -3,7 +3,7 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { AdminPanelButton } from '@/components/atomic';
 import AdminTitle from '@/components/common/AdminTitle';
 import { TAdminSlide, responseDataType } from '@/types';
-import heroSliderApi from '@/utils/API/heroSlider';
+import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
@@ -14,7 +14,7 @@ export const AdminHeroSlider = () => {
 
   async function getData() {
     try {
-      const res: responseDataType = await heroSliderApi.getAll();
+      const res: responseDataType = await heroSliderApi.getAll(slidersEndPoint);
       return res.data;
     } catch (error) {
       console.log(error);

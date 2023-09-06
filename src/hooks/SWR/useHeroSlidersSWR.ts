@@ -1,48 +1,43 @@
 // import { useEffect } from 'react';
+import { IHeroSlider } from '@/types';
+import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
+import { AxiosError, AxiosResponse } from 'axios';
 import useSWR from 'swr';
 
-import { bazaAPI } from '@/utils/API/config';
-
-import { IHeroSlider } from '@/types';
-import { AxiosError } from 'axios';
-
-const heroSliderEndpoint = '/heroslider';
-
-const getAllProjects = async () => {
-  return await bazaAPI.get<IHeroSlider>(heroSliderEndpoint);
-};
-
-const deleteById = async (id: string) => {
-  return await bazaAPI.delete(heroSliderEndpoint + '/' + id);
-};
-
-const fetcher = async () => {
-  return await getAllProjects().then((res) => res.data);
-};
-
 export const useHeroSliderSWR = () => {
-  const { data, error, isLoading } = useSWR<IHeroSlider, AxiosError>(
-    heroSliderEndpoint,
-    fetcher
+  const { data, error, isLoading } = useSWR<AxiosResponse, AxiosError>(
+    slidersEndPoint,
+    heroSliderApi.getAll,
+    { keepPreviousData: true }
   );
 
-  //   const handlerDeleteProject = async (id: string) => {
-  //     try {
-  //       const newProjects =
-  //         data?.results.filter((project) => project._id !== id) || [];
+  // const getAllSliders = async () => {
+  //   return await heroSliderApi.getAll();
+  // };
 
-  //       const options = { optimisticData: { ...data, results: newProjects } };
+  const getByIdSlider = async (id: string) => {
+    return await heroSliderApi.getById(id);
+  };
 
-  //       mutate(heroSliderEndpoint, await deleteById(id), options);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  const delByIdSlider = async (id: string) => {
+    return await heroSliderApi.deleteById(id);
+  };
+
+  const addNewSlider = async (slider: IHeroSlider) => {
+    return await heroSliderApi.createNew(slider);
+  };
+
+  const updateSlider = async (id: string, slider: IHeroSlider) => {
+    return await heroSliderApi.updateById([id, slider]);
+  };
 
   return {
     data,
     isLoading,
     isError: error,
-    // handlerDeleteProject,
+    getByIdSlider,
+    delByIdSlider,
+    updateSlider,
+    addNewSlider,
   };
 };
