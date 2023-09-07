@@ -3,11 +3,16 @@
 //import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useBodyScrollLockSimple } from '@/hooks/useBodyScrollLockSimple';
 import { TLandingLanguage } from '@/store/globalContext';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { CloseIcon } from '../common/icons';
-import { Gratitude } from './Gratitude';
-import { PDFView } from './PdfView';
+//import { Gratitude } from './Gratitude';
+//import { PDFView } from './PdfView';
+const Gratitude = dynamic(() =>
+  import('./Gratitude').then((res) => res.Gratitude)
+);
+const PDFView = dynamic(() => import('./PdfView').then((res) => res.PDFView));
 
 export const ModalParams = ({ lang }: { lang: TLandingLanguage }) => {
   const params = useSearchParams();
