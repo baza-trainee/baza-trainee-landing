@@ -4,6 +4,31 @@ export const projects = [
   {
     _id: crypto.randomUUID(),
     title: {
+      en: 'lullabies',
+      pl: 'lullabies',
+      ua: 'lullabies',
+    },
+    imageUrl: '/img/projects/lullabies.webp',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    link: '',
+    description: {
+      en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
+      pl: 'Strona docelowa - zbiórka funduszy dla 57 Brygady, 42 Batalionu',
+      ua: 'Лендінг - збір коштів для 57-ї бригади 42 батальону',
+    },
+    creationDate: 1694119455000,
+    launchDate: 0,
+    complexity: 1,
+    isTeamRequired: false,
+    teamMembers: [],
+  },
+  {
+    _id: crypto.randomUUID(),
+    title: {
       en: 'hust',
       pl: 'hust',
       ua: 'hust',
@@ -1312,7 +1337,7 @@ export const projects = [
       ua: 'Книжка їде за кордон - портал гуманітарної допомоги',
     },
     creationDate: 1688245200000,
-    launchDate: 0,
+    launchDate: 1673215200000,
     complexity: 2,
     isTeamRequired: false,
     teamMembers: [],

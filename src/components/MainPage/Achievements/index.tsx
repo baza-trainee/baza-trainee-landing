@@ -7,9 +7,9 @@ import { ContainerMaxW1200 } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
-const projects = 14;
-const members = 420;
-const haveJob = 14;
+const projects = 25;
+const members = 1230;
+const haveJob = 32;
 
 export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const componentRef = useRef(null);
