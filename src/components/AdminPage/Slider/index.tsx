@@ -2,32 +2,22 @@
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { AdminPanelButton } from '@/components/atomic';
 import AdminTitle from '@/components/common/AdminTitle';
-import { TAdminSlide, responseDataType } from '@/types';
-import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { TAdminSlide } from '@/types';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 
 export const AdminHeroSlider = () => {
-  const [data, setData] = useState<responseDataType>();
   const [curLang, setCurLang] = useState<string>('ua');
 
-  async function getData() {
-    try {
-      const res: responseDataType = await heroSliderApi.getAll(slidersEndPoint);
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const { data: sliderData } = useHeroSliderSWR();
+
+  console.log(sliderData?.data);
 
   useEffect(() => {
-    getData().then((item: never[]) => {
-      setData(item);
-    });
     setCurLang(localStorage.getItem('landingLanguage') || 'ua');
   }, []);
-  console.log(data);
 
   return (
     <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">
@@ -41,8 +31,8 @@ export const AdminHeroSlider = () => {
             <Link href="/admin/slider/add-slider">+ Додати слайд</Link>
           </AdminPanelButton>
         </div>
-        {data &&
-          data.map((item: TAdminSlide) => (
+        {sliderData &&
+          sliderData?.data.map((item: TAdminSlide) => (
             <AdminSingleSlide key={item._id} slideData={item} lang={curLang} />
           ))}
       </div>

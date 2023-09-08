@@ -1,11 +1,15 @@
 'use client';
 
 import { TAlertInfoState } from '@/components/atomic/AlertWindow';
+import { dictionaries } from '@/locales/dictionaries';
+import { TDictionary } from '@/types';
+import { useParams } from 'next/navigation';
 import {
   Dispatch,
   PropsWithChildren,
   SetStateAction,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from 'react';
@@ -18,20 +22,33 @@ export interface IStoreContextType {
   setLandingLanguage: Dispatch<SetStateAction<TLandingLanguage>>;
   alertInfo: TAlertInfo;
   setAlertInfo: Dispatch<SetStateAction<TAlertInfo>>;
+  dict: TDictionary | undefined;
+  // getDictionary: (lang: TLandingLanguage | string) => void;
 }
 
-export const GlobalContext = createContext<IStoreContextType>(
-  {} as IStoreContextType
-);
+const GlobalContext = createContext<IStoreContextType>({} as IStoreContextType);
+
+export const useGlobalContext = () => useContext(GlobalContext);
 
 export const StoreProvider = ({ children }: PropsWithChildren) => {
   const [landingLanguage, setLandingLanguage] =
     useState<TLandingLanguage>('ua');
+  const params = useParams();
   const [alertInfo, setAlertInfo] = useState<TAlertInfo>(null);
+
+  const [dict, setDict] = useState<TDictionary>();
 
   useEffect(() => {
     const landingLanguage = localStorage.getItem('landingLanguage');
-    landingLanguage && setLandingLanguage(landingLanguage as TLandingLanguage);
+    // landingLanguage && setLandingLanguage(landingLanguage as TLandingLanguage);
+    if (params.lang) {
+      setLandingLanguage(params.lang as TLandingLanguage);
+      setDict(dictionaries[params.lang as TLandingLanguage]);
+    } else {
+      landingLanguage &&
+        setLandingLanguage(landingLanguage as TLandingLanguage);
+      setDict(dictionaries[landingLanguage as TLandingLanguage]);
+    }
   }, []);
 
   useEffect(() => {
@@ -46,6 +63,7 @@ export const StoreProvider = ({ children }: PropsWithChildren) => {
     setLandingLanguage,
     alertInfo,
     setAlertInfo,
+    dict,
   };
 
   return (
