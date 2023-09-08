@@ -12,3 +12,13 @@ export const dictionaries: {
   pl,
   ua,
 };
+/*
+export const dictionaries = {
+  en: () => import('./en/main.json').then((module) => module.default),
+  pl: () => import('./pl/main.json').then((module) => module.default),
+  ua: () => import('./ua/main.json').then((module) => module.default),
+};
+
+export const getDictionary = async (locale: 'ua' | 'pl' | 'en') =>
+  dictionaries[locale]();
+*/
