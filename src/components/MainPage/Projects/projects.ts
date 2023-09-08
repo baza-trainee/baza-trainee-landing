@@ -1394,8 +1394,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Наталя Гайванович',
-            pl: 'Наталя Гайванович',
+            en: 'Natalia Gaivanovich',
+            pl: 'Natalia Gaivanovich',
             ua: 'Наталя Гайванович',
           },
           link: 'https://www.linkedin.com/in/natalya-gayvanovych/',
@@ -1407,8 +1407,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Ольга Прозорова',
-            pl: 'Ольга Прозорова',
+            en: 'Olga Prozorova',
+            pl: 'Olga Prozorova',
             ua: 'Ольга Прозорова',
           },
           link: 'https://www.linkedin.com/in/olga-prozorova-248151255/',
@@ -1420,8 +1420,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Макс Федоришин',
-            pl: 'Макс Федоришин',
+            en: 'Max Fedoryshin',
+            pl: 'Max Fedoryshin',
             ua: 'Макс Федоришин',
           },
           link: 'https://www.linkedin.com/in/max-fedoryshyn-8992881b7/',
@@ -1433,8 +1433,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Роман Пальоха',
-            pl: 'Роман Пальоха',
+            en: 'Roman Paliokha',
+            pl: 'Roman Paliokha',
             ua: 'Роман Пальоха',
           },
           link: 'https://www.linkedin.com/in/romanpaliokha/',
@@ -1446,8 +1446,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Володимир Лобода',
-            pl: 'Володимир Лобода',
+            en: 'Volodymyr Loboda',
+            pl: 'Volodymyr Loboda',
             ua: 'Володимир Лобода',
           },
           link: 'https://www.linkedin.com/in/volodymyr-loboda-021935119/?originalSubdomain=pl',
@@ -1459,8 +1459,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Ольга Бондаренко',
-            pl: 'Ольга Бондаренко',
+            en: 'Olga Bondarenko',
+            pl: 'Olga Bondarenko',
             ua: 'Ольга Бондаренко',
           },
           link: 'https://www.linkedin.com/in/olha-bondarenko-74a093229/',
@@ -1472,8 +1472,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Ігор Вакалюк',
-            pl: 'Ігор Вакалюк',
+            en: 'Igor Vakaliuk',
+            pl: 'Igor Vakaliuk',
             ua: 'Ігор Вакалюк',
           },
           link: 'https://www.linkedin.com/in/ihor-vakaliuk/',
@@ -1485,8 +1485,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Сергій Токарєв',
-            pl: 'Сергій Токарєв',
+            en: 'Sergii Tokaryev',
+            pl: 'Sergii Tokaryev',
             ua: 'Сергій Токарєв',
           },
           link: 'https://www.linkedin.com/in/serhii-tokariev-4a1060155/',
@@ -1498,8 +1498,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Олександр Брусильцев',
-            pl: 'Олександр Брусильцев',
+            en: 'Oleksandr Brusyltsev',
+            pl: 'Oleksandr Brusyltsev',
             ua: 'Олександр Брусильцев',
           },
           link: 'https://www.linkedin.com/in/oleksandr-brusyltsev/',
@@ -1511,8 +1511,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Катерина Погребна',
-            pl: 'Кatерina Pogreбна',
+            en: 'Kateryna Pogrebna',
+            pl: 'Kateryna Pogrebna',
             ua: 'Катерина Погребна',
           },
           link: 'https://www.linkedin.com/in/katerynapogrebna/',
@@ -1524,8 +1524,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Зінаїда Усікова',
-            pl: 'Зінаїда Усікова',
+            en: 'Zinaida Usikova',
+            pl: 'Zinaida Usikova',
             ua: 'Зінаїда Усікова',
           },
           link: 'https://www.linkedin.com/in/zinaida-usikova/',
@@ -1537,8 +1537,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Микола Осетров',
-            pl: 'Микола Осетров',
+            en: 'Nikolay Osetrov',
+            pl: 'Nikolay Osetrov',
             ua: 'Микола Осетров',
           },
           link: 'https://www.linkedin.com/in/nikolayosetrov/',
@@ -1550,8 +1550,8 @@ export const projects = [
       {
         user: {
           name: {
-            en: 'Наталія Кун',
-            pl: 'Наталія Кун',
+            en: 'Nataliya Kuhn',
+            pl: 'Nataliya Kuhn',
             ua: 'Наталія Кун',
           },
           link: 'https://www.linkedin.com/in/nataliya-kuhn/',
@@ -1586,6 +1586,253 @@ export const projects = [
     launchDate: 1690705554200,
     complexity: 2,
     isTeamRequired: false,
-    teamMembers: [],
+    teamMembers: [
+      {
+        user: {
+          name: {
+            en: 'Danilo Osadchenko',
+            pl: 'Danilo Osadchenko',
+            ua: 'Данило Осадченко',
+          },
+          link: 'https://www.linkedin.com/in/danylo-osadchenko/',
+        },
+        role: {
+          name: 'Back-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Bogdan Taran',
+            pl: 'Bogdan Taran',
+            ua: 'Богдан Таран',
+          },
+          link: 'https://www.linkedin.com/in/bohdan-taran-2168b1220',
+        },
+        role: {
+          name: 'Business Analyst',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Susanna Salata',
+            pl: 'Susanna Salata',
+            ua: 'Сусанна Салата',
+          },
+          link: 'https://www.linkedin.com/in/susanna-salata/',
+        },
+        role: {
+          name: 'BA/PM Mentor',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Ostap Seniuk',
+            pl: 'Ostap Seniuk',
+            ua: 'Остап Сенюк',
+          },
+          link: 'https://www.linkedin.com/in/ostap-seniuk/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Viktoria Dzhus',
+            pl: 'Viktoria Dzhus',
+            ua: 'Вікторія Джус',
+          },
+          link: 'https://www.linkedin.com/in/victoriadzhus/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Maria Popova',
+            pl: 'Maria Popova',
+            ua: 'Марія Попова',
+          },
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Inna Kijan',
+            pl: 'Inna Kijan',
+            ua: 'Інна Кіян',
+          },
+          link: 'https://www.linkedin.com/in/inna-kiyan-586138263/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Anastazja Worona',
+            pl: 'Anastazja Worona',
+            ua: 'Анастасія Ворона',
+          },
+          link: 'https://www.linkedin.com/in/anastasiia-vorona-6a5165220/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Sergiusz Onopriienko',
+            pl: 'Sergiusz Onopriienko',
+            ua: 'Сергій Онопрієнко',
+          },
+          link: 'https://www.linkedin.com/in/serhii-onopriienko-099215174/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Maksym Kulbako',
+            pl: 'Maksym Kulbako',
+            ua: 'Максим Кубалко',
+          },
+          link: 'https://www.linkedin.com/in/maksym-kulbako-69028847',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Olga Iwanowa',
+            pl: 'Olga Iwanowa',
+            ua: 'Ольга Іванова',
+          },
+          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+        },
+        role: {
+          name: 'Product Owner',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Svitlana Diachenko',
+            pl: 'Svitlana Diachenko',
+            ua: 'Світлана Дяченко',
+          },
+          link: 'https://www.linkedin.com/in/svitlanadiachenko/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Olena Czornobrywiec',
+            pl: 'Olena Czornobrywiec',
+            ua: 'Олена Чорнобривець',
+          },
+          link: 'http://www.linkedin.com/in/olenachornobryvets',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Katarzyna Żarowa',
+            pl: 'Katarzyna Żarowa',
+            ua: 'Катерина Жарова',
+          },
+          link: 'https://www.linkedin.com/in/kateryna-zharova/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Sergiusz Sztiepan-Antoniuk',
+            pl: 'Sergiusz Sztiepan-Antoniuk',
+            ua: 'Сергій Штефан-Антонюк',
+          },
+          link: 'https://www.linkedin.com/in/serhii-shtefan-antoniuk-91610b258?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfvGVVsReQpuZ9lDTBekIFA%3D%3D',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Lilia Oliynyk',
+            pl: 'Lilia Oliynyk',
+            ua: 'Лілія Олійник',
+          },
+          link: 'https://sk.linkedin.com/in/lily-oliynyk-299605282',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Paweł Chlebnikow',
+            pl: 'Paweł Chlebnikow',
+            ua: 'Павло Хлебніков',
+          },
+          link: 'https://www.linkedin.com/in/pavelkhlebnikov/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Tatiana Kowalska',
+            pl: 'Tatiana Kowalska',
+            ua: 'Тетяна Ковальська',
+          },
+          link: 'http://linkedin.com/in/tetiana-kovalska-43b32022b',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Walenty Jelkin',
+            pl: 'Walenty Jelkin',
+            ua: 'Валентин Елькін',
+          },
+          link: 'https://www.linkedin.com/in/valentyn-yelkin-295637261/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+    ],
   },
 ] as IProject[];
