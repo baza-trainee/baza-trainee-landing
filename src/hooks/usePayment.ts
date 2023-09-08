@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const url = process.env.NEXT_PUBLIC_SERVER_URL || '';
@@ -7,7 +5,6 @@ const url = process.env.NEXT_PUBLIC_SERVER_URL || '';
 const maxPayment = 10_000_000;
 
 const usePaymentHandler = (urlBase = url) => {
-  const router = useRouter();
   const [paymentAmount, setPaymentAmount] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -28,14 +25,18 @@ const usePaymentHandler = (urlBase = url) => {
     };
     if (Number(paymentAmount)) {
       try {
-        const response = await axios.post(`${urlBase}/payment`, paymentData);
+        const response = await fetch(`${urlBase}/payment`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(paymentData),
+        });
+        const data = await response.json();
 
-        const checkoutUrl = response.data?.invoiceUrl;
+        const checkoutUrl = data?.invoiceUrl;
         if (checkoutUrl) {
           window.location.href = checkoutUrl;
-          //redirect(checkoutUrl, 'push');
-          //router.replace(checkoutUrl);
-          //router.push(checkoutUrl);
         }
       } catch (error) {
         setErrorMessage('Error occurred while processing payment');
