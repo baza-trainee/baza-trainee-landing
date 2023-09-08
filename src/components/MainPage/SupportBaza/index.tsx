@@ -3,7 +3,7 @@ import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { Modal } from '../Modal';
 
-export const SupportBaza = async ({ lang }: { lang: TLandingLanguage }) => {
+export const SupportBaza = ({ lang }: { lang: TLandingLanguage }) => {
   const { supportBazaTrainee } = dictionaries[lang].invite || {};
 
   return (

@@ -14,7 +14,7 @@ import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 
-const getContacts = async () => {
+const getContacts = () => {
   const noData: TContactsInfo = {
     contactsDataList: {
       phone1: 380636286630,
@@ -47,8 +47,8 @@ const FooterLink = ({ href = '', title = '', underline = false, ...args }) => (
   </Link>
 );
 
-export const Footer = async ({ lang }: { lang: TLandingLanguage }) => {
-  const contactsInfo: TContactsInfo = await getContacts();
+export const Footer = ({ lang }: { lang: TLandingLanguage }) => {
+  const contactsInfo: TContactsInfo = getContacts();
   // const dict = await dictionaries[lang]();
   const { footer } = dictionaries[lang] || {};
   const {

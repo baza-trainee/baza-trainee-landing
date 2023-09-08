@@ -9,11 +9,6 @@ export const projects = [
       ua: 'lullabies',
     },
     imageUrl: '/img/projects/lullabies.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
     link: '',
     description: {
       en: 'Kolyaskovi - a website-museum for the reproduction of Ukrainian lullabies',
@@ -34,11 +29,6 @@ export const projects = [
       ua: 'museum',
     },
     imageUrl: '/img/projects/museum.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
     link: '',
     description: {
       en: 'Website of the Ivan Kavaleridze Museum',
@@ -59,11 +49,6 @@ export const projects = [
       ua: 'army',
     },
     imageUrl: '/img/projects/mil.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
     link: '',
     description: {
       en: 'ENG for UArmy - a site for learning military English',
@@ -84,11 +69,6 @@ export const projects = [
       ua: 'hust',
     },
     imageUrl: '/img/projects/hust.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
     link: '',
     description: {
       en: 'Khist is an aggregator of veteran initiatives',
@@ -292,11 +272,6 @@ export const projects = [
       ua: '57-42',
     },
     imageUrl: '/img/projects/57-42.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
     link: '',
     description: {
       en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
@@ -317,12 +292,6 @@ export const projects = [
       ua: 'Murrfecto',
     },
     imageUrl: '/img/projects/murrfecto.webp',
-    status: {
-      en: 'Done',
-      pl: 'Zakończony',
-      ua: 'Завершено',
-    },
-    statusVal: 'active',
     link: 'https://murrfecto.site',
     description: {
       en: 'Website of a shelter for street animals Murrfecto',
@@ -566,12 +535,6 @@ export const projects = [
       ua: 'Ataka Help',
     },
     imageUrl: '/img/projects/atack.webp',
-    status: {
-      en: 'Done',
-      pl: 'Zakończony',
-      ua: 'Завершено',
-    },
-    statusVal: 'active',
     link: 'https://ataka-help.tech',
     description: {
       en: 'Platform about types of cyber fraud AtakaHelp',
@@ -944,12 +907,6 @@ export const projects = [
       ua: 'baza',
     },
     imageUrl: '/img/projects/baza.webp',
-    status: {
-      en: 'Done',
-      pl: 'Zakończony',
-      ua: 'Завершено',
-    },
-    statusVal: 'active',
     link: 'https://baza-trainee.tech',
     description: {
       en: 'Platform for Baza Trainee Ukraine',
@@ -1270,12 +1227,6 @@ export const projects = [
       ua: 'Читозаврик',
     },
     imageUrl: '/img/projects/zavr.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
-    statusVal: 'under-development',
     link: '',
     description: {
       en: 'Cheetosaurus - a web application with book quizzes for children',
@@ -1296,12 +1247,6 @@ export const projects = [
       ua: '1001 songs',
     },
     imageUrl: '/img/projects/1001songs.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
-    statusVal: 'under-development',
     link: '',
     description: {
       en: '1001 songs - a site-collection of authentic Ukrainian songs',
@@ -1322,12 +1267,6 @@ export const projects = [
       ua: 'Big Lapa',
     },
     imageUrl: '/img/projects/lapa.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
-    statusVal: 'under-development',
     link: '',
     description: {
       en: 'The website of the shelter for street animals Big Lapa',
@@ -1348,12 +1287,6 @@ export const projects = [
       ua: 'feeda',
     },
     imageUrl: '/img/projects/feeda-1.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
-    statusVal: 'under-development',
     link: '',
     description: {
       en: 'Feeda is a platform for processing applications for participation in Baza Trainee',
@@ -1374,12 +1307,6 @@ export const projects = [
       ua: 'книга',
     },
     imageUrl: '/img/projects/book.webp',
-    status: {
-      en: 'Under development',
-      pl: 'W budowie',
-      ua: 'В розробці',
-    },
-    statusVal: 'under-development',
     link: 'https://www.openbookhands.site/',
     description: {
       en: 'The book goes abroad - a humanitarian aid portal',
@@ -1570,12 +1497,6 @@ export const projects = [
       ua: 'Лендінг - збір коштів',
     },
     imageUrl: '/img/projects/arms.webp',
-    status: {
-      en: 'Done',
-      pl: 'Zakończony',
-      ua: 'Завершено',
-    },
-    statusVal: 'active',
     link: 'https://obijmy59.online/',
     description: {
       en: `Landing - fundraising for the 59th Brigade 'Steel Arms'`,

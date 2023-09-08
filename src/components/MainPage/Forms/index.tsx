@@ -3,9 +3,8 @@ import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
-  const dict = dictionaries[lang];
-  const { invite } = dict || {};
-  const { bazaTraineeInvite, chooseRole, role } = invite || {};
+  const { bazaTraineeInvite, chooseRole, role } =
+    dictionaries[lang].invite || {};
   const { participant, partner, mentor, customer } = role || {};
   return (
     <section className="text-center" id="forms">

@@ -12,7 +12,12 @@ import { createPortal } from 'react-dom';
 
 import { CloseIcon } from '@/components/common/icons';
 import { TLandingLanguage } from '@/store/globalContext';
-import { ContentDonate } from './ContentDonate';
+//import { ContentDonate } from './ContentDonate';
+import dynamic from 'next/dynamic';
+
+const ContentDonate = dynamic(() =>
+  import('./ContentDonate').then((res) => res.ContentDonate)
+);
 
 type Props = {
   children: ReactElement;
@@ -62,8 +67,8 @@ export const Modal = ({ children, content, lang, open = false }: Props) => {
         cloneElement(children, {
           onClick: handlerShowModal,
         })}
-
-      {isLandingModalShown && createPortal(<ModalLayout />, document.body)}
+      {isLandingModalShown && createPortal(<ModalLayout />, document.body)}{' '}
+      {/*{isLandingModalShown &&<ModalLayout />}*/}
     </>
   );
 };

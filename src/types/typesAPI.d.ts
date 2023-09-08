@@ -88,12 +88,7 @@ export interface IProject {
     ua: string;
   };
   imageUrl: string;
-  status: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  statusVal: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
+
   link: string;
   description: {
     en: string;
