@@ -4,6 +4,81 @@ export const projects = [
   {
     _id: crypto.randomUUID(),
     title: {
+      en: 'lullabies',
+      pl: 'lullabies',
+      ua: 'lullabies',
+    },
+    imageUrl: '/img/projects/lullabies.webp',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    link: '',
+    description: {
+      en: 'Kolyaskovi - a website-museum for the reproduction of Ukrainian lullabies',
+      pl: 'Kolyaskovi - strona-muzeum reprodukcji ukraińskich kołysanek',
+      ua: 'Колискові - сайт-музей з відтворення українських колискових',
+    },
+    creationDate: 1692921600000,
+    launchDate: 0,
+    complexity: 4,
+    isTeamRequired: false,
+    teamMembers: [],
+  },
+  {
+    _id: crypto.randomUUID(),
+    title: {
+      en: 'museum',
+      pl: 'museum',
+      ua: 'museum',
+    },
+    imageUrl: '/img/projects/museum.webp',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    link: '',
+    description: {
+      en: 'Website of the Ivan Kavaleridze Museum',
+      pl: 'Strona internetowa Muzeum Iwana Kawaleridze',
+      ua: 'Сайт музею ім.Івана Кавалерідзе',
+    },
+    creationDate: 1691366400000,
+    launchDate: 0,
+    complexity: 4,
+    isTeamRequired: false,
+    teamMembers: [],
+  },
+  {
+    _id: crypto.randomUUID(),
+    title: {
+      en: 'army',
+      pl: 'army',
+      ua: 'army',
+    },
+    imageUrl: '/img/projects/mil.webp',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    link: '',
+    description: {
+      en: 'ENG for UArmy - a site for learning military English',
+      pl: 'ENG for UArmy - strona do nauki wojskowego angielskiego',
+      ua: 'ENG for UArmy - сайт з вивчення мілітарної англійської',
+    },
+    creationDate: 1693872000000,
+    launchDate: 0,
+    complexity: 3,
+    isTeamRequired: false,
+    teamMembers: [],
+  },
+  {
+    _id: crypto.randomUUID(),
+    title: {
       en: 'hust',
       pl: 'hust',
       ua: 'hust',
@@ -1305,17 +1380,187 @@ export const projects = [
       ua: 'В розробці',
     },
     statusVal: 'under-development',
-    link: '',
+    link: 'https://www.openbookhands.site/',
     description: {
       en: 'The book goes abroad - a humanitarian aid portal',
       pl: 'Książka wyjeżdża za granicę - portal pomocy humanitarnej',
       ua: 'Книжка їде за кордон - портал гуманітарної допомоги',
     },
     creationDate: 1688245200000,
-    launchDate: 0,
+    launchDate: 1693526400000,
     complexity: 2,
     isTeamRequired: false,
-    teamMembers: [],
+    teamMembers: [
+      {
+        user: {
+          name: {
+            en: 'Наталя Гайванович',
+            pl: 'Наталя Гайванович',
+            ua: 'Наталя Гайванович',
+          },
+          link: 'https://www.linkedin.com/in/natalya-gayvanovych/',
+        },
+        role: {
+          name: 'Project Manager',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Ольга Прозорова',
+            pl: 'Ольга Прозорова',
+            ua: 'Ольга Прозорова',
+          },
+          link: 'https://www.linkedin.com/in/olga-prozorova-248151255/',
+        },
+        role: {
+          name: 'Project Manager',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Макс Федоришин',
+            pl: 'Макс Федоришин',
+            ua: 'Макс Федоришин',
+          },
+          link: 'https://www.linkedin.com/in/max-fedoryshyn-8992881b7/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Роман Пальоха',
+            pl: 'Роман Пальоха',
+            ua: 'Роман Пальоха',
+          },
+          link: 'https://www.linkedin.com/in/romanpaliokha/',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Володимир Лобода',
+            pl: 'Володимир Лобода',
+            ua: 'Володимир Лобода',
+          },
+          link: 'https://www.linkedin.com/in/volodymyr-loboda-021935119/?originalSubdomain=pl',
+        },
+        role: {
+          name: 'Design',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Ольга Бондаренко',
+            pl: 'Ольга Бондаренко',
+            ua: 'Ольга Бондаренко',
+          },
+          link: 'https://www.linkedin.com/in/olha-bondarenko-74a093229/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Ігор Вакалюк',
+            pl: 'Ігор Вакалюк',
+            ua: 'Ігор Вакалюк',
+          },
+          link: 'https://www.linkedin.com/in/ihor-vakaliuk/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Сергій Токарєв',
+            pl: 'Сергій Токарєв',
+            ua: 'Сергій Токарєв',
+          },
+          link: 'https://www.linkedin.com/in/serhii-tokariev-4a1060155/',
+        },
+        role: {
+          name: 'Front-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Олександр Брусильцев',
+            pl: 'Олександр Брусильцев',
+            ua: 'Олександр Брусильцев',
+          },
+          link: 'https://www.linkedin.com/in/oleksandr-brusyltsev/',
+        },
+        role: {
+          name: 'Back-end',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Катерина Погребна',
+            pl: 'Кatерina Pogreбна',
+            ua: 'Катерина Погребна',
+          },
+          link: 'https://www.linkedin.com/in/katerynapogrebna/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Зінаїда Усікова',
+            pl: 'Зінаїда Усікова',
+            ua: 'Зінаїда Усікова',
+          },
+          link: 'https://www.linkedin.com/in/zinaida-usikova/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Микола Осетров',
+            pl: 'Микола Осетров',
+            ua: 'Микола Осетров',
+          },
+          link: 'https://www.linkedin.com/in/nikolayosetrov/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+      {
+        user: {
+          name: {
+            en: 'Наталія Кун',
+            pl: 'Наталія Кун',
+            ua: 'Наталія Кун',
+          },
+          link: 'https://www.linkedin.com/in/nataliya-kuhn/',
+        },
+        role: {
+          name: 'Quality Assurance',
+        },
+      },
+    ],
   },
   {
     _id: crypto.randomUUID(),
