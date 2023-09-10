@@ -76,6 +76,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         pl: data.namePl,
         ua: data.nameUk,
       },
+      file:data.file,
       isTeamRequired: false,
       creationDate: 0,
       complexity: 0,
@@ -147,9 +148,13 @@ export const ProjectForm = ({ id }: { id?: string }) => {
           <TextInputField
             {...register('deployUrl')}
             value={''}
+            placeholder='Вкажіть адресу сайту'
             title="Адреса сайту"
-          />
-          <FileInput title="Обкладинка" />
+            />
+          <FileInput
+            {...register('file')}
+            placeholder='Завантажте зображення'
+            title="Обкладинка" />
         </div>
       </div>
 
