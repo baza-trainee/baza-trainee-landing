@@ -30,7 +30,7 @@ export interface IProject {
   creationDate: number;
   launchDate: number;
   complexity: number;
-  teamMembers?: Array<{
+  teamMembers: Array<{
     user: TTeamMember;
     role: TTeamMemberRole;
   }>;
