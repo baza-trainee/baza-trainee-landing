@@ -17,10 +17,10 @@ export type TFormInput = {
   nameEn: string;
   namePl: string;
   file?: File;
-  deployUrl: string;
-  isTeamRequired: boolean;
+  deployUrl?: string;
+  isTeamRequired?: boolean;
   creationDate: number;
-  launchDate: number;
+  launchDate?: number;
   complexity: number;
   teamMembers?: TTeamMember[];
 };

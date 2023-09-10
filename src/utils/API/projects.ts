@@ -1,7 +1,6 @@
 import { bazaAPI } from './config';
 
-import { IProject } from '@/types';
-import { TResponseProjects } from '@/types/typesAPI';
+import { TResponseProjects, TProjectRequest, IProject } from '@/types';
 
 const projectsEndpoint = '/projects';
 
@@ -10,20 +9,26 @@ const projectsApi = {
     return await bazaAPI.get<TResponseProjects>(uri).then((res) => res.data);
   },
 
-  async createNew(project: IProject) {
-    return await bazaAPI.post(projectsEndpoint, project);
+  async createNew(project: TProjectRequest) {
+    return await bazaAPI
+      .post<IProject>(projectsEndpoint, project)
+      .then((res) => res.data);
   },
 
   async getById(id: string) {
-    return await bazaAPI.get(`${projectsEndpoint}/${id}`);
+    return await bazaAPI
+      .get<IProject>(`${projectsEndpoint}/${id}`)
+      .then((res) => res.data);
   },
 
   async deleteById(id: string) {
     return await bazaAPI.delete(`${projectsEndpoint}/${id}`);
   },
 
-  async updateById(id: string, project: IProject) {
-    return await bazaAPI.patch(`${projectsEndpoint}/${id}`, project);
+  async updateById(id: string, project: TProjectRequest) {
+    return await bazaAPI
+      .patch<IProject>(`${projectsEndpoint}/${id}`, project)
+      .then((res) => res.data);
   },
 };
 

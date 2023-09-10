@@ -14,7 +14,7 @@ import {
   TextInputField,
 } from '@/components/atomic';
 
-import { IProject } from '@/types';
+import { IProject, TProjectRequest } from '@/types';
 import { TFormInput } from './types';
 
 const fieldOptions = {
@@ -63,21 +63,22 @@ export const ProjectForm = ({ id }: { id?: string }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid},
+    formState: { errors, isValid },
   } = useForm<TFormInput>(valuesIfItEditedRole);
+  // console.log('val >>', isValid, errors);
 
-  
-  console.log('val >>', isValid, errors);
-
+  console.log('state >>',isValid);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    console.log('data >>', data);
-
-    const project: IProject = {
+    console.log('data >>',data);
+    const project: TProjectRequest = {
       title: {
         en: data.nameEn,
         pl: data.namePl,
         ua: data.nameUk,
       },
+      isTeamRequired: false,
+      creationDate: 0,
+      complexity: 0,
     };
 
     if (id) {
@@ -115,22 +116,46 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         </div>
 
         <div className="col-span-2 flex gap-10">
-          {/* <DateInput value={''} title="Старт проєкту" />
-          <DateInput value={''} title="Дата завершення проєкту" /> */}
+          <DateInput
+            {...register('creationDate', { required: 'Оберіть дату' })}
+            value={''}
+            title="Старт проєкту"
+            placeholder="Оберіть дату"
+            errorText={errors.creationDate?.message}
+          />
+          <DateInput
+            {...register('launchDate')}
+            value={''}
+            title="Дата завершення проєкту"
+            placeholder="Оберіть дату"
+          />
         </div>
 
         <div className="col-span-2 flex gap-10">
-          <CheckboxInput placeholder="Формування команди" title="Стан" />
-          <ComplexityInput {...register('complexity')} title='Оберіть складність проєкту'/>
+          <CheckboxInput
+            {...register('isTeamRequired')}
+            placeholder="Формування команди"
+            title="Стан"
+          />
+          <ComplexityInput
+            {...register('complexity')}
+            title="Оберіть складність проєкту"
+          />
         </div>
 
         <div className="col-span-2 flex gap-10">
-          {/* <TextInputField value={''} title="Адреса сайту" /> */}
+          <TextInputField
+            {...register('deployUrl')}
+            value={''}
+            title="Адреса сайту"
+          />
           <FileInput title="Обкладинка" />
         </div>
       </div>
 
-      <FormBtns disabled={!isValid} isEditMode={!!id} />
+      <FormBtns
+        disabled={!isValid}
+        isEditMode={!!id} />
     </form>
   );
 };

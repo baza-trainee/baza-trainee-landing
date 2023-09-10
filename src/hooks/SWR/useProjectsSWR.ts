@@ -5,8 +5,8 @@ import { useGlobalContext } from '@/store/globalContext';
 import { projectsEndpoint, projectsApi } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError, AxiosResponse } from 'axios';
-import { IProject, TResponseProjects } from '@/types';
+import { AxiosError } from 'axios';
+import { IProject, TResponseProjects, TProjectRequest } from '@/types';
 
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -31,32 +31,40 @@ const useProjectsSWR = () => {
     });
   }, [error]);
 
-  const updateAndMutate = (
-    updProjects: IProject[],
-    action: () => Promise<AxiosResponse<any, any>>
-  ) => {
-    mutate(action, {
-      optimisticData: { ...data!, results: updProjects },
-      revalidate: false,
-      populateCache: false,
-    });
-  };
-
   const handlerDeleteProject = (id: string) => {
-    const updProjects = data?.results.filter((member) => member._id !== id);
-    updateAndMutate(updProjects!, () => projectsApi.deleteById(id));
+    const updProjects = data?.results.filter((project) => project._id !== id);
+    const options = {
+      optimisticData: { ...data!, results: updProjects! },
+      populateCache: false,
+      revalidate: false,
+    };
+
+    mutate(() => projectsApi.deleteById(id), options);
   };
 
-  const handlerCreateProject = (newProject: IProject) => {
-    const updProjects = [...(data?.results || []), newProject];
-    updateAndMutate(updProjects, () => projectsApi.createNew(newProject));
+  const handlerCreateProject = (newProject: TProjectRequest) => {
+    const options = {
+      populateCache: (createdProject: IProject) => ({
+        ...data!,
+        results: [...(data?.results || []), createdProject],
+      }),
+      revalidate: false,
+    };
+
+    mutate(() => projectsApi.createNew(newProject), options);
   };
 
-  const handlerUpdateProject = (id: string, updProject: IProject) => {
-    const updProjects = data?.results.map((member) =>
-      member._id === id ? updProject : member
-    );
-    updateAndMutate(updProjects!, () => projectsApi.updateById(id, updProject));
+  const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
+    const populateCache = (createdProject: IProject) => {
+      const updProjects = data?.results.map((project) =>
+        project._id === id ? createdProject : project
+      );
+      return { ...data!, results: updProjects! };
+    };
+
+    const options = { populateCache, revalidate: false };
+
+    mutate(() => projectsApi.updateById(id, updProject), options);
   };
 
   const handlerSearchProject = (search: string) => {

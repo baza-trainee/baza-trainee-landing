@@ -22,15 +22,15 @@ export interface IProject {
   _id: string;
   title: TTitleLanguagesTypes;
   imageUrl: string;
-  status: TTitleLanguagesTypes;
-  statusVal: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
-  link: string;
-  description: TTitleLanguagesTypes;
+  // status: TTitleLanguagesTypes;
+  // statusVal: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
+  deployUrl?: string;
   isTeamRequired: boolean;
+  // description: TTitleLanguagesTypes;
   creationDate: number;
-  launchDate: number;
+  launchDate?: number;
   complexity: number;
-  teamMembers: Array<{
+  teamMembers?: Array<{
     user: TTeamMember;
     role: TTeamMemberRole;
   }>;
@@ -41,3 +41,17 @@ export interface ICardContent {
   project: IProject;
   lang: TLandingLanguage;
 }
+
+export type TProjectRequest = {
+  title: TTitleLanguagesTypes;
+  file?: File;
+  deployUrl?: string;
+  isTeamRequired: boolean;
+  creationDate: number;
+  launchDate?: number;
+  complexity: number;
+  teamMembers?: Array<{
+    teamMember: { _id: string };
+    teamMemberRole: { _id: string };
+  }>;
+};

@@ -13,7 +13,7 @@ export const WithAuth = ({ children }: { children: ReactNode }) => {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/user`,
         { cache: 'no-store' }
       );
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
         //router.push('/admin');
         setIsShow(true);
