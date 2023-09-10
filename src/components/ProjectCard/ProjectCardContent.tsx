@@ -31,14 +31,14 @@ const ProjectCardContent = ({
             {/* {project.description[lang]} // TODO: implement logic when localization will be available */}
             Опис проєкту
           </h4>
-          {project.link && (
+          {project.deployUrl && (
             <Link
-              href={project.link}
+              href={project.deployUrl}
               target="_blank"
               className="mt-[0.8rem]"
-              aria-label={`Visit ${project.link}`}
+              aria-label={`Visit ${project.deployUrl}`}
             >
-              {project.link ? project.link : ''}
+              {project.deployUrl ? project.deployUrl : ''}
             </Link>
           )}
         </div>
@@ -68,7 +68,7 @@ const ProjectCardContent = ({
             </div>
           </div>
 
-          {project.teamMembers.length > 0 && (
+          {project.teamMembers && project.teamMembers.length > 0 && (
             <button
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}
@@ -83,4 +83,3 @@ const ProjectCardContent = ({
 };
 
 export { ProjectCardContent };
-
