@@ -15,12 +15,7 @@ import {
 } from '@/components/atomic';
 
 import { IProject } from '@/types';
-
-type TFormInput = {
-  nameUk: string;
-  nameEn: string;
-  namePl: string;
-};
+import { TFormInput } from './types';
 
 const fieldOptions = {
   required: 'Введіть назву',
@@ -68,10 +63,15 @@ export const ProjectForm = ({ id }: { id?: string }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid},
   } = useForm<TFormInput>(valuesIfItEditedRole);
 
+  
+  console.log('val >>', isValid, errors);
+
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+    console.log('data >>', data);
+
     const project: IProject = {
       title: {
         en: data.nameEn,
@@ -121,7 +121,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
 
         <div className="col-span-2 flex gap-10">
           <CheckboxInput placeholder="Формування команди" title="Стан" />
-          <ComplexityInput />
+          <ComplexityInput {...register('complexity')} title='Оберіть складність проєкту'/>
         </div>
 
         <div className="col-span-2 flex gap-10">
@@ -130,7 +130,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         </div>
       </div>
 
-      <FormBtns isEditMode={!!id} />
+      <FormBtns disabled={!isValid} isEditMode={!!id} />
     </form>
   );
 };

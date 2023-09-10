@@ -59,7 +59,7 @@ export const RolesForm = ({ id }: { id?: string }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<TFormInput>(valuesIfItEditedRole);
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
@@ -104,7 +104,7 @@ export const RolesForm = ({ id }: { id?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!id} />
+      <FormBtns disabled={!isValid} isEditMode={!!id} />
     </form>
   );
 };

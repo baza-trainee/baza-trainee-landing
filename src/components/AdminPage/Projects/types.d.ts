@@ -6,3 +6,21 @@ export type TFormTabs = {
   tabsMode: TTabsMode;
   setTabsMode: Dispatch<SetStateAction<TTabsMode>>;
 };
+
+type TTeamMember = {
+  teamMember: { _id: string };
+  teamMemberRole: { _id: string };
+};
+
+export type TFormInput = {
+  nameUk: string;
+  nameEn: string;
+  namePl: string;
+  file?: File;
+  deployUrl: string;
+  isTeamRequired: boolean;
+  creationDate: number;
+  launchDate: number;
+  complexity: number;
+  teamMembers?: TTeamMember[];
+};

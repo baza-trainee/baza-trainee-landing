@@ -71,7 +71,7 @@ export const MembersForm = ({ id }: { id?: string }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<TFormInput>(valuesIfItEditedMember);
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
@@ -122,7 +122,7 @@ export const MembersForm = ({ id }: { id?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!id} />
+      <FormBtns disabled={!isValid} isEditMode={!!id} />
     </form>
   );
 };

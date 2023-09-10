@@ -1,21 +1,25 @@
 'use client';
 
 import {
+  Dispatch,
   ForwardedRef,
   InputHTMLAttributes,
+  SetStateAction,
   forwardRef,
-  useId,
   useState,
 } from 'react';
 
 interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
-  errorText?: string;
+  complexity?: number;
 }
 
-const Complexity = () => {
-  const [count, setCount] = useState(1);
+type TComplexityProps = {
+  count: number;
+  setCount: Dispatch<SetStateAction<number>>;
+};
 
+const Complexity = ({ count, setCount }: TComplexityProps) => {
   return (
     <div className="flex gap-2">
       {[1, 2, 3, 4, 5].map((value) => (
@@ -33,20 +37,22 @@ const Complexity = () => {
   );
 };
 
-const Input = (
-  { title, ...rest }: TextInputFieldProps,
+export const Input = (
+  { title, complexity = 1, ...rest }: TextInputFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const id = useId();
+  const [count, setCount] = useState(complexity);
 
   return (
     <div className="relative w-full max-w-[32.6rem]">
       {title && <h4 className="absolute left-0 top-0">{title}</h4>}
 
       <div className="mb-8 mt-[2.8rem] flex h-16 w-full items-center justify-between rounded-[0.4rem] border border-neutral-300 p-[0.8rem]">
-        <span>Складність:</span> <Complexity />
+        <span>Складність:</span>{' '}
+        <Complexity count={count} setCount={setCount} />
       </div>
-      <input hidden ref={ref} id={id} {...rest} />
+
+      <input hidden ref={ref} value={count} {...rest} />
     </div>
   );
 };

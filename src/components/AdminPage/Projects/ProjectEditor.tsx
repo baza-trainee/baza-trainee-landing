@@ -5,9 +5,14 @@ import { useState } from 'react';
 import { ProjectEditorTabs } from './ProjectEditorTabs';
 import { TTabsMode } from './types';
 import { ProjectForm } from './ProjectForm';
+import { useParams } from 'next/navigation';
 
 export const ProjectEditor = () => {
+  const { id } = useParams();
+  const separatedId = typeof id === 'string' ? id : undefined;
+  
   const [tabsMode, setTabsMode] = useState<TTabsMode>('description');
+  const [membersList, setMembersList] = useState([]);
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] min-w-[110rem]">
@@ -17,7 +22,9 @@ export const ProjectEditor = () => {
 
       <ProjectEditorTabs tabsMode={tabsMode} setTabsMode={setTabsMode} />
 
-      <div className='mt-9 mb-12 w-full'><ProjectForm/></div>
+      <div className="mb-12 mt-9 w-full">
+        <ProjectForm />
+      </div>
     </section>
   );
 };
