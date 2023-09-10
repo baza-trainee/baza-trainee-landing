@@ -28,7 +28,7 @@ export interface IProject {
   isTeamRequired: boolean;
   // description: TTitleLanguagesTypes;
   creationDate: number;
-  launchDate?: number;
+  launchDate: number;
   complexity: number;
   teamMembers?: Array<{
     user: TTeamMember;
