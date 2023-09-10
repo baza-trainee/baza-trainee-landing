@@ -30,29 +30,27 @@ import { TLandingLanguage } from '@/store/globalContext';
   return modResult;
 };*/
 
-let ProjectsCountOnFirstLoad = 9;
-let ProjectsLoadMore = 3;
-
 export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
+  const [projectsCountOnFirstLoad, setProjectsCountOnFirstLoad] = useState(9);
+  const [ProjectsLoadMore, setProjectsLoadMore] = useState(3);
   const [visibleProjects, setVisibleProjects] = useState<IProject[]>(
-    projects.slice(0, handleResize())
+    projects.slice(0, projectsCountOnFirstLoad)
   );
 
   function handleResize() {
     if (typeof window !== 'undefined') {
       const width = window.innerWidth;
       if (width < 768) {
-        ProjectsCountOnFirstLoad = 3;
-        ProjectsLoadMore = 2;
+        setProjectsCountOnFirstLoad(3);
+        setProjectsLoadMore(2);
       } else if (width >= 768 && width < 1280) {
-        ProjectsCountOnFirstLoad = 4;
-        ProjectsLoadMore = 2;
+        setProjectsCountOnFirstLoad(4);
+        setProjectsLoadMore(2);
       } else {
-        ProjectsCountOnFirstLoad = 9;
-        ProjectsLoadMore = 3;
+        setProjectsCountOnFirstLoad(9);
+        setProjectsLoadMore(3);
       }
     }
-    return ProjectsCountOnFirstLoad;
   }
 
   useEffect(() => {
@@ -77,7 +75,7 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
   //const filteredProjects = projects.slice(0, 9);
   const animateDelay = (index: number) => {
     const delay =
-      visibleProjects.length > ProjectsCountOnFirstLoad
+      visibleProjects.length > projectsCountOnFirstLoad
         ? index - visibleProjects.length + ProjectsLoadMore
         : index;
     return delay;
