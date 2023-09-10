@@ -22,11 +22,12 @@ export interface IProject {
   _id: string;
   title: TTitleLanguagesTypes;
   imageUrl: string;
-  // status: TTitleLanguagesTypes;
-  // statusVal: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
+  status: TTitleLanguagesTypes;
+  statusVal: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
   deployUrl?: string;
+  link?: string;
   isTeamRequired: boolean;
-  // description: TTitleLanguagesTypes;
+  description: TTitleLanguagesTypes;
   creationDate: number;
   launchDate: number;
   complexity: number;
