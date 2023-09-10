@@ -5,9 +5,9 @@ import { MultiArrow } from '@/components/common/icons';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
-import { memo, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useRef, useState } from 'react';
 import Slider from 'react-slick';
-import { Modal } from '../Modal';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
@@ -21,7 +21,7 @@ const settings = {
   autoplaySpeed: 10000,
   arrows: false,
 };
-
+/*
 const ModalComponent = ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];
   const { toFund } = dict || {};
@@ -32,10 +32,12 @@ const ModalComponent = ({ lang }: { lang: TLandingLanguage }) => {
   );
 };
 const MemoizedModal = memo(ModalComponent);
-
-const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
+*/
+export const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
+
+  const { toFund } = dictionaries[lang] || {};
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -97,12 +99,12 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
       <div className="bg-yellow-500">
         <ContainerMaxW1200 className="min-h-[8.8rem] flex-col gap-[2.4rem] py-[1.6rem] sm:flex-row sm:items-center sm:justify-between sm:py-0">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
-
-          <MemoizedModal lang={lang} />
+          <Link href={'?modal=fund'} scroll={false}>
+            <PrimaryButton>{toFund}</PrimaryButton>
+          </Link>
+          {/*<MemoizedModal lang={lang} />*/}
         </ContainerMaxW1200>
       </div>
     </section>
   );
 };
-
-export { HeroSlider };
