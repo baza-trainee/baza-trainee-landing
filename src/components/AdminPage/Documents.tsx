@@ -1,8 +1,7 @@
 'use client';
 
-import { AdminPanelButton } from '@/components/atomic';
+import { AdminPanelButton, InputField } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
 import { useGlobalContext } from '@/store/globalContext';
 import { documentsApi } from '@/utils/API/documents';
