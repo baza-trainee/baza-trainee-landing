@@ -30,23 +30,26 @@ export type TAdminSlide = {
 };
 
 export interface IAddEditSlideProps {
-  data?: {
-    title: {
-      ua: string;
-      en: string;
-      pl: string;
-    };
-    subtitle: {
-      ua: string;
-      en: string;
-      pl: string;
-    };
-    imageUrl: string;
-    _id: string;
-    _v: number;
-  };
   title: string;
   isEdit: boolean;
+}
+export interface ISlideFormProps {
+  data?: {
+    title?: {
+      ua?: string;
+      en?: string;
+      pl?: string;
+    };
+    subtitle?: {
+      ua?: string;
+      en?: string;
+      pl?: string;
+    };
+    imageUrl?: string;
+    _id?: string;
+    _v?: number;
+  };
+  isEdit?: boolean;
 }
 
 export type TDictionary = {

@@ -19,6 +19,7 @@
     "next": "^13.4.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.46.1",
     "react-pdf": "^7.3.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",

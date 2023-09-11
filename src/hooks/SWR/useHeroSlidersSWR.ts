@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+'use client';
 import { useGlobalContext } from '@/store/globalContext';
 import { IHeroSlider } from '@/types';
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
