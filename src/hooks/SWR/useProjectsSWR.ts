@@ -39,7 +39,9 @@ const useProjectsSWR = () => {
       revalidate: false,
     };
 
-    mutate(() => projectsApi.deleteById(id), options);
+    mutate(() => projectsApi.deleteById(id), options).catch(
+      errorHandler
+    );
   };
 
   const handlerCreateProject = (newProject: TProjectRequest) => {
@@ -49,9 +51,12 @@ const useProjectsSWR = () => {
         results: [...(data?.results || []), createdProject],
       }),
       revalidate: false,
+      // throwOnError: true,
     };
 
-    mutate(() => projectsApi.createNew(newProject), options);
+    mutate(() => projectsApi.createNew(newProject), options).catch(
+      errorHandler
+    );
   };
 
   const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
@@ -64,7 +69,9 @@ const useProjectsSWR = () => {
 
     const options = { populateCache, revalidate: false };
 
-    mutate(() => projectsApi.updateById(id, updProject), options);
+    mutate(() => projectsApi.updateById(id, updProject), options).catch(
+      errorHandler
+    );
   };
 
   const handlerSearchProject = (search: string) => {

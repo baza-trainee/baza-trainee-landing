@@ -22,9 +22,13 @@ export const InputRaw = (
 
   return (
     <div className={inputWrapperClasses}>
-      {!!title && <label className="absolute left-0 top-0">{title}</label>}
+      {!!title && (
+        <label htmlFor={title + 'file'} className="absolute left-0 top-0">
+          {title}
+        </label>
+      )}
 
-      <div className={inputContainerClasses}>
+      <label className={inputContainerClasses} htmlFor={title + 'file'}>
         <input
           {...rest}
           ref={ref}
@@ -33,10 +37,8 @@ export const InputRaw = (
           id={title + 'file'}
         />
 
-        <label htmlFor={title + 'file'}>
-          <UploadIcon className={!errorText ? 'text-neutral-800' : ''} />
-        </label>
-      </div>
+        <UploadIcon className={!errorText ? 'text-neutral-800' : ''} />
+      </label>
 
       {!!errorText && (
         <span className="absolute bottom-0 left-0 text-[1.2rem]">

@@ -67,19 +67,22 @@ export const ProjectForm = ({ id }: { id?: string }) => {
   } = useForm<TFormInput>(valuesIfItEditedRole);
   // console.log('val >>', isValid, errors);
 
-  console.log('state >>',isValid);
+  // console.log('state >>', isValid);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    console.log('data >>',data);
+    console.log('data >>', data);
     const project: TProjectRequest = {
       title: {
         en: data.nameEn,
         pl: data.namePl,
         ua: data.nameUk,
       },
-      file:data.file,
-      isTeamRequired: false,
-      creationDate: 0,
-      complexity: 0,
+      file: data.file,
+      deployUrl: data.deployUrl,
+      isTeamRequired: !!data.isTeamRequired,
+      creationDate: new Date(data.creationDate).getTime(),
+      launchDate: new Date(data.launchDate || 0).getTime(),
+      complexity: +data.complexity,
+      teamMembers: [],
     };
 
     if (id) {
@@ -147,20 +150,19 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         <div className="col-span-2 flex gap-10">
           <TextInputField
             {...register('deployUrl')}
-            value={''}
-            placeholder='Вкажіть адресу сайту'
+            // value={''}
+            placeholder="Вкажіть адресу сайту"
             title="Адреса сайту"
-            />
+          />
           <FileInput
             {...register('file')}
-            placeholder='Завантажте зображення'
-            title="Обкладинка" />
+            placeholder="Завантажте зображення"
+            title="Обкладинка"
+          />
         </div>
       </div>
 
-      <FormBtns
-        disabled={!isValid}
-        isEditMode={!!id} />
+      <FormBtns disabled={!isValid} isEditMode={!!id} />
     </form>
   );
 };
