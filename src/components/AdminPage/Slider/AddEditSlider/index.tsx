@@ -1,33 +1,34 @@
 'use client';
 import { AdminTitle } from '@/components/atomic';
-import { FormBtns } from '@/components/atomic/buttons/FormBtns';
-import { FileInput, TextInputField } from '@/components/atomic/inputs';
 import { IAddEditSlideProps } from '@/types';
-import { FC, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { FC } from 'react';
+import { SliderForm } from '../AdminSliderForm';
 
-const initialState = {
-  data: {
-    title: {
-      ua: '',
-      en: '',
-      pl: '',
-    },
-    subtitle: {
-      ua: '',
-      en: '',
-      pl: '',
-    },
-    imageUrl: '',
-    _id: '',
-  },
-};
+// const initialState = {
+//   data: {
+//     title: {
+//       ua: '',
+//       en: '',
+//       pl: '',
+//     },
+//     subtitle: {
+//       ua: '',
+//       en: '',
+//       pl: '',
+//     },
+//     imageUrl: '',
+//     _id: '',
+//     _v: 0,
+//   },
+// };
 
 export const AddEditAdminSlider: FC<IAddEditSlideProps> = ({
   title,
   isEdit,
 }) => {
-  const [data, setData] = useState(initialState);
-  console.log(data);
+  const { id } = useParams();
+  const checkedId = typeof id === 'string' ? id : undefined;
 
   return (
     <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">
@@ -35,27 +36,7 @@ export const AddEditAdminSlider: FC<IAddEditSlideProps> = ({
         <AdminTitle>{title}</AdminTitle>
       </header>
       <div>
-        <form className="flex h-2 flex-col gap-1">
-          <FileInput title="Зображення" placeholder="завантажте зображення" />
-          <div className="flex flex-wrap gap-[2.4rem]">
-            <TextInputField title="Заголовок" name="titleua" inputType="ua" />
-            <TextInputField title="" name="titleen" inputType="en" />
-            <TextInputField title="" name="titlepl" inputType="pl" />
-          </div>
-          <div className="flex flex-wrap gap-[2.4rem]">
-            <TextInputField
-              title="Основний текст"
-              name="subtitleua"
-              inputType="ua"
-            />
-            <TextInputField title="" name="subtitleen" inputType="en" />
-            <TextInputField title="" name="subtitlepl" inputType="pl" />
-          </div>
-          <div className="flex gap-2">
-            <FormBtns isEditMode={isEdit} />
-          </div>
-        </form>
-        {/* {data && <SliderForm data={data} isEdit={isEdit} />} */}
+        <SliderForm isEdit={isEdit} id={checkedId} />
       </div>
     </div>
   );

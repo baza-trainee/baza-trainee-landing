@@ -8,6 +8,7 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
 
   const baseUrl = 'https://baza-trainee.tech/api/v1/files/';
   const image = baseUrl + imageUrl;
+  const editLink = `slider/edit-slider/${_id}`;
 
   return (
     <div className="relative  h-[50.4rem] ">
@@ -46,7 +47,7 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
             />
           </SliderDeleteButton>
 
-          <Link href="slider/edit-slider">
+          <Link href={editLink}>
             <PenIcon
               className="rounded border border-white fill-white p-[0.7rem]"
               width={40}

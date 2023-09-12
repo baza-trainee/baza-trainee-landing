@@ -1,35 +1,53 @@
+import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { FileInput, TextInputField } from '@/components/atomic/inputs';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
-import { ISlideFormProps } from '@/types';
-import { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { TForm, TFormSlideRequest } from './types';
 
-export const SliderForm: FC<ISlideFormProps> = ({ data, isEdit }) => {
+type TPrevImg = {
+  prevImg?: string;
+};
+
+export const SliderForm = ({
+  id,
+  isEdit,
+}: {
+  id?: string;
+  isEdit: boolean;
+}) => {
   const inputOptions = {
     required: 'Заповніть поле',
   };
 
-  console.log(data);
+  const [prevImg, setPrevImg] = useState<TPrevImg>();
+  const router = useRouter();
+  const { addNewSlider } = useHeroSliderSWR();
 
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<TForm>({
-    defaultValues: {
-      titleUa: data?.title?.ua,
-      titleEn: data?.title?.en,
-      titlePl: data?.title?.pl,
-      subtitleUa: data?.title?.ua,
-      subtitleEn: data?.title?.en,
-      subtitlePl: data?.title?.pl,
-      //   file: data?.imageUrl,
-    },
-  });
+  } = useForm<TForm>();
 
-  const { updateSlider, addNewSlider } = useHeroSliderSWR();
+  // якщо це редагувати, то треба нижке коммент використати
+
+  // isEdit
+  //   ? {
+  //   defaultValues: {
+  //     titleUa: data?.title?.ua,
+  //     titleEn: data?.title?.en,
+  //     titlePl: data?.title?.pl,
+  //     subtitleUa: data?.title?.ua,
+  //     subtitleEn: data?.title?.en,
+  //     subtitlePl: data?.title?.pl,
+  //     // file: data?.imageUrl,
+  //   },
+  // }
+  //   : {};
 
   const onSubmitForm: SubmitHandler<TForm> = async (dataForm) => {
     console.log('Form Data:', dataForm);
@@ -46,15 +64,23 @@ export const SliderForm: FC<ISlideFormProps> = ({ data, isEdit }) => {
         pl: dataForm.subtitlePl,
       },
       file: dataForm?.file,
-      _id: data?._id,
+      _id: id,
     };
 
-    if (data?._id) {
-      updateSlider(data?._id, slide);
-    } else {
-      addNewSlider(slide);
-    }
+    addNewSlider(slide);
+
+    router.replace('.');
+    // if (data?._id) {
+    //   updateSlider(data?._id, slide);
+    // } else {
+    //   addNewSlider(slide);
+    // }
   };
+
+  const [file] = watch<any>('file');
+
+  console.log(prevImg);
+  console.log(file);
 
   return (
     <div>
@@ -65,7 +91,11 @@ export const SliderForm: FC<ISlideFormProps> = ({ data, isEdit }) => {
         <FileInput
           title="Зображення"
           {...register('file')}
-          placeholder={data?.imageUrl || 'Завантажте зображення'}
+          onChange={(e) => {
+            setPrevImg(e.target.value);
+          }}
+          placeholder={'Завантажте зображення'}
+          // placeholder={data?.imageUrl || 'Завантажте зображення'}
         />
         <div className="flex flex-wrap gap-[2.4rem]">
           <TextInputField
@@ -106,9 +136,13 @@ export const SliderForm: FC<ISlideFormProps> = ({ data, isEdit }) => {
         </div>
         <div className="flex gap-2">
           <FormBtns isEditMode={isEdit} />
+          <LanguageSelector />
         </div>
       </form>
-      ;
+      {/* Прев'ю зображення */}
+      {/* <div className='w-full h-[20rem]'>
+        <Image src={file} alt="Preview image" fill style={{objectFit: 'cover'}} />
+      </div> */}
     </div>
   );
 };

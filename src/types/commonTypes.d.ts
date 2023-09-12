@@ -33,6 +33,7 @@ export interface IAddEditSlideProps {
   title: string;
   isEdit: boolean;
 }
+
 export interface ISlideFormProps {
   data?: {
     title?: {
