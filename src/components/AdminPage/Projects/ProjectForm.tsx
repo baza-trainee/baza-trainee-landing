@@ -16,6 +16,7 @@ import {
 
 import { IProject, TProjectRequest } from '@/types';
 import { TFormInput } from './types';
+import { SETTINGS } from '@/config/settings';
 
 const fieldOptions = {
   required: 'Введіть назву',
@@ -33,6 +34,21 @@ const fieldOptions = {
   },
 };
 
+const imgFieldOptions = {
+  required: 'Додайте зображення проєкту',
+  validate: (v: File[]) => {
+    console.log('rerer');
+
+    const checkSize = v[0].size <= SETTINGS.fileSizeLimits.partnerLogo;
+    const checkType =
+      v[0].type === 'image/jpeg' ||
+      v[0].type === 'image/png' ||
+      v[0].type === 'image/webp';
+
+    return (checkSize && checkType) || 'Виберіть коректне зображення';
+  },
+};
+
 const createOptions = (
   id: string | undefined,
   projects: IProject[] | undefined
@@ -44,11 +60,9 @@ const createOptions = (
   if (!project) return;
 
   return {
-    defaultValues: {
-      nameUk: project.title.ua,
-      nameEn: project.title.en,
-      namePl: project.title.pl,
-    },
+    nameUk: project.title.ua,
+    nameEn: project.title.en,
+    namePl: project.title.pl,
   };
 };
 
@@ -64,7 +78,10 @@ export const ProjectForm = ({ id }: { id?: string }) => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<TFormInput>(valuesIfItEditedRole);
+  } = useForm<TFormInput>({
+    defaultValues: valuesIfItEditedRole,
+    mode: 'onBlur',
+  });
   // console.log('val >>', isValid, errors);
 
   // console.log('state >>', isValid);
@@ -76,7 +93,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         pl: data.namePl,
         ua: data.nameUk,
       },
-      file: data.file,
+      // file: data.projectImg[0],
       deployUrl: data.deployUrl,
       isTeamRequired: !!data.isTeamRequired,
       creationDate: new Date(data.creationDate).getTime(),
@@ -84,6 +101,10 @@ export const ProjectForm = ({ id }: { id?: string }) => {
       complexity: +data.complexity,
       teamMembers: [],
     };
+
+    if (data.projectImg) {
+      project.file = data.projectImg[0];
+    }
 
     if (id) {
       handlerUpdateProject(id, project);
@@ -122,14 +143,12 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         <div className="col-span-2 flex gap-10">
           <DateInput
             {...register('creationDate', { required: 'Оберіть дату' })}
-            value={''}
             title="Старт проєкту"
             placeholder="Оберіть дату"
             errorText={errors.creationDate?.message}
           />
           <DateInput
             {...register('launchDate')}
-            value={''}
             title="Дата завершення проєкту"
             placeholder="Оберіть дату"
           />
@@ -150,14 +169,14 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         <div className="col-span-2 flex gap-10">
           <TextInputField
             {...register('deployUrl')}
-            // value={''}
             placeholder="Вкажіть адресу сайту"
             title="Адреса сайту"
           />
           <FileInput
-            {...register('file')}
+            {...register('projectImg', imgFieldOptions)}
             placeholder="Завантажте зображення"
             title="Обкладинка"
+            errorText={errors.projectImg?.message}
           />
         </div>
       </div>
