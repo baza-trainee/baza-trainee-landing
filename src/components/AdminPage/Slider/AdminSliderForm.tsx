@@ -1,15 +1,13 @@
+'use client';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { FileInput, TextInputField } from '@/components/atomic/inputs';
+import { LogoMain } from '@/components/common/icons';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { TForm, TFormSlideRequest } from './types';
-
-type TPrevImg = {
-  prevImg?: string;
-};
 
 export const SliderForm = ({
   id,
@@ -22,13 +20,13 @@ export const SliderForm = ({
     required: 'Заповніть поле',
   };
 
-  const [prevImg, setPrevImg] = useState<TPrevImg>();
   const router = useRouter();
   const { addNewSlider } = useHeroSliderSWR();
+  const [image, setImage] = useState<File | null>();
+  const [preview, setPreview] = useState<string | null>();
 
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<TForm>();
@@ -77,10 +75,26 @@ export const SliderForm = ({
     // }
   };
 
-  const [file] = watch<any>('file');
+  const handleStatusUpload = (e: any): void => {
+    const file = e.target.files[0];
+    if (file && file.type.substr(0, 5) === 'image') {
+      setImage(file);
+    } else {
+      setImage(null);
+    }
+  };
 
-  console.log(prevImg);
-  console.log(file);
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setPreview(null);
+    }
+  }, [image]);
 
   return (
     <div>
@@ -91,9 +105,8 @@ export const SliderForm = ({
         <FileInput
           title="Зображення"
           {...register('file')}
-          onChange={(e) => {
-            setPrevImg(e.target.value);
-          }}
+          accept="image/*"
+          onChange={(e) => handleStatusUpload(e)}
           placeholder={'Завантажте зображення'}
           // placeholder={data?.imageUrl || 'Завантажте зображення'}
         />
@@ -134,15 +147,22 @@ export const SliderForm = ({
             inputType="pl"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="mb-[1.5rem] flex items-center justify-between gap-2">
           <FormBtns isEditMode={isEdit} />
           <LanguageSelector />
         </div>
+        <div className="flex-center mb-[5rem] w-full rounded-md bg-neutral-75">
+          {preview ? (
+            <div className="flex-center rounded-md bg-neutral-75">
+              <img src={preview} alt="preview" style={{ objectFit: 'cover' }} />
+            </div>
+          ) : (
+            <div className="flex-center rounded-md bg-neutral-75 py-[10.2rem]">
+              <LogoMain className="h-72 w-72 text-neutral-200" />
+            </div>
+          )}
+        </div>
       </form>
-      {/* Прев'ю зображення */}
-      {/* <div className='w-full h-[20rem]'>
-        <Image src={file} alt="Preview image" fill style={{objectFit: 'cover'}} />
-      </div> */}
     </div>
   );
 };
