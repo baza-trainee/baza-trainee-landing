@@ -11,7 +11,9 @@ const projectsApi = {
 
   async createNew(project: TProjectRequest) {
     return await bazaAPI
-      .post<IProject>(projectsEndpoint, project)
+      .post<IProject>(projectsEndpoint, project, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
       .then((res) => res.data);
   },
 
