@@ -19,42 +19,34 @@ const useProjectsSWR = () => {
     AxiosError
   >(swrKey, projectsApi.getAll, { keepPreviousData: true });
 
-  useEffect(() => {
-    if (!error) return;
-
-    errorHandler(error);
+  const handleRequestError = (err: AxiosError) => {
+    errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[error?.status || 500],
-      textInfo:
-        'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
+      title: networkStatusesUk[err?.status || 500],
+      textInfo: 'При запиті виникла помилка. Спробуйте трохи пізніше.',
     });
+  };
+
+  useEffect(() => {
+    error && handleRequestError(error);
   }, [error]);
 
-  const handlerDeleteProject = (id: string) => {
-    const updProjects = data?.results.filter((project) => project._id !== id);
-    const options = {
-      optimisticData: { ...data!, results: updProjects! },
-      populateCache: false,
-      revalidate: false,
-    };
-
-    mutate(() => projectsApi.deleteById(id), options).catch(
-      errorHandler
-    );
+  const handlerSearchProject = (search: string) => {
+    setSearch(search);
   };
 
   const handlerCreateProject = (newProject: TProjectRequest) => {
     const options = {
       populateCache: (createdProject: IProject) => ({
         ...data!,
-        results: [...(data?.results || []), createdProject],
+        results: [createdProject, ...(data?.results || [])],
       }),
       revalidate: false,
     };
 
     mutate(() => projectsApi.createNew(newProject), options).catch(
-      errorHandler
+      handleRequestError
     );
   };
 
@@ -69,22 +61,29 @@ const useProjectsSWR = () => {
     const options = { populateCache, revalidate: false };
 
     mutate(() => projectsApi.updateById(id, updProject), options).catch(
-      errorHandler
+      handleRequestError
     );
   };
 
-  const handlerSearchProject = (search: string) => {
-    setSearch(search);
+  const handlerDeleteProject = (id: string) => {
+    const updProjects = data?.results.filter((project) => project._id !== id);
+    const options = {
+      optimisticData: { ...data!, results: updProjects! },
+      populateCache: false,
+      revalidate: false,
+    };
+
+    mutate(() => projectsApi.deleteById(id), options).catch(handleRequestError);
   };
 
   return {
     data,
     isLoading,
     isError: error,
+    handlerSearchProject,
     handlerCreateProject,
     handlerUpdateProject,
     handlerDeleteProject,
-    handlerSearchProject,
   };
 };
 

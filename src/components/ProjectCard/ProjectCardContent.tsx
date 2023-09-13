@@ -28,8 +28,7 @@ const ProjectCardContent = ({
       <div className="flex w-full flex-col gap-[1.6rem]">
         <div className="h-[11rem]">
           <h4 className="text-[2.4rem] font-bold leading-[3rem]">
-            {/* {project.description[lang]} // TODO: implement logic when localization will be available */}
-            Опис проєкту
+            {project.title[lang]}
           </h4>
           {project.deployUrl && (
             <Link

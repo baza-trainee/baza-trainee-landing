@@ -29,7 +29,9 @@ const projectsApi = {
 
   async updateById(id: string, project: TProjectRequest) {
     return await bazaAPI
-      .patch<IProject>(`${projectsEndpoint}/${id}`, project)
+      .patch<IProject>(`${projectsEndpoint}/${id}`, project, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
       .then((res) => res.data);
   },
 };

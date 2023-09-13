@@ -18,6 +18,8 @@ import { IProject, TProjectRequest } from '@/types';
 import { TFormInput } from './types';
 import { projectValidator } from './projectValidator';
 import { LogoMain } from '@/components/common/icons';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const createOptions = (projects: IProject[], id: string) => {
   const project = projects.find((m) => m._id === id);
@@ -38,12 +40,15 @@ export const ProjectForm = ({ id }: { id?: string }) => {
     useProjectsSWR();
   const projects = data?.results;
 
+  const [projectPreviewImg, setProjectPreviewImg] = useState<File>();
+
   const valuesIfItEditedRole =
     projects && id ? createOptions(projects, id) : undefined;
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<TFormInput>({
     defaultValues: valuesIfItEditedRole,
@@ -51,7 +56,18 @@ export const ProjectForm = ({ id }: { id?: string }) => {
   });
   // console.log('err >>', isError);
 
-  // console.log('state >>', isValid);
+  // console.log("w",watch("projectImg"),"v", getValues("projectImg"));
+
+  const selectedImage = watch('projectImg');
+
+  useEffect(() => {
+    if (!selectedImage?.length) return;
+
+    const isValidImg = projectValidator.imgOptions.validate(selectedImage);
+    isValidImg && setProjectPreviewImg(selectedImage[0]);
+  }, [selectedImage]);
+
+  // console.log('projects >>', projects);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const project: TProjectRequest = {
       title: {
@@ -117,6 +133,14 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         </div>
 
         <div className="flex-center col-span-1 row-span-3 rounded-md bg-neutral-75">
+          {projectPreviewImg && (
+            <Image
+              src={URL.createObjectURL(projectPreviewImg)} // Создаем URL изображения из выбранного файла
+              alt="Выбранное изображение"
+              width={300} // Здесь укажите ширину и высоту, которую вы хотите для изображения
+              height={200}
+            />
+          )}
           <LogoMain className="h-72 w-72 text-neutral-200" />
         </div>
 
