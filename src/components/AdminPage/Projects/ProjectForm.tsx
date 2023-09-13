@@ -16,45 +16,10 @@ import {
 
 import { IProject, TProjectRequest } from '@/types';
 import { TFormInput } from './types';
-import { SETTINGS } from '@/config/settings';
+import { projectValidator } from './projectValidator';
+import { LogoMain } from '@/components/common/icons';
 
-const fieldOptions = {
-  required: 'Введіть назву',
-  minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
-  },
-  maxLength: {
-    value: 25,
-    message: 'Максимальна довжина поля 25 символів',
-  },
-  pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї ]+$/,
-    message: 'Введіть коректну назву',
-  },
-};
-
-const imgFieldOptions = {
-  required: 'Додайте зображення проєкту',
-  validate: (v: File[]) => {
-    console.log('rerer');
-
-    const checkSize = v[0].size <= SETTINGS.fileSizeLimits.partnerLogo;
-    const checkType =
-      v[0].type === 'image/jpeg' ||
-      v[0].type === 'image/png' ||
-      v[0].type === 'image/webp';
-
-    return (checkSize && checkType) || 'Виберіть коректне зображення';
-  },
-};
-
-const createOptions = (
-  id: string | undefined,
-  projects: IProject[] | undefined
-) => {
-  if (!projects || !id) return;
-
+const createOptions = (projects: IProject[], id: string) => {
   const project = projects.find((m) => m._id === id);
 
   if (!project) return;
@@ -69,42 +34,41 @@ const createOptions = (
 export const ProjectForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
-  const { data, handlerCreateProject, handlerUpdateProject } = useProjectsSWR();
+  const { data, handlerCreateProject, handlerUpdateProject, isError } =
+    useProjectsSWR();
   const projects = data?.results;
 
-  const valuesIfItEditedRole = createOptions(id, projects);
+  const valuesIfItEditedRole =
+    projects && id ? createOptions(projects, id) : undefined;
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<TFormInput>({
     defaultValues: valuesIfItEditedRole,
-    mode: 'onBlur',
+    mode: 'onSubmit',
   });
-  // console.log('val >>', isValid, errors);
+  // console.log('err >>', isError);
 
   // console.log('state >>', isValid);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    console.log('data >>', data);
     const project: TProjectRequest = {
       title: {
         en: data.nameEn,
         pl: data.namePl,
         ua: data.nameUk,
       },
-      // file: data.projectImg[0],
+      file: data.projectImg[0],
       deployUrl: data.deployUrl,
       isTeamRequired: !!data.isTeamRequired,
       creationDate: new Date(data.creationDate).getTime(),
       launchDate: new Date(data.launchDate || 0).getTime(),
       complexity: +data.complexity,
-      teamMembers: [],
+      // teamMembers: [],
     };
 
-    if (data.projectImg) {
-      project.file = data.projectImg[0];
-    }
+    // console.log('data >>', data, 'subm >>', project);
 
     if (id) {
       handlerUpdateProject(id, project);
@@ -123,19 +87,17 @@ export const ProjectForm = ({ id }: { id?: string }) => {
             inputType="uk"
             title="Назва проєкту"
             placeholder="Введіть назву"
-            {...register('nameUk', fieldOptions)}
+            {...register('nameUk', projectValidator.nameOptions)}
             errorText={errors.nameUk?.message}
           />
-
           <TextInputField
             inputType="en"
-            {...register('nameEn', fieldOptions)}
+            {...register('nameEn', projectValidator.nameOptions)}
             errorText={errors.nameEn?.message}
           />
-
           <TextInputField
             inputType="pl"
-            {...register('namePl', fieldOptions)}
+            {...register('namePl', projectValidator.nameOptions)}
             errorText={errors.namePl?.message}
           />
         </div>
@@ -152,6 +114,10 @@ export const ProjectForm = ({ id }: { id?: string }) => {
             title="Дата завершення проєкту"
             placeholder="Оберіть дату"
           />
+        </div>
+
+        <div className="flex-center col-span-1 row-span-3 rounded-md bg-neutral-75">
+          <LogoMain className="h-72 w-72 text-neutral-200" />
         </div>
 
         <div className="col-span-2 flex gap-10">
@@ -173,7 +139,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
             title="Адреса сайту"
           />
           <FileInput
-            {...register('projectImg', imgFieldOptions)}
+            {...register('projectImg', projectValidator.imgOptions)}
             placeholder="Завантажте зображення"
             title="Обкладинка"
             errorText={errors.projectImg?.message}
@@ -181,7 +147,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
         </div>
       </div>
 
-      <FormBtns disabled={!isValid} isEditMode={!!id} />
+      <FormBtns isEditMode={!!id} />
     </form>
   );
 };

@@ -14,20 +14,19 @@ import { DateIcon } from '@/components/common/icons';
 interface DateInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
-  value?: string;
   translateValue?: string;
   placeholder?: string;
   setTranslatedValue?: (_data: string, _name: string) => void;
 }
 
-export const DateInputRaw = (
-  { title, errorText, value, placeholder, ...rest }: DateInputFieldProps,
+const DateInputRaw = (
+  { title, errorText, value = '', placeholder, ...rest }: DateInputFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [date, setDate] = useState(value);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value);
   };
 
   const inputWrapperClasses = `
@@ -37,7 +36,7 @@ export const DateInputRaw = (
   const inputContainerClasses = `
     mb-8 mt-[2.8rem] h-16 w-full overflow-hidden rounded-[0.4rem] border
     py-[0.8rem] pl-[0.8rem] pr-[4.7rem] outline-0 ${
-      value ? '' : 'text-neutral-300'
+      date ? '' : errorText ? 'text-critic-light' : 'text-neutral-300'
     }
      ${
        errorText
@@ -48,7 +47,7 @@ export const DateInputRaw = (
 
   return (
     <div className={inputWrapperClasses}>
-      {!!title && <h4 className="absolute left-0 top-0">{title}</h4>}
+      {!!title && <label className="absolute left-0 top-0">{title}</label>}
 
       <div className={inputContainerClasses}>
         <div className="absolute right-[0.8rem]">
@@ -57,13 +56,18 @@ export const DateInputRaw = (
             ref={ref}
             className="calendar-picker-icon absolute right-0 top-0 h-full w-full opacity-0"
             type="date"
-            value={inputValue}
-            onChange={handleChange}
+            // value={inputValue}
+            onInput={handleInput}
           />
-          <DateIcon className="text-neutral-800" />
+          <DateIcon
+            className={errorText ? 'text-critic-light' : 'text-neutral-800'}
+          />
         </div>
 
-        {inputValue ? formatDate(inputValue, 'spelled', 'ua') : placeholder}
+        {/* {rest.defaultValue
+          ? formatDate(rest.defaultValue as string, 'spelled', 'ua')
+          : placeholder} */}
+        {date ? formatDate(date as string, 'spelled', 'ua') : placeholder}
       </div>
 
       {!!errorText && (

@@ -15,7 +15,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   errorText?: string;
 }
 
-export const InputRaw = (
+const InputRaw = (
   { title, errorText, placeholder, ...rest }: IProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
@@ -31,7 +31,7 @@ export const InputRaw = (
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFileName(e.target.files[0].name);
+      setFileName(e.target.files[0]?.name);
     }
   };
 

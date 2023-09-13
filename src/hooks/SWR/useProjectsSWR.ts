@@ -51,7 +51,6 @@ const useProjectsSWR = () => {
         results: [...(data?.results || []), createdProject],
       }),
       revalidate: false,
-      // throwOnError: true,
     };
 
     mutate(() => projectsApi.createNew(newProject), options).catch(
