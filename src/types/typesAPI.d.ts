@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { IProject } from './projectsTypes';
+import { IProject, TProject } from './projectsTypes';
 
 export interface IErrorResponse {
   message: string;
@@ -158,7 +158,7 @@ export type responseDataType =
   | null;
 
 export type TResponseProjects = {
-  results: IProject[];
+  results: TProject[];
   pagination: TPagination;
 };
 

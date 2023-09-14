@@ -11,7 +11,7 @@ import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
 
-import { IProject } from '@/types';
+import { TProject } from '@/types';
 
 export const AdminProjects = () => {
   const [showedItems, setShowedItems] = useState();
@@ -35,7 +35,7 @@ export const AdminProjects = () => {
 
         {projects &&
           projects?.results &&
-          projects.results.map((project: IProject) => (
+          projects.results.map((project: TProject) => (
             <ButtonsOverlay
               key={project._id}
               handleDelete={handlerDeleteProject}

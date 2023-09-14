@@ -14,7 +14,7 @@ import {
   TextInputField,
 } from '@/components/atomic';
 
-import { IProject, TProjectRequest } from '@/types';
+import { TProject, TProjectRequest } from '@/types';
 import { TFormInput } from './types';
 import { projectValidator } from './projectValidator';
 import { LogoMain } from '@/components/common/icons';
@@ -24,7 +24,7 @@ import { ProjectPreview } from './ProjectPreview';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
-const createOptions = (projects: IProject[], id: string) => {
+const createOptions = (projects: TProject[], id: string) => {
   const project = projects.find((m) => m._id === id);
 
   if (!project) return;

@@ -1,6 +1,6 @@
 import { bazaAPI } from './config';
 
-import { TResponseProjects, TProjectRequest, IProject } from '@/types';
+import { TResponseProjects, TProjectRequest, TProject } from '@/types';
 
 const projectsEndpoint = '/projects';
 
@@ -11,7 +11,7 @@ const projectsApi = {
 
   async createNew(project: TProjectRequest) {
     return await bazaAPI
-      .post<IProject>(projectsEndpoint, project, {
+      .post<TProject>(projectsEndpoint, project, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => res.data);
@@ -19,7 +19,7 @@ const projectsApi = {
 
   async getById(id: string) {
     return await bazaAPI
-      .get<IProject>(`${projectsEndpoint}/${id}`)
+      .get<TProject>(`${projectsEndpoint}/${id}`)
       .then((res) => res.data);
   },
 
@@ -29,7 +29,7 @@ const projectsApi = {
 
   async updateById(id: string, project: TProjectRequest) {
     return await bazaAPI
-      .patch<IProject>(`${projectsEndpoint}/${id}`, project, {
+      .patch<TProject>(`${projectsEndpoint}/${id}`, project, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => res.data);

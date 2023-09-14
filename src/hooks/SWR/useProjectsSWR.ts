@@ -6,7 +6,7 @@ import { projectsEndpoint, projectsApi } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
 import { AxiosError } from 'axios';
-import { IProject, TResponseProjects, TProjectRequest } from '@/types';
+import { TProject, TResponseProjects, TProjectRequest } from '@/types';
 
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -38,7 +38,7 @@ const useProjectsSWR = () => {
 
   const handlerCreateProject = (newProject: TProjectRequest) => {
     const options = {
-      populateCache: (createdProject: IProject) => ({
+      populateCache: (createdProject: TProject) => ({
         ...data!,
         results: [createdProject, ...(data?.results || [])],
       }),
@@ -51,7 +51,7 @@ const useProjectsSWR = () => {
   };
 
   const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
-    const populateCache = (createdProject: IProject) => {
+    const populateCache = (createdProject: TProject) => {
       const updProjects = data?.results.map((project) =>
         project._id === id ? createdProject : project
       );
