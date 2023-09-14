@@ -4,25 +4,27 @@ import { TTeamMember, TTeamMemberRole } from '@/types';
 type TProps = {
   roleName: string;
   teamMembers: {
-    role: TTeamMemberRole;
-    user: TTeamMember;
+    teamMember: TTeamMember;
+    teamMemberRole: TTeamMemberRole;
   }[];
   lang: TLandingLanguage;
 };
 
 export const ProjectTeamMembers = ({ roleName, teamMembers, lang }: TProps) => {
   const members = teamMembers
-    .filter((member) => member.role.name === roleName)
-    .sort((a, b) => a.user.name[lang].localeCompare(b.user.name[lang]));
+    .filter((member) => member.teamMemberRole.name === roleName)
+    .sort((a, b) =>
+      a.teamMember.name[lang].localeCompare(b.teamMember.name[lang])
+    );
 
   return members.map((member) => (
     <a
-      key={member.user._id}
+      key={member.teamMember._id}
       className="block text-yellow-500 underline"
-      href={member.user.link}
+      href={member.teamMember.link}
       target="_blank"
     >
-      {member.user.name[lang]}
+      {member.teamMember.name[lang]}
     </a>
   ));
 };

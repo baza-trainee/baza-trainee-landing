@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 
 const btnStyle =
-  'z-10 flex cursor-pointer focus:border-none focus:shadow-none focus:outline-none items-center gap-3 bg-transparent pl-5 text-[2rem] font-semibold h-[3.3rem] w-32';
+  'z-10 flex cursor-pointer focus:border-none focus:shadow-none focus:outline-none items-center gap-3 bg-transparent pl-5 text-[2rem] font-semibold h-[3.3rem]';
 
 const underLineStyle =
   "relative after:absolute after:bottom-0 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] after:hover:scale-100";
@@ -31,7 +31,7 @@ const LanguageSelector = () => {
     setIsMenuOpen((state) => !state);
   };
 
-  const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] pr-[0.5rem]  ${
+  const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] ${
     isMenuOpen
       ? 'opacity-100 duration-100 ease-out'
       : 'invisible opacity-0 duration-75 ease-in'

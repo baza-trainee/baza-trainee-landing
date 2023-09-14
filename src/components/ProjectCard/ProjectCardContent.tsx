@@ -6,7 +6,7 @@ import {
 } from '@/components/common/icons';
 
 import { dictionaries } from '@/locales/dictionaries';
-import { ICardContent } from '@/types';
+import { ICardContent2 } from '@/types';
 import { projectCycle } from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ const ProjectCardContent = ({
   handleShowTeam,
   project,
   lang = 'ua',
-}: ICardContent) => {
+}: ICardContent2) => {
   const { projectStart, projectTeam, duration, complexity } =
     dictionaries[lang].projects || {};
 

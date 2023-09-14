@@ -1,6 +1,6 @@
 'use client';
 import { CloseIcon } from '@/components/common/icons';
-import { ICardContent } from '@/types';
+import { ICardContent2 } from '@/types';
 import { dictionaries } from '@/locales/dictionaries';
 import { ProjectTeamMembers } from './ProjectTeamMembers';
 
@@ -8,11 +8,11 @@ export const ProjectCardTeam = ({
   handleShowTeam,
   project,
   lang,
-}: ICardContent) => {
-  const roles = project.teamMembers
+}: ICardContent2) => {
+  const roles = project.teamMembers! // TODO: check this "!"
     .reduce((acc: string[], cur) => {
-      if (!acc.includes(cur.role.name)) {
-        acc.push(cur.role.name);
+      if (!acc.includes(cur.teamMemberRole.name)) {
+        acc.push(cur.teamMemberRole.name);
       }
       return acc;
     }, [])
@@ -36,7 +36,7 @@ export const ProjectCardTeam = ({
             <ProjectTeamMembers
               lang={lang}
               roleName={role}
-              teamMembers={project.teamMembers}
+              teamMembers={project.teamMembers!} // TODO: check this "!"
             />
           </div>
         ))}

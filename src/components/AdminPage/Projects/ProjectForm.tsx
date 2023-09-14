@@ -20,6 +20,9 @@ import { projectValidator } from './projectValidator';
 import { LogoMain } from '@/components/common/icons';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { ProjectPreview } from './ProjectPreview';
+
+const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
 const createOptions = (projects: IProject[], id: string) => {
   const project = projects.find((m) => m._id === id);
@@ -33,7 +36,7 @@ const createOptions = (projects: IProject[], id: string) => {
   };
 };
 
-export const ProjectForm = ({ id }: { id?: string }) => {
+const ProjectForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
   const { data, handlerCreateProject, handlerUpdateProject, isError } =
@@ -58,14 +61,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
 
   // console.log("w",watch("projectImg"),"v", getValues("projectImg"));
 
-  const selectedImage = watch('projectImg');
-
-  useEffect(() => {
-    if (!selectedImage?.length) return;
-
-    const isValidImg = projectValidator.imgOptions.validate(selectedImage);
-    isValidImg && setProjectPreviewImg(selectedImage[0]);
-  }, [selectedImage]);
+  const currentValues = watch(); // TODO: this component is rerendered every time this const is changed. to investigate.
 
   // console.log('projects >>', projects);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
@@ -97,8 +93,8 @@ export const ProjectForm = ({ id }: { id?: string }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
-        <div className="col-span-3 flex gap-10">
+      <div className="grid w-[109rem] grid-cols-3 gap-9">
+        <div className={`${rowStyle} col-span-3`}>
           <TextInputField
             inputType="uk"
             title="Назва проєкту"
@@ -118,7 +114,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
           />
         </div>
 
-        <div className="col-span-2 flex gap-10">
+        <div className={`${rowStyle} col-span-2`}>
           <DateInput
             {...register('creationDate', { required: 'Оберіть дату' })}
             title="Старт проєкту"
@@ -132,19 +128,11 @@ export const ProjectForm = ({ id }: { id?: string }) => {
           />
         </div>
 
-        <div className="flex-center col-span-1 row-span-3 rounded-md bg-neutral-75">
-          {projectPreviewImg && (
-            <Image
-              src={URL.createObjectURL(projectPreviewImg)} // Создаем URL изображения из выбранного файла
-              alt="Выбранное изображение"
-              width={300} // Здесь укажите ширину и высоту, которую вы хотите для изображения
-              height={200}
-            />
-          )}
-          <LogoMain className="h-72 w-72 text-neutral-200" />
+        <div className="col-span-1 row-span-3">
+          <ProjectPreview currentValues={currentValues} />
         </div>
 
-        <div className="col-span-2 flex gap-10">
+        <div className={`${rowStyle} col-span-2`}>
           <CheckboxInput
             {...register('isTeamRequired')}
             placeholder="Формування команди"
@@ -156,7 +144,7 @@ export const ProjectForm = ({ id }: { id?: string }) => {
           />
         </div>
 
-        <div className="col-span-2 flex gap-10">
+        <div className={`${rowStyle} col-span-2`}>
           <TextInputField
             {...register('deployUrl')}
             placeholder="Вкажіть адресу сайту"
@@ -175,3 +163,5 @@ export const ProjectForm = ({ id }: { id?: string }) => {
     </form>
   );
 };
+
+export { ProjectForm };

@@ -7,23 +7,30 @@ import styles from './styles.module.scss';
 import { ProjectCardContent } from './ProjectCardContent';
 
 import { TLandingLanguage } from '@/store/globalContext';
-import { IProject } from '@/types';
+import { TProject } from '@/types';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
 type TProps = {
-  project: IProject;
+  project: TProject;
+  previewImg?: string;
   lang: TLandingLanguage;
   animationDelay?: number;
 };
 
-const ProjectCard = ({ project, lang, animationDelay = 0 }: TProps) => {
+const ProjectCard = ({
+  project,
+  previewImg,
+  lang,
+  animationDelay = 0,
+}: TProps) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 
   const projectImg =
+    previewImg ||
     process.env.NEXT_PUBLIC_PROXY_URL! +
-    process.env.NEXT_PUBLIC_SERVER_URL! +
-    '/files/' +
-    project.imageUrl;
+      process.env.NEXT_PUBLIC_SERVER_URL! +
+      '/files/' +
+      project.imageUrl;
 
   const handleShowTeam = () => {
     setIsMembersVisible((prev) => !prev);
