@@ -7,7 +7,8 @@ import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { TForm, TFormSlideRequest } from './types';
+import PreviewSlide from './PreviewSlide';
+import { TForm, TFormSlideRequest, TformData } from './types';
 
 export const SliderForm = ({
   id,
@@ -24,10 +25,13 @@ export const SliderForm = ({
   const { addNewSlider } = useHeroSliderSWR();
   const [image, setImage] = useState<File | null>();
   const [preview, setPreview] = useState<string | null>();
+  const [curLang, setCurLang] = useState<string>('ua');
+  const [dataForm, setDataForm] = useState<TformData | undefined>();
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<TForm>();
 
@@ -96,8 +100,20 @@ export const SliderForm = ({
     }
   }, [image]);
 
+  useEffect(() => {
+    const sub = watch((data) => {
+      setDataForm(data);
+    });
+
+    setCurLang(localStorage.getItem('landingLanguage') || 'ua');
+
+    return () => {
+      sub.unsubscribe();
+    };
+  }, [watch]);
+
   return (
-    <div>
+    <div className="h-full">
       <form
         className="flex h-2 flex-col gap-1"
         onSubmit={handleSubmit(onSubmitForm)}
@@ -108,7 +124,7 @@ export const SliderForm = ({
           accept="image/*"
           onChange={(e) => handleStatusUpload(e)}
           placeholder={'Завантажте зображення'}
-          // placeholder={data?.imageUrl || 'Завантажте зображення'}
+          errorText={errors.file?.message}
         />
         <div className="flex flex-wrap gap-[2.4rem]">
           <TextInputField
@@ -151,11 +167,13 @@ export const SliderForm = ({
           <FormBtns isEditMode={isEdit} />
           <LanguageSelector />
         </div>
-        <div className="flex-center mb-[5rem] w-full rounded-md bg-neutral-75">
+        <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">
           {preview ? (
-            <div className="flex-center rounded-md bg-neutral-75">
-              <img src={preview} alt="preview" style={{ objectFit: 'cover' }} />
-            </div>
+            <PreviewSlide
+              photoUrl={preview}
+              textData={dataForm}
+              lang={curLang}
+            />
           ) : (
             <div className="flex-center rounded-md bg-neutral-75 py-[10.2rem]">
               <LogoMain className="h-72 w-72 text-neutral-200" />

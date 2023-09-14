@@ -24,3 +24,26 @@ export type TFormSlideRequest = {
   file?: File;
   _id?: string;
 };
+
+export type TformData = {
+  file?: File;
+  titleUa?: string;
+  titleEn?: string;
+  titlePl?: string;
+  subtitleUa?: string;
+  subtitleEn?: string;
+  subtitlePl?: string;
+};
+
+export type TTextPreview = {
+  title?: {
+    ua?: string;
+    en?: string;
+    pl?: string;
+  };
+  subtitle?: {
+    ua?: string;
+    en?: string;
+    pl?: string;
+  };
+};
