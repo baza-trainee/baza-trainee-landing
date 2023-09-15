@@ -4,19 +4,18 @@ import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
-import { GlobalContext } from '@/store/globalContext';
+import { useGlobalContext } from '@/store/globalContext';
 import { documentsApi } from '@/utils/API/documents';
 import { formatBytes } from '@/utils/formatBytes';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 type TFormData = {
   [key: string]: File | null;
 };
 
 export const Documents = () => {
-  const { setAlertInfo } = useContext(GlobalContext);
-
+  const { setAlertInfo } = useGlobalContext();
   const [formData, setFormData] = useState<TFormData>({});
   const [filesUpdated, setFilesUpdated] = useState(0);
   const [isFormValid, setIsFormValid] = useState(false);

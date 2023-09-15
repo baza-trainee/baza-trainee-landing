@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "ts-check": "tsc --project tsconfig.json --pretty --noEmit && echo "
   },
   "dependencies": {
     "axios": "^1.4.0",
