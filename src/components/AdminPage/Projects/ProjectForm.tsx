@@ -21,45 +21,11 @@ import { LogoMain } from '@/components/common/icons';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ProjectPreview } from './ProjectPreview';
+import { downloadImageAsFile } from '@/utils/imageHandler';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
-const downloadImageAsFile = async (imgName: string) => {
-  const imageUrl =
-    process.env.NEXT_PUBLIC_PROXY_URL! +
-    process.env.NEXT_PUBLIC_SERVER_URL! +
-    '/files/' +
-    imgName;
 
-  try {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    return new File([blob], imgName);
-  } catch (error) {
-    console.error('Ошибка при загрузке изображения:', error);
-    // return null; // Обработайте ошибку по вашему усмотрению
-  }
-};
-
-const createOptions = async (projects: TProject[], id: string) => {
-  const foundProject = projects.find((m) => m._id === id);
-  // console.log("pro>>",project);
-
-  if (!foundProject) return;
-
-  return {
-    nameUk: foundProject.title.ua,
-    nameEn: foundProject.title.en,
-    namePl: foundProject.title.pl,
-    projectImg: await downloadImageAsFile(foundProject.imageUrl),
-    deployUrl: foundProject.deployUrl,
-    isTeamRequired: foundProject.isTeamRequired,
-    creationDate: foundProject.creationDate,
-    launchDate: foundProject.launchDate,
-    complexity: foundProject.complexity,
-    // teamMembers?: TTeamMember[] |
-  };
-};
 
 const ProjectForm = ({ id }: { id?: string }) => {
   const router = useRouter();
@@ -68,22 +34,35 @@ const ProjectForm = ({ id }: { id?: string }) => {
     useProjectsSWR();
   const projects = projectsData?.results;
 
-  const [projectPreviewImg, setProjectPreviewImg] = useState<File>();
-
-  const valuesIfItEditedRole = async () => {
-    return projects && id ? await createOptions(projects, id) : undefined;
-  };
-
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
-  } = useForm<TFormInput>({
-    defaultValues: valuesIfItEditedRole,
-    mode: 'onSubmit',
-  });
+  } = useForm<TFormInput>({ mode: 'onSubmit' });
+
   // console.log('err >>', isError);
+  useEffect(() => {
+    (async () => {
+      if (projects && id) {
+        const foundProject = projects.find((m) => m._id === id);
+        if (!foundProject) return;
+
+        setValue('nameUk', foundProject.title.ua);
+        setValue('nameEn', foundProject.title.en);
+        setValue('namePl', foundProject.title.pl);
+        setValue('deployUrl', foundProject.deployUrl);
+        setValue('isTeamRequired', foundProject.isTeamRequired);
+        setValue('creationDate', foundProject.creationDate);
+        setValue('launchDate', foundProject.launchDate);
+        setValue('complexity', foundProject.complexity);
+
+        const img = await downloadImageAsFile(foundProject.imageUrl);
+        img && setValue('projectImg', [img]);
+      }
+    })();
+  }, []);
 
   // console.log("w",watch("projectImg"),"v", getValues("projectImg"));
 
