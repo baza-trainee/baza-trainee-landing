@@ -63,8 +63,9 @@ const createOptions = (
 export const MembersForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
-  const { data, handlerCreateMember, handlerUpdateMember } = useMembersSWR();
-  const members = data?.results;
+  const { membersData, handlerCreateMember, handlerUpdateMember } =
+    useMembersSWR();
+  const members = membersData?.results;
 
   const valuesIfItEditedMember = createOptions(id, members);
 

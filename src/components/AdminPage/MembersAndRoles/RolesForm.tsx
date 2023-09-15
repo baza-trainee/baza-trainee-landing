@@ -51,8 +51,8 @@ const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
 export const RolesForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
-  const { data, handlerCreateRole, handlerUpdateRole } = useRolesSWR();
-  const roles = data?.results;
+  const { rolesData, handlerCreateRole, handlerUpdateRole } = useRolesSWR();
+  const roles = rolesData?.results;
 
   const valuesIfItEditedRole = createOptions(id, roles);
 
