@@ -1,9 +1,10 @@
 import { IMember, IRole } from '@/types';
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
+import { TEntity } from '../types';
 
 type TProps = {
-  entity: 'members' | 'roles';
+  entity: TEntity;
   showedData: IMember[] | IRole[];
   handleDelete: (id: string) => void;
 };

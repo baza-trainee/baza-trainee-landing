@@ -77,7 +77,7 @@ const useProjectsSWR = () => {
   };
 
   return {
-    data,
+    projectsData: data,
     isLoading,
     isError: error,
     handlerSearchProject,

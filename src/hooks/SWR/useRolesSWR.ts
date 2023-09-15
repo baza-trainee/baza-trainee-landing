@@ -65,7 +65,7 @@ const useRolesSWR = () => {
   };
 
   return {
-    data,
+    rolesData: data,
     isLoading,
     isError: error,
     handlerCreateRole,

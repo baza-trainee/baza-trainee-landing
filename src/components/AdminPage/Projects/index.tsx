@@ -16,7 +16,7 @@ import { TProject } from '@/types';
 export const AdminProjects = () => {
   const [showedItems, setShowedItems] = useState();
 
-  const { data: projects, handlerDeleteProject } = useProjectsSWR();
+  const { projectsData, handlerDeleteProject } = useProjectsSWR();
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
@@ -33,9 +33,9 @@ export const AdminProjects = () => {
           </Link>
         </li>
 
-        {projects &&
-          projects?.results &&
-          projects.results.map((project: TProject) => (
+        {projectsData &&
+          projectsData?.results &&
+          projectsData.results.map((project: TProject) => (
             <ButtonsOverlay
               key={project._id}
               handleDelete={handlerDeleteProject}

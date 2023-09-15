@@ -24,29 +24,55 @@ import { ProjectPreview } from './ProjectPreview';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
-const createOptions = (projects: TProject[], id: string) => {
-  const project = projects.find((m) => m._id === id);
+const downloadImageAsFile = async (imgName: string) => {
+  const imageUrl =
+    process.env.NEXT_PUBLIC_PROXY_URL! +
+    process.env.NEXT_PUBLIC_SERVER_URL! +
+    '/files/' +
+    imgName;
 
-  if (!project) return;
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    return new File([blob], imgName);
+  } catch (error) {
+    console.error('Ошибка при загрузке изображения:', error);
+    // return null; // Обработайте ошибку по вашему усмотрению
+  }
+};
+
+const createOptions = async (projects: TProject[], id: string) => {
+  const foundProject = projects.find((m) => m._id === id);
+  // console.log("pro>>",project);
+
+  if (!foundProject) return;
 
   return {
-    nameUk: project.title.ua,
-    nameEn: project.title.en,
-    namePl: project.title.pl,
+    nameUk: foundProject.title.ua,
+    nameEn: foundProject.title.en,
+    namePl: foundProject.title.pl,
+    projectImg: await downloadImageAsFile(foundProject.imageUrl),
+    deployUrl: foundProject.deployUrl,
+    isTeamRequired: foundProject.isTeamRequired,
+    creationDate: foundProject.creationDate,
+    launchDate: foundProject.launchDate,
+    complexity: foundProject.complexity,
+    // teamMembers?: TTeamMember[] |
   };
 };
 
 const ProjectForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
-  const { data, handlerCreateProject, handlerUpdateProject, isError } =
+  const { projectsData, handlerCreateProject, handlerUpdateProject, isError } =
     useProjectsSWR();
-  const projects = data?.results;
+  const projects = projectsData?.results;
 
   const [projectPreviewImg, setProjectPreviewImg] = useState<File>();
 
-  const valuesIfItEditedRole =
-    projects && id ? createOptions(projects, id) : undefined;
+  const valuesIfItEditedRole = async () => {
+    return projects && id ? await createOptions(projects, id) : undefined;
+  };
 
   const {
     register,

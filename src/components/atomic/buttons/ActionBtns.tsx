@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { EditDeleteButton } from './EditDeleteButton';
 
 type TProps = {
-  entity: 'projects' | 'members' | 'roles';
+  entity: 'projects' | 'members' | 'roles' | 'projectTeam'; // TODO: to decide about 'projectTeam'
   id: string;
   handleDelete: (id: string) => void;
 };

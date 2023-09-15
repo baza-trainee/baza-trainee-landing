@@ -64,7 +64,7 @@ const useMembersSWR = () => {
   };
 
   return {
-    data,
+    membersData: data,
     isLoading,
     isError: error,
     handlerCreateMember,

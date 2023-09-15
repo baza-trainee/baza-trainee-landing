@@ -1,9 +1,12 @@
-import { AdminPanelButton } from '@/components/atomic';
-import { PlusIcon } from '@/components/common/icons';
 import Link from 'next/link';
 
+import { AdminPanelButton } from '@/components/atomic';
+import { PlusIcon } from '@/components/common/icons';
+
+import { TEntity } from '../types';
+
 type TProps = {
-  entity: 'members' | 'roles';
+  entity: TEntity;
 };
 
 const cellStyle = 'border-none p-0';
@@ -21,7 +24,7 @@ export const ListHeader = ({ entity }: TProps) => {
           </div>
         </th>
 
-        {false && ( // TODO: to implement logic when this component will be reusing in "project"
+        {entity === 'projectTeam' && (
           <th className={`${cellStyle} w-1/4`}>
             <div className={bgStyle}>
               <span>Спеціалізація</span>

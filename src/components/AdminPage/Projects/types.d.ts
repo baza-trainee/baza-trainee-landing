@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type TTabsMode = 'description' | 'members';
+export type TTabsMode = 'description' | 'team';
 
 export type TFormTabs = {
   tabsMode: TTabsMode;

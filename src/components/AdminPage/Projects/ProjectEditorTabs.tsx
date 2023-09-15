@@ -2,7 +2,7 @@ import { FileIcon, PeopleIcon } from '@/components/common/icons';
 import { TFormTabs } from './types';
 
 // const handleModeToggle = () => {
-//   setMode(mode === 'description' ? 'members' : 'description');
+//   setMode(mode === 'description' ? 'team' : 'description');
 // };
 
 export const ProjectEditorTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
@@ -12,8 +12,8 @@ export const ProjectEditorTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
   const descriptionButtonStyle =
     tabsMode === 'description' ? 'bg-neutral-800 text-white' : '';
 
-  const membersButtonStyle =
-    tabsMode === 'members' ? 'bg-neutral-800 text-white' : '';
+  const teamButtonStyle =
+    tabsMode === 'team' ? 'bg-neutral-800 text-white' : '';
 
   return (
     <div className="flex gap-2 border-b border-neutral-800">
@@ -26,8 +26,8 @@ export const ProjectEditorTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
       </button>
 
       <button
-        className={buttonBaseStyle + membersButtonStyle}
-        onClick={() => setTabsMode('members')}
+        className={buttonBaseStyle + teamButtonStyle}
+        onClick={() => setTabsMode('team')}
       >
         Команда
         <PeopleIcon />

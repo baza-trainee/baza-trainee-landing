@@ -12,22 +12,22 @@ import { ProjectCardTeam } from './ProjectCardTeam';
 
 type TProps = {
   project: TProject;
-  previewImg?: string;
+  isPreviewImg?: boolean;
   lang: TLandingLanguage;
   animationDelay?: number;
 };
 
 const ProjectCard = ({
   project,
-  previewImg,
+  isPreviewImg,
   lang,
   animationDelay = 0,
 }: TProps) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 
-  const projectImg =
-    previewImg ||
-    process.env.NEXT_PUBLIC_PROXY_URL! +
+  const projectImg = isPreviewImg
+    ? project.imageUrl
+    : process.env.NEXT_PUBLIC_PROXY_URL! +
       process.env.NEXT_PUBLIC_SERVER_URL! +
       '/files/' +
       project.imageUrl;

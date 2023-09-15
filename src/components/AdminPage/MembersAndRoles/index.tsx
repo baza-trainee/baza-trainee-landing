@@ -11,17 +11,10 @@ type TProps = {
 };
 
 export const MembersAndRoles = ({ entity }: TProps) => {
-  const {
-    data: membersData,
-    handlerSearchMember,
-    handlerDeleteMember,
-  } = useMembersSWR();
+  const { membersData, handlerSearchMember, handlerDeleteMember } =
+    useMembersSWR();
 
-  const {
-    data: rolesData,
-    handlerDeleteRole,
-    handlerSearchRole,
-  } = useRolesSWR();
+  const { rolesData, handlerDeleteRole, handlerSearchRole } = useRolesSWR();
 
   const title = entity === 'members' ? 'Учасники' : 'Спеціалізація';
 

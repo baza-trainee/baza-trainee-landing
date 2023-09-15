@@ -1,9 +1,10 @@
 import { ActionBtns } from '@/components/atomic';
 
 import { IMember, IRole } from '@/types';
+import { TEntity } from '../types';
 
 type TProps = {
-  entity: 'members' | 'roles';
+  entity: TEntity;
   showedData: IMember | IRole;
   handleDelete: (id: string) => void;
 };
@@ -20,9 +21,9 @@ export const ListRow = ({ entity, showedData, handleDelete }: TProps) => {
         </div>
       </td>
 
-      {false && ( // TODO: to implement logic when this component will be reusing in "project"
+      {entity === 'projectTeam' && (
         <td className={cellStyle}>
-          <div className={bgStyle}>{/* Спеціалізація */}</div>
+          <div className={bgStyle}>Спеціалізація</div>
         </td>
       )}
 

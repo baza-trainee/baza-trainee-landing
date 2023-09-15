@@ -41,7 +41,7 @@ const ProjectPreview = ({ currentValues }: Props) => {
       pl: currentValues.namePl,
       ua: currentValues.nameUk,
     },
-    imageUrl: '',
+    imageUrl: previewImg,
     deployUrl: currentValues.deployUrl,
     isTeamRequired: !!currentValues.isTeamRequired,
     creationDate: currentValues.creationDate,
@@ -56,11 +56,7 @@ const ProjectPreview = ({ currentValues }: Props) => {
   return (
     <div className="group relative w-full max-w-[37.8rem]">
       <ul>
-        <ProjectCard
-          project={previewProject}
-          previewImg={previewImg}
-          lang={'ua'}
-        />
+        <ProjectCard project={previewProject} isPreviewImg lang={'ua'} />
       </ul>
 
       <div className="absolute right-0 top-0 rounded-md bg-yellow-500 py-5">
