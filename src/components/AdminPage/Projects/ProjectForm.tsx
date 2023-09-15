@@ -61,9 +61,9 @@ const ProjectForm = ({ id }: { id?: string }) => {
 
   // console.log("w",watch("projectImg"),"v", getValues("projectImg"));
 
-  const currentValues = watch(); // TODO: this component is rerendered every time this const is changed. to investigate.
+  const currentValues = watch(); // TODO: this component is rerendered each time when const is changed. to investigate.
 
-  // console.log('projects >>', projects);
+  // console.log('currentValues >>', currentValues);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const project: TProjectRequest = {
       title: {
@@ -128,7 +128,7 @@ const ProjectForm = ({ id }: { id?: string }) => {
           />
         </div>
 
-        <div className="col-span-1 row-span-3">
+        <div className="col-span-1 row-span-3 shadow-md">
           <ProjectPreview currentValues={currentValues} />
         </div>
 
