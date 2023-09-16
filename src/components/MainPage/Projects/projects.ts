@@ -89,14 +89,14 @@ export const projects = [
       pl: 'W budowie',
       ua: 'В розробці',
     },
-    link: '',
+    link: 'https://hyst.site/',
     description: {
       en: 'Khist is an aggregator of veteran initiatives',
       pl: 'Khist - agregator inicjatyw dla weteranów',
       ua: 'Хист - агрегатор ветеранських ініціатив',
     },
     creationDate: 1690848000000,
-    launchDate: 0,
+    launchDate: 1694883961894,
     complexity: 3,
     isTeamRequired: false,
     teamMembers: [
