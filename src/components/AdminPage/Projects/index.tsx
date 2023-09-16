@@ -1,10 +1,8 @@
 'use client';
 
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
-import { useGlobalContext } from '@/store/globalContext';
-import { networkStatusesUk } from '@/utils/errorHandler';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ProjectCard } from '@/components/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
@@ -12,6 +10,7 @@ import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
 
 import { TProject } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
 
 export const AdminProjects = () => {
   const [showedItems, setShowedItems] = useState();
@@ -40,7 +39,11 @@ export const AdminProjects = () => {
               key={project._id}
               handleDelete={handlerDeleteProject}
             >
-              <ProjectCard project={project} lang={'ua'} />
+              <ProjectCard
+                project={project}
+                lang={'ua'}
+                coverImgUrl={createImgUrl(project.imageUrl)}
+              />
             </ButtonsOverlay>
           ))}
       </ul>

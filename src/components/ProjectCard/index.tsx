@@ -12,29 +12,29 @@ import { ProjectCardTeam } from './ProjectCardTeam';
 
 type TProps = {
   project: TProject;
-  isPreviewImg?: boolean;
+  coverImgUrl: string;
   lang: TLandingLanguage;
   animationDelay?: number;
 };
 
 const ProjectCard = ({
   project,
-  isPreviewImg,
+  coverImgUrl,
   lang,
   animationDelay = 0,
 }: TProps) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 
-  const projectImg = isPreviewImg
-    ? project.imageUrl
-    : process.env.NEXT_PUBLIC_PROXY_URL! +
-      process.env.NEXT_PUBLIC_SERVER_URL! +
-      '/files/' +
-      project.imageUrl;
+ 
 
   const handleShowTeam = () => {
     setIsMembersVisible((prev) => !prev);
   };
+
+  // const { projectImgBlob } = useProjectImgSWR(project.imageUrl);
+  // const projectImg2 = projectImgBlob
+  //   ? URL.createObjectURL(projectImgBlob)
+  //   : '/';
 
   return (
     <li
@@ -44,7 +44,7 @@ const ProjectCard = ({
       {/*<li className={styles['new-box']}>*/}
       <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md">
         <Image
-          src={projectImg}
+          src={coverImgUrl}
           alt="Project Image"
           fill
           sizes="(min-width: 300px) 100%"
@@ -94,3 +94,4 @@ const ProjectCard = ({
 };
 
 export { ProjectCard };
+

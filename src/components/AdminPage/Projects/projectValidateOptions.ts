@@ -1,7 +1,7 @@
 import { SETTINGS } from '@/config/settings';
 
-export const projectValidator = {
-  nameOptions: {
+export const projectValidateOptions = {
+  name: {
     required: 'Введіть назву',
     minLength: {
       value: 5,
@@ -12,19 +12,18 @@ export const projectValidator = {
       message: 'Максимальна довжина поля 25 символів',
     },
     pattern: {
-      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї ]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї \d]+$/,
       message: 'Введіть коректну назву',
     },
   },
 
-  imgOptions: {
-    required: 'Додайте зображення проєкту',
-    validate: (v: File[]) => {
-      const checkSize = v[0].size <= SETTINGS.fileSizeLimits.partnerLogo;
+  img: {
+    validate: (value: File[]) => {
+      const checkSize = value[0]?.size <= SETTINGS.fileSizeLimits.partnerLogo;
       const checkType =
-        v[0].type === 'image/jpeg' ||
-        v[0].type === 'image/png' ||
-        v[0].type === 'image/webp';
+        value[0]?.type === 'image/jpeg' ||
+        value[0]?.type === 'image/png' ||
+        value[0]?.type === 'image/webp';
 
       return (checkSize && checkType) || 'Виберіть коректне зображення';
     },

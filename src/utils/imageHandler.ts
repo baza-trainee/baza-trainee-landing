@@ -12,7 +12,8 @@ export const downloadImageAsFile = async (imgName: string) => {
   try {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
-    return new File([blob], imgName);
+
+    return new File([blob], imgName, { type: blob.type });
   } catch (err) {
     errorHandler(err);
   }

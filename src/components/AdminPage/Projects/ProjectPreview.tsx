@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
+import { createImgUrl } from '@/utils/imageHandler';
+import { convertDate } from '@/utils/formatDate';
+import { projectValidateOptions } from './projectValidateOptions';
 
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { LogoMain } from '@/components/common/icons';
-import { TFormInput } from './types';
 import { ProjectCard } from '@/components/ProjectCard';
+import { LogoMain } from '@/components/common/icons';
+
 import { TProject } from '@/types';
-import { projectValidator } from './projectValidator';
+import { TFormInput } from './types';
 
 type Props = {
+  // TODO: possibly delete.
   currentValues: TFormInput;
 };
 
@@ -19,18 +22,28 @@ const EmptyImg = () => (
 
 const ProjectPreview = ({ currentValues }: Props) => {
   const { projectImg } = currentValues;
+  // console.log("projectImg", projectImg[0].type );
 
-  const getPreviewImg = () => {
+  const getCoverImgUrl = () => {
     if (!projectImg?.length) return;
 
-    const isValidImg = projectValidator.imgOptions.validate(projectImg);
+    // if (projectImg[0].type === 'plug') {
+    //   return createImgUrl(projectImg[0].name);
+    // }
 
-    return isValidImg ? URL.createObjectURL(projectImg[0]) : undefined;
+    const isValidImg = projectValidateOptions.img.validate(projectImg);
+    if (isValidImg) {
+      return URL.createObjectURL(projectImg[0]);
+    }
+
+    // return projectImg[0].size === 0
+    //   ? createImgUrl(projectImg[0].name)
+    //   : URL.createObjectURL(projectImg[0]);
   };
 
-  const previewImg = getPreviewImg();
+  const coverImgUrl = getCoverImgUrl();
 
-  if (!previewImg) {
+  if (!coverImgUrl) {
     return <EmptyImg />;
   }
 
@@ -41,11 +54,11 @@ const ProjectPreview = ({ currentValues }: Props) => {
       pl: currentValues.namePl,
       ua: currentValues.nameUk,
     },
-    imageUrl: previewImg,
+    imageUrl: '',
     deployUrl: currentValues.deployUrl,
     isTeamRequired: !!currentValues.isTeamRequired,
-    creationDate: currentValues.creationDate,
-    launchDate: currentValues.launchDate || 0,
+    creationDate: convertDate.toMilliseconds(currentValues.creationDate),
+    launchDate: convertDate.toMilliseconds(currentValues.launchDate!) || 0,
     complexity: currentValues.complexity,
     // teamMembers?: Array<{
     //   teamMember: TTeamMember;
@@ -56,7 +69,11 @@ const ProjectPreview = ({ currentValues }: Props) => {
   return (
     <div className="group relative w-full max-w-[37.8rem]">
       <ul>
-        <ProjectCard project={previewProject} isPreviewImg lang={'ua'} />
+        <ProjectCard
+          project={previewProject}
+          coverImgUrl={coverImgUrl}
+          lang={'ua'}
+        />
       </ul>
 
       <div className="absolute right-0 top-0 rounded-md bg-yellow-500 py-5">

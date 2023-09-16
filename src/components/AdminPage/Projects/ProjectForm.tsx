@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
@@ -15,60 +15,139 @@ import {
 } from '@/components/atomic';
 
 import { TProject, TProjectRequest } from '@/types';
-import { TFormInput } from './types';
-import { projectValidator } from './projectValidator';
-import { LogoMain } from '@/components/common/icons';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { ProjectPreview } from './ProjectPreview';
 import { downloadImageAsFile } from '@/utils/imageHandler';
+import { useEffect, useState } from 'react';
+import { ProjectPreview } from './ProjectPreview';
+import { projectValidateOptions } from './projectValidateOptions';
+import { TFormInput } from './types';
+import { convertDate } from '@/utils/formatDate';
+import { useProjectImgSWR } from '@/hooks/SWR/useProjectImgSWR';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
+const createFieldValues = async (
+  projects: TProject[] | undefined,
+  id: string | undefined
+) => {
+  const emptyFields: TFormInput = {
+    nameUk: '',
+    nameEn: '',
+    namePl: '',
+    projectImg: [],
+    deployUrl: '',
+    isTeamRequired: false,
+    creationDate: '',
+    launchDate: '',
+    complexity: 1,
+    // teamMembers?: TTeamMember[] ,
+  };
 
+  if (!projects || !id) return emptyFields;
+
+  const currProject = projects.find((m) => m._id === id);
+  if (!currProject) return emptyFields;
+
+  const fieldValues = {
+    ...emptyFields,
+    nameUk: currProject.title.ua,
+    nameEn: currProject.title.en,
+    namePl: currProject.title.pl,
+    deployUrl: currProject.deployUrl,
+    isTeamRequired: currProject.isTeamRequired,
+    creationDate: convertDate.toYYYYMMDD(currProject.creationDate),
+    launchDate: convertDate.toYYYYMMDD(currProject.launchDate),
+    complexity: currProject.complexity,
+    // teamMembers?: TTeamMember[] |
+  };
+
+  const img = await downloadImageAsFile(currProject.imageUrl);
+  fieldValues.projectImg[0] = img ? img : new File([], currProject.imageUrl);
+
+  return fieldValues;
+};
+
+// const createOptions = (
+//   projects: TProject[] | undefined,
+//   id: string | undefined
+// ) => {
+//   if (!projects || !id) return;
+
+//   const foundedProject = projects.find((m) => m._id === id);
+//   if (!foundedProject) return;
+//   // console.log("pro>>",project);
+
+//   return {
+//     nameUk: foundedProject.title.ua,
+//     nameEn: foundedProject.title.en,
+//     namePl: foundedProject.title.pl,
+//     projectImg: [new File([], foundedProject.imageUrl)], // this is plug;
+//     deployUrl: foundedProject.deployUrl,
+//     isTeamRequired: foundedProject.isTeamRequired,
+//     creationDate: convertDate.toYYYYMMDD(foundedProject.creationDate),
+//     launchDate: convertDate.toYYYYMMDD(foundedProject.launchDate),
+//     complexity: foundedProject.complexity,
+//     // teamMembers?: TTeamMember[] |
+//   };
+// };
 
 const ProjectForm = ({ id }: { id?: string }) => {
   const router = useRouter();
 
-  const { projectsData, handlerCreateProject, handlerUpdateProject, isError } =
+  const { projectsData, handlerCreateProject, handlerUpdateProject } =
     useProjectsSWR();
   const projects = projectsData?.results;
+
+  // const valuesEditedProject = createOptions(projects, id);
 
   const {
     register,
     handleSubmit,
     watch,
-    setValue,
+    setFocus,
     formState: { errors },
-  } = useForm<TFormInput>({ mode: 'onSubmit' });
+  } = useForm<TFormInput>({
+    mode: 'onSubmit',
+    defaultValues: async () => await createFieldValues(projects, id),
+  });
 
   // console.log('err >>', isError);
   useEffect(() => {
-    (async () => {
-      if (projects && id) {
-        const foundProject = projects.find((m) => m._id === id);
-        if (!foundProject) return;
+    // if (projects && id) {
+    //   const addImgIntoFileInput = async () => {
+    //     const currProject = projects.find((m) => m._id === id);
+    //     if (!currProject) return;
 
-        setValue('nameUk', foundProject.title.ua);
-        setValue('nameEn', foundProject.title.en);
-        setValue('namePl', foundProject.title.pl);
-        setValue('deployUrl', foundProject.deployUrl);
-        setValue('isTeamRequired', foundProject.isTeamRequired);
-        setValue('creationDate', foundProject.creationDate);
-        setValue('launchDate', foundProject.launchDate);
-        setValue('complexity', foundProject.complexity);
+    //     const img = await downloadImageAsFile(currProject.imageUrl);
+    //     if (!img) return;
 
-        const img = await downloadImageAsFile(foundProject.imageUrl);
-        img && setValue('projectImg', [img]);
-      }
-    })();
+    //     setValue('projectImg', [img]);
+
+    //     // const fieldValues = {
+    //     //   nameUk: currProject.title.ua,
+    //     //   nameEn: currProject.title.en,
+    //     //   namePl: currProject.title.pl,
+    //     //   projectImg: [img],
+    //     //   deployUrl: currProject.deployUrl,
+    //     //   isTeamRequired: currProject.isTeamRequired,
+    //     //   creationDate: convertDate.toYYYYMMDD(currProject.creationDate),
+    //     //   launchDate: convertDate.toYYYYMMDD(currProject.launchDate),
+    //     //   complexity: currProject.complexity,
+    //     //   // teamMembers?: TTeamMember[] |
+    //     // };
+
+    //     // setValuesEditedProject(fieldValues);
+    //   };
+    //   addImgIntoFileInput();
+    // }
+
+    setFocus('nameUk');
   }, []);
 
   // console.log("w",watch("projectImg"),"v", getValues("projectImg"));
 
   const currentValues = watch(); // TODO: this component is rerendered each time when const is changed. to investigate.
 
-  // console.log('currentValues >>', currentValues);
+  // console.log('currentValues >>', currentValues.creationDate);
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const project: TProjectRequest = {
       title: {
@@ -79,13 +158,14 @@ const ProjectForm = ({ id }: { id?: string }) => {
       file: data.projectImg[0],
       deployUrl: data.deployUrl,
       isTeamRequired: !!data.isTeamRequired,
-      creationDate: new Date(data.creationDate).getTime(),
-      launchDate: new Date(data.launchDate || 0).getTime(),
-      complexity: +data.complexity,
+      creationDate: convertDate.toMilliseconds(data.creationDate),
+      launchDate: convertDate.toMilliseconds(data.launchDate!) || 0,
+      complexity: data.complexity,
       // teamMembers: [],
     };
 
     // console.log('data >>', data, 'subm >>', project);
+    // console.log('data >>', data.creationDate);
 
     if (id) {
       handlerUpdateProject(id, project);
@@ -104,30 +184,35 @@ const ProjectForm = ({ id }: { id?: string }) => {
             inputType="uk"
             title="Назва проєкту"
             placeholder="Введіть назву"
-            {...register('nameUk', projectValidator.nameOptions)}
+            {...register('nameUk', projectValidateOptions.name)}
             errorText={errors.nameUk?.message}
           />
           <TextInputField
             inputType="en"
-            {...register('nameEn', projectValidator.nameOptions)}
+            {...register('nameEn', projectValidateOptions.name)}
             errorText={errors.nameEn?.message}
           />
           <TextInputField
             inputType="pl"
-            {...register('namePl', projectValidator.nameOptions)}
+            {...register('namePl', projectValidateOptions.name)}
             errorText={errors.namePl?.message}
           />
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
           <DateInput
-            {...register('creationDate', { required: 'Оберіть дату' })}
+            {...register('creationDate', {
+              required: 'Оберіть дату',
+              // valueAsDate: true,
+            })}
             title="Старт проєкту"
             placeholder="Оберіть дату"
             errorText={errors.creationDate?.message}
           />
           <DateInput
-            {...register('launchDate')}
+            {...register('launchDate', {
+              // valueAsDate: true,
+            })}
             title="Дата завершення проєкту"
             placeholder="Оберіть дату"
           />
@@ -144,7 +229,9 @@ const ProjectForm = ({ id }: { id?: string }) => {
             title="Стан"
           />
           <ComplexityInput
-            {...register('complexity')}
+            {...register('complexity', {
+              valueAsNumber: true,
+            })}
             title="Оберіть складність проєкту"
           />
         </div>
@@ -156,7 +243,10 @@ const ProjectForm = ({ id }: { id?: string }) => {
             title="Адреса сайту"
           />
           <FileInput
-            {...register('projectImg', projectValidator.imgOptions)}
+            {...register('projectImg', {
+              ...projectValidateOptions.img,
+              required: id ? false : 'Додайте зображення проєкту',
+            })}
             placeholder="Завантажте зображення"
             title="Обкладинка"
             errorText={errors.projectImg?.message}

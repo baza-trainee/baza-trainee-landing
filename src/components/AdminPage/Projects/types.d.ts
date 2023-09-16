@@ -19,8 +19,8 @@ export type TFormInput = {
   projectImg: File[];
   deployUrl?: string;
   isTeamRequired?: boolean;
-  creationDate: number;
-  launchDate?: number;
+  creationDate: string;
+  launchDate?: string;
   complexity: number;
   teamMembers?: TTeamMember[];
 };

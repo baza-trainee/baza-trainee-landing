@@ -18,6 +18,8 @@ export const Input = (
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [count, setCount] = useState(defaultValue as number);
+  // console.log("asdffdsfd", value);
+  
 
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCount(+e.target.value);

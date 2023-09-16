@@ -20,10 +20,11 @@ interface DateInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const DateInputRaw = (
-  { title, errorText, value = '', placeholder, ...rest }: DateInputFieldProps,
+  { title, errorText, defaultValue ,value, placeholder, ...rest }: DateInputFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const [date, setDate] = useState(value);
+// console.log("input>>", defaultValue);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
@@ -53,6 +54,7 @@ const DateInputRaw = (
         <div className="absolute right-[0.8rem]">
           <input
             {...rest}
+            defaultValue={defaultValue}
             ref={ref}
             className="calendar-picker-icon absolute right-0 top-0 h-full w-full opacity-0"
             type="date"
