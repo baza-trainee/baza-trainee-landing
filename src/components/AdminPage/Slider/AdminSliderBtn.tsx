@@ -1,4 +1,4 @@
-import { heroSliderApi } from '@/utils/API/heroSlider';
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { ReactElement } from 'react';
 
 type Props = {
@@ -7,9 +7,11 @@ type Props = {
 };
 
 export const SliderDeleteButton: any = ({ id, children }: Props) => {
-  const DeleteByIdHandle = async (id: string) => {
+  const { delByIdSlider } = useHeroSliderSWR();
+
+  const DeleteByIdHandle = (id: string) => {
     try {
-      const res = await heroSliderApi.deleteById(id);
+      const res = delByIdSlider(id);
       console.log(res);
     } catch (error) {
       console.log(error);

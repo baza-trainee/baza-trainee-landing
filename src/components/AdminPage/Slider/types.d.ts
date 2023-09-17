@@ -8,6 +8,20 @@ export type TForm = {
   file?: File;
   imageUrl?: string;
   _id?: string;
+  FileInput: string;
+};
+
+export type TFormPromise = {
+  titleUa: string;
+  titleEn: string;
+  titlePl: string;
+  subtitleUa: string;
+  subtitleEn: string;
+  subtitlePl: string;
+  file?: File;
+  imageUrl?: string;
+  _id?: string;
+  FileInput: string;
 };
 
 export type TFormSlideRequest = {

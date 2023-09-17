@@ -13,8 +13,6 @@ export const AdminHeroSlider = () => {
 
   const { data: sliderData } = useHeroSliderSWR();
 
-  console.log(sliderData?.data);
-
   useEffect(() => {
     setCurLang(localStorage.getItem('landingLanguage') || 'ua');
   }, []);

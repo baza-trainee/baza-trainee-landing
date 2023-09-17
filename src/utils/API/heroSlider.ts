@@ -11,12 +11,12 @@ export const heroSliderApi = {
     return await bazaAPI.post(slidersEndPoint, slider);
   },
   async getById(id: byIdRequest) {
-    return await bazaAPI.get(`/${slidersEndPoint}/${id}`);
+    return await bazaAPI.get(`${slidersEndPoint}/${id}`);
   },
   async deleteById(id: byIdRequest) {
-    return await bazaAPI.delete(`/${slidersEndPoint}/${id}`);
+    return await bazaAPI.delete(`${slidersEndPoint}/${id}`);
   },
   async updateById([id, payload]: updateByIdRequest) {
-    return await bazaAPI.patch(`/${slidersEndPoint}/${id}`, payload);
+    return await bazaAPI.patch(`${slidersEndPoint}/${id}`, payload);
   },
 };

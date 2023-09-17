@@ -10,7 +10,7 @@ import useSWR from 'swr';
 export const useHeroSliderSWR = () => {
   const { setAlertInfo } = useGlobalContext();
 
-  const { data, error, isLoading } = useSWR<AxiosResponse, AxiosError>(
+  const { data, error, isLoading, mutate } = useSWR<AxiosResponse, AxiosError>(
     slidersEndPoint,
     heroSliderApi.getAll,
     { keepPreviousData: true }
@@ -31,20 +31,44 @@ export const useHeroSliderSWR = () => {
   //   return await heroSliderApi.getAll();
   // };
 
-  const getByIdSlider = async (id: string) => {
-    return await heroSliderApi.getById(id);
+  const updateAndMutate = (
+    updSliders: IHeroSlider[],
+    action: () => Promise<AxiosResponse<any, any>>
+  ) => {
+    mutate(action, {
+      optimisticData: { ...data!, data: updSliders },
+      revalidate: false,
+      populateCache: false,
+    });
   };
 
-  const delByIdSlider = async (id: string) => {
-    return await heroSliderApi.deleteById(id);
+  const getByIdSlider = (id: string) => {
+    const slideById = data?.data.filter(
+      (slide: IHeroSlider) => slide._id == id
+    );
+    return slideById;
+  };
+
+  // const delByIdSlider = async (id: string) => {
+  //   return await heroSliderApi.deleteById(id);
+  // };
+  const delByIdSlider = (id: string) => {
+    const updSliders = data?.data.filter(
+      (slide: IHeroSlider) => slide._id !== id
+    );
+    updateAndMutate(updSliders!, () => heroSliderApi.deleteById(id));
   };
 
   const addNewSlider = async (slider: IHeroSlider) => {
-    return await heroSliderApi.createNew(slider);
+    const updSliders = [...(data?.data || []), slider];
+    updateAndMutate(updSliders!, () => heroSliderApi.createNew(slider));
   };
 
   const updateSlider = async (id: string, slider: IHeroSlider) => {
-    return await heroSliderApi.updateById([id, slider]);
+    const updSliders = data?.data.map((slide: IHeroSlider) =>
+      slide._id === id ? updSliders : slide
+    );
+    updateAndMutate(updSliders, () => heroSliderApi.updateById([id, slider]));
   };
 
   return {

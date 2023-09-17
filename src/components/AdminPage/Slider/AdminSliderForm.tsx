@@ -4,6 +4,7 @@ import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { FileInput, TextInputField } from '@/components/atomic/inputs';
 import { LogoMain } from '@/components/common/icons';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { IHeroSlider } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -22,37 +23,51 @@ export const SliderForm = ({
   };
 
   const router = useRouter();
-  const { addNewSlider } = useHeroSliderSWR();
+  const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
   const [image, setImage] = useState<File | null>();
   const [preview, setPreview] = useState<string | null>();
   const [curLang, setCurLang] = useState<string>('ua');
   const [dataForm, setDataForm] = useState<TformData | undefined>();
+
+  const slidesData = data?.data.find((slide: IHeroSlider) => slide._id === id);
+  console.log(slidesData);
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TForm>();
+  } = useForm<TForm>({
+    defaultValues: {
+      titleUa: slidesData?.title?.ua,
+      titleEn: slidesData?.title?.en,
+      titlePl: slidesData?.title?.pl,
+      subtitleUa: slidesData?.title?.ua,
+      subtitleEn: slidesData?.title?.en,
+      subtitlePl: slidesData?.title?.pl,
+      // file: data?.imageUrl,
+    },
+  });
 
   // якщо це редагувати, то треба нижке коммент використати
 
-  // isEdit
-  //   ? {
-  //   defaultValues: {
-  //     titleUa: data?.title?.ua,
-  //     titleEn: data?.title?.en,
-  //     titlePl: data?.title?.pl,
-  //     subtitleUa: data?.title?.ua,
-  //     subtitleEn: data?.title?.en,
-  //     subtitlePl: data?.title?.pl,
-  //     // file: data?.imageUrl,
-  //   },
-  // }
-  //   : {};
+  //  {
+  //     defaultValues: {
+  //       titleUa: slidesData?.title?.ua || '',
+  //       titleEn: slidesData?.title?.en || '',
+  //       titlePl: slidesData?.title?.pl || '',
+  //       subtitleUa: slidesData?.title?.ua || '',
+  //       subtitleEn: slidesData?.title?.en || '',
+  //       subtitlePl: slidesData?.title?.pl || '',
+  //       // file: data?.imageUrl,
+  //     },
+  //   }
+
+  console.log(watch('file'));
 
   const onSubmitForm: SubmitHandler<TForm> = async (dataForm) => {
     console.log('Form Data:', dataForm);
+    console.log('File Data:', dataForm?.file);
 
     const slide: TFormSlideRequest = {
       title: {
@@ -71,12 +86,12 @@ export const SliderForm = ({
 
     addNewSlider(slide);
 
+    if (id) {
+      updateSlider(id, slide);
+    } else {
+      addNewSlider(slide);
+    }
     router.replace('.');
-    // if (data?._id) {
-    //   updateSlider(data?._id, slide);
-    // } else {
-    //   addNewSlider(slide);
-    // }
   };
 
   const handleStatusUpload = (e: any): void => {
@@ -120,9 +135,11 @@ export const SliderForm = ({
       >
         <FileInput
           title="Зображення"
-          {...register('file')}
+          {...(register('file'),
+          {
+            onChange: (e) => handleStatusUpload(e),
+          })}
           accept="image/*"
-          onChange={(e) => handleStatusUpload(e)}
           placeholder={'Завантажте зображення'}
           errorText={errors.file?.message}
         />
