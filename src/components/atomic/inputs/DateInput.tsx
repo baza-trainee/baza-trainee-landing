@@ -1,12 +1,4 @@
-'use client';
-
-import {
-  ChangeEvent,
-  ForwardedRef,
-  InputHTMLAttributes,
-  forwardRef,
-  useState,
-} from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 
 import { formatDate } from '@/utils/formatDate';
 import { DateIcon } from '@/components/common/icons';
@@ -20,24 +12,19 @@ interface DateInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const DateInputRaw = (
-  { title, errorText, defaultValue ,value, placeholder, ...rest }: DateInputFieldProps,
+  { title, errorText, value ="", placeholder, ...rest }: DateInputFieldProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const [date, setDate] = useState(value);
-// console.log("input>>", defaultValue);
-
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-  };
-
   const inputWrapperClasses = `
     relative w-full max-w-[32.6rem] ${errorText ? 'text-critic-light' : ''}
   `;
+// console.log("dateInput>>", rest.onChange);
+
 
   const inputContainerClasses = `
     mb-8 mt-[2.8rem] h-16 w-full overflow-hidden rounded-[0.4rem] border
     py-[0.8rem] pl-[0.8rem] pr-[4.7rem] outline-0 ${
-      date ? '' : errorText ? 'text-critic-light' : 'text-neutral-300'
+      value ? '' : errorText ? 'text-critic-light' : 'text-neutral-300'
     }
      ${
        errorText
@@ -54,22 +41,19 @@ const DateInputRaw = (
         <div className="absolute right-[0.8rem]">
           <input
             {...rest}
-            defaultValue={defaultValue}
-            ref={ref}
+            // ref={ref}
+            // value={""}
             className="calendar-picker-icon absolute right-0 top-0 h-full w-full opacity-0"
             type="date"
-            // value={inputValue}
-            onInput={handleInput}
+            // pattern="\d{4}-\d{2}-\d{2}"
           />
+
           <DateIcon
             className={errorText ? 'text-critic-light' : 'text-neutral-800'}
           />
         </div>
 
-        {/* {rest.defaultValue
-          ? formatDate(rest.defaultValue as string, 'spelled', 'ua')
-          : placeholder} */}
-        {date ? formatDate(date as string, 'spelled', 'ua') : placeholder}
+        {value ? formatDate(value as string, 'spelled', 'ua') : placeholder}
       </div>
 
       {!!errorText && (

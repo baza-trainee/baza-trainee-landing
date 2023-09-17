@@ -1,12 +1,14 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
 
-interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface CheckboxInputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> {
   title?: string;
   errorText?: string;
+  value?: boolean;
 }
 
 const Checkbox = (
-  { title, errorText, placeholder, ...rest }: TextInputFieldProps,
+  { title, errorText, placeholder, value, ...rest }: CheckboxInputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const id = useId();
@@ -27,7 +29,7 @@ const Checkbox = (
         <label htmlFor={id}>{placeholder}</label>
         <input
           {...rest}
-          ref={ref}
+          checked={!!value}
           id={id}
           type="checkbox"
           className={`h-10 w-10 p-[0.8rem] accent-dark ${

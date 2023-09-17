@@ -25,7 +25,7 @@ const InputRaw = (
     errorText ? 'text-critic-light' : ''
   }`;
 
-  const inputContainerClasses = `mb-8 mt-[2.8rem] flex h-16 w-full gap-6 rounded-[0.4rem] border p-[0.8rem] ${
+  const inputContainerClasses = `mb-8 mt-[2.8rem] flex h-16 w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
     errorText ? 'border-critic-light' : 'border-neutral-300'
   }`;
 

@@ -7,7 +7,7 @@ export type TFormTabs = {
   setTabsMode: Dispatch<SetStateAction<TTabsMode>>;
 };
 
-type TTeamMember = {
+export type TTeamMemberRequest = {
   teamMember: { _id: string };
   teamMemberRole: { _id: string };
 };
@@ -22,5 +22,5 @@ export type TFormInput = {
   creationDate: string;
   launchDate?: string;
   complexity: number;
-  teamMembers?: TTeamMember[];
+  teamMembers?: TTeamMemberRequest[];
 };

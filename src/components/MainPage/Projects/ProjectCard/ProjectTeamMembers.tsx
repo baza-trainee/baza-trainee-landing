@@ -1,11 +1,11 @@
 import { TLandingLanguage } from '@/store/globalContext';
-import { TTeamMember, TTeamMemberRole } from '@/types';
+import { TTeamMemberBio, TTeamMemberRole } from '@/types';
 
 type TProps = {
   roleName: string;
   teamMembers: {
     role: TTeamMemberRole;
-    user: TTeamMember;
+    user: TTeamMemberBio;
   }[];
   lang: TLandingLanguage;
 };

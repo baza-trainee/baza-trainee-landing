@@ -1,9 +1,20 @@
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
-import { MembersAndRolesList } from '../MembersAndRoles/MembersAndRolesList';
+import { MembersAndRolesList } from './MembersAndRolesList';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
+import { TProject, TTeamMember } from '@/types';
 
-export const ProjectTeamList = ({ id }: { id?: string }) => {
+type TProps = {
+  teamMembers?: TTeamMember[]
+  projectToEdit?: TProject;
+  handleUpdateProject: (project: TProject) => void;
+};
+
+export const ProjectTeamList = ({
+  teamMembers,
+  projectToEdit,
+  handleUpdateProject,
+}: TProps) => {
   const { projectsData } = useProjectsSWR();
 
   const { membersData, handlerSearchMember, handlerDeleteMember } =
@@ -15,8 +26,8 @@ export const ProjectTeamList = ({ id }: { id?: string }) => {
 
   return (
     <MembersAndRolesList
-      entity={'projectTeam'}
-      showedData={[]}
+      // entity={'projectTeam'}
+      showedData={teamMembers!}
       handleDelete={function (id: string): void {
         throw new Error('Function not implemented.');
       }}

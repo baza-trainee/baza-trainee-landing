@@ -6,7 +6,7 @@ import { TTitleLanguagesTypes } from './typesAPI';
 //   name: string;
 //   link: string;
 // };
-export type TTeamMember = {
+export type TTeamMemberBio = {
   _id: string;
   name: TTitleLanguagesTypes;
   link: string;
@@ -16,6 +16,11 @@ export type TTeamMember = {
 export type TTeamMemberRole = {
   _id: string;
   name: string;
+};
+
+export type TTeamMember = {
+  teamMember: TTeamMemberBio;
+  teamMemberRole: TTeamMemberRole;
 };
 
 export interface IProject {
@@ -32,7 +37,7 @@ export interface IProject {
   launchDate: number;
   complexity: number;
   teamMembers: Array<{
-    user: TTeamMember;
+    user: TTeamMemberBio;
     role: TTeamMemberRole;
   }>;
 }
@@ -66,13 +71,11 @@ export type TProject = {
   creationDate: number;
   launchDate: number;
   complexity: number;
-  teamMembers?: Array<{
-    teamMember: TTeamMember;
-    teamMemberRole: TTeamMemberRole;
-  }>;
+  teamMembers?: TTeamMember[];
 };
 
-export interface ICardContent2 { // TODO: this is temporary. in the future it should be renamed to "ICardContent".
+export interface ICardContent2 {
+  // TODO: this is temporary. in the future it should be renamed to "ICardContent".
   handleShowTeam: () => void;
   project: TProject;
   lang: TLandingLanguage;

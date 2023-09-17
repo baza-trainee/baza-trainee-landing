@@ -14,7 +14,7 @@ type Props = {
   currentValues: TFormInput;
 };
 
-const EmptyImg = () => (
+const EmptyPreviewImg = () => (
   <div className="flex-center h-[46.4rem] rounded-md bg-neutral-75">
     <LogoMain className="h-72 w-72 text-neutral-200" />
   </div>
@@ -44,8 +44,10 @@ const ProjectPreview = ({ currentValues }: Props) => {
   const coverImgUrl = getCoverImgUrl();
 
   if (!coverImgUrl) {
-    return <EmptyImg />;
+    return <EmptyPreviewImg />;
   }
+
+  console.log('pervVal >>', currentValues.launchDate);
 
   const previewProject: TProject = {
     _id: '',
@@ -58,8 +60,8 @@ const ProjectPreview = ({ currentValues }: Props) => {
     deployUrl: currentValues.deployUrl,
     isTeamRequired: !!currentValues.isTeamRequired,
     creationDate: convertDate.toMilliseconds(currentValues.creationDate),
-    launchDate: convertDate.toMilliseconds(currentValues.launchDate!) || 0,
-    complexity: currentValues.complexity,
+    launchDate: convertDate.toMilliseconds(currentValues.launchDate),
+    complexity: +currentValues.complexity,
     // teamMembers?: Array<{
     //   teamMember: TTeamMember;
     //   teamMemberRole: TTeamMemberRole;
