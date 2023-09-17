@@ -69,14 +69,19 @@ export const projects = [
       ua: 'hust',
     },
     imageUrl: '/img/projects/hust.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    link: 'https://hyst.site/',
     description: {
       en: 'Khist is an aggregator of veteran initiatives',
       pl: 'Khist - agregator inicjatyw dla weteranów',
       ua: 'Хист - агрегатор ветеранських ініціатив',
     },
     creationDate: 1690848000000,
-    launchDate: 0,
+    launchDate: 1694883961894,
     complexity: 3,
     isTeamRequired: false,
     teamMembers: [
