@@ -8,7 +8,9 @@ export const heroSliderApi = {
     return await bazaAPI.get<IHeroSlider>(uri);
   },
   async createNew(slider: IHeroSlider) {
-    return await bazaAPI.post(slidersEndPoint, slider);
+    return await bazaAPI.post(slidersEndPoint, slider, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
   async getById(id: byIdRequest) {
     return await bazaAPI.get(`${slidersEndPoint}/${id}`);
@@ -17,6 +19,8 @@ export const heroSliderApi = {
     return await bazaAPI.delete(`${slidersEndPoint}/${id}`);
   },
   async updateById([id, payload]: updateByIdRequest) {
-    return await bazaAPI.patch(`${slidersEndPoint}/${id}`, payload);
+    return await bazaAPI.patch(`${slidersEndPoint}/${id}`, payload, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
 };

@@ -23,7 +23,7 @@ export default function PreviewSlide({
     if (file[0].type === 'for-url') {
       return createImgUrl(file[0].name);
     }
-    if (file[0].type.substr(0, 5) === 'image') {
+    if (file[0].type.substring(0, 5) === 'image') {
       return URL.createObjectURL(file[0]);
     }
   };

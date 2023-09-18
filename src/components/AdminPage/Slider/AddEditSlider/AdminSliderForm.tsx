@@ -39,7 +39,7 @@ export const SliderForm = ({
 
   const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
     console.log('Form Data:', dataForm);
-    console.log('File Data:', dataForm?.file);
+    console.log('File Data:', id);
 
     const slide: TFormSlideRequest = {
       title: {
@@ -53,9 +53,10 @@ export const SliderForm = ({
         pl: dataForm.subtitlePl,
       },
       file: dataForm.file[0],
-      imageUrl: dataForm.deployUrl,
-      _id: id,
+      imageUrl: dataForm.file[0].name,
     };
+
+    console.log('SLIDE:', slide);
 
     addNewSlider(slide);
 
