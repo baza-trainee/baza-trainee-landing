@@ -3,7 +3,7 @@ import { AdminTitle } from '@/components/atomic';
 import { IAddEditSlideProps } from '@/types';
 import { useParams } from 'next/navigation';
 import { FC } from 'react';
-import { SliderForm } from '../AdminSliderForm';
+import { SliderForm } from './AdminSliderForm';
 
 // const initialState = {
 //   data: {

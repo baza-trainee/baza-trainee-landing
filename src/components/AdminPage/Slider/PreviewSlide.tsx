@@ -1,16 +1,39 @@
+import { LogoMain } from '@/components/common/icons';
+import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
-import { TformData } from './types';
+import { TFormInputs } from './types';
+
+const EmptyPreview = () => (
+  <div className="flex-center rounded-md bg-neutral-75 py-[10.2rem]">
+    <LogoMain className="h-72 w-72 text-neutral-200" />
+  </div>
+);
 
 export default function PreviewSlide({
-  photoUrl,
   lang,
-  textData,
+  currentValues,
 }: {
-  photoUrl: string;
-  text?: string;
   lang: string;
-  textData: TformData | undefined;
+  currentValues: TFormInputs;
 }) {
+  const { file } = currentValues;
+
+  const getImgUrl = () => {
+    if (!file?.length) return;
+    if (file[0].type === 'for-url') {
+      return createImgUrl(file[0].name);
+    }
+    if (file[0].type.substr(0, 5) === 'image') {
+      return URL.createObjectURL(file[0]);
+    }
+  };
+
+  const photoUrl = getImgUrl();
+
+  if (!photoUrl) {
+    return <EmptyPreview />;
+  }
+
   return (
     <div className="flex-center relative h-[38.4rem] overflow-hidden rounded-md bg-neutral-75">
       <Image
@@ -36,17 +59,17 @@ export default function PreviewSlide({
         <div className="z-10 w-2/3 max-w-[44.6rem] text-white">
           <h2 className="z-10 mb-5 text-center text-[3.8rem] font-bold">
             {lang === 'ua'
-              ? textData?.titleUa
+              ? currentValues?.titleUa
               : lang === 'en'
-              ? textData?.titleEn
-              : textData?.titlePl}
+              ? currentValues?.titleEn
+              : currentValues?.titlePl}
           </h2>
           <p className="break-all font-medium leading-[1.6] md:text-center md:text-[2rem]">
             {lang === 'ua'
-              ? textData?.subtitleUa
+              ? currentValues?.subtitleUa
               : lang === 'en'
-              ? textData?.subtitleEn
-              : textData?.subtitlePl}
+              ? currentValues?.subtitleEn
+              : currentValues?.subtitlePl}
           </p>
         </div>
       </div>

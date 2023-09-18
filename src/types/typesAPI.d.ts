@@ -55,7 +55,7 @@ export type TContactsInfo = {
 export interface IHeroSlider extends CommonResponseBase {
   title: titleLanguagesTypes;
   subtitle: titleLanguagesTypes;
-  imageUrl?: string;
+  imageUrl: string;
 }
 
 export interface IPartner extends CommonResponseBase {

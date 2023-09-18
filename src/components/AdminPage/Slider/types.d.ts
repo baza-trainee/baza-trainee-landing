@@ -8,7 +8,7 @@ export type TForm = {
   file?: File;
   imageUrl?: string;
   _id?: string;
-  FileInput: string;
+  FileInput?: string;
 };
 
 export type TFormPromise = {
@@ -36,17 +36,31 @@ export type TFormSlideRequest = {
     pl: string;
   };
   file?: File;
+  imageUrl: string;
   _id?: string;
 };
 
+export type TFormInputs = {
+  titleUa: string;
+  titleEn: string;
+  titlePl: string;
+  subtitleUa: string;
+  subtitleEn: string;
+  subtitlePl: string;
+  file: File[];
+  imageUrl?: string;
+  _id?: string;
+  deployUrl: string;
+};
+
 export type TformData = {
-  file?: File;
-  titleUa?: string;
-  titleEn?: string;
-  titlePl?: string;
-  subtitleUa?: string;
-  subtitleEn?: string;
-  subtitlePl?: string;
+  titleUa: string;
+  titleEn: string;
+  titlePl: string;
+  subtitleUa: string;
+  subtitleEn: string;
+  subtitlePl: string;
+  deployUrl: string;
 };
 
 export type TTextPreview = {

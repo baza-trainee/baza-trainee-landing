@@ -2,14 +2,14 @@
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { FileInput, TextInputField } from '@/components/atomic/inputs';
-import { LogoMain } from '@/components/common/icons';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { IHeroSlider } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import PreviewSlide from './PreviewSlide';
-import { TForm, TFormSlideRequest, TformData } from './types';
+import PreviewSlide from '../PreviewSlide';
+import { TFormInputs, TFormSlideRequest } from '../types';
+import { DefaultValuesState } from './DefaultValues';
 
 export const SliderForm = ({
   id,
@@ -24,48 +24,20 @@ export const SliderForm = ({
 
   const router = useRouter();
   const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
-  const [image, setImage] = useState<File | null>();
-  const [preview, setPreview] = useState<string | null>();
   const [curLang, setCurLang] = useState<string>('ua');
-  const [dataForm, setDataForm] = useState<TformData | undefined>();
-
-  const slidesData = data?.data.find((slide: IHeroSlider) => slide._id === id);
-  console.log(slidesData);
+  const slideData = data?.data.find((slide: IHeroSlider) => slide._id === id);
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TForm>({
-    defaultValues: {
-      titleUa: slidesData?.title?.ua,
-      titleEn: slidesData?.title?.en,
-      titlePl: slidesData?.title?.pl,
-      subtitleUa: slidesData?.title?.ua,
-      subtitleEn: slidesData?.title?.en,
-      subtitlePl: slidesData?.title?.pl,
-      // file: data?.imageUrl,
-    },
+  } = useForm<TFormInputs>({
+    mode: 'onSubmit',
+    defaultValues: async () => await DefaultValuesState(slideData),
   });
 
-  // якщо це редагувати, то треба нижке коммент використати
-
-  //  {
-  //     defaultValues: {
-  //       titleUa: slidesData?.title?.ua || '',
-  //       titleEn: slidesData?.title?.en || '',
-  //       titlePl: slidesData?.title?.pl || '',
-  //       subtitleUa: slidesData?.title?.ua || '',
-  //       subtitleEn: slidesData?.title?.en || '',
-  //       subtitlePl: slidesData?.title?.pl || '',
-  //       // file: data?.imageUrl,
-  //     },
-  //   }
-
-  console.log(watch('file'));
-
-  const onSubmitForm: SubmitHandler<TForm> = async (dataForm) => {
+  const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
     console.log('Form Data:', dataForm);
     console.log('File Data:', dataForm?.file);
 
@@ -80,7 +52,8 @@ export const SliderForm = ({
         en: dataForm.subtitleEn,
         pl: dataForm.subtitlePl,
       },
-      file: dataForm?.file,
+      file: dataForm.file[0],
+      imageUrl: dataForm.deployUrl,
       _id: id,
     };
 
@@ -94,38 +67,14 @@ export const SliderForm = ({
     router.replace('.');
   };
 
-  const handleStatusUpload = (e: any): void => {
-    const file = e.target.files[0];
-    if (file && file.type.substr(0, 5) === 'image') {
-      setImage(file);
-    } else {
-      setImage(null);
-    }
-  };
+  const currentValues = watch();
+  console.log('CurValues', currentValues);
 
   useEffect(() => {
-    if (image) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result as string);
-      };
-      reader.readAsDataURL(image);
-    } else {
-      setPreview(null);
-    }
-  }, [image]);
-
-  useEffect(() => {
-    const sub = watch((data) => {
-      setDataForm(data);
-    });
-
     setCurLang(localStorage.getItem('landingLanguage') || 'ua');
+  }, []);
 
-    return () => {
-      sub.unsubscribe();
-    };
-  }, [watch]);
+  useEffect(() => {}, [watch]);
 
   return (
     <div className="h-full">
@@ -135,10 +84,7 @@ export const SliderForm = ({
       >
         <FileInput
           title="Зображення"
-          {...(register('file'),
-          {
-            onChange: (e) => handleStatusUpload(e),
-          })}
+          {...register('file')}
           accept="image/*"
           placeholder={'Завантажте зображення'}
           errorText={errors.file?.message}
@@ -185,17 +131,7 @@ export const SliderForm = ({
           <LanguageSelector />
         </div>
         <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">
-          {preview ? (
-            <PreviewSlide
-              photoUrl={preview}
-              textData={dataForm}
-              lang={curLang}
-            />
-          ) : (
-            <div className="flex-center rounded-md bg-neutral-75 py-[10.2rem]">
-              <LogoMain className="h-72 w-72 text-neutral-200" />
-            </div>
-          )}
+          <PreviewSlide currentValues={currentValues} lang={curLang} />
         </div>
       </form>
     </div>
