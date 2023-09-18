@@ -1,8 +1,15 @@
 import Image from 'next/image';
 
+import { TLandingLanguage } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
 
-export const SingleSlide = ({ slideData }: { slideData: TSlideReview }) => {
+export const SingleSlide = ({
+  slideData,
+  lang,
+}: {
+  slideData: TSlideReview;
+  lang: TLandingLanguage;
+}) => {
   const { role, date, review, imageUrl, name } = slideData;
 
   return (
@@ -10,21 +17,23 @@ export const SingleSlide = ({ slideData }: { slideData: TSlideReview }) => {
       <div className="relative h-48 w-48 shrink-0 overflow-hidden rounded-full">
         <Image
           src={imageUrl}
-          alt={name}
+          alt={name[lang]}
           fill
-          objectFit="cover"
+          sizes="(min-width: 300px) 120px"
+          style={{
+            objectFit: 'cover',
+          }}
           quality={85}
-          priority
         />
       </div>
 
       <div className="w-80 self-start whitespace-nowrap md:self-center">
-        <h4 className="text-[2rem] font-medium">{name}</h4>
-        <p>{role}</p>
-        <p className="text-[1.4rem] text-neutral-400">{date}</p>
+        <h4 className="text-[2rem] font-medium">{name[lang]}</h4>
+        <p>{role[lang]}</p>
+        <p className="text-[1.4rem] text-neutral-400">{date[lang]}</p>
       </div>
 
-      <span className="w-full">{review}</span>
+      <span className="w-full">{review[lang]}</span>
     </div>
   );
 };

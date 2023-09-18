@@ -45,7 +45,6 @@ export const Contacts = () => {
         textInfo:
           'Під час оновлення списку контактів сталася помилка. Спробуйте, будь ласка, пізніше',
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, data, setAlertInfo]);
 
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -69,19 +68,15 @@ export const Contacts = () => {
     const isNoErrors = contactsValidationHandler(contactsData, setErrorsData);
     const isContactsDataList = contactsData?.contactsDataList
       ? !!Object.values(contactsData?.contactsDataList).join()
-      : true;
+      : false;
     const isSocialsMediaList = contactsData?.socialsMediaList
       ? !!Object.values(contactsData?.socialsMediaList).join()
-      : true;
+      : false;
 
-    setIsFormValid(isNoErrors && isContactsDataList && isSocialsMediaList);
+    setIsFormValid(isNoErrors && (isContactsDataList || isSocialsMediaList));
   }, [contactsData]);
 
-  const handleSubmit = (
-    event:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     isFormValid && dispatch(contactsData);
@@ -123,11 +118,11 @@ export const Contacts = () => {
               placeholder="Введіть електронну пошту"
             />
             <TextInputField
-              title="Facebook"
+              title="Telegram"
               inputType="pen"
-              name="socialsMediaList facebook"
-              errorText={errorsData.facebook}
-              value={contactsData.socialsMediaList?.facebook}
+              name="socialsMediaList telegram"
+              errorText={errorsData.telegram}
+              value={contactsData.socialsMediaList?.telegram}
               onChange={onInputChange}
               placeholder="Додайте посилання"
             />
@@ -143,12 +138,8 @@ export const Contacts = () => {
           </div>
         </div>
 
-        <div className="flex gap-[1.8rem]">
-          <AdminPanelButton
-            type="submit"
-            onClick={handleSubmit}
-            disabled={!isFormValid}
-          >
+        <div className="ml-5 flex gap-[1.8rem]">
+          <AdminPanelButton type="submit" disabled={!isFormValid}>
             Зберегти зміни
           </AdminPanelButton>
           <AdminPanelButton variant="secondary" onClick={resetHandler}>

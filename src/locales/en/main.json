@@ -1,0 +1,110 @@
+{
+  "navbar": {
+    "projects": "Projects",
+    "partners": "Partners",
+    "participate": "Participate",
+    "contacts": "Contacts"
+  },
+  "monthsNames": {
+    "nouns": [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december"
+    ],
+    "spelled": [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december"
+    ]
+  },
+  "moreProjects": "More projects",
+  "noProjects": "Sorry! There are no projects.",
+  "projects": {
+    "projectStart": "Project start",
+    "projectCycle": "Project cycle",
+    "duration": "Duration",
+    "complexity": "Complexity",
+    "projectTeam": "Project team",
+    "status": {
+      "teamFormation": "Team formation",
+      "underDevelopment": "Under development",
+      "completed": "Completed"
+    }
+  },
+  "invite": {
+    "supportBazaTrainee": "Donate to Baza Trainee Ukraine",
+    "teamsWaitForYou": "5 projects and 3 teams are waiting for you",
+    "bazaTraineeInvite": "Baza Trainee Ukraine invites you to join the team",
+    "chooseRole": "Choose your role in the project",
+    "role": {
+      "participant": "I am a participant",
+      "mentor": "I am a mentor",
+      "partner": "I am a partner",
+      "customer": "I am a customer"
+    }
+  },
+  "partners": {
+    "title": "Partners"
+  },
+  "stats": {
+    "completedProjects": "completed projects",
+    "involvedParticipants": "involved participants",
+    "employed": "employed"
+  },
+  "reviews": {
+    "title": "Reviews"
+  },
+  "modal": {
+    "title": "Choose the amount you would like to support Baza Trainee Ukraine with.",
+    "description": "The amount is debited once, if you want to issue a subscription, you need ..",
+    "sums": {
+      "otherSum": "A different amount in UAH "
+    },
+    "button": "Donate to Baza Trainee Ukraine"
+  },
+  "footer": {
+    "projects": "Projects",
+    "partners": "Partners",
+    "participate": "To Participate",
+    "privacyPolicy": "Privacy Policy",
+    "rulesForUsingTheSite": "Rules for using the site",
+    "statute": "Statute",
+    "accountability": "Accountability",
+    "allRightsReserved": "Developed by BazaTraineeUkraine 2023 All rights reserved"
+  },
+  "notFound": {
+    "title": "This page was not found.",
+    "description": "We could not find the page you are looking for. An error may have occurred",
+    "button": "Return to the main page"
+  },
+  "toFund": "Donate",
+  "currency": "UAH",
+  "enterKeywordForSearch": "Enter a keyword for search",
+  "yourHelpIsWorth": {
+    "title": "Thank you!",
+    "firstPart": "Your help is very important",
+    "secondPart": "for Baza Trainee Ukraine"
+  },
+  "spinner": {
+    "loading": "The document is being loaded",
+    "error": "File upload failed"
+  }
+}

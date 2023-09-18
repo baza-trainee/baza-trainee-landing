@@ -1,22 +1,27 @@
 import Image from 'next/image';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 
-export const Statistics = () => {
+export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
+  const { teamsWaitForYou } = dictionaries[lang].invite || {};
   return (
     <section className="relative">
       <Image
-        src={'/img/statBg.jpg'}
-        alt={''}
+        src={'/img/statBg.webp'}
+        alt={'statistic background'}
         fill
-        objectFit="cover"
+        style={{
+          objectFit: 'cover',
+        }}
+        sizes="(min-width: 300px) 100vw"
         quality={90}
       />
 
       <ContainerMaxW1200 className="flex-center min-h-[14.4rem] text-center">
         <h2 className="mx-[5.95rem] my-12 text-[3.2rem] font-bold uppercase md:mx-44">
-          5 проєктів та 3 команди чекають{' '}
-          <span className="whitespace-nowrap">на тебе</span>
+          {teamsWaitForYou}
         </h2>
       </ContainerMaxW1200>
     </section>

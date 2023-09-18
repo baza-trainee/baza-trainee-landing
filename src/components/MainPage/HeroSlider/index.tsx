@@ -2,6 +2,8 @@
 
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
 import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
@@ -20,14 +22,18 @@ const settings = {
   arrows: false,
 };
 
-const ModalComponent = () => (
-  <Modal content="donate">
-    <PrimaryButton>Фондувати</PrimaryButton>
-  </Modal>
-);
+const ModalComponent = ({ lang }: { lang: TLandingLanguage }) => {
+  const dict = dictionaries[lang];
+  const { toFund } = dict || {};
+  return (
+    <Modal content="donate" lang={lang}>
+      <PrimaryButton>{toFund}</PrimaryButton>
+    </Modal>
+  );
+};
 const MemoizedModal = memo(ModalComponent);
 
-const HeroSlider = () => {
+const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
 
@@ -54,9 +60,15 @@ const HeroSlider = () => {
           afterChange={setCurrentSlide}
           lazyLoad="progressive"
           ref={slickRef}
+          className="h-[50.4rem]"
         >
-          {slides.map((slide: TSlide) => (
-            <SingleSlide key={`key_${slide.title}`} slideData={slide} />
+          {slides.map((slide: TSlide, index) => (
+            <SingleSlide
+              key={`key_${slide.title[lang]}`}
+              slideData={slide}
+              index={index}
+              slideLang={lang}
+            />
           ))}
         </Slider>
 
@@ -64,12 +76,14 @@ const HeroSlider = () => {
           <ContainerMaxW1200 className="w-[19.4rem] items-center md:w-full xl:h-full">
             <button
               onClick={() => arrowHandler('prev')}
+              aria-label="Previous slide"
               className={`mr-auto ${currentSlide === 0 ? 'hidden' : ''}`}
             >
               <MultiArrow direction="left" bigSize />
             </button>
             <button
               onClick={() => arrowHandler('next')}
+              aria-label="Next slide"
               className={`ml-auto ${
                 currentSlide === slides.length - 1 ? 'hidden' : ''
               }`}
@@ -84,7 +98,7 @@ const HeroSlider = () => {
         <ContainerMaxW1200 className="min-h-[8.8rem] flex-col gap-[2.4rem] py-[1.6rem] sm:flex-row sm:items-center sm:justify-between sm:py-0">
           <Dots currentSlide={currentSlide} goToSlide={goToSlide} />
 
-          <MemoizedModal />
+          <MemoizedModal lang={lang} />
         </ContainerMaxW1200>
       </div>
     </section>

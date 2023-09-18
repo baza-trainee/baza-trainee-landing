@@ -12,17 +12,25 @@ const usePaymentHandler = (urlBase = url) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handlePayment = async () => {
+    const paymentData = {
+      transactionType: 'CREATE_INVOICE',
+      merchantDomainName: window.location.hostname,
+      apiVersion: 1,
+      orderReference: Date.now().toString(),
+      orderDate: Date.now(),
+      amount: Number(paymentAmount),
+      language: 'UA', //fix
+      currency: 'UAH',
+      productName: ['Baza trainee support'],
+      productCount: [1],
+      productPrice: [Number(paymentAmount)],
+      serviceUrl: 'https://baza-trainee.tech/api/v1/payment/complete',
+    };
     if (Number(paymentAmount)) {
       try {
-        const response = await axios.post(`${urlBase}/payment`, {
-          order_id: Date.now().toString(),
-          order_desc: 'Baza trainee support',
-          amount: paymentAmount + '00',
-          currency: 'UAH',
-          response_url: 'https://baza-trainee.tech/api/v1/payment/complete', //FIX
-        });
+        const response = await axios.post(`${urlBase}/payment`, paymentData);
 
-        const checkoutUrl = response.data.response?.checkout_url;
+        const checkoutUrl = response.data?.invoiceUrl;
         if (checkoutUrl) {
           window.location.href = checkoutUrl;
           //redirect(checkoutUrl, 'push');

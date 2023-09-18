@@ -1,12 +1,15 @@
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 import Image from 'next/image';
 
-export const Gratitude = () => {
+export const Gratitude = ({ lang }: { lang: TLandingLanguage }) => {
+  const { firstPart, secondPart, title } = dictionaries[lang].yourHelpIsWorth;
   return (
     <div className="flex h-full flex-col items-center justify-center px-[3.5rem] py-[2.4rem] uppercase text-neutral-800">
-      <h2 className="text-[3.2rem] font-bold ">Дякуємо!</h2>
+      <h2 className="text-[3.2rem] font-bold ">{title}</h2>
       <p className="mt-11 max-w-[58.4rem] text-center text-[2.4rem] font-semibold md:mt-7 lg:mt-[4.8rem]">
-        Ваша допомога дуже важлива
-        <span className="sm:whitespace-nowrap"> для Baza Trainee Ukraine</span>
+        {firstPart}
+        <span className="sm:whitespace-nowrap">{secondPart}</span>
       </p>
       <Image
         width={230}

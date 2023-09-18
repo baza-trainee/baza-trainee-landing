@@ -1,28 +1,43 @@
 'use client';
-
 import Image from 'next/image';
 import { useState } from 'react';
+import styles from './styles.module.css';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
+import { TLandingLanguage } from '@/store/globalContext';
 import { IProject } from '@/types';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
-const ProjectCard = ({ project }: { project: IProject }) => {
+const ProjectCard = ({
+  project,
+  lang,
+  animationDelay,
+}: {
+  project: IProject;
+  lang: TLandingLanguage;
+  animationDelay?: number;
+}) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
-
   const handleShowTeam = () => {
     setIsMembersVisible((prev) => !prev);
   };
 
   return (
-    <li>
+    <li
+      className={`${styles.animate}`}
+      style={{ animationDelay: `${animationDelay! / 8}s` }}
+    >
+      {/*<li className={styles['new-box']}>*/}
       <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md">
         <Image
           src={project.imageUrl}
           alt="Project Image"
           fill
-          objectFit="cover"
+          sizes="(min-width: 300px) 100%"
+          style={{
+            objectFit: 'cover',
+          }}
           className={
             isMembersVisible
               ? 'contrast-50 grayscale-[.3]'
@@ -43,11 +58,13 @@ const ProjectCard = ({ project }: { project: IProject }) => {
           {isMembersVisible ? (
             <ProjectCardTeam
               project={project}
+              lang={lang}
               handleShowTeam={handleShowTeam}
             />
           ) : (
             <ProjectCardContent
               project={project}
+              lang={lang}
               handleShowTeam={handleShowTeam}
             />
           )}
