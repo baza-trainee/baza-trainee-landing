@@ -8,8 +8,8 @@ export type TFormTabs = {
 };
 
 export type TTeamMemberRequest = {
-  teamMember: { _id: string };
-  teamMemberRole: { _id: string };
+  teamMember: string;
+  teamMemberRole: string;
 };
 
 export type TFormInput = {
@@ -24,3 +24,9 @@ export type TFormInput = {
   complexity: number;
   teamMembers?: TTeamMemberRequest[];
 };
+
+export interface IHandlerMembersList {
+  action: 'add' | 'remove' | 'updateRole';
+  memberId: string;
+  roleId: string;
+}

@@ -7,12 +7,12 @@ import { ProjectTeamMembers } from './ProjectTeamMembers';
 export const ProjectCardTeam = ({
   handleShowTeam,
   project,
-  lang,
+  lang ="ua",
 }: ICardContent2) => {
-  const roles = project.teamMembers! // TODO: check this "!"
+  const roles = project.teamMembers // TODO: check this "!"
     .reduce((acc: string[], cur) => {
-      if (!acc.includes(cur.teamMemberRole.name)) {
-        acc.push(cur.teamMemberRole.name);
+      if (!acc.includes(cur.teamMemberRole.name[lang])) {
+        acc.push(cur.teamMemberRole.name[lang]);
       }
       return acc;
     }, [])

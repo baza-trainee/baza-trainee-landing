@@ -4,8 +4,11 @@ import { TTeamMemberBio, TTeamMemberRole } from '@/types';
 type TProps = {
   roleName: string;
   teamMembers: {
-    role: TTeamMemberRole;
     user: TTeamMemberBio;
+    role: {
+      _id: string;
+      name: string;
+    };
   }[];
   lang: TLandingLanguage;
 };

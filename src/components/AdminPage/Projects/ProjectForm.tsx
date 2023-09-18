@@ -15,17 +15,15 @@ import {
 } from '@/components/atomic';
 
 import { TProject, TProjectRequest } from '@/types';
-import { downloadImageAsFile } from '@/utils/imageHandler';
-import { useEffect, useMemo, useState } from 'react';
+import { convertDate } from '@/utils/formatDate';
+import { useEffect } from 'react';
 import { ProjectPreview } from './ProjectPreview';
 import { projectValidateOptions } from './projectValidateOptions';
 import { TFormInput } from './types';
-import { convertDate } from '@/utils/formatDate';
-import { useProjectImgSWR } from '@/hooks/SWR/useProjectImgSWR';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
-const createFieldValues = async (project: TProject | undefined) => {
+const createFieldValues = (project: TProject | undefined) => {
   const emptyFields: TFormInput = {
     nameUk: '',
     nameEn: '',
@@ -33,7 +31,7 @@ const createFieldValues = async (project: TProject | undefined) => {
     projectImg: [],
     deployUrl: '',
     isTeamRequired: false,
-    creationDate: (new Date()).toISOString(),
+    creationDate: new Date().toISOString().split('T')[0],
     launchDate: '',
     complexity: 1,
     // teamMembers?: TTeamMember[] ,
@@ -43,10 +41,11 @@ const createFieldValues = async (project: TProject | undefined) => {
 
   // console.log(convertDate.toYYYYMMDD(project.creationDate));
   const fieldValues = {
-    ...emptyFields,
+    // ...emptyFields,
     nameUk: project.title.ua,
     nameEn: project.title.en,
     namePl: project.title.pl,
+    projectImg: [new File([], project.imageUrl, { type: 'for-url' })],
     deployUrl: project.deployUrl,
     isTeamRequired: project.isTeamRequired,
     creationDate: convertDate.toYYYYMMDD(+project.creationDate),
@@ -55,8 +54,8 @@ const createFieldValues = async (project: TProject | undefined) => {
     // teamMembers?: TTeamMember[] |
   };
 
-  const img = await downloadImageAsFile(project.imageUrl);
-  fieldValues.projectImg[0] = img ? img : new File([], project.imageUrl);
+  // const img = await downloadImageAsFile(project.imageUrl);
+  // fieldValues.projectImg[0] = img ? img : new File([], project.imageUrl);
 
   return fieldValues;
 };
@@ -109,7 +108,7 @@ const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
     formState: { errors },
   } = useForm<TFormInput>({
     mode: 'onSubmit',
-    defaultValues: async () => await createFieldValues(projectToEdit),
+    defaultValues: createFieldValues(projectToEdit),
   });
 
   // console.log('err >>', isError);
@@ -149,42 +148,45 @@ const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
 
   const currentValues = watch(); // TODO: this component is rerendered each time when const is changed. to investigate.
 
-  console.log('currentValues >>', currentValues.launchDate);
+  // console.log('currentValues >>', currentValues.launchDate);
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    console.log('asdasd', data.launchDate);
+    // console.log('asdasd', data.launchDate);
 
-    const project: TProjectRequest = {
+    const preparedProject: TProjectRequest = {
       title: {
         en: data.nameEn,
         pl: data.namePl,
         ua: data.nameUk,
       },
-      file: data.projectImg[0],
       deployUrl: data.deployUrl,
       isTeamRequired: !!data.isTeamRequired,
-      creationDate: convertDate.toMilliseconds(data.creationDate),
-      launchDate: convertDate.toMilliseconds(data.launchDate),
+      creationDate: convertDate.toMsec(data.creationDate),
+      launchDate: convertDate.toMsec(data.launchDate),
       complexity: data.complexity,
-      // teamMembers: [
-      //   {
-      //     teamMember: '64f58b9819ce66683d7d84bf',
-      //     teamMemberRole: '64a712d4db445f869fd0e187',
-      //   },
-      //   {
-      //     teamMember: '64b934b8126c025840d1641f',
-      //     teamMemberRole: '64a712cbdb445f869fd0e185',
-      //   },
-      // ],
+      teamMembers: [
+        {
+          teamMember: '64f58b9819ce66683d7d84bf',
+          teamMemberRole: '64a712d4db445f869fd0e187',
+        },
+        {
+          teamMember: '64b934b8126c025840d1641f',
+          teamMemberRole: '64a712cbdb445f869fd0e185',
+        },
+      ],
     };
 
-    // console.log('data >>', data, 'subm >>', project);
-    // console.log('data >>', data.creationDate);
+    if (data.projectImg?.length && data.projectImg[0]?.size > 0) {
+      preparedProject.file = data.projectImg[0];
+    }
 
     if (projectToEdit) {
-      handlerUpdateProject(projectToEdit._id, project);
+      // console.log('data >>', data, 'subm >>', preparedProject);
+      // console.log('data >>', data.creationDate);
+
+      handlerUpdateProject(projectToEdit._id, preparedProject);
     } else {
-      handlerCreateProject(project);
+      handlerCreateProject(preparedProject);
     }
 
     router.replace('.');

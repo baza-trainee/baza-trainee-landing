@@ -23,7 +23,8 @@ export const projectValidateOptions = {
       const checkType =
         value[0]?.type === 'image/jpeg' ||
         value[0]?.type === 'image/png' ||
-        value[0]?.type === 'image/webp';
+        value[0]?.type === 'image/webp' ||
+        value[0]?.type === 'for-url';
 
       return (checkSize && checkType) || 'Виберіть коректне зображення';
     },

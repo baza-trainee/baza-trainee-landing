@@ -1,14 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ProjectEditorTabs } from './ProjectEditorTabs';
-import { TTabsMode } from './types';
+import { TTabsMode, TTeamMemberRequest } from './types';
 import { ProjectForm } from './ProjectForm';
 import { useParams } from 'next/navigation';
 import { ProjectTeamList } from './ProjectTeamList';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { TProject } from '@/types';
+import { extractMembersId } from './projectUtils';
 
 export const ProjectEditor = () => {
   const [tabsMode, setTabsMode] = useState<TTabsMode>('description');
@@ -18,21 +19,58 @@ export const ProjectEditor = () => {
   const { projectsData } = useProjectsSWR();
   const projects = projectsData?.results;
 
-  const projectToEdit = (() => {
-    if (projects && id) {
-      return projects.find((m) => m._id === separatedId);
-    }
-  })();
+  const [updatedProject, setUpdatedProject] = useState<TProject>();
+  const [membersList, setMembersList] = useState<TTeamMemberRequest[]>();
 
-  const [updatedProject, setUpdatedProject] = useState<TProject | undefined>(
-    projectToEdit
-  );
+  const handlerMembersList = (
+    action: 'add' | 'remove' | 'updateRole',
+    memberId: string,
+    roleId: string
+  ) => {
+    setMembersList((prevMembers) => {
+      if (prevMembers) {
+        switch (action) {
+          case 'add':
+            return [
+              ...prevMembers,
+              { teamMember: memberId, teamMemberRole: roleId },
+            ];
+
+          case 'remove':
+            return prevMembers.filter(
+              (member) => member.teamMember !== memberId
+            );
+
+          case 'updateRole':
+            return prevMembers.map((member) =>
+              member.teamMember === memberId
+                ? { ...member, teamMemberRole: roleId }
+                : member
+            );
+
+          default:
+            return prevMembers;
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (projects && id) {
+      const foundedProject = projects.find((m) => m._id === separatedId);
+
+      if (foundedProject) {
+        setUpdatedProject(foundedProject);
+        setMembersList(extractMembersId(foundedProject.teamMembers));
+      }
+    }
+  }, [projects && id]);
 
   const handleUpdateProject = (project: TProject) => {
     setUpdatedProject({ ...updatedProject, ...project });
   };
 
-  const title = projectToEdit ? 'Редагувати проєкт' : 'Додати проєкт';
+  const title = id ? 'Редагувати проєкт' : 'Додати проєкт';
   // const [membersList, setMembersList] = useState([]);
 
   return (

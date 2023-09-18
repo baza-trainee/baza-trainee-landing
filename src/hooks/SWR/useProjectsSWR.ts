@@ -45,24 +45,23 @@ const useProjectsSWR = () => {
       revalidate: false,
     };
 
-    mutate(() => projectsApi.createNew(newProject), options).catch(
-      handleRequestError
-    ).catch(e => console.log("ERROR!!!!!", e)   );
+    mutate(() => projectsApi.createNew(newProject), options)
+      .catch(handleRequestError)
+      .catch((e) => console.log('ERROR!!!!!', e));
   };
 
   const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
-    
-    const populateCache = (createdProject: TProject) => {
-      console.log("proj>.", createdProject);
-      const updProjects = data?.results.map((project) =>
-        project._id === id ? createdProject : project
-      );
-      return { ...data!, results: updProjects! };
-    };
+    // const populateCache = (createdProject: TProject) => {
+    //   console.log("proj>.", createdProject);
+    //   const updProjects = data?.results.map((project) =>
+    //     project._id === id ? createdProject : project
+    //   );
+    //   return { ...data!, results: updProjects! };
+    // };
 
-    const options = { populateCache, revalidate: false };
+    // const options = { populateCache, revalidate: false }; // TODO: implement populate cache
 
-    mutate(() => projectsApi.updateById(id, updProject), options).catch(
+    mutate(() => projectsApi.updateById(id, updProject)).catch(
       handleRequestError
     );
   };

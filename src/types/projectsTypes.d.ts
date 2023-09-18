@@ -15,7 +15,7 @@ export type TTeamMemberBio = {
 // export type TTeamMemberRole = Omit<TTeamMember, 'link'>;
 export type TTeamMemberRole = {
   _id: string;
-  name: string;
+  name: TTitleLanguagesTypes;
 };
 
 export type TTeamMember = {
@@ -38,7 +38,10 @@ export interface IProject {
   complexity: number;
   teamMembers: Array<{
     user: TTeamMemberBio;
-    role: TTeamMemberRole;
+    role: {
+      _id: string;
+      name: string;
+    };
   }>;
 }
 
@@ -57,8 +60,8 @@ export type TProjectRequest = {
   launchDate?: number;
   complexity: number;
   teamMembers?: Array<{
-    teamMember: { _id: string };
-    teamMemberRole: { _id: string };
+    teamMember: string;
+    teamMemberRole: string;
   }>;
 };
 
@@ -71,7 +74,7 @@ export type TProject = {
   creationDate: number;
   launchDate: number;
   complexity: number;
-  teamMembers?: TTeamMember[];
+  teamMembers: TTeamMember[];
 };
 
 export interface ICardContent2 {

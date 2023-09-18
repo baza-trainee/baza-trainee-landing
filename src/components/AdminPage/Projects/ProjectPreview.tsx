@@ -1,5 +1,5 @@
-import { createImgUrl } from '@/utils/imageHandler';
 import { convertDate } from '@/utils/formatDate';
+import { createImgUrl } from '@/utils/imageHandler';
 import { projectValidateOptions } from './projectValidateOptions';
 
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
@@ -27,18 +27,14 @@ const ProjectPreview = ({ currentValues }: Props) => {
   const getCoverImgUrl = () => {
     if (!projectImg?.length) return;
 
-    // if (projectImg[0].type === 'plug') {
-    //   return createImgUrl(projectImg[0].name);
-    // }
+    if (projectImg[0].type === 'for-url') {
+      return createImgUrl(projectImg[0].name);
+    }
 
     const isValidImg = projectValidateOptions.img.validate(projectImg);
     if (isValidImg) {
       return URL.createObjectURL(projectImg[0]);
     }
-
-    // return projectImg[0].size === 0
-    //   ? createImgUrl(projectImg[0].name)
-    //   : URL.createObjectURL(projectImg[0]);
   };
 
   const coverImgUrl = getCoverImgUrl();
@@ -47,7 +43,7 @@ const ProjectPreview = ({ currentValues }: Props) => {
     return <EmptyPreviewImg />;
   }
 
-  console.log('pervVal >>', currentValues.launchDate);
+  // console.log('pervVal >>', currentValues.launchDate);
 
   const previewProject: TProject = {
     _id: '',
@@ -59,13 +55,10 @@ const ProjectPreview = ({ currentValues }: Props) => {
     imageUrl: '',
     deployUrl: currentValues.deployUrl,
     isTeamRequired: !!currentValues.isTeamRequired,
-    creationDate: convertDate.toMilliseconds(currentValues.creationDate),
-    launchDate: convertDate.toMilliseconds(currentValues.launchDate),
+    creationDate: convertDate.toMsec(currentValues.creationDate),
+    launchDate: convertDate.toMsec(currentValues.launchDate),
     complexity: +currentValues.complexity,
-    // teamMembers?: Array<{
-    //   teamMember: TTeamMember;
-    //   teamMemberRole: TTeamMemberRole;
-    // }>;
+    teamMembers: []
   };
 
   return (
@@ -86,3 +79,4 @@ const ProjectPreview = ({ currentValues }: Props) => {
 };
 
 export { ProjectPreview };
+

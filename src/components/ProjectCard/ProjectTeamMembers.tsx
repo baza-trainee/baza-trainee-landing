@@ -9,7 +9,7 @@ type TProps = {
 
 export const ProjectTeamMembers = ({ roleName, teamMembers, lang }: TProps) => {
   const members = teamMembers
-    .filter((member) => member.teamMemberRole.name === roleName)
+    .filter((member) => member.teamMemberRole.name.en === roleName)
     .sort((a, b) =>
       a.teamMember.name[lang].localeCompare(b.teamMember.name[lang])
     );
