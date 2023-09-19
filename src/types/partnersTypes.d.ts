@@ -1,7 +1,10 @@
+import { id } from './typesAPI';
+
 export interface PartnerData {
   name: string;
   file: File | null;
   homeUrl: string;
+  imageUrl: string;
 }
 
 export interface PartnerActionProps {
@@ -10,9 +13,11 @@ export interface PartnerActionProps {
 }
 
 export interface PartnerItemProps {
-  id: string;
-  name: string;
-  image: string;
+  partner: {
+    _id: string;
+    name: string;
+    imageUrl: string;
+  };
   handleEditPartnerClick: (id: string) => void;
   handleDataUpdate: () => void;
 }
@@ -26,17 +31,14 @@ export interface PartnerDataEdit {
 export interface PartnerEditorProps {
   mode: 'add' | 'edit';
   cancelAction: () => void;
-  id?: string;
+  id?: id;
   partnerData?: PartnerDataEdit;
+  title?: string;
 }
 
 export interface PartnerFormProps {
-  formData: PartnerData;
-  isFormValid: boolean;
-  errors: Errors;
-  handleFieldChange: FieldChangeHandler;
-  handleSubmit: () => void;
-  isNew: boolean;
+  partnerData: PartnerDataEdit;
+  handleSubmit: (formData: any) => void;
 }
 
 export interface FieldChangeHandler {

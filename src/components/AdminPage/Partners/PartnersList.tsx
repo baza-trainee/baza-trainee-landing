@@ -7,13 +7,13 @@ import { PartnerActionProps, PartnerData } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { paginate } from '@/utils/paginate';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { PaginationBar } from '../../atomic/PaginationBar';
 import { PlusIcon } from '../../common/icons/PlusIcon';
 import { PartnerItem } from './PartnerItem';
 
 export const PartnersList = ({
-  handleAddPartnerClick,
   handleEditPartnerClick,
 }: PartnerActionProps) => {
   const [dispatch, data, isError, isLoading] = useAPI(partnersApi.getAll);
@@ -78,45 +78,44 @@ export const PartnersList = ({
       ) : isError ? (
         <p>Error occurred: {data?.message}</p>
       ) : (
-        <div className='flex w-[1160px] flex-col'>
-          <div className='flex w-[1143px] items-center justify-between'>
-            <AdminTitle className='mb-[3.8rem] mt-[0.9rem] tracking-wide'>
+        <div className="flex w-[1160px] flex-col">
+          <div className="flex w-[1143px] items-center justify-between">
+            <AdminTitle className="mb-[3.8rem] mt-[0.9rem] tracking-wide">
               Лого партнерів
             </AdminTitle>
-            <form className='-mt-6 flex w-[378px] items-center justify-between gap-4 rounded border border-neutral-300 bg-white p-[1.5rem]'>
+            <form className="-mt-6 flex w-[378px] items-center justify-between gap-4 rounded border border-neutral-300 bg-white p-[1.5rem]">
               <input
-                type='text'
-                name='search'
-                className='w-[306px] bg-white text-neutral-500 outline-none'
-                placeholder='Введіть ключове слово для пошуку'
+                type="text"
+                name="search"
+                className="w-[306px] bg-white text-neutral-500 outline-none"
+                placeholder="Введіть ключове слово для пошуку"
                 value={searchData}
                 onChange={handleChangeSearch}
                 required
               />
-              <button type='submit'>
+              <button type="submit">
                 <SearchIcon />
               </button>
             </form>
           </div>
-          <div className='scrollbar flex h-[725px] min-w-[1138px] flex-wrap gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto'>
-            <div className='flex h-[100px] items-center justify-center bg-base-dark px-[8px]'>
-              <AdminPanelButton
-                type='submit'
-                onClick={handleAddPartnerClick}
-                variant='secondary'
-                icon={<PlusIcon />}
-                className='pr-[2.8rem]'
-              >
-                Додати партнера
-              </AdminPanelButton>
+          <div className="scrollbar flex h-[725px] min-w-[1138px] flex-wrap gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto">
+            <div className="flex h-[100px] items-center justify-center bg-base-dark px-[8px]">
+              <Link href={'partners/add'}>
+                <AdminPanelButton
+                  type="submit"
+                  variant="secondary"
+                  icon={<PlusIcon />}
+                  className="pr-[2.8rem]"
+                >
+                  Додати партнера
+                </AdminPanelButton>
+              </Link>
             </div>
             {data &&
               partnerData.map((partner: any) => (
                 <PartnerItem
                   key={partner._id}
-                  id={partner._id}
-                  name={partner.name}
-                  image={partner.imageUrl}
+                  partner={partner}
                   handleEditPartnerClick={handleEditPartnerClick}
                   handleDataUpdate={handleDataUpdate}
                 />
@@ -127,7 +126,7 @@ export const PartnersList = ({
               currentPage={pagination.currentPage}
               totalPages={pagination.totalPages}
               onPageChange={handlePageChange}
-              className='mt-[8.5rem]'
+              className="mt-[8.5rem]"
             />
           )}
         </div>

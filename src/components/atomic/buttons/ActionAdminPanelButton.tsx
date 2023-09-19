@@ -1,6 +1,6 @@
 interface ActionButtonProps {
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 }
 
@@ -17,4 +17,4 @@ export const ActionButton = ({
       {icon}
     </button>
   );
-}
+};
