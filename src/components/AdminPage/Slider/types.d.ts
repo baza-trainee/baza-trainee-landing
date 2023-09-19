@@ -36,8 +36,8 @@ export type TFormSlideRequest = {
     pl: string;
   };
   file?: File;
-  imageUrl: string;
-  _id?: string;
+  imageUrl?: string;
+  // _id?: string;
 };
 
 export type TFormInputs = {
@@ -50,7 +50,7 @@ export type TFormInputs = {
   file: File[];
   imageUrl?: string;
   _id?: string;
-  deployUrl: string;
+  // deployUrl: string;
 };
 
 export type TformData = {

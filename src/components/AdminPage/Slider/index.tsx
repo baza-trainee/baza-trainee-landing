@@ -23,17 +23,17 @@ export const AdminHeroSlider = () => {
         <AdminTitle title="Слайдер" />
         <LanguageSelector />
       </header>
-      <div className="slider-main flex h-auto flex-col gap-y-28">
-        <div className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow-2sm">
+      <ul className="slider-main flex h-auto flex-col gap-y-28">
+        <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow-2sm">
           <AdminPanelButton variant="secondary">
             <Link href="/admin/slider/add-slider">+ Додати слайд</Link>
           </AdminPanelButton>
-        </div>
+        </li>
         {sliderData &&
           sliderData?.data.map((item: TAdminSlide) => (
             <AdminSingleSlide key={item._id} slideData={item} lang={curLang} />
           ))}
-      </div>
+      </ul>
     </div>
   );
 };

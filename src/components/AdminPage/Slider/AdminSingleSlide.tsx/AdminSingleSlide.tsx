@@ -11,7 +11,7 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
   const editLink = `slider/edit-slider/${_id}`;
 
   return (
-    <div className="relative  h-[50.4rem] ">
+    <li className="relative  h-[50.4rem] ">
       <Image
         src={image}
         fill
@@ -56,6 +56,6 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
           </Link>
         </div>
       </div>
-    </div>
+    </li>
   );
 };

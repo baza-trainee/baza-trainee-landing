@@ -18,10 +18,6 @@ export const SliderForm = ({
   id?: string;
   isEdit: boolean;
 }) => {
-  const inputOptions = {
-    required: 'Заповніть поле',
-  };
-
   const router = useRouter();
   const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
   const [curLang, setCurLang] = useState<string>('ua');
@@ -31,6 +27,7 @@ export const SliderForm = ({
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<TFormInputs>({
     mode: 'onSubmit',
@@ -52,9 +49,14 @@ export const SliderForm = ({
         en: dataForm.subtitleEn,
         pl: dataForm.subtitlePl,
       },
-      file: dataForm.file[0],
-      imageUrl: dataForm.file[0].name,
+      // file: dataForm.file[0],
+      imageUrl: dataForm.imageUrl,
     };
+
+    if (dataForm.file?.length && dataForm.file[0]?.size > 0) {
+      slide.file = dataForm.file[0];
+      slide.imageUrl = dataForm.file[0].name;
+    }
 
     console.log('SLIDE:', slide);
 
@@ -73,7 +75,10 @@ export const SliderForm = ({
 
   useEffect(() => {
     setCurLang(localStorage.getItem('landingLanguage') || 'ua');
-  }, []);
+    if (currentValues.file?.length && currentValues.file[0]?.size > 0) {
+      setValue('imageUrl', currentValues.file[0].name);
+    }
+  }, [currentValues.file, setValue]);
 
   useEffect(() => {}, [watch]);
 
@@ -87,24 +92,34 @@ export const SliderForm = ({
           title="Зображення"
           {...register('file')}
           accept="image/*"
+          required
           placeholder={'Завантажте зображення'}
           errorText={errors.file?.message}
         />
         <div className="flex flex-wrap gap-[2.4rem]">
           <TextInputField
             title="Заголовок"
-            {...register('titleUa', inputOptions)}
+            {...register('titleUa', {
+              required: true,
+              minLength: 5,
+            })}
             errorText={errors.titleUa?.message}
             inputType="ua"
           />
 
           <TextInputField
-            {...register('titleEn', inputOptions)}
+            {...register('titleEn', {
+              required: true,
+              minLength: 5,
+            })}
             errorText={errors.titleEn?.message}
             inputType="en"
           />
           <TextInputField
-            {...register('titlePl', inputOptions)}
+            {...register('titlePl', {
+              required: true,
+              minLength: 5,
+            })}
             errorText={errors.titlePl?.message}
             inputType="pl"
           />
@@ -112,17 +127,26 @@ export const SliderForm = ({
         <div className="flex flex-wrap gap-[2.4rem]">
           <TextInputField
             title="Основний текст"
-            {...register('subtitleUa', inputOptions)}
+            {...register('subtitleUa', {
+              required: true,
+              minLength: 5,
+            })}
             errorText={errors.subtitleUa?.message}
             inputType="ua"
           />
           <TextInputField
-            {...register('subtitleEn', inputOptions)}
+            {...register('subtitleEn', {
+              required: true,
+              minLength: 5,
+            })}
             errorText={errors.subtitleEn?.message}
             inputType="en"
           />
           <TextInputField
-            {...register('subtitlePl', inputOptions)}
+            {...register('subtitlePl', {
+              required: true,
+              minLength: 5,
+            })}
             errorText={errors.subtitlePl?.message}
             inputType="pl"
           />
