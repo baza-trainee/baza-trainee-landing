@@ -1,10 +1,11 @@
 import { LogoMain } from '@/components/common/icons';
 import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
+import { sliderValidateOptions } from './sliderValidateOptions';
 import { TFormInputs } from './types';
 
 const EmptyPreview = () => (
-  <div className="flex-center rounded-md bg-neutral-75 py-[10.2rem]">
+  <div className="flex-center w-full rounded-md bg-neutral-75 py-[10.2rem]">
     <LogoMain className="h-72 w-72 text-neutral-200" />
   </div>
 );
@@ -17,13 +18,15 @@ export default function PreviewSlide({
   currentValues: TFormInputs;
 }) {
   const { file } = currentValues;
+  console.log('currentValues: ', currentValues);
 
   const getImgUrl = () => {
     if (!file?.length) return;
     if (file[0].type === 'for-url') {
       return createImgUrl(file[0].name);
     }
-    if (file[0].type.substring(0, 5) === 'image') {
+    const isValidImg = sliderValidateOptions.img.validate(file);
+    if (isValidImg) {
       return URL.createObjectURL(file[0]);
     }
   };
@@ -35,7 +38,7 @@ export default function PreviewSlide({
   }
 
   return (
-    <div className="flex-center relative h-[38.4rem] overflow-hidden rounded-md bg-neutral-75">
+    <div className="flex-center relative h-[38.4rem] w-full overflow-hidden rounded-md bg-neutral-75">
       <Image
         src={photoUrl}
         alt="Preview image"

@@ -36,7 +36,6 @@ export const SliderForm = ({
 
   const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
     console.log('Form Data:', dataForm);
-    console.log('File Data:', id);
 
     const slide: TFormSlideRequest = {
       title: {
@@ -71,7 +70,6 @@ export const SliderForm = ({
   };
 
   const currentValues = watch();
-  console.log('CurValues', currentValues);
 
   useEffect(() => {
     setCurLang(localStorage.getItem('landingLanguage') || 'ua');
@@ -92,8 +90,6 @@ export const SliderForm = ({
           title="Зображення"
           {...register('file')}
           accept="image/*"
-          required
-          placeholder={'Завантажте зображення'}
           errorText={errors.file?.message}
         />
         <div className="flex flex-wrap gap-[2.4rem]">
