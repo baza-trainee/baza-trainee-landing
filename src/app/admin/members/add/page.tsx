@@ -1,5 +1,5 @@
-import { MembersAndRolesEditor } from '@/components/AdminPage/MembersAndRoles/MembersAndRolesEditor';
+import { MemberAndRoleEditor } from '@/components/AdminPage/MembersAndRoles/MemberAndRoleEditor';
 
 export default function AddMemberPage() {
-  return <MembersAndRolesEditor entity={'members'} />;
+  return <MemberAndRoleEditor entity={'members'} />;
 }

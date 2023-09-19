@@ -6,7 +6,7 @@ import { rolesEndpoint, rolesApi } from '@/utils/API/roles';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
 import { AxiosError, AxiosResponse } from 'axios';
-import { IRole, TResponseRoles } from '@/types';
+import { TResponseRoles, TTeamMemberRole, TTeamMemberRoleReq } from '@/types';
 
 const useRolesSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -33,7 +33,7 @@ const useRolesSWR = () => {
   }, [error]);
 
   const updateAndMutate = (
-    updRoles: IRole[],
+    updRoles: TTeamMemberRole[],
     action: () => Promise<AxiosResponse<any, any>>
   ) => {
     mutate(action, {
@@ -48,14 +48,14 @@ const useRolesSWR = () => {
     updateAndMutate(updRoles!, () => rolesApi.deleteById(id));
   };
 
-  const handlerCreateRole = (newRole: IRole) => {
-    const updRoles = [...(data?.results || []), newRole];
-    updateAndMutate(updRoles, () => rolesApi.createNew(newRole));
+  const handlerCreateRole = (newRole: TTeamMemberRoleReq) => {
+    // const updRoles = [...(data?.results || []), newRole];
+    mutate(() => rolesApi.createNew(newRole));
   };
 
-  const handlerUpdateRole = (id: string, updRole: IRole) => {
+  const handlerUpdateRole = (id: string, updRole: TTeamMemberRoleReq) => {
     const updRoles = data?.results.map((role) =>
-      role._id === id ? updRole : role
+      role._id === id ? { ...updRole, _id: id } : role
     );
     updateAndMutate(updRoles!, () => rolesApi.updateById(id, updRole));
   };

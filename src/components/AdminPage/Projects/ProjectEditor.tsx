@@ -5,72 +5,86 @@ import { useEffect, useState } from 'react';
 import { ProjectEditorTabs } from './ProjectEditorTabs';
 import { TTabsMode, TTeamMemberRequest } from './types';
 import { ProjectForm } from './ProjectForm';
-import { useParams } from 'next/navigation';
-import { ProjectTeamList } from './ProjectTeamList';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { TProject } from '@/types';
 import { extractMembersId } from './projectUtils';
+import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
+import { ProjectTeamList } from './ProjectTeamList';
+// import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 
-export const ProjectEditor = () => {
+export const ProjectEditor = ({ projectId }: { projectId?: string }) => {
   const [tabsMode, setTabsMode] = useState<TTabsMode>('description');
-  const { id } = useParams();
-  const separatedId = typeof id === 'string' ? id : undefined;
 
-  const { projectsData } = useProjectsSWR();
-  const projects = projectsData?.results;
+  useProjectsByIdSWR(projectId, true);
+
+  // const { projectByIdData } = useProjectsByIdSWR(projectId!);
+
+  // const { projectsData } = useProjectsSWR();
+  // const projects = projectsData?.results;
+
+  // const updateMemberRole = (roleId: string) => {
+  //   const selectedRole = rolesData?.results.find(
+  //     (item) => item._id === e.target.value
+  //   );
+
+  //   setSelectedRoleId(e.target.value);
+
+  //   selectedRole &&
+  //     // handlerUpdateMember({ ...member, teamMemberRole: selectedRole });
+  // };
 
   const [updatedProject, setUpdatedProject] = useState<TProject>();
   const [membersList, setMembersList] = useState<TTeamMemberRequest[]>();
 
-  const handlerMembersList = (
-    action: 'add' | 'remove' | 'updateRole',
-    memberId: string,
-    roleId: string
-  ) => {
-    setMembersList((prevMembers) => {
-      if (prevMembers) {
-        switch (action) {
-          case 'add':
-            return [
-              ...prevMembers,
-              { teamMember: memberId, teamMemberRole: roleId },
-            ];
+  // const handlerMembersList = (
+  //   action: 'add' | 'remove' | 'updateRole',
+  //   memberId: string,
+  //   roleId: string
+  // ) => {
+  //   setMembersList((prevMembers) => {
+  //     if (prevMembers) {
+  //       switch (action) {
+  //         case 'add':
+  //           return [
+  //             ...prevMembers,
+  //             { teamMember: memberId, teamMemberRole: roleId },
+  //           ];
 
-          case 'remove':
-            return prevMembers.filter(
-              (member) => member.teamMember !== memberId
-            );
+  //         case 'remove':
+  //           return prevMembers.filter(
+  //             (member) => member.teamMember !== memberId
+  //           );
 
-          case 'updateRole':
-            return prevMembers.map((member) =>
-              member.teamMember === memberId
-                ? { ...member, teamMemberRole: roleId }
-                : member
-            );
+  //         case 'updateRole':
+  //           return prevMembers.map((member) =>
+  //             member.teamMember === memberId
+  //               ? { ...member, teamMemberRole: roleId }
+  //               : member
+  //           );
 
-          default:
-            return prevMembers;
-        }
-      }
-    });
-  };
+  //         default:
+  //           return prevMembers;
+  //       }
+  //     }
+  //   });
+  // };
 
-  useEffect(() => {
-    if (projects && id) {
-      const foundedProject = projects.find((m) => m._id === separatedId);
+  // useEffect(() => {
+  //   if (projects && id) {
+  //     const foundedProject = projects.find((m) => m._id === projectId);
 
-      if (foundedProject) {
-        setUpdatedProject(foundedProject);
-        setMembersList(extractMembersId(foundedProject.teamMembers));
-      }
-    }
-  }, [projects && id]);
+  //     if (foundedProject) {
+  //       setUpdatedProject(foundedProject);
+  //       setMembersList(extractMembersId(foundedProject.teamMembers));
+  //     }
+  //   }
+  // }, [projects && id]);
 
-  const handleUpdateProject = (project: TProject) => {
-    setUpdatedProject({ ...updatedProject, ...project });
-  };
+  // const handleUpdateProject = (project: TProject) => {
+  //   setUpdatedProject({ ...updatedProject, ...project });
+  // };
 
-  const title = id ? 'Редагувати проєкт' : 'Додати проєкт';
+  const title = projectId ? 'Редагувати проєкт' : 'Додати проєкт';
   // const [membersList, setMembersList] = useState([]);
 
   return (
@@ -83,11 +97,18 @@ export const ProjectEditor = () => {
 
       <div className="mb-12 mt-9 w-full">
         {tabsMode === 'description' ? (
-          <ProjectForm projectToEdit={updatedProject} />
+          <ProjectForm projectId={projectId} />
         ) : (
+          //     <ProjectTeamList
+          //     projectId={projectId}
+          //     project={projectByIdData}
+          //   // teamMembers={projectByIdData?.teamMembers}
+          //   // handleUpdateProject={handleUpdateProject}
+          // />
           <ProjectTeamList
-            teamMembers={updatedProject?.teamMembers}
-            handleUpdateProject={handleUpdateProject}
+            projectId={projectId!}
+            // handlerDeleteMember={handlerDeleteMember}
+            // handlerUpdateMember={handlerUpdateMember}
           />
         )}
       </div>

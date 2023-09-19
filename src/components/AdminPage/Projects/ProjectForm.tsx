@@ -20,8 +20,22 @@ import { useEffect } from 'react';
 import { ProjectPreview } from './ProjectPreview';
 import { projectValidateOptions } from './projectValidateOptions';
 import { TFormInput } from './types';
+import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
+
+const defaultValues: TFormInput = {
+  nameUk: '',
+  nameEn: '',
+  namePl: '',
+  projectImg: [],
+  deployUrl: '',
+  isTeamRequired: false,
+  creationDate: new Date().toISOString().split('T')[0],
+  launchDate: '',
+  complexity: 1,
+  // teamMembers?: TTeamMember[] ,
+};
 
 const createFieldValues = (project: TProject | undefined) => {
   const emptyFields: TFormInput = {
@@ -84,10 +98,13 @@ const createFieldValues = (project: TProject | undefined) => {
 //   };
 // };
 
-const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
+const ProjectForm = ({ projectId }: { projectId?: string }) => {
   const router = useRouter();
 
-  const { handlerCreateProject, handlerUpdateProject } = useProjectsSWR();
+  const { handlerCreateProject } = useProjectsSWR();
+  const { projectByIdData, handlerUpdateProject } =
+    useProjectsByIdSWR(projectId);
+
   // const projects = projectsData?.results;
 
   // const projectToEdit = (() => {
@@ -104,45 +121,39 @@ const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
     handleSubmit,
     watch,
     setFocus,
+    setValue,
     control,
     formState: { errors },
   } = useForm<TFormInput>({
     mode: 'onSubmit',
-    defaultValues: createFieldValues(projectToEdit),
+    // defaultValues: createFieldValues(projectToEdit),
+    defaultValues,
   });
 
   // console.log('err >>', isError);
   useEffect(() => {
-    // if (projects && id) {
-    //   const addImgIntoFileInput = async () => {
-    //     const currProject = projects.find((m) => m._id === id);
-    //     if (!currProject) return;
-
-    //     const img = await downloadImageAsFile(currProject.imageUrl);
-    //     if (!img) return;
-
-    //     setValue('projectImg', [img]);
-
-    //     // const fieldValues = {
-    //     //   nameUk: currProject.title.ua,
-    //     //   nameEn: currProject.title.en,
-    //     //   namePl: currProject.title.pl,
-    //     //   projectImg: [img],
-    //     //   deployUrl: currProject.deployUrl,
-    //     //   isTeamRequired: currProject.isTeamRequired,
-    //     //   creationDate: convertDate.toYYYYMMDD(currProject.creationDate),
-    //     //   launchDate: convertDate.toYYYYMMDD(currProject.launchDate),
-    //     //   complexity: currProject.complexity,
-    //     //   // teamMembers?: TTeamMember[] |
-    //     // };
-
-    //     // setValuesEditedProject(fieldValues);
-    //   };
-    //   addImgIntoFileInput();
-    // }
+    if (projectId && projectByIdData) {
+      setValue('nameUk', projectByIdData.title.ua);
+      setValue('nameEn', projectByIdData.title.en);
+      setValue('namePl', projectByIdData.title.pl);
+      setValue('projectImg', [
+        new File([], projectByIdData.imageUrl, { type: 'for-url' }),
+      ]);
+      setValue('deployUrl', projectByIdData.deployUrl);
+      setValue('isTeamRequired', projectByIdData.isTeamRequired);
+      setValue(
+        'creationDate',
+        convertDate.toYYYYMMDD(+projectByIdData.creationDate)
+      );
+      setValue(
+        'launchDate',
+        convertDate.toYYYYMMDD(+projectByIdData.launchDate)
+      );
+      setValue('complexity', +projectByIdData.complexity);
+    }
 
     setFocus('nameUk');
-  }, []);
+  }, [projectId, projectByIdData]);
 
   // console.log("w",watch("projectImg"),"v", getValues("projectImg"));
 
@@ -180,11 +191,11 @@ const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
       preparedProject.file = data.projectImg[0];
     }
 
-    if (projectToEdit) {
+    if (projectByIdData) {
       // console.log('data >>', data, 'subm >>', preparedProject);
       // console.log('data >>', data.creationDate);
 
-      handlerUpdateProject(projectToEdit._id, preparedProject);
+      handlerUpdateProject(preparedProject);
     } else {
       handlerCreateProject(preparedProject);
     }
@@ -291,15 +302,42 @@ const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
-          <TextInputField
-            {...register('deployUrl')}
-            placeholder="Вкажіть адресу сайту"
-            title="Адреса сайту"
+          <Controller
+            name="deployUrl"
+            // rules={projectValidateOptions.name}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                {...field}
+                inputType="uk"
+                title="Адреса сайту"
+                placeholder="Вкажіть адресу сайту"
+                // errorText={errors.deployUrl?.message}
+              />
+            )}
           />
+
+          {/* <Controller
+            name="projectImg"
+            rules={{
+              ...projectValidateOptions.img,
+              required: id ? false : 'Додайте зображення проєкту',
+            }}
+            control={control}
+            render={({ field }) => (
+              <FileInput
+                {...field}
+                accept="image/*"
+                placeholder="Завантажте зображення"
+                title="Обкладинка"
+                errorText={errors.projectImg?.message}
+              />
+            )}
+          /> */}
           <FileInput
             {...register('projectImg', {
               ...projectValidateOptions.img,
-              required: projectToEdit ? false : 'Додайте зображення проєкту',
+              required: projectId ? false : 'Додайте зображення проєкту',
             })}
             accept="image/*"
             placeholder="Завантажте зображення"
@@ -309,7 +347,7 @@ const ProjectForm = ({ projectToEdit }: { projectToEdit?: TProject }) => {
         </div>
       </div>
 
-      <FormBtns isEditMode={!!projectToEdit} />
+      <FormBtns isEditMode={!!projectId} />
     </form>
   );
 };

@@ -18,6 +18,10 @@ export type TTeamMemberRole = {
   name: TTitleLanguagesTypes;
 };
 
+export type TTeamMemberRoleReq = {
+  name: TTitleLanguagesTypes;
+};
+
 export type TTeamMember = {
   teamMember: TTeamMemberBio;
   teamMemberRole: TTeamMemberRole;

@@ -35,11 +35,15 @@ const useMembersSWR = () => {
     updMembers: IMember[],
     action: () => Promise<AxiosResponse<any, any>>
   ) => {
-    mutate(action, {
-      optimisticData: { ...data!, results: updMembers },
-      revalidate: false,
-      populateCache: false,
-    });
+    try {
+      return mutate(action, {
+        optimisticData: { ...data!, results: updMembers },
+        revalidate: false,
+        populateCache: false,
+      });
+    } catch (err) {
+      errorHandler(err);
+    }
   };
 
   const handlerDeleteMember = (id: string) => {
@@ -49,14 +53,18 @@ const useMembersSWR = () => {
 
   const handlerCreateMember = (newMember: IMember) => {
     const updMembers = [...(data?.results || []), newMember];
-    updateAndMutate(updMembers, () => membersApi.createNew(newMember));
+    return updateAndMutate(updMembers, () =>
+      membersApi.createNew(newMember)
+    )?.then((res) => res?.data);
   };
 
   const handlerUpdateMember = (id: string, updMember: IMember) => {
     const updMembers = data?.results.map((member) =>
       member._id === id ? updMember : member
     );
-    updateAndMutate(updMembers!, () => membersApi.updateById(id, updMember));
+    return updateAndMutate(updMembers!, () =>
+      membersApi.updateById(id, updMember)
+    );
   };
 
   const handlerSearchMember = (search: string) => {

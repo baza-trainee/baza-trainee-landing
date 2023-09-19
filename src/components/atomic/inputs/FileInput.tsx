@@ -31,6 +31,8 @@ const InputRaw = (
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      // const files = Array.from(e.target.files);
+      // setFileName(files[0]?.name);
       setFileName(e.target.files[0]?.name);
     }
   };

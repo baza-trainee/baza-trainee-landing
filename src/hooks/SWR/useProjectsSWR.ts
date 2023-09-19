@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
@@ -14,11 +14,6 @@ const useProjectsSWR = () => {
 
   const swrKey = `${projectsEndpoint}?search=${search}`;
 
-  const { data, error, isLoading, mutate } = useSWR<
-    TResponseProjects,
-    AxiosError
-  >(swrKey, projectsApi.getAll, { keepPreviousData: true });
-
   const handleRequestError = (err: AxiosError) => {
     errorHandler(err);
     setAlertInfo({
@@ -28,9 +23,13 @@ const useProjectsSWR = () => {
     });
   };
 
-  useEffect(() => {
-    error && handleRequestError(error);
-  }, [error]);
+  const { data, error, isLoading, mutate } = useSWR<
+    TResponseProjects,
+    AxiosError
+  >(swrKey, projectsApi.getAll, {
+    keepPreviousData: true,
+    onError: errorHandler,
+  });
 
   const handlerSearchProject = (search: string) => {
     setSearch(search);

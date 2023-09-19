@@ -1,39 +1,44 @@
 import { ActionBtns } from '@/components/atomic';
 
 import { IMember, IRole, TTeamMember } from '@/types';
+import { RoleSelector } from './RoleSelector';
+import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 // import { TEntity } from '../types';
 
 type TProps = {
   // entity: TEntity;
-  showedData: TTeamMember;
-  handleDelete: (id: string) => void;
+  projectId: string;
+  member: TTeamMember;
 };
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
-export const ListRow = ({ showedData, handleDelete }: TProps) => {
-  console.log(showedData);
+export const ListRow = ({ projectId, member }: TProps) => {
+  const { teamMember } = member;
+  const { handlerDeleteMember } = useProjectsByIdSWR(projectId);
+  // console.log(showedData);
+  
   return (
     <tr>
       <td className={cellStyle}>
         <div className={bgStyle + ' rounded-s-md pl-5'}>
-          <span>{showedData.teamMember.name.ua}</span>
+          <span>{teamMember.name.ua}</span>
         </div>
       </td>
 
-      {/* {entity === 'projectTeam' && ( */}
       <td className={cellStyle}>
-        <div className={bgStyle}>{showedData.teamMemberRole.name.ua}</div>
+        <div className={bgStyle}>
+          <RoleSelector projectId={projectId} member={member} />
+        </div>
       </td>
-      {/* )} */}
 
       <td className={cellStyle}>
         <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>
           <ActionBtns
-            id={showedData.teamMember._id}
+            id={teamMember._id}
             entity={'members'}
-            handleDelete={handleDelete}
+            handleDelete={handlerDeleteMember}
           />
         </div>
       </td>

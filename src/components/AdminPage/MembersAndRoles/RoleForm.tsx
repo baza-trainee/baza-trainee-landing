@@ -1,14 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 
 import { TextInputField } from '@/components/atomic';
 import { FormBtns } from '../../atomic/buttons/FormBtns';
 
-import { IMember, IRole } from '@/types';
+import { IRole } from '@/types';
 
 type TFormInput = {
   nameUk: string;
@@ -27,7 +27,7 @@ const fieldOptions = {
     message: 'Максимальна довжина поля 25 символів',
   },
   pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї ]+$/,
+    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї \d]+$/,
     message: 'Введіть коректну назву',
   },
 };
@@ -48,22 +48,22 @@ const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
   };
 };
 
-export const RolesForm = ({ id }: { id?: string }) => {
+export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const router = useRouter();
 
   const { rolesData, handlerCreateRole, handlerUpdateRole } = useRolesSWR();
   const roles = rolesData?.results;
 
-  const valuesIfItEditedRole = createOptions(id, roles);
+  const valuesIfItEditedRole = createOptions(roleId, roles);
 
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<TFormInput>(valuesIfItEditedRole);
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    const role: IMember = {
+    const role = {
       name: {
         en: data.nameEn,
         pl: data.namePl,
@@ -71,8 +71,8 @@ export const RolesForm = ({ id }: { id?: string }) => {
       },
     };
 
-    if (id) {
-      handlerUpdateRole(id, role);
+    if (roleId) {
+      handlerUpdateRole(roleId, role);
     } else {
       handlerCreateRole(role);
     }
@@ -83,28 +83,49 @@ export const RolesForm = ({ id }: { id?: string }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
-        <TextInputField
-          inputType="uk"
-          title="Назва спеціалізаціі"
-          placeholder="Введіть назву"
-          {...register('nameUk', fieldOptions)}
-          errorText={errors.nameUk?.message}
+        <Controller
+          name="nameUk"
+          rules={fieldOptions}
+          control={control}
+          render={({ field }) => (
+            <TextInputField
+              {...field}
+              inputType="uk"
+              title="Назва спеціалізаціі"
+              placeholder="Введіть назву"
+              errorText={errors.nameUk?.message}
+            />
+          )}
         />
 
-        <TextInputField
-          inputType="en"
-          {...register('nameEn', fieldOptions)}
-          errorText={errors.nameEn?.message}
+        <Controller
+          name="nameEn"
+          rules={fieldOptions}
+          control={control}
+          render={({ field }) => (
+            <TextInputField
+              {...field}
+              inputType="en"
+              errorText={errors.nameEn?.message}
+            />
+          )}
         />
 
-        <TextInputField
-          inputType="pl"
-          {...register('namePl', fieldOptions)}
-          errorText={errors.namePl?.message}
+        <Controller
+          name="namePl"
+          rules={fieldOptions}
+          control={control}
+          render={({ field }) => (
+            <TextInputField
+              {...field}
+              inputType="pl"
+              errorText={errors.namePl?.message}
+            />
+          )}
         />
       </div>
 
-      <FormBtns disabled={!isValid} isEditMode={!!id} />
+      <FormBtns isEditMode={!!roleId} />
     </form>
   );
 };
