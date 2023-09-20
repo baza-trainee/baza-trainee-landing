@@ -87,6 +87,9 @@ export const SliderForm = ({
           title="Зображення"
           {...register('file')}
           accept="image/*"
+          placeholder={
+            id ? currentValues.imageUrl : 'Додайте зображення до слайду'
+          }
           errorText={errors.file?.message}
         />
         <div className="flex flex-wrap gap-[2.4rem]">
