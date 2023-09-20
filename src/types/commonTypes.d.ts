@@ -1,8 +1,18 @@
 export type TSlide = {
-  title: string;
+  title: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
   specialization?: string;
-  text: string;
-  image: string;
+  subtitle: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  imageUrl: string;
+  _id: string;
+  _v: number;
 };
 
 export type TSlideReview = {

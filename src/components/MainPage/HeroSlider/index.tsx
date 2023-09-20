@@ -2,6 +2,7 @@
 
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { TSlide } from '@/types';
 import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
@@ -30,6 +31,7 @@ const MemoizedModal = memo(ModalComponent);
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
+  const { data } = useHeroSliderSWR();
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -55,7 +57,7 @@ const HeroSlider = () => {
           lazyLoad="progressive"
           ref={slickRef}
         >
-          {slides.map((slide: TSlide, index) => (
+          {data?.data.map((slide: TSlide, index: any) => (
             <SingleSlide
               key={`key_${slide.title}`}
               slideData={slide}
