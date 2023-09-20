@@ -1,6 +1,12 @@
-import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
+'use client';
 
-import { ChangeEvent, useState } from 'react';
+import {
+  ChangeEvent,
+  ForwardedRef,
+  InputHTMLAttributes,
+  forwardRef,
+  useState,
+} from 'react';
 
 import { UploadIcon } from '@/components/common/icons';
 
