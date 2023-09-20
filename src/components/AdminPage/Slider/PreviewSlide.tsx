@@ -36,6 +36,21 @@ export default function PreviewSlide({
     return <EmptyPreview />;
   }
 
+  const curText = {
+    title:
+      lang === 'ua'
+        ? currentValues?.titleUa
+        : lang === 'en'
+        ? currentValues?.titleEn
+        : currentValues?.titlePl,
+    subtitle:
+      lang === 'ua'
+        ? currentValues?.subtitleUa
+        : lang === 'en'
+        ? currentValues?.subtitleEn
+        : currentValues?.subtitlePl,
+  };
+
   return (
     <div className="flex-center relative h-[38.4rem] w-full overflow-hidden rounded-md bg-neutral-75">
       <Image
@@ -59,19 +74,11 @@ export default function PreviewSlide({
         }}
       >
         <div className="z-10 w-2/3 max-w-[44.6rem] text-white">
-          <h2 className="z-10 mb-5 text-center text-[3.8rem] font-bold">
-            {lang === 'ua'
-              ? currentValues?.titleUa
-              : lang === 'en'
-              ? currentValues?.titleEn
-              : currentValues?.titlePl}
+          <h2 className="z-10 mb-5 break-words text-center text-[3.8rem] font-bold">
+            {curText.title}
           </h2>
-          <p className=" font-medium leading-[1.6] md:text-center md:text-[2rem]">
-            {lang === 'ua'
-              ? currentValues?.subtitleUa
-              : lang === 'en'
-              ? currentValues?.subtitleEn
-              : currentValues?.subtitlePl}
+          <p className="break-words font-medium leading-[1.6] md:text-center md:text-[2rem]">
+            {curText.subtitle}
           </p>
         </div>
       </div>

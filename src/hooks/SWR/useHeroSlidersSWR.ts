@@ -25,7 +25,7 @@ export const useHeroSliderSWR = () => {
       title: networkStatusesUk[error?.status || 500],
       textInfo: 'Не вдалося отримати перелік слайдів. Спробуйте трохи пізніше.',
     });
-  }, [error]);
+  }, [error, setAlertInfo]);
 
   // const getAllSliders = async () => {
   //   return await heroSliderApi.getAll();

@@ -3,19 +3,14 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { AdminPanelButton } from '@/components/atomic';
 import AdminTitle from '@/components/common/AdminTitle';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { useGlobalContext } from '@/store/globalContext';
 import { TAdminSlide } from '@/types';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 
 export const AdminHeroSlider = () => {
-  const [curLang, setCurLang] = useState<string>('ua');
-
   const { data: sliderData } = useHeroSliderSWR();
-
-  useEffect(() => {
-    setCurLang(localStorage.getItem('landingLanguage') || 'ua');
-  }, []);
+  const curLang = useGlobalContext().landingLanguage;
 
   return (
     <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">

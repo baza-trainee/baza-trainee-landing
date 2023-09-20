@@ -6,8 +6,9 @@ import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { IHeroSlider } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import PreviewSlide from '../PreviewSlide';
+import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
 import { DefaultValuesState } from './DefaultValues';
 
@@ -28,6 +29,7 @@ export const SliderForm = ({
     handleSubmit,
     watch,
     setValue,
+    control,
     formState: { errors },
   } = useForm<TFormInputs>({
     mode: 'onSubmit',
@@ -35,8 +37,6 @@ export const SliderForm = ({
   });
 
   const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
-    console.log('Form Data:', dataForm);
-
     const slide: TFormSlideRequest = {
       title: {
         ua: dataForm.titleUa,
@@ -56,8 +56,6 @@ export const SliderForm = ({
       slide.file = dataForm.file[0];
       slide.imageUrl = dataForm.file[0].name;
     }
-
-    console.log('SLIDE:', slide);
 
     if (id) {
       await updateSlider(id, slide);
@@ -92,58 +90,88 @@ export const SliderForm = ({
           errorText={errors.file?.message}
         />
         <div className="flex flex-wrap gap-[2.4rem]">
-          <TextInputField
-            title="Заголовок"
-            {...register('titleUa', {
-              required: true,
-              minLength: 5,
-            })}
-            errorText={errors.titleUa?.message}
-            inputType="ua"
+          <Controller
+            name="titleUa"
+            rules={sliderValidateOptions.title}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                title="Заголовок"
+                {...field}
+                placeholder="Введіть назву"
+                errorText={errors.titleUa?.message}
+                inputType="ua"
+              />
+            )}
           />
 
-          <TextInputField
-            {...register('titleEn', {
-              required: true,
-              minLength: 5,
-            })}
-            errorText={errors.titleEn?.message}
-            inputType="en"
+          <Controller
+            name="titleEn"
+            rules={sliderValidateOptions.title}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                {...field}
+                placeholder="Введіть назву"
+                errorText={errors.titleEn?.message}
+                inputType="en"
+              />
+            )}
           />
-          <TextInputField
-            {...register('titlePl', {
-              required: true,
-              minLength: 5,
-            })}
-            errorText={errors.titlePl?.message}
-            inputType="pl"
+          <Controller
+            name="titlePl"
+            rules={sliderValidateOptions.title}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                {...field}
+                placeholder="Введіть назву"
+                errorText={errors.titlePl?.message}
+                inputType="pl"
+              />
+            )}
           />
         </div>
         <div className="flex flex-wrap gap-[2.4rem]">
-          <TextInputField
-            title="Основний текст"
-            {...register('subtitleUa', {
-              required: true,
-              minLength: 5,
-            })}
-            errorText={errors.subtitleUa?.message}
-            inputType="ua"
+          <Controller
+            name="subtitleUa"
+            rules={sliderValidateOptions.title}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                title="Основний текст"
+                {...field}
+                placeholder="Введіть текст"
+                errorText={errors.subtitleUa?.message}
+                inputType="ua"
+              />
+            )}
           />
-          <TextInputField
-            {...register('subtitleEn', {
-              required: true,
-              minLength: 5,
-            })}
-            errorText={errors.subtitleEn?.message}
-            inputType="en"
+          <Controller
+            name="subtitleEn"
+            rules={sliderValidateOptions.title}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                {...field}
+                placeholder="Введіть текст"
+                errorText={errors.subtitleEn?.message}
+                inputType="en"
+              />
+            )}
           />
-          <TextInputField
-            {...register('subtitlePl', {
-              required: true,
-              minLength: 5,
-            })}
-            errorText={errors.subtitlePl?.message}
-            inputType="pl"
+          <Controller
+            name="subtitlePl"
+            rules={sliderValidateOptions.title}
+            control={control}
+            render={({ field }) => (
+              <TextInputField
+                {...field}
+                placeholder="Введіть текст"
+                errorText={errors.subtitlePl?.message}
+                inputType="pl"
+              />
+            )}
           />
         </div>
         <div className="mb-[1.5rem] flex items-center justify-between gap-2">
