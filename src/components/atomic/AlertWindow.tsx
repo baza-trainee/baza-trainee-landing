@@ -1,7 +1,7 @@
 'use client';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { GlobalContext } from '@/store/globalContext';
-import { useContext } from 'react';
+import { useGlobalContext } from '@/store/globalContext';
+
 import {
   CancelIcon,
   ErrorIcon,
@@ -27,7 +27,7 @@ export type TAlertInfoState = {
 };
 
 export const AlertWindow: React.FC = () => {
-  const { alertInfo, setAlertInfo } = useContext(GlobalContext);
+  const { alertInfo, setAlertInfo } = useGlobalContext();
   const bodyScrollLockRef = useBodyScrollLock(Boolean(alertInfo));
 
   if (alertInfo === null) return;

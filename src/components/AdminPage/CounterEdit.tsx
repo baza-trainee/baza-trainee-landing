@@ -1,15 +1,13 @@
 'use client';
 
-import { AdminPanelButton } from '@/components/atomic';
-import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { TextInputField } from '@/components/atomic/inputs';
-import { GlobalContext } from '@/store/globalContext';
+import { AdminPanelButton , TextInputField, AdminTitle } from '@/components/atomic';
+import { useGlobalContext } from '@/store/globalContext';
 import achievementsApi from '@/utils/API/achievements';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export const CounterEdit = () => {
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
   const [employed, setEmployed] = useState('');
   const [dispatch, data, isError] = useAPI(achievementsApi.updateEmployed);
 

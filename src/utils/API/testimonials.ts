@@ -1,4 +1,4 @@
-import { ITestimonial, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { ITestimonial, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const testimonialsApi = {
@@ -10,11 +10,11 @@ const testimonialsApi = {
     return bazaAPI.post('/testimonials', testimonial);
   },
 
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/testimonials/${id}`);
   },
 
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/testimonials/${id}`);
   },
 

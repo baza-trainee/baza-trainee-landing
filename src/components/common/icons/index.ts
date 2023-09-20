@@ -34,3 +34,8 @@ export * from './TranslatorIcon';
 export * from './TranslatorIcon2';
 export * from './UploadIcon';
 export * from './WarningIcon';
+export * from './EditIcon';
+export * from './PlusIcon';
+export * from './DeleteIcon';
+export * from './FileIcon';
+export * from './PeopleIcon';

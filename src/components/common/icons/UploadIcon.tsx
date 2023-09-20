@@ -1,14 +1,13 @@
-export const UploadIcon = ({ ...args }) => {
-  return (
-    <svg
-      width="27"
-      height="24"
-      viewBox="0 0 27 24"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...args}
-    >
-      <path d="M3.375 19H23.625V21H3.375V19ZM14.625 5.82843V17H12.375V5.82843L5.54505 11.8995L3.95406 10.4853L13.5 2L23.046 10.4853L21.455 11.8995L14.625 5.82843Z" />
-    </svg>
-  );
-};
+import { SVGProps } from 'react';
+
+export const UploadIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M3 19h18v2H3v-2ZM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.415L13 5.827Z" />
+  </svg>
+);

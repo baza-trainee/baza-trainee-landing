@@ -16,18 +16,19 @@ export const useAPI = <T,>(
   };
 
   useEffect(() => {
-    const fetcher = async () => {
-      if (!doFetch) {
-        return;
-      }
+    (async () => {
+      if (!doFetch) return;
 
       try {
         setData(null);
         setIsError(false);
         setIsLoading(true);
+
         const response = await method(body.current);
         setData(response.data);
       } catch (error: any) {
+        console.log('useAPI error >>>', error);
+
         setData({
           message: error.message,
           statusText:
@@ -36,20 +37,15 @@ export const useAPI = <T,>(
             'none',
           status: error.response?.status,
         });
+
         setIsError(true);
       } finally {
         setIsLoading(false);
         setDoFetch(false);
         body.current = null;
       }
-      return data;
-    };
-    fetcher();
-
-    return () => {
-      setDoFetch(false);
-    };
-  }, [data, doFetch, method]);
+    })();
+  }, [doFetch, method]);
 
   return [dispatch, data, isError, isLoading];
 };

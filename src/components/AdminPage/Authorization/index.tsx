@@ -6,12 +6,12 @@ import {
   InputField,
   PasswordInput,
 } from '@/components/atomic';
-import { GlobalContext } from '@/store/globalContext';
+import { useGlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { KeyboardEvent, useContext, useEffect, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
 
 const recoverLink = '#'; // TODO: Replace with actual recover link
@@ -20,7 +20,7 @@ const Authorization = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [dispatch, data, isError] = useAPI(auth.logIn);
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
   const { push } = useRouter();
 
   useEffect(() => {

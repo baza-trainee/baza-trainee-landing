@@ -1,4 +1,4 @@
-import { IHeroSlider, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IHeroSlider, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const heroSliderApi = {
@@ -8,10 +8,10 @@ const heroSliderApi = {
   createNew(slider: IHeroSlider) {
     return bazaAPI.post('/heroslider', slider);
   },
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/heroslider/${id}`);
   },
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/heroslider/${id}`);
   },
   updateById([id, payload]: updateByIdRequest) {
