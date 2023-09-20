@@ -35,7 +35,7 @@ export const slides = [
       pl: 'Baza Trainee Ukraine',
     },
     text: {
-      en: 'A public organization aimed at providing initial work experience for those who are starting their journey in IT.',
+      en: '2.	A public organization that provides initial work experience to those who are just starting their journey in IT.',
       ua: 'Громадська організація, яка має на меті отримання першого досвіду роботи тими, хто починає свій шлях в IT.',
       pl: 'Organizacja publiczna, której celem jest zapewnienie pierwszego doświadczenia zawodowego osobom rozpoczynającym pracę w branży IT.',
     },
@@ -48,7 +48,7 @@ export const slides = [
       pl: 'O nas',
     },
     text: {
-      en: 'Baza Trainee Ukraine initiative as an educational and training platform is a response to the societal demand that has emerged in Ukraine in 2022-2023 regarding employment in the field of information technology. It represents a website that brings together two social groups as its users.',
+      en: 'Baza Trainee Ukraine is an educational and training platform that was built in response to Ukrainian society’s growing demands in the field of IT. It is a website that brings together two groups of users - students of IT and social projects in need of IT support.',
       ua: 'Ініціатива Baza Trainee Ukraine як освітня і тренувальна платформа виникає у відповідь на суспільний запит, який склався в Україні в 2022-2023 роках в сфері працевлаштування в галузі інформаційних технологій і представляє собою веб-сайт, що об’єднує як користувачів дві соціальні групи.',
       pl: 'Inicjatywa Baza Trainee Ukraine jako platforma edukacyjno-szkoleniowa jest odpowiedzią na zapotrzebowanie społeczne, które pojawiło się na Ukrainie w latach 2022-2023 na zatrudnienie w obszarze technologii informatycznych. Jest to strona internetowa, która łączy dwie grupy społeczne użytkowników.',
     },
@@ -56,7 +56,7 @@ export const slides = [
   {
     image: '/img/carousel-slide-5.webp',
     title: {
-      en: 'Our target audience',
+      en: 'Our Target Audience',
       ua: 'Наша цільова аудиторія',
       pl: 'Nasza grupa docelowa',
     },
@@ -74,7 +74,7 @@ export const slides = [
       pl: 'Nasz cel',
     },
     text: {
-      en: 'To combine these categories in joint activities in a way that benefits both sides. For the first group, it means gaining real practical experience in creating a live project, while for the second group, it involves receiving a functional digital product that works and contributes to the development of a social initiative.',
+      en: 'To match students of IT and nonprofits in joint activities that benefit both sides. The former group will gain real practical experience in creating a live project, while the latter group will receive a functional digital product that works and contributes to the development of their social initiative.',
       ua: 'Поєднати в спільній діяльності ці категорії таким чином, щоб користь отримали обидві сторони. Для першої групи – це реальний практичний досвід створення живого проєкту, для другої – цифровий продукт, що працює і сприяє розвитку соціальні ініціативи.',
       pl: 'Połączenie tych kategorii we wspólnych działaniach w sposób przynoszący korzyści obu stronom. Dla pierwszej grupy oznacza to zdobycie prawdziwego praktycznego doświadczenia w tworzeniu projektu na żywo, podczas gdy dla drugiej grupy oznacza to otrzymanie funkcjonalnego produktu cyfrowego, który działa i przyczynia się do rozwoju inicjatywy społecznej.',
     },
@@ -87,7 +87,7 @@ export const slides = [
       pl: 'Zasady działania',
     },
     text: {
-      en: 'Train the participant based on the technologies they currently possess and facilitate their employment. When creating a project, apply the technologies that the participant wants to develop further, retraining does not take place. To provide the customer with a high-quality digital product.',
+      en: 'Train our participants in the technologies of their choice and facilitate their employment. When creating a project, our students develop deeper expertise in the technologies they are already familiar with which allows them to grow as an expert and provide our nonprofit partners with a high-quality product.',
       ua: 'Тренувати учасника на основі технологій, якими він володіє на даний момент, і сприяти його працевлаштуванню. Застосовувати при створенні проєкту технології, які хоче розвивати учасник, перенавчання не відбувається. Забезпечити замовника якісним цифровим продуктом.',
       pl: 'Przeszkolenie uczestnika w obszarze technologii, które są mu już znane i ułatwienie mu zatrudnienia. Podczas realizacji projektu zastosuj technologie, w których uczestnik chce dalej się rozwijać. Najistotniejsze będzie dostarczenie klientowi rozwiązania wysokiej jakości.',
     },
