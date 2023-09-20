@@ -50,11 +50,11 @@ const useProjectsByIdSWR = (id?: string, firstInit?: boolean) => {
     }
   );
 
-  data &&
-    console.log(
-      'data >',
-     data
-    );
+  // data &&
+  //   console.log(
+  //     'data >',
+  //    data
+  //   );
 
   const handlerUpdateProject = (updProject: TProjectRequest) => {
     // const options = { optimisticData: updProject, revalidate: false };
@@ -104,12 +104,12 @@ const useProjectsByIdSWR = (id?: string, firstInit?: boolean) => {
         ? { ...item, teamMemberRole: newRole }
         : item
     );
-    teamMembers &&
-      console.log(
-        'handle >',
-        teamMembers[0]?.teamMemberRole.name.ua,
-        teamMembers[0]?.teamMemberRole._id
-      );
+    // teamMembers &&
+    //   console.log(
+    //     'handle >',
+    //     teamMembers[0]?.teamMemberRole.name.ua,
+    //     teamMembers[0]?.teamMemberRole._id
+    //   );
     mutate({ ...data, teamMembers }, { revalidate: false });
   };
 
