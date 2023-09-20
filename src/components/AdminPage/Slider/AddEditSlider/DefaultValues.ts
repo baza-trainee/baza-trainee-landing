@@ -17,7 +17,6 @@ export const DefaultValuesState = async (slide: IHeroSlider | undefined) => {
   if (!slide) return emptyFields;
 
   const fieldsValues = {
-    // ...emptyFields,
     titleUa: slide.title.ua,
     titleEn: slide.title.en,
     titlePl: slide.title.pl,

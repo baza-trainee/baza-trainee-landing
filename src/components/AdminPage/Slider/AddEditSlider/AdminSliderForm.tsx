@@ -59,14 +59,13 @@ export const SliderForm = ({
 
     console.log('SLIDE:', slide);
 
-    addNewSlider(slide);
-
     if (id) {
-      updateSlider(id, slide);
+      await updateSlider(id, slide);
+      router.replace('..');
     } else {
-      addNewSlider(slide);
+      await addNewSlider(slide);
+      router.replace('.');
     }
-    router.replace('.');
   };
 
   const currentValues = watch();

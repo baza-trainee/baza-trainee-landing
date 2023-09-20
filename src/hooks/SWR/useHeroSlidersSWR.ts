@@ -66,7 +66,7 @@ export const useHeroSliderSWR = () => {
 
   const updateSlider = async (id: string, slider: IHeroSlider) => {
     const updSliders = data?.data.map((slide: IHeroSlider) =>
-      slide._id === id ? updSliders : slide
+      slide._id === id ? slider : slide
     );
     updateAndMutate(updSliders, () => heroSliderApi.updateById([id, slider]));
   };
