@@ -18,7 +18,6 @@ export default function PreviewSlide({
   currentValues: TFormInputs;
 }) {
   const { file } = currentValues;
-  console.log('currentValues: ', currentValues);
 
   const getImgUrl = () => {
     if (!file?.length) return;
@@ -67,7 +66,7 @@ export default function PreviewSlide({
               ? currentValues?.titleEn
               : currentValues?.titlePl}
           </h2>
-          <p className="break-all font-medium leading-[1.6] md:text-center md:text-[2rem]">
+          <p className=" font-medium leading-[1.6] md:text-center md:text-[2rem]">
             {lang === 'ua'
               ? currentValues?.subtitleUa
               : lang === 'en'
