@@ -2,7 +2,7 @@
   "navbar": {
     "projects": "Projects",
     "partners": "Partners",
-    "participate": "To Participate",
+    "participate": "Participate",
     "contacts": "Contacts"
   },
   "monthsNames": {
@@ -50,7 +50,7 @@
     }
   },
   "invite": {
-    "supportBazaTrainee": "To support Baza Trainee Ukraine",
+    "supportBazaTrainee": "Donate to Baza Trainee Ukraine",
     "teamsWaitForYou": "5 projects and 3 teams are waiting for you",
     "bazaTraineeInvite": "Baza Trainee Ukraine invites you to join the team",
     "chooseRole": "Choose your role in the project",
@@ -78,7 +78,7 @@
     "sums": {
       "otherSum": "A different amount in UAH "
     },
-    "button": "To support Baza Trainee Ukraine"
+    "button": "Donate to Baza Trainee Ukraine"
   },
   "footer": {
     "projects": "Projects",
@@ -95,7 +95,7 @@
     "description": "We could not find the page you are looking for. An error may have occurred",
     "button": "Return to the main page"
   },
-  "toFund": "To Fund",
+  "toFund": "Donate",
   "currency": "UAH",
   "enterKeywordForSearch": "Enter a keyword for search",
   "yourHelpIsWorth": {
