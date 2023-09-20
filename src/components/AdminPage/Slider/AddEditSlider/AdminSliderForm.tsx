@@ -1,7 +1,7 @@
 'use client';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { FileInput, TextInputField } from '@/components/atomic';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
-import { FileInput, TextInputField } from '@/components/atomic/inputs';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { IHeroSlider } from '@/types';
 import { useRouter } from 'next/navigation';

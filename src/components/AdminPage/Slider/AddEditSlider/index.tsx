@@ -1,9 +1,13 @@
 'use client';
 import { AdminTitle } from '@/components/atomic';
-import { IAddEditSlideProps } from '@/types';
 import { useParams } from 'next/navigation';
 import { FC } from 'react';
 import { SliderForm } from './AdminSliderForm';
+
+export interface IAddEditSlideProps {
+  title: string;
+  isEdit: boolean;
+}
 
 // const initialState = {
 //   data: {

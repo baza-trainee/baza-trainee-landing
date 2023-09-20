@@ -1,5 +1,7 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 
+import { ChangeEvent, useState } from 'react';
+
 import { UploadIcon } from '@/components/common/icons';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,36 +9,50 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   errorText?: string;
 }
 
-export const InputRaw = (
-  { title, errorText, ...rest }: IProps,
+const InputRaw = (
+  { title, errorText, placeholder, ...rest }: IProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const inputWrapperClasses = `
-  relative w-full max-w-[32.6rem] ${errorText ? 'text-critic-light' : ''}
-  `;
+  const [fileName, setFileName] = useState<string>();
 
-  const inputContainerClasses = `
-    mb-8 mt-[2.8rem] h-16 w-full rounded-[0.4rem] border flex p-[0.8rem] outline-0 gap-6
-    ${errorText ? 'border-critic-light' : 'border-neutral-300'}
-    `;
+  const inputWrapperClasses = `relative w-full max-w-[32.6rem] ${
+    errorText ? 'text-critic-light' : ''
+  }`;
+
+  const inputContainerClasses = `mb-8 mt-[2.8rem] flex h-16 w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
+    errorText ? 'border-critic-light' : 'border-neutral-300'
+  }`;
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      // const files = Array.from(e.target.files);
+      // setFileName(files[0]?.name);
+      setFileName(e.target.files[0]?.name);
+    }
+  };
 
   return (
     <div className={inputWrapperClasses}>
       {!!title && <label className="absolute left-0 top-0">{title}</label>}
 
-      <div className={inputContainerClasses}>
-        <input
-          {...rest}
-          ref={ref}
-          className={`w-full ${errorText ? 'outline-critic-light' : ''}`}
-          type="file"
-          id={title + 'file'}
-        />
+      <label htmlFor={title + 'file'}>
+        <div className={inputContainerClasses}>
+          <span className="w-full overflow-hidden text-ellipsis">
+            {fileName || placeholder}
+          </span>
 
-        <label htmlFor={title + 'file'}>
           <UploadIcon className={!errorText ? 'text-neutral-800' : ''} />
-        </label>
-      </div>
+        </div>
+      </label>
+
+      <input
+        {...rest}
+        ref={ref}
+        type="file"
+        id={title + 'file'}
+        hidden
+        onInput={handleChange}
+      />
 
       {!!errorText && (
         <span className="absolute bottom-0 left-0 text-[1.2rem]">

@@ -1,26 +1,49 @@
-import { IProject } from '@/types';
+import { TLandingLanguage } from '@/store/globalContext';
+import { IProject, TProject } from '@/types';
 
-const projectCycle = (project: IProject) => {
-  const weekWordForms = ['тиждень', 'тижні', 'тижнів'];
+export const projectCycle = (project: IProject | TProject, lang: TLandingLanguage) => {
   const creationDate = project.creationDate;
   const launchDate = project.launchDate ? project.launchDate : Date.now();
 
   const cycleDuration = launchDate - creationDate;
   const numOfWeeks = Math.floor(cycleDuration / (1000 * 60 * 60 * 24 * 7));
 
-  let formIndex;
-  if (numOfWeeks % 10 === 1 && numOfWeeks % 100 !== 11) {
-    formIndex = 0;
-  } else if (
-    numOfWeeks % 10 >= 2 &&
-    numOfWeeks % 10 <= 4 &&
-    (numOfWeeks % 100 < 10 || numOfWeeks % 100 >= 20)
-  ) {
-    formIndex = 1;
-  } else {
-    formIndex = 2;
+  let weeksString = '';
+
+  switch (lang) {
+    case 'en':
+      weeksString = numOfWeeks === 1 ? '1 week' : `${numOfWeeks} weeks`;
+      break;
+    case 'pl':
+      if (numOfWeeks === 1) {
+        weeksString = '1 tydzień';
+      } else if (
+        numOfWeeks % 10 === 2 ||
+        numOfWeeks % 10 === 3 ||
+        numOfWeeks % 10 === 4
+      ) {
+        weeksString = `${numOfWeeks} tygodnie`;
+      } else {
+        weeksString = `${numOfWeeks} tygodni`;
+      }
+      break;
+    case 'ua':
+      if (numOfWeeks === 1) {
+        weeksString = '1 тиждень';
+      } else if (
+        (numOfWeeks % 10 === 2 ||
+          numOfWeeks % 10 === 3 ||
+          numOfWeeks % 10 === 4) &&
+        (numOfWeeks < 10 || numOfWeeks > 20)
+      ) {
+        weeksString = `${numOfWeeks} тижні`;
+      } else {
+        weeksString = `${numOfWeeks} тижнів`;
+      }
+      break;
+    default:
+      weeksString = 'Invalid language code';
   }
 
-  return `${numOfWeeks} ${weekWordForms[formIndex]}`;
+  return weeksString;
 };
-export default projectCycle;

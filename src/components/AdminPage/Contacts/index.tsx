@@ -1,8 +1,10 @@
 'use client';
 
-import { AdminPanelButton } from '@/components/atomic';
-import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { TextInputField } from '@/components/atomic/inputs';
+import {
+  AdminPanelButton,
+  AdminTitle,
+  TextInputField,
+} from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
 import { TContactsInfo } from '@/types';
 import { contactsApi } from '@/utils/API/contacts';

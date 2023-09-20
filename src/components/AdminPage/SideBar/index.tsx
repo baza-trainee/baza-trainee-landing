@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { AdminPanelButton } from '@/components/atomic';
 import { LogOutIcon, LogoMain, MultiArrow } from '@/components/common/icons';
-import { deleteTokenCookie } from '@/utils/deleteCookie';
+import { deleteTokenCookie } from '@/utils/serverActions/deleteCookie';
 import { useRouter } from 'next/navigation';
 import { SideBarMenuItem } from './SideBarMenuItem';
 import { sidebarSectionsList } from './sidebarSectionsList';
@@ -30,7 +30,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div
+    <aside
       className={`flex min-h-screen shrink-0 flex-col transition-all ${
         isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'
       }`}
@@ -71,7 +71,7 @@ const Sidebar = () => {
           </AdminPanelButton>
         </form>
       </div>
-    </div>
+    </aside>
   );
 };
 

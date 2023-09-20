@@ -7,7 +7,6 @@ interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   errorText?: string;
   inputType?: string;
   translateValue?: string;
-  name?: string;
   setTranslatedValue?: (_data: string, _name: string) => void;
 }
 
@@ -17,7 +16,7 @@ const InputField = (
     errorText,
     inputType = 'text',
     translateValue = '',
-    name,
+    value = '',
     setTranslatedValue,
     ...rest
   }: TextInputFieldProps,
@@ -56,13 +55,13 @@ const InputField = (
             </div>
           )}
         </label>
+
         <input
-          ref={ref}
+          {...rest}
           id={id}
           className={inputClassNames}
           type={type}
-          name={name}
-          {...rest}
+          value={value}
         />
       </div>
 
@@ -76,7 +75,7 @@ const InputField = (
         <Translator
           translateValue={translateValue}
           setTranslatedValue={setTranslatedValue}
-          fieldName={name}
+          fieldName={rest.name}
           lang={inputType}
         />
       )}

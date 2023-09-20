@@ -16,52 +16,28 @@ export type TSlide = {
 };
 
 export type TSlideReview = {
-  name: string;
-  role: string;
-  date: string;
-  review: string;
+  name: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  role: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  date: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
+  review: {
+    en: string;
+    pl: string;
+    ua: string;
+  };
   imageUrl: string;
 };
-
-type TAdminSlideTitle = {
-  ua: string;
-  pl: string;
-  en: string;
-};
-
-export type TAdminSlide = {
-  title: TAdminSlideTitle;
-  subtitle: TAdminSlideTitle;
-  imageUrl?: string;
-  __v: number;
-  _id: string;
-  key: string;
-  slideData: never;
-};
-
-export interface IAddEditSlideProps {
-  title: string;
-  isEdit: boolean;
-}
-
-export interface ISlideFormProps {
-  data?: {
-    title?: {
-      ua?: string;
-      en?: string;
-      pl?: string;
-    };
-    subtitle?: {
-      ua?: string;
-      en?: string;
-      pl?: string;
-    };
-    imageUrl?: string;
-    _id?: string;
-    _v?: number;
-  };
-  isEdit?: boolean;
-}
 
 export type TDictionary = {
   navbar: {
@@ -146,4 +122,20 @@ export type TDictionary = {
     loading: string;
     error: string;
   };
+};
+
+type TAdminSlideTitle = {
+  ua: string;
+  pl: string;
+  en: string;
+};
+
+export type TAdminSlide = {
+  title: TAdminSlideTitle;
+  subtitle: TAdminSlideTitle;
+  imageUrl?: string;
+  __v: number;
+  _id: string;
+  key: string;
+  slideData: never;
 };

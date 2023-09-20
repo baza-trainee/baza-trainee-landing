@@ -1,4 +1,4 @@
-import { IHeroSlider, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IHeroSlider, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 export const slidersEndPoint = '/heroslider';
@@ -12,10 +12,10 @@ export const heroSliderApi = {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
-  async getById(id: byIdRequest) {
+  async getById(id: string) {
     return await bazaAPI.get(`${slidersEndPoint}/${id}`);
   },
-  async deleteById(id: byIdRequest) {
+  async deleteById(id: string) {
     return await bazaAPI.delete(`${slidersEndPoint}/${id}`);
   },
   async updateById([id, payload]: updateByIdRequest) {

@@ -1,7 +1,6 @@
 'use client';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { AdminPanelButton } from '@/components/atomic';
-import AdminTitle from '@/components/common/AdminTitle';
+import { AdminPanelButton, AdminTitle } from '@/components/atomic';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useGlobalContext } from '@/store/globalContext';
 import { TAdminSlide } from '@/types';
@@ -15,7 +14,7 @@ export const AdminHeroSlider = () => {
   return (
     <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">
       <header className="slider-header mb-4 flex h-[10.4rem] w-full basis-1 items-center justify-between">
-        <AdminTitle title="Слайдер" />
+        <AdminTitle>Слайдер</AdminTitle>
         <LanguageSelector />
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">

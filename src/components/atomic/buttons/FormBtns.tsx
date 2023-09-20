@@ -1,15 +1,25 @@
-import { AdminPanelButton } from '@/components/atomic';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-export const FormBtns = ({ isEditMode }: { isEditMode?: boolean }) => {
+import { AdminPanelButton } from '@/components/atomic';
+
+type TBtnsProps = {
+  isEditMode?: boolean;
+  disabled?: boolean;
+};
+
+export const FormBtns = ({ isEditMode, disabled }: TBtnsProps) => {
+  const router = useRouter();
   const okBtnName = isEditMode ? 'Зберегти зміни' : 'Додати';
 
   return (
     <div className="mt-14 flex gap-7">
-      <AdminPanelButton type="submit">{okBtnName}</AdminPanelButton>
-      <Link href=".">
-        <AdminPanelButton variant="secondary">Скасувати</AdminPanelButton>
-      </Link>
+      <AdminPanelButton disabled={disabled} type="submit">
+        {okBtnName}
+      </AdminPanelButton>
+
+      <AdminPanelButton variant="secondary" onClick={() => router.back()}>
+        Скасувати
+      </AdminPanelButton>
     </div>
   );
 };

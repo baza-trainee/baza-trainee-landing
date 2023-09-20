@@ -1,8 +1,7 @@
 'use client';
 
-import { AdminPanelButton } from '@/components/atomic';
+import { AdminPanelButton, InputField } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { InputField } from '@/components/atomic/inputs';
 import { SETTINGS } from '@/config/settings';
 import { useGlobalContext } from '@/store/globalContext';
 import { documentsApi } from '@/utils/API/documents';
@@ -16,6 +15,7 @@ type TFormData = {
 
 export const Documents = () => {
   const { setAlertInfo } = useGlobalContext();
+
   const [formData, setFormData] = useState<TFormData>({});
   const [filesUpdated, setFilesUpdated] = useState(0);
   const [isFormValid, setIsFormValid] = useState(false);
