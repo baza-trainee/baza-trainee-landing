@@ -18,7 +18,7 @@ export const ListRow = ({ projectId, member }: TProps) => {
   const { teamMember } = member;
   const { handlerDeleteMember } = useProjectsByIdSWR(projectId);
   // console.log(showedData);
-  
+
   return (
     <tr>
       <td className={cellStyle}>

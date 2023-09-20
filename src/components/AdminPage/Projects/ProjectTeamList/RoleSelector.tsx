@@ -1,26 +1,19 @@
 import { ChangeEvent, useState } from 'react';
 import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-import { TTeamMember, TTeamMemberRole } from '@/types';
+import { TTeamMember } from '@/types';
 
 type TProps = {
-  // entity: TEntity;
   projectId: string;
   member: TTeamMember;
 };
 
-const RoleSelector = ({
-  projectId,
-  member,
-}: TProps) => {
+const RoleSelector = ({ projectId, member }: TProps) => {
+  const { teamMember, teamMemberRole } = member;
+  const { handlerUpdateMember } = useProjectsByIdSWR(projectId);
   const { rolesData } = useRolesSWR();
-  const {
-    projectByIdData,
-    handlerUpdateMember,
-  } = useProjectsByIdSWR(projectId);
-
-  const [selectedRoleId, setSelectedRoleId] = useState<string | undefined>(
-    member.teamMemberRole._id
+  const [selectedRoleId, setSelectedRoleId] = useState<string>(
+    teamMemberRole._id
   );
 
   const handleOptionSelect = (
@@ -30,14 +23,10 @@ const RoleSelector = ({
       (item) => item._id === e.target.value
     );
 
-    setSelectedRoleId(e.target.value);
-
-    selectedRole &&
-      handlerUpdateMember(
-        member.teamMember._id,
-        member.teamMemberRole._id,
-        selectedRole
-      );
+    if (selectedRole) {
+      setSelectedRoleId(e.target.value);
+      handlerUpdateMember(teamMember._id, teamMemberRole._id, selectedRole);
+    }
   };
 
   return (
@@ -46,6 +35,7 @@ const RoleSelector = ({
       onChange={handleOptionSelect}
       value={selectedRoleId}
     >
+      {!selectedRoleId && <option />}
       {rolesData &&
         rolesData.results.map((item) => (
           <option key={item._id} className="rounded-md py-3" value={item._id}>
