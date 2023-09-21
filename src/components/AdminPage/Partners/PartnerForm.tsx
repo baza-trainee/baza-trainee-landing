@@ -6,13 +6,18 @@ import { usePartnerForm } from '@/hooks/usePartnerForm';
 import { GlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
 import { formatBytes } from '@/utils/formatBytes';
-import { useContext, useEffect } from 'react';
+import Link from 'next/link';
+import { SyntheticEvent, useContext, useEffect, useState } from 'react';
+import { EDITOR_TYPE } from './EditorLayout';
 
 export const PartnerForm = ({
   handleSubmit,
+  editorType,
   partnerData,
 }: PartnerFormProps) => {
-  const { formData, isFormValid, errors, handleFieldChange } = usePartnerForm();
+  const { formData, isFormValid, isFormEmpty, errors, handleFieldChange } =
+    usePartnerForm();
+  const [file, setFile] = useState<Blob | null>(null);
   const { setAlertInfo } = useContext(GlobalContext);
   const maxFileSize = SETTINGS.fileSizeLimits.partnerLogo;
 
@@ -44,13 +49,16 @@ export const PartnerForm = ({
           )}`,
         });
       } else {
-        handleFieldChange('file', file);
+        handleFieldChange('file', file.name);
+        setFile(file);
       }
     }
   };
 
-  const onSubmit = () => {
-    if (!isFormValid) {
+  const onSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    if (!isFormValid || isFormEmpty) {
       return setAlertInfo({
         state: 'warning',
         title: 'Незаповнена інформація',
@@ -58,7 +66,13 @@ export const PartnerForm = ({
           'Деякі поля не заповнені. Будь ласка, заповніть всі необхідні поля перед збереженням.',
       });
     }
-    handleSubmit(formData);
+
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('homeUrl', formData.homeUrl);
+    data.append('file', file as File);
+
+    handleSubmit(data);
   };
 
   return (
@@ -97,15 +111,30 @@ export const PartnerForm = ({
                 placeholder="Додайте посилання"
               />
             </div>
-            <AdminPanelButton
-              type="submit"
-              className={`mt-10 ${
-                ''
-                // isNew ? 'ml-4 pl-[6.5rem] pr-[6.5rem]' : 'ml-[1.4rem]'
-              }`}
-            >
-              {/* {isNew ? 'Додати' : 'Зберегти зміни'} */}
-            </AdminPanelButton>
+            <ul className="flex gap-4">
+              <li>
+                <AdminPanelButton
+                  type="submit"
+                  className={`mt-10 ${
+                    editorType === EDITOR_TYPE.ADD
+                      ? 'ml-4 pl-[6.5rem] pr-[6.5rem]'
+                      : 'ml-[1.4rem]'
+                  }`}
+                >
+                  {editorType === EDITOR_TYPE.ADD ? 'Додати' : 'Зберегти зміни'}
+                </AdminPanelButton>
+              </li>
+              <li>
+                <Link href={'/admin/partners'}>
+                  <AdminPanelButton
+                    variant="secondary"
+                    className={`static mt-10`}
+                  >
+                    Скасувати
+                  </AdminPanelButton>
+                </Link>
+              </li>
+            </ul>
           </form>
         </div>
         <div className="mt-16 flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2">

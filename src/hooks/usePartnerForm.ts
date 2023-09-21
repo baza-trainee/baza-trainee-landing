@@ -12,6 +12,7 @@ const initialState: PartnerData = {
 export const usePartnerForm = (initialFormData: PartnerData = initialState) => {
   const [formData, setFormData] = useState<PartnerData>(initialFormData);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const [isFormEmpty, setIsFormEmpty] = useState<boolean>(true);
   const [errors, setErrors] = useState<Errors>({
     name: '',
     file: '',
@@ -42,8 +43,22 @@ export const usePartnerForm = (initialFormData: PartnerData = initialState) => {
     }
 
     setErrors(newErrors);
-    setIsFormValid(Object.keys(newErrors).length === 0);
   };
+
+  useEffect(() => {
+    setIsFormValid(Object.keys(errors).length === 0);
+  }, [errors]);
+
+  useEffect(() => {
+    const { file, homeUrl, name } = formData;
+
+    if (!file || !homeUrl || !name) {
+      setIsFormEmpty(true);
+      return;
+    }
+
+    setIsFormEmpty(false);
+  }, [formData]);
 
   useEffect(() => {
     checkFormFilled();
@@ -52,6 +67,7 @@ export const usePartnerForm = (initialFormData: PartnerData = initialState) => {
   return {
     formData,
     isFormValid,
+    isFormEmpty,
     errors,
     handleFieldChange,
   };

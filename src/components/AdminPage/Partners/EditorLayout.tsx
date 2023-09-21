@@ -1,24 +1,31 @@
-import { AdminPanelButton } from '@/components/atomic';
+'use client';
+
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { GlobalContext } from '@/store/globalContext';
+import { id } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
+import Container from './Container';
 import { PartnerForm } from './PartnerForm';
 
-export const PartnerEditor = ({
+export const EDITOR_TYPE = {
+  ADD: 'add',
+  EDIT: 'edit',
+};
+
+const PartnerEditor = ({
   params: { editorType, partnerId },
 }: {
-  params: { editorType: 'add' | 'edit'; partnerId: string | undefined };
+  params: { editorType: 'add' | 'edit'; partnerId?: id };
 }) => {
   const [title] = useState<string>(() =>
-    editorType === 'add' ? 'Додати партнера' : 'Редагування'
+    editorType === EDITOR_TYPE.ADD ? 'Додати партнера' : 'Редагування'
   );
   const [createNew, newData, isNewError] = useAPI(partnersApi.createNew);
   const [updateById, updData, isUpdError] = useAPI(partnersApi.updateById);
-  const [getById, partnerData] = useAPI(partnersApi.getById);
+  const [getById, partnerData, _, isLoading] = useAPI(partnersApi.getById);
   const { push } = useRouter();
   const { setAlertInfo } = useContext(GlobalContext);
 
@@ -35,18 +42,20 @@ export const PartnerEditor = ({
       title: 'Успіх',
       textInfo,
       func: () => {
-        push('partners');
+        push('/admin/partners');
       },
     });
   };
 
-  const handleSubmit = () => {
-    //   if (isNew) {
-    //     createNew(formData);
-    //   } else {
-    //     updateById([id, formData]);
-    //   }
+  const handleSubmit = (data: any) => {
+    if (editorType === EDITOR_TYPE.ADD) {
+      createNew(data);
+    } else {
+      updateById([partnerId || '', data]);
+    }
+  };
 
+  useEffect(() => {
     if (!isUpdError && updData) {
       setSuccess('Оновлені дані успішно збережено.');
     }
@@ -54,19 +63,25 @@ export const PartnerEditor = ({
     if (!isNewError && newData) {
       setSuccess('Ваші дані успішно збережено.');
     }
-  };
+  }, [isUpdError, updData, isNewError, newData]);
 
   return (
-    <div className="w-full bg-base-light">
+    <Container>
       <AdminTitle className={`mb-9 ml-[0.8rem] mt-4 tracking-wide`}>
         {title}
       </AdminTitle>
-      <PartnerForm handleSubmit={handleSubmit} partnerData={partnerData} />
-      <Link href={'partners'}>
-        <AdminPanelButton variant="secondary" className={`mt-[-7.7rem]`}>
-          Скасувати
-        </AdminPanelButton>
-      </Link>
-    </div>
+
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <PartnerForm
+          handleSubmit={handleSubmit}
+          partnerData={partnerData}
+          editorType={editorType}
+        />
+      )}
+    </Container>
   );
 };
+
+export default PartnerEditor;

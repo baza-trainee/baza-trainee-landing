@@ -2,9 +2,9 @@ import { id } from './typesAPI';
 
 export interface PartnerData {
   name: string;
-  file: File | null;
   homeUrl: string;
   imageUrl: string;
+  file: File | null;
 }
 
 export interface PartnerActionProps {
@@ -18,8 +18,7 @@ export interface PartnerItemProps {
     name: string;
     imageUrl: string;
   };
-  handleEditPartnerClick: (id: string) => void;
-  handleDataUpdate: () => void;
+  handleDelete: (id: id) => void;
 }
 
 export interface PartnerDataEdit {
@@ -38,6 +37,7 @@ export interface PartnerEditorProps {
 
 export interface PartnerFormProps {
   partnerData: PartnerDataEdit;
+  editorType: string;
   handleSubmit: (formData: any) => void;
 }
 
