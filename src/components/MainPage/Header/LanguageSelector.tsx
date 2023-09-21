@@ -1,6 +1,6 @@
 'use client';
 
-import { useGlobalContext, TLandingLanguage } from '@/store/globalContext';
+import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
 import { FormEvent, useState } from 'react';
 
 import { MultiArrow } from '@/components/common/icons';
@@ -31,7 +31,7 @@ const LanguageSelector = () => {
     setIsMenuOpen((state) => !state);
   };
 
-const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] ${
+  const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] ${
     isMenuOpen
       ? 'opacity-100 duration-100 ease-out'
       : 'invisible opacity-0 duration-75 ease-in'
