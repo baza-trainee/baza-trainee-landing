@@ -1,13 +1,13 @@
 import { AdminPanelButton, InputField } from '@/components/atomic';
-import { TextInputField } from '@/components/atomic/inputs';
+import { TextInputField } from '@/components/atomic/inputs/TextInputField';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import { SETTINGS } from '@/config/settings';
 import { usePartnerForm } from '@/hooks/usePartnerForm';
-import { GlobalContext } from '@/store/globalContext';
+import { useGlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
 import { formatBytes } from '@/utils/formatBytes';
 import Link from 'next/link';
-import { SyntheticEvent, useContext, useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { EDITOR_TYPE } from './EditorLayout';
 
 export const PartnerForm = ({
@@ -18,7 +18,7 @@ export const PartnerForm = ({
   const { formData, isFormValid, isFormEmpty, errors, handleFieldChange } =
     usePartnerForm();
   const [file, setFile] = useState<Blob | null>(null);
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
   const maxFileSize = SETTINGS.fileSizeLimits.partnerLogo;
 
   useEffect(() => {
