@@ -17,7 +17,7 @@ export interface PartnerItemProps {
     name: string;
     imageUrl: string;
   };
-  handleDelete: (id: id) => void;
+  handleDelete: (id: string) => void;
 }
 
 export interface PartnerDataEdit {

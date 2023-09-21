@@ -1,12 +1,11 @@
 'use client';
 
 import { AdminTitle } from '@/components/atomic/AdminTitle';
-import { GlobalContext } from '@/store/globalContext';
-import { id } from '@/types';
+import { useGlobalContext } from '@/store/globalContext';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useRouter } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from './Container';
 import { PartnerForm } from './PartnerForm';
 
@@ -18,7 +17,7 @@ export const EDITOR_TYPE = {
 const PartnerEditor = ({
   params: { editorType, partnerId },
 }: {
-  params: { editorType: 'add' | 'edit'; partnerId?: id };
+  params: { editorType: 'add' | 'edit'; partnerId?: string };
 }) => {
   const [title] = useState<string>(() =>
     editorType === EDITOR_TYPE.ADD ? 'Додати партнера' : 'Редагування'
@@ -29,14 +28,14 @@ const PartnerEditor = ({
     partnersApi.getById
   );
   const { push } = useRouter();
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
 
   useEffect(() => {
-    if (!partnerData && partnerId) {
-      getById(partnerId);
+    if (editorType === EDITOR_TYPE.ADD || partnerData) {
       return;
     }
-  }, [partnerData, partnerId, getById]);
+    getById(partnerId);
+  }, []);
 
   const handleSubmit = (data: any) => {
     if (editorType === EDITOR_TYPE.ADD) {
@@ -65,7 +64,7 @@ const PartnerEditor = ({
     if (!isNewError && newData) {
       setSuccess('Ваші дані успішно збережено.');
     }
-  }, [isUpdError, updData, isNewError, newData, setAlertInfo, push]);
+  }, [isUpdError, updData, isNewError, newData]);
 
   if (isError) {
     console.log('isError');

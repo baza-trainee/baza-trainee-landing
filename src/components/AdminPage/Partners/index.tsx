@@ -19,9 +19,9 @@ export const PartnersPage = () => {
   const [deleteById, deleted] = useAPI(partnersApi.deleteById);
 
   const [pagination, setPagination] = useState({
-    currentPage: data.pagination.currentPage || 1,
-    totalPages: data.pagination.totalPages || 1,
-    totalResults: data.pagination.totalResults || 1,
+    currentPage: data?.pagination.currentPage || 1,
+    totalPages: data?.pagination.totalPages || 1,
+    totalResults: data?.pagination.totalResults || 1,
   });
   const [searchData, setSearchData] = useState('');
 
@@ -38,7 +38,7 @@ export const PartnersPage = () => {
 
   useEffect(() => {
     dispatch();
-  }, [deleted, dispatch]);
+  }, [deleted]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {

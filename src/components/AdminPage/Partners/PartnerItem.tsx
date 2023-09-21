@@ -3,17 +3,16 @@
 import { ActionButton } from '@/components/atomic/buttons/ActionAdminPanelButton';
 import { DeleteIcon } from '@/components/common/icons/DeleteIcon';
 import { EditIcon } from '@/components/common/icons/EditIcon';
-import { GlobalContext } from '@/store/globalContext';
+import { useGlobalContext } from '@/store/globalContext';
 import { PartnerItemProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
 
 export const PartnerItem = ({
   partner: { _id: id, name: name, imageUrl: image },
   handleDelete,
 }: PartnerItemProps) => {
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
   const imageUrl = `https://baza-trainee.tech/api/v1/files/${image}`;
 
   const handleDeleteClick = () => {
