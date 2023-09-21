@@ -27,7 +27,7 @@ export const PartnerForm = ({
       handleFieldChange('homeUrl', partnerData.homeUrl);
       handleFieldChange('file', partnerData.imageUrl);
     }
-  }, [partnerData]);
+  }, [partnerData, handleFieldChange]);
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleFieldChange('name', event.target.value);

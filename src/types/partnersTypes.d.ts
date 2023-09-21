@@ -3,7 +3,6 @@ import { id } from './typesAPI';
 export interface PartnerData {
   name: string;
   homeUrl: string;
-  imageUrl: string;
   file: File | null;
 }
 

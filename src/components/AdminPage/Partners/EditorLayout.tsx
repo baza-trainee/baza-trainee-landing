@@ -25,7 +25,9 @@ const PartnerEditor = ({
   );
   const [createNew, newData, isNewError] = useAPI(partnersApi.createNew);
   const [updateById, updData, isUpdError] = useAPI(partnersApi.updateById);
-  const [getById, partnerData, _, isLoading] = useAPI(partnersApi.getById);
+  const [getById, partnerData, isError, isLoading] = useAPI(
+    partnersApi.getById
+  );
   const { push } = useRouter();
   const { setAlertInfo } = useContext(GlobalContext);
 
@@ -34,18 +36,7 @@ const PartnerEditor = ({
       getById(partnerId);
       return;
     }
-  }, [partnerData, partnerId]);
-
-  const setSuccess = (textInfo: string) => {
-    setAlertInfo({
-      state: 'success',
-      title: 'Успіх',
-      textInfo,
-      func: () => {
-        push('/admin/partners');
-      },
-    });
-  };
+  }, [partnerData, partnerId, getById]);
 
   const handleSubmit = (data: any) => {
     if (editorType === EDITOR_TYPE.ADD) {
@@ -56,6 +47,17 @@ const PartnerEditor = ({
   };
 
   useEffect(() => {
+    const setSuccess = (textInfo: string) => {
+      setAlertInfo({
+        state: 'success',
+        title: 'Успіх',
+        textInfo,
+        func: () => {
+          push('/admin/partners');
+        },
+      });
+    };
+
     if (!isUpdError && updData) {
       setSuccess('Оновлені дані успішно збережено.');
     }
@@ -63,7 +65,11 @@ const PartnerEditor = ({
     if (!isNewError && newData) {
       setSuccess('Ваші дані успішно збережено.');
     }
-  }, [isUpdError, updData, isNewError, newData]);
+  }, [isUpdError, updData, isNewError, newData, setAlertInfo, push]);
+
+  if (isError) {
+    console.log('isError');
+  }
 
   return (
     <Container>

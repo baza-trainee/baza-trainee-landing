@@ -5,8 +5,6 @@ import { DeleteIcon } from '@/components/common/icons/DeleteIcon';
 import { EditIcon } from '@/components/common/icons/EditIcon';
 import { GlobalContext } from '@/store/globalContext';
 import { PartnerItemProps } from '@/types';
-import partnersApi from '@/utils/API/partners';
-import { useAPI } from '@/utils/hooks/useAPI';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';

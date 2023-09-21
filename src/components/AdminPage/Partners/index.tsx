@@ -19,9 +19,9 @@ export const PartnersPage = () => {
   const [deleteById, deleted] = useAPI(partnersApi.deleteById);
 
   const [pagination, setPagination] = useState({
-    currentPage: 1,
-    totalPages: 1,
-    totalResults: 1,
+    currentPage: data.pagination.currentPage || 1,
+    totalPages: data.pagination.totalPages || 1,
+    totalResults: data.pagination.totalResults || 1,
   });
   const [searchData, setSearchData] = useState('');
 
@@ -38,14 +38,7 @@ export const PartnersPage = () => {
 
   useEffect(() => {
     dispatch();
-    if (data) {
-      setPagination({
-        currentPage: data.pagination.currentPage,
-        totalPages: data.pagination.totalPages,
-        totalResults: data.pagination.totalResults,
-      });
-    }
-  }, [deleted]);
+  }, [deleted, dispatch]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {
