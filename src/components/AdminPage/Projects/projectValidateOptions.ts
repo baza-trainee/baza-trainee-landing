@@ -1,5 +1,7 @@
 import { SETTINGS } from '@/config/settings';
 
+const limitSize = SETTINGS.fileSizeLimits.projectCard;
+
 export const projectValidateOptions = {
   name: {
     required: 'Введіть назву',
@@ -19,14 +21,16 @@ export const projectValidateOptions = {
 
   img: {
     validate: (value: File[]) => {
-      const checkSize = value[0]?.size <= SETTINGS.fileSizeLimits.partnerLogo;
-      const checkType =
-        value[0]?.type === 'image/jpeg' ||
-        value[0]?.type === 'image/png' ||
-        value[0]?.type === 'image/webp' ||
-        value[0]?.type === 'for-url';
+      const file = value[0];
 
-      return (checkSize && checkType) || 'Виберіть коректне зображення';
+      const checkType =
+      ['image/jpeg', 'image/png', 'image/webp', 'for-url'].includes(file.type);
+      if (!checkType) return 'Виберіть коректне зображення';
+
+      const checkSize = file.size <= limitSize;
+      if (!checkSize) return `Виберіть зображення до ${limitSize}Мб`;
+   
+      return true;
     },
   },
 };
