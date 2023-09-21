@@ -9,7 +9,7 @@ import { dictionaries } from '@/locales/dictionaries';
 import { projectCycle } from '@/utils/developmentTimeCalculator';
 import { formatDate } from '@/utils/formatDate';
 import Link from 'next/link';
-import { ICardContent } from '../types';
+import { ICardContent } from '../../../../types/projectsTypes';
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
 
@@ -26,17 +26,17 @@ const ProjectCardContent = ({
 
       <div className="flex w-full flex-col gap-[1.6rem]">
         <div className="h-[11rem]">
-          <h4 className="text-[2.4rem] font-bold leading-[3rem]">
+          {/* <h4 className="text-[2.4rem] font-bold leading-[3rem]">
             {project.description[lang]}
-          </h4>
-          {project.link && (
+          </h4> */}
+          {project.deployUrl && (
             <Link
-              href={project.link}
+              href={project.deployUrl}
               target="_blank"
               className="mt-[0.8rem]"
-              aria-label={`Visit ${project.link}`}
+              aria-label={`Visit ${project.deployUrl}`}
             >
-              {project.link ? project.link : ''}
+              {project.deployUrl ? project.deployUrl : ''}
             </Link>
           )}
         </div>
@@ -66,7 +66,7 @@ const ProjectCardContent = ({
             </div>
           </div>
 
-          {project.teamMembers.length > 0 && (
+          {project.teamMembers && project.teamMembers.length > 0 && (
             <button
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}

@@ -1,6 +1,6 @@
 'use client';
 
-import { TextInputField } from '@/components/atomic/inputs';
+import { TextInputField } from '@/components/atomic';
 import { useState } from 'react';
 
 export default function Testimonials() {

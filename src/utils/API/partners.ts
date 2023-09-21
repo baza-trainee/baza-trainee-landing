@@ -1,6 +1,6 @@
-import { byIdRequest, updateByIdRequest } from '@/types/typesAPI';
-import { bazaAPI } from './config';
 import { PartnerData } from '@/types';
+import { updateByIdRequest } from '@/types/typesAPI';
+import { bazaAPI } from './config';
 
 const partnersApi = {
   getAll() {
@@ -11,10 +11,10 @@ const partnersApi = {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/partners/${id}`);
   },
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/partners/${id}`);
   },
   updateById([id, payload]: updateByIdRequest) {

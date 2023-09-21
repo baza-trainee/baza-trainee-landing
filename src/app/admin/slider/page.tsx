@@ -1,3 +1,5 @@
+import { AdminHeroSlider } from '@/components/AdminPage/Slider';
+
 export default function Slider() {
-  return <>Slider</>;
+  return <AdminHeroSlider />;
 }

@@ -1,10 +1,10 @@
 'use client';
 
 import { TranslatorIcon } from '@/components/common/icons';
-import { GlobalContext } from '@/store/globalContext';
+import { useGlobalContext } from '@/store/globalContext';
 import { translateApi } from '@/utils/API/translate';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { MouseEventHandler, useContext, useEffect } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 
 interface ITranslatorProps {
   translateValue: string | number;
@@ -20,7 +20,7 @@ export const Translator = ({
   lang = 'en',
 }: ITranslatorProps) => {
   const [dispatch, data, isError] = useAPI(translateApi.translate);
-  const { setAlertInfo } = useContext(GlobalContext);
+  const { setAlertInfo } = useGlobalContext();
 
   useEffect(() => {
     if (!isError && data) {

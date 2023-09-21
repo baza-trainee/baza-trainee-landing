@@ -2,15 +2,16 @@ import { SVGProps } from 'react';
 
 export const DeleteIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width="25"
-    height="24"
-    viewBox="0 0 25 24"
-    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
     {...props}
   >
     <path
-      d="M7.66602 4V2H17.666V4H22.666V6H20.666V21C20.666 21.5523 20.2183 22 19.666 22H5.66602C5.11374 22 4.66602 21.5523 4.66602 21V6H2.66602V4H7.66602ZM6.66602 6V20H18.666V6H6.66602ZM9.66602 9H11.666V17H9.66602V9ZM13.666 9H15.666V17H13.666V9Z"
+      fill="currentColor"
+      stroke="currentColor"
+      d="M7 4.5h.5v-2h9v2h5v1h-2V21a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V5.5h-2v-1H7Zm-1 1h-.5v15h13v-15H6Zm3.5 4h1v7h-1v-7Zm4 0h1v7h-1v-7Z"
     />
   </svg>
 );

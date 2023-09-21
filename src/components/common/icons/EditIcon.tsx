@@ -2,15 +2,15 @@ import { SVGProps } from 'react';
 
 export const EditIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width="25"
-    height="24"
-    viewBox="0 0 25 24"
-    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
     {...props}
   >
     <path
-      d="M7.08023 15.89L17.2223 5.74786L15.8081 4.33365L5.66602 14.4758V15.89H7.08023ZM7.90866 17.89H3.66602V13.6474L15.101 2.21233C15.4916 1.8218 16.1247 1.8218 16.5152 2.21233L19.3437 5.04075C19.7342 5.43128 19.7342 6.06444 19.3437 6.45497L7.90866 17.89ZM3.66602 19.89H21.666V21.89H3.66602V19.89Z"
+      fill="currentColor"
+      d="M6.414 15.89 16.556 5.748l-1.414-1.414L5 14.476v1.414h1.414Zm.829 2H3v-4.243L14.435 2.212a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 17.89ZM3 19.89h18v2H3v-2Z"
     />
   </svg>
 );

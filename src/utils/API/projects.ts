@@ -1,35 +1,39 @@
-import {
-  IProject,
-  byIdRequest,
-  searchProjectRequest,
-  updateByIdRequest,
-} from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
+import { TResponseProjects, TProjectRequest, TProject } from '@/types';
+
+const projectsEndpoint = '/projects';
+
 const projectsApi = {
-  getAll() {
-    return bazaAPI.get('/projects');
+  async getAll(uri: string) {
+    return await bazaAPI.get<TResponseProjects>(uri).then((res) => res.data);
   },
 
-  createNew(project: IProject) {
-    return bazaAPI.post('/projects', project);
+  async createNew(project: TProjectRequest) {
+    return await bazaAPI
+      .post<TProject>(projectsEndpoint, project, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((res) => res.data);
   },
 
-  search(query: searchProjectRequest) {
-    return bazaAPI.get(`/projects/search?query=${query}`);
+  async getById(id: string) {
+    return await bazaAPI
+      .get<TProject>(`${projectsEndpoint}/${id}`)
+      .then((res) => res.data);
   },
 
-  getById(id: byIdRequest) {
-    return bazaAPI.get(`/projects/${id}`);
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`${projectsEndpoint}/${id}`);
   },
 
-  deleteById(id: byIdRequest) {
-    return bazaAPI.delete(`/projects/${id}`);
-  },
-
-  updateById([id, payload]: updateByIdRequest) {
-    return bazaAPI.patch(`/projects/${id}`, payload);
+  async updateById(id: string, project: TProjectRequest) {
+    return await bazaAPI
+      .patch<TProject>(`${projectsEndpoint}/${id}`, project, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((res) => res.data);
   },
 };
 
-export default projectsApi;
+export { projectsEndpoint, projectsApi };

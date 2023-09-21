@@ -2,6 +2,7 @@
 
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
@@ -36,6 +37,7 @@ const MemoizedModal = memo(ModalComponent);
 const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
+  const { data } = useHeroSliderSWR();
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -62,12 +64,11 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           ref={slickRef}
           className="h-[50.4rem]"
         >
-          {slides.map((slide: TSlide, index) => (
+          {data?.data.map((slide: TSlide, index: any) => (
             <SingleSlide
               key={`key_${slide.title[lang]}`}
               slideData={slide}
               index={index}
-              slideLang={lang}
             />
           ))}
         </Slider>

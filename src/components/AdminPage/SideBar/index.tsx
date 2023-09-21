@@ -30,7 +30,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div
+    <aside
       className={`flex min-h-screen shrink-0 flex-col transition-all ${
         isSidebarOpen ? 'w-[24.1rem]' : 'w-[11.5rem]'
       }`}
@@ -71,7 +71,7 @@ const Sidebar = () => {
           </AdminPanelButton>
         </form>
       </div>
-    </div>
+    </aside>
   );
 };
 
