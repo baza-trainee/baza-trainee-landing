@@ -48,9 +48,6 @@ export const AdminPanelButton: FC<AdminPanelButtonProps> = ({
         <div
           className={`h-[2.4rem] w-[2.4rem] ${iconOnly ? 'block-center' : ''}`}
         >
-        <div
-          className={`h-[2.4rem] w-[2.4rem] ${iconOnly ? 'block-center' : ''}`}
-        >
           {icon}
         </div>
       )}
