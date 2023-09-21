@@ -31,8 +31,9 @@ export default function Testimonials() {
         </Link>
       </div>
 
-      <ul className='flex flex-col gap-[32px]'>
-        {testimonialsData &&
+      <ul className="flex flex-col gap-[32px]">
+        {Array.isArray(testimonialsData) &&
+          testimonialsData.length &&
           testimonialsData?.map((item: ITestimonial) => (
             <li key={item._id}>
               <SingleSlideTestimonial slideData={item} lang={curLang} />
