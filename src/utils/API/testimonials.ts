@@ -1,9 +1,14 @@
-import { ITestimonial, updateByIdRequest } from '@/types/typesAPI';
+import {
+  ITestimonial,
+  updateByIdRequest,
+} from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
-const testimonialsApi = {
-  getAll() {
-    return bazaAPI.get('/testimonials');
+export const testimonialsEndPoint = '/testimonials';
+
+export const testimonialsApi = {
+  async getAll(uri: string) {
+    return await bazaAPI.get<ITestimonial>(uri).then((res) => res.data);
   },
 
   createNew(testimonial: ITestimonial) {
@@ -22,5 +27,3 @@ const testimonialsApi = {
     return bazaAPI.patch(`/testimonials/${id}`, payload);
   },
 };
-
-export default testimonialsApi;

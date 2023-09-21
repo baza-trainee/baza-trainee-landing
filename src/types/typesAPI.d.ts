@@ -118,6 +118,7 @@ export interface ITestimonial extends CommonResponseBase {
   name: TTitleLanguagesTypes;
   review: TTitleLanguagesTypes;
   date: number;
+  role: string;
   imageUrl: string;
 }
 
