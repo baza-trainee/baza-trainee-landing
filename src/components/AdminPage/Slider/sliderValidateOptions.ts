@@ -1,5 +1,7 @@
 import { SETTINGS } from '@/config/settings';
 
+const limitSize = SETTINGS.fileSizeLimits.heroSliderPhoto;
+
 export const sliderValidateOptions = {
   title: {
     required: 'Введіть назву',
@@ -17,15 +19,17 @@ export const sliderValidateOptions = {
   },
   img: {
     validate: (value: File[]) => {
-      const checkSize =
-        value[0]?.size <= SETTINGS.fileSizeLimits.heroSliderPhoto;
-      const checkType =
-        value[0]?.type === 'image/jpeg' ||
-        value[0]?.type === 'image/png' ||
-        value[0]?.type === 'image/webp' ||
-        value[0]?.type === 'for-url';
-
-      return (checkSize && checkType) || 'Виберіть коректне зображення';
+      const file = value[0];
+      const checkType = [
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+        'for-url',
+      ].includes(file.type);
+      if (!checkType) return 'Виберіть коректне зображення';
+      const checkSize = file.size <= limitSize;
+      if (!checkSize) return `Виберіть зображення до ${limitSize} Мб`;
+      return true;
     },
   },
 };
