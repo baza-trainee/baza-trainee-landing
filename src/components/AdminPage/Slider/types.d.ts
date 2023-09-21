@@ -1,77 +1,42 @@
-export type TForm = {
+type TFormBase = {
   titleUa: string;
   titleEn: string;
   titlePl: string;
   subtitleUa: string;
   subtitleEn: string;
   subtitlePl: string;
-  file?: File;
   imageUrl?: string;
   _id?: string;
+};
+
+export type TForm = TFormBase & {
+  file?: File;
   FileInput?: string;
 };
 
-export type TFormPromise = {
-  titleUa: string;
-  titleEn: string;
-  titlePl: string;
-  subtitleUa: string;
-  subtitleEn: string;
-  subtitlePl: string;
+export type TFormPromise = TFormBase & {
   file?: File;
-  imageUrl?: string;
-  _id?: string;
   FileInput: string;
 };
 
+type TText = {
+  ua: string;
+  en: string;
+  pl: string;
+};
+
 export type TFormSlideRequest = {
-  title: {
-    ua: string;
-    en: string;
-    pl: string;
-  };
-  subtitle: {
-    ua: string;
-    en: string;
-    pl: string;
-  };
+  title: TText;
+  subtitle: TText;
   file?: File;
   imageUrl?: string;
-  // _id?: string;
 };
 
-export type TFormInputs = {
-  titleUa: string;
-  titleEn: string;
-  titlePl: string;
-  subtitleUa: string;
-  subtitleEn: string;
-  subtitlePl: string;
+export type TFormInputs = TFormBase & {
   file: File[];
-  imageUrl?: string;
-  _id?: string;
-  // deployUrl: string;
-};
-
-export type TformData = {
-  titleUa: string;
-  titleEn: string;
-  titlePl: string;
-  subtitleUa: string;
-  subtitleEn: string;
-  subtitlePl: string;
-  deployUrl: string;
 };
 
 export type TTextPreview = {
-  title?: {
-    ua?: string;
-    en?: string;
-    pl?: string;
-  };
-  subtitle?: {
-    ua?: string;
-    en?: string;
-    pl?: string;
-  };
+  title?: TText;
+  subtitle?: TText;
 };

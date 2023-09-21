@@ -53,19 +53,7 @@ export default function PreviewSlide({
 
   return (
     <div className="flex-center relative h-[38.4rem] w-full overflow-hidden rounded-md bg-neutral-75">
-      <Image
-        src={photoUrl}
-        alt="Preview image"
-        sizes="100vw"
-        objectFit="cover"
-        style={{
-          width: '100%',
-          height: 'auto',
-          zIndex: '1',
-        }}
-        width={1920}
-        height={384}
-      />
+      <Image src={photoUrl} alt="Preview image" fill className="object-cover" />
       <div
         className="flex-center absolute z-10 h-full w-full"
         style={{

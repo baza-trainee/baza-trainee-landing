@@ -1,5 +1,6 @@
 import { useGlobalContext } from '@/store/globalContext';
 import { TSlide } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
 
 export const SingleSlide = ({
@@ -11,19 +12,15 @@ export const SingleSlide = ({
 }) => {
   const { imageUrl, title, subtitle } = slideData;
   const lang = useGlobalContext().landingLanguage;
-  const baseUrl = 'https://baza-trainee.tech/api/v1/files/';
-  const image = baseUrl + imageUrl;
 
   return (
     <div className="relative flex h-[50.4rem] items-center justify-center">
       <Image
-        src={image}
+        src={createImgUrl(imageUrl)}
         fill
         priority={index === 0}
         alt={title[lang]}
-        style={{
-          objectFit: 'cover',
-        }}
+        className="object-cover"
         quality={90}
       />
 

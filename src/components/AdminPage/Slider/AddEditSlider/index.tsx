@@ -9,24 +9,6 @@ export interface IAddEditSlideProps {
   isEdit: boolean;
 }
 
-// const initialState = {
-//   data: {
-//     title: {
-//       ua: '',
-//       en: '',
-//       pl: '',
-//     },
-//     subtitle: {
-//       ua: '',
-//       en: '',
-//       pl: '',
-//     },
-//     imageUrl: '',
-//     _id: '',
-//     _v: 0,
-//   },
-// };
-
 export const AddEditAdminSlider: FC<IAddEditSlideProps> = ({
   title,
   isEdit,

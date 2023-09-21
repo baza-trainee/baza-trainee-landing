@@ -4,42 +4,42 @@ import { IHeroSlider } from '@/types';
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 import { AxiosError, AxiosResponse } from 'axios';
-import { useEffect } from 'react';
 import useSWR from 'swr';
 
 export const useHeroSliderSWR = () => {
   const { setAlertInfo } = useGlobalContext();
 
+  const handleRequestError = (err: AxiosError) => {
+    errorHandler(err);
+    setAlertInfo({
+      state: 'error',
+      title: networkStatusesUk[err?.status || 500],
+      textInfo: 'При запиті виникла помилка. Спробуйте трохи пізніше.',
+    });
+  };
+
   const { data, error, isLoading, mutate } = useSWR<AxiosResponse, AxiosError>(
     slidersEndPoint,
     heroSliderApi.getAll,
-    { keepPreviousData: true }
+    {
+      keepPreviousData: true,
+      onError: handleRequestError,
+    }
   );
-
-  useEffect(() => {
-    if (!error) return;
-
-    errorHandler(error);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[error?.status || 500],
-      textInfo: 'Не вдалося отримати перелік слайдів. Спробуйте трохи пізніше.',
-    });
-  }, [error, setAlertInfo]);
-
-  // const getAllSliders = async () => {
-  //   return await heroSliderApi.getAll();
-  // };
 
   const updateAndMutate = (
     updSliders: IHeroSlider[],
     action: () => Promise<AxiosResponse<any, any>>
   ) => {
-    mutate(action, {
-      optimisticData: { ...data!, data: updSliders },
-      revalidate: false,
-      populateCache: false,
-    });
+    try {
+      mutate(action, {
+        optimisticData: { ...data!, data: updSliders },
+        revalidate: false,
+        populateCache: false,
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   const getByIdSlider = (id: string) => {
@@ -49,9 +49,6 @@ export const useHeroSliderSWR = () => {
     return slideById;
   };
 
-  // const delByIdSlider = async (id: string) => {
-  //   return await heroSliderApi.deleteById(id);
-  // };
   const delByIdSlider = (id: string) => {
     const updSliders = data?.data.filter(
       (slide: IHeroSlider) => slide._id !== id

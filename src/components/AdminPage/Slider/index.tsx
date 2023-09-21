@@ -15,10 +15,12 @@ export const AdminHeroSlider = () => {
     <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">
       <header className="slider-header mb-4 flex h-[10.4rem] w-full basis-1 items-center justify-between">
         <AdminTitle>Слайдер</AdminTitle>
-        <LanguageSelector />
+        <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
+          <LanguageSelector />
+        </div>
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">
-        <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow-2sm">
+        <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow">
           <AdminPanelButton variant="secondary">
             <Link href="/admin/slider/add-slider">+ Додати слайд</Link>
           </AdminPanelButton>

@@ -75,8 +75,6 @@ export const SliderForm = ({
     }
   }, [currentValues.file, setValue]);
 
-  useEffect(() => {}, [watch]);
-
   return (
     <div className="h-full">
       <form
@@ -177,9 +175,11 @@ export const SliderForm = ({
             )}
           />
         </div>
-        <div className="mb-[1.5rem] flex items-center justify-between gap-2">
+        <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
           <FormBtns isEditMode={isEdit} />
-          <LanguageSelector />
+          <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
+            <LanguageSelector />
+          </div>
         </div>
         <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">
           <PreviewSlide currentValues={currentValues} lang={curLang} />

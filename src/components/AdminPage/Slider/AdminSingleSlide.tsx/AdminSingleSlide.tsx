@@ -5,20 +5,15 @@ import { SliderDeleteButton } from './AdminSliderBtn';
 
 export const AdminSingleSlide = ({ slideData, lang }: any) => {
   const { imageUrl, title, subtitle, _id } = slideData;
-
-  const baseUrl = 'https://baza-trainee.tech/api/v1/files/';
-  const image = baseUrl + imageUrl;
   const editLink = `slider/edit-slider/${_id}`;
 
   return (
     <li className="relative  h-[50.4rem] ">
       <Image
-        src={image}
+        src={`https://baza-trainee.tech/api/v1/files/${imageUrl}`}
         fill
         alt={title[lang]}
-        style={{
-          objectFit: 'cover',
-        }}
+        className="object-cover"
         quality={90}
       />
       <div

@@ -1,7 +1,10 @@
 import { errorHandler } from './errorHandler';
 
 export const createImgUrl = (imgName: string) =>
-  process.env.NEXT_PUBLIC_PROXY_URL! + 'api/v1' + '/files/' + imgName;
+  process.env.NEXT_PUBLIC_PROXY_URL! +
+  process.env.NEXT_PUBLIC_SERVER_URL +
+  '/files/' +
+  imgName;
 
 export const downloadImageAsFile = async (imgName: string) => {
   const imageUrl = createImgUrl(imgName);
