@@ -6,7 +6,6 @@ const initialState: PartnerData = {
   name: '',
   file: null,
   homeUrl: '',
-  imageUrl: '',
 };
 
 export const usePartnerForm = (initialFormData: PartnerData = initialState) => {
