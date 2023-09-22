@@ -64,7 +64,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           ref={slickRef}
           className="h-[50.4rem]"
         >
-          {data?.data.map((slide: TSlide, index: any) => (
+          {slides.map((slide: TSlide, index: any) => (
             <SingleSlide
               key={`key_${slide.title[lang]}`}
               slideData={slide}
