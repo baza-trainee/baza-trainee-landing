@@ -44,8 +44,8 @@
     "complexity": "Complexity",
     "projectTeam": "Project team",
     "status": {
-      "teamFormation": "Team formation",
-      "underDevelopment": "Under development",
+      "teamFormation": "Team recruitment",
+      "underDevelopment": "Development",
       "completed": "Completed"
     }
   },
@@ -83,12 +83,12 @@
   "footer": {
     "projects": "Projects",
     "partners": "Partners",
-    "participate": "To Participate",
+    "participate": "Participate",
     "privacyPolicy": "Privacy Policy",
-    "rulesForUsingTheSite": "Rules for using the site",
+    "rulesForUsingTheSite": "Conditions of Use",
     "statute": "Statute",
-    "accountability": "Accountability",
-    "allRightsReserved": "Developed by BazaTraineeUkraine 2023 All rights reserved"
+    "accountability": "Report",
+    "allRightsReserved": "Created by BazaTraineeUkraine 2023. © All rights reserved"
   },
   "notFound": {
     "title": "This page was not found.",

@@ -25,8 +25,6 @@ const ProjectCard = ({
 }: TProps) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 
- 
-
   const handleShowTeam = () => {
     setIsMembersVisible((prev) => !prev);
   };
@@ -47,17 +45,8 @@ const ProjectCard = ({
           src={coverImgUrl}
           alt="Project Image"
           fill
-          sizes="(min-width: 300px) 100%"
-          // style={{
-          //   objectFit: 'cover',
-          // }}
-          // className={
-          //   isMembersVisible
-          //     ? 'contrast-50 grayscale-[.3]'
-          //     : 'contrast-50 grayscale group-hover:contrast-100 group-hover:grayscale-0'
-          // }
-          className={`bg-cover contrast-50
-          ${
+          objectFit="cover"
+          className={`contrast-50 ${
             isMembersVisible
               ? 'grayscale-[.3]'
               : 'grayscale group-hover:contrast-100 group-hover:grayscale-0'
@@ -94,4 +83,3 @@ const ProjectCard = ({
 };
 
 export { ProjectCard };
-

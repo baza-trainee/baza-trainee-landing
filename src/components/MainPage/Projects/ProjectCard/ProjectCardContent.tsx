@@ -36,7 +36,7 @@ const ProjectCardContent = ({
               className="mt-[0.8rem]"
               aria-label={`Visit ${project.deployUrl}`}
             >
-              {project.deployUrl ? project.deployUrl : ''}
+              {project.deployUrl}
             </Link>
           )}
         </div>
