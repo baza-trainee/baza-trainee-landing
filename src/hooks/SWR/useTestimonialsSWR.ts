@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
@@ -9,13 +8,10 @@ import {
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
 import { ITestimonial } from '@/types';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 
 export const useTestimonialsSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
-  const [search, setSearch] = useState('');
-
-  // const swrKey = `${testimonialsEndPoint}?search=${search}`;
+  const { setAlertInfo } = useGlobalContext(); 
 
   const handleRequestError = (err: AxiosError) => {
     errorHandler(err);
@@ -26,54 +22,61 @@ export const useTestimonialsSWR = () => {
     });
   };
 
-  const { data, error, isLoading, mutate } = useSWR(
+  const { data, error, isLoading } = useSWR(  
     testimonialsEndPoint,
     testimonialsApi.getAll,
     {
       keepPreviousData: true,
-      onError: errorHandler,
+      onError: handleRequestError,
     }
   );
 
-  const updateAndMutate = (
-    updSliders: ITestimonial[],
-    action: () => Promise<AxiosResponse<any, any>>
-  ) => {
-    try {
-      mutate(action, {
-        optimisticData: { ...data!, data: updSliders },
-        revalidate: false,
-        populateCache: false,
-      });
-    } catch (error) {
-      errorHandler(error);
-    }
-  };
+  // const updateAndMutate = (
+  //   updSliders: ITestimonial[],
+  //   action: () => Promise<AxiosResponse<any, any>>
+  // ) => {
+  //   try {
+  //     mutate(action, {
+  //       optimisticData: { data: updSliders },
+  //       revalidate: false,
+  //       populateCache: false,
+  //     });
+  //   } catch (error) {
+  //     errorHandler(error);
+  //   }
+  // };
 
   const getByIdSlider = (id: string) => {
-    const slideById = data?.filter(
+    const slideById = Array.isArray(data) &&
+    data.length && data?.filter(
       (slide: ITestimonial) => slide._id == id
     );
     return slideById;
   };
 
   const delByIdSlider = (id: string) => {
-    const updSliders = data?.filter(
+    const updSliders = Array.isArray(data) &&
+    data.length && data?.filter(
       (slide: ITestimonial) => slide._id !== id
     );
-    updateAndMutate(updSliders!, () => testimonialsApi.deleteById(id));
+    testimonialsApi.deleteById(id);
+    return updSliders;
   };
 
   const addNewSlider = async (slider: ITestimonial) => {
-    const updSliders = [...(data || []), slider];
-    updateAndMutate(updSliders!, () => testimonialsApi.createNew(slider));
+    const updSliders = [...(Array.isArray(data) &&
+      data.length && data || []), slider];
+    testimonialsApi.createNew(slider);
+    return updSliders;
   };
 
   const updateSlider = async (id: string, slider: ITestimonial) => {
-    const updSliders = data?.map((slide: ITestimonial) =>
+    const updSlider = Array.isArray(data) &&
+    data.length && data?.map((slide: ITestimonial) =>
       slide._id === id ? slider : slide
     );
-    updateAndMutate(updSliders, () => testimonialsApi.updateById([id, slider]));
+    testimonialsApi.updateById([id, slider]);
+    return updSlider;
   };
 
   
