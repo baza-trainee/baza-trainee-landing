@@ -26,9 +26,9 @@ const ProjectCardContent = ({
 
       <div className="flex w-full flex-col gap-[1.6rem]">
         <div className="h-[11rem]">
-          {/* <h4 className="text-[2.4rem] font-bold leading-[3rem]">
+          <h4 className="text-[2.4rem] font-bold leading-[3rem]">
             {project.description[lang]}
-          </h4> */}
+          </h4>
           {project.deployUrl && (
             <Link
               href={project.deployUrl}
@@ -81,3 +81,4 @@ const ProjectCardContent = ({
 };
 
 export { ProjectCardContent };
+

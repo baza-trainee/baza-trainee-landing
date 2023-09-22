@@ -8,14 +8,14 @@ import {
 } from '@/utils/API/testimonials';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-// import { ITestimonial } from '@/types';
-import { AxiosError } from 'axios';
+import { ITestimonial } from '@/types';
+import { AxiosError, AxiosResponse } from 'axios';
 
 export const useTestimonialsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
   const [search, setSearch] = useState('');
 
-  // const swrKey = `${testimonialsApi.getAll}?search=${search}`;
+  // const swrKey = `${testimonialsEndPoint}?search=${search}`;
 
   const handleRequestError = (err: AxiosError) => {
     errorHandler(err);
@@ -26,7 +26,7 @@ export const useTestimonialsSWR = () => {
     });
   };
 
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     testimonialsEndPoint,
     testimonialsApi.getAll,
     {
@@ -35,58 +35,55 @@ export const useTestimonialsSWR = () => {
     }
   );
 
-  const handlerSearchTestimonial = (search: string) => {
-    setSearch(search);
+  const updateAndMutate = (
+    updSliders: ITestimonial[],
+    action: () => Promise<AxiosResponse<any, any>>
+  ) => {
+    try {
+      mutate(action, {
+        optimisticData: { ...data!, data: updSliders },
+        revalidate: false,
+        populateCache: false,
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
-  // const handlerCreateTestimonial = (newProject: TProjectRequest) => {
-  //   const options = {
-  //     populateCache: (createdProject: TProject) => ({
-  //       ...data!,
-  //       results: [createdProject, ...(data?.results || [])],
-  //     }),
-  //     revalidate: false,
-  //   };
+  const getByIdSlider = (id: string) => {
+    const slideById = data?.filter(
+      (slide: ITestimonial) => slide._id == id
+    );
+    return slideById;
+  };
 
-  //   mutate(() => testimonialsApi.createNew(newProject), options)
-  //     .catch(handleRequestError)
-  //     .catch((e) => console.log('ERROR!!!!!', e));
-  // };
+  const delByIdSlider = (id: string) => {
+    const updSliders = data?.filter(
+      (slide: ITestimonial) => slide._id !== id
+    );
+    updateAndMutate(updSliders!, () => testimonialsApi.deleteById(id));
+  };
 
-  // const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
-  //   // const populateCache = (createdProject: TProject) => {
-  //   //   console.log("proj>.", createdProject);
-  //   //   const updProjects = data?.results.map((project) =>
-  //   //     project._id === id ? createdProject : project
-  //   //   );
-  //   //   return { ...data!, results: updProjects! };
-  //   // };
+  const addNewSlider = async (slider: ITestimonial) => {
+    const updSliders = [...(data || []), slider];
+    updateAndMutate(updSliders!, () => testimonialsApi.createNew(slider));
+  };
 
-  //   // const options = { populateCache, revalidate: false }; // TODO: implement populate cache
+  const updateSlider = async (id: string, slider: ITestimonial) => {
+    const updSliders = data?.map((slide: ITestimonial) =>
+      slide._id === id ? slider : slide
+    );
+    updateAndMutate(updSliders, () => testimonialsApi.updateById([id, slider]));
+  };
 
-  //   mutate(() => projectsApi.updateById(id, updProject)).catch(
-  //     handleRequestError
-  //   );
-  // };
-
-  // const handlerDeleteProject = (id: string) => {
-  //   const updProjects = data?.results.filter((project) => project._id !== id);
-  //   const options = {
-  //     optimisticData: { ...data!, results: updProjects! },
-  //     populateCache: false,
-  //     revalidate: false,
-  //   };
-
-  //   mutate(() => projectsApi.deleteById(id), options).catch(handleRequestError);
-  // };
-
+  
   return {
     testimonialsData: data,
     isLoading,
     isError: error,
-    handlerSearchTestimonial,
-    handleRequestError,
-    // handlerUpdateProject,
-    // handlerDeleteProject,
+    getByIdSlider,
+    delByIdSlider,
+    updateSlider,
+    addNewSlider,
   };
 };

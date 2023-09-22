@@ -11,19 +11,19 @@ export const testimonialsApi = {
     return await bazaAPI.get<ITestimonial>(uri).then((res) => res.data);
   },
 
-  createNew(testimonial: ITestimonial) {
-    return bazaAPI.post('/testimonials', testimonial);
+  async createNew(testimonial: ITestimonial) {
+    return await bazaAPI.post(testimonialsEndPoint, testimonial);
   },
 
-  getById(id: string) {
-    return bazaAPI.get(`/testimonials/${id}`);
+  async getById(id: string) {
+    return await bazaAPI.get(`${testimonialsEndPoint}/${id}`);
   },
 
   deleteById(id: string) {
-    return bazaAPI.delete(`/testimonials/${id}`);
+    return bazaAPI.delete(`${testimonialsEndPoint}/${id}`);
   },
 
-  updateById([id, payload]: updateByIdRequest) {
-    return bazaAPI.patch(`/testimonials/${id}`, payload);
+  async updateById([id, payload]: updateByIdRequest) {
+    return await bazaAPI.patch(`${testimonialsEndPoint}/${id}`, payload);
   },
 };
