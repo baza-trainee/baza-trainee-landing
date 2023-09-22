@@ -1,6 +1,6 @@
 import { useGlobalContext } from '@/store/globalContext';
 import { TSlide } from '@/types';
-import { createImgUrl } from '@/utils/imageHandler';
+// import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
 
 export const SingleSlide = ({
@@ -16,8 +16,9 @@ export const SingleSlide = ({
   return (
     <div className="relative flex h-[50.4rem] items-center justify-center">
       <Image
-        src={createImgUrl(imageUrl)}
         fill
+        // src={createImgUrl(imageUrl)}
+        src={imageUrl}
         priority={index === 0}
         alt={title[lang]}
         className="object-cover"

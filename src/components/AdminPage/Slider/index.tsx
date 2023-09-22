@@ -21,9 +21,19 @@ export const AdminHeroSlider = () => {
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">
         <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow">
-          <AdminPanelButton variant="secondary">
-            <Link href="/admin/slider/add-slider">+ Додати слайд</Link>
-          </AdminPanelButton>
+          {sliderData?.data.length === 5 ? (
+            <AdminPanelButton
+              variant="secondary"
+              title="Максимальна кількість слайдів 5"
+              disabled
+            >
+              + Додати слайд
+            </AdminPanelButton>
+          ) : (
+            <AdminPanelButton variant="secondary">
+              <Link href="/admin/slider/add-slider">+ Додати слайд</Link>
+            </AdminPanelButton>
+          )}
         </li>
         {sliderData &&
           sliderData?.data.map((item: TAdminSlide) => (
