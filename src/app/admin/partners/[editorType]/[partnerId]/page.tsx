@@ -1,19 +1,12 @@
 import PartnerEditor from '@/components/AdminPage/Partners/EditorLayout';
+import { PartnerEditorProps } from '@/types';
 
 export async function generateStaticParams() {
   return [{ editorType: 'add' }, { editorType: 'edit' }];
 }
 
-const EditPage = ({
-  params,
-}: {
-  params: { editorType: 'add' | 'edit'; partnerId: string | undefined };
-}) => {
-  return (
-    <>
-      <PartnerEditor params={params} />
-    </>
-  );
-};
+const EditPage = ({ params }: PartnerEditorProps) => (
+  <PartnerEditor params={params} />
+);
 
 export default EditPage;

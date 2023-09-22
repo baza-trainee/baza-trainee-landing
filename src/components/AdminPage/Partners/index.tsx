@@ -3,10 +3,8 @@
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { SearchIcon } from '@/components/common/icons';
-import { PartnerData } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { paginate } from '@/utils/paginate';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { PaginationBar } from '../../atomic/PaginationBar';
@@ -17,28 +15,34 @@ import { PartnerItem } from './PartnerItem';
 export const PartnersPage = () => {
   const [dispatch, data, isError, isLoading] = useAPI(partnersApi.getAll);
   const [deleteById, deleted] = useAPI(partnersApi.deleteById);
-
   const [pagination, setPagination] = useState({
-    currentPage: data?.pagination.currentPage || 1,
-    totalPages: data?.pagination.totalPages || 1,
-    totalResults: data?.pagination.totalResults || 1,
+    currentPage: 1,
+    totalPages: 1,
+    totalResults: null,
   });
   const [searchData, setSearchData] = useState('');
 
-  const pageSize = 23;
-  const paginatedPosts = data?.results
-    ? paginate(data.results, pagination.currentPage, pageSize)
+  const partnerData = data
+    ? searchData
+      ? data.results.filter((partner: any) =>
+          partner.name.toLowerCase().includes(searchData.toLowerCase())
+        )
+      : data.results
     : [];
 
-  const partnerData = searchData
-    ? data?.results.filter((partner: PartnerData) =>
-        partner.name.toLowerCase().includes(searchData.toLowerCase())
-      )
-    : paginatedPosts;
+  useEffect(() => {
+    if (pagination.totalResults !== null) {
+      return;
+    }
+
+    if (data) {
+      setPagination(data.pagination);
+    }
+  }, [data]);
 
   useEffect(() => {
-    dispatch();
-  }, [deleted]);
+    dispatch(pagination.currentPage);
+  }, [deleted, pagination]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {

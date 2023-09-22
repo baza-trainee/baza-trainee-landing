@@ -1,14 +1,7 @@
-import { id } from './typesAPI';
-
 export interface PartnerData {
   name: string;
   homeUrl: string;
   file: File | null;
-}
-
-export interface PartnerActionProps {
-  handleAddPartnerClick: () => void;
-  handleEditPartnerClick: (id: string) => void;
 }
 
 export interface PartnerItemProps {
@@ -27,11 +20,10 @@ export interface PartnerDataEdit {
 }
 
 export interface PartnerEditorProps {
-  mode: 'add' | 'edit';
-  cancelAction: () => void;
-  id?: id;
-  partnerData?: PartnerDataEdit;
-  title?: string;
+  params: {
+    editorType: 'add' | 'edit';
+    partnerId?: string;
+  };
 }
 
 export interface PartnerFormProps {

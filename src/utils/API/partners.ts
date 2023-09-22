@@ -3,8 +3,8 @@ import { updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const partnersApi = {
-  getAll() {
-    return bazaAPI.get('/partners');
+  getAll(page?: number) {
+    return bazaAPI.get(`/partners${page ? `?page=${page}` : ''}`);
   },
   createNew(partner: PartnerData) {
     return bazaAPI.post('/partners', partner, {

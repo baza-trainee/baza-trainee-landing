@@ -1,4 +1,5 @@
 import { AdminPanelButton, InputField } from '@/components/atomic';
+import { CancelLinkButton } from '@/components/atomic/buttons/CancelLinkButton';
 import { TextInputField } from '@/components/atomic/inputs/TextInputField';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import { SETTINGS } from '@/config/settings';
@@ -6,7 +7,6 @@ import { usePartnerForm } from '@/hooks/usePartnerForm';
 import { useGlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
 import { formatBytes } from '@/utils/formatBytes';
-import Link from 'next/link';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { EDITOR_TYPE } from './EditorLayout';
 
@@ -125,14 +125,12 @@ export const PartnerForm = ({
                 </AdminPanelButton>
               </li>
               <li>
-                <Link href={'/admin/partners'}>
-                  <AdminPanelButton
-                    variant="secondary"
-                    className={`static mt-10`}
-                  >
-                    Скасувати
-                  </AdminPanelButton>
-                </Link>
+                <CancelLinkButton
+                  href={'/admin/partners'}
+                  className={`static mt-10`}
+                >
+                  Скасувати
+                </CancelLinkButton>
               </li>
             </ul>
           </form>

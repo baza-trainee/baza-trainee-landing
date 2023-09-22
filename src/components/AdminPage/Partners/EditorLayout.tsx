@@ -2,6 +2,7 @@
 
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { useGlobalContext } from '@/store/globalContext';
+import { PartnerEditorProps } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useRouter } from 'next/navigation';
@@ -16,9 +17,7 @@ export const EDITOR_TYPE = {
 
 const PartnerEditor = ({
   params: { editorType, partnerId },
-}: {
-  params: { editorType: 'add' | 'edit'; partnerId?: string };
-}) => {
+}: PartnerEditorProps) => {
   const [title] = useState<string>(() =>
     editorType === EDITOR_TYPE.ADD ? 'Додати партнера' : 'Редагування'
   );
