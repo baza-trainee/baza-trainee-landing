@@ -48,7 +48,7 @@ export const useTestimonialsSWR = () => {
 
   const getByIdSlider = (id: string) => {
     const slideById = Array.isArray(data) &&
-    data.length && data?.filter(
+    data.length && data.filter(
       (slide: ITestimonial) => slide._id == id
     );
     return slideById;
@@ -56,7 +56,7 @@ export const useTestimonialsSWR = () => {
 
   const delByIdSlider = (id: string) => {
     const updSliders = Array.isArray(data) &&
-    data.length && data?.filter(
+    data.length && data.filter(
       (slide: ITestimonial) => slide._id !== id
     );
     testimonialsApi.deleteById(id);
@@ -72,7 +72,7 @@ export const useTestimonialsSWR = () => {
 
   const updateSlider = async (id: string, slider: ITestimonial) => {
     const updSlider = Array.isArray(data) &&
-    data.length && data?.map((slide: ITestimonial) =>
+    data.length && data.map((slide: ITestimonial) =>
       slide._id === id ? slider : slide
     );
     testimonialsApi.updateById([id, slider]);

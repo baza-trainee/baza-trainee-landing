@@ -19,8 +19,8 @@ export const testimonialsApi = {
     return await bazaAPI.get(`${testimonialsEndPoint}/${id}`);
   },
 
-  deleteById(id: string) {
-    return bazaAPI.delete(`${testimonialsEndPoint}/${id}`);
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`${testimonialsEndPoint}/${id}`);
   },
 
   async updateById([id, payload]: updateByIdRequest) {
