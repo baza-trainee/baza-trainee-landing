@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const SliderDeleteButton: any = ({ id, children }: Props) => {
-  const { delByIdSlider, data, isError } = useHeroSliderSWR();
+  const { delByIdSlider, isError } = useHeroSliderSWR();
   const { setAlertInfo } = useGlobalContext();
 
   const handlerModalDelete = () => {
@@ -28,7 +28,7 @@ export const SliderDeleteButton: any = ({ id, children }: Props) => {
         textInfo: 'Сталася помилка при видалені слайду',
       });
     }
-  }, [data, isError, setAlertInfo]);
+  }, [isError, setAlertInfo]);
 
   return (
     <button type="button" onClick={() => handlerModalDelete()}>

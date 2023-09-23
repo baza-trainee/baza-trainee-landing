@@ -42,41 +42,6 @@ export const useHeroSliderSWR = () => {
     }
   };
 
-  const handlerCreateSlide = (slider: IHeroSlider) => {
-    const options = {
-      popupalteCache: (createdSlide: IHeroSlider) => ({
-        ...data!,
-        results: [createdSlide, ...(data?.results || [])],
-      }),
-      revalidate: false,
-    };
-
-    mutate(() => heroSliderApi.createNew(slider), options).catch(
-      handleRequestError
-    );
-  };
-
-  const handlerUpdateSlide = (id: string, slider: IHeroSlider) => {
-    mutate(() => heroSliderApi.updateById([id, slider])).catch(
-      handleRequestError
-    );
-  };
-
-  const handlerDeleteSlide = (id: string) => {
-    const updSliders = data?.results.filter(
-      (slide: IHeroSlider) => slide._id !== id
-    );
-    const options = {
-      optimisticData: { ...data!, results: updSliders! },
-      populateCache: false,
-      revalidate: false,
-    };
-
-    mutate(() => heroSliderApi.deleteById(id), options).catch(
-      handleRequestError
-    );
-  };
-
   const getByIdSlider = (id: string) => {
     const slideById = data?.data.results.filter(
       (slide: IHeroSlider) => slide._id == id
