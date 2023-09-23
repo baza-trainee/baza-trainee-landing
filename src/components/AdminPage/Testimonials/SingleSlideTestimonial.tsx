@@ -14,6 +14,7 @@ export const SingleSlideTestimonial = ({
 }) => {
   const { role, date, review, imageUrl, name, _id } = slideData;
   const editLink = `/admin/testimonials/edit/${_id}`;
+  const formattedDate = new Date(date).toISOString().split('T')[0];
 
   return (
     <div className="flex gap-[22px] text-neutral-700 shadow px-[12px] py-[20px]">
@@ -34,7 +35,7 @@ export const SingleSlideTestimonial = ({
         <div className="w-[200px] self-center">
           <h4 className="text-[2rem] font-medium">{name[lang]}</h4>
           <p>{role}</p>
-          <p className="text-[1.4rem] text-neutral-400">{date}</p>
+          <p className="text-[1.4rem] text-neutral-400">{formattedDate}</p>
         </div>
 
         <span className="w-[448px] self-center">{review[lang]}</span>
