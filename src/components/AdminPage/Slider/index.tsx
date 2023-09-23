@@ -1,10 +1,10 @@
 'use client';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { AdminPanelButton, AdminTitle } from '@/components/atomic';
+import { AdminTitle } from '@/components/atomic';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useGlobalContext } from '@/store/globalContext';
 import { TAdminSlide } from '@/types';
-import Link from 'next/link';
+import { AddSlideButton } from './AddSlideBtn';
 import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 
 export const AdminHeroSlider = () => {
@@ -21,22 +21,10 @@ export const AdminHeroSlider = () => {
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">
         <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow">
-          {sliderData?.data.length === 5 ? (
-            <AdminPanelButton
-              variant="secondary"
-              title="Максимальна кількість слайдів 5"
-              disabled
-            >
-              + Додати слайд
-            </AdminPanelButton>
-          ) : (
-            <AdminPanelButton variant="secondary">
-              <Link href="/admin/slider/add-slider">+ Додати слайд</Link>
-            </AdminPanelButton>
-          )}
+          <AddSlideButton dataLength={sliderData?.data.length} />
         </li>
         {sliderData &&
-          sliderData?.data.map((item: TAdminSlide) => (
+          sliderData.data.map((item: TAdminSlide) => (
             <AdminSingleSlide key={item._id} slideData={item} lang={curLang} />
           ))}
       </ul>
