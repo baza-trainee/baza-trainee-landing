@@ -36,7 +36,7 @@ export const InputField = ({
         </span>
       )}
       <div>
-        <div className="absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300">
+        <div className="absolute right-[0rem] top-[0rem] w-full  disabled:text-neutral-300">
           <label
             htmlFor={id}
             className="absolute right-[0.8rem] flex h-full items-center"

@@ -66,14 +66,16 @@ const PartnerEditor = ({
   }, [isUpdError, updData, isNewError, newData]);
 
   if (isError) {
-    console.log('isError');
+    setAlertInfo({
+      state: 'error',
+      title: 'Помилка',
+      textInfo: partnerData?.message,
+    });
   }
 
   return (
     <Container>
-      <AdminTitle className={`mb-9 ml-[0.8rem] mt-4 tracking-wide`}>
-        {title}
-      </AdminTitle>
+      <AdminTitle className={`mb-[4.4rem] tracking-wide`}>{title}</AdminTitle>
 
       {isLoading ? (
         <div>Loading...</div>

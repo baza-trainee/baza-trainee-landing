@@ -40,6 +40,7 @@ export const PartnerForm = ({
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+
       if (file.size >= maxFileSize) {
         setAlertInfo({
           state: 'error',
@@ -77,10 +78,10 @@ export const PartnerForm = ({
 
   return (
     <>
-      <div className="flex max-w-[1102px] justify-between py-[2.1rem]">
+      <div className="flex max-w-[1102px] justify-between ">
         <div className="max-w-[1050px] flex-1">
           <form onSubmit={onSubmit}>
-            <div className="flex flex-wrap gap-[2.5rem] bg-base-dark py-5 pl-4">
+            <div className="flex flex-wrap gap-[2.5rem] bg-base-dark px-4 py-[2.8rem]">
               <TextInputField
                 title="Назва"
                 inputType="text"
@@ -111,31 +112,29 @@ export const PartnerForm = ({
                 placeholder="Додайте посилання"
               />
             </div>
-            <ul className="flex gap-4">
+            <ul className="flex gap-4 px-3">
               <li>
                 <AdminPanelButton
                   type="submit"
-                  className={`mt-10 ${
+                  disabled={!isFormValid || isFormEmpty}
+                  className={`${
                     editorType === EDITOR_TYPE.ADD
-                      ? 'ml-4 pl-[6.5rem] pr-[6.5rem]'
-                      : 'ml-[1.4rem]'
+                      ? 'pl-[6.5rem] pr-[6.5rem]'
+                      : ''
                   }`}
                 >
                   {editorType === EDITOR_TYPE.ADD ? 'Додати' : 'Зберегти зміни'}
                 </AdminPanelButton>
               </li>
               <li>
-                <CancelLinkButton
-                  href={'/admin/partners'}
-                  className={`static mt-10`}
-                >
+                <CancelLinkButton href={'/admin/partners'}>
                   Скасувати
                 </CancelLinkButton>
               </li>
             </ul>
           </form>
         </div>
-        <div className="mt-16 flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2">
+        <div className="mt-[5.4rem] flex h-[4rem] w-[4rem] items-center justify-center rounded bg-neutral-50 p-2">
           {isFormValid && !isFormEmpty ? (
             <CheckIcon className="text-success-dark" />
           ) : (

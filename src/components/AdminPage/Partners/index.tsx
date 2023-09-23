@@ -65,11 +65,9 @@ export const PartnersPage = () => {
         <p>Error occurred: {data?.message}</p>
       ) : (
         <div className="flex w-[1160px] flex-col">
-          <div className="flex w-[1143px] items-center justify-between">
-            <AdminTitle className="mb-[3.8rem] mt-[0.9rem] tracking-wide">
-              Лого партнерів
-            </AdminTitle>
-            <form className="-mt-6 flex w-[378px] items-center justify-between gap-4 rounded border border-neutral-300 bg-white p-[1.5rem]">
+          <div className="mb-[2.6rem] flex w-[1143px] items-start justify-between">
+            <AdminTitle className=" tracking-wide">Лого партнерів</AdminTitle>
+            <form className=" flex w-[378px] items-center justify-between gap-4 rounded border border-neutral-300 bg-white p-[1.5rem]">
               <input
                 type="text"
                 name="search"
@@ -84,14 +82,14 @@ export const PartnersPage = () => {
               </button>
             </form>
           </div>
-          <ul className="scrollbar flex h-[725px] min-w-[1138px] flex-wrap gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto align-top">
+          <ul className="scrollbar flex h-[725px] min-w-[1138px] flex-wrap content-start gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto align-top align-top">
             <li className="flex h-[100px] items-center justify-center bg-base-dark px-[8px]">
               <Link href={'partners/add'}>
                 <AdminPanelButton
                   type="submit"
                   variant="secondary"
                   icon={<PlusIcon />}
-                  className="pr-[2.8rem]"
+                  className="pr-[2.8rem] active:bg-neutral-800"
                 >
                   Додати партнера
                 </AdminPanelButton>

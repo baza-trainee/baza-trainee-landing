@@ -6,13 +6,14 @@ import { EditIcon } from '@/components/common/icons/EditIcon';
 import { useGlobalContext } from '@/store/globalContext';
 import { PartnerItemProps } from '@/types';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export const PartnerItem = ({
   partner: { _id: id, name: name, imageUrl: image },
   handleDelete,
 }: PartnerItemProps) => {
   const { setAlertInfo } = useGlobalContext();
+  const { push } = useRouter();
   const imageUrl = `https://baza-trainee.tech/api/v1/files/${image}`;
 
   const handleDeleteClick = () => {
@@ -34,12 +35,17 @@ export const PartnerItem = ({
         sizes="100vw"
         style={{ width: '100%', height: 'auto' }}
       />
-      <div className="absolute bottom-4 right-[1.3rem] flex items-center justify-end gap-[1rem]">
-        <Link href={`partners/edit/${id}`}>
-          <ActionButton icon={<EditIcon />} />
-        </Link>
-        <ActionButton icon={<DeleteIcon />} onClick={handleDeleteClick} />
-      </div>
+      <ul className="absolute bottom-4 right-[1.3rem] flex items-center justify-end gap-[1rem]">
+        <li>
+          <ActionButton
+            icon={<EditIcon />}
+            onClick={() => push(`partners/edit/${id}`)}
+          />
+        </li>
+        <li>
+          <ActionButton icon={<DeleteIcon />} onClick={handleDeleteClick} />
+        </li>
+      </ul>
     </li>
   );
 };
