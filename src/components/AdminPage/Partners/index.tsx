@@ -12,14 +12,16 @@ import { PlusIcon } from '../../common/icons/PlusIcon';
 import Container from './Container';
 import { PartnerItem } from './PartnerItem';
 
+const initialPagination = {
+  currentPage: 1,
+  totalPages: 1,
+  totalResults: null,
+};
+
 export const PartnersPage = () => {
   const [dispatch, data, isError, isLoading] = useAPI(partnersApi.getAll);
   const [deleteById, deleted] = useAPI(partnersApi.deleteById);
-  const [pagination, setPagination] = useState({
-    currentPage: 1,
-    totalPages: 1,
-    totalResults: null,
-  });
+  const [pagination, setPagination] = useState(initialPagination);
   const [searchData, setSearchData] = useState('');
 
   const partnerData = data
@@ -35,21 +37,26 @@ export const PartnersPage = () => {
       return;
     }
 
-    if (data) {
+    if (data?.results) {
       setPagination(data.pagination);
     }
-  }, [data]);
+  }, [data, pagination.totalResults]);
 
   useEffect(() => {
     dispatch(pagination.currentPage);
-  }, [deleted, pagination]);
+  }, [pagination, deleted]);
+
+  useEffect(() => {
+    if (data?.pagination.totalPages < data?.pagination.currentPage) {
+      dispatch();
+      setPagination(initialPagination);
+      return;
+    }
+  }, [data, deleted]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {
-      setPagination({
-        ...pagination,
-        currentPage: newPage,
-      });
+      setPagination((prev) => ({ ...prev, currentPage: newPage }));
     }
   };
 
