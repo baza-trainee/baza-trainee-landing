@@ -12,17 +12,15 @@ import { PlusIcon } from '../../common/icons/PlusIcon';
 import Container from './Container';
 import { PartnerItem } from './PartnerItem';
 
-const initialPagination = {
-  currentPage: 1,
-  totalPages: 1,
-  totalResults: null,
-};
-
 export const PartnersPage = () => {
   const [dispatch, data, isError, isLoading] = useAPI(partnersApi.getAll);
   const [deleteById, deleted] = useAPI(partnersApi.deleteById);
-  const [pagination, setPagination] = useState(initialPagination);
+  const [page, setPage] = useState(1);
   const [searchData, setSearchData] = useState('');
+  const { totalPages, totalResults } = data?.pagination || {
+    totalPages: 1,
+    totalResults: null,
+  };
 
   const partnerData = data
     ? searchData
@@ -32,37 +30,32 @@ export const PartnersPage = () => {
       : data.results
     : [];
 
-  useEffect(() => {
-    if (pagination.totalResults !== null) {
-      return;
-    }
-
-    if (data?.results) {
-      setPagination(data.pagination);
-    }
-  }, [data, pagination.totalResults]);
-
-  useEffect(() => {
-    dispatch(pagination.currentPage);
-  }, [pagination, deleted]);
-
-  useEffect(() => {
-    if (data?.pagination.totalPages < data?.pagination.currentPage) {
-      dispatch();
-      setPagination(initialPagination);
-      return;
-    }
-  }, [data, deleted]);
-
   const handlePageChange = (newPage: number) => {
-    if (newPage >= 1 && newPage <= pagination.totalPages) {
-      setPagination((prev) => ({ ...prev, currentPage: newPage }));
+    if (newPage >= 1 && newPage <= data?.pagination.totalPages) {
+      setPage(newPage);
     }
   };
 
   const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(event.target.value);
   };
+
+  const handleDelete = (id: string) => {
+    deleteById(id);
+
+    if ((totalResults - 1) % 23 === 0) {
+      setPage((prev) => prev - 1);
+    }
+  };
+
+  useEffect(() => {
+    if (page > totalPages) {
+      dispatch(page - 1);
+      return;
+    }
+
+    dispatch(page);
+  }, [page, deleted]);
 
   return (
     <Container>
@@ -107,14 +100,14 @@ export const PartnersPage = () => {
                 <PartnerItem
                   key={partner._id}
                   partner={partner}
-                  handleDelete={deleteById}
+                  handleDelete={handleDelete}
                 />
               ))}
           </ul>
-          {pagination.totalPages >= 1 && (
+          {data && data.pagination.totalPages >= 1 && (
             <PaginationBar
-              currentPage={pagination.currentPage}
-              totalPages={pagination.totalPages}
+              currentPage={page}
+              totalPages={totalPages}
               onPageChange={handlePageChange}
               className="mt-[8.5rem]"
             />
