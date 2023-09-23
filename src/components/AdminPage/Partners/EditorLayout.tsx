@@ -34,7 +34,7 @@ const PartnerEditor = ({
       return;
     }
     getById(partnerId);
-  }, []);
+  }, [editorType, getById, partnerData, partnerId]);
 
   const handleSubmit = (data: any) => {
     if (editorType === EDITOR_TYPE.ADD) {
@@ -63,7 +63,7 @@ const PartnerEditor = ({
     if (!isNewError && newData) {
       setSuccess('Ваші дані успішно збережено.');
     }
-  }, [isUpdError, updData, isNewError, newData]);
+  }, [isUpdError, updData, isNewError, newData, push, setAlertInfo]);
 
   if (isError) {
     setAlertInfo({
