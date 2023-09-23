@@ -30,11 +30,11 @@ export const PartnerForm = ({
   }, [partnerData]);
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleFieldChange('name', event.target.value);
+    handleFieldChange('name', event.target.value.trim());
   };
 
   const handleWebsiteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleFieldChange('homeUrl', event.target.value);
+    handleFieldChange('homeUrl', event.target.value.trim());
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
