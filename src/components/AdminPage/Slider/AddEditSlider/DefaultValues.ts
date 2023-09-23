@@ -2,18 +2,18 @@ import { IHeroSlider } from '@/types';
 // import { downloadImageAsFile } from '@/utils/imageHandler';
 import { TFormInputs } from '../types';
 
-export const DefaultValuesState = async (slide: IHeroSlider | undefined) => {
-  const emptyFields: TFormInputs = {
-    titleUa: '',
-    titleEn: '',
-    titlePl: '',
-    subtitleUa: '',
-    subtitleEn: '',
-    subtitlePl: '',
-    imageUrl: '',
-    file: [],
-  };
+export const emptyFields: TFormInputs = {
+  titleUa: '',
+  titleEn: '',
+  titlePl: '',
+  subtitleUa: '',
+  subtitleEn: '',
+  subtitlePl: '',
+  imageUrl: '',
+  file: [],
+};
 
+export const DefaultValuesState = async (slide: IHeroSlider | undefined) => {
   if (!slide) return emptyFields;
 
   const fieldsValues = {

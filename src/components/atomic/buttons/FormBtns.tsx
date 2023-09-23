@@ -1,14 +1,18 @@
-import { useRouter } from 'next/navigation';
-
 import { AdminPanelButton } from '@/components/atomic';
 
 type TBtnsProps = {
   isEditMode?: boolean;
   disabled?: boolean;
+  reset?: any;
+  resetState?: any;
 };
 
-export const FormBtns = ({ isEditMode, disabled }: TBtnsProps) => {
-  const router = useRouter();
+export const FormBtns = ({
+  isEditMode,
+  disabled,
+  reset,
+  resetState,
+}: TBtnsProps) => {
   const okBtnName = isEditMode ? 'Зберегти зміни' : 'Додати';
 
   return (
@@ -17,7 +21,7 @@ export const FormBtns = ({ isEditMode, disabled }: TBtnsProps) => {
         {okBtnName}
       </AdminPanelButton>
 
-      <AdminPanelButton variant="secondary" onClick={() => router.back()}>
+      <AdminPanelButton variant="secondary" onClick={() => reset(resetState)}>
         Скасувати
       </AdminPanelButton>
     </div>
