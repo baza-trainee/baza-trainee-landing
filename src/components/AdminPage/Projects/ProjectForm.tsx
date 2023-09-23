@@ -14,13 +14,13 @@ import {
   TextInputField,
 } from '@/components/atomic';
 
+import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 import { TProject, TProjectRequest } from '@/types';
 import { convertDate } from '@/utils/formatDate';
 import { useEffect } from 'react';
 import { ProjectPreview } from './ProjectPreview';
 import { projectValidateOptions } from './projectValidateOptions';
 import { TFormInput } from './types';
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 

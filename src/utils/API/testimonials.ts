@@ -1,25 +1,32 @@
-import { ITestimonial, updateByIdRequest } from '@/types/typesAPI';
+import { ITestimonial, ITestimonialRequest, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const testimonialsApi = {
-  getAll() {
-    return bazaAPI.get('/testimonials');
+  async getAll() {
+    return await bazaAPI.get('/testimonials').then((res) => res.data);
   },
 
-  createNew(testimonial: ITestimonial) {
-    return bazaAPI.post('/testimonials', testimonial);
+  async createNew(testimonial: ITestimonialRequest) {
+    return await bazaAPI
+      .post<ITestimonial>('/testimonials', testimonial, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
   },
 
-  getById(id: string) {
-    return bazaAPI.get(`/testimonials/${id}`);
+  async getById(id: string) {
+    return await bazaAPI.get(`/testimonials/${id}`).then((res) => res.data);
   },
 
-  deleteById(id: string) {
-    return bazaAPI.delete(`/testimonials/${id}`);
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`/testimonials/${id}`);
   },
 
-  updateById([id, payload]: updateByIdRequest) {
-    return bazaAPI.patch(`/testimonials/${id}`, payload);
+  async updateById([id, payload]: updateByIdRequest) {
+    return await bazaAPI
+      .patch(`/testimonials/${id}`, payload, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((res) => res.data);
   },
 };
 

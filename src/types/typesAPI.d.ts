@@ -117,8 +117,25 @@ export interface IMember extends CommonResponseBase {
 export interface ITestimonial extends CommonResponseBase {
   name: TTitleLanguagesTypes;
   review: TTitleLanguagesTypes;
+  role:string;
   date: number;
   imageUrl: string;
+}
+
+export interface ITestimonialRequest {
+  name: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  review: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  role: string;
+  date: number;
+  file: File;
 }
 
 export interface IUser extends CommonResponseBase {
