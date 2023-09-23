@@ -3,14 +3,17 @@ import Link from 'next/link';
 import { FC } from 'react';
 
 type TSlideBtn = {
-  dataLength: number;
+  dataInfo: {
+    totalSlides: number;
+    maxSlides: number;
+  };
 };
 
-export const AddSlideButton: FC<TSlideBtn> = ({ dataLength }) => {
-  const maxSlides = 5;
+export const AddSlideButton: FC<TSlideBtn> = ({ dataInfo }) => {
+  const { totalSlides, maxSlides } = dataInfo;
   const tooltipText = `Максимальна кількість слайдів ${maxSlides}`;
 
-  if (dataLength >= maxSlides) {
+  if (totalSlides >= maxSlides) {
     return (
       <div className="flex flex-col items-center gap-2">
         <AdminPanelButton variant="secondary" disabled>

@@ -3,12 +3,12 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { AdminTitle } from '@/components/atomic';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useGlobalContext } from '@/store/globalContext';
-import { TAdminSlide } from '@/types';
+import { IHeroSlider } from '@/types';
 import { AddSlideButton } from './AddSlideBtn';
 import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 
 export const AdminHeroSlider = () => {
-  const { data: sliderData } = useHeroSliderSWR();
+  const { data } = useHeroSliderSWR();
   const curLang = useGlobalContext().landingLanguage;
 
   return (
@@ -21,10 +21,10 @@ export const AdminHeroSlider = () => {
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">
         <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow">
-          <AddSlideButton dataLength={sliderData?.data.length} />
+          <AddSlideButton dataInfo={data?.data.info} />
         </li>
-        {sliderData &&
-          sliderData.data.map((item: TAdminSlide) => (
+        {data?.data &&
+          data.data.results.map((item: IHeroSlider) => (
             <AdminSingleSlide key={item._id} slideData={item} lang={curLang} />
           ))}
       </ul>

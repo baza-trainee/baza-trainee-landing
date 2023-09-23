@@ -22,7 +22,9 @@ export const SliderForm = ({
   const router = useRouter();
   const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
   const [curLang, setCurLang] = useState<string>('ua');
-  const slideData = data?.data.find((slide: IHeroSlider) => slide._id === id);
+  const slideData = data?.data.results.find(
+    (slide: IHeroSlider) => slide._id === id
+  );
 
   const {
     register,

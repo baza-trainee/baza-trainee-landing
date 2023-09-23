@@ -18,7 +18,7 @@ export const useHeroSliderSWR = () => {
     });
   };
 
-  const { data, error, isLoading, mutate } = useSWR<AxiosResponse, AxiosError>(
+  const { data, error, isLoading, mutate } = useSWR<any, AxiosError>(
     slidersEndPoint,
     heroSliderApi.getAll,
     {
@@ -33,7 +33,7 @@ export const useHeroSliderSWR = () => {
   ) => {
     try {
       mutate(action, {
-        optimisticData: { ...data!, data: updSliders },
+        optimisticData: { ...data!, results: updSliders },
         revalidate: false,
         populateCache: false,
       });
@@ -42,30 +42,65 @@ export const useHeroSliderSWR = () => {
     }
   };
 
+  const handlerCreateSlide = (slider: IHeroSlider) => {
+    const options = {
+      popupalteCache: (createdSlide: IHeroSlider) => ({
+        ...data!,
+        results: [createdSlide, ...(data?.results || [])],
+      }),
+      revalidate: false,
+    };
+
+    mutate(() => heroSliderApi.createNew(slider), options).catch(
+      handleRequestError
+    );
+  };
+
+  const handlerUpdateSlide = (id: string, slider: IHeroSlider) => {
+    mutate(() => heroSliderApi.updateById([id, slider])).catch(
+      handleRequestError
+    );
+  };
+
+  const handlerDeleteSlide = (id: string) => {
+    const updSliders = data?.results.filter(
+      (slide: IHeroSlider) => slide._id !== id
+    );
+    const options = {
+      optimisticData: { ...data!, results: updSliders! },
+      populateCache: false,
+      revalidate: false,
+    };
+
+    mutate(() => heroSliderApi.deleteById(id), options).catch(
+      handleRequestError
+    );
+  };
+
   const getByIdSlider = (id: string) => {
-    const slideById = data?.data.filter(
+    const slideById = data?.data.results.filter(
       (slide: IHeroSlider) => slide._id == id
     );
     return slideById;
   };
 
   const delByIdSlider = (id: string) => {
-    const updSliders = data?.data.filter(
+    const updSliders = data?.data.results.filter(
       (slide: IHeroSlider) => slide._id !== id
     );
     updateAndMutate(updSliders!, () => heroSliderApi.deleteById(id));
   };
 
   const addNewSlider = async (slider: IHeroSlider) => {
-    const updSliders = [...(data?.data || []), slider];
+    const updSliders = [...(data?.data.results || []), slider];
     updateAndMutate(updSliders!, () => heroSliderApi.createNew(slider));
   };
 
   const updateSlider = async (id: string, slider: IHeroSlider) => {
-    const updSliders = data?.data.map((slide: IHeroSlider) =>
+    const updSliders = data?.data.results.map((slide: IHeroSlider) =>
       slide._id === id ? slider : slide
     );
-    updateAndMutate(updSliders, () => heroSliderApi.updateById([id, slider]));
+    updateAndMutate(updSliders!, () => heroSliderApi.updateById([id, slider]));
   };
 
   return {
