@@ -18,7 +18,7 @@ export const useHeroSliderSWR = () => {
     });
   };
 
-  const { data, error, isLoading, mutate } = useSWR<AxiosResponse, AxiosError>(
+  const { data, error, isLoading, mutate } = useSWR<any, AxiosError>(
     slidersEndPoint,
     heroSliderApi.getAll,
     {
@@ -33,7 +33,7 @@ export const useHeroSliderSWR = () => {
   ) => {
     try {
       mutate(action, {
-        optimisticData: { ...data!, data: updSliders },
+        optimisticData: { ...data!, results: updSliders },
         revalidate: false,
         populateCache: false,
       });
@@ -43,29 +43,29 @@ export const useHeroSliderSWR = () => {
   };
 
   const getByIdSlider = (id: string) => {
-    const slideById = data?.data.filter(
+    const slideById = data?.data.results.filter(
       (slide: IHeroSlider) => slide._id == id
     );
     return slideById;
   };
 
   const delByIdSlider = (id: string) => {
-    const updSliders = data?.data.filter(
+    const updSliders = data?.data.results.filter(
       (slide: IHeroSlider) => slide._id !== id
     );
     updateAndMutate(updSliders!, () => heroSliderApi.deleteById(id));
   };
 
   const addNewSlider = async (slider: IHeroSlider) => {
-    const updSliders = [...(data?.data || []), slider];
+    const updSliders = [...(data?.data.results || []), slider];
     updateAndMutate(updSliders!, () => heroSliderApi.createNew(slider));
   };
 
   const updateSlider = async (id: string, slider: IHeroSlider) => {
-    const updSliders = data?.data.map((slide: IHeroSlider) =>
+    const updSliders = data?.data.results.map((slide: IHeroSlider) =>
       slide._id === id ? slider : slide
     );
-    updateAndMutate(updSliders, () => heroSliderApi.updateById([id, slider]));
+    updateAndMutate(updSliders!, () => heroSliderApi.updateById([id, slider]));
   };
 
   return {

@@ -59,6 +59,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TFormInput>(valuesIfItEditedRole);
 
@@ -78,6 +79,10 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     }
 
     router.replace('.');
+  };
+
+  const handleResetRoleForm = () => {
+    reset({ nameUk: '', nameEn: '', namePl: '' });
   };
 
   return (
@@ -125,7 +130,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!roleId} />
+      <FormBtns isEditMode={!!roleId} handleFunc={handleResetRoleForm} />
     </form>
   );
 };

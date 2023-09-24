@@ -70,6 +70,18 @@ export interface IHeroSlider extends CommonResponseBase {
 //   imageUrl: String;
 //   name: String;
 // }
+export type IHeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
+
+export interface IPartner extends CommonResponseBase {
+  homeUrl?: string;
+  imageUrl: string;
+}
 /*
 export interface IProject extends CommonResponseBase {
   title: TTitleLanguagesTypes;
@@ -140,7 +152,8 @@ export type responseDataType =
   | IUser
   | IAchievement
   | IHeroSlider
-  // | IPartner
+  | IHeroSliderData
+  | IPartner
   | IProject
   | IRole
   | IStack
