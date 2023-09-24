@@ -1,6 +1,6 @@
 'use client';
 import { useGlobalContext } from '@/store/globalContext';
-import { IHeroSlider } from '@/types';
+import { IHeroSlider, THeroSliderData } from '@/types';
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -18,14 +18,13 @@ export const useHeroSliderSWR = () => {
     });
   };
 
-  const { data, error, isLoading, mutate } = useSWR<any, AxiosError>(
-    slidersEndPoint,
-    heroSliderApi.getAll,
-    {
-      keepPreviousData: true,
-      onError: handleRequestError,
-    }
-  );
+  const { data, error, isLoading, mutate } = useSWR<
+    THeroSliderData,
+    AxiosError
+  >(slidersEndPoint, heroSliderApi.getAll, {
+    keepPreviousData: true,
+    onError: handleRequestError,
+  });
 
   const updateAndMutate = (
     updSliders: IHeroSlider[],
@@ -43,26 +42,26 @@ export const useHeroSliderSWR = () => {
   };
 
   const getByIdSlider = (id: string) => {
-    const slideById = data?.data.results.filter(
+    const slideById = data?.results.filter(
       (slide: IHeroSlider) => slide._id == id
     );
     return slideById;
   };
 
   const delByIdSlider = (id: string) => {
-    const updSliders = data?.data.results.filter(
+    const updSliders = data?.results.filter(
       (slide: IHeroSlider) => slide._id !== id
     );
     updateAndMutate(updSliders!, () => heroSliderApi.deleteById(id));
   };
 
   const addNewSlider = async (slider: IHeroSlider) => {
-    const updSliders = [...(data?.data.results || []), slider];
+    const updSliders = [...(data?.results || []), slider];
     updateAndMutate(updSliders!, () => heroSliderApi.createNew(slider));
   };
 
   const updateSlider = async (id: string, slider: IHeroSlider) => {
-    const updSliders = data?.data.results.map((slide: IHeroSlider) =>
+    const updSliders = data?.results.map((slide: IHeroSlider) =>
       slide._id === id ? slider : slide
     );
     updateAndMutate(updSliders!, () => heroSliderApi.updateById([id, slider]));
