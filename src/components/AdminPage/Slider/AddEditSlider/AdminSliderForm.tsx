@@ -78,6 +78,10 @@ export const SliderForm = ({
     }
   }, [currentValues.file, setValue]);
 
+  const handleResetForm = () => {
+    reset(emptyFields);
+  };
+
   return (
     <div className="h-full">
       <form
@@ -179,11 +183,7 @@ export const SliderForm = ({
           />
         </div>
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
-          <FormBtns
-            isEditMode={isEdit}
-            reset={reset}
-            resetState={emptyFields}
-          />
+          <FormBtns isEditMode={isEdit} handleFunc={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
             <LanguageSelector />
           </div>

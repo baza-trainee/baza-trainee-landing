@@ -79,6 +79,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TFormInput>(valuesIfItEditedMember);
 
@@ -97,10 +98,9 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
     } else {
       const res = handlerCreateMember(member);
       projectId &&
-      res &&
-      res.then((res) => {
-        
-        console.log('!!!!!!!!', res);
+        res &&
+        res.then((res) => {
+          console.log('!!!!!!!!', res);
           handlerAddMember({
             teamMember: res,
             teamMemberRole: {
@@ -108,14 +108,23 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
               name: {
                 en: '',
                 pl: '',
-                ua: ''
-              }
-            }
+                ua: '',
+              },
+            },
           });
         });
     }
 
     router.back();
+  };
+
+  const handleResetMemberForm = () => {
+    reset({
+      nameUk: '',
+      nameEn: '',
+      namePl: '',
+      linkedin: '',
+    });
   };
 
   return (
@@ -176,7 +185,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!memberId} />
+      <FormBtns isEditMode={!!memberId} handleFunc={handleResetMemberForm} />
     </form>
   );
 };
