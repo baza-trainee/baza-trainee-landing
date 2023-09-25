@@ -50,7 +50,7 @@ export const PartnerForm = ({
           setAlertInfo({
             state: 'error',
             title: 'Перевищення розміру файлу',
-            textInfo: `Ширина і висота зображення не повинні перевищувати розміри 428x200 px`,
+            textInfo: `Ширина і висота зображення повинні бути 214x100 px`,
           });
           return;
         }

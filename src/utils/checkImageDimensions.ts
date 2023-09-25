@@ -1,20 +1,20 @@
 interface ImageDimensions {
-  maxWidth: number;
-  maxHeight: number;
+  width: number;
+  height: number;
 }
 
 export const checkImageDimension = (
   file: File,
-  { maxWidth, maxHeight }: ImageDimensions,
+  { width, height }: ImageDimensions,
   checkIsAllowed: Function
 ) => {
   const img = new Image();
 
   img.src = URL.createObjectURL(file);
   img.onload = () => {
-    const width = img.naturalWidth;
-    const height = img.naturalHeight;
-    if (width > maxWidth || height > maxHeight) {
+    const imgWidth = img.naturalWidth;
+    const imgHeight = img.naturalHeight;
+    if (imgWidth !== width || imgHeight !== height) {
       checkIsAllowed(false);
       return;
     }
