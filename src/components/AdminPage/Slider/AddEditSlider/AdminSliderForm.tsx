@@ -10,7 +10,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
-import { DefaultValuesState } from './DefaultValues';
+import { DefaultValuesState, emptyFields } from './DefaultValues';
 
 export const SliderForm = ({
   id,
@@ -22,7 +22,9 @@ export const SliderForm = ({
   const router = useRouter();
   const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
   const [curLang, setCurLang] = useState<string>('ua');
-  const slideData = data?.data.find((slide: IHeroSlider) => slide._id === id);
+  const slideData = data?.data.results.find(
+    (slide: IHeroSlider) => slide._id === id
+  );
 
   const {
     register,
@@ -30,6 +32,7 @@ export const SliderForm = ({
     watch,
     setValue,
     control,
+    reset,
     formState: { errors },
   } = useForm<TFormInputs>({
     mode: 'onSubmit',
@@ -74,6 +77,10 @@ export const SliderForm = ({
       setValue('imageUrl', currentValues.file[0].name);
     }
   }, [currentValues.file, setValue]);
+
+  const handleResetForm = () => {
+    reset(emptyFields);
+  };
 
   return (
     <div className="h-full">
@@ -176,7 +183,7 @@ export const SliderForm = ({
           />
         </div>
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
-          <FormBtns isEditMode={isEdit} />
+          <FormBtns isEditMode={isEdit} handleFunc={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
             <LanguageSelector />
           </div>

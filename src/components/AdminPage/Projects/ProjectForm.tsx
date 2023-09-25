@@ -123,6 +123,7 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
     setFocus,
     setValue,
     control,
+    reset,
     formState: { errors },
   } = useForm<TFormInput>({
     mode: 'onSubmit',
@@ -201,6 +202,10 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
     }
 
     router.replace('.');
+  };
+
+  const handleResetProjectForm = () => {
+    reset(defaultValues);
   };
 
   return (
@@ -347,7 +352,7 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
         </div>
       </div>
 
-      <FormBtns isEditMode={!!projectId} />
+      <FormBtns isEditMode={!!projectId} handleFunc={handleResetProjectForm} />
     </form>
   );
 };
