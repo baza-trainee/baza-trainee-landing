@@ -82,7 +82,7 @@ export const PartnersPage = () => {
               </button>
             </form>
           </div>
-          <ul className="scrollbar flex h-[725px] min-w-[1138px] flex-wrap content-start gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto align-top align-top">
+          <ul className="scrollbar flex h-[725px] min-w-[1138px] flex-wrap content-start gap-[1.1rem] gap-y-[2.35rem] overflow-y-auto  align-top">
             <li className="flex h-[100px] items-center justify-center bg-base-dark px-[8px]">
               <Link href={'partners/add'}>
                 <AdminPanelButton

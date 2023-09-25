@@ -6,6 +6,7 @@ import { SETTINGS } from '@/config/settings';
 import { usePartnerForm } from '@/hooks/usePartnerForm';
 import { useGlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
+import { checkImageDimension } from '@/utils/checkImageDimensions';
 import { formatBytes } from '@/utils/formatBytes';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { EDITOR_TYPE } from './EditorLayout';
@@ -20,6 +21,7 @@ export const PartnerForm = ({
   const [file, setFile] = useState<Blob | null>(null);
   const { setAlertInfo } = useGlobalContext();
   const maxFileSize = SETTINGS.fileSizeLimits.partnerLogo;
+  const maxFileDimensions = SETTINGS.fileSizeLimits.partnerLogoDimensions;
 
   useEffect(() => {
     if (partnerData) {
@@ -40,6 +42,21 @@ export const PartnerForm = ({
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+
+      const checkImage = (isAllowed: boolean) => {
+        if (!isAllowed) {
+          handleFieldChange('file', '');
+          setFile(null);
+          setAlertInfo({
+            state: 'error',
+            title: 'Перевищення розміру файлу',
+            textInfo: `Ширина і висота зображення не повинні перевищувати розміри 428x200 px`,
+          });
+          return;
+        }
+      };
+
+      checkImageDimension(file, maxFileDimensions, checkImage);
 
       if (file.size >= maxFileSize) {
         setAlertInfo({
@@ -94,7 +111,7 @@ export const PartnerForm = ({
                 title="Логотип"
                 inputType="file"
                 errorText={errors.file}
-                accept="image/*"
+                accept="image/jpeg, image/png, image/webp, image/jpg"
                 value={
                   formData.file instanceof File
                     ? formData.file.name
