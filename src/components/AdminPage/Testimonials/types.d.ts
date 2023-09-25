@@ -1,11 +1,11 @@
 export type TTestimonialFormInput = {
-    nameUa: string;
-    nameEn: string;
-    namePl: string;
-    specialization: string;
-    textUa: string;
-    textEn: string;
-    textPl: string;
-    authorImg: File[];
-    creationDate: string;
-  };
+  nameUa: string;
+  nameEn: string;
+  namePl: string;
+  reviewUa: string;
+  reviewEn: string;
+  reviewPl: string;
+  role: string;
+  authorImg: File[];
+  date: string;
+};
