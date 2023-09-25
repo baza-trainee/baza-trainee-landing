@@ -1,6 +1,10 @@
 'use client';
 
-import { AdminPanelButton , TextInputField, AdminTitle } from '@/components/atomic';
+import {
+  AdminPanelButton,
+  AdminTitle,
+  TextInputField,
+} from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
 import achievementsApi from '@/utils/API/achievements';
 import { useAPI } from '@/utils/hooks/useAPI';

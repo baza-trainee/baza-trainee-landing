@@ -1,22 +1,31 @@
-import { IHeroSlider, updateByIdRequest } from '@/types/typesAPI';
+import {
+  IHeroSlider,
+  IHeroSliderData,
+  updateByIdRequest,
+} from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
-const heroSliderApi = {
-  getAll() {
-    return bazaAPI.get('/heroslider');
+export const slidersEndPoint = '/heroslider';
+
+export const heroSliderApi = {
+  async getAll(uri: string) {
+    const response = await bazaAPI.get<IHeroSliderData>(uri);
+    return response;
   },
-  createNew(slider: IHeroSlider) {
-    return bazaAPI.post('/heroslider', slider);
+  async createNew(slider: IHeroSlider) {
+    return await bazaAPI.post(slidersEndPoint, slider, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
-  getById(id: string) {
-    return bazaAPI.get(`/heroslider/${id}`);
+  async getById(id: string) {
+    return await bazaAPI.get(`${slidersEndPoint}/${id}`);
   },
-  deleteById(id: string) {
-    return bazaAPI.delete(`/heroslider/${id}`);
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`${slidersEndPoint}/${id}`);
   },
-  updateById([id, payload]: updateByIdRequest) {
-    return bazaAPI.patch(`/heroslider/${id}`, payload);
+  async updateById([id, payload]: updateByIdRequest) {
+    return await bazaAPI.patch(`${slidersEndPoint}/${id}`, payload, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
 };
-
-export default heroSliderApi;

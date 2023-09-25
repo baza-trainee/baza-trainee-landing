@@ -36,6 +36,7 @@ const MemoizedModal = memo(ModalComponent);
 const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
+  // const { data } = useHeroSliderSWR();
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -62,12 +63,11 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           ref={slickRef}
           className="h-[50.4rem]"
         >
-          {slides.map((slide: TSlide, index) => (
+          {slides.map((slide: TSlide, index: any) => (
             <SingleSlide
               key={`key_${slide.title[lang]}`}
               slideData={slide}
               index={index}
-              slideLang={lang}
             />
           ))}
         </Slider>
