@@ -111,7 +111,7 @@ export const PartnerForm = ({
                 title="Логотип"
                 inputType="file"
                 errorText={errors.file}
-                accept="image/jpeg, image/png, image/webp, image/jpg"
+                accept="image/jpeg, image/png, image/webp, image/jpg, image/svg"
                 value={
                   formData.file instanceof File
                     ? formData.file.name
