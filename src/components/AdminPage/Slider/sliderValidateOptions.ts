@@ -16,6 +16,10 @@ export const sliderValidateOptions = {
       value: 5,
       message: 'мінімальна довжина поля 5 символів',
     },
+    maxLength: {
+      value: 320,
+      message: 'максимальна довжина поля 320 символів',
+    },
   },
   img: {
     validate: (value: File[]) => {

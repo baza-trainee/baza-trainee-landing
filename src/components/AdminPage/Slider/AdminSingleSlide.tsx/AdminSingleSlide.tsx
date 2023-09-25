@@ -1,4 +1,5 @@
 import { DeleteIcon, PenIcon } from '@/components/common/icons';
+import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SliderDeleteButton } from './AdminSliderBtn';
@@ -10,9 +11,10 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
   return (
     <li className="relative  h-[50.4rem] ">
       <Image
-        src={`https://baza-trainee.tech/api/v1/files/${imageUrl}`}
+        src={createImgUrl(imageUrl)}
         fill
         alt={title[lang]}
+        priority
         className="object-cover"
         quality={90}
       />

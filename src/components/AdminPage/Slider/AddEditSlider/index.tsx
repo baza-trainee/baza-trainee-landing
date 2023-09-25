@@ -1,6 +1,7 @@
 'use client';
 import { AdminTitle } from '@/components/atomic';
-import { useParams } from 'next/navigation';
+import { CloseIcon } from '@/components/common/icons';
+import { useParams, useRouter } from 'next/navigation';
 import { FC } from 'react';
 import { SliderForm } from './AdminSliderForm';
 
@@ -15,11 +16,17 @@ export const AddEditAdminSlider: FC<IAddEditSlideProps> = ({
 }) => {
   const { id } = useParams();
   const checkedId = typeof id === 'string' ? id : undefined;
+  const router = useRouter();
 
   return (
     <div className="max-h-screen w-full overflow-y-auto bg-base-light px-10">
       <header className="slider-header mb-4 flex h-[10.4rem] w-full basis-1 items-center justify-between">
-        <AdminTitle>{title}</AdminTitle>
+        <div className="flex w-full items-center justify-between">
+          <AdminTitle>{title}</AdminTitle>
+          <button type="button" onClick={() => router.back()}>
+            {<CloseIcon />}
+          </button>
+        </div>
       </header>
       <div>
         <SliderForm isEdit={isEdit} id={checkedId} />
