@@ -28,7 +28,7 @@ const useProjectsSWR = () => {
     AxiosError
   >(swrKey, projectsApi.getAll, {
     keepPreviousData: true,
-    onError: errorHandler,
+    onError: handleRequestError,
   });
 
   const handlerSearchProject = (search: string) => {
