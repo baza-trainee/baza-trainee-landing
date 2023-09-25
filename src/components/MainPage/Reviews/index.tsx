@@ -38,7 +38,7 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
             lazyLoad="progressive"
           >
             {slides.map((review: TSlideReview, index) => (
-              <SingleSlide slideData={review} key={index + 'key'} lang={lang} />
+              <SingleSlide slideData={review} key={index + 'key'} lang={lang} src={review.imageUrl}/>
             ))}
           </Slider>
         </div>

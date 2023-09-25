@@ -7,7 +7,7 @@ import { AdminPanelButton, AdminTitle } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { useGlobalContext } from '@/store/globalContext';
-import { ITestimonial } from '@/types';
+import { TSlideReview } from '@/types';
 import { SingleSlideTestimonial } from './SingleSlideTestimonial';
 
 export default function MainTestimonials() {
@@ -34,7 +34,7 @@ export default function MainTestimonials() {
       <ul className="flex flex-col gap-[32px] mt-[32px]">
         {Array.isArray(testimonialsData) &&
           testimonialsData.length &&
-          testimonialsData?.map((item: ITestimonial) => (
+          testimonialsData?.map((item: TSlideReview) => (
             <li key={item._id}>
               <SingleSlideTestimonial slideData={item} lang={curLang} />
             </li>
