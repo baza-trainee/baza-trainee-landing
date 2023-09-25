@@ -8,7 +8,7 @@ type PreviewCardProps = {
   currentValues: TTestimonialFormInput;
 };
 
-const TestimonialPreviewCard = ({ currentValues}: PreviewCardProps) => {
+const TestimonialPreviewCard = ({ currentValues }: PreviewCardProps) => {
   const { authorImg } = currentValues;
 
   const getImageUrl = () => {
@@ -27,10 +27,10 @@ const TestimonialPreviewCard = ({ currentValues}: PreviewCardProps) => {
   const authorImageUrl = getImageUrl();
 
   return (
-    <div className="relative flex flex-wrap gap-[2.4rem] bg-base-dark p-12 shadow-md ">
-      {currentValues.nameUa && authorImageUrl ? (
+    <div className="relative sm:flex flex-wrap gap-[2.4rem] bg-base-dark p-12 shadow-md ">
+      {currentValues.nameUa && authorImg[0].name !== 'undefined' ? (
         <Image
-          src={authorImageUrl}
+          src={authorImageUrl || ''}
           alt={currentValues.nameUa}
           width={100}
           height={100}

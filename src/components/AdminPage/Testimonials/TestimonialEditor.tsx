@@ -36,15 +36,24 @@ export const TestimonialEditor = ({
   testimonialId?: string;
 }) => {
   const router = useRouter();
-  const [itemData, setItemData] = useState<ITestimonial>({} as ITestimonial);
+  const [nameUa, setNameUa] = useState<string>('');
+  const [nameEn, setNameEn] = useState<string>('');
+  const [namePl, setNamePl] = useState<string>('');
+  const [textUa, setTextUa] = useState<string>('');
+  const [textEn, setTextEn] = useState<string>('');
+  const [textPl, setTextPl] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
+  const [itemData, setItemData] = useState<ITestimonial>({} as ITestimonial);
+
   const { createNew, getById, updateById } = testimonialsApi;
+
   const {
     register,
     handleSubmit,
     watch,
     setFocus,
     setValue,
+    reset,
     control,
     formState: { errors },
   } = useForm<TTestimonialFormInput>({
@@ -57,6 +66,12 @@ export const TestimonialEditor = ({
       const getTestimonial = async () => {
         const data = await getById(testimonialId!);
         setItemData(data);
+        setNameUa(data.name.ua);
+        setNamePl(data.name.pl);
+        setNameEn(data.name.en);
+        setTextUa(data.review.ua);
+        setTextEn(data.review.en);
+        setTextPl(data.review.pl);
       };
       getTestimonial();
     }
@@ -83,12 +98,29 @@ export const TestimonialEditor = ({
     setFocus('nameUa');
   }, [itemData, setValue, setFocus]);
 
+  const translatorHandleEn = (text: string, _name: string) => {
+    setNameEn(text);
+  };
+  const translatorHandlePl = (text: string, _name: string) => {
+    setNamePl(text);
+  };
+  const translatorHandleTextEn = (text: string, _name: string) => {
+    setTextEn(text);
+  };
+  const translatorHandleTextPl = (text: string, _name: string) => {
+    setTextPl(text);
+  };
+
   const downloadImage = async (fileName: string) => {
     const imageFile = await downloadImageAsFile(fileName);
     return imageFile;
   };
 
   const currentValues = watch();
+
+  const handleResetForm = () => {
+    reset(defaultValues);
+  };
 
   const onSubmit: SubmitHandler<TTestimonialFormInput> = async (
     values: TTestimonialFormInput
@@ -138,9 +170,14 @@ export const TestimonialEditor = ({
                 <TextInputField
                   {...field}
                   title="Ім’я"
-                  name="testimonialsDataList name1"
+                  name="testimonialsDataList nameUa"
                   inputType="uk"
                   errorText={errors.nameUa?.message}
+                  value={nameUa}
+                  onChange={(e) => {
+                    setNameUa(e.target.value),
+                      setValue('nameUa', e.target.value);
+                  }}
                   placeholder="Введіть ім’я"
                 />
               )}
@@ -154,7 +191,14 @@ export const TestimonialEditor = ({
                   {...field}
                   inputType="en"
                   errorText={errors.nameEn?.message}
-                  name="testimonialsDataList name2"
+                  value={nameEn}
+                  setTranslatedValue={translatorHandleEn}
+                  onChange={(e) => {
+                    setNameEn(e.target.value),
+                      setValue('nameEn', e.target.value);
+                  }}
+                  translateValue={nameUa}
+                  name="testimonialsDataList nameEn"
                   placeholder="Введіть ім’я"
                 />
               )}
@@ -168,7 +212,14 @@ export const TestimonialEditor = ({
                   {...field}
                   inputType="pl"
                   errorText={errors.namePl?.message}
-                  name="testimonialsDataList name3"
+                  value={namePl}
+                  setTranslatedValue={translatorHandlePl}
+                  translateValue={nameUa}
+                  onChange={(e) => {
+                    setNamePl(e.target.value),
+                      setValue('namePl', e.target.value);
+                  }}
+                  name="testimonialsDataList namePl"
                   placeholder="Введіть ім’я"
                 />
               )}
@@ -220,9 +271,14 @@ export const TestimonialEditor = ({
                 <TextAreaField
                   {...field}
                   title="Текст"
-                  name="testimonialsDataList text1"
+                  name="testimonialsDataList textUa"
                   inputType="uk"
                   errorText={errors.textUa?.message}
+                  value={textUa}
+                  onChange={(e) => {
+                    setTextUa(e.target.value),
+                      setValue('textUa', e.target.value);
+                  }}
                 />
               )}
             />
@@ -233,9 +289,16 @@ export const TestimonialEditor = ({
               render={({ field }) => (
                 <TextAreaField
                   {...field}
-                  name="testimonialsDataList text1"
+                  name="testimonialsDataList textEn"
                   inputType="en"
                   errorText={errors.textEn?.message}
+                  value={textEn}
+                  setTranslatedValue={translatorHandleTextEn}
+                  onChange={(e) => {
+                    setTextEn(e.target.value),
+                      setValue('textEn', e.target.value);
+                  }}
+                  translateValue={textUa}
                 />
               )}
             />
@@ -246,14 +309,24 @@ export const TestimonialEditor = ({
               render={({ field }) => (
                 <TextAreaField
                   {...field}
-                  name="testimonialsDataList text1"
+                  name="testimonialsDataList textPl"
                   inputType="pl"
                   errorText={errors.textPl?.message}
+                  value={textPl}
+                  setTranslatedValue={translatorHandleTextPl}
+                  translateValue={textUa}
+                  onChange={(e) => {
+                    setTextPl(e.target.value),
+                      setValue('textPl', e.target.value);
+                  }}
                 />
               )}
             />
           </div>
-          <FormBtns isEditMode={!testimonialId ? false : true} />
+          <FormBtns
+            isEditMode={testimonialId ? true : false}
+            handleFunc={handleResetForm}
+          />
         </div>
       </form>
       <TestimonialPreviewCard currentValues={currentValues} />
