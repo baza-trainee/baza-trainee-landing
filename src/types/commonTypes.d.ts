@@ -21,21 +21,13 @@ export type TSlideReview = {
     pl: string;
     ua: string;
   };
-  role: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  date: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
   review: {
     en: string;
     pl: string;
     ua: string;
   };
+  role: string;
+  date: string;
   imageUrl: string;
 };
 

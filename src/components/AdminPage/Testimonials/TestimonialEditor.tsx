@@ -1,4 +1,6 @@
 'use client';
+import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
 import {
   AdminTitle,
   DateInput,
@@ -7,27 +9,31 @@ import {
   TextInputField,
 } from '@/components/atomic';
 import { TextAreaField } from '@/components/atomic/inputs/TextAreaField';
+import { useGlobalContext } from '@/store/globalContext';
 import { ITestimonial, ITestimonialRequest } from '@/types';
 import testimonialsApi from '@/utils/API/testimonials';
-import { convertDate } from '@/utils/formatDate';
-import { downloadImageAsFile } from '@/utils/imageHandler';
+import { convertDate, formatDate } from '@/utils/formatDate';
+import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import TestimonialPreviewCard from './TestimonialPreviewCard';
 import { testimonialValidateOptions } from './testimonialValidateOptions';
 import { TTestimonialFormInput } from './types';
 
 const defaultValues: TTestimonialFormInput = {
-  nameUa: '',
-  nameEn: '',
-  namePl: '',
-  textUa: '',
-  textEn: '',
-  textPl: '',
+  name: {
+    ua: '',
+    en: '',
+    pl: '',
+  },
+  review: {
+    ua: '',
+    en: '',
+    pl: '',
+  },
   authorImg: [],
-  specialization: '',
-  creationDate: new Date().toISOString().split('T')[0],
+  role: '',
+  date: new Date().toISOString().split('T')[0],
 };
 
 export const TestimonialEditor = ({
@@ -39,11 +45,12 @@ export const TestimonialEditor = ({
   const [nameUa, setNameUa] = useState<string>('');
   const [nameEn, setNameEn] = useState<string>('');
   const [namePl, setNamePl] = useState<string>('');
-  const [textUa, setTextUa] = useState<string>('');
-  const [textEn, setTextEn] = useState<string>('');
-  const [textPl, setTextPl] = useState<string>('');
+  const [reviewUa, setReviewUa] = useState<string>('');
+  const [reviewEn, setReviewEn] = useState<string>('');
+  const [reviewPl, setReviewPl] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
   const [itemData, setItemData] = useState<ITestimonial>({} as ITestimonial);
+  const curLang = useGlobalContext().landingLanguage;
 
   const { createNew, getById, updateById } = testimonialsApi;
 
@@ -69,9 +76,9 @@ export const TestimonialEditor = ({
         setNameUa(data.name.ua);
         setNamePl(data.name.pl);
         setNameEn(data.name.en);
-        setTextUa(data.review.ua);
-        setTextEn(data.review.en);
-        setTextPl(data.review.pl);
+        setReviewUa(data.review.ua);
+        setReviewEn(data.review.en);
+        setReviewPl(data.review.pl);
       };
       getTestimonial();
     }
@@ -80,14 +87,14 @@ export const TestimonialEditor = ({
   useEffect(() => {
     const setValues = async () => {
       if (itemData) {
-        setValue('nameUa', itemData.name?.ua);
-        setValue('nameEn', itemData.name?.en);
-        setValue('namePl', itemData.name?.pl);
-        setValue('textUa', itemData.review?.ua);
-        setValue('textEn', itemData.review?.en);
-        setValue('textPl', itemData.review?.pl);
-        setValue('specialization', itemData.role);
-        setValue('creationDate', convertDate.toYYYYMMDD(+itemData.date));
+        setValue('name.ua', itemData.name?.ua);
+        setValue('name.en', itemData.name?.en);
+        setValue('name.pl', itemData.name?.pl);
+        setValue('review.ua', itemData.review?.ua);
+        setValue('review.en', itemData.review?.en);
+        setValue('review.pl', itemData.review?.pl);
+        setValue('role', itemData.role);
+        setValue('date', convertDate.toYYYYMMDD(+itemData.date));
         setValue('authorImg', [
           new File([], itemData.imageUrl, { type: 'for-url' }),
         ]);
@@ -95,7 +102,7 @@ export const TestimonialEditor = ({
       }
     };
     setValues();
-    setFocus('nameUa');
+    setFocus('name.ua');
   }, [itemData, setValue, setFocus]);
 
   const translatorHandleEn = (text: string, _name: string) => {
@@ -105,10 +112,10 @@ export const TestimonialEditor = ({
     setNamePl(text);
   };
   const translatorHandleTextEn = (text: string, _name: string) => {
-    setTextEn(text);
+    setReviewEn(text);
   };
   const translatorHandleTextPl = (text: string, _name: string) => {
-    setTextPl(text);
+    setReviewPl(text);
   };
 
   const downloadImage = async (fileName: string) => {
@@ -117,6 +124,41 @@ export const TestimonialEditor = ({
   };
 
   const currentValues = watch();
+
+  const getImageUrl = () => {
+    if (!currentValues.authorImg?.length) return;
+
+    if (currentValues.authorImg[0].type === 'for-url') {
+      return createImgUrl(currentValues.authorImg[0].name);
+    }
+
+    const isValidImg = testimonialValidateOptions.img.validate(
+      currentValues.authorImg
+    );
+    if (isValidImg) {
+      return URL.createObjectURL(currentValues.authorImg[0]);
+    }
+  };
+
+  const authorImageUrl = getImageUrl();
+
+  const formattedDate = formatDate(currentValues.date, 'nouns', 'ua');
+
+  const previewData = {
+    name: {
+      ua: currentValues.name.ua,
+      en: currentValues.name.en,
+      pl: currentValues.name.pl,
+    },
+    review: {
+      ua: currentValues.review.ua,
+      en: currentValues.review.en,
+      pl: currentValues.review.pl,
+    },
+    role: currentValues.role,
+    date: formattedDate,
+    imageUrl: authorImageUrl as string,
+  };
 
   const handleResetForm = () => {
     reset(defaultValues);
@@ -127,18 +169,18 @@ export const TestimonialEditor = ({
   ) => {
     const newItem: ITestimonialRequest = {
       name: {
-        ua: values.nameUa,
-        en: values.nameEn,
-        pl: values.namePl,
+        ua: values.name.ua,
+        en: values.name.en,
+        pl: values.name.pl,
       },
       review: {
-        ua: values.textUa,
-        en: values.textEn,
-        pl: values.textPl,
+        ua: values.review.ua,
+        en: values.review.en,
+        pl: values.review.pl,
       },
       file: values.authorImg[0],
-      role: values.specialization,
-      date: new Date(values.creationDate).getTime(),
+      role: values.role,
+      date: new Date(values.date).getTime(),
     };
 
     if (testimonialId) {
@@ -163,7 +205,7 @@ export const TestimonialEditor = ({
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6  shadow-md lg:justify-start">
             <Controller
-              name="nameUa"
+              name="name.ua"
               rules={testimonialValidateOptions.name}
               control={control}
               render={({ field }) => (
@@ -172,30 +214,30 @@ export const TestimonialEditor = ({
                   title="Ім’я"
                   name="testimonialsDataList nameUa"
                   inputType="uk"
-                  errorText={errors.nameUa?.message}
+                  errorText={errors.name?.ua?.message}
                   value={nameUa}
                   onChange={(e) => {
                     setNameUa(e.target.value),
-                      setValue('nameUa', e.target.value);
+                      setValue('name.ua', e.target.value);
                   }}
                   placeholder="Введіть ім’я"
                 />
               )}
             />
             <Controller
-              name="nameEn"
+              name="name.en"
               rules={testimonialValidateOptions.name}
               control={control}
               render={({ field }) => (
                 <TextInputField
                   {...field}
                   inputType="en"
-                  errorText={errors.nameEn?.message}
+                  errorText={errors.name?.en?.message}
                   value={nameEn}
                   setTranslatedValue={translatorHandleEn}
                   onChange={(e) => {
                     setNameEn(e.target.value),
-                      setValue('nameEn', e.target.value);
+                      setValue('name.en', e.target.value);
                   }}
                   translateValue={nameUa}
                   name="testimonialsDataList nameEn"
@@ -204,20 +246,20 @@ export const TestimonialEditor = ({
               )}
             />
             <Controller
-              name="namePl"
+              name="name.pl"
               rules={testimonialValidateOptions.name}
               control={control}
               render={({ field }) => (
                 <TextInputField
                   {...field}
                   inputType="pl"
-                  errorText={errors.namePl?.message}
+                  errorText={errors.name?.pl?.message}
                   value={namePl}
                   setTranslatedValue={translatorHandlePl}
                   translateValue={nameUa}
                   onChange={(e) => {
                     setNamePl(e.target.value),
-                      setValue('namePl', e.target.value);
+                      setValue('name.pl', e.target.value);
                   }}
                   name="testimonialsDataList namePl"
                   placeholder="Введіть ім’я"
@@ -225,22 +267,22 @@ export const TestimonialEditor = ({
               )}
             />
             <Controller
-              name="specialization"
+              name="role"
               rules={testimonialValidateOptions.name}
               control={control}
               render={({ field }) => (
                 <TextInputField
                   {...field}
                   title="Спеціалізація"
-                  name="testimonialsDataList specialization"
+                  name="testimonialsDataList role"
                   inputType="uk"
-                  errorText={errors.specialization?.message}
+                  errorText={errors.role?.message}
                   placeholder="Введіть спеціалізацію"
                 />
               )}
             />
             <Controller
-              name="creationDate"
+              name="date"
               control={control}
               rules={{ required: 'Оберіть дату' }}
               render={({ field }) => (
@@ -248,7 +290,7 @@ export const TestimonialEditor = ({
                   {...field}
                   title="Дата"
                   placeholder="Оберіть дату"
-                  errorText={errors.creationDate?.message}
+                  errorText={errors.date?.message}
                 />
               )}
             />
@@ -264,7 +306,7 @@ export const TestimonialEditor = ({
           </div>
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6 shadow-md lg:justify-start ">
             <Controller
-              name="textUa"
+              name="review.ua"
               rules={testimonialValidateOptions.review}
               control={control}
               render={({ field }) => (
@@ -273,17 +315,17 @@ export const TestimonialEditor = ({
                   title="Текст"
                   name="testimonialsDataList textUa"
                   inputType="uk"
-                  errorText={errors.textUa?.message}
-                  value={textUa}
+                  errorText={errors.review?.ua?.message}
+                  value={reviewUa}
                   onChange={(e) => {
-                    setTextUa(e.target.value),
-                      setValue('textUa', e.target.value);
+                    setReviewUa(e.target.value),
+                      setValue('review.ua', e.target.value);
                   }}
                 />
               )}
             />
             <Controller
-              name="textEn"
+              name="review.en"
               rules={testimonialValidateOptions.review}
               control={control}
               render={({ field }) => (
@@ -291,19 +333,19 @@ export const TestimonialEditor = ({
                   {...field}
                   name="testimonialsDataList textEn"
                   inputType="en"
-                  errorText={errors.textEn?.message}
-                  value={textEn}
+                  errorText={errors.review?.en?.message}
+                  value={reviewEn}
                   setTranslatedValue={translatorHandleTextEn}
                   onChange={(e) => {
-                    setTextEn(e.target.value),
-                      setValue('textEn', e.target.value);
+                    setReviewEn(e.target.value),
+                      setValue('review.en', e.target.value);
                   }}
-                  translateValue={textUa}
+                  translateValue={reviewUa}
                 />
               )}
             />
             <Controller
-              name="textPl"
+              name="review.pl"
               rules={testimonialValidateOptions.review}
               control={control}
               render={({ field }) => (
@@ -311,13 +353,13 @@ export const TestimonialEditor = ({
                   {...field}
                   name="testimonialsDataList textPl"
                   inputType="pl"
-                  errorText={errors.textPl?.message}
-                  value={textPl}
+                  errorText={errors.review?.pl?.message}
+                  value={reviewPl}
                   setTranslatedValue={translatorHandleTextPl}
-                  translateValue={textUa}
+                  translateValue={reviewUa}
                   onChange={(e) => {
-                    setTextPl(e.target.value),
-                      setValue('textPl', e.target.value);
+                    setReviewPl(e.target.value),
+                      setValue('review.pl', e.target.value);
                   }}
                 />
               )}
@@ -329,7 +371,14 @@ export const TestimonialEditor = ({
           />
         </div>
       </form>
-      <TestimonialPreviewCard currentValues={currentValues} />
+      {currentValues.name.ua && (
+        <div className="relative mt-6 w-[88%] py-8 shadow-md">
+          <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
+            <LanguageSelector />
+          </div>
+          <SingleSlide slideData={previewData} lang={curLang} />
+        </div>
+      )}
     </div>
   );
 };
