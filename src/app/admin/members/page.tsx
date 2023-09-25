@@ -1,3 +1,5 @@
-export default function Members() {
-  return <>Members</>;
+import { MembersAndRoles } from '@/components/AdminPage/MembersAndRoles';
+
+export default function MembersPage() {
+  return <MembersAndRoles entity={'members'} />;
 }

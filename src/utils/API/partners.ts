@@ -1,4 +1,4 @@
-import { IPartner, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IPartner, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const partnersApi = {
@@ -8,10 +8,10 @@ const partnersApi = {
   createNew(partner: IPartner) {
     return bazaAPI.post('/partners', partner);
   },
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/partners/${id}`);
   },
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/partners/${id}`);
   },
   updateById([id, payload]: updateByIdRequest) {

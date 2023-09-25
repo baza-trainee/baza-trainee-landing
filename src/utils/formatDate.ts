@@ -7,12 +7,14 @@ export const formatDate = (
   lang: TLandingLanguage
 ) => {
   const monthNames = dictionaries[lang].monthsNames;
+
   if (!dateString) return '';
 
   const date = new Date(dateString);
   const day = date.getDate();
   const monthName = monthNames[month][date?.getMonth()];
   const year = date.getFullYear();
+
   if (month === 'spelled') {
     return lang === 'en'
       ? `${
@@ -24,11 +26,10 @@ export const formatDate = (
   }
 };
 
-export const formatDateToYYYYMMDD = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+export const convertDate = {
+  toYYYYMMDD: (value: number) =>
+    value ? new Date(+value).toISOString().split('T')[0] : '',
 
-  return `${year}-${month}-${day}`;
+  toMsec: (value?: string) =>
+    value ? new Date(value).getTime() : 0
 };

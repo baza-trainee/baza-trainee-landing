@@ -9,7 +9,12 @@ export const projects = [
       ua: 'lullabies',
     },
     imageUrl: '/img/projects/lullabies.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    deployUrl: '',
     description: {
       en: 'Kolyaskovi - a website-museum for the reproduction of Ukrainian lullabies',
       pl: 'Kolyaskovi - strona-muzeum reprodukcji ukraińskich kołysanek',
@@ -29,7 +34,12 @@ export const projects = [
       ua: 'museum',
     },
     imageUrl: '/img/projects/museum.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    deployUrl: '',
     description: {
       en: 'Website of the Ivan Kavaleridze Museum',
       pl: 'Strona internetowa Muzeum Iwana Kawaleridze',
@@ -49,7 +59,12 @@ export const projects = [
       ua: 'army',
     },
     imageUrl: '/img/projects/mil.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    deployUrl: '',
     description: {
       en: 'ENG for UArmy - a site for learning military English',
       pl: 'ENG for UArmy - strona do nauki wojskowego angielskiego',
@@ -74,7 +89,7 @@ export const projects = [
       pl: 'W budowie',
       ua: 'В розробці',
     },
-    link: 'https://hyst.site/',
+    deployUrl: 'https://hyst.site/',
     description: {
       en: 'Khist is an aggregator of veteran initiatives',
       pl: 'Khist - agregator inicjatyw dla weteranów',
@@ -92,7 +107,7 @@ export const projects = [
             pl: 'Olga Iwanowa',
             ua: 'Ольга Іванова',
           },
-          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+          deployUrl: 'https://www.deployUrledin.com/in/ivolga-kyiv/',
         },
         role: {
           name: 'Product Owner',
@@ -105,7 +120,7 @@ export const projects = [
             pl: 'Zhanna Bielan',
             ua: 'Жанна Бєлан',
           },
-          link: 'https://www.linkedin.com/in/joan-bielan-068434283/',
+          deployUrl: 'https://www.deployUrledin.com/in/joan-bielan-068434283/',
         },
         role: {
           name: 'Project Manager',
@@ -118,7 +133,7 @@ export const projects = [
             pl: 'Iryna Stoliarova',
             ua: 'Столярова Ірина',
           },
-          link: 'https://www.linkedin.com/in/iryna-stoliarova/',
+          deployUrl: 'https://www.deployUrledin.com/in/iryna-stoliarova/',
         },
         role: {
           name: 'Design',
@@ -131,7 +146,7 @@ export const projects = [
             pl: 'Olha Butyrska',
             ua: 'Ольга Бутирська',
           },
-          link: 'https://www.linkedin.com/in/olha-butyrska/',
+          deployUrl: 'https://www.deployUrledin.com/in/olha-butyrska/',
         },
         role: {
           name: 'Design',
@@ -144,7 +159,7 @@ export const projects = [
             pl: 'Julia Kain',
             ua: 'Джулія Каїн',
           },
-          link: 'https://www.linkedin.com/in/julia-kain/',
+          deployUrl: 'https://www.deployUrledin.com/in/julia-kain/',
         },
         role: {
           name: 'Design',
@@ -157,7 +172,8 @@ export const projects = [
             pl: 'Oleksandra Tereshova',
             ua: 'Олександра Терехова',
           },
-          link: 'https://www.linkedin.com/in/%D0%BE%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0-%D1%82%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B2%D0%B0-4b483843/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/%D0%BE%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0-%D1%82%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B2%D0%B0-4b483843/',
         },
         role: {
           name: 'Design',
@@ -170,7 +186,7 @@ export const projects = [
             pl: 'Danilo Glushko',
             ua: 'Данило Глушко',
           },
-          link: '',
+          deployUrl: '',
         },
         role: {
           name: 'Front-end',
@@ -183,7 +199,8 @@ export const projects = [
             pl: 'Artem Shevchuk',
             ua: 'Артем Шевчук',
           },
-          link: 'https://www.linkedin.com/in/artem-shevchuk-b1955b190/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/artem-shevchuk-b1955b190/',
         },
         role: {
           name: 'Front-end',
@@ -196,7 +213,7 @@ export const projects = [
             pl: 'Kateryna Lanina',
             ua: 'Катерина Ланіна',
           },
-          link: 'https://www.linkedin.com/in/kateryna-lanina/',
+          deployUrl: 'https://www.deployUrledin.com/in/kateryna-lanina/',
         },
         role: {
           name: 'Front-end',
@@ -209,7 +226,7 @@ export const projects = [
             pl: 'Danil Zdorik',
             ua: 'Даніл Здорик',
           },
-          link: 'https://www.linkedin.com/in/zdoryk/',
+          deployUrl: 'https://www.deployUrledin.com/in/zdoryk/',
         },
         role: {
           name: 'Back-end',
@@ -222,7 +239,7 @@ export const projects = [
             pl: 'Yevhen Blokhin',
             ua: 'Євген Блохін',
           },
-          link: 'https://www.linkedin.com/in/ievgen-blokhin',
+          deployUrl: 'https://www.deployUrledin.com/in/ievgen-blokhin',
         },
         role: {
           name: 'Quality Assurance',
@@ -235,7 +252,7 @@ export const projects = [
             pl: 'Liliia Bakalinska',
             ua: 'Лілія Бакалінська',
           },
-          link: 'https://www.linkedin.com/in/liliia-bakalinska/',
+          deployUrl: 'https://www.deployUrledin.com/in/liliia-bakalinska/',
         },
         role: {
           name: 'Quality Assurance',
@@ -248,7 +265,7 @@ export const projects = [
             pl: 'Olga Savchenko',
             ua: 'Ольга Савченко',
           },
-          link: 'https://www.linkedin.com/in/olsavchenko/',
+          deployUrl: 'https://www.deployUrledin.com/in/olsavchenko/',
         },
         role: {
           name: 'Quality Assurance',
@@ -261,7 +278,8 @@ export const projects = [
             pl: 'Yana Glazkova',
             ua: 'Яна Глазкова',
           },
-          link: 'https://www.linkedin.com/in/%D1%8F%D0%BD%D0%B0-%D0%B3%D0%BB%D0%B0%D0%B7%D0%BA%D0%BE%D0%B2%D0%B0-241424281/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/%D1%8F%D0%BD%D0%B0-%D0%B3%D0%BB%D0%B0%D0%B7%D0%BA%D0%BE%D0%B2%D0%B0-241424281/',
         },
         role: {
           name: 'Quality Assurance',
@@ -277,7 +295,12 @@ export const projects = [
       ua: '57-42',
     },
     imageUrl: '/img/projects/57-42.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    deployUrl: '',
     description: {
       en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
       pl: 'Strona docelowa - zbiórka funduszy dla 57 Brygady, 42 Batalionu',
@@ -297,7 +320,13 @@ export const projects = [
       ua: 'Murrfecto',
     },
     imageUrl: '/img/projects/murrfecto.webp',
-    link: 'https://murrfecto.site',
+    status: {
+      en: 'Done',
+      pl: 'Zakończony',
+      ua: 'Завершено',
+    },
+    statusVal: 'active',
+    deployUrl: 'https://murrfecto.site',
     description: {
       en: 'Website of a shelter for street animals Murrfecto',
       pl: 'Miejsce schroniska dla zwierząt ulicznych Murrfecto',
@@ -316,7 +345,7 @@ export const projects = [
             pl: 'Olga Iwanowa',
             ua: 'Ольга Іванова',
           },
-          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+          deployUrl: 'https://www.deployUrledin.com/in/ivolga-kyiv/',
         },
         role: {
           name: 'Project Manager',
@@ -329,7 +358,7 @@ export const projects = [
             pl: 'Zuzanna Salata',
             ua: 'Сусанна Салата',
           },
-          link: 'https://www.linkedin.com/in/susanna-salata/',
+          deployUrl: 'https://www.deployUrledin.com/in/susanna-salata/',
         },
         role: {
           name: 'Business Analyst',
@@ -342,7 +371,7 @@ export const projects = [
             pl: 'Iryna Stolarowa',
             ua: 'Ірина Столярова',
           },
-          link: 'https://www.linkedin.com/in/iryna-stoliarova/',
+          deployUrl: 'https://www.deployUrledin.com/in/iryna-stoliarova/',
         },
         role: {
           name: 'Design',
@@ -355,7 +384,8 @@ export const projects = [
             pl: 'Switłana Makarenko (Batrak)',
             ua: 'Світлана Макаренко (Батрак)',
           },
-          link: 'https://www.linkedin.com/in/svetlana-makarenko-batrak-044850261/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/svetlana-makarenko-batrak-044850261/',
         },
         role: {
           name: 'Design',
@@ -368,7 +398,8 @@ export const projects = [
             pl: 'Iwan Mireniuk',
             ua: 'Іван Миронюк',
           },
-          link: 'https://www.linkedin.com/in/ivan-myroniuk-84009525b/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/ivan-myroniuk-84009525b/',
         },
         role: {
           name: 'Front-end',
@@ -381,7 +412,8 @@ export const projects = [
             pl: 'Iwan Mireniuk',
             ua: 'Іван Миронюк',
           },
-          link: 'https://www.linkedin.com/in/ivan-myroniuk-84009525b/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/ivan-myroniuk-84009525b/',
         },
         role: {
           name: 'Back-end',
@@ -394,7 +426,8 @@ export const projects = [
             pl: 'Marina Kowalowa',
             ua: 'Марина Ковальова',
           },
-          link: 'https://www.linkedin.com/in/marina-kovaleva-b7470b166/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/marina-kovaleva-b7470b166/',
         },
         role: {
           name: 'Front-end',
@@ -407,7 +440,8 @@ export const projects = [
             pl: 'Olga Sydorenko',
             ua: 'Ольга Сидоренко',
           },
-          link: 'https://www.linkedin.com/in/olha-sydorenko-frontend-developer/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/olha-sydorenko-frontend-developer/',
         },
         role: {
           name: 'Front-end',
@@ -420,7 +454,7 @@ export const projects = [
             pl: 'Tonya Siwa',
             ua: 'Тоня Сива',
           },
-          link: 'https://www.linkedin.com/in/tonya-shyva/',
+          deployUrl: 'https://www.deployUrledin.com/in/tonya-shyva/',
         },
         role: {
           name: 'Front-end',
@@ -433,7 +467,8 @@ export const projects = [
             pl: 'Jugen Serdiuk',
             ua: 'Євген Сердюк',
           },
-          link: 'https://www.linkedin.com/in/eugene-serdyuk-511969252/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/eugene-serdyuk-511969252/',
         },
         role: {
           name: 'Front-end',
@@ -446,7 +481,8 @@ export const projects = [
             pl: 'Jugen Serdiuk',
             ua: 'Євген Сердюк',
           },
-          link: 'https://www.linkedin.com/in/eugene-serdyuk-511969252/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/eugene-serdyuk-511969252/',
         },
         role: {
           name: 'Back-end',
@@ -459,7 +495,7 @@ export const projects = [
             pl: 'Ihor Droniszyniec',
             ua: 'Ігор Дронішинець',
           },
-          link: 'https://www.linkedin.com/in/ihordrn/',
+          deployUrl: 'https://www.deployUrledin.com/in/ihordrn/',
         },
         role: {
           name: 'Back-end',
@@ -472,7 +508,7 @@ export const projects = [
             pl: 'Olena Nowaczenko',
             ua: 'Олена Новаченко',
           },
-          link: 'http://linkedin.com/in/olena-novachenko-b5584925a',
+          deployUrl: 'http://deployUrledin.com/in/olena-novachenko-b5584925a',
         },
         role: {
           name: 'Quality Assurance',
@@ -485,7 +521,7 @@ export const projects = [
             pl: 'Lesia Czernyk',
             ua: 'Леся Черних',
           },
-          link: 'https://www.linkedin.com/in/lesyachernysh/',
+          deployUrl: 'https://www.deployUrledin.com/in/lesyachernysh/',
         },
         role: {
           name: 'Quality Assurance',
@@ -498,7 +534,7 @@ export const projects = [
             pl: 'Inna Fomenko',
             ua: 'Інна  Фоменко',
           },
-          link: 'https://www.linkedin.com/in/inna-fomenko-63b216266',
+          deployUrl: 'https://www.deployUrledin.com/in/inna-fomenko-63b216266',
         },
         role: {
           name: 'Quality Assurance',
@@ -511,7 +547,8 @@ export const projects = [
             pl: 'Oksana Derkach',
             ua: 'Оксана Деркач',
           },
-          link: 'https://www.linkedin.com/in/oksana-derkach-52b788105/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/oksana-derkach-52b788105/',
         },
         role: {
           name: 'Quality Assurance',
@@ -524,7 +561,8 @@ export const projects = [
             pl: 'Jarina Bieriezowska',
             ua: 'Ярина Березовська',
           },
-          link: 'https://www.linkedin.com/in/yaryna-berezovska-a7b41320a/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/yaryna-berezovska-a7b41320a/',
         },
         role: {
           name: 'Quality Assurance',
@@ -540,7 +578,13 @@ export const projects = [
       ua: 'Ataka Help',
     },
     imageUrl: '/img/projects/atack.webp',
-    link: 'https://ataka-help.tech',
+    status: {
+      en: 'Done',
+      pl: 'Zakończony',
+      ua: 'Завершено',
+    },
+    statusVal: 'active',
+    deployUrl: 'https://ataka-help.tech',
     description: {
       en: 'Platform about types of cyber fraud AtakaHelp',
       pl: 'Platforma o rodzajach oszustw internetowych AtakaHelp',
@@ -558,7 +602,7 @@ export const projects = [
             pl: 'Olga Iwanowa',
             ua: 'Ольга Іванова',
           },
-          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+          deployUrl: 'https://www.deployUrledin.com/in/ivolga-kyiv/',
         },
         role: {
           name: 'Project Manager',
@@ -571,7 +615,7 @@ export const projects = [
             pl: 'Zuzanna Salata',
             ua: 'Сусанна Салата',
           },
-          link: 'https://www.linkedin.com/in/susanna-salata/',
+          deployUrl: 'https://www.deployUrledin.com/in/susanna-salata/',
         },
         role: {
           name: 'Business Analyst',
@@ -584,7 +628,7 @@ export const projects = [
             pl: 'Elina Tryberg',
             ua: 'Еліна Трайберг',
           },
-          link: 'https://www.linkedin.com/in/elinateo/',
+          deployUrl: 'https://www.deployUrledin.com/in/elinateo/',
         },
         role: {
           name: 'Design',
@@ -597,7 +641,8 @@ export const projects = [
             pl: 'Dmytro Szlenskowy',
             ua: 'Дмитро Шленськовий',
           },
-          link: 'https://www.linkedin.com/in/dmytro-shlenskovoy-9970a6171/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/dmytro-shlenskovoy-9970a6171/',
         },
         role: {
           name: 'Design',
@@ -610,7 +655,7 @@ export const projects = [
             pl: 'Wiktoria Podstrel',
             ua: 'Вікторія Подстрел',
           },
-          link: 'https://www.linkedin.com/in/viktoria-podstrel/',
+          deployUrl: 'https://www.deployUrledin.com/in/viktoria-podstrel/',
         },
         role: {
           name: 'Design',
@@ -623,7 +668,8 @@ export const projects = [
             pl: 'Switłana Makarenko (Batrak)',
             ua: 'Світлана Макаренко (Батрак)',
           },
-          link: 'https://www.linkedin.com/in/svetlana-makarenko-batrak-044850261/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/svetlana-makarenko-batrak-044850261/',
         },
         role: {
           name: 'Design',
@@ -636,7 +682,7 @@ export const projects = [
             pl: 'Iryna Kolesnyk',
             ua: 'Ірина Колесник',
           },
-          link: 'https://www.linkedin.com/in/iryna-kolesnyk/',
+          deployUrl: 'https://www.deployUrledin.com/in/iryna-kolesnyk/',
         },
         role: {
           name: 'Front-end',
@@ -649,7 +695,7 @@ export const projects = [
             pl: 'Anna Łysak',
             ua: 'Анна Лисак',
           },
-          link: 'https://www.linkedin.com/in/anna-lysak/',
+          deployUrl: 'https://www.deployUrledin.com/in/anna-lysak/',
         },
         role: {
           name: 'Front-end',
@@ -662,7 +708,7 @@ export const projects = [
             pl: 'Witalij Wiesztobej',
             ua: 'Віталій Вештобей',
           },
-          link: 'https://www.linkedin.com/in/vitaliiveshtobei/',
+          deployUrl: 'https://www.deployUrledin.com/in/vitaliiveshtobei/',
         },
         role: {
           name: 'Front-end',
@@ -675,7 +721,8 @@ export const projects = [
             pl: 'Marina Kowalowa',
             ua: 'Марина Ковальова',
           },
-          link: 'https://www.linkedin.com/in/marina-kovaleva-b7470b166/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/marina-kovaleva-b7470b166/',
         },
         role: {
           name: 'Front-end',
@@ -688,7 +735,8 @@ export const projects = [
             pl: 'Serhij Julaj',
             ua: 'Сергій Джулай',
           },
-          link: 'https://www.linkedin.com/in/serhii-dzhulai-330206241/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/serhii-dzhulai-330206241/',
         },
         role: {
           name: 'Back-end',
@@ -701,7 +749,7 @@ export const projects = [
             pl: 'Jegor Tweritinow',
             ua: 'Єгор Тверитінов',
           },
-          link: 'https://www.linkedin.com/in/yehor-tverytinov/',
+          deployUrl: 'https://www.deployUrledin.com/in/yehor-tverytinov/',
         },
         role: {
           name: 'Back-end',
@@ -714,7 +762,7 @@ export const projects = [
             pl: 'Olga Kijko',
             ua: 'Ольга Кійко',
           },
-          link: 'https://www.linkedin.com/in/olha-kiiko-8a0471262',
+          deployUrl: 'https://www.deployUrledin.com/in/olha-kiiko-8a0471262',
         },
         role: {
           name: 'Quality Assurance',
@@ -727,7 +775,7 @@ export const projects = [
             pl: 'Iryna Zozulia',
             ua: 'Ірина Зозуля',
           },
-          link: 'https://www.linkedin.com/in/iryna-zozulya/',
+          deployUrl: 'https://www.deployUrledin.com/in/iryna-zozulya/',
         },
         role: {
           name: 'Quality Assurance',
@@ -740,7 +788,7 @@ export const projects = [
             pl: 'Olena Krasnożan',
             ua: 'Олена Красножан',
           },
-          link: 'https://www.linkedin.com/in/olena-krasnozhan/',
+          deployUrl: 'https://www.deployUrledin.com/in/olena-krasnozhan/',
         },
         role: {
           name: 'Quality Assurance',
@@ -753,7 +801,7 @@ export const projects = [
             pl: 'Mariana Hirska',
             ua: 'Мар’яна Гірська',
           },
-          link: 'https://www.linkedin.com/in/mariana-hirska/',
+          deployUrl: 'https://www.deployUrledin.com/in/mariana-hirska/',
         },
         role: {
           name: 'Quality Assurance',
@@ -766,7 +814,7 @@ export const projects = [
             pl: 'Marina Lebyd',
             ua: 'Марина Лебідь',
           },
-          link: 'https://www.linkedin.com/in/maryna-lebid-7085701bb/',
+          deployUrl: 'https://www.deployUrledin.com/in/maryna-lebid-7085701bb/',
         },
         role: {
           name: 'Quality Assurance',
@@ -779,7 +827,7 @@ export const projects = [
             pl: 'Iryna Łozowa',
             ua: 'Ірина Лозова',
           },
-          link: 'https://www.linkedin.com/in/iryna-lozova-20244925a',
+          deployUrl: 'https://www.deployUrledin.com/in/iryna-lozova-20244925a',
         },
         role: {
           name: 'Quality Assurance',
@@ -792,7 +840,8 @@ export const projects = [
             pl: 'Natalia Didenko',
             ua: 'Наталія Діденко',
           },
-          link: 'https://www.linkedin.com/in/nataliia-didenko-663415176/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/nataliia-didenko-663415176/',
         },
         role: {
           name: 'Quality Assurance',
@@ -805,7 +854,8 @@ export const projects = [
             pl: 'Jarina Bieriezowska',
             ua: 'Ярина Березовська',
           },
-          link: 'https://www.linkedin.com/in/yaryna-berezovska-a7b41320a/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/yaryna-berezovska-a7b41320a/',
         },
         role: {
           name: 'Quality Assurance',
@@ -818,7 +868,7 @@ export const projects = [
             pl: 'Roman Malik',
             ua: 'Роман Малик',
           },
-          link: 'https://www.linkedin.com/in/roman-malyk-qa-qc/',
+          deployUrl: 'https://www.deployUrledin.com/in/roman-malyk-qa-qc/',
         },
         role: {
           name: 'Quality Assurance',
@@ -831,7 +881,7 @@ export const projects = [
             pl: 'Julia Woźniakowska',
             ua: 'Юлія Возняківська',
           },
-          link: 'https://www.linkedin.com/in/julia-vo/',
+          deployUrl: 'https://www.deployUrledin.com/in/julia-vo/',
         },
         role: {
           name: 'Quality Assurance',
@@ -844,7 +894,7 @@ export const projects = [
             pl: 'Tymofij Zaliszczuk',
             ua: 'Тимофій Заліщук',
           },
-          link: 'https://www.linkedin.com/in/timothy-zalishchuk/',
+          deployUrl: 'https://www.deployUrledin.com/in/timothy-zalishchuk/',
         },
         role: {
           name: 'Quality Assurance',
@@ -857,7 +907,8 @@ export const projects = [
             pl: 'Andrij Czerkasow',
             ua: 'Андрій Черкасов',
           },
-          link: 'https://www.linkedin.com/in/andrii-cherkasov-011977163/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/andrii-cherkasov-011977163/',
         },
         role: {
           name: 'Quality Assurance',
@@ -870,7 +921,7 @@ export const projects = [
             pl: 'Natalii Kachan',
             ua: 'Наталія Качан',
           },
-          link: 'https://www.linkedin.com/in/nataliiakachan/',
+          deployUrl: 'https://www.deployUrledin.com/in/nataliiakachan/',
         },
         role: {
           name: 'Quality Assurance',
@@ -883,7 +934,7 @@ export const projects = [
             pl: 'Inna Fomenko',
             ua: 'Інна Фоменко',
           },
-          link: 'https://www.linkedin.com/in/inna-fomenko-63b216266',
+          deployUrl: 'https://www.deployUrledin.com/in/inna-fomenko-63b216266',
         },
         role: {
           name: 'Quality Assurance',
@@ -896,7 +947,8 @@ export const projects = [
             pl: 'Kostiantyn Olchowyk',
             ua: 'Костянтин Ольховик',
           },
-          link: 'https://www.linkedin.com/in/%D0%BA%D0%BE%D1%81%D1%82%D1%8F%D0%BD%D1%82%D0%B8%D0%BD-%D0%BE%D0%BB%D1%8C%D1%85%D0%BE%D0%B2%D0%B8%D0%BA-a01871273/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/%D0%BA%D0%BE%D1%81%D1%82%D1%8F%D0%BD%D1%82%D0%B8%D0%BD-%D0%BE%D0%BB%D1%8C%D1%85%D0%BE%D0%B2%D0%B8%D0%BA-a01871273/',
         },
         role: {
           name: 'Quality Assurance',
@@ -912,7 +964,13 @@ export const projects = [
       ua: 'baza',
     },
     imageUrl: '/img/projects/baza.webp',
-    link: 'https://baza-trainee.tech',
+    status: {
+      en: 'Done',
+      pl: 'Zakończony',
+      ua: 'Завершено',
+    },
+    statusVal: 'active',
+    deployUrl: 'https://baza-trainee.tech',
     description: {
       en: 'Platform for Baza Trainee Ukraine',
       pl: 'Platforma dla Praktykantów Baza Ukraina',
@@ -930,7 +988,7 @@ export const projects = [
             pl: 'Olga Iwanowa',
             ua: 'Ольга Іванова',
           },
-          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+          deployUrl: 'https://www.deployUrledin.com/in/ivolga-kyiv/',
         },
         role: {
           name: 'Project Manager',
@@ -943,7 +1001,7 @@ export const projects = [
             pl: 'Zuzanna Salata',
             ua: 'Сусанна Салата',
           },
-          link: 'https://www.linkedin.com/in/susanna-salata/',
+          deployUrl: 'https://www.deployUrledin.com/in/susanna-salata/',
         },
         role: {
           name: 'Business Analyst',
@@ -956,7 +1014,7 @@ export const projects = [
             pl: 'Iryna Stolarowa',
             ua: 'Ірина Столярова',
           },
-          link: 'https://www.linkedin.com/in/iryna-stoliarova/',
+          deployUrl: 'https://www.deployUrledin.com/in/iryna-stoliarova/',
         },
         role: {
           name: 'Design',
@@ -969,7 +1027,8 @@ export const projects = [
             pl: 'Switłana Makarenko (Batrak)',
             ua: 'Світлана Макаренко (Батрак)',
           },
-          link: 'https://www.linkedin.com/in/svetlana-makarenko-batrak-044850261/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/svetlana-makarenko-batrak-044850261/',
         },
         role: {
           name: 'Design',
@@ -982,7 +1041,7 @@ export const projects = [
             pl: 'Ihor Droniszyniec',
             ua: 'Ігор Дронішинець',
           },
-          link: 'https://www.linkedin.com/in/ihordrn/',
+          deployUrl: 'https://www.deployUrledin.com/in/ihordrn/',
         },
         role: {
           name: 'Front-end',
@@ -995,7 +1054,7 @@ export const projects = [
             pl: 'Mychajło Fisiuk',
             ua: 'Михайло Фисюк',
           },
-          link: 'https://www.linkedin.com/in/mykhailo-fysiuk/',
+          deployUrl: 'https://www.deployUrledin.com/in/mykhailo-fysiuk/',
         },
         role: {
           name: 'Front-end',
@@ -1008,7 +1067,8 @@ export const projects = [
             pl: 'Aleksander Neszczadin',
             ua: 'Олександр Нещадін',
           },
-          link: 'https://www.linkedin.com/in/olexandr-neschadin-804718238/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/olexandr-neschadin-804718238/',
         },
         role: {
           name: 'Front-end',
@@ -1021,7 +1081,7 @@ export const projects = [
             pl: 'Diana Forostyan',
             ua: 'Діана Форостяна',
           },
-          link: 'https://www.linkedin.com/in/diana-forostiana/',
+          deployUrl: 'https://www.deployUrledin.com/in/diana-forostiana/',
         },
         role: {
           name: 'Front-end',
@@ -1034,7 +1094,7 @@ export const projects = [
             pl: 'Ihor Droniszyniec',
             ua: 'Ігор Дронішинець',
           },
-          link: 'https://www.linkedin.com/in/ihordrn/',
+          deployUrl: 'https://www.deployUrledin.com/in/ihordrn/',
         },
         role: {
           name: 'Back-end',
@@ -1047,7 +1107,7 @@ export const projects = [
             pl: 'Anna Kłyba',
             ua: 'Анна Клиба',
           },
-          link: 'https://www.linkedin.com/in/anna-klyba',
+          deployUrl: 'https://www.deployUrledin.com/in/anna-klyba',
         },
         role: {
           name: 'Quality Assurance',
@@ -1060,7 +1120,7 @@ export const projects = [
             pl: 'Aleksy Burys',
             ua: 'Олексій Бурис',
           },
-          link: 'https://www.linkedin.com/in/oleksii-burys-allanq',
+          deployUrl: 'https://www.deployUrledin.com/in/oleksii-burys-allanq',
         },
         role: {
           name: 'Quality Assurance',
@@ -1073,7 +1133,8 @@ export const projects = [
             pl: 'Natalia Kuksowa',
             ua: 'Наталія Куксова',
           },
-          link: 'https://www.linkedin.com/in/natalia-kuksova-6b2138258/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/natalia-kuksova-6b2138258/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1086,7 +1147,8 @@ export const projects = [
             pl: 'Rostisław Bagniuk',
             ua: 'Ростислав Багнюк',
           },
-          link: 'https://www.linkedin.com/in/rostyslav-bahniuk-b8ba9a265/?locale=en_US',
+          deployUrl:
+            'https://www.deployUrledin.com/in/rostyslav-bahniuk-b8ba9a265/?locale=en_US',
         },
         role: {
           name: 'Quality Assurance',
@@ -1099,7 +1161,8 @@ export const projects = [
             pl: 'Jarina Bieriezowska',
             ua: 'Ярина Березовська',
           },
-          link: 'https://www.linkedin.com/in/yaryna-berezovska-a7b41320a/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/yaryna-berezovska-a7b41320a/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1112,7 +1175,8 @@ export const projects = [
             pl: 'Kiryło Matwienko',
             ua: 'Кирило Матвієнко',
           },
-          link: 'https://www.linkedin.com/in/кирилл-матвиенко-b03668262/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/кирилл-матвиенко-b03668262/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1125,7 +1189,7 @@ export const projects = [
             pl: 'Natalia Zołotuchina',
             ua: 'Наталія Золотухіна',
           },
-          link: 'https://www.linkedin.com/in/nataliiazolotukhina/',
+          deployUrl: 'https://www.deployUrledin.com/in/nataliiazolotukhina/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1138,7 +1202,7 @@ export const projects = [
             pl: 'Kateryna Rubanik',
             ua: 'Катерина Рубанік',
           },
-          link: 'http://linkedin.com/in/kateryna-rubanik-6133a6224',
+          deployUrl: 'http://deployUrledin.com/in/kateryna-rubanik-6133a6224',
         },
         role: {
           name: 'Quality Assurance',
@@ -1151,7 +1215,7 @@ export const projects = [
             pl: 'Jewhen Poleżajew',
             ua: 'Євген Полєжаєв',
           },
-          link: 'http://linkedin.com/in/evgeniy-poliezhaie',
+          deployUrl: 'http://deployUrledin.com/in/evgeniy-poliezhaie',
         },
         role: {
           name: 'Quality Assurance',
@@ -1164,7 +1228,7 @@ export const projects = [
             pl: 'Inna Ladyka',
             ua: 'Інна Ладика',
           },
-          link: 'https://www.linkedin.com/in/inna-ladyka-a09343241',
+          deployUrl: 'https://www.deployUrledin.com/in/inna-ladyka-a09343241',
         },
         role: {
           name: 'Quality Assurance',
@@ -1177,7 +1241,8 @@ export const projects = [
             pl: 'Olga Chawronenko',
             ua: 'Ольга Хавроненко',
           },
-          link: 'https://www.linkedin.com/in/%D0%BElha-khavronenko-1b8146266',
+          deployUrl:
+            'https://www.deployUrledin.com/in/%D0%BElha-khavronenko-1b8146266',
         },
         role: {
           name: 'Quality Assurance',
@@ -1190,7 +1255,7 @@ export const projects = [
             pl: 'Wiktoria Jefimenko',
             ua: 'Вікторія Єфименко',
           },
-          link: 'https://www.linkedin.com/in/victoriayefimenko/',
+          deployUrl: 'https://www.deployUrledin.com/in/victoriayefimenko/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1203,7 +1268,8 @@ export const projects = [
             pl: 'Władimir Robota',
             ua: 'Володимир Робота',
           },
-          link: 'https://www.linkedin.com/in/rabota-vladimir-aa3a34225/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/rabota-vladimir-aa3a34225/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1216,7 +1282,8 @@ export const projects = [
             pl: 'Iryna Corelina',
             ua: 'Ірина Кореліна',
           },
-          link: 'https://www.linkedin.com/in/iryna-korelina-17ba40236/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/iryna-korelina-17ba40236/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1232,7 +1299,13 @@ export const projects = [
       ua: 'Читозаврик',
     },
     imageUrl: '/img/projects/zavr.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    statusVal: 'under-development',
+    deployUrl: '',
     description: {
       en: 'Cheetosaurus - a web application with book quizzes for children',
       pl: 'Cheetosaurus - aplikacja internetowa z quizami książkowymi dla dzieci',
@@ -1252,7 +1325,13 @@ export const projects = [
       ua: '1001 songs',
     },
     imageUrl: '/img/projects/1001songs.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    statusVal: 'under-development',
+    deployUrl: '',
     description: {
       en: '1001 songs - a site-collection of authentic Ukrainian songs',
       pl: '1001 piosenek - zbiór witryn z autentycznymi ukraińskimi piosenkami',
@@ -1272,7 +1351,13 @@ export const projects = [
       ua: 'Big Lapa',
     },
     imageUrl: '/img/projects/lapa.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    statusVal: 'under-development',
+    deployUrl: '',
     description: {
       en: 'The website of the shelter for street animals Big Lapa',
       pl: 'Strona schroniska dla zwierząt ulicznych Big Lapa',
@@ -1292,7 +1377,13 @@ export const projects = [
       ua: 'feeda',
     },
     imageUrl: '/img/projects/feeda-1.webp',
-    link: '',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    statusVal: 'under-development',
+    deployUrl: '',
     description: {
       en: 'Feeda is a platform for processing applications for participation in Baza Trainee',
       pl: 'Feeda to platforma do rozpatrywania wniosków o udział w Baza Trainee',
@@ -1312,7 +1403,13 @@ export const projects = [
       ua: 'книга',
     },
     imageUrl: '/img/projects/book.webp',
-    link: 'https://www.openbookhands.site/',
+    status: {
+      en: 'Under development',
+      pl: 'W budowie',
+      ua: 'В розробці',
+    },
+    statusVal: 'under-development',
+    deployUrl: 'https://www.openbookhands.site/',
     description: {
       en: 'The book goes abroad - a humanitarian aid portal',
       pl: 'Książka wyjeżdża za granicę - portal pomocy humanitarnej',
@@ -1330,7 +1427,7 @@ export const projects = [
             pl: 'Natalia Gaivanovich',
             ua: 'Наталя Гайванович',
           },
-          link: 'https://www.linkedin.com/in/natalya-gayvanovych/',
+          deployUrl: 'https://www.deployUrledin.com/in/natalya-gayvanovych/',
         },
         role: {
           name: 'Project Manager',
@@ -1343,7 +1440,8 @@ export const projects = [
             pl: 'Olga Prozorova',
             ua: 'Ольга Прозорова',
           },
-          link: 'https://www.linkedin.com/in/olga-prozorova-248151255/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/olga-prozorova-248151255/',
         },
         role: {
           name: 'Project Manager',
@@ -1356,7 +1454,8 @@ export const projects = [
             pl: 'Max Fedoryshin',
             ua: 'Макс Федоришин',
           },
-          link: 'https://www.linkedin.com/in/max-fedoryshyn-8992881b7/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/max-fedoryshyn-8992881b7/',
         },
         role: {
           name: 'Design',
@@ -1369,7 +1468,7 @@ export const projects = [
             pl: 'Roman Paliokha',
             ua: 'Роман Пальоха',
           },
-          link: 'https://www.linkedin.com/in/romanpaliokha/',
+          deployUrl: 'https://www.deployUrledin.com/in/romanpaliokha/',
         },
         role: {
           name: 'Design',
@@ -1382,7 +1481,8 @@ export const projects = [
             pl: 'Volodymyr Loboda',
             ua: 'Володимир Лобода',
           },
-          link: 'https://www.linkedin.com/in/volodymyr-loboda-021935119/?originalSubdomain=pl',
+          deployUrl:
+            'https://www.deployUrledin.com/in/volodymyr-loboda-021935119/?originalSubdomain=pl',
         },
         role: {
           name: 'Design',
@@ -1395,7 +1495,8 @@ export const projects = [
             pl: 'Olga Bondarenko',
             ua: 'Ольга Бондаренко',
           },
-          link: 'https://www.linkedin.com/in/olha-bondarenko-74a093229/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/olha-bondarenko-74a093229/',
         },
         role: {
           name: 'Front-end',
@@ -1408,7 +1509,7 @@ export const projects = [
             pl: 'Igor Vakaliuk',
             ua: 'Ігор Вакалюк',
           },
-          link: 'https://www.linkedin.com/in/ihor-vakaliuk/',
+          deployUrl: 'https://www.deployUrledin.com/in/ihor-vakaliuk/',
         },
         role: {
           name: 'Front-end',
@@ -1421,7 +1522,8 @@ export const projects = [
             pl: 'Sergii Tokaryev',
             ua: 'Сергій Токарєв',
           },
-          link: 'https://www.linkedin.com/in/serhii-tokariev-4a1060155/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/serhii-tokariev-4a1060155/',
         },
         role: {
           name: 'Front-end',
@@ -1434,7 +1536,7 @@ export const projects = [
             pl: 'Oleksandr Brusyltsev',
             ua: 'Олександр Брусильцев',
           },
-          link: 'https://www.linkedin.com/in/oleksandr-brusyltsev/',
+          deployUrl: 'https://www.deployUrledin.com/in/oleksandr-brusyltsev/',
         },
         role: {
           name: 'Back-end',
@@ -1447,7 +1549,7 @@ export const projects = [
             pl: 'Kateryna Pogrebna',
             ua: 'Катерина Погребна',
           },
-          link: 'https://www.linkedin.com/in/katerynapogrebna/',
+          deployUrl: 'https://www.deployUrledin.com/in/katerynapogrebna/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1460,7 +1562,7 @@ export const projects = [
             pl: 'Zinaida Usikova',
             ua: 'Зінаїда Усікова',
           },
-          link: 'https://www.linkedin.com/in/zinaida-usikova/',
+          deployUrl: 'https://www.deployUrledin.com/in/zinaida-usikova/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1473,7 +1575,7 @@ export const projects = [
             pl: 'Nikolay Osetrov',
             ua: 'Микола Осетров',
           },
-          link: 'https://www.linkedin.com/in/nikolayosetrov/',
+          deployUrl: 'https://www.deployUrledin.com/in/nikolayosetrov/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1486,7 +1588,7 @@ export const projects = [
             pl: 'Nataliya Kuhn',
             ua: 'Наталія Кун',
           },
-          link: 'https://www.linkedin.com/in/nataliya-kuhn/',
+          deployUrl: 'https://www.deployUrledin.com/in/nataliya-kuhn/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1502,9 +1604,15 @@ export const projects = [
       ua: 'Лендінг - збір коштів',
     },
     imageUrl: '/img/projects/arms.webp',
-    link: 'https://obijmy59.online/',
+    status: {
+      en: 'Done',
+      pl: 'Zakończony',
+      ua: 'Завершено',
+    },
+    statusVal: 'active',
+    deployUrl: 'https://obijmy59.online/',
     description: {
-      en: `Landing - fundraising for the 59th Brigade 'Steel Arms'`,
+      en: `Landing -  fundraising for the 59th Brigade 'Steel Arms'`,
       pl: `Lądowanie - zbiórka pieniędzy dla 59 Brygady 'Stalowej Broni'`,
       ua: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
     },
@@ -1520,7 +1628,7 @@ export const projects = [
             pl: 'Danilo Osadchenko',
             ua: 'Данило Осадченко',
           },
-          link: 'https://www.linkedin.com/in/danylo-osadchenko/',
+          deployUrl: 'https://www.deployUrledin.com/in/danylo-osadchenko/',
         },
         role: {
           name: 'Back-end',
@@ -1533,7 +1641,7 @@ export const projects = [
             pl: 'Bogdan Taran',
             ua: 'Богдан Таран',
           },
-          link: 'https://www.linkedin.com/in/bohdan-taran-2168b1220',
+          deployUrl: 'https://www.deployUrledin.com/in/bohdan-taran-2168b1220',
         },
         role: {
           name: 'Business Analyst',
@@ -1546,7 +1654,7 @@ export const projects = [
             pl: 'Susanna Salata',
             ua: 'Сусанна Салата',
           },
-          link: 'https://www.linkedin.com/in/susanna-salata/',
+          deployUrl: 'https://www.deployUrledin.com/in/susanna-salata/',
         },
         role: {
           name: 'BA/PM Mentor',
@@ -1559,7 +1667,7 @@ export const projects = [
             pl: 'Ostap Seniuk',
             ua: 'Остап Сенюк',
           },
-          link: 'https://www.linkedin.com/in/ostap-seniuk/',
+          deployUrl: 'https://www.deployUrledin.com/in/ostap-seniuk/',
         },
         role: {
           name: 'Design',
@@ -1572,7 +1680,7 @@ export const projects = [
             pl: 'Viktoria Dzhus',
             ua: 'Вікторія Джус',
           },
-          link: 'https://www.linkedin.com/in/victoriadzhus/',
+          deployUrl: 'https://www.deployUrledin.com/in/victoriadzhus/',
         },
         role: {
           name: 'Design',
@@ -1597,7 +1705,7 @@ export const projects = [
             pl: 'Inna Kijan',
             ua: 'Інна Кіян',
           },
-          link: 'https://www.linkedin.com/in/inna-kiyan-586138263/',
+          deployUrl: 'https://www.deployUrledin.com/in/inna-kiyan-586138263/',
         },
         role: {
           name: 'Design',
@@ -1610,7 +1718,8 @@ export const projects = [
             pl: 'Anastazja Worona',
             ua: 'Анастасія Ворона',
           },
-          link: 'https://www.linkedin.com/in/anastasiia-vorona-6a5165220/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/anastasiia-vorona-6a5165220/',
         },
         role: {
           name: 'Design',
@@ -1623,7 +1732,8 @@ export const projects = [
             pl: 'Sergiusz Onopriienko',
             ua: 'Сергій Онопрієнко',
           },
-          link: 'https://www.linkedin.com/in/serhii-onopriienko-099215174/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/serhii-onopriienko-099215174/',
         },
         role: {
           name: 'Front-end',
@@ -1636,7 +1746,7 @@ export const projects = [
             pl: 'Maksym Kulbako',
             ua: 'Максим Кубалко',
           },
-          link: 'https://www.linkedin.com/in/maksym-kulbako-69028847',
+          deployUrl: 'https://www.deployUrledin.com/in/maksym-kulbako-69028847',
         },
         role: {
           name: 'Front-end',
@@ -1649,7 +1759,7 @@ export const projects = [
             pl: 'Olga Iwanowa',
             ua: 'Ольга Іванова',
           },
-          link: 'https://www.linkedin.com/in/ivolga-kyiv/',
+          deployUrl: 'https://www.deployUrledin.com/in/ivolga-kyiv/',
         },
         role: {
           name: 'Product Owner',
@@ -1662,7 +1772,7 @@ export const projects = [
             pl: 'Svitlana Diachenko',
             ua: 'Світлана Дяченко',
           },
-          link: 'https://www.linkedin.com/in/svitlanadiachenko/',
+          deployUrl: 'https://www.deployUrledin.com/in/svitlanadiachenko/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1675,7 +1785,7 @@ export const projects = [
             pl: 'Olena Czornobrywiec',
             ua: 'Олена Чорнобривець',
           },
-          link: 'http://www.linkedin.com/in/olenachornobryvets',
+          deployUrl: 'http://www.deployUrledin.com/in/olenachornobryvets',
         },
         role: {
           name: 'Quality Assurance',
@@ -1688,7 +1798,7 @@ export const projects = [
             pl: 'Katarzyna Żarowa',
             ua: 'Катерина Жарова',
           },
-          link: 'https://www.linkedin.com/in/kateryna-zharova/',
+          deployUrl: 'https://www.deployUrledin.com/in/kateryna-zharova/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1701,7 +1811,8 @@ export const projects = [
             pl: 'Sergiusz Sztiepan-Antoniuk',
             ua: 'Сергій Штефан-Антонюк',
           },
-          link: 'https://www.linkedin.com/in/serhii-shtefan-antoniuk-91610b258?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfvGVVsReQpuZ9lDTBekIFA%3D%3D',
+          deployUrl:
+            'https://www.deployUrledin.com/in/serhii-shtefan-antoniuk-91610b258?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfvGVVsReQpuZ9lDTBekIFA%3D%3D',
         },
         role: {
           name: 'Quality Assurance',
@@ -1714,7 +1825,7 @@ export const projects = [
             pl: 'Lilia Oliynyk',
             ua: 'Лілія Олійник',
           },
-          link: 'https://sk.linkedin.com/in/lily-oliynyk-299605282',
+          deployUrl: 'https://sk.deployUrledin.com/in/lily-oliynyk-299605282',
         },
         role: {
           name: 'Quality Assurance',
@@ -1727,7 +1838,7 @@ export const projects = [
             pl: 'Paweł Chlebnikow',
             ua: 'Павло Хлебніков',
           },
-          link: 'https://www.linkedin.com/in/pavelkhlebnikov/',
+          deployUrl: 'https://www.deployUrledin.com/in/pavelkhlebnikov/',
         },
         role: {
           name: 'Quality Assurance',
@@ -1740,7 +1851,7 @@ export const projects = [
             pl: 'Tatiana Kowalska',
             ua: 'Тетяна Ковальська',
           },
-          link: 'http://linkedin.com/in/tetiana-kovalska-43b32022b',
+          deployUrl: 'http://deployUrledin.com/in/tetiana-kovalska-43b32022b',
         },
         role: {
           name: 'Quality Assurance',
@@ -1753,7 +1864,8 @@ export const projects = [
             pl: 'Walenty Jelkin',
             ua: 'Валентин Елькін',
           },
-          link: 'https://www.linkedin.com/in/valentyn-yelkin-295637261/',
+          deployUrl:
+            'https://www.deployUrledin.com/in/valentyn-yelkin-295637261/',
         },
         role: {
           name: 'Quality Assurance',

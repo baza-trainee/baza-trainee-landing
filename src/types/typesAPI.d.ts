@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { IProject, TProject, TTeamMemberRole } from './projectsTypes';
 
 export interface IErrorResponse {
   message: string;
@@ -11,10 +12,16 @@ interface CommonResponseBase {
   __v?: number;
 }
 
-type titleLanguagesTypes = {
+export type TTitleLanguagesTypes = {
   en: string;
   pl: string;
   ua: string;
+};
+
+type TPagination = {
+  currentPage: number;
+  totalPages: number;
+  totalResults: number;
 };
 
 // Request types
@@ -53,10 +60,18 @@ export type TContactsInfo = {
 };
 
 export interface IHeroSlider extends CommonResponseBase {
-  title: titleLanguagesTypes;
-  subtitle: titleLanguagesTypes;
+  title: TTitleLanguagesTypes;
+  subtitle: TTitleLanguagesTypes;
   imageUrl?: string;
 }
+
+export type IHeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
 
 export interface IPartner extends CommonResponseBase {
   homeUrl?: string;
@@ -64,7 +79,7 @@ export interface IPartner extends CommonResponseBase {
 }
 /*
 export interface IProject extends CommonResponseBase {
-  title: titleLanguagesTypes;
+  title: TTitleLanguagesTypes;
   imageUrl: string;
   deployUrl?: string;
   stack?: [{ _id?: string; name: string }];
@@ -80,44 +95,8 @@ export interface IProject extends CommonResponseBase {
   ];
 }*/
 
-export interface IProject {
-  _id: string;
-  title: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  imageUrl: string;
-
-  link: string;
-  description: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  isTeamRequired: boolean;
-  creationDate: number;
-  launchDate: number;
-  complexity: number;
-  teamMembers: Array<{
-    user: {
-      _id: string;
-      name: {
-        en: string;
-        pl: string;
-        ua: string;
-      };
-      link: string;
-    };
-    role: {
-      _id: string;
-      name: string;
-    };
-  }>;
-}
-
 export interface IRole extends CommonResponseBase {
-  name: titleLanguagesTypes;
+  name: TTitleLanguagesTypes;
 }
 
 export interface IStack extends CommonResponseBase {
@@ -139,13 +118,13 @@ export interface IDocuments<T> extends CommonResponseBase {
 }
 
 export interface IMember extends CommonResponseBase {
-  name: titleLanguagesTypes;
+  name: TTitleLanguagesTypes;
   profileUrl?: string;
 }
 
 export interface ITestimonial extends CommonResponseBase {
-  name: titleLanguagesTypes;
-  review: titleLanguagesTypes;
+  name: TTitleLanguagesTypes;
+  review: TTitleLanguagesTypes;
   date: number;
   imageUrl: string;
 }
@@ -158,17 +137,17 @@ export interface IUser extends CommonResponseBase {
 }
 
 export type id = string | number;
-export type byIdRequest = id;
 export type updateByIdRequest = [id: id, payload: Object];
 export type searchProjectRequest = string;
 
-export type methodType<T> = (payload: T) => Promise<AxiosResponse>;
-export type dispatcherType<T> = (payload?: T) => void;
+export type methodType<T> = (_payload: T) => Promise<AxiosResponse>;
+export type dispatcherType<T> = (_payload?: T) => void;
 export type responseDataType =
   | any
   | IUser
   | IAchievement
   | IHeroSlider
+  | IHeroSliderData
   | IPartner
   | IProject
   | IRole
@@ -186,3 +165,18 @@ export type responseDataType =
       | ITestimonial
     >
   | null;
+
+export type TResponseProjects = {
+  results: TProject[];
+  pagination: TPagination;
+};
+
+export type TResponseMembers = {
+  results: IMember[];
+  pagination: TPagination;
+};
+
+export type TResponseRoles = {
+  results: TTeamMemberRole[];
+  pagination: TPagination;
+};

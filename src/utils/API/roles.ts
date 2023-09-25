@@ -1,26 +1,28 @@
-import { IRole, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IRole, TResponseRoles } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
+const rolesEndpoint = '/roles';
+
 const rolesApi = {
-  getAll() {
-    return bazaAPI.get('/roles');
+  async getAll(uri: string) {
+    return await bazaAPI.get<TResponseRoles>(uri).then((res) => res.data);
   },
 
-  createNew(role: IRole) {
-    return bazaAPI.post('/roles', role);
+  async createNew(role: IRole) {
+    return await bazaAPI.post(rolesEndpoint, role);
   },
 
-  getById(id: byIdRequest) {
-    return bazaAPI.get(`/roles/${id}`);
+  async getById(id: string) {
+    return await bazaAPI.get(`${rolesEndpoint}/${id}`);
   },
 
-  deleteById(id: byIdRequest) {
-    return bazaAPI.delete(`/roles/${id}`);
+  async deleteById(id: string) {
+    return await bazaAPI.delete(`${rolesEndpoint}/${id}`);
   },
 
-  updateById([id, payload]: updateByIdRequest) {
-    return bazaAPI.patch(`/roles/${id}`, payload);
+  async updateById(id: string, role: IRole) {
+    return await bazaAPI.patch(`${rolesEndpoint}/${id}`, role);
   },
 };
 
-export default rolesApi;
+export { rolesApi, rolesEndpoint };

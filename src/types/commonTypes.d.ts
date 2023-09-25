@@ -1,16 +1,18 @@
 export type TSlide = {
   title: {
+    ua: string;
     en: string;
     pl: string;
-    ua: string;
   };
   specialization?: string;
-  text: {
+  subtitle: {
+    ua: string;
     en: string;
     pl: string;
-    ua: string;
   };
-  image: string;
+  imageUrl: string;
+  _id: string;
+  _v: number;
 };
 
 export type TSlideReview = {
@@ -120,4 +122,20 @@ export type TDictionary = {
     loading: string;
     error: string;
   };
+};
+
+type TAdminSlideTitle = {
+  ua: string;
+  pl: string;
+  en: string;
+};
+
+export type TAdminSlide = {
+  title: TAdminSlideTitle;
+  subtitle: TAdminSlideTitle;
+  imageUrl?: string;
+  __v: number;
+  _id: string;
+  key: string;
+  slideData: never;
 };

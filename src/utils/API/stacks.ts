@@ -1,4 +1,4 @@
-import { IStack, byIdRequest, updateByIdRequest } from '@/types/typesAPI';
+import { IStack, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const stacksApi = {
@@ -10,11 +10,11 @@ const stacksApi = {
     return bazaAPI.post('/stacks', stack);
   },
 
-  getById(id: byIdRequest) {
+  getById(id: string) {
     return bazaAPI.get(`/stacks/${id}`);
   },
 
-  deleteById(id: byIdRequest) {
+  deleteById(id: string) {
     return bazaAPI.delete(`/stacks/${id}`);
   },
 
