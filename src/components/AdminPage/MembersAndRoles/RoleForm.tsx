@@ -130,7 +130,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!roleId} handleFunc={handleResetRoleForm} />
+      <FormBtns isEditMode={!!roleId} cancelAction={handleResetRoleForm} />
     </form>
   );
 };

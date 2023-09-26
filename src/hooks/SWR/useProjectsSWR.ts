@@ -7,6 +7,7 @@ import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
 import { AxiosError } from 'axios';
 import { TProject, TResponseProjects, TProjectRequest } from '@/types';
+import { prettyPrint } from '@/utils/prettyPrint';
 
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -45,7 +46,9 @@ const useProjectsSWR = () => {
     };
 
     mutate(() => projectsApi.createNew(newProject), options)
-      .catch(handleRequestError)
+      .then(console.log)
+      // .then((r) => prettyPrint(r, 'ProSWR'))
+      // .catch(handleRequestError)
       .catch((e) => console.log('ERROR!!!!!', e));
   };
 

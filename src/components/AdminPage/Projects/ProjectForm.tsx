@@ -194,18 +194,20 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
 
     if (projectByIdData) {
       // console.log('data >>', data, 'subm >>', preparedProject);
-      // console.log('data >>', data.creationDate);
-
+      
       handlerUpdateProject(preparedProject);
+      // console.log('upd >>', preparedProject);
     } else {
       handlerCreateProject(preparedProject);
+      console.log('create >>', preparedProject);
     }
 
     router.replace('.');
   };
-
+  
   const handleResetProjectForm = () => {
     reset(defaultValues);
+    router.replace('.');
   };
 
   return (
@@ -352,9 +354,10 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
         </div>
       </div>
 
-      <FormBtns isEditMode={!!projectId} handleFunc={handleResetProjectForm} />
+      <FormBtns isEditMode={!!projectId} cancelAction={handleResetProjectForm} />
     </form>
   );
 };
 
 export { ProjectForm };
+

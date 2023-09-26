@@ -1,17 +1,20 @@
-'use client';
+import Link from 'next/link';
+
+import { projectCycle } from '@/utils/developmentTimeCalculator';
+import { formatDate } from '@/utils/formatDate';
+
+import { ProjectComplexity } from './ProjectComplexity';
+import { ProjectStatusBar } from './ProjectStatusBar';
+
+import { dictionaries } from '@/locales/dictionaries';
+
 import {
   ProjectComplexityIcon,
   ProjectDurationIcon,
   ProjectStartIcon,
 } from '@/components/common/icons';
 
-import { dictionaries } from '@/locales/dictionaries';
 import { ICardContent2 } from '@/types';
-import { projectCycle } from '@/utils/developmentTimeCalculator';
-import { formatDate } from '@/utils/formatDate';
-import Link from 'next/link';
-import { ProjectComplexity } from './ProjectComplexity';
-import { ProjectStatusBar } from './ProjectStatusBar';
 
 const ProjectCardContent = ({
   handleShowTeam,

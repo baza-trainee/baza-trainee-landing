@@ -185,7 +185,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!memberId} handleFunc={handleResetMemberForm} />
+      <FormBtns isEditMode={!!memberId} cancelAction={handleResetMemberForm} />
     </form>
   );
 };

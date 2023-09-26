@@ -27,6 +27,9 @@ export const ProjectTeamList = ({
     handlerUpdateMember,
   } = useProjectsByIdSWR(projectId);
 
+
+  console.log(projectByIdData);
+  
   return (
     <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
       <ListHeader  projectId={projectId}

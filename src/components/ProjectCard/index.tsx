@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 import { ProjectCardContent } from './ProjectCardContent';
 
@@ -45,8 +45,8 @@ const ProjectCard = ({
           src={coverImgUrl}
           alt="Project Image"
           fill
-          objectFit="cover"
-          className={`contrast-50 ${
+          sizes="100%"
+          className={`contrast-50 object-cover w-full h-auto ${
             isMembersVisible
               ? 'grayscale-[.3]'
               : 'grayscale group-hover:contrast-100 group-hover:grayscale-0'

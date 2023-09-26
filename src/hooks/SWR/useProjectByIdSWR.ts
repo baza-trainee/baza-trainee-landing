@@ -61,8 +61,9 @@ const useProjectsByIdSWR = (id?: string, firstInit?: boolean) => {
     if (!id) return;
 
     mutate(() => projectsApi.updateById(id, updProject))
+    // .then(console.log)
       .catch(handleRequestError)
-      .catch((e) => console.log('ERROR!!!!!', e));
+      // .catch((e) => console.log('ERROR!!!!!', e));
   };
 
   // const handlerUpdateProjectTeam = (

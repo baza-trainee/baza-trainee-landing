@@ -1,8 +1,9 @@
-'use client';
-import { CloseIcon } from '@/components/common/icons';
-import { ICardContent2 } from '@/types';
-import { dictionaries } from '@/locales/dictionaries';
 import { ProjectTeamMembers } from './ProjectTeamMembers';
+import { dictionaries } from '@/locales/dictionaries';
+
+import { CloseIcon } from '@/components/common/icons';
+
+import { ICardContent2 } from '@/types';
 
 export const ProjectCardTeam = ({
   handleShowTeam,

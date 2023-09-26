@@ -183,7 +183,7 @@ export const SliderForm = ({
           />
         </div>
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
-          <FormBtns isEditMode={isEdit} handleFunc={handleResetForm} />
+          <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
             <LanguageSelector />
           </div>
