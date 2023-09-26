@@ -11,7 +11,7 @@ import { ITestimonial } from '@/types';
 import { AxiosError } from 'axios';
 
 export const useTestimonialsSWR = () => {
-  const { setAlertInfo } = useGlobalContext(); 
+  const { setAlertInfo } = useGlobalContext();
 
   const handleRequestError = (err: AxiosError) => {
     errorHandler(err);
@@ -22,64 +22,62 @@ export const useTestimonialsSWR = () => {
     });
   };
 
-  const { data, error, isLoading } = useSWR(  
+  const { data, error, isLoading, mutate } = useSWR(
     testimonialsEndPoint,
     testimonialsApi.getAll,
     {
-      keepPreviousData: true,
       onError: handleRequestError,
     }
   );
 
-  // const updateAndMutate = (
-  //   updSliders: ITestimonial[],
-  //   action: () => Promise<AxiosResponse<any, any>>
-  // ) => {
-  //   try {
-  //     mutate(action, {
-  //       optimisticData: { data: updSliders },
-  //       revalidate: false,
-  //       populateCache: false,
-  //     });
-  //   } catch (error) {
-  //     errorHandler(error);
-  //   }
-  // };
-
   const getByIdSlider = (id: string) => {
-    const slideById = Array.isArray(data) &&
-    data.length && data.filter(
-      (slide: ITestimonial) => slide._id == id
-    );
+    const slideById =
+      Array.isArray(data) &&
+      data.length &&
+      data.filter((slide: ITestimonial) => slide._id === id);
     return slideById;
   };
 
-  const delByIdSlider = (id: string) => {
-    const updSliders = Array.isArray(data) &&
-    data.length && data.filter(
-      (slide: ITestimonial) => slide._id !== id
-    );
-    testimonialsApi.deleteById(id);
-    return updSliders;
+  const delByIdSlider = async (id: string) => {
+    try {
+      const newData =
+        Array.isArray(data) &&
+        data.length &&
+        data.filter((slide: ITestimonial) => slide._id !== id);
+
+      testimonialsApi.deleteById(id);
+      await mutate({ newData });
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   const addNewSlider = async (slider: ITestimonial) => {
-    const updSliders = [...(Array.isArray(data) &&
-      data.length && data || []), slider];
-    testimonialsApi.createNew(slider);
-    return updSliders;
+    try {
+      const newData = [
+        ...((Array.isArray(data) && data.length && data) || []),
+        slider,
+      ];
+      testimonialsApi.createNew(slider);
+      await mutate({ newData });
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   const updateSlider = async (id: string, slider: ITestimonial) => {
-    const updSlider = Array.isArray(data) &&
-    data.length && data.map((slide: ITestimonial) =>
-      slide._id === id ? slider : slide
-    );
-    testimonialsApi.updateById([id, slider]);
-    return updSlider;
+    try {
+      const newData =
+        Array.isArray(data) &&
+        data.length &&
+        data.map((slide: ITestimonial) => (slide._id === id ? slider : slide));
+      testimonialsApi.updateById([id, slider]);
+      await mutate({ newData });
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
-  
   return {
     testimonialsData: data,
     isLoading,
