@@ -75,10 +75,13 @@ export const TestimonialEditor = ({
         setReviewUa(data.review.ua);
         setReviewEn(data.review.en);
         setReviewPl(data.review.pl);
+        setReviewUa(data.review.ua);
+        setReviewEn(data.review.en);
+        setReviewPl(data.review.pl);
       };
       getTestimonial();
     }
-  }, [testimonialId, getById]);
+  }, [testimonialId, getById, setReviewUa, setReviewEn, setReviewPl]);
 
   useEffect(() => {
     if (itemData) {
@@ -113,8 +116,10 @@ export const TestimonialEditor = ({
   };
   const translatorHandleTextEn = (text: string, _name: string) => {
     setReviewEn(text);
+    setReviewEn(text);
   };
   const translatorHandleTextPl = (text: string, _name: string) => {
+    setReviewPl(text);
     setReviewPl(text);
   };
 
@@ -358,12 +363,16 @@ export const TestimonialEditor = ({
           />
         </div>
       </form>
-      {currentValues.nameUa && isImageUrl &&(
+      {currentValues.nameUa && isImageUrl && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
             <LanguageSelector />
           </div>
-          <SingleSlide slideData={previewData} lang={curLang} isImageUrl={isImageUrl} />
+          <SingleSlide
+            slideData={previewData}
+            lang={curLang}
+            isImageUrl={isImageUrl}
+          />
         </div>
       )}
     </div>
