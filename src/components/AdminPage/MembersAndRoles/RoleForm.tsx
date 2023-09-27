@@ -5,8 +5,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 
-import { TextInputField } from '@/components/atomic';
-import { FormBtns } from '../../atomic/buttons/FormBtns';
+import { FormBtns, TextInputField } from '@/components/atomic';
 
 import { IRole } from '@/types';
 
@@ -23,11 +22,11 @@ const fieldOptions = {
     message: 'Мінімальна довжина поля 5 символів',
   },
   maxLength: {
-    value: 25,
+    value: 50,
     message: 'Максимальна довжина поля 25 символів',
   },
   pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї \d]+$/,
+    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻа-яА-ЯҐґЄєІіЇї\s\d'’-]+$/,
     message: 'Введіть коректну назву',
   },
 };

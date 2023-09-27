@@ -1,25 +1,30 @@
-// import { ProjectTeamMembers } from './ProjectTeamMembers';
+import { SETTINGS } from '@/config/settings';
 import { dictionaries } from '@/locales/dictionaries';
 
 import { CloseIcon } from '@/components/common/icons';
 
-import { ICardContent2 } from '@/types';
+import { ICardContent2, TTeamMemberBio } from '@/types';
 
 export const ProjectCardTeam = ({
   handleShowTeam,
   project,
   lang = 'ua',
 }: ICardContent2) => {
-  const roles = project.teamMembers
-    .reduce((acc: string[], cur) => {
-      if (!acc.includes(cur.teamMemberRole.name[lang])) {
-        acc.push(cur.teamMemberRole.name[lang]);
-      }
-      return acc;
-    }, [])
-    .sort();
-
   const projectTeamTitle = dictionaries[lang].projects.projectTeam;
+  const rolesAndMembers: { [role: string]: TTeamMemberBio[] } = {};
+
+  project.teamMembers.forEach((member) => {
+    const roleName = member.teamMemberRole.name.en;
+    if (!rolesAndMembers[roleName]) {
+      rolesAndMembers[roleName] = [];
+    }
+    rolesAndMembers[roleName].push(member.teamMember);
+  });
+
+  const sortedRoles = Object.keys(rolesAndMembers).sort(
+    (a, b) =>
+      SETTINGS.specsOrderList.indexOf(a) - SETTINGS.specsOrderList.indexOf(b)
+  );
 
   return (
     <>
@@ -30,25 +35,20 @@ export const ProjectCardTeam = ({
       <p className="mb-7 w-full text-3xl font-semibold">{projectTeamTitle}</p>
 
       <div className="scrollbar flex h-[90%] flex-col gap-[1.6rem] overflow-y-scroll">
-        {roles.map((role) => (
+        {sortedRoles.map((role) => (
           <div key={role}>
             <h4 className="font-semibold">{role}</h4>
 
-            {project.teamMembers
-              .filter((member) => member.teamMemberRole.name.en === role)
-              .sort((a, b) =>
-                a.teamMember.name[lang].localeCompare(b.teamMember.name[lang])
-              )
-              .map((member) => (
-                <a
-                  key={member.teamMember._id}
-                  className="block text-yellow-500 underline"
-                  href={member.teamMember.link}
-                  target="_blank"
-                >
-                  {member.teamMember.name[lang]}
-                </a>
-              ))}
+            {rolesAndMembers[role].map((teamMember) => (
+              <a
+                key={teamMember._id}
+                className="block cursor-pointer text-yellow-500 underline"
+                href={teamMember.link}
+                target="_blank"
+              >
+                {teamMember.name[lang]}
+              </a>
+            ))}
           </div>
         ))}
       </div>
