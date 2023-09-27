@@ -45,6 +45,7 @@ export const InputField = ({
               <button
                 className={`${isIconActive ? '' : ' text-neutral-300'} `}
                 onClick={iconClickHandler}
+                type='button'
               >
                 {icon}
               </button>
