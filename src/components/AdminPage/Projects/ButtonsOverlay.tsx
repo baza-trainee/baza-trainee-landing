@@ -14,7 +14,7 @@ export const ButtonsOverlay = ({ children, handleDelete }: Props) => {
     <div className="group relative w-full max-w-[37.8rem]">
       {children}
 
-      <div className="absolute right-8 top-8">
+      <div className="absolute right-16 top-8">
         <ActionBtns entity="projects" id={id} handleDelete={handleDelete} />
       </div>
     </div>

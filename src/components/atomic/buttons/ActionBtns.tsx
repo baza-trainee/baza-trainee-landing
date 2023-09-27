@@ -15,7 +15,7 @@ export const ActionBtns = ({ entity, id, handleDelete }: TProps) => {
         <EditDeleteButton icon="edit" />
       </Link>
 
-      <EditDeleteButton icon="delete" onClick={() => handleDelete(id)} />
+      <EditDeleteButton icon="delete" onClick={() => handleDelete(id)} /> {/*  TODO: to implement "confirm question" logic */}
     </div>
   );
 };

@@ -284,7 +284,7 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
         </div>
 
         <div className="col-span-1 row-span-3 shadow-md">
-          <ProjectPreview currentValues={currentValues} />
+          <ProjectPreview currentValues={currentValues} projectId={ projectId} />
         </div>
 
         <div className={`${rowStyle} col-span-2`}>

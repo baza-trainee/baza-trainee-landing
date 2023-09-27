@@ -29,18 +29,17 @@ const ProjectCardContent = ({
       <ProjectStatusBar project={project} lang={lang} />
 
       <div className="flex w-full flex-col gap-[1.6rem]">
-        <div className="h-[11rem]">
-          <h4 className="text-[2.4rem] font-bold leading-[3rem]">
+        <div className="h-[11rem] overflow-clip text-ellipsis">
+          <h4 className="mb-[0.8rem] text-[2.4rem] font-bold leading-[3rem]">
             {project.title[lang]}
           </h4>
           {project.deployUrl && (
             <Link
               href={project.deployUrl}
               target="_blank"
-              className="mt-[0.8rem]"
               aria-label={`Visit ${project.deployUrl}`}
             >
-              {project.deployUrl ? project.deployUrl : ''}
+              {project.deployUrl}
             </Link>
           )}
         </div>
@@ -70,7 +69,7 @@ const ProjectCardContent = ({
             </div>
           </div>
 
-          {project.teamMembers && project.teamMembers.length > 0 && (
+          {project?.teamMembers?.length > 0 && (
             <button
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}

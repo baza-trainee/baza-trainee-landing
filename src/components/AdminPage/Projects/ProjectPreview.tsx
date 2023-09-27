@@ -8,10 +8,12 @@ import { LogoMain } from '@/components/common/icons';
 
 import { TProject } from '@/types';
 import { TFormInput } from './types';
+import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 
 type Props = {
   // TODO: possibly delete.
   currentValues: TFormInput;
+  projectId?: string;
 };
 
 const EmptyPreviewImg = () => (
@@ -20,7 +22,8 @@ const EmptyPreviewImg = () => (
   </div>
 );
 
-const ProjectPreview = ({ currentValues }: Props) => {
+const ProjectPreview = ({ currentValues, projectId }: Props) => {
+  const { projectByIdData } = useProjectsByIdSWR(projectId);
   const { projectImg } = currentValues;
   // console.log("projectImg", projectImg[0].type );
 
@@ -58,7 +61,7 @@ const ProjectPreview = ({ currentValues }: Props) => {
     creationDate: convertDate.toMsec(currentValues.creationDate),
     launchDate: convertDate.toMsec(currentValues.launchDate),
     complexity: +currentValues.complexity,
-    teamMembers: []
+    teamMembers: projectByIdData?.teamMembers || [],
   };
 
   return (
@@ -79,4 +82,3 @@ const ProjectPreview = ({ currentValues }: Props) => {
 };
 
 export { ProjectPreview };
-
