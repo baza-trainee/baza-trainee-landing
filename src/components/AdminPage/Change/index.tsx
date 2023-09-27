@@ -2,10 +2,11 @@
 
 import {AdminTitle, PasswordInput, FormBtns } from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 export const Change = () => {
   const { setAlertInfo } = useGlobalContext();
+  const [isFormValid, setIsFormValid] = useState(false);
 
   type TPasswordDate = {
       oldPassword: string;
@@ -24,24 +25,50 @@ export const Change = () => {
 
 const resetHandler = () => {
   setPasswordData(defaultPasswordData);
+  handleGoBack();
 };
 
-  const router = useRouter();
+  const router = useRouter();  
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if(!passwordData.oldPassword || !passwordData.newPassword || !passwordData.duplicationPassword){
+      setAlertInfo({
+        state: 'error',
+        title: 'Пусті поля',
+        textInfo: `Всі поля повинні бути заповнені`,
+      });
+      return;
+    }
     if(passwordData.newPassword !== passwordData.duplicationPassword){
       setAlertInfo({
         state: 'error',
         title: 'Новий проль невірний',
         textInfo: `Ви ввели не однакові паролі`,
       });
+      return;
     }
     console.log("Запит на оновлення")!
+    console.log(passwordData)
+    // setIsFormValid(true);
     setTimeout(function() {
       handleGoBack();
     }, 3000); 
   };
+
+  useEffect(() => {  
+    const isFieldsNoEmpty: boolean = !!(
+      passwordData.oldPassword &&
+      passwordData.newPassword &&
+      passwordData.duplicationPassword
+    );
+    const isNewPasswordsIqual:boolean = passwordData.newPassword === passwordData.duplicationPassword;
+    console.log("isFieldsEmpty", isFieldsNoEmpty);
+    console.log("isNewPasswordsIqual", isNewPasswordsIqual);
+    console.log("!isFieldsEmpty && isNewPasswordsIqual", isFieldsNoEmpty && isNewPasswordsIqual);
+
+    setIsFormValid(isFieldsNoEmpty && isNewPasswordsIqual);
+  }, [passwordData]);
 
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {    
     const { name, value } = event.target;
@@ -94,7 +121,7 @@ const resetHandler = () => {
         </div>
 
         <div className="ml-5 flex gap-[1.8rem]">
-          <FormBtns isEditMode={true} handleFunc={resetHandler} />
+          <FormBtns isEditMode={true} disabled={!isFormValid} handleFunc={resetHandler} />
         </div>
       </form>
     </div>
