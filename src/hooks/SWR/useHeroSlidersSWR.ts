@@ -21,10 +21,7 @@ export const useHeroSliderSWR = () => {
   const { data, error, isLoading, mutate } = useSWR<
     THeroSliderData,
     AxiosError
-  >(slidersEndPoint, heroSliderApi.getAll, {
-    keepPreviousData: true,
-    onError: handleRequestError,
-  });
+  >(slidersEndPoint, heroSliderApi.getAll, { onError: handleRequestError });
 
   const updateAndMutate = (
     updSliders: IHeroSlider[],
