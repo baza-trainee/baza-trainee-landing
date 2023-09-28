@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { TTeamMember } from '@/types';
+import { roleSorter } from '@/utils/roleSorter';
 
 type TProps = {
   projectId: string;
@@ -37,7 +38,7 @@ const RoleSelector = ({ projectId, member }: TProps) => {
     >
       {!selectedRoleId && <option />}
       {rolesData &&
-        rolesData.results.map((item) => (
+        roleSorter(rolesData.results)!.map((item) => (
           <option key={item._id} className="rounded-md py-3" value={item._id}>
             {item.name.ua}
           </option>

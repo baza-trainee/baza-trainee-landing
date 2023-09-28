@@ -5,20 +5,11 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { MembersAndRolesList } from './MembersAndRolesList';
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-import { TTeamMemberRole } from '@/types';
-import { SETTINGS } from '@/config/settings';
+import { roleSorter } from '@/utils/roleSorter';
 
 type TProps = {
   entity: 'members' | 'roles';
 };
-
-const orderList = SETTINGS.specsOrderList;
-
-const roleSorter = (results?: TTeamMemberRole[]) =>
-  results &&
-  results.sort(
-    (a, b) => orderList.indexOf(a.name.en) - orderList.indexOf(b.name.en)
-  );
 
 export const MembersAndRoles = ({ entity }: TProps) => {
   const { membersData, handlerSearchMember, handlerDeleteMember } =

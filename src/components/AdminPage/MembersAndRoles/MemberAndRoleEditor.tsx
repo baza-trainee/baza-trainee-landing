@@ -1,5 +1,3 @@
-'use client';
-
 import { MemberForm } from './MemberForm';
 import { RoleForm } from './RoleForm';
 

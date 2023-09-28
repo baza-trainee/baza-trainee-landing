@@ -1,10 +1,4 @@
-import {
-  IMember,
-  IRole,
-  TProject,
-  TTeamMember,
-  TTeamMemberRole,
-} from '@/types';
+
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
 import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
@@ -27,13 +21,13 @@ export const ProjectTeamList = ({
     handlerUpdateMember,
   } = useProjectsByIdSWR(projectId);
 
+  // console.log(projectByIdData);
 
-  console.log(projectByIdData);
-  
   return (
     <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
-      <ListHeader  projectId={projectId}
-      // entity={entity}
+      <ListHeader
+        projectId={projectId}
+        // entity={entity}
       />
 
       <tbody>

@@ -27,7 +27,7 @@ export const ListHeader = ({ projectId }: { projectId: string }) =>
           </th>
 
           {/* {entity === 'projectTeam' && ( */}
-          <th className={`${cellStyle} w-1/4`}>
+          <th className={`${cellStyle} w-1/3`}>
             <div className={bgStyle}>
               <span>Спеціалізація</span>
             </div>
