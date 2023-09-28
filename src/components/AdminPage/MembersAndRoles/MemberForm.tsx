@@ -7,12 +7,11 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
-import { IMember } from '@/types';
+import { IMember, TTeamMemberBio } from '@/types';
 
 type TMemberForm = {
   memberId?: string;
-  projectId?: string;
+  addMemberNComeback?: (newMember: TTeamMemberBio) => void;
 };
 
 type TFormInput = {
@@ -66,10 +65,9 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
+export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
   const router = useRouter();
 
-  const { handlerAddMember } = useProjectsByIdSWR(projectId);
   const { membersData, handlerCreateMember, handlerUpdateMember } =
     useMembersSWR();
   const members = membersData?.results;
@@ -81,6 +79,8 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
     handleSubmit,
     formState: { errors },
   } = useForm<TFormInput>(valuesIfItEditedMember);
+
+  const cancelAction = () => router.replace('.');
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const member: IMember = {
@@ -95,29 +95,13 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
     if (memberId) {
       handlerUpdateMember(memberId, member);
     } else {
-      const res = handlerCreateMember(member);
-      projectId &&
-        res &&
-        res.then((res) => {
-          console.log('!!!!!!!!', res);
-          handlerAddMember({
-            teamMember: res,
-            teamMemberRole: {
-              _id: '',
-              name: {
-                en: '',
-                pl: '',
-                ua: '',
-              },
-            },
-          });
-        });
+      handlerCreateMember(member)?.then(
+        (res) => res && addMemberNComeback && addMemberNComeback(res)
+      );
     }
 
-    router.back();
+    !addMemberNComeback && cancelAction();
   };
-
-  const cancelBtnAction = () => router.replace('.');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -177,7 +161,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!memberId} cancelAction={cancelBtnAction} />
+      <FormBtns isEditMode={!!memberId} cancelAction={cancelAction} />
     </form>
   );
 };

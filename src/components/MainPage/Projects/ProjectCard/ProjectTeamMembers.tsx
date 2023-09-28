@@ -22,7 +22,7 @@ export const ProjectTeamMembers = ({ roleName, teamMembers, lang }: TProps) => {
     <a
       key={member.user._id}
       className="block text-yellow-500 underline"
-      href={member.user.link}
+      href={member.user.profileUrl}
       target="_blank"
     >
       {member.user.name[lang]}

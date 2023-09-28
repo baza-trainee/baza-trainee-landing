@@ -36,6 +36,10 @@ const useProjectsSWR = () => {
     setSearch(search);
   };
 
+  const getProjectById = (id: string) => {
+    return data?.results.find((project) => project._id === id);
+  };
+
   const handlerCreateProject = (newProject: TProjectRequest) => {
     const options = {
       populateCache: (createdProject: TProject) => ({
@@ -52,7 +56,7 @@ const useProjectsSWR = () => {
       .catch((e) => console.log('ERROR!!!!!', e));
   };
 
-  const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
+  const updateProject = (id: string, updProject: TProjectRequest) => {
     // const populateCache = (createdProject: TProject) => {
     //   console.log("proj>.", createdProject);
     //   const updProjects = data?.results.map((project) =>
@@ -67,6 +71,10 @@ const useProjectsSWR = () => {
       handleRequestError
     );
   };
+
+
+
+  
 
   const handlerDeleteProject = (id: string) => {
     const updProjects = data?.results.filter((project) => project._id !== id);
@@ -84,8 +92,9 @@ const useProjectsSWR = () => {
     isLoading,
     isError: error,
     handlerSearchProject,
+    getProjectById,
     handlerCreateProject,
-    handlerUpdateProject,
+    updateProject,
     handlerDeleteProject,
   };
 };

@@ -11,6 +11,7 @@ export const ProjectCardTeam = ({
   handleShowTeam,
   project,
   lang = 'ua',
+  isAdminMode,
 }: ICardContent2) => {
   const projectTeamTitle = dictionaries[lang].projects.projectTeam;
   const rolesAndMembers: { [role: string]: TTeamMemberBio[] } = {};
@@ -29,7 +30,10 @@ export const ProjectCardTeam = ({
 
   return (
     <>
-      <button className="absolute right-[16px]" onClick={handleShowTeam}>
+      <button
+        className={`absolute ${isAdminMode ? 'right-28' : 'right-8'}`}
+        onClick={handleShowTeam}
+      >
         <CloseIcon size="S" />
       </button>
 
@@ -44,7 +48,7 @@ export const ProjectCardTeam = ({
               <a
                 key={teamMember._id}
                 className="block cursor-pointer text-yellow-500 underline"
-                href={teamMember.link}
+                href={teamMember.profileUrl}
                 target="_blank"
               >
                 {teamMember.name[lang]}

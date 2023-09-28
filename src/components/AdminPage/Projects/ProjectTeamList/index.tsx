@@ -1,44 +1,34 @@
+import { useState } from 'react';
+import { useProjectFormContext } from '../ProjectFormProvider';
 
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
-// import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
-// import { TEntity } from '../types';
+import { MemberForm } from '../../MembersAndRoles/MemberForm';
 
-type TProps = {
-  // entity: TEntity;
-  projectId: string;
-};
+import { TTeamMemberBio } from '@/types';
 
-export const ProjectTeamList = ({
-  // entity,
-  projectId,
-}: TProps) => {
-  const {
-    projectByIdData,
-    handlerAddMember,
-    handlerDeleteMember,
-    handlerUpdateMember,
-  } = useProjectsByIdSWR(projectId);
+export const ProjectTeamList = () => {
+  const [isAddMemberMode, setIsAddMemberMode] = useState(false);
+  const { teamMemberData, addTeamMember } = useProjectFormContext();
 
-  // console.log(projectByIdData);
+  const switchMode = () => {
+    setIsAddMemberMode(!isAddMemberMode);
+  };
 
-  return (
+  const addMemberNComeback = (newMember: TTeamMemberBio) => {
+    addTeamMember(newMember);
+    switchMode();
+  };
+
+  return isAddMemberMode ? (
+    <MemberForm addMemberNComeback={addMemberNComeback} />
+  ) : (
     <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
-      <ListHeader
-        projectId={projectId}
-        // entity={entity}
-      />
-
+      <ListHeader switchMode={switchMode} />
       <tbody>
-        {projectByIdData &&
-          projectByIdData?.teamMembers.map((item) => (
-            <ListRow
-              // entity={entity}
-              key={item.teamMember._id}
-              projectId={projectId}
-              member={item}
-            />
+        {teamMemberData.length > 0 &&
+          teamMemberData.map((item) => (
+            <ListRow key={item.teamMember._id} member={item} />
           ))}
       </tbody>
     </table>

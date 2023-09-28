@@ -61,6 +61,8 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     formState: { errors },
   } = useForm<TFormInput>(valuesIfItEditedRole);
 
+  const cancelAction = () => router.replace('.');
+
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const role = {
       name: {
@@ -76,10 +78,8 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
       handlerCreateRole(role);
     }
 
-    router.replace('.');
+    cancelAction();
   };
-
-  const cancelBtnAction = () => router.replace('.');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +126,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!roleId} cancelAction={cancelBtnAction} />
+      <FormBtns isEditMode={!!roleId} cancelAction={cancelAction} />
     </form>
   );
 };

@@ -19,8 +19,8 @@ export const MembersAndRolesList = ({
       <ListHeader entity={entity} />
 
       <tbody>
-        {showedData &&
-          showedData?.map((item) => (
+        {showedData?.length > 0 &&
+          showedData.map((item) => (
             <ListRow
               entity={entity}
               key={item._id}

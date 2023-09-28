@@ -4,14 +4,9 @@ import { RoleForm } from './RoleForm';
 type TProps = {
   entity: 'members' | 'roles';
   memberOrRoleId?: string;
-  projectId?: string;
 };
 
-export const MemberAndRoleEditor = ({
-  entity,
-  memberOrRoleId,
-  projectId,
-}: TProps) => {
+export const MemberAndRoleEditor = ({ entity, memberOrRoleId }: TProps) => {
   const title = memberOrRoleId ? 'Редагування' : 'Додавання';
 
   return (
@@ -21,9 +16,7 @@ export const MemberAndRoleEditor = ({
       </div>
 
       {entity === 'roles' && <RoleForm roleId={memberOrRoleId} />}
-      {entity === 'members' && (
-        <MemberForm memberId={memberOrRoleId} projectId={projectId} />
-      )}
+      {entity === 'members' && <MemberForm memberId={memberOrRoleId} />}
     </section>
   );
 };

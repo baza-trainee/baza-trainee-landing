@@ -1,20 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
+import { createImgUrl } from '@/utils/imageHandler';
 
 import { ProjectCard } from '@/components/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
-import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
+import { PlusIcon } from '@/components/common/icons';
 
 import { TProject } from '@/types';
-import { createImgUrl } from '@/utils/imageHandler';
 
 export const AdminProjects = () => {
-  const [showedItems, setShowedItems] = useState();
-
   const { projectsData, handlerDeleteProject } = useProjectsSWR();
 
   return (
@@ -43,6 +40,7 @@ export const AdminProjects = () => {
                 project={project}
                 lang={'ua'}
                 coverImgUrl={createImgUrl(project.imageUrl)}
+                isAdminMode
               />
             </ButtonsOverlay>
           ))}

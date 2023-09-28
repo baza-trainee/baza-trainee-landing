@@ -1,18 +1,15 @@
 import { ChangeEvent, useState } from 'react';
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
+
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-import { TTeamMember } from '@/types';
+import { useProjectFormContext } from '../ProjectFormProvider';
 import { roleSorter } from '@/utils/roleSorter';
 
-type TProps = {
-  projectId: string;
-  member: TTeamMember;
-};
+import { TTeamMember } from '@/types';
 
-const RoleSelector = ({ projectId, member }: TProps) => {
+export const RoleSelector = ({ member }: { member: TTeamMember }) => {
+  const { updTeamMemberRole } = useProjectFormContext();
+  const results = useRolesSWR().rolesData?.results;
   const { teamMember, teamMemberRole } = member;
-  const { handlerUpdateMember } = useProjectsByIdSWR(projectId);
-  const { rolesData } = useRolesSWR();
   const [selectedRoleId, setSelectedRoleId] = useState<string>(
     teamMemberRole._id
   );
@@ -20,13 +17,10 @@ const RoleSelector = ({ projectId, member }: TProps) => {
   const handleOptionSelect = (
     e: ChangeEvent<HTMLSelectElement | undefined>
   ) => {
-    const selectedRole = rolesData?.results.find(
-      (item) => item._id === e.target.value
-    );
-
+    const selectedRole = results?.find((item) => item._id === e.target.value);
     if (selectedRole) {
       setSelectedRoleId(e.target.value);
-      handlerUpdateMember(teamMember._id, teamMemberRole._id, selectedRole);
+      updTeamMemberRole(teamMember._id, teamMemberRole._id, selectedRole);
     }
   };
 
@@ -37,8 +31,9 @@ const RoleSelector = ({ projectId, member }: TProps) => {
       value={selectedRoleId}
     >
       {!selectedRoleId && <option />}
-      {rolesData &&
-        roleSorter(rolesData.results)!.map((item) => (
+      {results &&
+        results.length > 0 &&
+        roleSorter(results)!.map((item) => (
           <option key={item._id} className="rounded-md py-3" value={item._id}>
             {item.name.ua}
           </option>
@@ -46,5 +41,3 @@ const RoleSelector = ({ projectId, member }: TProps) => {
     </select>
   );
 };
-
-export { RoleSelector };
