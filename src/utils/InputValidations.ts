@@ -14,3 +14,29 @@ export const validateUrl = (url: string) => {
   const urlPattern = /^(https?|http):\/\/[^\s/$.?#].[^\s]*$/i;
   return urlPattern.test(url);
 };
+
+// export const validatePassword = (password: string) => {
+//   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?]).{8,}$/;
+//   return passwordPattern.test(password);
+// };
+
+export const validatePasswordLength = (password: string) => {
+  const passwordPattern = /^.{8,}$/;
+  return passwordPattern.test(password);
+};
+export const validatePasswordBigLetter = (password: string) => {
+  const passwordPattern = /^(?=.*[A-Z]).{8,}$/;
+  return passwordPattern.test(password);
+};
+export const validatePasswordSmallLetter = (password: string) => {
+  const passwordPattern = /^(?=.*[a-z]).{8,}$/;
+  return passwordPattern.test(password);
+};
+export const validatePasswordNumber = (password: string) => {
+  const passwordPattern = /^(?=.*\d).{8,}$/;
+  return passwordPattern.test(password);
+};
+export const validatePasswordSymbol = (password: string) => {
+  const passwordPattern = /^(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?]).{8,}$/;
+  return passwordPattern.test(password);
+};

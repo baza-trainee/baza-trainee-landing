@@ -5,11 +5,13 @@ import { useGlobalContext } from '@/store/globalContext';
 import { ChangeEvent, useState, useEffect, useCallback, useMemo } from 'react';
 import { useAPI } from '@/utils/hooks/useAPI';
 import auth from '@/utils/API/auth';
+import { validatePasswordLength, validatePasswordBigLetter, validatePasswordSmallLetter, validatePasswordNumber, validatePasswordSymbol } from '@/utils/InputValidations';
 
 export const Settings = () => {
   const { setAlertInfo } = useGlobalContext();
   const [isFormValid, setIsFormValid] = useState(false);
   const [dispatch, data, isError] = useAPI(auth.changePassword);
+  const [errorsData, setErrorsData]=useState('');
 
   type TPasswordDate = {
       oldPassword: string;
@@ -41,6 +43,32 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     });
     return;
   }
+  if (passwordData.newPassword && !validatePasswordLength(passwordData.newPassword)) {
+    // setAlertInfo({
+    //   state: 'error',
+    //   title: 'Невалідний проль',
+    //   textInfo: `Будь ласка, введіть пароль не менше 8 символів. Пароль Має містити великі та маленькі латинські літери, цифри та спецсимволи`,
+    // });
+    // setErrorsData(`Пароль має містити не менше 8 символів великі та маленькі латинські літери, цифри та спецсимволи`);
+    setErrorsData(`Будь ласка, введіть пароль не менше 8 символів.`);
+    return;    
+  } 
+  if (passwordData.newPassword && !validatePasswordBigLetter(passwordData.newPassword)) {
+    setErrorsData(`Пароль має містити великі літери.`);
+    return;    
+  } 
+  if (passwordData.newPassword && !validatePasswordSmallLetter(passwordData.newPassword)) {
+    setErrorsData(`Пароль має містити маленькі літери.`);
+    return;    
+  } 
+  if (passwordData.newPassword && !validatePasswordNumber(passwordData.newPassword)) {
+    setErrorsData(`Пароль має містити числа.`);
+    return;    
+  } 
+  if (passwordData.newPassword && !validatePasswordSymbol(passwordData.newPassword)) {
+    setErrorsData(`Пароль має містити спецсимволи.`);
+    return;    
+  } 
   if(passwordData.newPassword !== passwordData.duplicationPassword){
     setAlertInfo({
       state: 'error',
@@ -61,6 +89,7 @@ useEffect(() => {
       textInfo: `Пароль змінено`,
     });
     resetHandler();
+    setErrorsData(``);
     return;
   }
   if (data&&data.status===400) {
@@ -130,6 +159,7 @@ useEffect(() => {
           value={passwordData.newPassword}
           onChange={onInputChange}
           placeholderText="Введіть пароль"
+          errorText={errorsData}
         />
             
           </div>
