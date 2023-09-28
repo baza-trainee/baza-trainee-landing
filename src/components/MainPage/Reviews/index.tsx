@@ -4,15 +4,16 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
 
 export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { testimonialsData } = useTestimonialsSWR();
 
   const sliderSettings = {
     dots: true,
@@ -26,6 +27,13 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const { title } = dictionaries[lang].reviews || {};
   const customPaging = (i: number) => Dot(i, currentSlide);
 
+  const imgEndpoint =
+    process.env.NEXT_PUBLIC_PROXY_URL! +
+    process.env.NEXT_PUBLIC_SERVER_URL +
+    '/files/';
+
+
+
   return (
     <section>
       <ContainerMaxW1200>
@@ -37,8 +45,13 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
             afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
-            {slides.map((review: TSlideReview, index) => (
-              <SingleSlide slideData={review} key={index + 'key'} lang={lang} src={review.imageUrl}/>
+            {testimonialsData?.map((review: TSlideReview, index: number) => (
+              <SingleSlide
+                slideData={review}
+                key={index + 'key'}
+                lang={lang}
+                src={imgEndpoint + review.imageUrl}
+              />
             ))}
           </Slider>
         </div>

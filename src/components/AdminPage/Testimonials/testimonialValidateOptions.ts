@@ -12,6 +12,17 @@ export const testimonialValidateOptions = {
       message: 'Максимальна довжина поля 25 символів',
     },
   },
+  role: {
+    required: 'Введіть ім’я',
+    minLength: {
+      value: 2,
+      message: 'Мінімальна довжина поля 2 символів',
+    },
+    maxLength: {
+      value: 25,
+      message: 'Максимальна довжина поля 25 символів',
+    },
+  },
   review: {
     required: 'Введіть текст відгуку',
     minLength: {
@@ -19,8 +30,8 @@ export const testimonialValidateOptions = {
       message: 'Мінімальна довжина поля 5 символів',
     },
     maxLength: {
-      value: 200,
-      message: 'Максимальна довжина поля 200 символів',
+      value: 300,
+      message: 'Максимальна довжина поля 300 символів',
     },
   },
 

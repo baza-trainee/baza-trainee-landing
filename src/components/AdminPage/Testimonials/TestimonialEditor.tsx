@@ -268,7 +268,7 @@ export const TestimonialEditor = ({
             />
             <Controller
               name="role"
-              rules={testimonialValidateOptions.name}
+              rules={testimonialValidateOptions.role}
               control={control}
               render={({ field }) => (
                 <TextInputField
