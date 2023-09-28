@@ -58,6 +58,7 @@ export const InputField = ({
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
             placeholder={placeholderText}
             title={title}
+            value={value}
             type={type}
             {...rest}
           />
