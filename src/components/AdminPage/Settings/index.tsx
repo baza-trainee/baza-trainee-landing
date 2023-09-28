@@ -5,7 +5,7 @@ import { useGlobalContext } from '@/store/globalContext';
 import { ChangeEvent, useState, useEffect, useCallback, useMemo } from 'react';
 import { useAPI } from '@/utils/hooks/useAPI';
 import auth from '@/utils/API/auth';
-import { validatePasswordLength, validatePasswordBigLetter, validatePasswordSmallLetter, validatePasswordNumber, validatePasswordSymbol } from '@/utils/InputValidations';
+import { validatePassword } from '@/utils/InputValidations';
 
 export const Settings = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -31,6 +31,7 @@ export const Settings = () => {
 
   const resetHandler = useCallback(() => {
     setPasswordData(defaultPasswordData);
+    setErrorsData('');
   }, [defaultPasswordData]);
 
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,32 +44,10 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     });
     return;
   }
-  if (passwordData.newPassword && !validatePasswordLength(passwordData.newPassword)) {
-    // setAlertInfo({
-    //   state: 'error',
-    //   title: 'Невалідний проль',
-    //   textInfo: `Будь ласка, введіть пароль не менше 8 символів. Пароль Має містити великі та маленькі латинські літери, цифри та спецсимволи`,
-    // });
-    // setErrorsData(`Пароль має містити не менше 8 символів великі та маленькі латинські літери, цифри та спецсимволи`);
-    setErrorsData(`Будь ласка, введіть пароль не менше 8 символів.`);
+  if (passwordData.newPassword && !validatePassword(passwordData.newPassword)) {
+    setErrorsData('8+ символів, літери (верхні, нижні), цифри, спецсимволи.');
     return;    
-  } 
-  if (passwordData.newPassword && !validatePasswordBigLetter(passwordData.newPassword)) {
-    setErrorsData(`Пароль має містити великі літери.`);
-    return;    
-  } 
-  if (passwordData.newPassword && !validatePasswordSmallLetter(passwordData.newPassword)) {
-    setErrorsData(`Пароль має містити маленькі літери.`);
-    return;    
-  } 
-  if (passwordData.newPassword && !validatePasswordNumber(passwordData.newPassword)) {
-    setErrorsData(`Пароль має містити числа.`);
-    return;    
-  } 
-  if (passwordData.newPassword && !validatePasswordSymbol(passwordData.newPassword)) {
-    setErrorsData(`Пароль має містити спецсимволи.`);
-    return;    
-  } 
+  }   
   if(passwordData.newPassword !== passwordData.duplicationPassword){
     setAlertInfo({
       state: 'error',
@@ -88,26 +67,19 @@ useEffect(() => {
       title: 'Пароль змінено успішно',
       textInfo: `Пароль змінено`,
     });
+    setErrorsData('');
     resetHandler();
-    setErrorsData(``);
     return;
   }
   if (data&&data.status===400) {
     setAlertInfo({
       state: 'error',
       title: 'Неправильний старий пароль',
-      textInfo: `Неправильний старий пароль або помилки перевірки`,
+      textInfo: `Неправильний старий пароль`,
     });
     return;
   }
-  if (data&&data.status===404) {
-    setAlertInfo({
-      state: 'error',
-      title: 'Невірний користувач',
-      textInfo: `Такого користувача немає, спробуйте ввести інший пароль`,
-    });
-    return;
-  }
+  
   if (data&&data.status===500) {
     setAlertInfo({
       state: 'error',
