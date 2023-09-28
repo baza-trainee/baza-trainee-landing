@@ -123,7 +123,6 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
     setFocus,
     setValue,
     control,
-    reset,
     formState: { errors },
   } = useForm<TFormInput>({
     mode: 'onSubmit',
@@ -194,7 +193,7 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
 
     if (projectByIdData) {
       // console.log('data >>', data, 'subm >>', preparedProject);
-      
+
       handlerUpdateProject(preparedProject);
       // console.log('upd >>', preparedProject);
     } else {
@@ -204,11 +203,8 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
 
     router.replace('.');
   };
-  
-  const handleResetProjectForm = () => {
-    reset(defaultValues);
-    router.replace('.');
-  };
+
+  const cancelBtnAction = () => router.replace('.');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -284,7 +280,7 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
         </div>
 
         <div className="col-span-1 row-span-3 shadow-md">
-          <ProjectPreview currentValues={currentValues} projectId={ projectId} />
+          <ProjectPreview currentValues={currentValues} projectId={projectId} />
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
@@ -354,10 +350,9 @@ const ProjectForm = ({ projectId }: { projectId?: string }) => {
         </div>
       </div>
 
-      <FormBtns isEditMode={!!projectId} cancelAction={handleResetProjectForm} />
+      <FormBtns isEditMode={!!projectId} cancelAction={cancelBtnAction} />
     </form>
   );
 };
 
 export { ProjectForm };
-

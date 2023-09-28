@@ -5,6 +5,8 @@ import { CloseIcon } from '@/components/common/icons';
 
 import { ICardContent2, TTeamMemberBio } from '@/types';
 
+const orderList = SETTINGS.specsOrderList;
+
 export const ProjectCardTeam = ({
   handleShowTeam,
   project,
@@ -22,8 +24,7 @@ export const ProjectCardTeam = ({
   });
 
   const sortedRoles = Object.keys(rolesAndMembers).sort(
-    (a, b) =>
-      SETTINGS.specsOrderList.indexOf(a) - SETTINGS.specsOrderList.indexOf(b)
+    (a, b) => orderList.indexOf(a) - orderList.indexOf(b)
   );
 
   return (

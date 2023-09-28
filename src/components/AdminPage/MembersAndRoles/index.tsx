@@ -12,12 +12,12 @@ type TProps = {
   entity: 'members' | 'roles';
 };
 
+const orderList = SETTINGS.specsOrderList;
+
 const roleSorter = (results?: TTeamMemberRole[]) =>
   results &&
   results.sort(
-    (a, b) =>
-      SETTINGS.specsOrderList.indexOf(a.name.en) -
-      SETTINGS.specsOrderList.indexOf(b.name.en)
+    (a, b) => orderList.indexOf(a.name.en) - orderList.indexOf(b.name.en)
   );
 
 export const MembersAndRoles = ({ entity }: TProps) => {

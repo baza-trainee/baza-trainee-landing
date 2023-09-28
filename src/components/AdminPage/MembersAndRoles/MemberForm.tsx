@@ -79,7 +79,6 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<TFormInput>(valuesIfItEditedMember);
 
@@ -118,14 +117,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
     router.back();
   };
 
-  const handleResetMemberForm = () => {
-    reset({
-      nameUk: '',
-      nameEn: '',
-      namePl: '',
-      linkedin: '',
-    });
-  };
+  const cancelBtnAction = () => router.replace('.');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -185,7 +177,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!memberId} cancelAction={handleResetMemberForm} />
+      <FormBtns isEditMode={!!memberId} cancelAction={cancelBtnAction} />
     </form>
   );
 };
