@@ -9,7 +9,7 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
   const editLink = `slider/edit-slider/${_id}`;
 
   return (
-    <li className="relative  h-[50.4rem] ">
+    <li className="relative  h-[50.4rem] overflow-hidden">
       <Image
         src={createImgUrl(imageUrl)}
         fill

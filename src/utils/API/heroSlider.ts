@@ -1,6 +1,6 @@
 import {
   IHeroSlider,
-  IHeroSliderData,
+  THeroSliderData,
   updateByIdRequest,
 } from '@/types/typesAPI';
 import { bazaAPI } from './config';
@@ -9,8 +9,7 @@ export const slidersEndPoint = '/heroslider';
 
 export const heroSliderApi = {
   async getAll(uri: string) {
-    const response = await bazaAPI.get<IHeroSliderData>(uri);
-    return response;
+    return await bazaAPI.get<THeroSliderData>(uri).then((res) => res.data);
   },
   async createNew(slider: IHeroSlider) {
     return await bazaAPI.post(slidersEndPoint, slider, {
