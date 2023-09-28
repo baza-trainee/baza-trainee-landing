@@ -58,6 +58,7 @@ export const InputField = ({
             placeholder={placeholderText}
             title={title}
             type={type}
+            value={value}
             {...rest}
           />
         </div>

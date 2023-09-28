@@ -21,7 +21,7 @@ export type TSlideReview = {
     pl: string;
     ua: string;
   };
-  date: number;
+  date: string | number;
   role: string;
   imageUrl: string;
   review: {
@@ -29,7 +29,7 @@ export type TSlideReview = {
     pl: string;
     ua: string;
   };
-  _id?: string | number;  
+  _id?: string | number;
 };
 
 export type TDictionary = {

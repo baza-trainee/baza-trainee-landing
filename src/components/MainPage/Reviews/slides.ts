@@ -5,8 +5,8 @@ export const slides = [
       pl: 'Olena',
       ua: 'Олена',
     },
-    role: 'QA',
-    date: 1686425200000,    
+    role: 'учасниця, QA',
+    date: 'червень 2023',
     review: {
       en: `For the past two weeks, I've been thinking every day that I should have come to the Base at least in order to realize the importance of the designer's work in software development`,
       pl: 'Przez ostatnie dwa tygodnie codziennie myślałem, że powinienem był przyjść do Bazy choćby po to, by uświadomić sobie, jak ważna jest praca projektanta w tworzeniu oprogramowania',
@@ -20,8 +20,8 @@ export const slides = [
       pl: 'Witalij',
       ua: 'Віталій',
     },
-    role: 'BF',  
-    date: 1684425200000,      
+    role: 'БФ',
+    date: 'травень 2023',
     review: {
       en: 'The project is built on the principle of win-win, when both parties strengthen each other for the benefit of the community. Great idea!',
       pl: 'Projekt budowany jest na zasadzie win-win, kiedy obie strony wzmacniają się wzajemnie dla dobra społeczności. Świetny pomysł!',
@@ -35,8 +35,10 @@ export const slides = [
       pl: 'Irina',
       ua: 'Ірина',
     },
-    role: 'Front-end',      
-    date: 1684425200000,      
+    role: 'учасниця, Front-end',
+
+    date: 'травень 2023',
+
     review: {
       en: `During the first meeting, the project team discussed, reasoned and chose a programming language. It's convenient that I don't have to relearn, I'm practicing React skills`,
       pl: 'Podczas pierwszego spotkania zespół projektowy omówił, przemyślał i wybrał język programowania. Wygodnie, że nie muszę uczyć się od nowa, ćwiczę umiejętności React',

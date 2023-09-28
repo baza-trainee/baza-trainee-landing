@@ -130,6 +130,23 @@ export interface ITestimonial extends CommonResponseBase {
   imageUrl: string;
 }
 
+export interface ITestimonialRequest {
+  name: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  review: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  role: string;
+  date: number;
+  file: File;
+}
+
+
 export interface IUser extends CommonResponseBase {
   name: string;
   email: string;

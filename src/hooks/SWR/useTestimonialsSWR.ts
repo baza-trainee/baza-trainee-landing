@@ -52,31 +52,31 @@ export const useTestimonialsSWR = () => {
     }
   };
 
-  const addNewSlider = async (slider: ITestimonial) => {
-    try {
-      const newData = [
-        ...((Array.isArray(data) && data.length && data) || []),
-        slider,
-      ];
-      testimonialsApi.createNew(slider);
-      await mutate({ newData });
-    } catch (error) {
-      errorHandler(error);
-    }
-  };
+  // const addNewSlider = async (slider: ITestimonial) => {
+  //   try {
+  //     const newData = [
+  //       ...((Array.isArray(data) && data.length && data) || []),
+  //       slider,
+  //     ];
+  //     testimonialsApi.createNew(slider);
+  //     await mutate({ newData });
+  //   } catch (error) {
+  //     errorHandler(error);
+  //   }
+  // };
 
-  const updateSlider = async (id: string, slider: ITestimonial) => {
-    try {
-      const newData =
-        Array.isArray(data) &&
-        data.length &&
-        data.map((slide: ITestimonial) => (slide._id === id ? slider : slide));
-      testimonialsApi.updateById([id, slider]);
-      await mutate({ newData });
-    } catch (error) {
-      errorHandler(error);
-    }
-  };
+  // const updateSlider = async (id: string, slider: ITestimonial) => {
+  //   try {
+  //     const newData =
+  //       Array.isArray(data) &&
+  //       data.length &&
+  //       data.map((slide: ITestimonial) => (slide._id === id ? slider : slide));
+  //     testimonialsApi.updateById([id, slider]);
+  //     await mutate({ newData });
+  //   } catch (error) {
+  //     errorHandler(error);
+  //   }
+  // };
 
   return {
     testimonialsData: data,
@@ -84,7 +84,7 @@ export const useTestimonialsSWR = () => {
     isError: error,
     getByIdSlider,
     delByIdSlider,
-    updateSlider,
-    addNewSlider,
+    // updateSlider,
+    // addNewSlider,
   };
 };

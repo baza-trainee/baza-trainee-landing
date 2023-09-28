@@ -1,12 +1,12 @@
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
-type Props = {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   id: string;
-  children: ReactElement;
-};
+  children: ReactNode;
+}
 
-export const DeleteTestimonialsButton: any = ({ id, children }: Props) => {
+export const DeleteTestimonialsButton = ({ id, children }: Props) => {
   const { delByIdSlider } = useTestimonialsSWR();
 
   return (

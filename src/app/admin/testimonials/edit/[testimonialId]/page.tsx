@@ -1,8 +1,7 @@
-// import { useParams } from 'next/navigation';
+import { TestimonialEditor } from '@/components/AdminPage/Testimonials/TestimonialEditor';
 
-export default function EditTestimonial() {
-  // const { id } = useParams(); 
-  return (
-    <div>Редагувати відгук</div>
-  );
-}
+const EditTestimonial = ({ params }: { params: { testimonialId: string } }) => {
+  return <TestimonialEditor testimonialId={params.testimonialId} />;
+};
+
+export default EditTestimonial;

@@ -11,7 +11,7 @@ import { TSlideReview } from '@/types';
 import { SingleSlideTestimonial } from './SingleSlideTestimonial';
 
 export default function MainTestimonials() {
-  const { testimonialsData } = useTestimonialsSWR();  
+  const { testimonialsData } = useTestimonialsSWR();
   const curLang = useGlobalContext().landingLanguage;
 
   return (
@@ -23,15 +23,19 @@ export default function MainTestimonials() {
         </div>
       </div>
 
-      <div className="py-[70px] mt-[18px] rounded-[4px] shadow">
+      <div className="mt-[18px] rounded-[4px] py-[70px] shadow">
         <Link href={'/admin/testimonials/add'}>
-          <AdminPanelButton icon={<PlusIcon />} variant="secondary" className='mx-auto'>
+          <AdminPanelButton
+            icon={<PlusIcon />}
+            variant="secondary"
+            className="mx-auto"
+          >
             Додати відгук
           </AdminPanelButton>
         </Link>
       </div>
 
-      <ul className="flex flex-col gap-[32px] mt-[32px]">
+      <ul className="mt-[32px] flex flex-col gap-[32px]">
         {Array.isArray(testimonialsData) &&
           testimonialsData.length &&
           testimonialsData?.map((item: TSlideReview) => (
