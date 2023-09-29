@@ -11,9 +11,9 @@ import {
   TextInputField,
 } from '@/components/atomic';
 
-import { ProjectPreview } from './ProjectPreview';
-import { projectValidateOptions } from './projectValidateOptions';
 import { useProjectFormContext } from './ProjectFormProvider';
+import { ProjectPreview } from './ProjectPreview';
+import { projectValidateOptions } from './validateOptions';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
@@ -157,3 +157,4 @@ const ProjectForm = () => {
 };
 
 export { ProjectForm };
+

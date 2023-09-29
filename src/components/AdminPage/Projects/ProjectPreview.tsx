@@ -1,8 +1,8 @@
 import { useProjectFormContext } from './ProjectFormProvider';
 
 import { createImgUrl } from '@/utils/imageHandler';
-import { projectValidateOptions } from './projectValidateOptions';
 import { prepareProject } from './projectUtils';
+import { projectValidateOptions } from './validateOptions';
 
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { ProjectCard } from '@/components/ProjectCard';
@@ -42,6 +42,7 @@ const ProjectPreview = () => {
 
   const previewProject: TProject = {
     _id: '',
+    imageUrl: '',
     ...prepareProject(currentValues),
     teamMembers: teamMemberData,
   };
@@ -65,3 +66,4 @@ const ProjectPreview = () => {
 };
 
 export { ProjectPreview };
+

@@ -1,19 +1,12 @@
-import { IMember, IRole } from '@/types';
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
-import { TEntity } from '../types';
-
-type TProps = {
-  entity: TEntity;
-  showedData: IMember[] | IRole[];
-  handleDelete: (id: string) => void;
-};
+import { TMembersAndRolesListProps } from '../types';
 
 export const MembersAndRolesList = ({
   entity,
   showedData,
   handleDelete,
-}: TProps) => {
+}: TMembersAndRolesListProps) => {
   return (
     <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
       <ListHeader entity={entity} />

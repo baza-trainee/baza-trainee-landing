@@ -17,8 +17,7 @@ import {
 import { convertDate } from '@/utils/formatDate';
 import { IFormContext, TFormInput, TProvider } from './types';
 import { extractMembersId, prepareProject } from './projectUtils';
-import { initProjectData, languages, defaultValues } from './initFormData';
-import { prettyPrint } from '@/utils/prettyPrint';
+import { initProjectData, emptyLngs, defaultValues } from './initFormData';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
@@ -38,7 +37,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const addTeamMember = (newMember: TTeamMemberBio) => {
     const updatedTeamMembers = [
       ...teamMemberData,
-      { teamMember: newMember, teamMemberRole: { _id: '', name: languages } },
+      { teamMember: newMember, teamMemberRole: { _id: '', name: emptyLngs } },
     ];
     setTeamMemberData(updatedTeamMembers);
   };
@@ -80,11 +79,9 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   });
 
   const onSubmit: SubmitHandler<TFormInput> = (data) => {
-    const teamMembers = extractMembersId(teamMemberData);
-    prettyPrint(data) // TODO:
     const preparedProject: TProjectRequest = {
       ...prepareProject(data),
-      teamMembers,
+      teamMembers: extractMembersId(teamMemberData),
     };
 
     if (data.projectImg?.length && data.projectImg[0]?.size > 0) {

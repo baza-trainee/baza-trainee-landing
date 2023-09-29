@@ -7,43 +7,11 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { IMember, TTeamMemberBio } from '@/types';
+import { IMember } from '@/types';
+import { memberValidateOptions } from './validateOptions';
+import { TMemberFormInput, TMemberFormProps } from './types';
 
-type TMemberForm = {
-  memberId?: string;
-  addMemberNComeback?: (newMember: TTeamMemberBio) => void;
-};
 
-type TFormInput = {
-  nameUk: string;
-  nameEn: string;
-  namePl: string;
-  linkedin: string;
-};
-
-const fieldOptions = {
-  required: 'Введіть прізвище та ім’я',
-  minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
-  },
-  maxLength: {
-    value: 75,
-    message: 'Максимальна довжина поля 75 символів',
-  },
-  pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї ]+$/,
-    message: 'Введіть коректне прізвище та ім’я',
-  },
-};
-
-const linkedinOptions = {
-  required: 'Введіть посилання на профіль Linkedin',
-  pattern: {
-    value: /^(https:\/\/(www\.)?)?linkedin\.com/i,
-    message: 'Введіть коректне посилання на профіль Linkedin',
-  },
-};
 
 const createOptions = (
   id: string | undefined,
@@ -65,7 +33,7 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
+export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) => {
   const router = useRouter();
 
   const { membersData, handlerCreateMember, handlerUpdateMember } =
@@ -78,11 +46,11 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFormInput>(valuesIfItEditedMember);
+  } = useForm<TMemberFormInput>(valuesIfItEditedMember);
 
   const cancelAction = () => router.replace('.');
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const member: IMember = {
       name: {
         en: data.nameEn,
@@ -108,7 +76,7 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldUk}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -123,7 +91,7 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
 
         <Controller
           name="nameEn"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldEn}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -136,7 +104,7 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
 
         <Controller
           name="namePl"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldPl}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -149,7 +117,7 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberForm) => {
 
         <Controller
           name="linkedin"
-          rules={linkedinOptions}
+          rules={memberValidateOptions.linkedinOptions}
           control={control}
           render={({ field }) => (
             <TextInputField

@@ -8,28 +8,8 @@ import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { FormBtns, TextInputField } from '@/components/atomic';
 
 import { IRole } from '@/types';
-
-type TFormInput = {
-  nameUk: string;
-  nameEn: string;
-  namePl: string;
-};
-
-const fieldOptions = {
-  required: 'Введіть назву',
-  minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
-  },
-  maxLength: {
-    value: 50,
-    message: 'Максимальна довжина поля 25 символів',
-  },
-  pattern: {
-    value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻа-яА-ЯҐґЄєІіЇї\s\d'’-]+$/,
-    message: 'Введіть коректну назву',
-  },
-};
+import { roleValidateOptions } from './validateOptions';
+import { TMemberFormInput } from './types';
 
 const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
   if (!roles || !id) return;
@@ -59,11 +39,11 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFormInput>(valuesIfItEditedRole);
+  } = useForm<TMemberFormInput>(valuesIfItEditedRole);
 
   const cancelAction = () => router.replace('.');
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const role = {
       name: {
         en: data.nameEn,
@@ -86,7 +66,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
-          rules={fieldOptions}
+          rules={roleValidateOptions.fieldUk}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -101,7 +81,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
 
         <Controller
           name="nameEn"
-          rules={fieldOptions}
+          rules={roleValidateOptions.fieldEn}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -114,7 +94,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
 
         <Controller
           name="namePl"
-          rules={fieldOptions}
+          rules={roleValidateOptions.fieldPl}
           control={control}
           render={({ field }) => (
             <TextInputField

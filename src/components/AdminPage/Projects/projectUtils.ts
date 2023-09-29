@@ -17,7 +17,6 @@ export const prepareProject = (formData: TFormInput) => {
       pl: formData.namePl,
       ua: formData.nameUk,
     },
-    imageUrl: '',
     deployUrl: formData.deployUrl,
     isTeamRequired: !!formData.isTeamRequired,
     creationDate: convertDate.toMsec(formData.creationDate),

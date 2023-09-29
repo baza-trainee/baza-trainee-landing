@@ -1,12 +1,11 @@
 import { MemberForm } from './MemberForm';
 import { RoleForm } from './RoleForm';
+import { TMemberAndRoleEditor } from './types';
 
-type TProps = {
-  entity: 'members' | 'roles';
-  memberOrRoleId?: string;
-};
-
-export const MemberAndRoleEditor = ({ entity, memberOrRoleId }: TProps) => {
+export const MemberAndRoleEditor = ({
+  entity,
+  memberOrRoleId,
+}: TMemberAndRoleEditor) => {
   const title = memberOrRoleId ? 'Редагування' : 'Додавання';
 
   return (

@@ -13,11 +13,11 @@ export const defaultValues: TFormInput = {
   complexity: 1,
 };
 
-export const languages = { ua: '', en: '', pl: '' };
+export const emptyLngs = { ua: '', en: '', pl: '' };
 
 export const initProjectData: TProject = {
   _id: '',
-  title: languages,
+  title: emptyLngs,
   imageUrl: '',
   deployUrl: '',
   isTeamRequired: false,
