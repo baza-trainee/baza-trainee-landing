@@ -9,7 +9,7 @@ import { TTitleLanguagesTypes } from './typesAPI';
 export type TTeamMemberBio = {
   _id: string;
   name: TTitleLanguagesTypes;
-  link: string;
+  profileUrl: string;
 };
 
 // export type TTeamMemberRole = Omit<TTeamMember, 'link'>;
@@ -86,4 +86,5 @@ export interface ICardContent2 {
   handleShowTeam: () => void;
   project: TProject;
   lang: TLandingLanguage;
+  isAdminMode?: boolean;
 }

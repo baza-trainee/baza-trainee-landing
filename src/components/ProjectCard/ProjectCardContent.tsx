@@ -1,17 +1,20 @@
-'use client';
+import Link from 'next/link';
+
+import { projectCycle } from '@/utils/developmentTimeCalculator';
+import { formatDate } from '@/utils/formatDate';
+
+import { ProjectComplexity } from './ProjectComplexity';
+import { ProjectStatusBar } from './ProjectStatusBar';
+
+import { dictionaries } from '@/locales/dictionaries';
+
 import {
   ProjectComplexityIcon,
   ProjectDurationIcon,
   ProjectStartIcon,
 } from '@/components/common/icons';
 
-import { dictionaries } from '@/locales/dictionaries';
 import { ICardContent2 } from '@/types';
-import { projectCycle } from '@/utils/developmentTimeCalculator';
-import { formatDate } from '@/utils/formatDate';
-import Link from 'next/link';
-import { ProjectComplexity } from './ProjectComplexity';
-import { ProjectStatusBar } from './ProjectStatusBar';
 
 const ProjectCardContent = ({
   handleShowTeam,
@@ -26,18 +29,17 @@ const ProjectCardContent = ({
       <ProjectStatusBar project={project} lang={lang} />
 
       <div className="flex w-full flex-col gap-[1.6rem]">
-        <div className="h-[11rem]">
-          <h4 className="text-[2.4rem] font-bold leading-[3rem]">
+        <div className="h-[11rem] overflow-clip text-ellipsis">
+          <h4 className="mb-[0.8rem] text-[2.4rem] font-bold leading-[3rem]">
             {project.title[lang]}
           </h4>
           {project.deployUrl && (
             <Link
               href={project.deployUrl}
               target="_blank"
-              className="mt-[0.8rem]"
               aria-label={`Visit ${project.deployUrl}`}
             >
-              {project.deployUrl ? project.deployUrl : ''}
+              {project.deployUrl}
             </Link>
           )}
         </div>
@@ -67,7 +69,7 @@ const ProjectCardContent = ({
             </div>
           </div>
 
-          {project.teamMembers && project.teamMembers.length > 0 && (
+          {project?.teamMembers?.length > 0 && (
             <button
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}

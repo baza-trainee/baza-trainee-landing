@@ -3,10 +3,10 @@ import { AdminPanelButton } from '@/components/atomic';
 type TBtnsProps = {
   isEditMode?: boolean;
   disabled?: boolean;
-  handleFunc: () => void;
+  cancelAction: () => void;
 };
 
-export const FormBtns = ({ isEditMode, disabled, handleFunc }: TBtnsProps) => {
+export const FormBtns = ({ isEditMode, disabled, cancelAction }: TBtnsProps) => {
   const okBtnName = isEditMode ? 'Зберегти зміни' : 'Додати';
 
   return (
@@ -15,7 +15,7 @@ export const FormBtns = ({ isEditMode, disabled, handleFunc }: TBtnsProps) => {
         {okBtnName}
       </AdminPanelButton>
 
-      <AdminPanelButton variant="secondary" onClick={() => handleFunc()}>
+      <AdminPanelButton variant="secondary" onClick={() => cancelAction()}>
         Скасувати
       </AdminPanelButton>
     </div>

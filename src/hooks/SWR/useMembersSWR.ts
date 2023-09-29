@@ -5,8 +5,8 @@ import { useGlobalContext } from '@/store/globalContext';
 import { membersEndpoint, membersApi } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError, AxiosResponse } from 'axios';
-import { IMember, TResponseMembers } from '@/types';
+import { AxiosError } from 'axios';
+import { IMember, TResponseMembers, TTeamMemberBio } from '@/types';
 
 const useMembersSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -33,13 +33,11 @@ const useMembersSWR = () => {
 
   const updateAndMutate = (
     updMembers: IMember[],
-    action: () => Promise<AxiosResponse<any, any>>
+    action: () => Promise<TTeamMemberBio>
   ) => {
     try {
       return mutate(action, {
         optimisticData: { ...data!, results: updMembers },
-        revalidate: false,
-        populateCache: false,
       });
     } catch (err) {
       errorHandler(err);
@@ -53,14 +51,12 @@ const useMembersSWR = () => {
 
   const handlerCreateMember = (newMember: IMember) => {
     const updMembers = [...(data?.results || []), newMember];
-    return updateAndMutate(updMembers, () =>
-      membersApi.createNew(newMember)
-    )?.then((res) => res?.data);
+    return updateAndMutate(updMembers, () => membersApi.createNew(newMember));
   };
 
   const handlerUpdateMember = (id: string, updMember: IMember) => {
     const updMembers = data?.results.map((member) =>
-      member._id === id ? updMember : member
+      member._id === id ? { ...member, ...updMember } : member
     );
     return updateAndMutate(updMembers!, () =>
       membersApi.updateById(id, updMember)

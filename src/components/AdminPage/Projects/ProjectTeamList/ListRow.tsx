@@ -1,23 +1,15 @@
 import { ActionBtns } from '@/components/atomic';
 
-import { IMember, IRole, TTeamMember } from '@/types';
+import { TTeamMember } from '@/types';
 import { RoleSelector } from './RoleSelector';
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
-// import { TEntity } from '../types';
-
-type TProps = {
-  // entity: TEntity;
-  projectId: string;
-  member: TTeamMember;
-};
+import { useProjectFormContext } from '../ProjectFormProvider';
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
-export const ListRow = ({ projectId, member }: TProps) => {
+export const ListRow = ({ member }: { member: TTeamMember }) => {
   const { teamMember } = member;
-  const { handlerDeleteMember } = useProjectsByIdSWR(projectId);
-  // console.log(showedData);
+  const { deleteMember } = useProjectFormContext();
 
   return (
     <tr>
@@ -29,7 +21,7 @@ export const ListRow = ({ projectId, member }: TProps) => {
 
       <td className={cellStyle}>
         <div className={bgStyle}>
-          <RoleSelector projectId={projectId} member={member} />
+          <RoleSelector member={member} />
         </div>
       </td>
 
@@ -38,7 +30,7 @@ export const ListRow = ({ projectId, member }: TProps) => {
           <ActionBtns
             id={teamMember._id}
             entity={'members'}
-            handleDelete={handlerDeleteMember}
+            handleDelete={deleteMember}
           />
         </div>
       </td>
