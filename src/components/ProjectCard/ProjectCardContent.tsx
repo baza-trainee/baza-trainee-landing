@@ -35,21 +35,20 @@ const ProjectCardContent = ({
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar project={project} lang={lang} />
 
-      <div className="flex w-full flex-col gap-[1.6rem]">
-        <div className="h-[13rem] overflow-clip text-ellipsis">
-          <h4 className="mb-[0.8rem] text-[2.4rem] font-bold leading-[3rem]">
-            {title[lang]}
-          </h4>
-          {deployUrl && (
-            <Link
-              href={deployUrl}
-              target="_blank"
-              aria-label={`Visit ${deployUrl}`}
-            >
-              {deployUrl}
-            </Link>
-          )}
+      <div className="flex h-[28rem] w-full flex-col gap-[1.6rem]">
+        <div className="mb-auto overflow-clip text-ellipsis text-[2.4rem] font-bold leading-[3rem]">
+          <h4>{title[lang]}</h4>
         </div>
+
+        {deployUrl && (
+          <Link
+            href={deployUrl}
+            target="_blank"
+            aria-label={`Visit ${deployUrl}`}
+          >
+            {deployUrl}
+          </Link>
+        )}
 
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
           <div className="flex items-center gap-2">
@@ -58,6 +57,7 @@ const ProjectCardContent = ({
             <span className="ml-auto font-medium">
               {formatDate(creationDate, 'spelled', lang)}
             </span>
+            di
           </div>
 
           <div className="flex items-center gap-2">
