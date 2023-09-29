@@ -1,7 +1,7 @@
 export interface PartnerData {
   name: string;
   homeUrl: string;
-  file: File | null;
+  file: string | null;
 }
 
 export interface PartnerItemProps {

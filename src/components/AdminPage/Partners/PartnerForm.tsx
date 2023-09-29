@@ -1,4 +1,4 @@
-import { AdminPanelButton, InputField } from '@/components/atomic';
+import { AdminPanelButton, FileInput } from '@/components/atomic';
 import { CancelLinkButton } from '@/components/atomic/buttons/CancelLinkButton';
 import { TextInputField } from '@/components/atomic/inputs/TextInputField';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
@@ -93,6 +93,8 @@ export const PartnerForm = ({
     handleSubmit(data);
   };
 
+  console.log(formData.file?.split('\\').at(-1));
+
   return (
     <>
       <div className="flex max-w-[1102px] justify-between ">
@@ -107,18 +109,14 @@ export const PartnerForm = ({
                 onChange={handleNameChange}
                 placeholder="Введіть назву"
               />
-              <InputField
+              <FileInput
                 title="Логотип"
-                inputType="file"
                 errorText={errors.file}
                 accept="image/jpeg, image/png, image/webp, image/jpg, image/svg"
-                value={
-                  formData.file instanceof File
-                    ? formData.file.name
-                    : formData.file || ''
-                }
                 onChange={handleImageChange}
-                placeholderText="Завантажте зображення"
+                placeholder={
+                  file?.name || formData.file || 'Завантажте зображення'
+                }
               />
               <TextInputField
                 title="Сайт партнера"
