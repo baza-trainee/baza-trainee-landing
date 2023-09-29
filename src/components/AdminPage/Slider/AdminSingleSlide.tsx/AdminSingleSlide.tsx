@@ -18,8 +18,8 @@ export const AdminSingleSlide = ({ slideData, lang }: any) => {
         className="object-cover"
         quality={90}
       />
-      <div className="relative w-2/3 max-w-[79rem] text-white">
-        <div>
+      <div className="relative flex h-[50.4rem] w-full items-center justify-center text-white">
+        <div className="flex-column max-w-[44.6rem] text-center">
           <h2 className="z-2 mb-5 text-center text-[3.8rem] font-bold">
             {title[lang]}
           </h2>
