@@ -9,9 +9,9 @@ import { ProjectStatusBar } from './ProjectStatusBar';
 import { dictionaries } from '@/locales/dictionaries';
 
 import {
-    ProjectComplexityIcon,
-    ProjectDurationIcon,
-    ProjectStartIcon,
+  ProjectComplexityIcon,
+  ProjectDurationIcon,
+  ProjectStartIcon,
 } from '@/components/common/icons';
 
 import { ICardContent } from '@/types';
@@ -24,22 +24,29 @@ const ProjectCardContent = ({
   const { projectStart, projectTeam, duration, complexity } =
     dictionaries[lang].projects || {};
 
+  const {
+    title,
+    deployUrl,
+    creationDate,
+    complexity: complexityValue,
+  } = project;
+
   return (
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar project={project} lang={lang} />
 
       <div className="flex w-full flex-col gap-[1.6rem]">
-        <div className="h-[11rem] overflow-clip text-ellipsis">
+        <div className="h-[13rem] overflow-clip text-ellipsis">
           <h4 className="mb-[0.8rem] text-[2.4rem] font-bold leading-[3rem]">
-            {project.title[lang]}
+            {title[lang]}
           </h4>
-          {project.deployUrl && (
+          {deployUrl && (
             <Link
-              href={project.deployUrl}
+              href={deployUrl}
               target="_blank"
-              aria-label={`Visit ${project.deployUrl}`}
+              aria-label={`Visit ${deployUrl}`}
             >
-              {project.deployUrl}
+              {deployUrl}
             </Link>
           )}
         </div>
@@ -49,7 +56,7 @@ const ProjectCardContent = ({
             <ProjectStartIcon />
             <span>{projectStart}</span>
             <span className="ml-auto font-medium">
-              {formatDate(project.creationDate, 'spelled', lang)}
+              {formatDate(creationDate, 'spelled', lang)}
             </span>
           </div>
 
@@ -65,7 +72,7 @@ const ProjectCardContent = ({
             <ProjectComplexityIcon />
             <span>{complexity}</span>
             <div className="ml-auto">
-              <ProjectComplexity count={project.complexity} />
+              <ProjectComplexity count={complexityValue} />
             </div>
           </div>
 
