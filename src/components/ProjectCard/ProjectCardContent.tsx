@@ -9,18 +9,18 @@ import { ProjectStatusBar } from './ProjectStatusBar';
 import { dictionaries } from '@/locales/dictionaries';
 
 import {
-  ProjectComplexityIcon,
-  ProjectDurationIcon,
-  ProjectStartIcon,
+    ProjectComplexityIcon,
+    ProjectDurationIcon,
+    ProjectStartIcon,
 } from '@/components/common/icons';
 
-import { ICardContent2 } from '@/types';
+import { ICardContent } from '@/types';
 
 const ProjectCardContent = ({
   handleShowTeam,
   project,
   lang = 'ua',
-}: ICardContent2) => {
+}: ICardContent) => {
   const { projectStart, projectTeam, duration, complexity } =
     dictionaries[lang].projects || {};
 

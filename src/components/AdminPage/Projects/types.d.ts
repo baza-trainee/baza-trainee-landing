@@ -36,7 +36,6 @@ export type TFormInput = {
   creationDate: string;
   launchDate?: string;
   complexity: number;
-  teamMembers?: TTeamMemberRequest[];
 };
 
 export interface IHandlerMembersList {
