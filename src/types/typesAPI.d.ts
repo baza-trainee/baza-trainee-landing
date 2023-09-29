@@ -184,3 +184,7 @@ export interface IChangePasswordRequest {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface IPasswordRequestReset {
+  email: string;
+}

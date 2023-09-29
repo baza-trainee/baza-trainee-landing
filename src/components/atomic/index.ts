@@ -22,3 +22,4 @@ export * from './inputs/TextInputField';
 
 export * from './AdminTitle';
 export * from './AlertWindow';
+export * from './buttons/AdminPanelButtonBlock';
