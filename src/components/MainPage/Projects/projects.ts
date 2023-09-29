@@ -3,11 +3,6 @@ import { TProject } from '@/types';
 export const projects: TProject[] = [
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'lullabies',
-      pl: 'lullabies',
-      ua: 'lullabies',
-    },
     imageUrl: '/img/projects/lullabies.webp',
     // status: {
     //   en: 'Under development',
@@ -15,11 +10,11 @@ export const projects: TProject[] = [
     //   ua: 'В розробці',
     // },
     deployUrl: '',
-    // description: {
-    //   en: 'Kolyaskovi - a website-museum for the reproduction of Ukrainian lullabies',
-    //   pl: 'Kolyaskovi - strona-muzeum reprodukcji ukraińskich kołysanek',
-    //   ua: 'Колискові - сайт-музей з відтворення українських колискових',
-    // },
+    title: {
+      en: 'Kolyaskovi - a website-museum for the reproduction of Ukrainian lullabies',
+      pl: 'Kolyaskovi - strona-muzeum reprodukcji ukraińskich kołysanek',
+      ua: 'Колискові - сайт-музей з відтворення українських колискових',
+    },
     creationDate: 1692921600000,
     launchDate: 0,
     complexity: 4,
@@ -28,11 +23,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'museum',
-      pl: 'museum',
-      ua: 'museum',
-    },
     imageUrl: '/img/projects/museum.webp',
     // status: {
     //   en: 'Under development',
@@ -40,11 +30,11 @@ export const projects: TProject[] = [
     //   ua: 'В розробці',
     // },
     deployUrl: '',
-    // description: {
-    //   en: 'Website of the Ivan Kavaleridze Museum',
-    //   pl: 'Strona internetowa Muzeum Iwana Kawaleridze',
-    //   ua: 'Сайт музею ім.Івана Кавалерідзе',
-    // },
+    title: {
+      en: 'Website of the Ivan Kavaleridze Museum',
+      pl: 'Strona internetowa Muzeum Iwana Kawaleridze',
+      ua: 'Сайт музею ім.Івана Кавалерідзе',
+    },
     creationDate: 1691366400000,
     launchDate: 0,
     complexity: 4,
@@ -53,11 +43,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'army',
-      pl: 'army',
-      ua: 'army',
-    },
     imageUrl: '/img/projects/mil.webp',
     // status: {
     //   en: 'Under development',
@@ -65,11 +50,11 @@ export const projects: TProject[] = [
     //   ua: 'В розробці',
     // },
     deployUrl: '',
-    // description: {
-    //   en: 'ENG for UArmy - a site for learning military English',
-    //   pl: 'ENG for UArmy - strona do nauki wojskowego angielskiego',
-    //   ua: 'ENG for UArmy - сайт з вивчення мілітарної англійської',
-    // },
+    title: {
+      en: 'ENG for UArmy - a site for learning military English',
+      pl: 'ENG for UArmy - strona do nauki wojskowego angielskiego',
+      ua: 'ENG for UArmy - сайт з вивчення мілітарної англійської',
+    },
     creationDate: 1693872000000,
     launchDate: 0,
     complexity: 3,
@@ -78,11 +63,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'hust',
-      pl: 'hust',
-      ua: 'hust',
-    },
     imageUrl: '/img/projects/hust.webp',
     // status: {
     //   en: 'Under development',
@@ -90,11 +70,11 @@ export const projects: TProject[] = [
     //   ua: 'В розробці',
     // },
     deployUrl: 'https://hyst.site/',
-    // description: {
-    //   en: 'Khist is an aggregator of veteran initiatives',
-    //   pl: 'Khist - agregator inicjatyw dla weteranów',
-    //   ua: 'Хист - агрегатор ветеранських ініціатив',
-    // },
+    title: {
+      en: 'Khist is an aggregator of veteran initiatives',
+      pl: 'Khist - agregator inicjatyw dla weteranów',
+      ua: 'Хист - агрегатор ветеранських ініціатив',
+    },
     creationDate: 1690848000000,
     launchDate: 1694883961894,
     complexity: 3,
@@ -372,11 +352,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: '57-42',
-      pl: '57-42',
-      ua: '57-42',
-    },
     imageUrl: '/img/projects/57-42.webp',
     // status: {
     //   en: 'Under development',
@@ -384,11 +359,11 @@ export const projects: TProject[] = [
     //   ua: 'В розробці',
     // },
     deployUrl: '',
-    // description: {
-    //   en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
-    //   pl: 'Strona docelowa - zbiórka funduszy dla 57 Brygady, 42 Batalionu',
-    //   ua: 'Лендінг - збір коштів для 57-ї бригади 42 батальону',
-    // },
+    title: {
+      en: 'Landing page - fundraising for the 57th Brigade, 42nd Battalion',
+      pl: 'Strona docelowa - zbiórka funduszy dla 57 Brygady, 42 Batalionu',
+      ua: 'Лендінг - збір коштів для 57-ї бригади 42 батальону',
+    },
     creationDate: 1691539200000,
     launchDate: 0,
     complexity: 1,
@@ -397,11 +372,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'Murrfecto',
-      pl: 'Murrfecto',
-      ua: 'Murrfecto',
-    },
     imageUrl: '/img/projects/murrfecto.webp',
     // status: {
     //   en: 'Done',
@@ -410,11 +380,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'active',
     deployUrl: 'https://murrfecto.site',
-    // description: {
-    //   en: 'Website of a shelter for street animals Murrfecto',
-    //   pl: 'Miejsce schroniska dla zwierząt ulicznych Murrfecto',
-    //   ua: 'Сайт притулку для вуличних тварин Murrfecto',
-    // },
+    title: {
+      en: 'Website of a shelter for street animals Murrfecto',
+      pl: 'Miejsce schroniska dla zwierząt ulicznych Murrfecto',
+      ua: 'Сайт притулку для вуличних тварин Murrfecto',
+    },
     creationDate: 1682283600000,
     launchDate: 1686517200000,
     complexity: 2,
@@ -436,7 +406,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -455,7 +425,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -474,7 +444,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -494,7 +464,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -513,7 +483,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -532,7 +502,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -551,7 +521,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -571,7 +541,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -590,7 +560,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -609,7 +579,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -628,7 +598,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -647,7 +617,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -666,7 +636,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -685,7 +655,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -704,7 +674,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -723,7 +693,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -743,18 +713,13 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
     ],
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'Ataka Help',
-      pl: 'Ataka Help',
-      ua: 'Ataka Help',
-    },
     imageUrl: '/img/projects/atack.webp',
     // status: {
     //   en: 'Done',
@@ -763,11 +728,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'active',
     deployUrl: 'https://ataka-help.tech',
-    // description: {
-    //   en: 'Platform about types of cyber fraud AtakaHelp',
-    //   pl: 'Platforma o rodzajach oszustw internetowych AtakaHelp',
-    //   ua: 'Платформа про види кібершахрайства AtakaHelp',
-    // },
+    title: {
+      en: 'Platform about types of cyber fraud AtakaHelp',
+      pl: 'Platforma o rodzajach oszustw internetowych AtakaHelp',
+      ua: 'Платформа про види кібершахрайства AtakaHelp',
+    },
     creationDate: 1683493200000,
     launchDate: 1687726800000,
     complexity: 2,
@@ -789,7 +754,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -808,7 +773,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -827,7 +792,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -847,7 +812,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -866,7 +831,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -886,7 +851,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -905,7 +870,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -924,7 +889,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -943,7 +908,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -962,7 +927,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -981,7 +946,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1000,7 +965,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1019,7 +984,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1038,7 +1003,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1057,7 +1022,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1076,7 +1041,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1095,7 +1060,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1114,7 +1079,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1133,7 +1098,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1153,7 +1118,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1172,7 +1137,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1191,7 +1156,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1210,7 +1175,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1229,7 +1194,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1248,7 +1213,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1267,7 +1232,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1287,18 +1252,13 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
     ],
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'baza',
-      pl: 'baza',
-      ua: 'baza',
-    },
     imageUrl: '/img/projects/baza.webp',
     // status: {
     //   en: 'Done',
@@ -1307,11 +1267,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'active',
     deployUrl: 'https://baza-trainee.tech',
-    // description: {
-    //   en: 'Platform for Baza Trainee Ukraine',
-    //   pl: 'Platforma dla Praktykantów Baza Ukraina',
-    //   ua: 'Платформа для Baza Trainee Ukraine',
-    // },
+    title: {
+      en: 'Platform for Baza Trainee Ukraine',
+      pl: 'Platforma dla Praktykantów Baza Ukraina',
+      ua: 'Платформа для Baza Trainee Ukraine',
+    },
     creationDate: 1683234000000,
     launchDate: 1687467600000,
     complexity: 3,
@@ -1333,7 +1293,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1352,7 +1312,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1371,7 +1331,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1391,7 +1351,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1410,7 +1370,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1429,7 +1389,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1449,7 +1409,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1468,7 +1428,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1487,7 +1447,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1506,7 +1466,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1525,7 +1485,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1544,7 +1504,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1564,7 +1524,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1584,7 +1544,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1603,7 +1563,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1622,7 +1582,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1641,7 +1601,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1660,7 +1620,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1679,7 +1639,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1699,7 +1659,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1718,7 +1678,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1737,7 +1697,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1756,18 +1716,13 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
     ],
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'Cheetosaurus',
-      pl: 'Cheetosaurus',
-      ua: 'Читозаврик',
-    },
     imageUrl: '/img/projects/zavr.webp',
     // status: {
     //   en: 'Under development',
@@ -1776,11 +1731,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'under-development',
     deployUrl: '',
-    // description: {
-    //   en: 'Cheetosaurus - a web application with book quizzes for children',
-    //   pl: 'Cheetosaurus - aplikacja internetowa z quizami książkowymi dla dzieci',
-    //   ua: 'Читозаврик - веб-додаток з книжковими вікторинами для дітей',
-    // },
+    title: {
+      en: 'Cheetosaurus - a web application with book quizzes for children',
+      pl: 'Cheetosaurus - aplikacja internetowa z quizami książkowymi dla dzieci',
+      ua: 'Читозаврик - веб-додаток з книжковими вікторинами для дітей',
+    },
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 5,
@@ -1789,11 +1744,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: '1001 songs',
-      pl: '1001 songs',
-      ua: '1001 songs',
-    },
     imageUrl: '/img/projects/1001songs.webp',
     // status: {
     //   en: 'Under development',
@@ -1802,11 +1752,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'under-development',
     deployUrl: '',
-    // description: {
-    //   en: '1001 songs - a site-collection of authentic Ukrainian songs',
-    //   pl: '1001 piosenek - zbiór witryn z autentycznymi ukraińskimi piosenkami',
-    //   ua: '1001 songs - сайт-колекція українських автентичних пісень ',
-    // },
+    title: {
+      en: '1001 songs - a site-collection of authentic Ukrainian songs',
+      pl: '1001 piosenek - zbiór witryn z autentycznymi ukraińskimi piosenkami',
+      ua: '1001 songs - сайт-колекція українських автентичних пісень ',
+    },
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 3,
@@ -1815,11 +1765,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'Big Lapa',
-      pl: 'Big Lapa',
-      ua: 'Big Lapa',
-    },
     imageUrl: '/img/projects/lapa.webp',
     // status: {
     //   en: 'Under development',
@@ -1828,11 +1773,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'under-development',
     deployUrl: '',
-    // description: {
-    //   en: 'The website of the shelter for street animals Big Lapa',
-    //   pl: 'Strona schroniska dla zwierząt ulicznych Big Lapa',
-    //   ua: 'Сайт притулку для вуличних тварин Big Lapa',
-    // },
+    title: {
+      en: 'The website of the shelter for street animals Big Lapa',
+      pl: 'Strona schroniska dla zwierząt ulicznych Big Lapa',
+      ua: 'Сайт притулку для вуличних тварин Big Lapa',
+    },
     creationDate: 1685566800000,
     launchDate: 0,
     complexity: 2,
@@ -1841,11 +1786,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'feeda',
-      pl: 'feeda',
-      ua: 'feeda',
-    },
     imageUrl: '/img/projects/feeda-1.webp',
     // status: {
     //   en: 'Under development',
@@ -1854,11 +1794,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'under-development',
     deployUrl: '',
-    // description: {
-    //   en: 'Feeda is a platform for processing applications for participation in Baza Trainee',
-    //   pl: 'Feeda to platforma do rozpatrywania wniosków o udział w Baza Trainee',
-    //   ua: 'Feeda - платформа для обробки заявок на участь у Baza Trainee',
-    // },
+    title: {
+      en: 'Feeda is a platform for processing applications for participation in Baza Trainee',
+      pl: 'Feeda to platforma do rozpatrywania wniosków o udział w Baza Trainee',
+      ua: 'Feeda - платформа для обробки заявок на участь у Baza Trainee',
+    },
     creationDate: 1687208400000,
     launchDate: 0,
     complexity: 3,
@@ -1867,11 +1807,6 @@ export const projects: TProject[] = [
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'book',
-      pl: 'książka',
-      ua: 'книга',
-    },
     imageUrl: '/img/projects/book.webp',
     // status: {
     //   en: 'Under development',
@@ -1880,11 +1815,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'under-development',
     deployUrl: 'https://www.openbookhands.site/',
-    // description: {
-    //   en: 'The book goes abroad - a humanitarian aid portal',
-    //   pl: 'Książka wyjeżdża za granicę - portal pomocy humanitarnej',
-    //   ua: 'Книжка їде за кордон - портал гуманітарної допомоги',
-    // },
+    title: {
+      en: 'The book goes abroad - a humanitarian aid portal',
+      pl: 'Książka wyjeżdża za granicę - portal pomocy humanitarnej',
+      ua: 'Книжка їде за кордон - портал гуманітарної допомоги',
+    },
     creationDate: 1688245200000,
     launchDate: 1693526400000,
     complexity: 2,
@@ -1906,7 +1841,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1925,7 +1860,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1944,7 +1879,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1963,7 +1898,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -1983,7 +1918,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2002,7 +1937,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2021,7 +1956,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2040,7 +1975,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2059,7 +1994,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2078,7 +2013,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2097,7 +2032,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2116,7 +2051,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2135,18 +2070,13 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
     ],
   },
   {
     _id: crypto.randomUUID(),
-    title: {
-      en: 'Landing - fundraising',
-      pl: 'Landing - zbieranie funduszy',
-      ua: 'Лендінг - збір коштів',
-    },
     imageUrl: '/img/projects/arms.webp',
     // status: {
     //   en: 'Done',
@@ -2155,11 +2085,11 @@ export const projects: TProject[] = [
     // },
     // statusVal: 'active',
     deployUrl: 'https://obijmy59.online/',
-    // description: {
-    //   en: `Landing -  fundraising for the 59th Brigade 'Steel Arms'`,
-    //   pl: `Lądowanie - zbiórka pieniędzy dla 59 Brygady 'Stalowej Broni'`,
-    //   ua: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
-    // },
+    title: {
+      en: `Landing -  fundraising for the 59th Brigade 'Steel Arms'`,
+      pl: `Lądowanie - zbiórka pieniędzy dla 59 Brygady 'Stalowej Broni'`,
+      ua: 'Лендинг - збір коштів для 59-бригади “Сталеві Обійми”',
+    },
     creationDate: 1689368400000,
     launchDate: 1690705554200,
     complexity: 2,
@@ -2181,7 +2111,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2200,7 +2130,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2219,7 +2149,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2238,7 +2168,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2257,7 +2187,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2276,7 +2206,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2295,7 +2225,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2315,7 +2245,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2335,7 +2265,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2354,7 +2284,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2373,7 +2303,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2392,7 +2322,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2411,7 +2341,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2430,7 +2360,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2450,7 +2380,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2469,7 +2399,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2488,7 +2418,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2507,7 +2437,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
       {
@@ -2526,7 +2456,7 @@ export const projects: TProject[] = [
             pl: '',
             ua: '',
           },
-          _id: '',
+          _id: crypto.randomUUID(),
         },
       },
     ],
