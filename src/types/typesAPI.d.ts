@@ -179,3 +179,8 @@ export type THeroSliderData = {
     maxSlides: number;
   };
 };
+
+export interface IChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+}
