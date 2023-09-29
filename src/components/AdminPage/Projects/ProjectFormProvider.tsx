@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,23 +8,23 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
 import {
-  TProjectRequest,
-  TTeamMember,
-  TTeamMemberBio,
-  TTeamMemberRole,
+    TProjectRequest,
+    TTeamMember,
+    TTeamMemberBio,
+    TTeamMemberRole,
 } from '@/types';
 
 import { convertDate } from '@/utils/formatDate';
-import { IFormContext, TFormInput, TProvider } from './types';
+import { defaultValues, emptyLngs, initProjectData } from './initFormData';
 import { extractMembersId, prepareProject } from './projectUtils';
-import { initProjectData, emptyLngs, defaultValues } from './initFormData';
+import { IFormContext, TFormInput, TProvider } from './types';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
 export const useProjectFormContext = () => useContext(ProjectFormContext);
 
 export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
-  const { handlerCreateProject, getProjectById, updateProject } =
+  const { createProject, getProjectById, updateProject } =
     useProjectsSWR();
 
   const projectByIdData = projectId ? getProjectById(projectId) : undefined;
@@ -90,7 +90,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
     isEditMode
       ? updateProject(projectId, preparedProject)
-      : handlerCreateProject(preparedProject);
+      : createProject(preparedProject);
 
     cancelAction();
   };

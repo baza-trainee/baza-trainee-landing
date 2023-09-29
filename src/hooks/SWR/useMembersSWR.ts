@@ -5,7 +5,7 @@ import { useGlobalContext } from '@/store/globalContext';
 import { membersEndpoint, membersApi } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import { IMember, TResponseMembers, TTeamMemberBio } from '@/types';
 
 const useMembersSWR = () => {

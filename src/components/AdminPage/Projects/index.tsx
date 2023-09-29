@@ -1,18 +1,18 @@
 'use client';
 
-import Link from 'next/link';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { createImgUrl } from '@/utils/imageHandler';
+import Link from 'next/link';
 
 import { ProjectCard } from '@/components/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
-import { ButtonsOverlay } from './ButtonsOverlay';
 import { PlusIcon } from '@/components/common/icons';
+import { ButtonsOverlay } from './ButtonsOverlay';
 
 import { TProject } from '@/types';
 
 export const AdminProjects = () => {
-  const { projectsData, handlerDeleteProject } = useProjectsSWR();
+  const { projectsData, deleteProject } = useProjectsSWR();
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
@@ -34,7 +34,7 @@ export const AdminProjects = () => {
           projectsData.results.map((project: TProject) => (
             <ButtonsOverlay
               key={project._id}
-              handleDelete={handlerDeleteProject}
+              handleDelete={deleteProject}
             >
               <ProjectCard
                 project={project}

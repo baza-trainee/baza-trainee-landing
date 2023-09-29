@@ -2,12 +2,11 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
-import { projectsEndpoint, projectsApi } from '@/utils/API/projects';
+import { projectsApi, projectsEndpoint } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
+import { TProject, TProjectRequest, TResponseProjects } from '@/types';
 import { AxiosError } from 'axios';
-import { TProject, TResponseProjects, TProjectRequest } from '@/types';
-import { prettyPrint } from '@/utils/prettyPrint';
 
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -32,7 +31,7 @@ const useProjectsSWR = () => {
     onError: handleRequestError,
   });
 
-  const handlerSearchProject = (search: string) => {
+  const searchProject = (search: string) => {
     setSearch(search);
   };
 
@@ -40,7 +39,7 @@ const useProjectsSWR = () => {
     return data?.results.find((project) => project._id === id);
   };
 
-  const handlerCreateProject = (newProject: TProjectRequest) => {
+  const createProject = (newProject: TProjectRequest) => {
     const options = {
       populateCache: (createdProject: TProject) => ({
         ...data!,
@@ -76,7 +75,7 @@ const useProjectsSWR = () => {
 
   
 
-  const handlerDeleteProject = (id: string) => {
+  const deleteProject = (id: string) => {
     const updProjects = data?.results.filter((project) => project._id !== id);
     const options = {
       optimisticData: { ...data!, results: updProjects! },
@@ -91,12 +90,13 @@ const useProjectsSWR = () => {
     projectsData: data,
     isLoading,
     isError: error,
-    handlerSearchProject,
+    searchProject,
     getProjectById,
-    handlerCreateProject,
+    createProject,
     updateProject,
-    handlerDeleteProject,
+    deleteProject,
   };
 };
 
 export { useProjectsSWR };
+
