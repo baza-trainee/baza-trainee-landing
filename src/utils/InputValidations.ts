@@ -14,3 +14,8 @@ export const validateUrl = (url: string) => {
   const urlPattern = /^(https?|http):\/\/[^\s/$.?#].[^\s]*$/i;
   return urlPattern.test(url);
 };
+
+export const validatePassword = (password: string) => {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?]).{8,}$/;
+  return passwordPattern.test(password);
+};

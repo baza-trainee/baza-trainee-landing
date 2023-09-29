@@ -152,7 +152,6 @@ export type responseDataType =
   | IUser
   | IAchievement
   | IHeroSlider
-  | IHeroSliderData
   | IPartner
   | IProject
   | IRole
@@ -185,3 +184,16 @@ export type TResponseRoles = {
   results: TTeamMemberRole[];
   pagination: TPagination;
 };
+
+export type THeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
+
+export interface IChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+}
