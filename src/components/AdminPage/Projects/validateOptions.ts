@@ -1,7 +1,6 @@
 import { SETTINGS } from '@/config/settings';
 import { TFormInput } from './types';
 import { convertDate } from '@/utils/formatDate';
-import { Validate } from 'react-hook-form';
 
 const limitSize = SETTINGS.fileSizeLimits.projectCard;
 
@@ -77,10 +76,7 @@ export const projectValidateOptions = {
       const creationDate = convertDate.toMsec(formValues.creationDate);
       const launchDate = convertDate.toMsec(formValues.launchDate);
 
-      return (
-        creationDate! < launchDate! ||
-        'Оберіть більшу дату'
-      );
+      return creationDate! < launchDate! || 'Оберіть більшу дату';
     },
   },
 };
