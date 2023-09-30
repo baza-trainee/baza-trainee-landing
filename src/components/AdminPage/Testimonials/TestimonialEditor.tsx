@@ -9,9 +9,9 @@ import {
   TextInputField,
 } from '@/components/atomic';
 import { TextAreaField } from '@/components/atomic/inputs/TextAreaField';
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { useGlobalContext } from '@/store/globalContext';
-import { ITestimonial, ITestimonialRequest } from '@/types';
-import { testimonialsApi } from '@/utils/API/testimonials';
+import { ITestimonialRequest } from '@/types';
 import { convertDate } from '@/utils/formatDate';
 import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
 import { useRouter } from 'next/navigation';
@@ -38,25 +38,25 @@ export const TestimonialEditor = ({
   testimonialId?: string;
 }) => {
   const router = useRouter();
-  const [nameUa, setNameUa] = useState<string>('');
-  const [nameEn, setNameEn] = useState<string>('');
-  const [namePl, setNamePl] = useState<string>('');
-  const [reviewUa, setReviewUa] = useState<string>('');
-  const [reviewEn, setReviewEn] = useState<string>('');
-  const [reviewPl, setReviewPl] = useState<string>('');
-  const [imageUrl, setImageUrl] = useState<string>('');
-  const [itemData, setItemData] = useState<ITestimonial>({} as ITestimonial);
   const curLang = useGlobalContext().landingLanguage;
+  const [nameUa, setNameUa] = useState<string | undefined>('');
+  const [nameEn, setNameEn] = useState<string | undefined>('');
+  const [namePl, setNamePl] = useState<string | undefined>('');
+  const [reviewUa, setReviewUa] = useState<string | undefined>('');
+  const [reviewEn, setReviewEn] = useState<string | undefined>('');
+  const [reviewPl, setReviewPl] = useState<string | undefined>('');
+  const [imageUrl, setImageUrl] = useState<string | undefined>('');
 
-  const { createNew, getById, updateById } = testimonialsApi;
+  const { getItemById, addNewTestimonial, updateTestimonial } =
+    useTestimonialsSWR();
+
+  const itemData = getItemById(testimonialId!);
 
   const {
     register,
     handleSubmit,
     watch,
-    setFocus,
     setValue,
-    reset,
     control,
     formState: { errors },
   } = useForm<TTestimonialFormInput>({
@@ -66,22 +66,14 @@ export const TestimonialEditor = ({
 
   useEffect(() => {
     if (testimonialId) {
-      const getTestimonial = async () => {
-        const data = await getById(testimonialId!);
-        setItemData(data.data);
-        setNameUa(data.data.name?.ua);
-        setNamePl(data.data.name?.pl);
-        setNameEn(data.data.name?.en);
-        setReviewUa(data.data.review?.ua);
-        setReviewEn(data.data.review?.en);
-        setReviewPl(data.data.review?.pl);
-        setReviewUa(data.data.review?.ua);
-        setReviewEn(data.data.review?.en);
-        setReviewPl(data.data.review?.pl);
-      };
-      getTestimonial();
+      setNameUa(itemData?.name.ua);
+      setNamePl(itemData?.name.pl);
+      setNameEn(itemData?.name.en);
+      setReviewUa(itemData?.review.ua);
+      setReviewEn(itemData?.review.en);
+      setReviewPl(itemData?.review.pl);
     }
-  }, [testimonialId, getById, setReviewUa, setReviewEn, setReviewPl]);
+  }, [testimonialId, itemData]);
 
   useEffect(() => {
     if (itemData) {
@@ -98,15 +90,7 @@ export const TestimonialEditor = ({
       ]);
       setImageUrl(itemData.imageUrl);
     }
-    setFocus('nameUa');
-  }, [itemData, setValue, setFocus]);
-
-  useEffect(() => {
-    setValue('nameEn', nameEn);
-    setValue('namePl', namePl);
-    setValue('reviewEn', reviewEn);
-    setValue('reviewPl', reviewPl);
-  }, [setValue, nameEn, namePl, reviewEn, reviewPl]);
+  }, [setValue, itemData]);
 
   const translatorHandleEn = (text: string, _name: string) => {
     setNameEn(text);
@@ -120,6 +104,13 @@ export const TestimonialEditor = ({
   const translatorHandleTextPl = (text: string, _name: string) => {
     setReviewPl(text);
   };
+
+  useEffect(() => {
+    setValue('nameEn', nameEn!);
+    setValue('namePl', namePl!);
+    setValue('reviewEn', reviewEn!);
+    setValue('reviewPl', reviewPl!);
+  }, [setValue, nameEn, namePl, reviewEn, reviewPl]);
 
   const downloadImage = async (fileName: string) => {
     const imageFile = await downloadImageAsFile(fileName);
@@ -144,6 +135,7 @@ export const TestimonialEditor = ({
   };
 
   const authorImageUrl = getImageUrl();
+
   const isImageUrl = authorImageUrl?.split('/files/')[1] !== 'undefined';
 
   const previewData = {
@@ -191,13 +183,15 @@ export const TestimonialEditor = ({
 
     if (testimonialId) {
       if (values.authorImg?.length && values.authorImg[0]?.size === 0) {
-        const downloadedImage = await downloadImage(itemData.imageUrl);
+        const downloadedImage = await downloadImage(
+          itemData?.imageUrl as string
+        );
         newItem.file = downloadedImage as File;
       }
-      await updateById([testimonialId, newItem]);
+      updateTestimonial(testimonialId, newItem);
       router.replace('..');
     } else {
-      await createNew(newItem);
+      addNewTestimonial(newItem);
       router.replace('.');
     }
   };
@@ -205,7 +199,7 @@ export const TestimonialEditor = ({
   return (
     <div className="w-full bg-base-light px-[2.4rem] py-[3.2rem] ">
       <AdminTitle className="mb-[4.5rem] ml-[1.2rem]">
-        {!testimonialId ? 'Додати Відгук' : 'Редагувати Відгук'}
+        {testimonialId ? 'Редагувати Відгук' : 'Додати Відгук'}
       </AdminTitle>
       <form className="flex flex-col gap-16" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
@@ -365,7 +359,7 @@ export const TestimonialEditor = ({
           />
         </div>
       </form>
-      {currentValues.nameUa && (
+      {currentValues.nameUa && isImageUrl && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
             <LanguageSelector />
@@ -373,7 +367,7 @@ export const TestimonialEditor = ({
           <SingleSlide
             slideData={previewData}
             lang={curLang}
-            isImageUrl={isImageUrl}
+            isImage={isImageUrl}
           />
         </div>
       )}

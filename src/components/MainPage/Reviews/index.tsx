@@ -32,8 +32,6 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
     process.env.NEXT_PUBLIC_SERVER_URL +
     '/files/';
 
-
-
   return (
     <section>
       <ContainerMaxW1200>
@@ -51,6 +49,7 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
                 key={index + 'key'}
                 lang={lang}
                 src={imgEndpoint + review.imageUrl}
+                isImage={review?.imageUrl.split('.')[0] !== 'undefined'}
               />
             ))}
           </Slider>

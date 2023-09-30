@@ -51,7 +51,7 @@ const TextareaField = (
         >
           {icon && (
             <div className={`${isIconActive ? '' : 'text-neutral-300'}`}>
-              {icon}
+              {!value && icon}
             </div>
           )}
         </label>

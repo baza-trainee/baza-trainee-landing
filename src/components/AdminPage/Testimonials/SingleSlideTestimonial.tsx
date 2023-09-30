@@ -8,23 +8,24 @@ import { DeleteTestimonialsButton } from './DeleteTestimonialsButton';
 export const SingleSlideTestimonial = ({
   slideData,
   lang,
+  isImage,
 }: {
   slideData: TSlideReview;
   lang: TLandingLanguage;
+  isImage: boolean;
 }) => {
   const imgEndpoint =
     process.env.NEXT_PUBLIC_PROXY_URL! +
     process.env.NEXT_PUBLIC_SERVER_URL +
     '/files/';
-  const imageSrc = imgEndpoint + slideData.imageUrl;
-  const isImageUrl = slideData.imageUrl?.split('.')[0] !== 'undefined';
+
   return (
     <div className="flex gap-[22px] px-[12px] py-[20px] text-neutral-700 shadow">
       <SingleSlide
         slideData={slideData}
         lang={lang}
-        isImageUrl={isImageUrl}
-        src={imageSrc}
+        isImage={isImage}
+        src={imgEndpoint + slideData.imageUrl}
       />
 
       <div className="flex gap-[8px] self-end">

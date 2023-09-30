@@ -1,13 +1,12 @@
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
+import { ITestimonial, ITestimonialRequest } from '@/types';
 import {
   testimonialsApi,
   testimonialsEndPoint,
 } from '@/utils/API/testimonials';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
-
-import { ITestimonial } from '@/types';
 import { AxiosError } from 'axios';
 
 export const useTestimonialsSWR = () => {
@@ -30,61 +29,73 @@ export const useTestimonialsSWR = () => {
     }
   );
 
-  const getByIdSlider = (id: string) => {
-    const slideById =
-      Array.isArray(data) &&
-      data.length &&
-      data.filter((slide: ITestimonial) => slide._id === id);
-    return slideById;
+  const getItemById = (id: string) => {
+    if (Array.isArray(data) && data.length) {
+      const itemById = data?.find((item: ITestimonial) => item._id === id);
+      return itemById;
+    }
   };
 
-  const delByIdSlider = async (id: string) => {
+  const deleteTestimonial = async (id: string) => {
     try {
-      const newData =
-        Array.isArray(data) &&
-        data.length &&
-        data.filter((slide: ITestimonial) => slide._id !== id);
-
-      testimonialsApi.deleteById(id);
-      await mutate({ newData });
+      const updProjects = data?.filter((item) => item._id !== id);
+      const options = {
+        optimisticData: { ...data!, results: updProjects! },
+        populateCache: false,
+        revalidate: true,
+      };
+      await mutate(() => testimonialsApi.deleteById(id), options)
+        .catch(handleRequestError)
+        .catch((error) => console.log('[ERROR_DELETE_TESTIMONIAL]', error));
     } catch (error) {
       errorHandler(error);
     }
   };
 
-  // const addNewSlider = async (slider: ITestimonial) => {
-  //   try {
-  //     const newData = [
-  //       ...((Array.isArray(data) && data.length && data) || []),
-  //       slider,
-  //     ];
-  //     testimonialsApi.createNew(slider);
-  //     await mutate({ newData });
-  //   } catch (error) {
-  //     errorHandler(error);
-  //   }
-  // };
+  const addNewTestimonial = async (item: ITestimonialRequest) => {
+    try {
+      const options = {
+        populateCache: (newTestimonial: ITestimonial) => ({
+          ...data!,
+          results: [newTestimonial, ...(data || [])],
+        }),
+        revalidate: true,
+      };
+      mutate(() => testimonialsApi.createNew(item), options)
+        .catch(handleRequestError)
+        .catch((error) => console.log('[ERROR_CREATE_TESTIMONIAL]', error));
+    } catch (error) {
+      errorHandler(error);
+    }
+  };
 
-  // const updateSlider = async (id: string, slider: ITestimonial) => {
-  //   try {
-  //     const newData =
-  //       Array.isArray(data) &&
-  //       data.length &&
-  //       data.map((slide: ITestimonial) => (slide._id === id ? slider : slide));
-  //     testimonialsApi.updateById([id, slider]);
-  //     await mutate({ newData });
-  //   } catch (error) {
-  //     errorHandler(error);
-  //   }
-  // };
+  const updateTestimonial = async (
+    id: string,
+    testimonial: ITestimonialRequest
+  ) => {
+    try {
+      const options = {
+        populateCache: (newTestimonial: ITestimonial) => ({
+          ...data!,
+          results: [newTestimonial, ...(data || [])],
+        }),
+        revalidate: true,
+      };
+      mutate(() => testimonialsApi.updateById([id, testimonial]), options)
+        .catch(handleRequestError)
+        .catch((error) => console.log('[ERROR_UPDATE_TESTIMONIAL]', error));
+    } catch (error) {
+      errorHandler(error);
+    }
+  };
 
   return {
     testimonialsData: data,
     isLoading,
     isError: error,
-    getByIdSlider,
-    delByIdSlider,
-    // updateSlider,
-    // addNewSlider,
+    getItemById,
+    deleteTestimonial,
+    addNewTestimonial,
+    updateTestimonial,
   };
 };

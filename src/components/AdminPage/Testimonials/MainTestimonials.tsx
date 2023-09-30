@@ -40,7 +40,11 @@ export default function MainTestimonials() {
           testimonialsData.length &&
           testimonialsData?.map((item: TSlideReview) => (
             <li key={item._id}>
-              <SingleSlideTestimonial slideData={item} lang={curLang} />
+              <SingleSlideTestimonial
+                slideData={item}
+                lang={curLang}
+                isImage={item?.imageUrl.split('.')[0] !== 'undefined'}
+              />
             </li>
           ))}
       </ul>

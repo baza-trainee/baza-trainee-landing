@@ -7,10 +7,10 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const DeleteTestimonialsButton = ({ id, children }: Props) => {
-  const { delByIdSlider } = useTestimonialsSWR();
+  const { deleteTestimonial } = useTestimonialsSWR();
 
   return (
-    <button type="button" onClick={() => delByIdSlider(id)}>
+    <button type="button" onClick={() => deleteTestimonial(id)}>
       {children}
     </button>
   );

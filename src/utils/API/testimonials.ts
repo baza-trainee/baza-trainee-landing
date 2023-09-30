@@ -8,20 +8,23 @@ import { bazaAPI } from './config';
 export const testimonialsEndPoint = '/testimonials';
 
 export const testimonialsApi = {
-  
   async getAll(uri: string) {
     return await bazaAPI.get<ITestimonial[]>(uri).then((res) => res.data);
   },
 
-  async createNew(testimonial: ITestimonialRequest) {
-    return await bazaAPI.post<ITestimonial>('/testimonials', testimonial, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+  async getById(id: string) {
+    const response = await bazaAPI.get<ITestimonial>(
+      `${testimonialsEndPoint}/${id}`
+    );
+    return response;
   },
 
-  async getById(id: string) {
-    const response = await bazaAPI.get<ITestimonial>(`/testimonials/${id}`);
-    return response;
+  async createNew(testimonial: ITestimonialRequest) {
+    return await bazaAPI
+      .post<ITestimonial>(`${testimonialsEndPoint}`, testimonial, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((res) => res.data);
   },
 
   async deleteById(id: string) {
@@ -30,7 +33,7 @@ export const testimonialsApi = {
 
   async updateById([id, payload]: updateByIdRequest) {
     return await bazaAPI
-      .patch(`/testimonials/${id}`, payload, {
+      .patch<ITestimonial>(`${testimonialsEndPoint}/${id}`, payload, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => res.data);
