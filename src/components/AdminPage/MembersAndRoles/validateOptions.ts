@@ -23,7 +23,7 @@ export const memberValidateOptions = {
     required: 'Введіть прізвище та ім’я',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-Z\s\d'’-]+$/,
+      value: /^[a-zA-Z\s'’-]+$/,
       message: 'Введіть коректне прізвище та ім’я',
     },
   },
@@ -32,7 +32,7 @@ export const memberValidateOptions = {
     required: 'Введіть прізвище та ім’я',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\d'’-]+$/,
+      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s'’-]+$/,
       message: 'Введіть коректне прізвище та ім’я',
     },
   },

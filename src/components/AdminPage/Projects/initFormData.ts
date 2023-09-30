@@ -15,7 +15,7 @@ export const defaultValues: TFormInput = {
 
 export const emptyLngs = { ua: '', en: '', pl: '' };
 
-export const initProjectData: TProject = {
+export const initProjectData: TProject = { //TODO:  del?
   _id: '',
   title: emptyLngs,
   imageUrl: '',

@@ -34,7 +34,7 @@ export type TFormInput = {
   deployUrl?: string;
   isTeamRequired?: boolean;
   creationDate: string;
-  launchDate?: string;
+  launchDate: string;
   complexity: number;
 };
 

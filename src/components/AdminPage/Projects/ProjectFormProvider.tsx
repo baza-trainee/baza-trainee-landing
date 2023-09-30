@@ -15,7 +15,10 @@ import {
 } from '@/types';
 
 import { convertDate } from '@/utils/formatDate';
-import { defaultValues, emptyLngs, initProjectData } from './initFormData';
+import {
+  defaultValues, emptyLngs,
+  initProjectData // TODO:  del?
+} from './initFormData';
 import { extractMembersId, prepareProject } from './projectUtils';
 import { IFormContext, TFormInput, TProvider } from './types';
 
@@ -107,11 +110,11 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
       setValue('isTeamRequired', projectByIdData.isTeamRequired);
       setValue(
         'creationDate',
-        convertDate.toYYYYMMDD(+projectByIdData.creationDate)
+        convertDate.toYYYYMMDD(projectByIdData.creationDate)
       );
       setValue(
         'launchDate',
-        convertDate.toYYYYMMDD(+projectByIdData.launchDate)
+        convertDate.toYYYYMMDD(projectByIdData.launchDate)
       );
       setValue('complexity', +projectByIdData.complexity);
     }

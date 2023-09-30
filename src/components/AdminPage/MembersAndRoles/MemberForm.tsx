@@ -8,10 +8,8 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { FormBtns, TextInputField } from '@/components/atomic';
 
 import { IMember } from '@/types';
-import { memberValidateOptions } from './validateOptions';
 import { TMemberFormInput, TMemberFormProps } from './types';
-
-
+import { memberValidateOptions } from './validateOptions';
 
 const createOptions = (
   id: string | undefined,
@@ -33,11 +31,13 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) => {
+export const MemberForm = ({
+  memberId,
+  addMemberNComeback,
+}: TMemberFormProps) => {
   const router = useRouter();
 
-  const { membersData, handlerCreateMember, handlerUpdateMember } =
-    useMembersSWR();
+  const { membersData, createMember, updateMember } = useMembersSWR();
   const members = membersData?.results;
 
   const valuesIfItEditedMember = createOptions(memberId, members);
@@ -61,9 +61,9 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) =
     };
 
     if (memberId) {
-      handlerUpdateMember(memberId, member);
+      updateMember(memberId, member);
     } else {
-      handlerCreateMember(member)?.then(
+      createMember(member)?.then(
         (res) => res && addMemberNComeback && addMemberNComeback(res)
       );
     }

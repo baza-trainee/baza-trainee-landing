@@ -49,10 +49,10 @@ const useProjectsSWR = () => {
     };
 
     mutate(() => projectsApi.createNew(newProject), options)
-      .then(console.log)
+      // .then(console.log)
       // .then((r) => prettyPrint(r, 'ProSWR'))
       // .catch(handleRequestError)
-      .catch((e) => console.log('ERROR!!!!!', e));
+      .catch(errorHandler);
   };
 
   const updateProject = (id: string, updProject: TProjectRequest) => {

@@ -42,7 +42,7 @@ export type TProject = {
   deployUrl?: string;
   isTeamRequired: boolean;
   creationDate: number;
-  launchDate: number;
+  launchDate?: number;
   complexity: number;
   teamMembers: TTeamMember[];
 };

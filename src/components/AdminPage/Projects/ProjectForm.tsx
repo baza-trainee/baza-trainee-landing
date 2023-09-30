@@ -34,7 +34,7 @@ const ProjectForm = () => {
         <div className={`${rowStyle} col-span-3`}>
           <Controller
             name="nameUk"
-            rules={projectValidateOptions.name}
+            rules={projectValidateOptions.fieldUk}
             control={control}
             render={({ field }) => (
               <TextInputField
@@ -48,7 +48,7 @@ const ProjectForm = () => {
           />
           <Controller
             name="nameEn"
-            rules={projectValidateOptions.name}
+            rules={projectValidateOptions.fieldEn}
             control={control}
             render={({ field }) => (
               <TextInputField
@@ -60,7 +60,7 @@ const ProjectForm = () => {
           />
           <Controller
             name="namePl"
-            rules={projectValidateOptions.name}
+            rules={projectValidateOptions.fieldPl}
             control={control}
             render={({ field }) => (
               <TextInputField
@@ -88,12 +88,14 @@ const ProjectForm = () => {
           />
           <Controller
             name="launchDate"
+            rules={projectValidateOptions.launchDate}
             control={control}
             render={({ field }) => (
               <DateInput
                 {...field}
                 title="Дата завершення проєкту"
                 placeholder="Оберіть дату"
+                errorText={errors.launchDate?.message}
               />
             )}
           />
@@ -127,13 +129,15 @@ const ProjectForm = () => {
         <div className={`${rowStyle} col-span-2`}>
           <Controller
             name="deployUrl"
+            rules={projectValidateOptions.deployUrl}
             control={control}
             render={({ field }) => (
               <TextInputField
                 {...field}
-                inputType="uk"
+                // inputType="uk"
                 title="Адреса сайту"
                 placeholder="Вкажіть адресу сайту"
+                errorText={errors.deployUrl?.message}
               />
             )}
           />
@@ -157,4 +161,3 @@ const ProjectForm = () => {
 };
 
 export { ProjectForm };
-

@@ -27,9 +27,9 @@ export const formatDate = (
 };
 
 export const convertDate = {
-  toYYYYMMDD: (value: number) =>
+  toYYYYMMDD: (value?: number) =>
     value ? new Date(+value).toISOString().split('T')[0] : '',
 
   toMsec: (value?: string) =>
-    value ? new Date(value).getTime() : 0
+    value ? new Date(value).getTime() : undefined
 };

@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
-import { membersEndpoint, membersApi } from '@/utils/API/members';
+import { membersApi, membersEndpoint } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError } from 'axios';
 import { IMember, TResponseMembers, TTeamMemberBio } from '@/types';
+import { AxiosError } from 'axios';
 
 const useMembersSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -14,22 +14,27 @@ const useMembersSWR = () => {
 
   const swrKey = `${membersEndpoint}?search=${search}`;
 
-  const { data, error, isLoading, mutate } = useSWR<
-    TResponseMembers,
-    AxiosError
-  >(swrKey, membersApi.getAll, { keepPreviousData: true });
-
-  useEffect(() => {
-    if (!error) return;
-
-    errorHandler(error);
+  const handleRequestError = (err: AxiosError) => {
+    errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[error?.status || 500],
+      title: networkStatusesUk[err?.status || 500],
       textInfo:
         'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
     });
-  }, [error]);
+  };
+
+  const { data, error, isLoading, mutate } = useSWR<
+    TResponseMembers,
+    AxiosError
+  >(swrKey, membersApi.getAll, {
+    keepPreviousData: true,
+    onError: handleRequestError,
+  });
+
+  const searchMember = (search: string) => {
+    setSearch(search);
+  };
 
   const updateAndMutate = (
     updMembers: IMember[],
@@ -44,17 +49,17 @@ const useMembersSWR = () => {
     }
   };
 
-  const handlerDeleteMember = (id: string) => {
+  const deleteMember = (id: string) => {
     const updMembers = data?.results.filter((member) => member._id !== id);
     updateAndMutate(updMembers!, () => membersApi.deleteById(id));
   };
 
-  const handlerCreateMember = (newMember: IMember) => {
+  const createMember = (newMember: IMember) => {
     const updMembers = [...(data?.results || []), newMember];
     return updateAndMutate(updMembers, () => membersApi.createNew(newMember));
   };
 
-  const handlerUpdateMember = (id: string, updMember: IMember) => {
+  const updateMember = (id: string, updMember: IMember) => {
     const updMembers = data?.results.map((member) =>
       member._id === id ? { ...member, ...updMember } : member
     );
@@ -63,18 +68,14 @@ const useMembersSWR = () => {
     );
   };
 
-  const handlerSearchMember = (search: string) => {
-    setSearch(search);
-  };
-
   return {
     membersData: data,
     isLoading,
     isError: error,
-    handlerCreateMember,
-    handlerUpdateMember,
-    handlerDeleteMember,
-    handlerSearchMember,
+    createMember,
+    updateMember,
+    deleteMember,
+    searchMember,
   };
 };
 
