@@ -57,7 +57,6 @@ const ProjectCardContent = ({
             <span className="ml-auto font-medium">
               {formatDate(creationDate, 'spelled', lang)}
             </span>
-            di
           </div>
 
           <div className="flex items-center gap-2">
