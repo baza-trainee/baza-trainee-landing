@@ -27,7 +27,6 @@ export const SliderForm = ({
   );
 
   const {
-    register,
     handleSubmit,
     watch,
     setValue,
