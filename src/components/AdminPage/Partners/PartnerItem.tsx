@@ -26,7 +26,7 @@ export const PartnerItem = ({
   };
 
   return (
-    <li className="relative  flex h-[100px] min-w-[276px] bg-[#CECECE]">
+    <li className="relative  flex h-[100px] min-w-[214px] bg-[#CECECE]">
       <Image
         src={imageUrl}
         alt={name}
