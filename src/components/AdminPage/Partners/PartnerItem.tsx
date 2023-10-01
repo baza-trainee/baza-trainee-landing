@@ -30,10 +30,10 @@ export const PartnerItem = ({
       <Image
         src={imageUrl}
         alt={name}
-        width={0}
-        height={0}
+        width={214}
+        height={100}
         sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
+        className="mx-auto "
       />
       <ul className="absolute bottom-4 right-[1.3rem] flex items-center justify-end gap-[1rem]">
         <li>
