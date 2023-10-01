@@ -41,7 +41,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
       slickRef.current.slickGoTo(slideIndex);
-      console.log(slickRef.current);
+      // console.log(slickRef.current);
     }
   };
 

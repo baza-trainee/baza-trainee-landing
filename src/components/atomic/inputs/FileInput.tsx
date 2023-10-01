@@ -1,72 +1,75 @@
 'use client';
 
+import { ChangeEvent, InputHTMLAttributes } from 'react';
+
 import {
-  ChangeEvent,
-  ForwardedRef,
-  InputHTMLAttributes,
-  forwardRef,
-  useState,
-} from 'react';
+  DeepMap,
+  FieldError,
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
 import { UploadIcon } from '@/components/common/icons';
 
-interface IProps extends InputHTMLAttributes<HTMLInputElement> {
-  title?: string;
-  errorText?: string;
-}
+type IProps<T extends FieldValues> = InputHTMLAttributes<HTMLInputElement> &
+  UseControllerProps<T> & { title?: string };
 
-const InputRaw = (
-  { title, errorText, placeholder, ...rest }: IProps,
-  ref: ForwardedRef<HTMLInputElement>
-) => {
-  const [fileName, setFileName] = useState<string>();
+export const FileInput = <T extends FieldValues>({
+  title,
+  placeholder,
+  control,
+  name,
+  rules,
+  ...rest
+}: IProps<T>) => {
+  const { field, formState } = useController<T>({ name, control, rules });
+  const fileName = field.value[0]?.name;
 
-  const inputWrapperClasses = `relative w-full max-w-[32.6rem] ${
-    errorText ? 'text-critic-light' : ''
+  const errorMessage = (
+    formState.errors[name] as DeepMap<FieldValues, FieldError>
+  )?.message;
+
+  const inputWrapperStyle = `relative w-full max-w-[32.6rem] ${
+    errorMessage ? 'text-critic-light' : ''
   }`;
 
-  const inputContainerClasses = `mb-8 mt-[2.8rem] flex h-16 w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
-    errorText ? 'border-critic-light' : 'border-neutral-300'
+  const inputContainerStyle = `mb-8 mt-[2.8rem] flex h-16 w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
+    errorMessage ? 'border-critic-light' : 'border-neutral-300'
   }`;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      // const files = Array.from(e.target.files);
-      // setFileName(files[0]?.name);
-      setFileName(e.target.files[0]?.name);
+      field.onChange(e.target.files);
     }
   };
 
   return (
-    <div className={inputWrapperClasses}>
+    <div className={inputWrapperStyle}>
       {!!title && <label className="absolute left-0 top-0">{title}</label>}
 
       <label htmlFor={title + 'file'}>
-        <div className={inputContainerClasses}>
-          <span className="w-full overflow-hidden text-ellipsis">
-            {fileName || placeholder}
-          </span>
+        <div className={inputContainerStyle}>
+          <span className="w-full truncate">{fileName || placeholder}</span>
 
-          <UploadIcon className={!errorText ? 'text-neutral-800' : ''} />
+          <UploadIcon className={!errorMessage ? 'text-neutral-800' : ''} />
         </div>
       </label>
 
       <input
         {...rest}
-        ref={ref}
+        ref={field.ref}
         type="file"
         id={title + 'file'}
         hidden
-        onInput={handleChange}
+        onChange={handleChange}
       />
 
-      {!!errorText && (
+      {!!errorMessage && (
         <span className="absolute bottom-0 left-0 text-[1.2rem]">
-          {errorText}
+          {errorMessage}
         </span>
       )}
     </div>
   );
 };
-
-export const FileInput = forwardRef(InputRaw);

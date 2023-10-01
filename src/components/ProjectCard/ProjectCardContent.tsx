@@ -32,22 +32,25 @@ const ProjectCardContent = ({
   } = project;
 
   return (
-    <div className="flex h-full flex-col justify-between ">
+    <div className="flex h-full flex-col justify-between">
       <ProjectStatusBar project={project} lang={lang} />
 
-      <div className="flex h-[28rem] w-full flex-col gap-[1.6rem]">
-        <div className="mb-auto overflow-clip text-ellipsis text-[2.4rem] font-bold leading-[3rem]">
+      <div className="flex h-[29rem] w-full flex-col">
+
+        <div className="mb-auto text-[2.4rem] font-bold leading-[3rem] line-clamp-4 break-words">
           <h4>{title[lang]}</h4>
         </div>
 
         {deployUrl && (
-          <Link
-            href={deployUrl}
-            target="_blank"
-            aria-label={`Visit ${deployUrl}`}
-          >
-            {deployUrl}
-          </Link>
+          <div className="mb-[1.6rem] truncate">
+            <Link
+              href={deployUrl}
+              target="_blank"
+              aria-label={`Visit ${deployUrl}`}
+            >
+              {deployUrl}
+            </Link>
+          </div>
         )}
 
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">

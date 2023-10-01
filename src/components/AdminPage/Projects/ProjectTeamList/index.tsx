@@ -23,7 +23,7 @@ export const ProjectTeamList = () => {
   return isAddMemberMode ? (
     <MemberForm addMemberNComeback={addMemberNComeback} />
   ) : (
-    <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
+    <table className="w-full table-fixed border-collapse truncate">
       <ListHeader switchMode={switchMode} />
       <tbody>
         {teamMemberData.length > 0 &&

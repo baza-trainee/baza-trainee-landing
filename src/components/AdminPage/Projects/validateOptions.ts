@@ -10,8 +10,8 @@ const commonOptions = {
     message: 'Мінімальна довжина поля 5 символів',
   },
   maxLength: {
-    value: 75,
-    message: 'Максимальна довжина поля 75 символів',
+    value: 100,
+    message: 'Максимальна довжина поля 100 символів',
   },
 };
 
@@ -44,21 +44,27 @@ export const projectValidateOptions = {
   },
 
   img: {
-    validate: (value: File[]) => {
-      const file = value[0];
+    validate: (
+      value: string | number | boolean | File | File[] | undefined
+    ) => {
+      if (typeof value === 'object' && value !== null && value.length > 0) {
+        const file = value[0];
 
-      const checkType = [
-        'image/jpeg',
-        'image/png',
-        'image/webp',
-        'for-url',
-      ].includes(file.type);
-      if (!checkType) return 'Виберіть коректне зображення';
+        const checkType = [
+          'image/jpeg',
+          'image/png',
+          'image/webp',
+          'for-url',
+        ].includes(file.type);
+        if (!checkType) return 'Виберіть коректне зображення';
 
-      const checkSize = file.size <= limitSize;
-      if (!checkSize) return `Виберіть зображення до ${limitSize}Мб`;
+        const checkSize = file.size <= limitSize;
+        if (!checkSize) return `Виберіть зображення до ${limitSize}Мб`;
 
-      return true;
+        return true;
+      } else {
+        return 'Додайте зображення проєкту';
+      }
     },
   },
 

@@ -8,16 +8,17 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
 import {
-    TProjectRequest,
-    TTeamMember,
-    TTeamMemberBio,
-    TTeamMemberRole,
+  TProjectRequest,
+  TTeamMember,
+  TTeamMemberBio,
+  TTeamMemberRole,
 } from '@/types';
 
 import { convertDate } from '@/utils/formatDate';
 import {
-  defaultValues, emptyLngs,
-  initProjectData // TODO:  del?
+  defaultValues,
+  emptyLngs,
+  initProjectData, // TODO:  del?
 } from './initFormData';
 import { extractMembersId, prepareProject } from './projectUtils';
 import { IFormContext, TFormInput, TProvider } from './types';
@@ -27,8 +28,7 @@ const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 export const useProjectFormContext = () => useContext(ProjectFormContext);
 
 export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
-  const { createProject, getProjectById, updateProject } =
-    useProjectsSWR();
+  const { createProject, getProjectById, updateProject } = useProjectsSWR();
 
   const projectByIdData = projectId ? getProjectById(projectId) : undefined;
   const isEditMode = !!projectId && !!projectByIdData;
@@ -77,7 +77,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     control,
     formState: { errors },
   } = useForm<TFormInput>({
-    mode: 'onSubmit',
+    mode: 'onChange',
     defaultValues,
   });
 

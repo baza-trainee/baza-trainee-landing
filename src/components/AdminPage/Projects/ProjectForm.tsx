@@ -18,15 +18,8 @@ import { projectValidateOptions } from './validateOptions';
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
 const ProjectForm = () => {
-  const {
-    isEditMode,
-    register,
-    handleSubmit,
-    onSubmit,
-    cancelAction,
-    control,
-    errors,
-  } = useProjectFormContext();
+  const { isEditMode, handleSubmit, onSubmit, cancelAction, control, errors } =
+    useProjectFormContext();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -134,7 +127,6 @@ const ProjectForm = () => {
             render={({ field }) => (
               <TextInputField
                 {...field}
-                // inputType="uk"
                 title="Адреса сайту"
                 placeholder="Вкажіть адресу сайту"
                 errorText={errors.deployUrl?.message}
@@ -143,14 +135,15 @@ const ProjectForm = () => {
           />
 
           <FileInput
-            {...register('projectImg', {
+            name="projectImg"
+            control={control}
+            rules={{
               ...projectValidateOptions.img,
               required: isEditMode ? false : 'Додайте зображення проєкту',
-            })}
+            }}
             accept="image/*"
             placeholder="Завантажте зображення"
             title="Обкладинка"
-            errorText={errors.projectImg?.message}
           />
         </div>
       </div>

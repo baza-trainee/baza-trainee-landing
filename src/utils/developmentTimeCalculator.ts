@@ -2,12 +2,10 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { TProject } from '@/types';
 
 export const projectCycle = (project: TProject, lang: TLandingLanguage) => {
-  const { creationDate, launchDate } = project;
-
-  if (!launchDate) return 'n/a';
-
-  const numOfWeeks =
-    Math.floor((launchDate - creationDate) / (1000 * 60 * 60 * 24 * 7)) + 1;
+  const launchDate = project.launchDate ? project.launchDate : Date.now();
+  const numOfWeeks = Math.floor(
+    (launchDate - project.creationDate) / (1000 * 60 * 60 * 24 * 7) + 1
+  );
 
   const weekStrings = {
     en: {
