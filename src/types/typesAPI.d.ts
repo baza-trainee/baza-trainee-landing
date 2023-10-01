@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { IProject, TProject, TTeamMemberRole } from './projectsTypes';
+import { TProject, TTeamMemberRole } from './projectsTypes';
 
 export interface IErrorResponse {
   message: string;
@@ -82,23 +82,6 @@ export interface IPartner extends CommonResponseBase {
   homeUrl?: string;
   imageUrl: string;
 }
-/*
-export interface IProject extends CommonResponseBase {
-  title: TTitleLanguagesTypes;
-  imageUrl: string;
-  deployUrl?: string;
-  stack?: [{ _id?: string; name: string }];
-  isTeamRequired: Boolean;
-  creationDate: number;
-  launchDate?: number;
-  complexity: number;
-  teamMembers?: [
-    {
-      user: { _id?: string; name: string };
-      role: { _id?: string; name: string };
-    }
-  ];
-}*/
 
 export interface IRole extends CommonResponseBase {
   name: TTitleLanguagesTypes;
@@ -153,7 +136,7 @@ export type responseDataType =
   | IAchievement
   | IHeroSlider
   | IPartner
-  | IProject
+  // | IProject
   | IRole
   | IStack
   | IMember
@@ -161,8 +144,8 @@ export type responseDataType =
   | IErrorResponse
   | Array<
       | IHeroSlider
-      // | IPartner
-      | IProject
+      | IPartner
+      // | IProject
       | IRole
       | IStack
       | IMember

@@ -5,12 +5,10 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { MembersAndRolesList } from './MembersAndRolesList';
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
+import { roleSorter } from '@/utils/roleSorter';
+import { TEntity } from './types';
 
-type TProps = {
-  entity: 'members' | 'roles';
-};
-
-export const MembersAndRoles = ({ entity }: TProps) => {
+export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
   const { membersData, handlerSearchMember, handlerDeleteMember } =
     useMembersSWR();
 
@@ -21,7 +19,7 @@ export const MembersAndRoles = ({ entity }: TProps) => {
   const showedData =
     entity === 'members'
       ? membersData?.results || []
-      : rolesData?.results || [];
+      : roleSorter(rolesData?.results) || [];
 
   const handleDelete =
     entity === 'members' ? handlerDeleteMember : handlerDeleteRole;

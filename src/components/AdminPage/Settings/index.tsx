@@ -140,7 +140,7 @@ export const Settings = () => {
           <FormBtns
             isEditMode={true}
             disabled={!isFormValid}
-            handleFunc={resetHandler}
+            cancelAction={resetHandler}
           />
         </div>
       </form>

@@ -1,7 +1,7 @@
 import { TLandingLanguage } from '@/store/globalContext';
-import { IProject, TProject } from '@/types';
+import { TProject } from '@/types';
 
-export const projectCycle = (project: IProject | TProject, lang: TLandingLanguage) => {
+export const projectCycle = (project: TProject, lang: TLandingLanguage) => {
   const creationDate = project.creationDate;
   const launchDate = project.launchDate ? project.launchDate : Date.now();
 

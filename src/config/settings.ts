@@ -10,4 +10,15 @@ export const SETTINGS = {
   },
   textToTranslateMaxLength: 700,
   delayRevalidation: 120,
+  specsOrderList: [
+    'Product Owner',
+    'Project Manager',
+    'Project Manager Mentor',
+    'Business Analyst',
+    'Business Analyst Mentor',
+    'Design',
+    'Front-end',
+    'Back-end',
+    'Quality Assurance',
+  ],
 };
