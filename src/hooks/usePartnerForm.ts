@@ -41,6 +41,10 @@ export const usePartnerForm = (initialFormData: PartnerData = initialState) => {
       newErrors.website = 'Неправильна адреса веб-сайту';
     }
 
+    if (file === 'size error') {
+      newErrors.file = 'Перевищення розміру файлу';
+    }
+
     setErrors(newErrors);
   };
 

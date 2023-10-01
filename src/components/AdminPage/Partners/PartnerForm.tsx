@@ -23,6 +23,16 @@ export const PartnerForm = ({
   const maxFileSize = SETTINGS.fileSizeLimits.partnerLogo;
   const maxFileDimensions = SETTINGS.fileSizeLimits.partnerLogoDimensions;
 
+  const handleFileSizeError = (textInfo: string): void => {
+    handleFieldChange('file', 'size error');
+    setFile(null);
+    setAlertInfo({
+      state: 'error',
+      title: 'Перевищення розміру файлу',
+      textInfo,
+    });
+  };
+
   useEffect(() => {
     if (partnerData) {
       handleFieldChange('name', partnerData.name);
@@ -45,31 +55,26 @@ export const PartnerForm = ({
 
       const checkImage = (isAllowed: boolean) => {
         if (!isAllowed) {
-          handleFieldChange('file', '');
-          setFile(null);
-          setAlertInfo({
-            state: 'error',
-            title: 'Перевищення розміру файлу',
-            textInfo: `Ширина і висота зображення повинні бути 214x100 px`,
-          });
+          handleFileSizeError(
+            `Ширина і висота зображення повинні бути 214x100 px`
+          );
           return;
         }
+
+        if (file.size >= maxFileSize) {
+          handleFileSizeError(
+            `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
+              maxFileSize
+            )}`
+          );
+          return;
+        }
+
+        handleFieldChange('file', file.name);
+        setFile(file);
       };
 
       checkImageDimension(file, maxFileDimensions, checkImage);
-
-      if (file.size >= maxFileSize) {
-        setAlertInfo({
-          state: 'error',
-          title: 'Перевищення розміру файлу',
-          textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
-            maxFileSize
-          )}`,
-        });
-      } else {
-        handleFieldChange('file', file.name);
-        setFile(file);
-      }
     }
   };
 
@@ -93,8 +98,6 @@ export const PartnerForm = ({
     handleSubmit(data);
   };
 
-  console.log(formData.file?.split('\\').at(-1));
-
   return (
     <>
       <div className="flex max-w-[1102px] justify-between ">
@@ -114,9 +117,7 @@ export const PartnerForm = ({
                 errorText={errors.file}
                 accept="image/jpeg, image/png, image/webp, image/jpg, image/svg"
                 onChange={handleImageChange}
-                placeholder={
-                  file?.name || formData.file || 'Завантажте зображення'
-                }
+                placeholder={formData.file || 'Завантажте зображення'}
               />
               <TextInputField
                 title="Сайт партнера"
