@@ -1,12 +1,11 @@
 'use client';
 
-import { AdminTitle, InputField } from '@/components/atomic';
+import { AdminTitle, FormBtns, InputField } from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useEffect, useState, useCallback } from 'react';
 import { validateEmail } from '@/utils/InputValidations';
-import { AdminPanelButtonBlock } from '@/components/atomic';
 
 const RequestReset = () => {
   const [email, setEmail] = useState<string>('');
@@ -69,20 +68,7 @@ const RequestReset = () => {
           errorText={errorsData}
         />
 
-        <div className="flex gap-[1.8rem]">
-          <div className="mt-7 flex flex-wrap">
-            <AdminPanelButtonBlock disabled={!email} type="submit">
-              Підтвердити
-            </AdminPanelButtonBlock>
-
-            <AdminPanelButtonBlock
-              variant="secondary"
-              onClick={() => resetHandler()}
-            >
-              Скасувати
-            </AdminPanelButtonBlock>
-          </div>
-        </div>
+        <FormBtns disabled={!email} handleFunc={resetHandler} isResetPass />
       </div>
     </form>
   );
