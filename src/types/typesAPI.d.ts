@@ -188,3 +188,8 @@ export interface IChangePasswordRequest {
 export interface IPasswordRequestReset {
   email: string;
 }
+export interface IPasswordReset {
+  userId:string;
+  token: string;
+  password: string;
+}

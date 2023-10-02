@@ -6,12 +6,14 @@ import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { useEffect, useState, useCallback } from 'react';
 import { validateEmail } from '@/utils/InputValidations';
+import { useRouter } from 'next/navigation';
 
 const RequestReset = () => {
   const [email, setEmail] = useState<string>('');
   const [dispatch, data, isError] = useAPI(auth.passwordRequestReset);
   const { setAlertInfo } = useGlobalContext();
   const [errorsData, setErrorsData] = useState('');
+  const router = useRouter();
 
   const resetHandler = useCallback(() => {
     setEmail('');
@@ -24,10 +26,13 @@ const RequestReset = () => {
         state: 'info',
         title: 'Перевірте пошту',
         textInfo: `На вашу пошту надіслано листа для підтвердження зміни паролю`,
+        func: () =>
+          setTimeout(() => {
+            router.push('/login');
+          }, 500),
       });
       setErrorsData('');
       resetHandler();
-      return;
     }
     if (data && data.status === 500) {
       setAlertInfo({
@@ -36,16 +41,16 @@ const RequestReset = () => {
         textInfo: `Спробуйте пізніше або повідомте адміністратора`,
       });
     }
-  }, [data, isError, setAlertInfo, resetHandler]);
+  }, [data, isError, setAlertInfo, resetHandler, router]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (email && !validateEmail(email)) {
-      setErrorsData('Будь ласка, введіть правильну URL-адресу.');
-      return;
+      setErrorsData('Будь ласка, введіть правильну електронну пошту.');
+    } else {
+      dispatch({ email });
     }
-    dispatch({ email });
   };
 
   return (
@@ -56,7 +61,7 @@ const RequestReset = () => {
       <div className="flex w-[36.6rem] flex-col gap-[3.2rem] rounded-xl border border-neutral-300 bg-base-dark p-8 ">
         <AdminTitle>Забули пароль</AdminTitle>
         <p className="font-semibold">
-          Вкажіть вашу електронну адресу, щоб підтвердити вашу особу
+          Вкажіть вашу електронну адресу, щоб відновити доступ до адмін. панелі.
         </p>
         <InputField
           title="Електронна пошта"

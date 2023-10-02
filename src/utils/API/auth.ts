@@ -3,6 +3,7 @@ import {
   IRegisterRequest,
   IChangePasswordRequest,
   IPasswordRequestReset,
+  IPasswordReset,
 } from '@/types/typesAPI';
 import { AxiosResponse } from 'axios';
 import { bazaAPI } from './config';
@@ -64,6 +65,18 @@ const authApi = {
     });
 
     token.set(response.data.token);
+    return response;
+  },
+  passwordReset: async ({
+    userId,
+    token,
+    password,
+  }: IPasswordReset): Promise<AxiosResponse> => {
+    const response = await bazaAPI.post(`/auth/passwordReset`, {
+      userId,
+      token,
+      password,
+    });
     return response;
   },
 };

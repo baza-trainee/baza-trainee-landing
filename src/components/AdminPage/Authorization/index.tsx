@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { KeyboardEvent, useEffect, useState } from 'react';
 import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
 
-const recoverLink = 'login/request-reset'; // TODO: Replace with actual recover link
+const recoverLink = 'login/request-reset';
 
 const Authorization = () => {
   const [email, setEmail] = useState<string>('');
