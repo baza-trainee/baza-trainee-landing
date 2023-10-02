@@ -43,7 +43,7 @@ export const MultiArrow = ({
       {...props}
     >
       <path
-        stroke="currentColor"
+        stroke='currentColor'
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={bigSize ? '' : 2}

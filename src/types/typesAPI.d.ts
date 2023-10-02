@@ -65,6 +65,19 @@ export interface IHeroSlider extends CommonResponseBase {
   imageUrl?: string;
 }
 
+// export interface IPartner extends CommonResponseBase {
+//   homeUrl?: String;
+//   imageUrl: String;
+//   name: String;
+// }
+export type IHeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
+
 export interface IPartner extends CommonResponseBase {
   homeUrl?: string;
   imageUrl: string;

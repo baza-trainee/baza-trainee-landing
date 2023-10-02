@@ -1,12 +1,27 @@
-import { IPartner, updateByIdRequest } from '@/types/typesAPI';
+import { PartnerData } from '@/types';
+import { updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
 
 const partnersApi = {
-  getAll() {
-    return bazaAPI.get('/partners');
+  getAll({
+    page,
+    query,
+    limit,
+  }: {
+    page?: number;
+    query?: string;
+    limit?: number;
+  }) {
+    return bazaAPI.get(
+      `/partners?${page ? `page=${page}` : ''}${
+        query ? `&query=${query}` : ''
+      }${limit ? `&limit=${limit}` : ''}`
+    );
   },
-  createNew(partner: IPartner) {
-    return bazaAPI.post('/partners', partner);
+  createNew(partner: PartnerData) {
+    return bazaAPI.post('/partners', partner, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
   getById(id: string) {
     return bazaAPI.get(`/partners/${id}`);
