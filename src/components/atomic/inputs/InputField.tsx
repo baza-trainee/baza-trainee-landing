@@ -36,7 +36,7 @@ export const InputField = ({
         </span>
       )}
       <div>
-        <div className="absolute right-[0rem] top-[0rem] h-full w-full disabled:text-neutral-300">
+        <div className="absolute right-[0rem] top-[0rem] w-full  disabled:text-neutral-300">
           <label
             htmlFor={id}
             className="absolute right-[0.8rem] flex h-full items-center"
@@ -45,6 +45,7 @@ export const InputField = ({
               <button
                 className={`${isIconActive ? '' : ' text-neutral-300'} `}
                 onClick={iconClickHandler}
+                type='button'
               >
                 {icon}
               </button>
@@ -57,8 +58,8 @@ export const InputField = ({
             } ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}`}
             placeholder={placeholderText}
             title={title}
-            type={type}
             value={value}
+            type={type}
             {...rest}
           />
         </div>

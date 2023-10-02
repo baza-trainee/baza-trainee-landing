@@ -7,44 +7,11 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
 import { IMember } from '@/types';
+import { memberValidateOptions } from './validateOptions';
+import { TMemberFormInput, TMemberFormProps } from './types';
 
-type TMemberForm = {
-  memberId?: string;
-  projectId?: string;
-};
 
-type TFormInput = {
-  nameUk: string;
-  nameEn: string;
-  namePl: string;
-  linkedin: string;
-};
-
-const fieldOptions = {
-  required: 'Введіть прізвище та ім’я',
-  minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
-  },
-  maxLength: {
-    value: 75,
-    message: 'Максимальна довжина поля 75 символів',
-  },
-  pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї ]+$/,
-    message: 'Введіть коректне прізвище та ім’я',
-  },
-};
-
-const linkedinOptions = {
-  required: 'Введіть посилання на профіль Linkedin',
-  pattern: {
-    value: /^(https:\/\/(www\.)?)?linkedin\.com/i,
-    message: 'Введіть коректне посилання на профіль Linkedin',
-  },
-};
 
 const createOptions = (
   id: string | undefined,
@@ -66,10 +33,9 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
+export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) => {
   const router = useRouter();
 
-  const { handlerAddMember } = useProjectsByIdSWR(projectId);
   const { membersData, handlerCreateMember, handlerUpdateMember } =
     useMembersSWR();
   const members = membersData?.results;
@@ -79,11 +45,12 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm<TFormInput>(valuesIfItEditedMember);
+  } = useForm<TMemberFormInput>(valuesIfItEditedMember);
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const cancelAction = () => router.replace('.');
+
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const member: IMember = {
       name: {
         en: data.nameEn,
@@ -96,35 +63,12 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
     if (memberId) {
       handlerUpdateMember(memberId, member);
     } else {
-      const res = handlerCreateMember(member);
-      projectId &&
-        res &&
-        res.then((res) => {
-          console.log('!!!!!!!!', res);
-          handlerAddMember({
-            teamMember: res,
-            teamMemberRole: {
-              _id: '',
-              name: {
-                en: '',
-                pl: '',
-                ua: '',
-              },
-            },
-          });
-        });
+      handlerCreateMember(member)?.then(
+        (res) => res && addMemberNComeback && addMemberNComeback(res)
+      );
     }
 
-    router.back();
-  };
-
-  const handleResetMemberForm = () => {
-    reset({
-      nameUk: '',
-      nameEn: '',
-      namePl: '',
-      linkedin: '',
-    });
+    !addMemberNComeback && cancelAction();
   };
 
   return (
@@ -132,7 +76,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldUk}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -147,7 +91,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
 
         <Controller
           name="nameEn"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldEn}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -160,7 +104,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
 
         <Controller
           name="namePl"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldPl}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -173,7 +117,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
 
         <Controller
           name="linkedin"
-          rules={linkedinOptions}
+          rules={memberValidateOptions.linkedinOptions}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -185,7 +129,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!memberId} handleFunc={handleResetMemberForm} />
+      <FormBtns isEditMode={!!memberId} cancelAction={cancelAction} />
     </form>
   );
 };

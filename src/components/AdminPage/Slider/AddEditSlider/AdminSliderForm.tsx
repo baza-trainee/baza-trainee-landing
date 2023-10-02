@@ -22,7 +22,7 @@ export const SliderForm = ({
   const router = useRouter();
   const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
   const [curLang, setCurLang] = useState<string>('ua');
-  const slideData = data?.data.results.find(
+  const slideData = data?.results.find(
     (slide: IHeroSlider) => slide._id === id
   );
 
@@ -183,7 +183,7 @@ export const SliderForm = ({
           />
         </div>
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
-          <FormBtns isEditMode={isEdit} handleFunc={handleResetForm} />
+          <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
             <LanguageSelector />
           </div>

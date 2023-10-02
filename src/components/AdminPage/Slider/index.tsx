@@ -21,10 +21,10 @@ export const AdminHeroSlider = () => {
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">
         <li className="slide-container flex h-[23.6rem] w-full items-center justify-center bg-base-dark shadow">
-          {data?.data && <AddSlideButton dataInfo={data?.data.info} />}
+          {data && <AddSlideButton dataInfo={data?.info} />}
         </li>
-        {data?.data &&
-          data.data.results.map((item: IHeroSlider) => (
+        {data &&
+          data.results.map((item: IHeroSlider) => (
             <AdminSingleSlide key={item._id} slideData={item} lang={curLang} />
           ))}
       </ul>

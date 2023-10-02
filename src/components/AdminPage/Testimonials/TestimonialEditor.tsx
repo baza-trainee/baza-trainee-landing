@@ -319,7 +319,7 @@ export const TestimonialEditor = ({
           </div>
           <FormBtns
             isEditMode={testimonialId ? true : false}
-            handleFunc={handleResetForm}
+            cancelAction={handleResetForm}
           />
         </div>
       </form>

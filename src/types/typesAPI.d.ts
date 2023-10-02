@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { IProject, TProject, TTeamMemberRole } from './projectsTypes';
+import { TProject, TTeamMemberRole } from './projectsTypes';
 
 export interface IErrorResponse {
   message: string;
@@ -65,6 +65,11 @@ export interface IHeroSlider extends CommonResponseBase {
   imageUrl?: string;
 }
 
+// export interface IPartner extends CommonResponseBase {
+//   homeUrl?: String;
+//   imageUrl: String;
+//   name: String;
+// }
 export type IHeroSliderData = {
   results: IHeroSlider[];
   info: {
@@ -77,23 +82,6 @@ export interface IPartner extends CommonResponseBase {
   homeUrl?: string;
   imageUrl: string;
 }
-/*
-export interface IProject extends CommonResponseBase {
-  title: TTitleLanguagesTypes;
-  imageUrl: string;
-  deployUrl?: string;
-  stack?: [{ _id?: string; name: string }];
-  isTeamRequired: Boolean;
-  creationDate: number;
-  launchDate?: number;
-  complexity: number;
-  teamMembers?: [
-    {
-      user: { _id?: string; name: string };
-      role: { _id?: string; name: string };
-    }
-  ];
-}*/
 
 export interface IRole extends CommonResponseBase {
   name: TTitleLanguagesTypes;
@@ -165,9 +153,8 @@ export type responseDataType =
   | IUser
   | IAchievement
   | IHeroSlider
-  | IHeroSliderData
   | IPartner
-  | IProject
+  // | IProject
   | IRole
   | IStack
   | IMember
@@ -176,7 +163,7 @@ export type responseDataType =
   | Array<
       | IHeroSlider
       | IPartner
-      | IProject
+      // | IProject
       | IRole
       | IStack
       | IMember
@@ -198,3 +185,25 @@ export type TResponseRoles = {
   results: TTeamMemberRole[];
   pagination: TPagination;
 };
+
+export type THeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
+
+export interface IChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+}
+
+export interface IPasswordRequestReset {
+  email: string;
+}
+export interface IPasswordReset {
+  userId: string;
+  token: string;
+  password: string;
+}

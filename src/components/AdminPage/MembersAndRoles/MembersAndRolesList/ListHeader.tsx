@@ -5,14 +5,10 @@ import { PlusIcon } from '@/components/common/icons';
 
 import { TEntity } from '../types';
 
-type TProps = {
-  entity: TEntity;
-};
-
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-10 flex h-[7.2rem] items-center bg-yellow-200';
 
-export const ListHeader = ({ entity }: TProps) => {
+export const ListHeader = ({ entity }: { entity: TEntity }) => {
   const headerName = entity === 'members' ? 'Прізвище та Ім’я' : 'Назва';
 
   return (
@@ -23,14 +19,6 @@ export const ListHeader = ({ entity }: TProps) => {
             <span>{headerName}</span>
           </div>
         </th>
-
-        {entity === 'projectTeam' && (
-          <th className={`${cellStyle} w-1/4`}>
-            <div className={bgStyle}>
-              <span>Спеціалізація</span>
-            </div>
-          </th>
-        )}
 
         <th className={`${cellStyle} w-[18rem]`}>
           <div className={`${bgStyle} justify-center rounded-e-md`}>
