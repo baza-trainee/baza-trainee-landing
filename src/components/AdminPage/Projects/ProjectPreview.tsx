@@ -28,12 +28,10 @@ const ProjectPreview = () => {
       return createImgUrl(projectImg[0].name);
     }
 
-
-    
-    // const isValidImg = projectValidateOptions.img.validate(projectImg);
-    // if (isValidImg) {
+    const isValidImg = projectValidateOptions.img.validate(projectImg);
+    if (typeof isValidImg !== 'string') {
       return URL.createObjectURL(projectImg[0]);
-    // }
+    }
   };
 
   const coverImgUrl = getCoverImgUrl();
@@ -68,4 +66,3 @@ const ProjectPreview = () => {
 };
 
 export { ProjectPreview };
-
