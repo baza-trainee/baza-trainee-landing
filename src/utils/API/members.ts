@@ -1,5 +1,6 @@
 import { IMember, TResponseMembers } from '@/types/typesAPI';
 import { bazaAPI } from './config';
+import { TTeamMemberBio } from '@/types';
 
 const membersEndpoint = '/members';
 
@@ -9,19 +10,27 @@ const membersApi = {
   },
 
   async createNew(member: IMember) {
-    return await bazaAPI.post(membersEndpoint, member);
+    return await bazaAPI
+      .post<TTeamMemberBio>(membersEndpoint, member)
+      .then((res) => res.data);
   },
 
   async getById(id: string) {
-    return await bazaAPI.get(`${membersEndpoint}/${id}`);
+    return await bazaAPI
+      .get(`${membersEndpoint}/${id}`)
+      .then((res) => res.data);
   },
 
   async deleteById(id: string) {
-    return await bazaAPI.delete(`${membersEndpoint}/${id}`);
+    return await bazaAPI
+      .delete<TTeamMemberBio>(`${membersEndpoint}/${id}`)
+      .then((res) => res.data);
   },
 
   async updateById(id: string, member: IMember) {
-    return await bazaAPI.patch(`${membersEndpoint}/${id}`, member);
+    return await bazaAPI
+      .patch<TTeamMemberBio>(`${membersEndpoint}/${id}`, member)
+      .then((res) => res.data);
   },
 };
 

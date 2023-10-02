@@ -73,7 +73,7 @@ const RequestReset = () => {
           errorText={errorsData}
         />
 
-        <FormBtns disabled={!email} handleFunc={resetHandler} isResetPass />
+        <FormBtns disabled={!email} cancelAction={resetHandler} isResetPass />
       </div>
     </form>
   );

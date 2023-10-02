@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { EditDeleteButton } from './EditDeleteButton';
 
 type TProps = {
-  entity: 'projects' | 'members' | 'roles' | 'projectTeam'; // TODO: to decide about 'projectTeam'
+  entity: 'projects' | 'members' | 'roles';
   id: string;
   handleDelete: (id: string) => void;
 };
@@ -14,8 +14,8 @@ export const ActionBtns = ({ entity, id, handleDelete }: TProps) => {
       <Link href={`/admin/${entity}/${id}`}>
         <EditDeleteButton icon="edit" />
       </Link>
-
-      <EditDeleteButton icon="delete" onClick={() => handleDelete(id)} />
+      <EditDeleteButton icon="delete" onClick={() => handleDelete(id)} />{' '}
+      {/*  TODO: to implement "confirm question" logic */}
     </div>
   );
 };

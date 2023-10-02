@@ -2,19 +2,21 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import styles from './styles.module.scss';
-
-import { ProjectCardContent } from './ProjectCardContent';
 
 import { TLandingLanguage } from '@/store/globalContext';
-import { TProject } from '@/types';
+
+import { ProjectCardContent } from './ProjectCardContent';
 import { ProjectCardTeam } from './ProjectCardTeam';
+
+import { TProject } from '@/types';
+import styles from './styles.module.css';
 
 type TProps = {
   project: TProject;
   coverImgUrl: string;
   lang: TLandingLanguage;
   animationDelay?: number;
+  isAdminMode?: boolean;
 };
 
 const ProjectCard = ({
@@ -22,6 +24,7 @@ const ProjectCard = ({
   coverImgUrl,
   lang,
   animationDelay = 0,
+  isAdminMode,
 }: TProps) => {
   const [isMembersVisible, setIsMembersVisible] = useState(false);
 
@@ -45,8 +48,8 @@ const ProjectCard = ({
           src={coverImgUrl}
           alt="Project Image"
           fill
-          objectFit="cover"
-          className={`contrast-50 ${
+          sizes="100%"
+          className={`h-auto w-full object-cover contrast-50 ${
             isMembersVisible
               ? 'grayscale-[.3]'
               : 'grayscale group-hover:contrast-100 group-hover:grayscale-0'
@@ -68,6 +71,7 @@ const ProjectCard = ({
               project={project}
               lang={lang}
               handleShowTeam={handleShowTeam}
+              isAdminMode={isAdminMode}
             />
           ) : (
             <ProjectCardContent

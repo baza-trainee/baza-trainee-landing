@@ -5,7 +5,7 @@ type TBtnsProps = {
   isResetPass?: boolean;
   isEditModeNoWrap?: boolean;
   disabled?: boolean;
-  handleFunc: () => void;
+  cancelAction: () => void;
 };
 
 export const FormBtns = ({
@@ -13,7 +13,7 @@ export const FormBtns = ({
   isResetPass,
   isEditModeNoWrap,
   disabled,
-  handleFunc,
+  cancelAction,
 }: TBtnsProps) => {
   const okBtnName = isResetPass
     ? 'Підтвердити'
@@ -33,7 +33,7 @@ export const FormBtns = ({
         {okBtnName}
       </AdminPanelButton>
 
-      <AdminPanelButton variant="secondary" onClick={() => handleFunc()}>
+      <AdminPanelButton variant="secondary" onClick={() => cancelAction()}>
         Скасувати
       </AdminPanelButton>
     </div>

@@ -1,10 +1,6 @@
 import { FileIcon, PeopleIcon } from '@/components/common/icons';
 import { TFormTabs } from './types';
 
-// const handleModeToggle = () => {
-//   setMode(mode === 'description' ? 'team' : 'description');
-// };
-
 export const ProjectEditorTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
   const buttonBaseStyle =
     'flex gap-5 rounded-tl-md rounded-tr-md border-l border-r border-t border-neutral-800 px-6 py-4 ';

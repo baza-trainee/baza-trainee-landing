@@ -124,7 +124,7 @@ const PasswordReset = () => {
         <div className="flex gap-[1.8rem]">
           <FormBtns
             disabled={!isFormValid}
-            handleFunc={resetHandler}
+            cancelAction={resetHandler}
             isEditModeNoWrap
           />
         </div>

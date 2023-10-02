@@ -1,53 +1,61 @@
-'use client';
+import Link from 'next/link';
+
+import { projectCycle } from '@/utils/developmentTimeCalculator';
+import { formatDate } from '@/utils/formatDate';
+
+import { ProjectComplexity } from './ProjectComplexity';
+import { ProjectStatusBar } from './ProjectStatusBar';
+
+import { dictionaries } from '@/locales/dictionaries';
+
 import {
   ProjectComplexityIcon,
   ProjectDurationIcon,
   ProjectStartIcon,
 } from '@/components/common/icons';
 
-import { dictionaries } from '@/locales/dictionaries';
-import { ICardContent2 } from '@/types';
-import { projectCycle } from '@/utils/developmentTimeCalculator';
-import { formatDate } from '@/utils/formatDate';
-import Link from 'next/link';
-import { ProjectComplexity } from './ProjectComplexity';
-import { ProjectStatusBar } from './ProjectStatusBar';
+import { ICardContent } from '@/types';
 
 const ProjectCardContent = ({
   handleShowTeam,
   project,
   lang = 'ua',
-}: ICardContent2) => {
+}: ICardContent) => {
   const { projectStart, projectTeam, duration, complexity } =
     dictionaries[lang].projects || {};
+
+  const {
+    title,
+    deployUrl,
+    creationDate,
+    complexity: complexityValue,
+  } = project;
 
   return (
     <div className="flex h-full flex-col justify-between ">
       <ProjectStatusBar project={project} lang={lang} />
 
-      <div className="flex w-full flex-col gap-[1.6rem]">
-        <div className="h-[11rem]">
-          <h4 className="text-[2.4rem] font-bold leading-[3rem]">
-            {project.title[lang]}
-          </h4>
-          {project.deployUrl && (
-            <Link
-              href={project.deployUrl}
-              target="_blank"
-              className="mt-[0.8rem]"
-              aria-label={`Visit ${project.deployUrl}`}
-            >
-              {project.deployUrl ? project.deployUrl : ''}
-            </Link>
-          )}
+      <div className="flex h-[28rem] w-full flex-col gap-[1.6rem]">
+        <div className="mb-auto overflow-clip text-ellipsis text-[2.4rem] font-bold leading-[3rem]">
+          <h4>{title[lang]}</h4>
         </div>
+
+        {deployUrl && (
+          <Link
+            href={deployUrl}
+            target="_blank"
+            aria-label={`Visit ${deployUrl}`}
+          >
+            {deployUrl}
+          </Link>
+        )}
 
         <div className="flex h-[12.7rem] w-full flex-col gap-[0.8rem]">
           <div className="flex items-center gap-2">
             <ProjectStartIcon />
             <span>{projectStart}</span>
             <span className="ml-auto font-medium">
-              {formatDate(project.creationDate, 'spelled', lang)}
+              {formatDate(creationDate, 'spelled', lang)}
             </span>
           </div>
 
@@ -63,11 +71,11 @@ const ProjectCardContent = ({
             <ProjectComplexityIcon />
             <span>{complexity}</span>
             <div className="ml-auto">
-              <ProjectComplexity count={project.complexity} />
+              <ProjectComplexity count={complexityValue} />
             </div>
           </div>
 
-          {project.teamMembers && project.teamMembers.length > 0 && (
+          {project?.teamMembers?.length > 0 && (
             <button
               className="self-start border-b text-[2rem] font-medium"
               onClick={handleShowTeam}
