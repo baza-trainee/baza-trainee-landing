@@ -45,35 +45,27 @@ const useProjectsSWR = () => {
         ...data!,
         results: [createdProject, ...(data?.results || [])],
       }),
-      revalidate: false,
     };
 
-    mutate(() => projectsApi.createNew(newProject), options)
-      // .then(console.log)
-      // .then((r) => prettyPrint(r, 'ProSWR'))
-      // .catch(handleRequestError)
-      .catch(errorHandler);
-  };
-
-  const updateProject = (id: string, updProject: TProjectRequest) => {
-    // const populateCache = (createdProject: TProject) => {
-    //   console.log("proj>.", createdProject);
-    //   const updProjects = data?.results.map((project) =>
-    //     project._id === id ? createdProject : project
-    //   );
-    //   return { ...data!, results: updProjects! };
-    // };
-
-    // const options = { populateCache, revalidate: false }; // TODO: implement populate cache
-
-    mutate(() => projectsApi.updateById(id, updProject)).catch(
-      handleRequestError
+    mutate(() => projectsApi.createNew(newProject), options).catch(
+      errorHandler
     );
   };
 
+  const updateProject = (id: string, updProject: TProjectRequest) => {
+    const options = {
+      populateCache: (createdProject: TProject) => {
+        const updProjects = data?.results.map((project) =>
+          project._id === id ? createdProject : project
+        );
+        return { ...data!, results: updProjects! };
+      },
+    };
 
-
-  
+    mutate(() => projectsApi.updateById(id, updProject), options).catch(
+      handleRequestError
+    );
+  };
 
   const deleteProject = (id: string) => {
     const updProjects = data?.results.filter((project) => project._id !== id);
@@ -99,4 +91,3 @@ const useProjectsSWR = () => {
 };
 
 export { useProjectsSWR };
-

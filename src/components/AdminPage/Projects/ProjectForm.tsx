@@ -148,7 +148,7 @@ const ProjectForm = () => {
         </div>
       </div>
 
-      <FormBtns isEditMode={isEditMode} cancelAction={cancelAction} />
+      <FormBtns {...{ isEditMode, cancelAction }} />
     </form>
   );
 };
