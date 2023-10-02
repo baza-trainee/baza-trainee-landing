@@ -1,8 +1,8 @@
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
 import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
-import { Translator } from './Translator';
+import { Translator } from '../TextInputField/Translator';
 
-interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaFieldProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
   inputType?: string;
@@ -10,7 +10,7 @@ interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   setTranslatedValue?: (_data: string, _name: string) => void;
 }
 
-const InputField = (
+const TextareaField = (
   {
     title,
     errorText,
@@ -19,23 +19,22 @@ const InputField = (
     value = '',
     setTranslatedValue,
     ...rest
-  }: TextInputFieldProps,
-  ref: ForwardedRef<HTMLInputElement>
+  }: TextAreaFieldProps,
+  ref: ForwardedRef<HTMLTextAreaElement>
 ) => {
   const id = useId();
-  const { icon, type, isIconActive, isTranslateShow } =
+  const { icon, isIconActive, isTranslateShow } =
     IdentifyInputFieldTypeSetting(inputType);
 
   const inputClassNames = `
-    h-full w-full overflow-hidden rounded-[0.4rem] border outline-0 placeholder:text-neutral-300
-    ${icon ? 'py-[0.8rem] pl-[0.8rem] pr-[4.7rem]' : 'p-[0.8rem]'}
+    h-full  w-full overflow-hidden rounded-[0.4rem] border outline-0 placeholder:text-neutral-300
+    ${icon ? 'py-[0.5rem] pl-[0.5rem]' : 'p-[0.5rem]'}
     ${
       errorText
         ? 'border-critic-light caret-critic-light outline-critic-light focus:outline-critic-light'
         : 'border-neutral-300 focus:outline-neutral-300'
     }
   `;
-
 
   return (
     <div
@@ -45,24 +44,25 @@ const InputField = (
     >
       {title && <h4 className="absolute left-0 top-0">{title}</h4>}
 
-      <div className="relative mb-8 mt-[2.8rem] h-16 w-full disabled:text-neutral-300">
+      <div className="relative mb-8 mt-[2.8rem] h-48 w-full disabled:text-neutral-300">
         <label
           htmlFor={id}
-          className="absolute right-[0.8rem] flex h-full items-center"
+          className="absolute right-[0.5rem] top-[0.5rem] flex items-center"
         >
           {icon && (
             <div className={`${isIconActive ? '' : 'text-neutral-300'}`}>
-              {icon}
+              {!value && icon}
             </div>
           )}
         </label>
 
-        <input
+        <textarea
           {...rest}
           id={id}
           className={inputClassNames}
-          type={type}
           value={value}
+          cols={12}
+          rows={12}
         />
       </div>
 
@@ -84,4 +84,4 @@ const InputField = (
   );
 };
 
-export const TextInputField = forwardRef(InputField);
+export const TextAreaField = forwardRef(TextareaField);

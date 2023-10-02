@@ -21,22 +21,15 @@ export type TSlideReview = {
     pl: string;
     ua: string;
   };
-  role: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  date: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
+  date: string | number;
+  role: string;
+  imageUrl: string;
   review: {
     en: string;
     pl: string;
     ua: string;
   };
-  imageUrl: string;
+  _id?: string | number;
 };
 
 export type TDictionary = {

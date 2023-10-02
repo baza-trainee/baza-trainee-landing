@@ -114,8 +114,26 @@ export interface ITestimonial extends CommonResponseBase {
   name: TTitleLanguagesTypes;
   review: TTitleLanguagesTypes;
   date: number;
+  role: string;
   imageUrl: string;
 }
+
+export interface ITestimonialRequest {
+  name: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  review: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  role: string;
+  date: number;
+  file: File;
+}
+
 
 export interface IUser extends CommonResponseBase {
   name: string;
