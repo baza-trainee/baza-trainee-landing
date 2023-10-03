@@ -9,7 +9,7 @@ import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
 
-import { TProject } from '@/types';
+import { TProjectResp } from '@/types';
 
 export const AdminProjects = () => {
   const { projectsData, deleteProject } = useProjectsSWR();
@@ -31,7 +31,7 @@ export const AdminProjects = () => {
 
         {projectsData &&
           projectsData?.results &&
-          projectsData.results.map((project: TProject) => (
+          projectsData.results.map((project: TProjectResp) => (
             <ButtonsOverlay
               key={project._id}
               handleDelete={deleteProject}

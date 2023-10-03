@@ -8,21 +8,21 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
 import {
-  TProjectRequest,
-  TTeamMember,
-  TTeamMemberBio,
-  TTeamMemberRole,
+    TMemberBioResp,
+    TMemberResp,
+    TMemberRoleResp,
+    TProjectReq,
 } from '@/types';
 
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 import { convertDate } from '@/utils/formatDate';
 import {
-  defaultValues,
-  emptyLngs,
-  initProjectData, // TODO:  del?
+    defaultValues,
+    emptyLngs,
+    initProjectData, // TODO:  del?
 } from './initFormData';
 import { extractMembersId, prepareProject } from './projectUtils';
 import { IFormContext, TFormInput, TProvider } from './types';
-import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
@@ -35,11 +35,11 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const projectByIdData = projectId ? getProjectById(projectId) : undefined;
   const isEditMode = !!projectId && !!projectByIdData;
 
-  const [teamMemberData, setTeamMemberData] = useState<TTeamMember[]>(
+  const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>(
     projectByIdData?.teamMembers || initProjectData.teamMembers
   );
 
-  const addTeamMember = (newMember: TTeamMemberBio) => {
+  const addTeamMember = (newMember: TMemberBioResp) => {
     const updatedTeamMembers = [
       ...teamMemberData,
       { teamMember: newMember, teamMemberRole: { _id: '', name: emptyLngs } },
@@ -50,7 +50,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const updTeamMemberRole = (
     memberId: string,
     oldRoleId: string,
-    newRole: TTeamMemberRole
+    newRole: TMemberRoleResp
   ) => {
     const updatedTeamMembers = teamMemberData.map((item) =>
       item.teamMember._id === memberId && item.teamMemberRole._id === oldRoleId
@@ -93,7 +93,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   };
 
   const onSubmit: SubmitHandler<TFormInput> = (data) => {
-    const preparedProject: TProjectRequest = {
+    const preparedProject: TProjectReq = {
       ...prepareProject(data),
       teamMembers: extractMembersId(teamMemberData),
     };

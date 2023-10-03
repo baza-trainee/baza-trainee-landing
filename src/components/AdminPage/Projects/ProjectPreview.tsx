@@ -8,7 +8,7 @@ import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { ProjectCard } from '@/components/ProjectCard';
 import { LogoMain } from '@/components/common/icons';
 
-import { TProject } from '@/types';
+import { TProjectResp } from '@/types';
 
 const EmptyPreviewImg = () => (
   <div className="flex-center h-[46.4rem] rounded-md bg-neutral-75">
@@ -40,7 +40,7 @@ const ProjectPreview = () => {
     return <EmptyPreviewImg />;
   }
 
-  const previewProject: TProject = {
+  const previewProject: TProjectResp = {
     _id: '',
     imageUrl: '',
     ...prepareProject(currentValues),

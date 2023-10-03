@@ -1,13 +1,13 @@
 import { ActionBtns } from '@/components/atomic';
 
-import { TTeamMember } from '@/types';
-import { RoleSelector } from './RoleSelector';
+import { TMemberResp } from '@/types';
 import { useProjectFormContext } from '../ProjectFormProvider';
+import { RoleSelector } from './RoleSelector';
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
-export const ListRow = ({ member }: { member: TTeamMember }) => {
+export const ListRow = ({ member }: { member: TMemberResp }) => {
   const { teamMember } = member;
   const { deleteMember } = useProjectFormContext();
 

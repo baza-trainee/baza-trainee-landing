@@ -1,4 +1,4 @@
-import { IMember, IRole, TTeamMemberBio } from '@/types';
+import { TMemberRoleResp, TMemberBioResp } from '@/types';
 
 export type TEntity = 'members' | 'roles';
 
@@ -9,13 +9,13 @@ export type TMemberAndRoleEditor = {
 
 export type TMembersAndRolesListProps = {
   entity: TEntity;
-  showedData: IMember[] | IRole[];
+  showedData: TMemberBioResp[] | TMemberRoleResp[];
   handleDelete: (id: string) => void;
 };
 
 export type TListRawProps = {
   entity: TEntity;
-  showedData: IMember | IRole;
+  showedData: TMemberBioResp | TMemberRoleResp;
   handleDelete: (id: string) => void;
 };
 
@@ -26,10 +26,10 @@ export type TRoleFormInput = {
 };
 
 export type TMemberFormInput = TRoleFormInput & {
-  linkedin: string;
+  linkedin?: string;
 };
 
 export type TMemberFormProps = {
   memberId?: string;
-  addMemberNComeback?: (newMember: TTeamMemberBio) => void;
+  addMemberNComeback?: (newMember: TMemberBioResp) => void;
 };

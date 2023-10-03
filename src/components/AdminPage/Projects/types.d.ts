@@ -1,5 +1,5 @@
+import { TMemberBioResp, TMemberResp, TMemberRoleResp } from '@/types';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
-import { TTeamMember, TTeamMemberBio, TTeamMemberRole } from '@/types';
 import {
   Control,
   FieldErrors,
@@ -19,11 +19,6 @@ export type TTabsMode = 'description' | 'team';
 export type TFormTabs = {
   tabsMode: TTabsMode;
   setTabsMode: Dispatch<SetStateAction<TTabsMode>>;
-};
-
-export type TTeamMemberRequest = {
-  teamMember: string;
-  teamMemberRole: string;
 };
 
 export type TFormInput = {
@@ -46,16 +41,16 @@ export interface IHandlerMembersList {
 
 export interface IFormContext {
   isEditMode: boolean;
-  teamMemberData: TTeamMember[];
+  teamMemberData: TMemberResp[];
   register: UseFormRegister<TFormInput>;
   handleSubmit: UseFormHandleSubmit<TFormInput, undefined>;
   onSubmit: SubmitHandler<TFormInput>;
   cancelAction: () => void;
-  addTeamMember: (newMember: TTeamMemberBio) => void;
+  addTeamMember: (newMember: TMemberBioResp) => void;
   updTeamMemberRole: (
     memberId: string,
     oldRoleId: string,
-    newRole: TTeamMemberRole
+    newRole: TMemberRoleResp
   ) => void;
   deleteMember: (memberId: string) => void;
   translateToEn: () => void;

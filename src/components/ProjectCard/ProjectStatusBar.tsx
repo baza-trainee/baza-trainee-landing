@@ -1,12 +1,12 @@
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
-import { TProject } from '@/types';
+import { TProjectResp } from '@/types';
 
 export const ProjectStatusBar = ({
   project,
   lang,
 }: {
-  project: TProject;
+  project: TProjectResp;
   lang: TLandingLanguage;
 }) => {
   const dict = dictionaries[lang];

@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
-import { ITestimonial, ITestimonialRequest } from '@/types';
+import { ITestimonialRequest, TTestimonialResp } from '@/types';
 import {
   testimonialsApi,
   testimonialsEndPoint,
@@ -12,7 +12,7 @@ import { AxiosError } from 'axios';
 export const useTestimonialsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
 
-  const handleRequestError = (err: AxiosError) => {
+  const handleRequestError = (err: any) => {
     errorHandler(err);
     setAlertInfo({
       state: 'error',
@@ -21,51 +21,37 @@ export const useTestimonialsSWR = () => {
     });
   };
 
-  const { data, error, isLoading, mutate } = useSWR(
-    testimonialsEndPoint,
-    testimonialsApi.getAll,
-    {
-      onError: handleRequestError,
-    }
-  );
+  const { data, error, isLoading, mutate } = useSWR<
+    TTestimonialResp[],
+    AxiosError
+  >(testimonialsEndPoint, testimonialsApi.getAll, {
+    onError: handleRequestError,
+  });
 
   const getItemById = (id: string) => {
     if (Array.isArray(data) && data.length) {
-      const itemById = data?.find((item: ITestimonial) => item._id === id);
-      return itemById;
+      return data?.find((item: TTestimonialResp) => item._id === id);
     }
   };
 
   const deleteTestimonial = async (id: string) => {
     try {
-      const updProjects = data?.filter((item) => item._id !== id);
-      const options = {
-        optimisticData: { ...data!, results: updProjects! },
-        populateCache: false,
-        revalidate: true,
-      };
-      await mutate(() => testimonialsApi.deleteById(id), options)
-        .catch(handleRequestError)
-        .catch((error) => console.log('[ERROR_DELETE_TESTIMONIAL]', error));
+      const updTestimonials = data?.filter((item) => item._id !== id);
+      mutate(updTestimonials);
+      await testimonialsApi.deleteById(id);
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
   const addNewTestimonial = async (item: ITestimonialRequest) => {
     try {
-      const options = {
-        populateCache: (newTestimonial: ITestimonial) => ({
-          ...data!,
-          results: [newTestimonial, ...(data || [])],
-        }),
-        revalidate: true,
-      };
-      mutate(() => testimonialsApi.createNew(item), options)
-        .catch(handleRequestError)
-        .catch((error) => console.log('[ERROR_CREATE_TESTIMONIAL]', error));
+      const newTestimonial = await testimonialsApi.createNew(item);
+      if (newTestimonial && data) {
+        mutate([newTestimonial, ...data]);
+      }
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
@@ -74,18 +60,10 @@ export const useTestimonialsSWR = () => {
     testimonial: ITestimonialRequest
   ) => {
     try {
-      const options = {
-        populateCache: (newTestimonial: ITestimonial) => ({
-          ...data!,
-          results: [newTestimonial, ...(data || [])],
-        }),
-        revalidate: true,
-      };
-      mutate(() => testimonialsApi.updateById([id, testimonial]), options)
-        .catch(handleRequestError)
-        .catch((error) => console.log('[ERROR_UPDATE_TESTIMONIAL]', error));
+      await testimonialsApi.updateById([id, testimonial]);
+      mutate();
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 

@@ -5,7 +5,7 @@ import { useGlobalContext } from '@/store/globalContext';
 import { projectsApi, projectsEndpoint } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { TProject, TProjectRequest, TResponseProjects } from '@/types';
+import { TProjectReq, TResponseProjects } from '@/types';
 import { AxiosError } from 'axios';
 
 const useProjectsSWR = () => {
@@ -14,7 +14,7 @@ const useProjectsSWR = () => {
 
   const swrKey = `${projectsEndpoint}?search=${search}`;
 
-  const handleRequestError = (err: AxiosError) => {
+  const handleRequestError = (err: any) => {
     errorHandler(err);
     setAlertInfo({
       state: 'error',
@@ -39,43 +39,44 @@ const useProjectsSWR = () => {
     return data?.results.find((project) => project._id === id);
   };
 
-  const createProject = (newProject: TProjectRequest) => {
-    const options = {
-      populateCache: (createdProject: TProject) => ({
+  const createProject = async (newProject: TProjectReq) => {
+    try {
+      const createdProject = await projectsApi.createNew(newProject);
+      const updData: TResponseProjects = {
         ...data!,
         results: [createdProject, ...(data?.results || [])],
-      }),
-    };
+      };
 
-    mutate(() => projectsApi.createNew(newProject), options).catch(
-      errorHandler
-    );
+      mutate(updData);
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
-  const updateProject = (id: string, updProject: TProjectRequest) => {
-    const options = {
-      populateCache: (createdProject: TProject) => {
-        const updProjects = data?.results.map((project) =>
-          project._id === id ? createdProject : project
-        );
-        return { ...data!, results: updProjects! };
-      },
-    };
+  const updateProject = async (id: string, updProject: TProjectReq) => {
+    try {
+      const updatedProject = await projectsApi.updateById(id, updProject);
+      const updProjects = data?.results.map((project) =>
+        project._id === id ? updatedProject : project
+      );
+      const updData: TResponseProjects = { ...data!, results: updProjects! };
 
-    mutate(() => projectsApi.updateById(id, updProject), options).catch(
-      handleRequestError
-    );
+      mutate(updData);
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
-  const deleteProject = (id: string) => {
-    const updProjects = data?.results.filter((project) => project._id !== id);
-    const options = {
-      optimisticData: { ...data!, results: updProjects! },
-      populateCache: false,
-      revalidate: false,
-    };
+  const deleteProject = async (id: string) => {
+    try {
+      const updProjects = data?.results.filter((project) => project._id !== id);
+      const updData: TResponseProjects = { ...data!, results: updProjects! };
 
-    mutate(() => projectsApi.deleteById(id), options).catch(handleRequestError);
+      mutate(updData);
+      await projectsApi.deleteById(id);
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
   return {

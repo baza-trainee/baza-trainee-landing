@@ -8,11 +8,11 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { ProjectCardContent } from './ProjectCardContent';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
-import { TProject } from '@/types';
+import { TProjectResp } from '@/types';
 import styles from './styles.module.css';
 
 type TProps = {
-  project: TProject;
+  project: TProjectResp;
   coverImgUrl: string;
   lang: TLandingLanguage;
   animationDelay?: number;
