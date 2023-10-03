@@ -242,27 +242,22 @@ export const TestimonialEditor = ({
                 />
               )}
             />
-            <Controller
+
+            <DateInput
               name="date"
               control={control}
               rules={{ required: 'Оберіть дату' }}
-              render={({ field }) => (
-                <DateInput
-                  {...field}
-                  title="Дата"
-                  placeholder="Оберіть дату"
-                  errorText={errors.date?.message}
-                />
-              )}
+              title="Дата"
+              placeholder="Оберіть дату"
             />
+
             <FileInput
-              {...register('authorImg', {
-                ...testimonialValidateOptions.img,
-              })}
+              control={control}
+              name="authorImg"
+              rules={testimonialValidateOptions.img}
               accept="image/*"
               placeholder={!testimonialId ? 'Завантажте зображення' : imageUrl}
               title="Фото"
-              errorText={errors.authorImg?.message}
             />
           </div>
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6 shadow-md lg:justify-start ">

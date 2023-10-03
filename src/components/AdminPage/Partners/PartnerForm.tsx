@@ -112,12 +112,13 @@ export const PartnerForm = ({
                 onChange={handleNameChange}
                 placeholder="Введіть назву"
               />
-              <FileInput
+              <FileInput  // TODO: fix it !
                 title="Логотип"
-                errorText={errors.file}
+                // errorText={errors.file}
                 accept="image/jpeg, image/png, image/webp, image/jpg, image/svg"
                 onChange={handleImageChange}
                 placeholder={formData.file || 'Завантажте зображення'}
+                name={''}
               />
               <TextInputField
                 title="Сайт партнера"

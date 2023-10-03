@@ -73,11 +73,11 @@ const TextareaField = (
       )}
 
       {isTranslateShow && (
-        <Translator
+        <Translator  // TODO: to change this component;
           translateValue={translateValue}
           setTranslatedValue={setTranslatedValue}
           fieldName={rest.name}
-          lang={inputType}
+          lang={inputType as 'en'} // plug;
         />
       )}
     </div>

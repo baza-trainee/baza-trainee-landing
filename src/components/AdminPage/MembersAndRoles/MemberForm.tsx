@@ -7,11 +7,10 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { IMember } from '@/types';
-import { memberValidateOptions } from './validateOptions';
+import { IMember, TTeamMemberBio } from '@/types';
 import { TMemberFormInput, TMemberFormProps } from './types';
-
-
+import { memberValidateOptions } from './validateOptions';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 
 const createOptions = (
   id: string | undefined,
@@ -33,11 +32,14 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) => {
+export const MemberForm = ({
+  memberId,
+  addMemberNComeback,
+}: TMemberFormProps) => {
   const router = useRouter();
+  const { handleTranslate } = useTranslator();
 
-  const { membersData, handlerCreateMember, handlerUpdateMember } =
-    useMembersSWR();
+  const { membersData, createMember, updateMember } = useMembersSWR();
   const members = membersData?.results;
 
   const valuesIfItEditedMember = createOptions(memberId, members);
@@ -45,8 +47,22 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) =
   const {
     control,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<TMemberFormInput>(valuesIfItEditedMember);
+
+  const translateToEn = () => {
+    handleTranslate(watch().nameUk, 'en').then((res) => {
+      setValue('nameEn', res);
+    });
+  };
+
+  const translateToPl = () => {
+    handleTranslate(watch().nameUk, 'pl').then((res) =>
+      setValue('namePl', res)
+    );
+  };
 
   const cancelAction = () => router.replace('.');
 
@@ -61,11 +77,13 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) =
     };
 
     if (memberId) {
-      handlerUpdateMember(memberId, member);
+      updateMember(memberId, member);
     } else {
-      handlerCreateMember(member)?.then(
-        (res) => res && addMemberNComeback && addMemberNComeback(res)
-      );
+      createMember(member)?.then((res) => {
+        if (res && !!addMemberNComeback) {
+          addMemberNComeback(res);
+        }
+      });
     }
 
     !addMemberNComeback && cancelAction();
@@ -97,6 +115,7 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) =
             <TextInputField
               {...field}
               inputType="en"
+              handleTranslate={translateToEn}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -110,6 +129,7 @@ export const MemberForm = ({ memberId, addMemberNComeback }: TMemberFormProps) =
             <TextInputField
               {...field}
               inputType="pl"
+              handleTranslate={translateToPl}
               errorText={errors.namePl?.message}
             />
           )}

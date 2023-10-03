@@ -20,10 +20,11 @@ const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 const ProjectForm = () => {
   const {
     isEditMode,
-    register,
     handleSubmit,
     onSubmit,
     cancelAction,
+    translateToEn,
+    translateToPl,
     control,
     errors,
   } = useProjectFormContext();
@@ -34,7 +35,7 @@ const ProjectForm = () => {
         <div className={`${rowStyle} col-span-3`}>
           <Controller
             name="nameUk"
-            rules={projectValidateOptions.name}
+            rules={projectValidateOptions.fieldUk}
             control={control}
             render={({ field }) => (
               <TextInputField
@@ -48,24 +49,28 @@ const ProjectForm = () => {
           />
           <Controller
             name="nameEn"
-            rules={projectValidateOptions.name}
+            rules={projectValidateOptions.fieldEn}
             control={control}
             render={({ field }) => (
               <TextInputField
                 {...field}
+                // translateValue={watch().nameUk}
                 inputType="en"
+                handleTranslate={translateToEn}
                 errorText={errors.nameEn?.message}
               />
             )}
           />
           <Controller
             name="namePl"
-            rules={projectValidateOptions.name}
+            rules={projectValidateOptions.fieldPl}
             control={control}
             render={({ field }) => (
               <TextInputField
                 {...field}
                 inputType="pl"
+                // translateValue={watch().nameUk}
+                handleTranslate={translateToPl}
                 errorText={errors.namePl?.message}
               />
             )}
@@ -73,29 +78,19 @@ const ProjectForm = () => {
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
-          <Controller
+          <DateInput
             name="creationDate"
             rules={{ required: 'Оберіть дату' }}
             control={control}
-            render={({ field }) => (
-              <DateInput
-                {...field}
-                title="Старт проєкту"
-                placeholder="Оберіть дату"
-                errorText={errors.creationDate?.message}
-              />
-            )}
+            title="Старт проєкту"
+            placeholder="Оберіть дату"
           />
-          <Controller
+          <DateInput
             name="launchDate"
+            rules={projectValidateOptions.launchDate}
             control={control}
-            render={({ field }) => (
-              <DateInput
-                {...field}
-                title="Дата завершення проєкту"
-                placeholder="Оберіть дату"
-              />
-            )}
+            title="Дата завершення проєкту"
+            placeholder="Оберіть дату"
           />
         </div>
 
@@ -104,57 +99,53 @@ const ProjectForm = () => {
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
-          <Controller
+          <CheckboxInput
             name="isTeamRequired"
             control={control}
-            render={({ field }) => (
-              <CheckboxInput
-                {...field}
-                placeholder="Формування команди"
-                title="Стан"
-              />
-            )}
+            placeholder="Формування команди"
+            title="Стан"
           />
-          <Controller
+
+          <ComplexityInput
             name="complexity"
             control={control}
-            render={({ field }) => (
-              <ComplexityInput {...field} title="Оберіть складність проєкту" />
-            )}
+            title="Оберіть складність проєкту"
           />
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
           <Controller
             name="deployUrl"
+            rules={projectValidateOptions.deployUrl}
             control={control}
             render={({ field }) => (
               <TextInputField
                 {...field}
-                inputType="uk"
                 title="Адреса сайту"
                 placeholder="Вкажіть адресу сайту"
+                errorText={errors.deployUrl?.message}
               />
             )}
           />
-
           <FileInput
-            {...register('projectImg', {
+            name="projectImg"
+            control={control}
+            rules={{
               ...projectValidateOptions.img,
               required: isEditMode ? false : 'Додайте зображення проєкту',
-            })}
+            }}
             accept="image/*"
             placeholder="Завантажте зображення"
             title="Обкладинка"
-            errorText={errors.projectImg?.message}
           />
         </div>
-      </div>
 
-      <FormBtns isEditMode={isEditMode} cancelAction={cancelAction} />
+        <div className="col-span-3">
+          <FormBtns {...{ isEditMode, cancelAction }} />
+        </div>
+      </div>
     </form>
   );
 };
 
 export { ProjectForm };
-

@@ -34,7 +34,7 @@ export type TFormInput = {
   deployUrl?: string;
   isTeamRequired?: boolean;
   creationDate: string;
-  launchDate?: string;
+  launchDate: string;
   complexity: number;
 };
 
@@ -58,6 +58,8 @@ export interface IFormContext {
     newRole: TTeamMemberRole
   ) => void;
   deleteMember: (memberId: string) => void;
+  translateToEn: () => void;
+  translateToPl: () => void;
   watch: UseFormWatch<TFormInput>;
   control: Control<TFormInput, any>;
   errors: FieldErrors<TFormInput>;

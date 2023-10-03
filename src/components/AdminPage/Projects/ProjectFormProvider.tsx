@@ -8,24 +8,29 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 
 import {
-    TProjectRequest,
-    TTeamMember,
-    TTeamMemberBio,
-    TTeamMemberRole,
+  TProjectRequest,
+  TTeamMember,
+  TTeamMemberBio,
+  TTeamMemberRole,
 } from '@/types';
 
 import { convertDate } from '@/utils/formatDate';
-import { defaultValues, emptyLngs, initProjectData } from './initFormData';
+import {
+  defaultValues,
+  emptyLngs,
+  initProjectData, // TODO:  del?
+} from './initFormData';
 import { extractMembersId, prepareProject } from './projectUtils';
 import { IFormContext, TFormInput, TProvider } from './types';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
 export const useProjectFormContext = () => useContext(ProjectFormContext);
 
 export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
-  const { createProject, getProjectById, updateProject } =
-    useProjectsSWR();
+  const { createProject, getProjectById, updateProject } = useProjectsSWR();
+  const { handleTranslate } = useTranslator();
 
   const projectByIdData = projectId ? getProjectById(projectId) : undefined;
   const isEditMode = !!projectId && !!projectByIdData;
@@ -73,10 +78,19 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     setValue,
     control,
     formState: { errors },
-  } = useForm<TFormInput>({
-    mode: 'onSubmit',
-    defaultValues,
-  });
+  } = useForm<TFormInput>({ defaultValues });
+
+  const translateToEn = () => {
+    handleTranslate(watch().nameUk, 'en').then((res) => {
+      setValue('nameEn', res);
+    });
+  };
+
+  const translateToPl = () => {
+    handleTranslate(watch().nameUk, 'pl').then((res) =>
+      setValue('namePl', res)
+    );
+  };
 
   const onSubmit: SubmitHandler<TFormInput> = (data) => {
     const preparedProject: TProjectRequest = {
@@ -107,11 +121,11 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
       setValue('isTeamRequired', projectByIdData.isTeamRequired);
       setValue(
         'creationDate',
-        convertDate.toYYYYMMDD(+projectByIdData.creationDate)
+        convertDate.toYYYYMMDD(projectByIdData.creationDate)
       );
       setValue(
         'launchDate',
-        convertDate.toYYYYMMDD(+projectByIdData.launchDate)
+        convertDate.toYYYYMMDD(projectByIdData.launchDate)
       );
       setValue('complexity', +projectByIdData.complexity);
     }
@@ -130,6 +144,8 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     updTeamMemberRole,
     deleteMember,
     watch,
+    translateToEn,
+    translateToPl,
     control,
     errors,
   };

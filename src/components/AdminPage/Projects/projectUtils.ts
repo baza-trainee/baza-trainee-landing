@@ -11,16 +11,27 @@ export const extractMembersId = (
   }));
 
 export const prepareProject = (formData: TFormInput) => {
+  const {
+    nameEn,
+    namePl,
+    nameUk,
+    deployUrl,
+    isTeamRequired,
+    creationDate,
+    launchDate,
+    complexity,
+  } = formData;
+
   return {
     title: {
-      en: formData.nameEn,
-      pl: formData.namePl,
-      ua: formData.nameUk,
+      en: nameEn,
+      pl: namePl,
+      ua: nameUk,
     },
-    deployUrl: formData.deployUrl,
-    isTeamRequired: !!formData.isTeamRequired,
-    creationDate: convertDate.toMsec(formData.creationDate),
-    launchDate: convertDate.toMsec(formData.launchDate),
-    complexity: +formData.complexity,
+    deployUrl: deployUrl ? deployUrl : undefined,
+    isTeamRequired: !!isTeamRequired,
+    creationDate: convertDate.toMsec(creationDate) || new Date().getTime(),
+    launchDate: launchDate ? convertDate.toMsec(launchDate) : 0,
+    complexity: +complexity,
   };
 };

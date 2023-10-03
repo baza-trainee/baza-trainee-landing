@@ -29,7 +29,7 @@ const ProjectPreview = () => {
     }
 
     const isValidImg = projectValidateOptions.img.validate(projectImg);
-    if (isValidImg) {
+    if (typeof isValidImg !== 'string') {
       return URL.createObjectURL(projectImg[0]);
     }
   };
@@ -66,4 +66,3 @@ const ProjectPreview = () => {
 };
 
 export { ProjectPreview };
-

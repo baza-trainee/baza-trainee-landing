@@ -8,8 +8,8 @@ import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { FormBtns, TextInputField } from '@/components/atomic';
 
 import { IRole } from '@/types';
-import { roleValidateOptions } from './validateOptions';
 import { TMemberFormInput } from './types';
+import { roleValidateOptions } from './validateOptions';
 
 const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
   if (!roles || !id) return;
@@ -30,7 +30,7 @@ const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
 export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const router = useRouter();
 
-  const { rolesData, handlerCreateRole, handlerUpdateRole } = useRolesSWR();
+  const { rolesData, createRole, updateRole } = useRolesSWR();
   const roles = rolesData?.results;
 
   const valuesIfItEditedRole = createOptions(roleId, roles);
@@ -53,9 +53,9 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     };
 
     if (roleId) {
-      handlerUpdateRole(roleId, role);
+      updateRole(roleId, role);
     } else {
-      handlerCreateRole(role);
+      createRole(role);
     }
 
     cancelAction();

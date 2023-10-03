@@ -1,4 +1,4 @@
-export function calculateFormDataLength(formData: FormData) {
+export function calculateFormDataLength(formData: FormData) { // TODO: is this necessary?
   let length = 0;
   const formDataEntries = [...formData.entries()];
 

@@ -12,12 +12,14 @@ export const ProjectStatusBar = ({
   const dict = dictionaries[lang];
 
   const getStatusInfo = () => {
-    if (project.launchDate > project.creationDate) {
+    const { creationDate, launchDate, isTeamRequired } = project;
+
+    if (launchDate && launchDate > creationDate) {
       return {
         style: 'bg-success-dark',
         text: dict.projects.status.completed,
       };
-    } else if (project.isTeamRequired) {
+    } else if (isTeamRequired) {
       return {
         style: 'bg-yellow-800',
         text: dict.projects.status.teamFormation,
@@ -30,13 +32,13 @@ export const ProjectStatusBar = ({
     }
   };
 
-  const statusInfo = getStatusInfo();
+  const { style, text } = getStatusInfo();
 
   return (
     <div className="relative flex min-w-[15.7rem] max-w-fit items-center gap-3 rounded-md border border-neutral-100 px-6 py-3">
-      <div className={`h-8 w-8 rounded-full ${statusInfo.style}`} />
+      <div className={`h-8 w-8 rounded-full ${style}`} />
 
-      <span className="font-medium text-white">{statusInfo.text}</span>
+      <span className="font-medium text-white">{text}</span>
     </div>
   );
 };

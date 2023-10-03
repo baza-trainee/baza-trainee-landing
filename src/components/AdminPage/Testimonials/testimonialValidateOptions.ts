@@ -36,16 +36,22 @@ export const testimonialValidateOptions = {
   },
 
   img: {
-    validate: (value: File[]) => {
-      const checkSize =
-        value[0]?.size <= SETTINGS.fileSizeLimits.testimonialPhoto;
-      const checkType =
-        value[0]?.type === 'image/jpeg' ||
-        value[0]?.type === 'image/png' ||
-        value[0]?.type === 'image/webp' ||
-        value[0]?.type === 'for-url';
+    validate: (
+      value: any
+    ) => {
+      if (typeof value === 'object' && value !== null && value.length > 0) {
+        const checkSize =
+          value[0]?.size <= SETTINGS.fileSizeLimits.testimonialPhoto;
+        const checkType =
+          value[0]?.type === 'image/jpeg' ||
+          value[0]?.type === 'image/png' ||
+          value[0]?.type === 'image/webp' ||
+          value[0]?.type === 'for-url';
 
-      return (checkSize && checkType) || 'Виберіть коректне зображення';
+        return (checkSize && checkType) || 'Виберіть коректне зображення';
+      } else {
+        return 'Додайте зображення';
+      }
     },
   },
 };

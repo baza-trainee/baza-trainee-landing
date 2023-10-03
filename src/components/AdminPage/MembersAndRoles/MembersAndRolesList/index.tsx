@@ -8,7 +8,7 @@ export const MembersAndRolesList = ({
   handleDelete,
 }: TMembersAndRolesListProps) => {
   return (
-    <table className="w-full table-fixed border-collapse text-ellipsis whitespace-nowrap">
+    <table className="w-full table-fixed border-collapse truncate">
       <ListHeader entity={entity} />
 
       <tbody>
