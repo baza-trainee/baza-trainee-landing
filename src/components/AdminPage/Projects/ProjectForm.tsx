@@ -66,31 +66,19 @@ const ProjectForm = () => {
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
-          <Controller
+        <DateInput
             name="creationDate"
             rules={{ required: 'Оберіть дату' }}
             control={control}
-            render={({ field }) => (
-              <DateInput
-                {...field}
-                title="Старт проєкту"
-                placeholder="Оберіть дату"
-                errorText={errors.creationDate?.message}
-              />
-            )}
+            title="Старт проєкту"
+            placeholder="Оберіть дату"
           />
-          <Controller
+          <DateInput
             name="launchDate"
             rules={projectValidateOptions.launchDate}
             control={control}
-            render={({ field }) => (
-              <DateInput
-                {...field}
-                title="Дата завершення проєкту"
-                placeholder="Оберіть дату"
-                errorText={errors.launchDate?.message}
-              />
-            )}
+            title="Дата завершення проєкту"
+            placeholder="Оберіть дату"
           />
         </div>
 

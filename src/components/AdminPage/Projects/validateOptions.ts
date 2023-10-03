@@ -76,7 +76,10 @@ export const projectValidateOptions = {
   },
 
   launchDate: {
-    validate: (val: string, formValues: TFormInput) => {
+    validate: (
+      _: string | number | boolean | File | File[] | undefined,
+      formValues: TFormInput
+    ) => {
       if (!formValues.launchDate) return;
 
       const creationDate = convertDate.toMsec(formValues.creationDate);
