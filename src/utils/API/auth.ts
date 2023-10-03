@@ -1,4 +1,10 @@
-import { ILoginRequest, IRegisterRequest, IChangePasswordRequest } from '@/types/typesAPI';
+import {
+  ILoginRequest,
+  IRegisterRequest,
+  IChangePasswordRequest,
+  IPasswordRequestReset,
+  IPasswordReset,
+} from '@/types/typesAPI';
 import { AxiosResponse } from 'axios';
 import { bazaAPI } from './config';
 
@@ -49,6 +55,28 @@ const authApi = {
     });
 
     token.set(response.data.token);
+    return response;
+  },
+  passwordRequestReset: async ({
+    email,
+  }: IPasswordRequestReset): Promise<AxiosResponse> => {
+    const response = await bazaAPI.post(`/auth/passwordRequestReset`, {
+      email,
+    });
+
+    token.set(response.data.token);
+    return response;
+  },
+  passwordReset: async ({
+    userId,
+    token,
+    password,
+  }: IPasswordReset): Promise<AxiosResponse> => {
+    const response = await bazaAPI.post(`/auth/passwordReset`, {
+      userId,
+      token,
+      password,
+    });
     return response;
   },
 };

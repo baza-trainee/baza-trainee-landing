@@ -65,6 +65,19 @@ export interface IHeroSlider extends CommonResponseBase {
   imageUrl?: string;
 }
 
+// export interface IPartner extends CommonResponseBase {
+//   homeUrl?: String;
+//   imageUrl: String;
+//   name: String;
+// }
+export type IHeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
+
 export interface IPartner extends CommonResponseBase {
   homeUrl?: string;
   imageUrl: string;
@@ -101,8 +114,26 @@ export interface ITestimonial extends CommonResponseBase {
   name: TTitleLanguagesTypes;
   review: TTitleLanguagesTypes;
   date: number;
+  role: string;
   imageUrl: string;
 }
+
+export interface ITestimonialRequest {
+  name: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  review: {
+    ua: string;
+    en: string;
+    pl: string;
+  };
+  role: string;
+  date: number;
+  file: File;
+}
+
 
 export interface IUser extends CommonResponseBase {
   name: string;
@@ -166,4 +197,13 @@ export type THeroSliderData = {
 export interface IChangePasswordRequest {
   oldPassword: string;
   newPassword: string;
+}
+
+export interface IPasswordRequestReset {
+  email: string;
+}
+export interface IPasswordReset {
+  userId: string;
+  token: string;
+  password: string;
 }
