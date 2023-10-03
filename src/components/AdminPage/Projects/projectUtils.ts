@@ -31,7 +31,7 @@ export const prepareProject = (formData: TFormInput) => {
     deployUrl: deployUrl ? deployUrl : undefined,
     isTeamRequired: !!isTeamRequired,
     creationDate: convertDate.toMsec(creationDate) || new Date().getTime(),
-    launchDate: launchDate ? convertDate.toMsec(launchDate) : undefined,
+    launchDate: launchDate ? convertDate.toMsec(launchDate) : 0,
     complexity: +complexity,
   };
 };

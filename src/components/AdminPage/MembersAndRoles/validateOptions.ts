@@ -1,7 +1,7 @@
 const commonOptions = {
   minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
+    value: 2,
+    message: 'Мінімальна довжина поля 2 символи',
   },
   maxLength: {
     value: 75,
@@ -15,7 +15,7 @@ export const memberValidateOptions = {
     ...commonOptions,
     pattern: {
       value: /^[а-яА-ЯҐґЄєІіЇї\s'’-]+$/,
-      message: 'Введіть коректне прізвище та ім’я',
+      message: 'Введіть прізвище та ім’я українською мовою.',
     },
   },
 
@@ -24,7 +24,7 @@ export const memberValidateOptions = {
     ...commonOptions,
     pattern: {
       value: /^[a-zA-Z\s'’-]+$/,
-      message: 'Введіть коректне прізвище та ім’я',
+      message: 'Введіть прізвище та ім’я англійською мовою.',
     },
   },
 
@@ -33,12 +33,11 @@ export const memberValidateOptions = {
     ...commonOptions,
     pattern: {
       value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s'’-]+$/,
-      message: 'Введіть коректне прізвище та ім’я',
+      message: 'Введіть прізвище та ім’я польською мовою.',
     },
   },
 
   linkedinOptions: {
-    required: 'Введіть посилання на профіль Linkedin',
     pattern: {
       value: /^(https:\/\/(www\.)?)?linkedin\.com/i,
       message: 'Введіть коректне посилання на профіль Linkedin',

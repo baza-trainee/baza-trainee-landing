@@ -18,8 +18,16 @@ import { projectValidateOptions } from './validateOptions';
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 
 const ProjectForm = () => {
-  const { isEditMode, handleSubmit, onSubmit, cancelAction, control, errors } =
-    useProjectFormContext();
+  const {
+    isEditMode,
+    handleSubmit,
+    onSubmit,
+    cancelAction,
+    translateToEn,
+    translateToPl,
+    control,
+    errors,
+  } = useProjectFormContext();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +54,9 @@ const ProjectForm = () => {
             render={({ field }) => (
               <TextInputField
                 {...field}
+                // translateValue={watch().nameUk}
                 inputType="en"
+                handleTranslate={translateToEn}
                 errorText={errors.nameEn?.message}
               />
             )}
@@ -59,6 +69,8 @@ const ProjectForm = () => {
               <TextInputField
                 {...field}
                 inputType="pl"
+                // translateValue={watch().nameUk}
+                handleTranslate={translateToPl}
                 errorText={errors.namePl?.message}
               />
             )}
@@ -66,7 +78,7 @@ const ProjectForm = () => {
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
-        <DateInput
+          <DateInput
             name="creationDate"
             rules={{ required: 'Оберіть дату' }}
             control={control}
@@ -87,23 +99,17 @@ const ProjectForm = () => {
         </div>
 
         <div className={`${rowStyle} col-span-2`}>
-          <Controller
+          <CheckboxInput
             name="isTeamRequired"
             control={control}
-            render={({ field }) => (
-              <CheckboxInput
-                {...field}
-                placeholder="Формування команди"
-                title="Стан"
-              />
-            )}
+            placeholder="Формування команди"
+            title="Стан"
           />
-          <Controller
+
+          <ComplexityInput
             name="complexity"
             control={control}
-            render={({ field }) => (
-              <ComplexityInput {...field} title="Оберіть складність проєкту" />
-            )}
+            title="Оберіть складність проєкту"
           />
         </div>
 
@@ -121,7 +127,6 @@ const ProjectForm = () => {
               />
             )}
           />
-
           <FileInput
             name="projectImg"
             control={control}
@@ -134,9 +139,11 @@ const ProjectForm = () => {
             title="Обкладинка"
           />
         </div>
-      </div>
 
-      <FormBtns {...{ isEditMode, cancelAction }} />
+        <div className="col-span-3">
+          <FormBtns {...{ isEditMode, cancelAction }} />
+        </div>
+      </div>
     </form>
   );
 };

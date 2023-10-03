@@ -7,9 +7,10 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { IMember } from '@/types';
+import { IMember, TTeamMemberBio } from '@/types';
 import { TMemberFormInput, TMemberFormProps } from './types';
 import { memberValidateOptions } from './validateOptions';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 
 const createOptions = (
   id: string | undefined,
@@ -36,6 +37,7 @@ export const MemberForm = ({
   addMemberNComeback,
 }: TMemberFormProps) => {
   const router = useRouter();
+  const { handleTranslate } = useTranslator();
 
   const { membersData, createMember, updateMember } = useMembersSWR();
   const members = membersData?.results;
@@ -45,8 +47,22 @@ export const MemberForm = ({
   const {
     control,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<TMemberFormInput>(valuesIfItEditedMember);
+
+  const translateToEn = () => {
+    handleTranslate(watch().nameUk, 'en').then((res) => {
+      setValue('nameEn', res);
+    });
+  };
+
+  const translateToPl = () => {
+    handleTranslate(watch().nameUk, 'pl').then((res) =>
+      setValue('namePl', res)
+    );
+  };
 
   const cancelAction = () => router.replace('.');
 
@@ -63,9 +79,11 @@ export const MemberForm = ({
     if (memberId) {
       updateMember(memberId, member);
     } else {
-      createMember(member)?.then(
-        (res) => res && addMemberNComeback && addMemberNComeback(res)
-      );
+      createMember(member)?.then((res) => {
+        if (res && !!addMemberNComeback) {
+          addMemberNComeback(res);
+        }
+      });
     }
 
     !addMemberNComeback && cancelAction();
@@ -97,6 +115,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="en"
+              handleTranslate={translateToEn}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -110,6 +129,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="pl"
+              handleTranslate={translateToPl}
               errorText={errors.namePl?.message}
             />
           )}

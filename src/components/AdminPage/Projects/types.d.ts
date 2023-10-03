@@ -58,6 +58,8 @@ export interface IFormContext {
     newRole: TTeamMemberRole
   ) => void;
   deleteMember: (memberId: string) => void;
+  translateToEn: () => void;
+  translateToPl: () => void;
   watch: UseFormWatch<TFormInput>;
   control: Control<TFormInput, any>;
   errors: FieldErrors<TFormInput>;
