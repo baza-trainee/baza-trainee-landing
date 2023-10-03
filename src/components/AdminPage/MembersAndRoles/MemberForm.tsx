@@ -7,14 +7,14 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { IMember, TTeamMemberBio } from '@/types';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+import { TMemberBioResp, TMemberBioReq } from '@/types';
 import { TMemberFormInput, TMemberFormProps } from './types';
 import { memberValidateOptions } from './validateOptions';
-import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 
 const createOptions = (
   id: string | undefined,
-  members: IMember[] | undefined
+  members: TMemberBioResp[] | undefined
 ) => {
   if (!members || !id) return;
 
@@ -67,7 +67,7 @@ export const MemberForm = ({
   const cancelAction = () => router.replace('.');
 
   const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
-    const member: IMember = {
+    const member: TMemberBioReq = {
       name: {
         en: data.nameEn,
         pl: data.namePl,

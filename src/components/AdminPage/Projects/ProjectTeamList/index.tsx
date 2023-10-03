@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useProjectFormContext } from '../ProjectFormProvider';
 
+import { MemberForm } from '../../MembersAndRoles/MemberForm';
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
-import { MemberForm } from '../../MembersAndRoles/MemberForm';
 
-import { TTeamMemberBio } from '@/types';
+import { TMemberBioResp } from '@/types';
 
 export const ProjectTeamList = () => {
   const [isAddMemberMode, setIsAddMemberMode] = useState(false);
@@ -15,7 +15,7 @@ export const ProjectTeamList = () => {
     setIsAddMemberMode(!isAddMemberMode);
   };
 
-  const addMemberNComeback = (newMember: TTeamMemberBio) => {
+  const addMemberNComeback = (newMember: TMemberBioResp) => {
     addTeamMember(newMember);
     switchMode();
   };

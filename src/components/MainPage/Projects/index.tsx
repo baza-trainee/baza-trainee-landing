@@ -1,20 +1,18 @@
 'use client';
 
 import {
-  ContainerMaxW1200,
-  MoreProjectsButton,
-  SearchBar,
+    ContainerMaxW1200,
+    MoreProjectsButton
 } from '@/components/atomic';
 
 import { ProjectCard } from '@/components/ProjectCard';
 
-import { TProject } from '@/types';
+import { TProjectResp } from '@/types';
 import { useEffect, useState } from 'react';
 import { projects } from './projects';
 
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
-import { createImgUrl } from '@/utils/imageHandler';
 
 /*const getProjects = async () => {
   const response = await fetch(
@@ -58,7 +56,7 @@ const handleResize = () => {
 };
 
 export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
-  const [visibleProjects, setVisibleProjects] = useState<TProject[]>(
+  const [visibleProjects, setVisibleProjects] = useState<TProjectResp[]>(
     projects.slice(0, handleResize())
   );
 
@@ -111,7 +109,7 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
         )}
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-          {visibleProjects.map((project: TProject, index: number) => (
+          {visibleProjects.map((project: TProjectResp, index: number) => (
             <ProjectCard
               lang={lang}
               key={project._id}

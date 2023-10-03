@@ -1,4 +1,4 @@
-import { TProject } from "@/types";
+import { TProjectResp } from "@/types";
 import { TFormInput } from "./types";
 
 export const defaultValues: TFormInput = {
@@ -15,7 +15,7 @@ export const defaultValues: TFormInput = {
 
 export const emptyLngs = { ua: '', en: '', pl: '' };
 
-export const initProjectData: TProject = { //TODO:  del?
+export const initProjectData: TProjectResp = { //TODO:  del?
   _id: '',
   title: emptyLngs,
   imageUrl: '',

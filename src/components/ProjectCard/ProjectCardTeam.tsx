@@ -3,7 +3,7 @@ import { dictionaries } from '@/locales/dictionaries';
 
 import { CloseIcon } from '@/components/common/icons';
 
-import { ICardContent, TTeamMemberBio } from '@/types';
+import { ICardContent, TMemberBioResp } from '@/types';
 
 const orderList = SETTINGS.specsOrderList;
 
@@ -14,7 +14,7 @@ export const ProjectCardTeam = ({
   isAdminMode,
 }: ICardContent) => {
   const projectTeamTitle = dictionaries[lang].projects.projectTeam;
-  const rolesAndMembers: { [role: string]: TTeamMemberBio[] } = {};
+  const rolesAndMembers: { [role: string]: TMemberBioResp[] } = {};
 
   project.teamMembers.forEach((member) => {
     const roleName = member.teamMemberRole.name.en;

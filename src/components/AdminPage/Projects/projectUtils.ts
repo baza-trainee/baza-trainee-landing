@@ -1,10 +1,8 @@
-import { TTeamMember } from '@/types';
-import { TFormInput, TTeamMemberRequest } from './types';
+import { TMemberResp, TProjectMemberReq } from '@/types';
 import { convertDate } from '@/utils/formatDate';
+import { TFormInput } from './types';
 
-export const extractMembersId = (
-  members: TTeamMember[]
-): TTeamMemberRequest[] =>
+export const extractMembersId = (members: TMemberResp[]): TProjectMemberReq[] =>
   members.map((item) => ({
     teamMember: item.teamMember._id,
     teamMemberRole: item.teamMemberRole._id,

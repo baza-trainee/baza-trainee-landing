@@ -7,11 +7,11 @@ import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { IRole } from '@/types';
+import {  TMemberRoleResp } from '@/types';
 import { TMemberFormInput } from './types';
 import { roleValidateOptions } from './validateOptions';
 
-const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
+const createOptions = (id: string | undefined, roles: TMemberRoleResp[] | undefined) => {
   if (!roles || !id) return;
 
   const role = roles.find((m) => m._id === id);

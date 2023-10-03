@@ -1,27 +1,34 @@
 import { TLandingLanguage } from '@/store/globalContext';
 import { TTitleLanguagesTypes } from './typesAPI';
 
-export type TTeamMemberBio = {
+export type TMemberBioReq = {
+  name: TTitleLanguagesTypes;
+  profileUrl?: string;
+};
+
+export type TMemberBioResp = TMemberBioReq & {
   _id: string;
-  name: TTitleLanguagesTypes;
-  profileUrl: string;
 };
 
-export type TTeamMemberRole = {
+export type TMemberRoleReq = {
+  name: TTitleLanguagesTypes;
+};
+
+export type TMemberRoleResp = TMemberRoleReq & {
   _id: string;
-  name: TTitleLanguagesTypes;
 };
 
-export type TTeamMemberRoleReq = {
-  name: TTitleLanguagesTypes;
+export type TMemberResp = {
+  teamMember: TMemberBioResp;
+  teamMemberRole: TMemberRoleResp;
 };
 
-export type TTeamMember = {
-  teamMember: TTeamMemberBio;
-  teamMemberRole: TTeamMemberRole;
+export type TProjectMemberReq = {
+  teamMember: string;
+  teamMemberRole: string;
 };
 
-export type TProjectRequest = {
+export type TProjectReq = {
   title: TTitleLanguagesTypes;
   file?: File;
   deployUrl?: string;
@@ -29,13 +36,10 @@ export type TProjectRequest = {
   creationDate: number;
   launchDate?: number;
   complexity: number;
-  teamMembers?: Array<{
-    teamMember: string;
-    teamMemberRole: string;
-  }>;
+  teamMembers?: TProjectMemberReq[];
 };
 
-export type TProject = {
+export type TProjectResp = {
   _id: string;
   title: TTitleLanguagesTypes;
   imageUrl: string;
@@ -44,12 +48,12 @@ export type TProject = {
   creationDate: number;
   launchDate?: number;
   complexity: number;
-  teamMembers: TTeamMember[];
+  teamMembers: TMemberResp[];
 };
 
 export interface ICardContent {
   handleShowTeam: () => void;
-  project: TProject;
+  project: TProjectResp;
   lang: TLandingLanguage;
   isAdminMode?: boolean;
 }

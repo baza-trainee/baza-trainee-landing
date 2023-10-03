@@ -1,6 +1,6 @@
 import {
-  ITestimonial,
   ITestimonialRequest,
+  TTestimonialResp,
   updateByIdRequest,
 } from '@/types/typesAPI';
 import { bazaAPI } from './config';
@@ -9,11 +9,11 @@ export const testimonialsEndPoint = '/testimonials';
 
 export const testimonialsApi = {
   async getAll(uri: string) {
-    return await bazaAPI.get<ITestimonial[]>(uri).then((res) => res.data);
+    return await bazaAPI.get<TTestimonialResp[]>(uri).then((res) => res.data);
   },
 
   async getById(id: string) {
-    const response = await bazaAPI.get<ITestimonial>(
+    const response = await bazaAPI.get<TTestimonialResp>(
       `${testimonialsEndPoint}/${id}`
     );
     return response;
@@ -21,7 +21,7 @@ export const testimonialsApi = {
 
   async createNew(testimonial: ITestimonialRequest) {
     return await bazaAPI
-      .post<ITestimonial>(`${testimonialsEndPoint}`, testimonial, {
+      .post<TTestimonialResp>(`${testimonialsEndPoint}`, testimonial, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => res.data);
@@ -33,7 +33,7 @@ export const testimonialsApi = {
 
   async updateById([id, payload]: updateByIdRequest) {
     return await bazaAPI
-      .patch<ITestimonial>(`${testimonialsEndPoint}/${id}`, payload, {
+      .patch<TTestimonialResp>(`${testimonialsEndPoint}/${id}`, payload, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => res.data);

@@ -1,6 +1,6 @@
-import { TProject } from '@/types';
+import { TProjectResp } from '@/types';
 
-export const projects: TProject[] = [
+export const projects: TProjectResp[] = [
   {
     _id: crypto.randomUUID(),
     imageUrl: '/img/projects/lullabies.webp',

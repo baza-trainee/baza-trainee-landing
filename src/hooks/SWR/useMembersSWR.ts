@@ -5,7 +5,7 @@ import { useGlobalContext } from '@/store/globalContext';
 import { membersApi, membersEndpoint } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { IMember, TResponseMembers, TTeamMemberBio } from '@/types';
+import { TMemberBioReq, TResponseMembers } from '@/types';
 import { AxiosError } from 'axios';
 
 const useMembersSWR = () => {
@@ -14,7 +14,7 @@ const useMembersSWR = () => {
 
   const swrKey = `${membersEndpoint}?search=${search}`;
 
-  const handleRequestError = (err: AxiosError) => {
+  const handleRequestError = (err: any) => {
     errorHandler(err);
     setAlertInfo({
       state: 'error',
@@ -36,36 +36,55 @@ const useMembersSWR = () => {
     setSearch(search);
   };
 
-  const updateAndMutate = (
-    updMembers: IMember[],
-    action: () => Promise<TTeamMemberBio>
-  ) => {
+  const deleteMember = async (id: string) => {
     try {
-      return mutate(action, {
-        optimisticData: { ...data!, results: updMembers },
-      });
+      const updMembers = data?.results.filter((member) => member._id !== id);
+      const updData: TResponseMembers = { ...data!, results: updMembers! };
+
+      mutate(updData);
+      await membersApi.deleteById(id);
     } catch (err) {
-      errorHandler(err);
+      handleRequestError(err);
     }
   };
 
-  const deleteMember = (id: string) => {
-    const updMembers = data?.results.filter((member) => member._id !== id);
-    updateAndMutate(updMembers!, () => membersApi.deleteById(id));
+  const createMember = async (newMember: TMemberBioReq) => {
+    try {
+      const createdMember = await membersApi.createNew(newMember);
+
+      if (!createdMember) return null;
+
+      const updData: TResponseMembers = {
+        ...data!,
+        results: [createdMember, ...(data?.results || [])],
+      };
+
+      mutate(updData);
+
+      return createdMember;
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
-  const createMember = (newMember: IMember) => {
-    const updMembers = [...(data?.results || []), newMember];
-    return updateAndMutate(updMembers, () => membersApi.createNew(newMember));
-  };
+  const updateMember = async (id: string, updMember: TMemberBioReq) => {
+    try {
+      const updatedMember = await membersApi.updateById(id, updMember);
 
-  const updateMember = (id: string, updMember: IMember) => {
-    const updMembers = data?.results.map((member) =>
-      member._id === id ? { ...member, ...updMember } : member
-    );
-    return updateAndMutate(updMembers!, () =>
-      membersApi.updateById(id, updMember)
-    );
+      if (!updatedMember) return null;
+
+      const updatedMembers = (data?.results || []).map((member) =>
+        member._id === id ? updatedMember : member
+      );
+
+      const updData: TResponseMembers = { ...data!, results: updatedMembers };
+
+      mutate(updData);
+
+      return updatedMember;
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
   return {

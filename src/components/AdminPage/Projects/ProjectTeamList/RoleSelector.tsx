@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from 'react';
 
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-import { useProjectFormContext } from '../ProjectFormProvider';
 import { roleSorter } from '@/utils/roleSorter';
+import { useProjectFormContext } from '../ProjectFormProvider';
 
-import { TTeamMember } from '@/types';
+import { TMemberResp } from '@/types';
 
-export const RoleSelector = ({ member }: { member: TTeamMember }) => {
+export const RoleSelector = ({ member }: { member: TMemberResp }) => {
   const { updTeamMemberRole } = useProjectFormContext();
   const results = useRolesSWR().rolesData?.results;
   const { teamMember, teamMemberRole } = member;
