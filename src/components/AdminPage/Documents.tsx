@@ -34,7 +34,7 @@ export const Documents = () => {
   }, [formData]);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     if (!isError && data) {
       setAlertInfo({
         state: 'info',

@@ -1,6 +1,6 @@
 import { bazaAPI } from './config';
 
-import { TResponseProjects, TProjectRequest, TProject } from '@/types';
+import { TProjectReq, TProjectResp, TResponseProjects } from '@/types';
 
 const projectsEndpoint = '/projects';
 
@@ -9,9 +9,9 @@ const projectsApi = {
     return await bazaAPI.get<TResponseProjects>(uri).then((res) => res.data);
   },
 
-  async createNew(project: TProjectRequest) {
+  async createNew(project: TProjectReq) {
     return await bazaAPI
-      .post<TProject>(projectsEndpoint, project, {
+      .post<TProjectResp>(projectsEndpoint, project, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => res.data);
@@ -19,7 +19,7 @@ const projectsApi = {
 
   async getById(id: string) {
     return await bazaAPI
-      .get<TProject>(`${projectsEndpoint}/${id}`)
+      .get<TProjectResp>(`${projectsEndpoint}/${id}`)
       .then((res) => res.data);
   },
 
@@ -27,13 +27,19 @@ const projectsApi = {
     return await bazaAPI.delete(`${projectsEndpoint}/${id}`);
   },
 
-  async updateById(id: string, project: TProjectRequest) {
+  async updateById(id: string, project: TProjectReq) {
+    // console.log('API req >>', project);
     return await bazaAPI
-      .patch<TProject>(`${projectsEndpoint}/${id}`, project, {
+      .put<TProjectResp>(`${projectsEndpoint}/${id}`, project, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      .then((res) => res.data);
+      .then((res) => {
+        // console.log('API res >>', res.data);
+
+        return res.data;
+      });
   },
 };
 
-export { projectsEndpoint, projectsApi };
+export { projectsApi, projectsEndpoint };
+

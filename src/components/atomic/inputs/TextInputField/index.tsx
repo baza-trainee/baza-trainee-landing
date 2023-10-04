@@ -1,12 +1,19 @@
+import { TranslatorIcon } from '@/components/common/icons';
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
-import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
-import { Translator } from './Translator';
+import {
+  ForwardedRef,
+  InputHTMLAttributes,
+  MouseEventHandler,
+  forwardRef,
+  useId,
+} from 'react';
 
 interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
   inputType?: string;
   translateValue?: string;
+  handleTranslate?: () => void;
   setTranslatedValue?: (_data: string, _name: string) => void;
 }
 
@@ -17,6 +24,7 @@ const InputField = (
     inputType = 'text',
     translateValue = '',
     value = '',
+    handleTranslate,
     setTranslatedValue,
     ...rest
   }: TextInputFieldProps,
@@ -35,6 +43,11 @@ const InputField = (
         : 'border-neutral-300 focus:outline-neutral-300'
     }
   `;
+
+  const onClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    handleTranslate && handleTranslate();
+  };
 
   return (
     <div
@@ -72,12 +85,18 @@ const InputField = (
       )}
 
       {isTranslateShow && (
-        <Translator
-          translateValue={translateValue}
-          setTranslatedValue={setTranslatedValue}
-          fieldName={rest.name}
-          lang={inputType}
-        />
+        // <Translator
+        //   translateValue={translateValue}
+        //   setTranslatedValue={setTranslatedValue}
+        //   fieldName={rest.name}
+        //   lang={inputType}
+        // />
+        <button
+          className="absolute right-[0.5rem] top-0 text-neutral-300"
+          onClick={onClick}
+        >
+          <TranslatorIcon />
+        </button>
       )}
     </div>
   );

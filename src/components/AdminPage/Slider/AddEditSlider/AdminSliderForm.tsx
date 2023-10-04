@@ -27,7 +27,6 @@ export const SliderForm = ({
   );
 
   const {
-    register,
     handleSubmit,
     watch,
     setValue,
@@ -89,14 +88,13 @@ export const SliderForm = ({
         onSubmit={handleSubmit(onSubmitForm)}
       >
         <FileInput
+          name="file"
           title="Зображення"
-          {...register('file')}
+          control={control}
           accept="image/*"
-          placeholder={
-            id ? currentValues.imageUrl : 'Додайте зображення до слайду'
-          }
-          errorText={errors.file?.message}
+          placeholder="Додайте зображення до слайду"
         />
+
         <div className="flex flex-wrap gap-[2.4rem]">
           <Controller
             name="titleUa"
@@ -183,7 +181,7 @@ export const SliderForm = ({
           />
         </div>
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
-          <FormBtns isEditMode={isEdit} handleFunc={handleResetForm} />
+          <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
             <LanguageSelector />
           </div>

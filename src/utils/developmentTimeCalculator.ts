@@ -1,49 +1,43 @@
 import { TLandingLanguage } from '@/store/globalContext';
-import { IProject, TProject } from '@/types';
+import { TProjectResp } from '@/types';
 
-export const projectCycle = (project: IProject | TProject, lang: TLandingLanguage) => {
-  const creationDate = project.creationDate;
+export const projectCycle = (project: TProjectResp, lang: TLandingLanguage) => {
   const launchDate = project.launchDate ? project.launchDate : Date.now();
+  const numOfWeeks = Math.floor(
+    (launchDate - project.creationDate) / (1000 * 60 * 60 * 24 * 7) + 1
+  );
 
-  const cycleDuration = launchDate - creationDate;
-  const numOfWeeks = Math.floor(cycleDuration / (1000 * 60 * 60 * 24 * 7));
+  const weekStrings = {
+    en: {
+      singular: 'week',
+      plural: 'weeks',
+    },
+    pl: {
+      singular: 'tydzień',
+      plural:
+        numOfWeeks === 1
+          ? 'tydzień'
+          : numOfWeeks % 10 === 2 ||
+            numOfWeeks % 10 === 3 ||
+            numOfWeeks % 10 === 4
+          ? 'tygodnie'
+          : 'tygodni',
+    },
+    ua: {
+      singular: 'тиждень',
+      plural:
+        numOfWeeks === 1
+          ? 'тиждень'
+          : (numOfWeeks % 10 === 2 ||
+              numOfWeeks % 10 === 3 ||
+              numOfWeeks % 10 === 4) &&
+            (numOfWeeks < 10 || numOfWeeks > 20)
+          ? 'тижні'
+          : 'тижнів',
+    },
+  };
 
-  let weeksString = '';
+  const { singular, plural } = weekStrings[lang];
 
-  switch (lang) {
-    case 'en':
-      weeksString = numOfWeeks === 1 ? '1 week' : `${numOfWeeks} weeks`;
-      break;
-    case 'pl':
-      if (numOfWeeks === 1) {
-        weeksString = '1 tydzień';
-      } else if (
-        numOfWeeks % 10 === 2 ||
-        numOfWeeks % 10 === 3 ||
-        numOfWeeks % 10 === 4
-      ) {
-        weeksString = `${numOfWeeks} tygodnie`;
-      } else {
-        weeksString = `${numOfWeeks} tygodni`;
-      }
-      break;
-    case 'ua':
-      if (numOfWeeks === 1) {
-        weeksString = '1 тиждень';
-      } else if (
-        (numOfWeeks % 10 === 2 ||
-          numOfWeeks % 10 === 3 ||
-          numOfWeeks % 10 === 4) &&
-        (numOfWeeks < 10 || numOfWeeks > 20)
-      ) {
-        weeksString = `${numOfWeeks} тижні`;
-      } else {
-        weeksString = `${numOfWeeks} тижнів`;
-      }
-      break;
-    default:
-      weeksString = 'Invalid language code';
-  }
-
-  return weeksString;
+  return numOfWeeks === 1 ? `1 ${singular}` : `${numOfWeeks} ${plural}`;
 };

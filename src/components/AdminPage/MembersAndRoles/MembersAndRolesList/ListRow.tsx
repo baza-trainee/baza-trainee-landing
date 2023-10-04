@@ -1,18 +1,15 @@
 import { ActionBtns } from '@/components/atomic';
 
-import { IMember, IRole } from '@/types';
-import { TEntity } from '../types';
-
-type TProps = {
-  entity: TEntity;
-  showedData: IMember | IRole;
-  handleDelete: (id: string) => void;
-};
+import { TListRawProps } from '../types';
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
-export const ListRow = ({ entity, showedData, handleDelete }: TProps) => {
+export const ListRow = ({
+  entity,
+  showedData,
+  handleDelete,
+}: TListRawProps) => {
   return (
     <tr>
       <td className={cellStyle}>
@@ -20,12 +17,6 @@ export const ListRow = ({ entity, showedData, handleDelete }: TProps) => {
           <span>{showedData.name.ua}</span>
         </div>
       </td>
-
-      {entity === 'projectTeam' && (
-        <td className={cellStyle}>
-          <div className={bgStyle}>Спеціалізація</div>
-        </td>
-      )}
 
       <td className={cellStyle}>
         <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>

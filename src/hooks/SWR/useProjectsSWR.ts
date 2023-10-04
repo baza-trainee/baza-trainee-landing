@@ -2,11 +2,11 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
-import { projectsEndpoint, projectsApi } from '@/utils/API/projects';
+import { projectsApi, projectsEndpoint } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
+import { TProjectReq, TResponseProjects } from '@/types';
 import { AxiosError } from 'axios';
-import { TProject, TResponseProjects, TProjectRequest } from '@/types';
 
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -14,7 +14,7 @@ const useProjectsSWR = () => {
 
   const swrKey = `${projectsEndpoint}?search=${search}`;
 
-  const handleRequestError = (err: AxiosError) => {
+  const handleRequestError = (err: any) => {
     errorHandler(err);
     setAlertInfo({
       state: 'error',
@@ -28,62 +28,66 @@ const useProjectsSWR = () => {
     AxiosError
   >(swrKey, projectsApi.getAll, {
     keepPreviousData: true,
-    onError: errorHandler,
+    onError: handleRequestError,
   });
 
-  const handlerSearchProject = (search: string) => {
+  const searchProject = (search: string) => {
     setSearch(search);
   };
 
-  const handlerCreateProject = (newProject: TProjectRequest) => {
-    const options = {
-      populateCache: (createdProject: TProject) => ({
+  const getProjectById = (id: string) => {
+    return data?.results.find((project) => project._id === id);
+  };
+
+  const createProject = async (newProject: TProjectReq) => {
+    try {
+      const createdProject = await projectsApi.createNew(newProject);
+      const updData: TResponseProjects = {
         ...data!,
         results: [createdProject, ...(data?.results || [])],
-      }),
-      revalidate: false,
-    };
+      };
 
-    mutate(() => projectsApi.createNew(newProject), options)
-      .catch(handleRequestError)
-      .catch((e) => console.log('ERROR!!!!!', e));
+      mutate(updData);
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
-  const handlerUpdateProject = (id: string, updProject: TProjectRequest) => {
-    // const populateCache = (createdProject: TProject) => {
-    //   console.log("proj>.", createdProject);
-    //   const updProjects = data?.results.map((project) =>
-    //     project._id === id ? createdProject : project
-    //   );
-    //   return { ...data!, results: updProjects! };
-    // };
+  const updateProject = async (id: string, updProject: TProjectReq) => {
+    try {
+      const updatedProject = await projectsApi.updateById(id, updProject);
+      const updProjects = data?.results.map((project) =>
+        project._id === id ? updatedProject : project
+      );
+      const updData: TResponseProjects = { ...data!, results: updProjects! };
 
-    // const options = { populateCache, revalidate: false }; // TODO: implement populate cache
-
-    mutate(() => projectsApi.updateById(id, updProject)).catch(
-      handleRequestError
-    );
+      mutate(updData);
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
-  const handlerDeleteProject = (id: string) => {
-    const updProjects = data?.results.filter((project) => project._id !== id);
-    const options = {
-      optimisticData: { ...data!, results: updProjects! },
-      populateCache: false,
-      revalidate: false,
-    };
+  const deleteProject = async (id: string) => {
+    try {
+      const updProjects = data?.results.filter((project) => project._id !== id);
+      const updData: TResponseProjects = { ...data!, results: updProjects! };
 
-    mutate(() => projectsApi.deleteById(id), options).catch(handleRequestError);
+      mutate(updData);
+      await projectsApi.deleteById(id);
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
   return {
     projectsData: data,
     isLoading,
     isError: error,
-    handlerSearchProject,
-    handlerCreateProject,
-    handlerUpdateProject,
-    handlerDeleteProject,
+    searchProject,
+    getProjectById,
+    createProject,
+    updateProject,
+    deleteProject,
   };
 };
 

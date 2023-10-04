@@ -1,21 +1,18 @@
 'use client';
 
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
+import { createImgUrl } from '@/utils/imageHandler';
 import Link from 'next/link';
-import { useState } from 'react';
 
 import { ProjectCard } from '@/components/ProjectCard';
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { ButtonsOverlay } from './ButtonsOverlay';
 
-import { TProject } from '@/types';
-import { createImgUrl } from '@/utils/imageHandler';
+import { TProjectResp } from '@/types';
 
 export const AdminProjects = () => {
-  const [showedItems, setShowedItems] = useState();
-
-  const { projectsData, handlerDeleteProject } = useProjectsSWR();
+  const { projectsData, deleteProject } = useProjectsSWR();
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
@@ -34,15 +31,16 @@ export const AdminProjects = () => {
 
         {projectsData &&
           projectsData?.results &&
-          projectsData.results.map((project: TProject) => (
+          projectsData.results.map((project: TProjectResp) => (
             <ButtonsOverlay
               key={project._id}
-              handleDelete={handlerDeleteProject}
+              handleDelete={deleteProject}
             >
               <ProjectCard
                 project={project}
                 lang={'ua'}
                 coverImgUrl={createImgUrl(project.imageUrl)}
+                isAdminMode
               />
             </ButtonsOverlay>
           ))}

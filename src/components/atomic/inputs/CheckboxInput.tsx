@@ -1,22 +1,38 @@
-import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
+'use client';
 
-interface CheckboxInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> {
-  title?: string;
-  errorText?: string;
-  value?: boolean;
-}
+import { InputHTMLAttributes, useId } from 'react';
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
-const Checkbox = (
-  { title, errorText, placeholder, value, ...rest }: CheckboxInputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) => {
+type TProps<T extends FieldValues> = InputHTMLAttributes<HTMLInputElement> &
+  UseControllerProps<T> & {
+    title?: string;
+  };
+
+export const CheckboxInput = <T extends FieldValues>({
+  title,
+  placeholder,
+  control,
+  name,
+  rules,
+  ...rest
+}: TProps<T>) => {
   const id = useId();
+  const { field, formState } = useController<T>({ name, control, rules });
+
+  const errorMessage = (
+    formState.errors[name] as DeepMap<FieldValues, FieldError>
+  )?.message;
 
   return (
     <div
       className={`peer relative w-full max-w-[32.6rem] ${
-        errorText ? 'text-critic-light' : ''
+        errorMessage ? 'text-critic-light' : ''
       }`}
     >
       {title && (
@@ -29,22 +45,21 @@ const Checkbox = (
         <label htmlFor={id}>{placeholder}</label>
         <input
           {...rest}
-          checked={!!value}
+          {...field}
+          checked={!!field.value}
           id={id}
           type="checkbox"
           className={`h-10 w-10 p-[0.8rem] accent-dark ${
-            errorText ? 'focus:outline-critic-light' : ''
+            errorMessage ? 'focus:outline-critic-light' : ''
           }`}
         />
       </div>
 
-      {errorText && (
+      {errorMessage && (
         <span className="absolute bottom-0 left-0 text-[1.2rem]">
-          {errorText}
+          {errorMessage}
         </span>
       )}
     </div>
   );
 };
-
-export const CheckboxInput = forwardRef(Checkbox);

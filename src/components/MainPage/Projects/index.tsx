@@ -1,14 +1,13 @@
 'use client';
 
 import {
-  ContainerMaxW1200,
-  MoreProjectsButton,
-  SearchBar,
+    ContainerMaxW1200,
+    MoreProjectsButton
 } from '@/components/atomic';
 
-import { ProjectCard } from './ProjectCard';
+import { ProjectCard } from '@/components/ProjectCard';
 
-import { IProject } from '@/types';
+import { TProjectResp } from '@/types';
 import { useEffect, useState } from 'react';
 import { projects } from './projects';
 
@@ -39,27 +38,27 @@ import { TLandingLanguage } from '@/store/globalContext';
 let ProjectsCountOnFirstLoad = 9;
 let ProjectsLoadMore = 3;
 
+const handleResize = () => {
+  if (typeof window !== 'undefined') {
+    const width = window.innerWidth;
+    if (width < 768) {
+      ProjectsCountOnFirstLoad = 3;
+      ProjectsLoadMore = 2;
+    } else if (width >= 768 && width < 1280) {
+      ProjectsCountOnFirstLoad = 4;
+      ProjectsLoadMore = 2;
+    } else {
+      ProjectsCountOnFirstLoad = 9;
+      ProjectsLoadMore = 3;
+    }
+  }
+  return ProjectsCountOnFirstLoad;
+};
+
 export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
-  const [visibleProjects, setVisibleProjects] = useState<IProject[]>(
+  const [visibleProjects, setVisibleProjects] = useState<TProjectResp[]>(
     projects.slice(0, handleResize())
   );
-
-  function handleResize() {
-    if (typeof window !== 'undefined') {
-      const width = window.innerWidth;
-      if (width < 768) {
-        ProjectsCountOnFirstLoad = 3;
-        ProjectsLoadMore = 2;
-      } else if (width >= 768 && width < 1280) {
-        ProjectsCountOnFirstLoad = 4;
-        ProjectsLoadMore = 2;
-      } else {
-        ProjectsCountOnFirstLoad = 9;
-        ProjectsLoadMore = 3;
-      }
-    }
-    return ProjectsCountOnFirstLoad;
-  }
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -100,22 +99,23 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
         <h3 className="text-[3.8rem] font-bold">{navbar?.projects}</h3>
 
         {/* <div className="lg:self-start">
-          <SearchBar
-          setFilteredProjects={setFilteredProjects}
-          />
-        </div> */}
+            <SearchBar
+            setFilteredProjects={setFilteredProjects}
+            />
+          </div> */}
 
         {filteredProjects.length === 0 && (
           <h3 className="text-[3.8rem]">{noProjects}</h3>
         )}
 
         <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-          {visibleProjects.map((project: IProject, index: number) => (
+          {visibleProjects.map((project: TProjectResp, index: number) => (
             <ProjectCard
               lang={lang}
               key={project._id}
               project={project}
               animationDelay={animateDelay(index)}
+              coverImgUrl={project.imageUrl}
             />
           ))}
         </ul>

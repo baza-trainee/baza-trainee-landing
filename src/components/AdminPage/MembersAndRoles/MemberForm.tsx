@@ -7,48 +7,14 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { useProjectsByIdSWR } from '@/hooks/SWR/useProjectByIdSWR';
-import { IMember } from '@/types';
-
-type TMemberForm = {
-  memberId?: string;
-  projectId?: string;
-};
-
-type TFormInput = {
-  nameUk: string;
-  nameEn: string;
-  namePl: string;
-  linkedin: string;
-};
-
-const fieldOptions = {
-  required: 'Введіть прізвище та ім’я',
-  minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
-  },
-  maxLength: {
-    value: 75,
-    message: 'Максимальна довжина поля 75 символів',
-  },
-  pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї ]+$/,
-    message: 'Введіть коректне прізвище та ім’я',
-  },
-};
-
-const linkedinOptions = {
-  required: 'Введіть посилання на профіль Linkedin',
-  pattern: {
-    value: /^(https:\/\/(www\.)?)?linkedin\.com/i,
-    message: 'Введіть коректне посилання на профіль Linkedin',
-  },
-};
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+import { TMemberBioResp, TMemberBioReq } from '@/types';
+import { TMemberFormInput, TMemberFormProps } from './types';
+import { memberValidateOptions } from './validateOptions';
 
 const createOptions = (
   id: string | undefined,
-  members: IMember[] | undefined
+  members: TMemberBioResp[] | undefined
 ) => {
   if (!members || !id) return;
 
@@ -66,12 +32,14 @@ const createOptions = (
   };
 };
 
-export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
+export const MemberForm = ({
+  memberId,
+  addMemberNComeback,
+}: TMemberFormProps) => {
   const router = useRouter();
+  const { handleTranslate } = useTranslator();
 
-  const { handlerAddMember } = useProjectsByIdSWR(projectId);
-  const { membersData, handlerCreateMember, handlerUpdateMember } =
-    useMembersSWR();
+  const { membersData, createMember, updateMember } = useMembersSWR();
   const members = membersData?.results;
 
   const valuesIfItEditedMember = createOptions(memberId, members);
@@ -79,12 +47,27 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
   const {
     control,
     handleSubmit,
-    reset,
+    watch,
+    setValue,
     formState: { errors },
-  } = useForm<TFormInput>(valuesIfItEditedMember);
+  } = useForm<TMemberFormInput>(valuesIfItEditedMember);
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    const member: IMember = {
+  const translateToEn = () => {
+    handleTranslate(watch().nameUk, 'en').then((res) => {
+      setValue('nameEn', res);
+    });
+  };
+
+  const translateToPl = () => {
+    handleTranslate(watch().nameUk, 'pl').then((res) =>
+      setValue('namePl', res)
+    );
+  };
+
+  const cancelAction = () => router.replace('.');
+
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
+    const member: TMemberBioReq = {
       name: {
         en: data.nameEn,
         pl: data.namePl,
@@ -94,37 +77,16 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
     };
 
     if (memberId) {
-      handlerUpdateMember(memberId, member);
+      updateMember(memberId, member);
     } else {
-      const res = handlerCreateMember(member);
-      projectId &&
-        res &&
-        res.then((res) => {
-          console.log('!!!!!!!!', res);
-          handlerAddMember({
-            teamMember: res,
-            teamMemberRole: {
-              _id: '',
-              name: {
-                en: '',
-                pl: '',
-                ua: '',
-              },
-            },
-          });
-        });
+      createMember(member)?.then((res) => {
+        if (res && !!addMemberNComeback) {
+          addMemberNComeback(res);
+        }
+      });
     }
 
-    router.back();
-  };
-
-  const handleResetMemberForm = () => {
-    reset({
-      nameUk: '',
-      nameEn: '',
-      namePl: '',
-      linkedin: '',
-    });
+    !addMemberNComeback && cancelAction();
   };
 
   return (
@@ -132,7 +94,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldUk}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -147,12 +109,13 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
 
         <Controller
           name="nameEn"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldEn}
           control={control}
           render={({ field }) => (
             <TextInputField
               {...field}
               inputType="en"
+              handleTranslate={translateToEn}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -160,12 +123,13 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
 
         <Controller
           name="namePl"
-          rules={fieldOptions}
+          rules={memberValidateOptions.fieldPl}
           control={control}
           render={({ field }) => (
             <TextInputField
               {...field}
               inputType="pl"
+              handleTranslate={translateToPl}
               errorText={errors.namePl?.message}
             />
           )}
@@ -173,7 +137,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
 
         <Controller
           name="linkedin"
-          rules={linkedinOptions}
+          rules={memberValidateOptions.linkedinOptions}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -185,7 +149,7 @@ export const MemberForm = ({ memberId, projectId }: TMemberForm) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!memberId} handleFunc={handleResetMemberForm} />
+      <FormBtns isEditMode={!!memberId} cancelAction={cancelAction} />
     </form>
   );
 };

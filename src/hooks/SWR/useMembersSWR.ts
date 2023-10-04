@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
-import { membersEndpoint, membersApi } from '@/utils/API/members';
+import { membersApi, membersEndpoint } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError, AxiosResponse } from 'axios';
-import { IMember, TResponseMembers } from '@/types';
+import { TMemberBioReq, TResponseMembers } from '@/types';
+import { AxiosError } from 'axios';
 
 const useMembersSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -14,71 +14,87 @@ const useMembersSWR = () => {
 
   const swrKey = `${membersEndpoint}?search=${search}`;
 
-  const { data, error, isLoading, mutate } = useSWR<
-    TResponseMembers,
-    AxiosError
-  >(swrKey, membersApi.getAll, { keepPreviousData: true });
-
-  useEffect(() => {
-    if (!error) return;
-
-    errorHandler(error);
+  const handleRequestError = (err: any) => {
+    errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[error?.status || 500],
+      title: networkStatusesUk[err?.status || 500],
       textInfo:
         'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
     });
-  }, [error]);
+  };
 
-  const updateAndMutate = (
-    updMembers: IMember[],
-    action: () => Promise<AxiosResponse<any, any>>
-  ) => {
+  const { data, error, isLoading, mutate } = useSWR<
+    TResponseMembers,
+    AxiosError
+  >(swrKey, membersApi.getAll, {
+    keepPreviousData: true,
+    onError: handleRequestError,
+  });
+
+  const searchMember = (search: string) => {
+    setSearch(search);
+  };
+
+  const deleteMember = async (id: string) => {
     try {
-      return mutate(action, {
-        optimisticData: { ...data!, results: updMembers },
-        revalidate: false,
-        populateCache: false,
-      });
+      const updMembers = data?.results.filter((member) => member._id !== id);
+      const updData: TResponseMembers = { ...data!, results: updMembers! };
+
+      mutate(updData);
+      await membersApi.deleteById(id);
     } catch (err) {
-      errorHandler(err);
+      handleRequestError(err);
     }
   };
 
-  const handlerDeleteMember = (id: string) => {
-    const updMembers = data?.results.filter((member) => member._id !== id);
-    updateAndMutate(updMembers!, () => membersApi.deleteById(id));
+  const createMember = async (newMember: TMemberBioReq) => {
+    try {
+      const createdMember = await membersApi.createNew(newMember);
+
+      if (!createdMember) return null;
+
+      const updData: TResponseMembers = {
+        ...data!,
+        results: [createdMember, ...(data?.results || [])],
+      };
+
+      mutate(updData);
+
+      return createdMember;
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
-  const handlerCreateMember = (newMember: IMember) => {
-    const updMembers = [...(data?.results || []), newMember];
-    return updateAndMutate(updMembers, () =>
-      membersApi.createNew(newMember)
-    )?.then((res) => res?.data);
-  };
+  const updateMember = async (id: string, updMember: TMemberBioReq) => {
+    try {
+      const updatedMember = await membersApi.updateById(id, updMember);
 
-  const handlerUpdateMember = (id: string, updMember: IMember) => {
-    const updMembers = data?.results.map((member) =>
-      member._id === id ? updMember : member
-    );
-    return updateAndMutate(updMembers!, () =>
-      membersApi.updateById(id, updMember)
-    );
-  };
+      if (!updatedMember) return null;
 
-  const handlerSearchMember = (search: string) => {
-    setSearch(search);
+      const updatedMembers = (data?.results || []).map((member) =>
+        member._id === id ? updatedMember : member
+      );
+
+      const updData: TResponseMembers = { ...data!, results: updatedMembers };
+
+      mutate(updData);
+
+      return updatedMember;
+    } catch (err) {
+      handleRequestError(err);
+    }
   };
 
   return {
     membersData: data,
     isLoading,
     isError: error,
-    handlerCreateMember,
-    handlerUpdateMember,
-    handlerDeleteMember,
-    handlerSearchMember,
+    createMember,
+    updateMember,
+    deleteMember,
+    searchMember,
   };
 };
 

@@ -1,18 +1,14 @@
-import { convertDate } from '@/utils/formatDate';
+import { useProjectFormContext } from './ProjectFormProvider';
+
 import { createImgUrl } from '@/utils/imageHandler';
-import { projectValidateOptions } from './projectValidateOptions';
+import { prepareProject } from './projectUtils';
+import { projectValidateOptions } from './validateOptions';
 
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { ProjectCard } from '@/components/ProjectCard';
 import { LogoMain } from '@/components/common/icons';
 
-import { TProject } from '@/types';
-import { TFormInput } from './types';
-
-type Props = {
-  // TODO: possibly delete.
-  currentValues: TFormInput;
-};
+import { TProjectResp } from '@/types';
 
 const EmptyPreviewImg = () => (
   <div className="flex-center h-[46.4rem] rounded-md bg-neutral-75">
@@ -20,9 +16,10 @@ const EmptyPreviewImg = () => (
   </div>
 );
 
-const ProjectPreview = ({ currentValues }: Props) => {
+const ProjectPreview = () => {
+  const { teamMemberData, watch } = useProjectFormContext();
+  const currentValues = watch();
   const { projectImg } = currentValues;
-  // console.log("projectImg", projectImg[0].type );
 
   const getCoverImgUrl = () => {
     if (!projectImg?.length) return;
@@ -32,7 +29,7 @@ const ProjectPreview = ({ currentValues }: Props) => {
     }
 
     const isValidImg = projectValidateOptions.img.validate(projectImg);
-    if (isValidImg) {
+    if (typeof isValidImg !== 'string') {
       return URL.createObjectURL(projectImg[0]);
     }
   };
@@ -43,22 +40,11 @@ const ProjectPreview = ({ currentValues }: Props) => {
     return <EmptyPreviewImg />;
   }
 
-  // console.log('pervVal >>', currentValues.launchDate);
-
-  const previewProject: TProject = {
+  const previewProject: TProjectResp = {
     _id: '',
-    title: {
-      en: currentValues.nameEn,
-      pl: currentValues.namePl,
-      ua: currentValues.nameUk,
-    },
     imageUrl: '',
-    deployUrl: currentValues.deployUrl,
-    isTeamRequired: !!currentValues.isTeamRequired,
-    creationDate: convertDate.toMsec(currentValues.creationDate),
-    launchDate: convertDate.toMsec(currentValues.launchDate),
-    complexity: +currentValues.complexity,
-    teamMembers: []
+    ...prepareProject(currentValues),
+    teamMembers: teamMemberData,
   };
 
   return (
@@ -68,6 +54,7 @@ const ProjectPreview = ({ currentValues }: Props) => {
           project={previewProject}
           coverImgUrl={coverImgUrl}
           lang={'ua'}
+          isAdminMode={true}
         />
       </ul>
 
@@ -79,4 +66,3 @@ const ProjectPreview = ({ currentValues }: Props) => {
 };
 
 export { ProjectPreview };
-

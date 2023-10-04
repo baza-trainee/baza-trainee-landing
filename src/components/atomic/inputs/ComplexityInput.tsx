@@ -1,13 +1,26 @@
-import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
+'use client';
 
-interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  title?: string;
-}
+import { InputHTMLAttributes } from 'react';
+import {
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
-const Input = (
-  { title, value, ...rest }: TextInputFieldProps,
-  ref: ForwardedRef<HTMLInputElement>
-) => {
+type TProps<T extends FieldValues> = InputHTMLAttributes<HTMLInputElement> &
+  UseControllerProps<T> & {
+    title?: string;
+  };
+
+export const ComplexityInput = <T extends FieldValues>({
+  title,
+  control,
+  name,
+  ...rest
+}: TProps<T>) => {
+  const { field } = useController<T>({ name, control });
+  const { value } = field;
+
   return (
     <div className="relative w-full max-w-[32.6rem]">
       {title && <h4 className="absolute left-0 top-0">{title}</h4>}
@@ -19,11 +32,13 @@ const Input = (
             [1, 2, 3, 4, 5].map((v) => (
               <input
                 {...rest}
+                {...field}
                 type="radio"
-                defaultChecked={value === v}
                 key={v}
                 value={v}
-                className="peer h-8 w-8 cursor-pointer appearance-none rounded-full border-2 border-black bg-black peer-checked:bg-white"
+                className={`h-8 w-8 cursor-pointer appearance-none rounded-full border-2 border-black ${
+                  value >= v ? 'bg-black' : ''
+                } `}
               />
             ))}
         </div>
@@ -31,5 +46,3 @@ const Input = (
     </div>
   );
 };
-
-export const ComplexityInput = forwardRef(Input);

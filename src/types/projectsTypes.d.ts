@@ -1,61 +1,34 @@
 import { TLandingLanguage } from '@/store/globalContext';
 import { TTitleLanguagesTypes } from './typesAPI';
 
-// export type TTeamMember = {
-//   _id: string;
-//   name: string;
-//   link: string;
-// };
-export type TTeamMemberBio = {
-  _id: string;
+export type TMemberBioReq = {
   name: TTitleLanguagesTypes;
-  link: string;
+  profileUrl?: string;
 };
 
-// export type TTeamMemberRole = Omit<TTeamMember, 'link'>;
-export type TTeamMemberRole = {
+export type TMemberBioResp = TMemberBioReq & {
   _id: string;
+};
+
+export type TMemberRoleReq = {
   name: TTitleLanguagesTypes;
 };
 
-export type TTeamMemberRoleReq = {
-  name: TTitleLanguagesTypes;
-};
-
-export type TTeamMember = {
-  teamMember: TTeamMemberBio;
-  teamMemberRole: TTeamMemberRole;
-};
-
-export interface IProject {
+export type TMemberRoleResp = TMemberRoleReq & {
   _id: string;
-  title: TTitleLanguagesTypes;
-  imageUrl: string;
-  status: TTitleLanguagesTypes;
-  statusVal?: 'active' | 'under-development' | 'formation-of-the-team'; //TODO remove this
-  deployUrl?: string;
-  link?: string;
-  isTeamRequired: boolean;
-  description: TTitleLanguagesTypes;
-  creationDate: number;
-  launchDate: number;
-  complexity: number;
-  teamMembers: Array<{
-    user: TTeamMemberBio;
-    role: {
-      _id: string;
-      name: string;
-    };
-  }>;
-}
+};
 
-export interface ICardContent {
-  handleShowTeam: () => void;
-  project: IProject;
-  lang: TLandingLanguage;
-}
+export type TMemberResp = {
+  teamMember: TMemberBioResp;
+  teamMemberRole: TMemberRoleResp;
+};
 
-export type TProjectRequest = {
+export type TProjectMemberReq = {
+  teamMember: string;
+  teamMemberRole: string;
+};
+
+export type TProjectReq = {
   title: TTitleLanguagesTypes;
   file?: File;
   deployUrl?: string;
@@ -63,27 +36,24 @@ export type TProjectRequest = {
   creationDate: number;
   launchDate?: number;
   complexity: number;
-  teamMembers?: Array<{
-    teamMember: string;
-    teamMemberRole: string;
-  }>;
+  teamMembers?: TProjectMemberReq[];
 };
 
-export type TProject = {
+export type TProjectResp = {
   _id: string;
   title: TTitleLanguagesTypes;
   imageUrl: string;
   deployUrl?: string;
   isTeamRequired: boolean;
   creationDate: number;
-  launchDate: number;
+  launchDate?: number;
   complexity: number;
-  teamMembers: TTeamMember[];
+  teamMembers: TMemberResp[];
 };
 
-export interface ICardContent2 {
-  // TODO: this is temporary. in the future it should be renamed to "ICardContent".
+export interface ICardContent {
   handleShowTeam: () => void;
-  project: TProject;
+  project: TProjectResp;
   lang: TLandingLanguage;
+  isAdminMode?: boolean;
 }

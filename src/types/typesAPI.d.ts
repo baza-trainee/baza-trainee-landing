@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { IProject, TProject, TTeamMemberRole } from './projectsTypes';
+import { TMemberBioResp, TMemberRoleResp, TProjectResp } from './projectsTypes';
 
 export interface IErrorResponse {
   message: string;
@@ -35,11 +35,11 @@ export interface IRegisterRequest extends ILoginRequest {
   name: string;
 }
 
-export interface IAchievement extends CommonResponseBase {
-  projects: number;
-  members: number;
-  employed: number;
-}
+// export interface IAchievement extends CommonResponseBase {
+//   projects: number;
+//   members: number;
+//   employed: number;
+// }
 
 export interface IUpdateEmployedRequest {
   employed: number;
@@ -65,31 +65,23 @@ export interface IHeroSlider extends CommonResponseBase {
   imageUrl?: string;
 }
 
-export interface IPartner extends CommonResponseBase {
-  homeUrl?: string;
-  imageUrl: string;
-}
-/*
-export interface IProject extends CommonResponseBase {
-  title: TTitleLanguagesTypes;
-  imageUrl: string;
-  deployUrl?: string;
-  stack?: [{ _id?: string; name: string }];
-  isTeamRequired: Boolean;
-  creationDate: number;
-  launchDate?: number;
-  complexity: number;
-  teamMembers?: [
-    {
-      user: { _id?: string; name: string };
-      role: { _id?: string; name: string };
-    }
-  ];
-}*/
+// export interface IPartner extends CommonResponseBase {
+//   homeUrl?: String;
+//   imageUrl: String;
+//   name: String;
+// }
+export type IHeroSliderData = {
+  results: IHeroSlider[];
+  info: {
+    totalSlides: number;
+    maxSlides: number;
+  };
+};
 
-export interface IRole extends CommonResponseBase {
-  name: TTitleLanguagesTypes;
-}
+// export interface IPartner extends CommonResponseBase {
+//   homeUrl?: string;
+//   imageUrl: string;
+// }
 
 export interface IStack extends CommonResponseBase {
   name: string;
@@ -109,24 +101,33 @@ export interface IDocuments<T> extends CommonResponseBase {
   };
 }
 
-export interface IMember extends CommonResponseBase {
-  name: TTitleLanguagesTypes;
-  profileUrl?: string;
-}
+// export interface IMember extends CommonResponseBase {
+//   name: TTitleLanguagesTypes;
+//   profileUrl?: string;
+// }
 
-export interface ITestimonial extends CommonResponseBase {
+type TTestimonialBase = {
   name: TTitleLanguagesTypes;
   review: TTitleLanguagesTypes;
   date: number;
-  imageUrl: string;
-}
+  role: string;
+};
 
-export interface IUser extends CommonResponseBase {
-  name: string;
-  email: string;
-  passwordHash: string;
-  token: string;
-}
+export type TTestimonialResp = TTestimonialBase & {
+  _id: string;
+  imageUrl: string;
+};
+
+export type ITestimonialRequest = TTestimonialBase & {
+  file: File;
+};
+
+// export interface IUser extends CommonResponseBase {
+//   name: string;
+//   email: string;
+//   passwordHash: string;
+//   token: string;
+// }
 
 export type id = string | number;
 export type updateByIdRequest = [id: id, payload: Object];
@@ -136,39 +137,39 @@ export type methodType<T> = (payload: T) => Promise<AxiosResponse>;
 export type dispatcherType<T> = (payload?: T) => void;
 export type responseDataType =
   | any
-  | IUser
-  | IAchievement
+  // | IUser
+  // | IAchievement
   | IHeroSlider
-  | IPartner
-  | IProject
-  | IRole
+  // | IPartner
+  // | IProject
+  // | IRole
   | IStack
-  | IMember
-  | ITestimonial
+  // | IMember
+  | TTestimonialResp
   | IErrorResponse
   | Array<
       | IHeroSlider
-      | IPartner
-      | IProject
-      | IRole
+      // | IPartner
+      // | IProject
+      // | IRole
       | IStack
-      | IMember
-      | ITestimonial
+      // | IMember
+      | TTestimonialResp
     >
   | null;
 
 export type TResponseProjects = {
-  results: TProject[];
+  results: TProjectResp[];
   pagination: TPagination;
 };
 
 export type TResponseMembers = {
-  results: IMember[];
+  results: TMemberBioResp[];
   pagination: TPagination;
 };
 
 export type TResponseRoles = {
-  results: TTeamMemberRole[];
+  results: TMemberRoleResp[];
   pagination: TPagination;
 };
 
@@ -179,3 +180,17 @@ export type THeroSliderData = {
     maxSlides: number;
   };
 };
+
+export interface IChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+}
+
+export interface IPasswordRequestReset {
+  email: string;
+}
+export interface IPasswordReset {
+  userId: string;
+  token: string;
+  password: string;
+}

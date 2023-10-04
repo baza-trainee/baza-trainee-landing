@@ -5,34 +5,13 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 
-import { TextInputField } from '@/components/atomic';
-import { FormBtns } from '../../atomic/buttons/FormBtns';
+import { FormBtns, TextInputField } from '@/components/atomic';
 
-import { IRole } from '@/types';
+import {  TMemberRoleResp } from '@/types';
+import { TMemberFormInput } from './types';
+import { roleValidateOptions } from './validateOptions';
 
-type TFormInput = {
-  nameUk: string;
-  nameEn: string;
-  namePl: string;
-};
-
-const fieldOptions = {
-  required: 'Введіть назву',
-  minLength: {
-    value: 5,
-    message: 'Мінімальна довжина поля 5 символів',
-  },
-  maxLength: {
-    value: 25,
-    message: 'Максимальна довжина поля 25 символів',
-  },
-  pattern: {
-    value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї \d]+$/,
-    message: 'Введіть коректну назву',
-  },
-};
-
-const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
+const createOptions = (id: string | undefined, roles: TMemberRoleResp[] | undefined) => {
   if (!roles || !id) return;
 
   const role = roles.find((m) => m._id === id);
@@ -51,7 +30,7 @@ const createOptions = (id: string | undefined, roles: IRole[] | undefined) => {
 export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const router = useRouter();
 
-  const { rolesData, handlerCreateRole, handlerUpdateRole } = useRolesSWR();
+  const { rolesData, createRole, updateRole } = useRolesSWR();
   const roles = rolesData?.results;
 
   const valuesIfItEditedRole = createOptions(roleId, roles);
@@ -59,11 +38,12 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm<TFormInput>(valuesIfItEditedRole);
+  } = useForm<TMemberFormInput>(valuesIfItEditedRole);
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const cancelAction = () => router.replace('.');
+
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const role = {
       name: {
         en: data.nameEn,
@@ -73,16 +53,12 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     };
 
     if (roleId) {
-      handlerUpdateRole(roleId, role);
+      updateRole(roleId, role);
     } else {
-      handlerCreateRole(role);
+      createRole(role);
     }
 
-    router.replace('.');
-  };
-
-  const handleResetRoleForm = () => {
-    reset({ nameUk: '', nameEn: '', namePl: '' });
+    cancelAction();
   };
 
   return (
@@ -90,7 +66,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
-          rules={fieldOptions}
+          rules={roleValidateOptions.fieldUk}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -105,7 +81,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
 
         <Controller
           name="nameEn"
-          rules={fieldOptions}
+          rules={roleValidateOptions.fieldEn}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -118,7 +94,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
 
         <Controller
           name="namePl"
-          rules={fieldOptions}
+          rules={roleValidateOptions.fieldPl}
           control={control}
           render={({ field }) => (
             <TextInputField
@@ -130,7 +106,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!roleId} handleFunc={handleResetRoleForm} />
+      <FormBtns isEditMode={!!roleId} cancelAction={cancelAction} />
     </form>
   );
 };

@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
-import { rolesEndpoint, rolesApi } from '@/utils/API/roles';
+import { rolesApi, rolesEndpoint } from '@/utils/API/roles';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
-import { AxiosError, AxiosResponse } from 'axios';
-import { TResponseRoles, TTeamMemberRole, TTeamMemberRoleReq } from '@/types';
+import { TMemberRoleReq, TResponseRoles } from '@/types';
+import { AxiosError } from 'axios';
 
 const useRolesSWR = () => {
   const { setAlertInfo } = useGlobalContext();
@@ -14,53 +14,42 @@ const useRolesSWR = () => {
 
   const swrKey = `${rolesEndpoint}?search=${search}`;
 
-  const { data, error, isLoading, mutate } = useSWR<TResponseRoles, AxiosError>(
-    swrKey,
-    rolesApi.getAll,
-    { keepPreviousData: true }
-  );
-
-  useEffect(() => {
-    if (!error) return;
-
-    errorHandler(error);
+  const handleRequestError = (err: any) => {
+    errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[error?.status || 500],
+      title: networkStatusesUk[err?.status || 500],
       textInfo:
         'Не вдалося отримати перелік спеціалізацій. Спробуйте трохи пізніше.',
     });
-  }, [error]);
-
-  const updateAndMutate = (
-    updRoles: TTeamMemberRole[],
-    action: () => Promise<AxiosResponse<any, any>>
-  ) => {
-    mutate(action, {
-      optimisticData: { ...data!, results: updRoles },
-      revalidate: false,
-      populateCache: false,
-    });
   };
 
-  const handlerDeleteRole = (id: string) => {
-    const updRoles = data?.results.filter((role) => role._id !== id);
-    updateAndMutate(updRoles!, () => rolesApi.deleteById(id));
+  const { data, error, isLoading, mutate } = useSWR<TResponseRoles, AxiosError>(
+    swrKey,
+    rolesApi.getAll,
+    { keepPreviousData: true, onError: handleRequestError }
+  );
+
+  const deleteRole = async (id: string) => {
+    // const updRoles = data?.results.filter((role) => role._id !== id);
+    await rolesApi.deleteById(id);
+    mutate();
   };
 
-  const handlerCreateRole = (newRole: TTeamMemberRoleReq) => {
-    // const updRoles = [...(data?.results || []), newRole];
-    mutate(() => rolesApi.createNew(newRole));
+  const createRole = async (newRole: TMemberRoleReq) => {
+    await rolesApi.createNew(newRole);
+    mutate();
   };
 
-  const handlerUpdateRole = (id: string, updRole: TTeamMemberRoleReq) => {
-    const updRoles = data?.results.map((role) =>
-      role._id === id ? { ...updRole, _id: id } : role
-    );
-    updateAndMutate(updRoles!, () => rolesApi.updateById(id, updRole));
+  const updateRole = async (id: string, updRole: TMemberRoleReq) => {
+    // const updRoles = data?.results.map((role) =>
+    //   role._id === id ? { ...updRole, _id: id } : role
+    // );
+    await rolesApi.updateById(id, updRole);
+    mutate();
   };
 
-  const handlerSearchRole = (search: string) => {
+  const searchRole = (search: string) => {
     setSearch(search);
   };
 
@@ -68,10 +57,10 @@ const useRolesSWR = () => {
     rolesData: data,
     isLoading,
     isError: error,
-    handlerCreateRole,
-    handlerUpdateRole,
-    handlerDeleteRole,
-    handlerSearchRole,
+    createRole,
+    updateRole,
+    deleteRole,
+    searchRole,
   };
 };
 

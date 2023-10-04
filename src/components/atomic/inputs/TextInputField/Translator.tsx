@@ -10,7 +10,7 @@ interface ITranslatorProps {
   translateValue: string | number;
   setTranslatedValue: ((_data: string, _fieldName: string) => void) | undefined;
   fieldName: string | undefined;
-  lang: string;
+  lang: 'en' | 'pl';
 }
 
 export const Translator = ({
@@ -34,7 +34,7 @@ export const Translator = ({
         title: 'Помилка при перекладі',
         textInfo: 'Не вдалося виконати переклад. Спробуйте, будь ласка, ще раз',
       });
-  }, [isError, data, setAlertInfo, setTranslatedValue, fieldName]);
+  }, [isError, data, fieldName]);
 
   const handleTranslate: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();

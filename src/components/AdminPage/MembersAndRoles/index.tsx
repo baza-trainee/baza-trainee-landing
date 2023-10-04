@@ -1,33 +1,28 @@
 'use client';
 
-import { SearchBar } from '@/components/atomic';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { MembersAndRolesList } from './MembersAndRolesList';
+import { SearchBar } from '@/components/atomic';
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
+import { roleSorter } from '@/utils/roleSorter';
+import { MembersAndRolesList } from './MembersAndRolesList';
+import { TEntity } from './types';
 
-type TProps = {
-  entity: 'members' | 'roles';
-};
+export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
+  const { membersData, searchMember, deleteMember } = useMembersSWR();
 
-export const MembersAndRoles = ({ entity }: TProps) => {
-  const { membersData, handlerSearchMember, handlerDeleteMember } =
-    useMembersSWR();
-
-  const { rolesData, handlerDeleteRole, handlerSearchRole } = useRolesSWR();
+  const { rolesData, deleteRole, searchRole } = useRolesSWR();
 
   const title = entity === 'members' ? 'Учасники' : 'Спеціалізація';
 
   const showedData =
     entity === 'members'
       ? membersData?.results || []
-      : rolesData?.results || [];
+      : roleSorter(rolesData?.results) || [];
 
-  const handleDelete =
-    entity === 'members' ? handlerDeleteMember : handlerDeleteRole;
+  const handleDelete = entity === 'members' ? deleteMember : deleteRole;
 
-  const handleSearch =
-    entity === 'members' ? handlerSearchMember : handlerSearchRole;
+  const handleSearch = entity === 'members' ? searchMember : searchRole;
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
