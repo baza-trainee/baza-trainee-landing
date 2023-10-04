@@ -19,12 +19,10 @@ export const MembersAndRolesList = ({
           showedData.length > 0 &&
           showedData.map((item) => (
             <ListRow
-              isProjectEditorMode
+              {...{ isProjectEditorMode, handleDelete, selectMember }}
               entity={entity}
               key={item._id}
               showedData={item}
-              handleDelete={handleDelete}
-              selectMember={selectMember}
             />
           ))}
       </tbody>
