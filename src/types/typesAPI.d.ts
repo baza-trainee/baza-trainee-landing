@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+
 import { TMemberBioResp, TMemberRoleResp, TProjectResp } from './projectsTypes';
 
 export interface IErrorResponse {

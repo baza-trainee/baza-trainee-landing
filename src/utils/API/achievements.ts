@@ -1,5 +1,6 @@
-import { IUpdateEmployedRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
+
+import { IUpdateEmployedRequest } from '@/types/typesAPI';
 
 const achievementsApi = {
   async getData() {

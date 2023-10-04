@@ -3,14 +3,13 @@
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
-
-import { FormBtns, TextInputField } from '@/components/atomic';
-
-import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { TMemberBioResp, TMemberBioReq } from '@/types';
 import { TMemberFormInput, TMemberFormProps } from './types';
 import { memberValidateOptions } from './validateOptions';
+
+import { FormBtns, TextInputField } from '@/components/atomic';
+import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+import { TMemberBioReq,TMemberBioResp } from '@/types';
 
 const createOptions = (
   id: string | undefined,

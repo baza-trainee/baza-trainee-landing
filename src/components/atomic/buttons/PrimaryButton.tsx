@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, FC } from 'react';
+
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const PrimaryButton: FC<ButtonProps> = ({

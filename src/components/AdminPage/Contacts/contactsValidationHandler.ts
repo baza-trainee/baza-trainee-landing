@@ -1,10 +1,11 @@
+import { SetStateAction } from 'react';
+
 import { TContactsInfo } from '@/types';
 import {
   validateEmail,
   validatePhone,
   validateUrl,
 } from '@/utils/InputValidations';
-import { SetStateAction } from 'react';
 
 export const errorsSample = {
   phone1: '',

@@ -1,16 +1,19 @@
 'use client';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { FileInput, TextInputField } from '@/components/atomic';
-import { FormBtns } from '@/components/atomic/buttons/FormBtns';
-import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
-import { IHeroSlider } from '@/types';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import { DefaultValuesState, emptyFields } from './DefaultValues';
+
 import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
-import { DefaultValuesState, emptyFields } from './DefaultValues';
+
+import { FileInput, TextInputField } from '@/components/atomic';
+import { FormBtns } from '@/components/atomic/buttons/FormBtns';
+import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { IHeroSlider } from '@/types';
 
 export const SliderForm = ({
   id,

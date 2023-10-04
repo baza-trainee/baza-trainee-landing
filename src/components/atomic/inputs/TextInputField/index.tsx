@@ -1,12 +1,13 @@
-import { TranslatorIcon } from '@/components/common/icons';
-import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
 import {
   ForwardedRef,
+  forwardRef,
   InputHTMLAttributes,
   MouseEventHandler,
-  forwardRef,
   useId,
 } from 'react';
+
+import { TranslatorIcon } from '@/components/common/icons';
+import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
 
 interface TextInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;

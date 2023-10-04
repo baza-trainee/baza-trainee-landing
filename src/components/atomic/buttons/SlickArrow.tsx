@@ -1,4 +1,5 @@
 import { CustomArrowProps } from 'react-slick';
+
 import { MultiArrow } from '../../common/icons';
 
 interface IProps extends CustomArrowProps {

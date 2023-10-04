@@ -1,18 +1,17 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+import { projects } from './projects';
+
 import {
     ContainerMaxW1200,
     MoreProjectsButton
 } from '@/components/atomic';
-
 import { ProjectCard } from '@/components/ProjectCard';
-
-import { TProjectResp } from '@/types';
-import { useEffect, useState } from 'react';
-import { projects } from './projects';
-
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import { TProjectResp } from '@/types';
 
 /*const getProjects = async () => {
   const response = await fetch(

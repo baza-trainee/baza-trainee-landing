@@ -1,13 +1,16 @@
 'use client';
 
 //import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { useBodyScrollLockSimple } from '@/hooks/useBodyScrollLockSimple';
-import { TLandingLanguage } from '@/store/globalContext';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { CloseIcon } from '../common/icons';
+
 import { Gratitude } from './Gratitude';
 import { PDFView } from './PdfView';
+
+import { CloseIcon } from '../common/icons';
+
+import { useBodyScrollLockSimple } from '@/hooks/useBodyScrollLockSimple';
+import { TLandingLanguage } from '@/store/globalContext';
 
 export const ModalParams = ({ lang }: { lang: TLandingLanguage }) => {
   const params = useSearchParams();

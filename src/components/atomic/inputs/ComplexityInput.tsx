@@ -3,8 +3,8 @@
 import { InputHTMLAttributes } from 'react';
 import {
   FieldValues,
-  UseControllerProps,
   useController,
+  UseControllerProps,
 } from 'react-hook-form';
 
 type TProps<T extends FieldValues> = InputHTMLAttributes<HTMLInputElement> &

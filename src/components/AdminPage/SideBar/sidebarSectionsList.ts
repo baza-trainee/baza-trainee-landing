@@ -1,3 +1,5 @@
+import { TsidebarSection } from './types';
+
 import {
   ContactIcon,
   CounterIcon,
@@ -8,8 +10,6 @@ import {
   SettingsIcon,
   SliderIcon,
 } from '@/components/common/icons/index';
-
-import { TsidebarSection } from './types';
 
 export const sidebarSectionsList: TsidebarSection[] = [
   { id: 'slider', icon: SliderIcon, text: 'Слайдер' },

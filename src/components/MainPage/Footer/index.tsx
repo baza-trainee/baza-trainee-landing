@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import { TContactsInfo } from '@/types';
-
 import { ContainerMaxW1200 } from '@/components/atomic';
 import {
   LinkedInIcon,
@@ -12,6 +10,7 @@ import {
 } from '@/components/common/icons';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import { TContactsInfo } from '@/types';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
 
 const getContacts = async () => {

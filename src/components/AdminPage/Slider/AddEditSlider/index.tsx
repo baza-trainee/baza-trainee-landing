@@ -1,9 +1,11 @@
 'use client';
+import { FC } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+
+import { SliderForm } from './AdminSliderForm';
+
 import { AdminTitle } from '@/components/atomic';
 import { CloseIcon } from '@/components/common/icons';
-import { useParams, useRouter } from 'next/navigation';
-import { FC } from 'react';
-import { SliderForm } from './AdminSliderForm';
 
 export interface IAddEditSlideProps {
   title: string;

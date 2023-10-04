@@ -1,6 +1,7 @@
+import { bazaAPI } from './config';
+
 import { PartnerData } from '@/types';
 import { updateByIdRequest } from '@/types/typesAPI';
-import { bazaAPI } from './config';
 
 const partnersApi = {
   getAll({

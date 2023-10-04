@@ -1,6 +1,8 @@
-import { Errors, FieldChangeHandler, PartnerData } from '@/types';
 import { useEffect, useState } from 'react';
+
 import { validateWebsite } from '../utils/validateWebsite';
+
+import { Errors, FieldChangeHandler, PartnerData } from '@/types';
 
 const initialState: PartnerData = {
   name: '',

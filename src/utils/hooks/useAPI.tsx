@@ -1,5 +1,6 @@
-import { dispatcherType, methodType, responseDataType } from '@/types/typesAPI';
 import { useEffect, useRef, useState } from 'react';
+
+import { dispatcherType, methodType, responseDataType } from '@/types/typesAPI';
 
 export const useAPI = <T,>(
   method: methodType<T>

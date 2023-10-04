@@ -1,6 +1,7 @@
+import { bazaAPI } from './config';
+
 import { TMemberBioReq, TMemberBioResp } from '@/types';
 import { TResponseMembers } from '@/types/typesAPI';
-import { bazaAPI } from './config';
 
 const membersEndpoint = '/members';
 

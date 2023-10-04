@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import {
   DateIcon,
   EyeClosed,
@@ -5,8 +7,6 @@ import {
   PenIcon,
   UploadIcon,
 } from '@/components/common/icons';
-
-import { ReactNode } from 'react';
 
 export const IdentifyInputFieldTypeSetting = (inputType: string) => {
   let icon: ReactNode;

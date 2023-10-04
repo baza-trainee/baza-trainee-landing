@@ -1,16 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+import Container from './Container';
+import { PartnerItem } from './PartnerItem';
+
+import { PaginationBar } from '../../atomic/PaginationBar';
+import { PlusIcon } from '../../common/icons/PlusIcon';
+
 import { AdminPanelButton } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { SearchIcon } from '@/components/common/icons';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { PaginationBar } from '../../atomic/PaginationBar';
-import { PlusIcon } from '../../common/icons/PlusIcon';
-import Container from './Container';
-import { PartnerItem } from './PartnerItem';
 
 export const PartnersPage = () => {
   const [dispatch, data, isError, isLoading] = useAPI(partnersApi.getAll);

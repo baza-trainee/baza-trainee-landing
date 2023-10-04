@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import { InputField, InputFieldProps } from './InputField';
 
 export const PasswordInput = ({ ...rest }: InputFieldProps) => {

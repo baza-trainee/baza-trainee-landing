@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useProjectFormContext } from '../ProjectFormProvider';
 
-import { MemberForm } from '../../MembersAndRoles/MemberForm';
 import { ListHeader } from './ListHeader';
 import { ListRow } from './ListRow';
+
+import { MemberForm } from '../../MembersAndRoles/MemberForm';
+import { useProjectFormContext } from '../ProjectFormProvider';
 
 import { TMemberBioResp } from '@/types';
 

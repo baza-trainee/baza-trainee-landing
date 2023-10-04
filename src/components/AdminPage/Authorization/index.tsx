@@ -1,5 +1,11 @@
 'use client';
 
+import { KeyboardEvent, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
+
 import {
   AdminPanelButton,
   AdminTitle,
@@ -9,10 +15,6 @@ import {
 import { useGlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { KeyboardEvent, useEffect, useState } from 'react';
-import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
 
 const recoverLink = 'login/request-reset';
 

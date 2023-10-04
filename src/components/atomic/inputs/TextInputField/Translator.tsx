@@ -1,10 +1,11 @@
 'use client';
 
+import { MouseEventHandler, useEffect } from 'react';
+
 import { TranslatorIcon } from '@/components/common/icons';
 import { useGlobalContext } from '@/store/globalContext';
 import { translateApi } from '@/utils/API/translate';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { MouseEventHandler, useEffect } from 'react';
 
 interface ITranslatorProps {
   translateValue: string | number;

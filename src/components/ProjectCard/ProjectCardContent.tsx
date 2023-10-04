@@ -1,20 +1,17 @@
 import Link from 'next/link';
 
-import { projectCycle } from '@/utils/developmentTimeCalculator';
-import { formatDate } from '@/utils/formatDate';
-
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
-
-import { dictionaries } from '@/locales/dictionaries';
 
 import {
   ProjectComplexityIcon,
   ProjectDurationIcon,
   ProjectStartIcon,
 } from '@/components/common/icons';
-
+import { dictionaries } from '@/locales/dictionaries';
 import { ICardContent } from '@/types';
+import { projectCycle } from '@/utils/developmentTimeCalculator';
+import { formatDate } from '@/utils/formatDate';
 
 const ProjectCardContent = ({
   handleShowTeam,
@@ -36,8 +33,7 @@ const ProjectCardContent = ({
       <ProjectStatusBar project={project} lang={lang} />
 
       <div className="flex h-[29rem] w-full flex-col">
-
-        <div className="mb-auto text-[2.4rem] font-bold leading-[3rem] line-clamp-4 break-words">
+        <div className="mb-auto line-clamp-4 break-words text-[2.4rem] font-bold leading-[3rem]">
           <h4>{title[lang]}</h4>
         </div>
 

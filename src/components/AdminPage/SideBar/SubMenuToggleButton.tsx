@@ -1,6 +1,8 @@
 import React from 'react';
-import { MultiArrow } from '@/components/common/icons';
+
 import { ISideMenuItem } from './types';
+
+import { MultiArrow } from '@/components/common/icons';
 
 interface IProps extends ISideMenuItem {
   isSelected: boolean;

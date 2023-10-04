@@ -1,6 +1,13 @@
+import {
+  ForwardedRef,
+  forwardRef,
+  InputHTMLAttributes,
+  MouseEventHandler,
+  useId,
+} from 'react';
+
+import { TranslatorIcon } from '@/components/common/icons';
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
-import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
-import { Translator } from '../TextInputField/Translator';
 
 interface TextAreaFieldProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
@@ -8,6 +15,7 @@ interface TextAreaFieldProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   inputType?: string;
   translateValue?: string;
   setTranslatedValue?: (_data: string, _name: string) => void;
+  handleTranslate?: () => void;
 }
 
 const TextareaField = (
@@ -15,9 +23,8 @@ const TextareaField = (
     title,
     errorText,
     inputType = 'text',
-    translateValue = '',
     value = '',
-    setTranslatedValue,
+    handleTranslate,
     ...rest
   }: TextAreaFieldProps,
   ref: ForwardedRef<HTMLTextAreaElement>
@@ -25,6 +32,11 @@ const TextareaField = (
   const id = useId();
   const { icon, isIconActive, isTranslateShow } =
     IdentifyInputFieldTypeSetting(inputType);
+
+  const onClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    handleTranslate && handleTranslate();
+  };
 
   const inputClassNames = `
     h-full  w-full overflow-hidden rounded-[0.4rem] border outline-0 placeholder:text-neutral-300
@@ -73,12 +85,12 @@ const TextareaField = (
       )}
 
       {isTranslateShow && (
-        <Translator  // TODO: to change this component;
-          translateValue={translateValue}
-          setTranslatedValue={setTranslatedValue}
-          fieldName={rest.name}
-          lang={inputType as 'en'} // plug;
-        />
+        <button
+          className="absolute right-[0.5rem] top-0 text-neutral-300"
+          onClick={onClick}
+        >
+          <TranslatorIcon />
+        </button>
       )}
     </div>
   );

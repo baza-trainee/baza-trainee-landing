@@ -1,6 +1,7 @@
-import { AdminPanelButton } from '@/components/atomic';
-import Link from 'next/link';
 import { FC } from 'react';
+import Link from 'next/link';
+
+import { AdminPanelButton } from '@/components/atomic';
 
 type TSlideBtn = {
   dataInfo: {

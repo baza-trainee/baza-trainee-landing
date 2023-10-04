@@ -1,5 +1,6 @@
-import { FileIcon, PeopleIcon } from '@/components/common/icons';
 import { TFormTabs } from './types';
+
+import { FileIcon, PeopleIcon } from '@/components/common/icons';
 
 export const ProjectEditorTabs = ({ tabsMode, setTabsMode }: TFormTabs) => {
   const buttonBaseStyle =

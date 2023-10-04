@@ -1,7 +1,8 @@
-import { TDictionary } from '@/types';
 import en from './en/main.json';
 import pl from './pl/main.json';
 import ua from './ua/main.json';
+
+import { TDictionary } from '@/types';
 
 export const dictionaries: {
   en: TDictionary;

@@ -3,10 +3,10 @@
 import { useState } from 'react';
 
 import { ProjectEditorTabs } from './ProjectEditorTabs';
-import { TTabsMode } from './types';
 import { ProjectForm } from './ProjectForm';
-import { ProjectTeamList } from './ProjectTeamList';
 import { ProjectFormProvider } from './ProjectFormProvider';
+import { ProjectTeamList } from './ProjectTeamList';
+import { TTabsMode } from './types';
 
 export const ProjectEditor = ({ projectId }: { projectId?: string }) => {
   const [tabsMode, setTabsMode] = useState<TTabsMode>('description');

@@ -1,8 +1,9 @@
 'use client';
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+
 import { MultiArrow } from '@/components/common/icons';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
 interface TMoreProjectsButtonProps
   extends DetailedHTMLProps<

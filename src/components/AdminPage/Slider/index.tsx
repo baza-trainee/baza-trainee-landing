@@ -1,11 +1,12 @@
 'use client';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
+import { AddSlideButton } from './AddSlideBtn';
+
 import { AdminTitle } from '@/components/atomic';
+import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useGlobalContext } from '@/store/globalContext';
 import { IHeroSlider } from '@/types';
-import { AddSlideButton } from './AddSlideBtn';
-import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 
 export const AdminHeroSlider = () => {
   const { data } = useHeroSliderSWR();

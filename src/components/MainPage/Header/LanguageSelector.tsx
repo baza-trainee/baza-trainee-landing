@@ -1,10 +1,10 @@
 'use client';
 
-import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { MultiArrow } from '@/components/common/icons';
-import { useRouter } from 'next/navigation';
+import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 

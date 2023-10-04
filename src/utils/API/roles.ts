@@ -1,6 +1,7 @@
-import { TResponseRoles } from '@/types/typesAPI';
-import { TMemberRoleReq, TMemberRoleResp } from '@/types/projectsTypes';
 import { bazaAPI } from './config';
+
+import { TMemberRoleReq, TMemberRoleResp } from '@/types/projectsTypes';
+import { TResponseRoles } from '@/types/typesAPI';
 
 const rolesEndpoint = '/roles';
 

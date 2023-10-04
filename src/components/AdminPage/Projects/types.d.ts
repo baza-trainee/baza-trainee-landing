@@ -1,4 +1,3 @@
-import { TMemberBioResp, TMemberResp, TMemberRoleResp } from '@/types';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import {
   Control,
@@ -8,6 +7,8 @@ import {
   UseFormRegister,
   UseFormWatch,
 } from 'react-hook-form';
+
+import { TMemberBioResp, TMemberResp, TMemberRoleResp } from '@/types';
 
 export type TProvider = {
   children: ReactNode;

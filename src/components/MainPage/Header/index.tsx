@@ -1,12 +1,13 @@
-import { LogoMain } from '@/components/common/icons';
-
-import { ContainerMaxW1200 } from '@/components/atomic';
-import { dictionaries } from '@/locales/dictionaries';
-import { TLandingLanguage } from '@/store/globalContext';
 import Link from 'next/link';
+
 import { HeaderDropdownMenu } from './HeaderDropdownMenu';
 import { HeaderLinks } from './HeaderLinks';
 import LanguageSelector from './LanguageSelector';
+
+import { ContainerMaxW1200 } from '@/components/atomic';
+import { LogoMain } from '@/components/common/icons';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 
 export const Header = ({ lang }: { lang: TLandingLanguage }) => {
   const { projects, partners, participate, contacts } =

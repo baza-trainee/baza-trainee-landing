@@ -1,18 +1,19 @@
 'use client';
 
-import { TAlertInfoState } from '@/components/atomic/AlertWindow';
-import { dictionaries } from '@/locales/dictionaries';
-import { TDictionary } from '@/types';
-import { useParams } from 'next/navigation';
 import {
+  createContext,
   Dispatch,
   PropsWithChildren,
   SetStateAction,
-  createContext,
   useContext,
   useEffect,
   useState,
 } from 'react';
+import { useParams } from 'next/navigation';
+
+import { TAlertInfoState } from '@/components/atomic/AlertWindow';
+import { dictionaries } from '@/locales/dictionaries';
+import { TDictionary } from '@/types';
 
 export type TLandingLanguage = 'ua' | 'en' | 'pl';
 export type TAlertInfo = null | TAlertInfoState;

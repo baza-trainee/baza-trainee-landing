@@ -1,7 +1,8 @@
 'use client';
 
-import { SearchIcon } from '../common/icons';
 import { ChangeEvent } from 'react';
+
+import { SearchIcon } from '../common/icons';
 
 type SearchBarProps = {
   handleSearch: (search: string) => void;

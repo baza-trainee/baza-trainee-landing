@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
+import { TEntity } from '../types';
+
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
-
-import { TEntity } from '../types';
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-10 flex h-[7.2rem] items-center bg-yellow-200';

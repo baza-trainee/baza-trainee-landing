@@ -1,5 +1,7 @@
 'use client';
 
+import { ChangeEvent, useEffect, useState } from 'react';
+
 import {
   AdminPanelButton,
   AdminTitle,
@@ -8,7 +10,6 @@ import {
 import { useGlobalContext } from '@/store/globalContext';
 import achievementsApi from '@/utils/API/achievements';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useEffect, useState } from 'react';
 
 export const CounterEdit = () => {
   const { setAlertInfo } = useGlobalContext();

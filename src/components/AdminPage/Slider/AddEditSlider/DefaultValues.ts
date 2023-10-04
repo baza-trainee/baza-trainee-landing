@@ -1,6 +1,7 @@
-import { IHeroSlider } from '@/types';
 // import { downloadImageAsFile } from '@/utils/imageHandler';
 import { TFormInputs } from '../types';
+
+import { IHeroSlider } from '@/types';
 
 export const emptyFields: TFormInputs = {
   titleUa: '',

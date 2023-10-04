@@ -1,14 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
-
-import { TLandingLanguage } from '@/store/globalContext';
+import Image from 'next/image';
 
 import { ProjectCardContent } from './ProjectCardContent';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
+import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
+
 import styles from './styles.module.css';
 
 type TProps = {
