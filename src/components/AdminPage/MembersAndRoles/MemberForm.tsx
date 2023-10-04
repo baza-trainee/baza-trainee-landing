@@ -120,7 +120,7 @@ console.log(members);
             <TextInputField
               {...field}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                searchMember(e.target.value.toLowerCase());
+                searchMember(e.target.value.toLowerCase().trim());
                 field.onChange(e);
               }}
               inputType="uk"
