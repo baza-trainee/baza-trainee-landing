@@ -9,7 +9,7 @@ import { memberValidateOptions } from './validateOptions';
 import { FormBtns, TextInputField } from '@/components/atomic';
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { TMemberBioReq,TMemberBioResp } from '@/types';
+import { TMemberBioReq, TMemberBioResp } from '@/types';
 
 const createOptions = (
   id: string | undefined,
@@ -63,7 +63,13 @@ export const MemberForm = ({
     );
   };
 
-  const cancelAction = () => router.replace('.');
+  const cancelAction = () => {
+    if (addMemberNComeback) {
+      addMemberNComeback();
+    } else {
+      router.back();
+    }
+  };
 
   const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const member: TMemberBioReq = {
@@ -72,9 +78,14 @@ export const MemberForm = ({
         pl: data.namePl,
         ua: data.nameUk,
       },
-      profileUrl: data.linkedin,
+      // profileUrl: data.linkedin ? data.linkedin : undefined,
     };
 
+    if (data.linkedin) {
+      member.profileUrl = data.linkedin;
+    }
+
+    console.log(member);
     if (memberId) {
       updateMember(memberId, member);
     } else {
@@ -85,7 +96,7 @@ export const MemberForm = ({
       });
     }
 
-    !addMemberNComeback && cancelAction();
+    cancelAction();
   };
 
   return (

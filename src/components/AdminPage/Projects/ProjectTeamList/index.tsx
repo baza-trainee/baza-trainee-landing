@@ -16,8 +16,8 @@ export const ProjectTeamList = () => {
     setIsAddMemberMode(!isAddMemberMode);
   };
 
-  const addMemberNComeback = (newMember: TMemberBioResp) => {
-    addTeamMember(newMember);
+  const addMemberNComeback = (newMember?: TMemberBioResp) => {
+    newMember && addTeamMember(newMember);
     switchMode();
   };
 

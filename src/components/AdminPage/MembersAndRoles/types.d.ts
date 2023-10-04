@@ -1,4 +1,4 @@
-import { TMemberBioResp,TMemberRoleResp } from '@/types';
+import { TMemberBioResp, TMemberRoleResp } from '@/types';
 
 export type TEntity = 'members' | 'roles';
 
@@ -31,5 +31,5 @@ export type TMemberFormInput = TRoleFormInput & {
 
 export type TMemberFormProps = {
   memberId?: string;
-  addMemberNComeback?: (newMember: TMemberBioResp) => void;
+  addMemberNComeback?: (newMember?: TMemberBioResp) => void;
 };

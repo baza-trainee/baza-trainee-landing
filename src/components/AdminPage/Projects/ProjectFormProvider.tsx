@@ -30,11 +30,11 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const { createProject, getProjectById, updateProject } = useProjectsSWR();
   const { handleTranslate } = useTranslator();
 
-  const projectByIdData = projectId ? getProjectById(projectId) : undefined;
-  const isEditMode = !!projectId && !!projectByIdData;
+  const projectDataById = projectId ? getProjectById(projectId) : undefined;
+  const isEditMode = !!projectId && !!projectDataById;
 
   const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>(
-    projectByIdData?.teamMembers || initProjectData.teamMembers
+    initProjectData.teamMembers
   );
 
   const addTeamMember = (newMember: TMemberBioResp) => {
@@ -107,25 +107,35 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     cancelAction();
   };
 
+  // check fetched members for empty fields
+  useEffect(() => {
+    if (projectDataById) {
+      const checkedData = projectDataById.teamMembers.filter(
+        (item) => item.teamMember && item.teamMemberRole
+      );
+      setTeamMemberData(checkedData);
+    }
+  }, [projectDataById]);
+
   useEffect(() => {
     if (isEditMode) {
-      setValue('nameUk', projectByIdData.title.ua);
-      setValue('nameEn', projectByIdData.title.en);
-      setValue('namePl', projectByIdData.title.pl);
+      setValue('nameUk', projectDataById.title.ua);
+      setValue('nameEn', projectDataById.title.en);
+      setValue('namePl', projectDataById.title.pl);
       setValue('projectImg', [
-        new File([], projectByIdData.imageUrl, { type: 'for-url' }),
+        new File([], projectDataById.imageUrl, { type: 'for-url' }),
       ]);
-      setValue('deployUrl', projectByIdData.deployUrl);
-      setValue('isTeamRequired', projectByIdData.isTeamRequired);
+      setValue('deployUrl', projectDataById.deployUrl);
+      setValue('isTeamRequired', projectDataById.isTeamRequired);
       setValue(
         'creationDate',
-        convertDate.toYYYYMMDD(projectByIdData.creationDate)
+        convertDate.toYYYYMMDD(projectDataById.creationDate)
       );
       setValue(
         'launchDate',
-        convertDate.toYYYYMMDD(projectByIdData.launchDate)
+        convertDate.toYYYYMMDD(projectDataById.launchDate)
       );
-      setValue('complexity', +projectByIdData.complexity);
+      setValue('complexity', +projectDataById.complexity);
     }
 
     setFocus('nameUk');
