@@ -35,7 +35,6 @@ export const Documents = () => {
   }, [formData]);
 
   useEffect(() => {
-    // console.log(data);
     if (!isError && data) {
       setAlertInfo({
         state: 'info',
@@ -78,7 +77,6 @@ export const Documents = () => {
     } else {
       setFormData((prev) => ({ ...prev, [name]: null }));
     }
-    console.log('first', formData);
     if (files && files[0]?.size >= maxSize)
       setAlertInfo({
         state: 'error',

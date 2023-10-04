@@ -28,18 +28,14 @@ const projectsApi = {
   },
 
   async updateById(id: string, project: TProjectReq) {
-    // console.log('API req >>', project);
     return await bazaAPI
       .put<TProjectResp>(`${projectsEndpoint}/${id}`, project, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((res) => {
-        // console.log('API res >>', res.data);
-
         return res.data;
       });
   },
 };
 
 export { projectsApi, projectsEndpoint };
-

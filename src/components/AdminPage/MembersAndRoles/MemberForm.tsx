@@ -96,7 +96,6 @@ export const MemberForm = ({
       member.profileUrl = data.linkedin;
     }
 
-    // console.log(member);
     if (memberId) {
       updateMember(memberId, member);
     } else {
@@ -107,7 +106,6 @@ export const MemberForm = ({
 
     cancelAction();
   };
-console.log(members);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -175,12 +173,11 @@ console.log(members);
 
       {isProjectEditorMode && (
         <div className="mb-11 h-96 overflow-y-scroll rounded-md border">
-          {members?.length  && (
+          {members?.length && (
             <MembersAndRolesList
-              isProjectEditorMode
-              entity={'members'}
+              {...{ isProjectEditorMode, selectMember }}
+              entity="members"
               showedData={members}
-              selectMember={selectMember}
             />
           )}
         </div>
