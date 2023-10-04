@@ -1,8 +1,10 @@
 'use client';
 
+import { ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
+import { MembersAndRolesList } from './MembersAndRolesList';
 import { TMemberFormInput, TMemberFormProps } from './types';
 import { memberValidateOptions } from './validateOptions';
 
@@ -35,10 +37,12 @@ export const MemberForm = ({
   memberId,
   addMemberNComeback,
 }: TMemberFormProps) => {
+  const isProjectEditorMode = !!addMemberNComeback;
   const router = useRouter();
   const { handleTranslate } = useTranslator();
 
-  const { membersData, createMember, updateMember } = useMembersSWR();
+  const { membersData, createMember, updateMember, searchMember } =
+    useMembersSWR();
   const members = membersData?.results;
 
   const valuesIfItEditedMember = createOptions(memberId, members);
@@ -64,10 +68,17 @@ export const MemberForm = ({
   };
 
   const cancelAction = () => {
-    if (addMemberNComeback) {
+    if (isProjectEditorMode) {
       addMemberNComeback();
     } else {
       router.back();
+    }
+  };
+
+  const selectMember = (id: string) => {
+    if (isProjectEditorMode) {
+      const selectedMember = members?.find((item) => item._id === id);
+      selectedMember && addMemberNComeback(selectedMember);
     }
   };
 
@@ -85,19 +96,18 @@ export const MemberForm = ({
       member.profileUrl = data.linkedin;
     }
 
-    console.log(member);
+    // console.log(member);
     if (memberId) {
       updateMember(memberId, member);
     } else {
       createMember(member)?.then((res) => {
-        if (res && !!addMemberNComeback) {
-          addMemberNComeback(res);
-        }
+        res && isProjectEditorMode && addMemberNComeback(res);
       });
     }
 
     cancelAction();
   };
+console.log(members);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -109,6 +119,10 @@ export const MemberForm = ({
           render={({ field }) => (
             <TextInputField
               {...field}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                searchMember(e.target.value.toLowerCase());
+                field.onChange(e);
+              }}
               inputType="uk"
               title="Прізвище та ім’я"
               placeholder="Введіть дані"
@@ -158,6 +172,19 @@ export const MemberForm = ({
           )}
         />
       </div>
+
+      {isProjectEditorMode && (
+        <div className="mb-11 h-96 overflow-y-scroll rounded-md border">
+          {members?.length  && (
+            <MembersAndRolesList
+              isProjectEditorMode
+              entity={'members'}
+              showedData={members}
+              selectMember={selectMember}
+            />
+          )}
+        </div>
+      )}
 
       <FormBtns isEditMode={!!memberId} cancelAction={cancelAction} />
     </form>

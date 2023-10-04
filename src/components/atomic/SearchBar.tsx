@@ -10,7 +10,7 @@ type SearchBarProps = {
 
 export const SearchBar = ({ handleSearch }: SearchBarProps) => {
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleSearch(e.target.value.toLowerCase().trim());
+    handleSearch(e.target.value.toLowerCase());
   };
 
   return (

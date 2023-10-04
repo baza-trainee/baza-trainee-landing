@@ -7,16 +7,19 @@ export type TMemberAndRoleEditor = {
   memberOrRoleId?: string;
 };
 
-export type TMembersAndRolesListProps = {
+type TMembersAndRolesListBase = {
+  isProjectEditorMode?: boolean;
   entity: TEntity;
-  showedData: TMemberBioResp[] | TMemberRoleResp[];
-  handleDelete: (id: string) => void;
+  handleDelete?: (id: string) => void;
+  selectMember?: (id: string) => void;
 };
 
-export type TListRawProps = {
-  entity: TEntity;
+export type TMembersAndRolesListProps = TMembersAndRolesListBase & {
+  showedData: TMemberBioResp[] | TMemberRoleResp[];
+};
+
+export type TListRawProps = TMembersAndRolesListBase & {
   showedData: TMemberBioResp | TMemberRoleResp;
-  handleDelete: (id: string) => void;
 };
 
 export type TRoleFormInput = {

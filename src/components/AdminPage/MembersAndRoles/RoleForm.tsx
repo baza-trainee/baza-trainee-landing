@@ -8,9 +8,13 @@ import { roleValidateOptions } from './validateOptions';
 
 import { FormBtns, TextInputField } from '@/components/atomic';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-import {  TMemberRoleResp } from '@/types';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+import { TMemberRoleResp } from '@/types';
 
-const createOptions = (id: string | undefined, roles: TMemberRoleResp[] | undefined) => {
+const createOptions = (
+  id: string | undefined,
+  roles: TMemberRoleResp[] | undefined
+) => {
   if (!roles || !id) return;
 
   const role = roles.find((m) => m._id === id);
@@ -28,6 +32,7 @@ const createOptions = (id: string | undefined, roles: TMemberRoleResp[] | undefi
 
 export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const router = useRouter();
+  const { handleTranslate } = useTranslator();
 
   const { rolesData, createRole, updateRole } = useRolesSWR();
   const roles = rolesData?.results;
@@ -37,8 +42,22 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const {
     control,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<TMemberFormInput>(valuesIfItEditedRole);
+
+  const translateToEn = () => {
+    handleTranslate(watch().nameUk, 'en').then((res) => {
+      setValue('nameEn', res);
+    });
+  };
+
+  const translateToPl = () => {
+    handleTranslate(watch().nameUk, 'pl').then((res) =>
+      setValue('namePl', res)
+    );
+  };
 
   const cancelAction = () => router.replace('.');
 
@@ -86,6 +105,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
             <TextInputField
               {...field}
               inputType="en"
+              handleTranslate={translateToEn}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -99,6 +119,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
             <TextInputField
               {...field}
               inputType="pl"
+              handleTranslate={translateToPl}
               errorText={errors.namePl?.message}
             />
           )}
