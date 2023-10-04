@@ -96,7 +96,6 @@ export const MemberForm = ({
       member.profileUrl = data.linkedin;
     }
 
-    // console.log(member);
     if (memberId) {
       updateMember(memberId, member);
     } else {
@@ -107,7 +106,6 @@ export const MemberForm = ({
 
     cancelAction();
   };
-  console.log(members);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
