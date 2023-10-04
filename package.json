@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "^1.4.0",
     "eslint": "^8.50.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
     "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,8 +22,7 @@
     "react-pdf": "^7.3.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
-    "swr": "^2.2.4",
-    "typescript": "^5.2.2"
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
@@ -38,13 +36,15 @@
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.14",
     "eslint-config-next": "^13.5.4",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.1",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "raw-loader": "^4.0.2",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
   },
   "optionalDependencies": {
     "husky": "^8.0.3"

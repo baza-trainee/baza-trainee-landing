@@ -15,6 +15,8 @@ export const ProjectCardTeam = ({
   const rolesAndMembers: { [role: string]: TMemberBioResp[] } = {};
 
   project.teamMembers.forEach((member) => {
+    if (!member.teamMember || !member.teamMemberRole) return;
+
     const roleName = member.teamMemberRole.name.en;
     if (!rolesAndMembers[roleName]) {
       rolesAndMembers[roleName] = [];
@@ -46,7 +48,7 @@ export const ProjectCardTeam = ({
               <a
                 key={teamMember._id}
                 className="block cursor-pointer text-yellow-500 underline"
-                href={teamMember.profileUrl}
+                href={teamMember?.profileUrl}
                 target="_blank"
               >
                 {teamMember.name[lang]}
