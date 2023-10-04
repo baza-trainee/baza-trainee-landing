@@ -1,5 +1,6 @@
-import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { ReactNode } from 'react';
+
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   id: string;

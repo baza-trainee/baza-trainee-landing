@@ -1,8 +1,10 @@
-import { LogoMain } from '@/components/common/icons';
-import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
+
 import { sliderValidateOptions } from './sliderValidateOptions';
 import { TFormInputs } from './types';
+
+import { LogoMain } from '@/components/common/icons';
+import { createImgUrl } from '@/utils/imageHandler';
 
 const EmptyPreview = () => (
   <div className="flex-center w-full rounded-md bg-neutral-75 py-[10.2rem]">

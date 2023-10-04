@@ -1,12 +1,11 @@
 import { useState } from 'react';
+import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
+import { TMemberBioReq, TResponseMembers } from '@/types';
 import { membersApi, membersEndpoint } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
-
-import { TMemberBioReq, TResponseMembers } from '@/types';
-import { AxiosError } from 'axios';
 
 const useMembersSWR = () => {
   const { setAlertInfo } = useGlobalContext();

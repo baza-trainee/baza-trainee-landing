@@ -1,16 +1,19 @@
 'use client';
 
+import { memo, useRef, useState } from 'react';
+import Slider from 'react-slick';
+
+import { Dots } from './Dots';
+import { SingleSlide } from './SingleSlide';
+import { slides } from './slides';
+
+import { Modal } from '../Modal';
+
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlide } from '@/types';
-import { memo, useRef, useState } from 'react';
-import Slider from 'react-slick';
-import { Modal } from '../Modal';
-import { Dots } from './Dots';
-import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
 
 const settings = {
   infinite: true,

@@ -1,9 +1,10 @@
+import { bazaAPI } from './config';
+
 import {
   IHeroSlider,
   THeroSliderData,
   updateByIdRequest,
 } from '@/types/typesAPI';
-import { bazaAPI } from './config';
 
 export const slidersEndPoint = '/heroslider';
 

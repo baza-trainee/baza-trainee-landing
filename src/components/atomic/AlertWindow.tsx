@@ -1,7 +1,4 @@
 'use client';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { useGlobalContext } from '@/store/globalContext';
-
 import {
   CancelIcon,
   ErrorIcon,
@@ -10,6 +7,9 @@ import {
   SuccessIcon,
   WarningIcon,
 } from '../common/icons';
+
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { useGlobalContext } from '@/store/globalContext';
 
 const options = {
   info: { color: 'blue', icon: InfoIcon, cancel: false },

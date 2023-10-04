@@ -4,8 +4,8 @@ export const testimonialValidateOptions = {
   name: {
     required: 'Введіть ім’я',
     minLength: {
-      value: 5,
-      message: 'Мінімальна довжина поля 5 символів',
+      value: 2,
+      message: 'Мінімальна довжина поля 2 символи',
     },
     maxLength: {
       value: 25,
@@ -16,7 +16,7 @@ export const testimonialValidateOptions = {
     required: 'Введіть ім’я',
     minLength: {
       value: 2,
-      message: 'Мінімальна довжина поля 2 символів',
+      message: 'Мінімальна довжина поля 2 символи',
     },
     maxLength: {
       value: 25,

@@ -1,5 +1,6 @@
-import { TLandingLanguage } from '@/store/globalContext';
 import { TTitleLanguagesTypes } from './typesAPI';
+
+import { TLandingLanguage } from '@/store/globalContext';
 
 export type TMemberBioReq = {
   name: TTitleLanguagesTypes;

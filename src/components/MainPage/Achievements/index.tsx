@@ -1,11 +1,11 @@
 'use client';
 
-import counterHandler from '@/utils/counterHandler';
 import { useEffect, useRef, useState } from 'react';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import counterHandler from '@/utils/counterHandler';
 
 const projects = 25;
 const members = 1230;

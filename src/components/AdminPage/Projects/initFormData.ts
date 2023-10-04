@@ -1,5 +1,6 @@
-import { TProjectResp } from "@/types";
 import { TFormInput } from "./types";
+
+import { TProjectResp } from "@/types";
 
 export const defaultValues: TFormInput = {
   nameUk: '',

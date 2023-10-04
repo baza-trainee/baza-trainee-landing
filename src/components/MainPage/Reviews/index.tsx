@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import Slider from 'react-slick';
 
+import { Dot } from './Dot';
+import { SingleSlide } from './SingleSlide';
+
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
-import { Dot } from './Dot';
-import { SingleSlide } from './SingleSlide';
 
 export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);

@@ -1,6 +1,7 @@
+import Image from 'next/image';
+
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
-import Image from 'next/image';
 
 export const Gratitude = ({ lang }: { lang: TLandingLanguage }) => {
   const { firstPart, secondPart, title } = dictionaries[lang].yourHelpIsWorth;

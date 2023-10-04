@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { SingleSlideTestimonial } from './SingleSlideTestimonial';
+
 import { AdminPanelButton, AdminTitle } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
+import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { useGlobalContext } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
-import { SingleSlideTestimonial } from './SingleSlideTestimonial';
 
 export default function MainTestimonials() {
   const { testimonialsData } = useTestimonialsSWR();

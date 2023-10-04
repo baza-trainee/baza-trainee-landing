@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
+
 import {
-  enableBodyScroll,
-  disableBodyScroll,
   clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
 } from './bodyScrollLock';
 
 export function useBodyScrollLock(isLock: boolean) {

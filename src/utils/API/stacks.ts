@@ -1,5 +1,6 @@
-import { IStack, updateByIdRequest } from '@/types/typesAPI';
 import { bazaAPI } from './config';
+
+import { IStack, updateByIdRequest } from '@/types/typesAPI';
 
 const stacksApi = {
   getAll() {

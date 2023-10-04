@@ -1,11 +1,10 @@
 import {
   DonateButton,
-  SupportBazaButton,
   donateStyle,
+  SupportBazaButton,
 } from '@/components/atomic';
-import { dictionaries } from '@/locales/dictionaries';
-
 import usePaymentHandler from '@/hooks/usePayment';
+import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 
 const paymentAmountData = ['100', '200', '500', '1000'];

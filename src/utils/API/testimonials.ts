@@ -1,9 +1,10 @@
+import { bazaAPI } from './config';
+
 import {
   ITestimonialRequest,
   TTestimonialResp,
   updateByIdRequest,
 } from '@/types/typesAPI';
-import { bazaAPI } from './config';
 
 export const testimonialsEndPoint = '/testimonials';
 

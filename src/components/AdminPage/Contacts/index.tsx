@@ -1,5 +1,12 @@
 'use client';
 
+import { ChangeEvent, useEffect, useState } from 'react';
+
+import {
+  contactsValidationHandler,
+  errorsSample,
+} from './contactsValidationHandler';
+
 import {
   AdminPanelButton,
   AdminTitle,
@@ -9,11 +16,6 @@ import { useGlobalContext } from '@/store/globalContext';
 import { TContactsInfo } from '@/types';
 import { contactsApi } from '@/utils/API/contacts';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useEffect, useState } from 'react';
-import {
-  contactsValidationHandler,
-  errorsSample,
-} from './contactsValidationHandler';
 
 export const Contacts = () => {
   const { setAlertInfo } = useGlobalContext();

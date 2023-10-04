@@ -1,12 +1,14 @@
+import { AxiosResponse } from 'axios';
+
+import { bazaAPI } from './config';
+
 import {
-  ILoginRequest,
-  IRegisterRequest,
   IChangePasswordRequest,
+  ILoginRequest,
   IPasswordRequestReset,
   IPasswordReset,
+  IRegisterRequest,
 } from '@/types/typesAPI';
-import { AxiosResponse } from 'axios';
-import { bazaAPI } from './config';
 
 const token = {
   set: (token: string) => {

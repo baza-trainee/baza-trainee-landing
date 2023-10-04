@@ -1,12 +1,13 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import Slider from 'react-slick';
+
+import { partners } from './partners';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
-import Image from 'next/image';
-import { partners } from './partners';
 
 const sliderSettings = {
   dots: false,

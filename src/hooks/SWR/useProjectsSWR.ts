@@ -1,12 +1,11 @@
 import { useState } from 'react';
+import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
+import { TProjectReq, TResponseProjects } from '@/types';
 import { projectsApi, projectsEndpoint } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
-
-import { TProjectReq, TResponseProjects } from '@/types';
-import { AxiosError } from 'axios';
 
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();

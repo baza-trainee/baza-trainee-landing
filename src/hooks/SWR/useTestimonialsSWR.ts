@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
 import { useGlobalContext } from '@/store/globalContext';
@@ -7,7 +8,6 @@ import {
   testimonialsEndPoint,
 } from '@/utils/API/testimonials';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
-import { AxiosError } from 'axios';
 
 export const useTestimonialsSWR = () => {
   const { setAlertInfo } = useGlobalContext();

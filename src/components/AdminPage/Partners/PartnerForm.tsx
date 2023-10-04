@@ -1,3 +1,7 @@
+import { SyntheticEvent, useEffect, useState } from 'react';
+
+import { EDITOR_TYPE } from './EditorLayout';
+
 import { AdminPanelButton, FileInput } from '@/components/atomic';
 import { CancelLinkButton } from '@/components/atomic/buttons/CancelLinkButton';
 import { TextInputField } from '@/components/atomic/inputs/TextInputField';
@@ -8,8 +12,6 @@ import { useGlobalContext } from '@/store/globalContext';
 import { PartnerFormProps } from '@/types';
 import { checkImageDimension } from '@/utils/checkImageDimensions';
 import { formatBytes } from '@/utils/formatBytes';
-import { SyntheticEvent, useEffect, useState } from 'react';
-import { EDITOR_TYPE } from './EditorLayout';
 
 export const PartnerForm = ({
   handleSubmit,

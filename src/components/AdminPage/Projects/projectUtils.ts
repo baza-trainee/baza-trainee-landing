@@ -1,6 +1,7 @@
+import { TFormInput } from './types';
+
 import { TMemberResp, TProjectMemberReq } from '@/types';
 import { convertDate } from '@/utils/formatDate';
-import { TFormInput } from './types';
 
 export const extractMembersId = (members: TMemberResp[]): TProjectMemberReq[] =>
   members.map((item) => ({

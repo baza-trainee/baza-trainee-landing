@@ -1,14 +1,16 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import Container from './Container';
+import { PartnerForm } from './PartnerForm';
+
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { useGlobalContext } from '@/store/globalContext';
 import { PartnerEditorProps } from '@/types';
 import partnersApi from '@/utils/API/partners';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import Container from './Container';
-import { PartnerForm } from './PartnerForm';
 
 export const EDITOR_TYPE = {
   ADD: 'add',

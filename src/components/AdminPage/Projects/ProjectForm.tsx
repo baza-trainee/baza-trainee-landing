@@ -2,6 +2,10 @@
 
 import { Controller } from 'react-hook-form';
 
+import { useProjectFormContext } from './ProjectFormProvider';
+import { ProjectPreview } from './ProjectPreview';
+import { projectValidateOptions } from './validateOptions';
+
 import {
   CheckboxInput,
   ComplexityInput,
@@ -10,10 +14,6 @@ import {
   FormBtns,
   TextInputField,
 } from '@/components/atomic';
-
-import { useProjectFormContext } from './ProjectFormProvider';
-import { ProjectPreview } from './ProjectPreview';
-import { projectValidateOptions } from './validateOptions';
 
 const rowStyle = 'flex gap-10 rounded-md bg-base-dark px-5 py-10 shadow-md';
 

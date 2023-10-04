@@ -3,13 +3,12 @@
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
-
-import { FormBtns, TextInputField } from '@/components/atomic';
-
-import {  TMemberRoleResp } from '@/types';
 import { TMemberFormInput } from './types';
 import { roleValidateOptions } from './validateOptions';
+
+import { FormBtns, TextInputField } from '@/components/atomic';
+import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
+import {  TMemberRoleResp } from '@/types';
 
 const createOptions = (id: string | undefined, roles: TMemberRoleResp[] | undefined) => {
   if (!roles || !id) return;

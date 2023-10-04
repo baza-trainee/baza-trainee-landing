@@ -1,13 +1,13 @@
 'use client';
 
-import { AdminTitle, PasswordInput, FormBtns } from '@/components/atomic';
+import { ChangeEvent,useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter,useSearchParams  } from 'next/navigation';
+
+import { AdminTitle, FormBtns,PasswordInput } from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { useEffect, useState, useCallback, useMemo, ChangeEvent } from 'react';
 import { validatePassword } from '@/utils/InputValidations';
-import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 
 const PasswordReset = () => {
   const searchParams = useSearchParams();

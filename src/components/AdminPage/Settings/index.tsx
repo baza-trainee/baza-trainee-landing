@@ -1,11 +1,12 @@
 'use client';
 
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+
 import { AdminTitle, FormBtns, PasswordInput } from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
 import auth from '@/utils/API/auth';
-import { validatePassword } from '@/utils/InputValidations';
 import { useAPI } from '@/utils/hooks/useAPI';
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { validatePassword } from '@/utils/InputValidations';
 
 export const Settings = () => {
   const { setAlertInfo } = useGlobalContext();

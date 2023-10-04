@@ -1,8 +1,10 @@
 'use client';
 
-import { CloseIcon, MenuIcon } from '@/components/common/icons';
 import { useEffect, useRef, useState } from 'react';
+
 import { HeaderLinks } from './HeaderLinks';
+
+import { CloseIcon, MenuIcon } from '@/components/common/icons';
 
 export const HeaderDropdownMenu = ({
   navLinks,

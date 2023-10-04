@@ -1,4 +1,4 @@
-import { TMemberRoleResp, TMemberBioResp } from '@/types';
+import { TMemberBioResp,TMemberRoleResp } from '@/types';
 
 export type TEntity = 'members' | 'roles';
 

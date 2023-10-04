@@ -1,12 +1,13 @@
 'use client';
 
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 import { ActionButton } from '@/components/atomic/buttons/ActionAdminPanelButton';
 import { DeleteIcon } from '@/components/common/icons/DeleteIcon';
 import { EditIcon } from '@/components/common/icons/EditIcon';
 import { useGlobalContext } from '@/store/globalContext';
 import { PartnerItemProps } from '@/types';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 export const PartnerItem = ({
   partner: { _id: id, name: name, imageUrl: image },

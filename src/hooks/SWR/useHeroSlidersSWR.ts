@@ -1,10 +1,11 @@
 'use client';
+import { AxiosError } from 'axios';
+import useSWR from 'swr';
+
 import { useGlobalContext } from '@/store/globalContext';
 import { IHeroSlider, THeroSliderData } from '@/types';
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
-import { AxiosError } from 'axios';
-import useSWR from 'swr';
 
 export const useHeroSliderSWR = () => {
   const { setAlertInfo } = useGlobalContext();

@@ -1,5 +1,6 @@
-import { SETTINGS } from '@/config/settings';
 import { TFormInput } from './types';
+
+import { SETTINGS } from '@/config/settings';
 import { convertDate } from '@/utils/formatDate';
 
 const limitSize = SETTINGS.fileSizeLimits.projectCard;

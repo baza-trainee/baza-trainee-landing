@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { TLandingLanguage } from '@/store/globalContext';
-import { dictionaries } from '@/locales/dictionaries';
+
 import { SupportBazaButton } from '@/components/atomic';
+import { dictionaries } from '@/locales/dictionaries';
+import { TLandingLanguage } from '@/store/globalContext';
 
 const mockText = {
   button: '',
