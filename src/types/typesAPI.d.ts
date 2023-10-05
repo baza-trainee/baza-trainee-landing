@@ -132,6 +132,7 @@ export type ITestimonialRequest = TTestimonialBase & {
 // }
 
 export type id = string | number;
+export type updateByIdRequest = [id: id, payload: Object];
 export type searchProjectRequest = string;
 
 export type methodType<T> = (payload: T) => Promise<AxiosResponse>;

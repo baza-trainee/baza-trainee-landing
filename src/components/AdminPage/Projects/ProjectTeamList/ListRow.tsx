@@ -31,7 +31,7 @@ export const ListRow = ({ member }: { member: TMemberResp }) => {
           <ActionBtns
             id={teamMember._id}
             entity="members"
-            handleDelete={deleteMember}
+            handleDelete={() => deleteMember(teamMember._id)}
           />
         </div>
       </td>

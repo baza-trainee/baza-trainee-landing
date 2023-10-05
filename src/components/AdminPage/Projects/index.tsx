@@ -22,7 +22,7 @@ export const AdminProjects = () => {
 
       <ul className="flex w-full flex-wrap gap-[2.4rem]">
         <li className="flex-center w-[37.8rem]">
-          <Link href={'/admin/projects/add'}>
+          <Link href="/admin/projects/add">
             <AdminPanelButton icon={<PlusIcon />} variant="secondary">
               Додати проєкт
             </AdminPanelButton>
@@ -32,13 +32,10 @@ export const AdminProjects = () => {
         {projectsData &&
           projectsData?.results &&
           projectsData.results.map((project: TProjectResp) => (
-            <ButtonsOverlay
-              key={project._id}
-              handleDelete={deleteProject}
-            >
+            <ButtonsOverlay key={project._id} handleDelete={deleteProject}>
               <ProjectCard
                 project={project}
-                lang={'ua'}
+                lang="ua"
                 coverImgUrl={createImgUrl(project.imageUrl)}
                 isAdminMode
               />

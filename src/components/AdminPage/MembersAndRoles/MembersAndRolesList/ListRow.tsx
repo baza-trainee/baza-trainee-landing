@@ -12,14 +12,20 @@ export const ListRow = ({
   selectMember,
   isProjectEditorMode,
 }: TListRawProps) => {
+  const handleRowClick = () => {
+    isProjectEditorMode && selectMember && selectMember(showedData._id);
+  };
+
+  const handleDeleteClick = () => {
+    !isProjectEditorMode && handleDelete && handleDelete(showedData._id);
+  };
+
   return (
     <tr>
       <td className={cellStyle}>
         <div className={bgStyle + ' rounded-s-md pl-5'}>
           <span
-            onClick={() => {
-              selectMember && selectMember(showedData._id);
-            }}
+            onClick={handleRowClick}
             className={isProjectEditorMode ? 'cursor-pointer' : ''}
           >
             {showedData.name.ua}
@@ -31,9 +37,9 @@ export const ListRow = ({
         <td className={cellStyle}>
           <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>
             <ActionBtns
-              id={showedData._id!}
+              id={showedData._id}
               entity={entity}
-              handleDelete={handleDelete!}
+              handleDelete={handleDeleteClick}
             />
           </div>
         </td>

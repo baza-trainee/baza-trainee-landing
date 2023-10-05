@@ -48,7 +48,7 @@ export const PartnersPage = () => {
 
         <ul className="scrollbar flex h-[600px] min-w-[1138px] flex-wrap content-start gap-[1.85rem] gap-y-[2.35rem]  overflow-y-auto">
           <li className="flex-center w-[27.6rem]">
-            <Link href={'/admin/partners/add'}>
+            <Link href="/admin/partners/add">
               <AdminPanelButton icon={<PlusIcon />} variant="secondary">
                 Додати партнера
               </AdminPanelButton>
