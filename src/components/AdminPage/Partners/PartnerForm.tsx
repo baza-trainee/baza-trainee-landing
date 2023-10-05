@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
