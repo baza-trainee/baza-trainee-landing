@@ -36,44 +36,42 @@ export const PartnersPage = () => {
   };
 
   return (
-    <div className="w-full bg-base-light px-[2.4rem] pb-[5.6rem] pt-[3.2rem]">
-      <div className="flex w-[1160px] flex-col">
-        <div className="mb-[2.6rem] flex w-[1143px] items-start justify-between">
-          <AdminTitle className=" tracking-wide">Лого партнерів</AdminTitle>
+    <div className="flex h-screen min-w-[120.2rem] flex-col bg-base-light px-[2.4rem] py-[3.2rem]">
+      <div className="mb-[2.6rem] flex justify-between">
+        <AdminTitle className=" tracking-wide">Лого партнерів</AdminTitle>
 
-          <div className="ml-auto">
-            <SearchBar handleSearch={searchPartner} />
-          </div>
+        <div className="ml-auto">
+          <SearchBar handleSearch={searchPartner} />
         </div>
-
-        <ul className="scrollbar flex h-[600px] min-w-[1138px] flex-wrap content-start gap-[1.85rem] gap-y-[2.35rem]  overflow-y-auto">
-          <li className="flex-center w-[27.6rem]">
-            <Link href="/admin/partners/add">
-              <AdminPanelButton icon={<PlusIcon />} variant="secondary">
-                Додати партнера
-              </AdminPanelButton>
-            </Link>
-          </li>
-
-          {partnersData &&
-            partnerData.map((partner: any) => (
-              <PartnerItem
-                key={partner._id}
-                partner={partner}
-                handleDelete={() => handleDeleteWithConfirm(partner._id)}
-              />
-            ))}
-        </ul>
-
-        {partnersData && (
-          <PaginationBar
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={changePage}
-            className="mt-[8.5rem]"
-          />
-        )}
       </div>
+
+      <ul className="mb-auto grid grid-cols-4 gap-[1.85rem] gap-y-[2.35rem]">
+        <li className="flex-center w-[27.6rem]">
+          <Link href="/admin/partners/add">
+            <AdminPanelButton icon={<PlusIcon />} variant="secondary">
+              Додати партнера
+            </AdminPanelButton>
+          </Link>
+        </li>
+
+        {partnersData &&
+          partnerData.map((partner: any) => (
+            <PartnerItem
+              key={partner._id}
+              partner={partner}
+              handleDelete={() => handleDeleteWithConfirm(partner._id)}
+            />
+          ))}
+      </ul>
+
+      {partnersData && (
+        <PaginationBar
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={changePage}
+          // className="mt-[8.5rem]"
+        />
+      )}
     </div>
   );
 };
