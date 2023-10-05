@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 
 import { useProjectFormContext } from '../ProjectFormProvider';
 
@@ -8,8 +8,13 @@ import { roleSorter } from '@/utils/roleSorter';
 
 export const RoleSelector = ({ member }: { member: TMemberResp }) => {
   const { updTeamMemberRole } = useProjectFormContext();
-  const results = useRolesSWR().rolesData?.results;
+  const { rolesData } = useRolesSWR();
   const { teamMember, teamMemberRole } = member;
+
+  const roles = useMemo(() => {
+    return rolesData?.results && roleSorter(rolesData.results);
+  }, [rolesData]);
+
   const [selectedRoleId, setSelectedRoleId] = useState<string>(
     teamMemberRole._id
   );
@@ -17,7 +22,7 @@ export const RoleSelector = ({ member }: { member: TMemberResp }) => {
   const handleOptionSelect = (
     e: ChangeEvent<HTMLSelectElement | undefined>
   ) => {
-    const selectedRole = results?.find((item) => item._id === e.target.value);
+    const selectedRole = roles?.find((item) => item._id === e.target.value);
     if (selectedRole) {
       setSelectedRoleId(e.target.value);
       updTeamMemberRole(teamMember._id, teamMemberRole._id, selectedRole);
@@ -31,9 +36,9 @@ export const RoleSelector = ({ member }: { member: TMemberResp }) => {
       value={selectedRoleId}
     >
       {!selectedRoleId && <option />}
-      {results &&
-        results.length > 0 &&
-        roleSorter(results)!.map((item) => (
+      {roles &&
+        roles.length > 0 &&
+        roles.map((item) => (
           <option key={item._id} className="rounded-md py-3" value={item._id}>
             {item.name.ua}
           </option>

@@ -30,7 +30,7 @@ export const ListRow = ({ member }: { member: TMemberResp }) => {
         <div className={bgStyle + ' justify-end rounded-e-md pr-4'}>
           <ActionBtns
             id={teamMember._id}
-            entity={'members'}
+            entity="members"
             handleDelete={deleteMember}
           />
         </div>

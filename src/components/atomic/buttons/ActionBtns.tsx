@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { EditDeleteButton } from './EditDeleteButton';
 
 type TProps = {
-  entity: 'projects' | 'members' | 'roles';
+  entity: 'projects' | 'members' | 'roles' | 'partners';
   id: string;
-  handleDelete: (id: string) => void;
+  handleDelete: (id?: string) => void;
 };
 
 export const ActionBtns = ({ entity, id, handleDelete }: TProps) => {

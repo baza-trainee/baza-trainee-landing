@@ -39,7 +39,7 @@ export const ProjectCardTeam = ({
 
       <p className="mb-7 w-full text-3xl font-semibold">{projectTeamTitle}</p>
 
-      <div className="scrollbar flex h-[90%] flex-col gap-[1.6rem] overflow-y-scroll">
+      <div className="scrollbar flex h-[90%] flex-col gap-[1.6rem] overflow-y-auto">
         {sortedRoles.map((role) => (
           <div key={role}>
             <h4 className="font-semibold">{role}</h4>

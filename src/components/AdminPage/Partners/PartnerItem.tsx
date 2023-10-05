@@ -1,52 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
-import { ActionButton } from '@/components/atomic/buttons/ActionAdminPanelButton';
-import { DeleteIcon } from '@/components/common/icons/DeleteIcon';
-import { EditIcon } from '@/components/common/icons/EditIcon';
-import { useGlobalContext } from '@/store/globalContext';
+import { ActionBtns } from '@/components/atomic';
 import { PartnerItemProps } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
 
 export const PartnerItem = ({
-  partner: { _id: id, name: name, imageUrl: image },
+  partner: { _id, name, imageUrl, homeUrl },
   handleDelete,
 }: PartnerItemProps) => {
-  const { setAlertInfo } = useGlobalContext();
-  const { push } = useRouter();
-  const imageUrl = `https://baza-trainee.tech/api/v1/files/${image}`;
-
-  const handleDeleteClick = () => {
-    setAlertInfo({
-      state: 'submit',
-      title: 'Підтвердити видалення',
-      textInfo: 'Бажаєте видалити дані?',
-      func: () => handleDelete(id),
-    });
-  };
-
   return (
-    <li className="relative  flex h-[100px] min-w-[214px] bg-[#CECECE]">
-      <Image
-        src={imageUrl}
-        alt={name}
-        width={214}
-        height={100}
-        sizes="100vw"
-        className="mx-auto "
-      />
-      <ul className="absolute bottom-4 right-[1.3rem] flex items-center justify-end gap-[1rem]">
-        <li>
-          <ActionButton
-            icon={<EditIcon />}
-            onClick={() => push(`partners/edit/${id}`)}
-          />
-        </li>
-        <li>
-          <ActionButton icon={<DeleteIcon />} onClick={handleDeleteClick} />
-        </li>
-      </ul>
+    <li className="relative h-40 w-[27.6rem] bg-[#CECECE]">
+      <a className="cursor-pointer" href={homeUrl} target="_blank">
+        <Image
+          src={createImgUrl(imageUrl)}
+          alt={name || 'Partner logo'}
+          fill
+          sizes="100%"
+          className="object-cover"
+        />
+      </a>
+
+      <div className="absolute bottom-3 right-3">
+        <ActionBtns entity="partners" id={_id} handleDelete={handleDelete} />
+      </div>
     </li>
   );
 };

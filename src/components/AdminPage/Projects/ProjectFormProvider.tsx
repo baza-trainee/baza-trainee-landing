@@ -85,9 +85,9 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   };
 
   const translateToPl = () => {
-    handleTranslate(watch().nameUk, 'pl').then((res) =>
-      setValue('namePl', res)
-    );
+    handleTranslate(watch().nameUk, 'pl').then((res) => {
+      setValue('namePl', res);
+    });
   };
 
   const onSubmit: SubmitHandler<TFormInput> = (data) => {

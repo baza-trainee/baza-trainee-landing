@@ -15,16 +15,11 @@ body {
 
 @layer utilities {
   .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @apply flex items-center justify-center;
   }
 
   .block-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
   }
 
   .scrollbar::-webkit-scrollbar {
@@ -45,14 +40,9 @@ body {
 }
 
 input[type='file']::file-selector-button {
-  display: none;
+  @apply hidden;
 }
 
 .calendar-picker-icon::-webkit-calendar-picker-indicator {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
+  @apply absolute left-0 top-0 h-full w-full cursor-pointer;
 }

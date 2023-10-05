@@ -6,9 +6,6 @@ export default function EditMemberPage({
   params: { memberId: string };
 }) {
   return (
-    <MemberAndRoleEditor
-      entity={'members'}
-      memberOrRoleId={params.memberId}
-    />
+    <MemberAndRoleEditor entity="members" memberOrRoleId={params.memberId} />
   );
 }

@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 
+import { TPartnerResp } from './partnersTypes';
 import { TMemberBioResp, TMemberRoleResp, TProjectResp } from './projectsTypes';
 
 export interface IErrorResponse {
@@ -131,7 +132,6 @@ export type ITestimonialRequest = TTestimonialBase & {
 // }
 
 export type id = string | number;
-export type updateByIdRequest = [id: id, payload: Object];
 export type searchProjectRequest = string;
 
 export type methodType<T> = (payload: T) => Promise<AxiosResponse>;
@@ -158,6 +158,11 @@ export type responseDataType =
       | TTestimonialResp
     >
   | null;
+
+export type TResponsePartners = {
+  results: TPartnerResp[];
+  pagination: TPagination;
+};
 
 export type TResponseProjects = {
   results: TProjectResp[];
