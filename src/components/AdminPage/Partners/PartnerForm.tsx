@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,9 +9,9 @@ import { partnerValidateOptions } from './validateOptions';
 import { FileInput, FormBtns } from '@/components/atomic';
 import { TextInputField } from '@/components/atomic/inputs/TextInputField';
 import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
-import { PartnerFormProps, TPartnerFormInputs, TPartnerReq } from '@/types';
+import { TPartnerFormInputs, TPartnerReq } from '@/types';
 
-export const PartnerForm = ({ partnerId }: PartnerFormProps) => {
+export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
   const isEditMode = !!partnerId;
   const router = useRouter();
 
