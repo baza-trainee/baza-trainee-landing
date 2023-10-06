@@ -31,6 +31,7 @@ const createOptions = (
 };
 
 export const RoleForm = ({ roleId }: { roleId?: string }) => {
+  const isEditMode = !!roleId;
   const router = useRouter();
   const { handleTranslate } = useTranslator();
 
@@ -42,26 +43,26 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const {
     control,
     handleSubmit,
-    watch,
+    getValues,
     setValue,
     formState: { errors },
   } = useForm<TMemberFormInput>(valuesIfItEditedRole);
 
   const translateToEn = () => {
-    handleTranslate(watch().nameUk, 'en').then((res) => {
+    handleTranslate(getValues().nameUk, 'en').then((res) => {
       setValue('nameEn', res);
     });
   };
 
   const translateToPl = () => {
-    handleTranslate(watch().nameUk, 'pl').then((res) =>
-      setValue('namePl', res)
-    );
+    handleTranslate(getValues().nameUk, 'pl').then((res) => {
+      setValue('namePl', res);
+    });
   };
 
   const cancelAction = () => router.replace('.');
 
-  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<TMemberFormInput> = (data) => {
     const role = {
       name: {
         en: data.nameEn,
@@ -70,7 +71,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
       },
     };
 
-    if (roleId) {
+    if (isEditMode) {
       updateRole(roleId, role);
     } else {
       createRole(role);
@@ -126,7 +127,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
         />
       </div>
 
-      <FormBtns isEditMode={!!roleId} cancelAction={cancelAction} />
+      <FormBtns {...{ isEditMode, cancelAction }} />
     </form>
   );
 };

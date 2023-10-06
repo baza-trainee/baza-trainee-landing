@@ -32,11 +32,6 @@ const ProjectCard = ({
     setIsMembersVisible((prev) => !prev);
   };
 
-  // const { projectImgBlob } = useProjectImgSWR(project.imageUrl);
-  // const projectImg2 = projectImgBlob
-  //   ? URL.createObjectURL(projectImgBlob)
-  //   : '/';
-
   return (
     <li
       className={styles.animate}
@@ -49,7 +44,7 @@ const ProjectCard = ({
           alt="Project Image"
           fill
           sizes="100%"
-          className={`h-auto w-full object-cover contrast-50 ${
+          className={`object-cover contrast-50 ${
             isMembersVisible
               ? 'grayscale-[.3]'
               : 'grayscale group-hover:contrast-100 group-hover:grayscale-0'

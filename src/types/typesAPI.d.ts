@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 
+import { TPartnerResp } from './partnersTypes';
 import { TMemberBioResp, TMemberRoleResp, TProjectResp } from './projectsTypes';
 
 export interface IErrorResponse {
@@ -158,6 +159,11 @@ export type responseDataType =
       | TTestimonialResp
     >
   | null;
+
+export type TResponsePartners = {
+  results: TPartnerResp[];
+  pagination: TPagination;
+};
 
 export type TResponseProjects = {
   results: TProjectResp[];

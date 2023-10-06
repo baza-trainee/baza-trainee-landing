@@ -37,6 +37,7 @@ export const MemberForm = ({
   memberId,
   addMemberNComeback,
 }: TMemberFormProps) => {
+  const isMemberEditMode = !!memberId;
   const isProjectEditorMode = !!addMemberNComeback;
   const router = useRouter();
   const { handleTranslate } = useTranslator();
@@ -50,21 +51,21 @@ export const MemberForm = ({
   const {
     control,
     handleSubmit,
-    watch,
+    getValues,
     setValue,
     formState: { errors },
   } = useForm<TMemberFormInput>(valuesIfItEditedMember);
 
   const translateToEn = () => {
-    handleTranslate(watch().nameUk, 'en').then((res) => {
+    handleTranslate(getValues().nameUk, 'en').then((res) => {
       setValue('nameEn', res);
     });
   };
 
   const translateToPl = () => {
-    handleTranslate(watch().nameUk, 'pl').then((res) =>
-      setValue('namePl', res)
-    );
+    handleTranslate(getValues().nameUk, 'pl').then((res) => {
+      setValue('namePl', res);
+    });
   };
 
   const cancelAction = () => {
@@ -172,7 +173,7 @@ export const MemberForm = ({
       </div>
 
       {isProjectEditorMode && (
-        <div className="mb-11 h-96 overflow-y-scroll rounded-md border">
+        <div className="mb-11 h-96 overflow-y-auto rounded-md border">
           {members?.length && (
             <MembersAndRolesList
               {...{ isProjectEditorMode, selectMember }}
@@ -183,7 +184,10 @@ export const MemberForm = ({
         </div>
       )}
 
-      <FormBtns isEditMode={!!memberId} cancelAction={cancelAction} />
+      <FormBtns
+        isEditMode={isMemberEditMode || isProjectEditorMode}
+        cancelAction={cancelAction}
+      />
     </form>
   );
 };
