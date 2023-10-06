@@ -10,28 +10,46 @@ import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 const useProjectsSWR = () => {
   const { setAlertInfo } = useGlobalContext();
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState<number>();
+  const [limit, setLimit] = useState<number>();
 
   const swrKey = `${projectsEndpoint}?search=${search}`;
+
+  const setSuccess = (textInfo: string) => {
+    setAlertInfo({
+      state: 'success',
+      title: 'Успіх',
+      textInfo,
+    });
+  };
 
   const handleRequestError = (err: any) => {
     errorHandler(err);
     setAlertInfo({
       state: 'error',
       title: networkStatusesUk[err?.status || 500],
-      textInfo: 'При запиті виникла помилка. Спробуйте трохи пізніше.',
+      textInfo: 'При запиті виникла помилка.',
     });
   };
 
   const { data, error, isLoading, mutate } = useSWR<
     TResponseProjects,
     AxiosError
-  >(swrKey, projectsApi.getAll, {
-    keepPreviousData: true,
+  >(swrKey, () => projectsApi.getAll({ page, search, limit }), {
+    keepPreviousData: !!search,
     onError: handleRequestError,
   });
 
   const searchProject = (search: string) => {
     setSearch(search);
+    // setPage(1);
+  };
+
+  const changePage = (newPage: number) => {
+    setPage(newPage);
+  };
+  const changeLimit = (newLimit: number) => {
+    setPage(newLimit);
   };
 
   const getProjectById = (id: string) => {
@@ -46,6 +64,7 @@ const useProjectsSWR = () => {
         results: [createdProject, ...(data?.results || [])],
       };
 
+      setSuccess('Ваші дані успішно збережено.');
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
@@ -60,6 +79,7 @@ const useProjectsSWR = () => {
       );
       const updData: TResponseProjects = { ...data!, results: updProjects! };
 
+      setSuccess('Оновлені дані успішно збережено.');
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
@@ -87,6 +107,8 @@ const useProjectsSWR = () => {
     createProject,
     updateProject,
     deleteProject,
+    changePage,
+    changeLimit,
   };
 };
 

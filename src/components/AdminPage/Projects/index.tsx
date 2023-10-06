@@ -5,17 +5,27 @@ import Link from 'next/link';
 import { ButtonsOverlay } from './ButtonsOverlay';
 
 import { AdminPanelButton } from '@/components/atomic';
+import { PaginationBar } from '@/components/atomic/PaginationBar';
 import { PlusIcon } from '@/components/common/icons';
 import { ProjectCard } from '@/components/ProjectCard';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
-import { TProjectResp } from '@/types';
+import { TPagination, TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
 
 export const AdminProjects = () => {
-  const { projectsData, deleteProject } = useProjectsSWR();
+  const { projectsData, deleteProject, changePage } = useProjectsSWR();
+
+  const { currentPage, totalPages, totalResults }: TPagination =
+    projectsData?.pagination || {
+      currentPage: 1,
+      totalPages: 1,
+      totalResults: 0,
+    };
+
+  const projects: TProjectResp[] = projectsData?.results || [];
 
   return (
-    <section className="mx-[2.4rem] my-[3.2rem] w-full">
+    <section className="mx-[2.4rem] my-[3.2rem] flex w-full flex-col">
       <h2 className="mb-[4.4rem] text-[3.2rem] font-bold text-admin-header">
         Проєкти
       </h2>
@@ -29,19 +39,26 @@ export const AdminProjects = () => {
           </Link>
         </li>
 
-        {projectsData &&
-          projectsData?.results &&
-          projectsData.results.map((project: TProjectResp) => (
-            <ButtonsOverlay key={project._id} handleDelete={deleteProject}>
-              <ProjectCard
-                project={project}
-                lang="ua"
-                coverImgUrl={createImgUrl(project.imageUrl)}
-                isAdminMode
-              />
-            </ButtonsOverlay>
-          ))}
+        {projects.map((project: TProjectResp) => (
+          <ButtonsOverlay key={project._id} handleDelete={deleteProject}>
+            <ProjectCard
+              project={project}
+              lang="ua"
+              coverImgUrl={createImgUrl(project.imageUrl)}
+              isAdminMode
+            />
+          </ButtonsOverlay>
+        ))}
       </ul>
+
+      <div className="mt-auto">
+        <PaginationBar
+          className="mt-20"
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={changePage}
+        />
+      </div>
     </section>
   );
 };

@@ -26,7 +26,7 @@ export const PaginationBar = ({
   };
 
   return (
-    <div className={`mx-auto flex items-center gap-8 ${className}`}>
+    <div className={`mx-auto flex max-w-fit items-center gap-8 ${className}`}>
       <button onClick={handlePrevPage} disabled={currentPage === 1}>
         <MultiArrow
           direction="left"

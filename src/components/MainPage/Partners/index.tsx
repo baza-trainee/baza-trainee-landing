@@ -1,13 +1,13 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import Slider from 'react-slick';
 
-import { partners } from './partners';
-
 import { ContainerMaxW1200 } from '@/components/atomic';
+import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
+import { TPartnerResp } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
 
 const sliderSettings = {
   dots: false,
@@ -51,37 +51,34 @@ const sliderSettings = {
 
 export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
   const { title } = dictionaries[lang].partners || {};
+  const { partnersData } = usePartnersSWR();
+  const partners: TPartnerResp[] = partnersData?.results || [];
+
   return (
     <section id="partners">
       <ContainerMaxW1200 className="flex-col">
-        <div className=" max-w-full">
+        <div className="max-w-full">
           <h2 className="mb-[3.8rem] text-center text-6xl font-bold">
             {title}
           </h2>
+
           <Slider {...sliderSettings} lazyLoad="progressive">
             {partners.map((partner) => (
-              <Link
+              <a
                 key={partner._id}
                 href={partner.homeUrl}
                 aria-label={`Visit ${partner.name} site`}
                 target="_blank"
-                className="relative h-[10rem] w-[16.5rem] md:h-[10rem] md:w-[21.4rem]"
-                style={{ width: 'min-content' }}
+                className="relative h-[10rem] w-[16.5rem] md:w-[21.4rem]"
               >
                 <Image
                   fill
-                  sizes="(min-width: 300px) 100%"
-                  aria-label={partner.name}
-                  //  width={214}
-                  //  height={100}
-                  //sizes="(max-width: 214px)"
-                  className={
-                    'm-auto object-contain  contrast-50 grayscale hover:contrast-100 hover:grayscale-0'
-                  }
-                  src={partner.imageUrl}
+                  sizes="100%"
+                  className="m-auto object-contain contrast-50 grayscale hover:contrast-100 hover:grayscale-0"
+                  src={createImgUrl(partner.imageUrl)}
                   alt={partner.name}
                 />
-              </Link>
+              </a>
             ))}
           </Slider>
         </div>

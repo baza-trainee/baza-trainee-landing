@@ -9,11 +9,11 @@ import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
 const usePartnersSWR = () => {
   const { setAlertInfo } = useGlobalContext();
-  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
   const [page, setPage] = useState<number>();
   const [limit, setLimit] = useState<number>(); // is this param necessary ?
 
-  const swrKey = `${partnersEndpoint}?search=${search}`;
+  const swrKey = `${partnersEndpoint}?query=${query}`;
 
   const setSuccess = (textInfo: string) => {
     setAlertInfo({
@@ -34,9 +34,9 @@ const usePartnersSWR = () => {
 
   const { data, error, mutate } = useSWR<TResponsePartners, AxiosError>(
     swrKey,
-    () => partnersApi.getAll({ page, query: search, limit }),
+    () => partnersApi.getAll({ page, query, limit }),
     {
-      keepPreviousData: !!search,
+      keepPreviousData: !!query,
       onError: handleRequestError,
     }
   );
@@ -70,8 +70,8 @@ const usePartnersSWR = () => {
     }
   };
 
-  const searchPartner = (search: string) => {
-    setSearch(search);
+  const searchPartner = (query: string) => {
+    setQuery(query);
     // setPage(1);
   };
 
