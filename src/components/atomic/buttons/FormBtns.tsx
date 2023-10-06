@@ -2,39 +2,33 @@ import { AdminPanelButton } from '@/components/atomic';
 
 type TBtnsProps = {
   isEditMode?: boolean;
-  isResetPass?: boolean;
-  isEditModeNoWrap?: boolean;
+  verticalBtns?: boolean;
+  okBtnName?: string;
+  cancelBtnName?: string;
   disabled?: boolean;
   cancelAction: () => void;
 };
 
 export const FormBtns = ({
   isEditMode,
-  isResetPass,
-  isEditModeNoWrap,
+  verticalBtns,
+  okBtnName,
+  cancelBtnName = 'Скасувати',
   disabled,
   cancelAction,
 }: TBtnsProps) => {
-  const okBtnName = isResetPass
-    ? 'Підтвердити'
-    : isEditMode
-    ? 'Зберегти зміни'
-    : isEditModeNoWrap
-    ? 'Зберегти зміни'
-    : 'Додати';
+  if (!okBtnName) {
+    okBtnName = isEditMode ? 'Зберегти зміни' : 'Додати';
+  }
 
   return (
-    <div
-      className={`flex gap-7 ${
-        isResetPass || isEditModeNoWrap ? 'w-full flex-col' : ''
-      }`}
-    >
+    <div className={`flex gap-7 ${verticalBtns ? 'flex-col' : ''}`}>
       <AdminPanelButton disabled={disabled} type="submit">
         {okBtnName}
       </AdminPanelButton>
 
       <AdminPanelButton variant="secondary" onClick={() => cancelAction()}>
-        Скасувати
+        {cancelBtnName}
       </AdminPanelButton>
     </div>
   );

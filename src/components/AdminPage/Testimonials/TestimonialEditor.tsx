@@ -290,7 +290,7 @@ export const TestimonialEditor = ({
             />
           </div>
           <FormBtns
-            isEditMode={testimonialId ? true : false}
+            isEditMode={!!testimonialId}
             cancelAction={handleResetForm}
           />
         </div>
