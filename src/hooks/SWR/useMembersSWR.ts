@@ -30,7 +30,7 @@ const useMembersSWR = () => {
     TResponseMembers,
     AxiosError
   >(swrKey, membersApi.getAll, {
-    keepPreviousData: true,
+    keepPreviousData: !!search,
     onError: handleRequestError,
   });
 

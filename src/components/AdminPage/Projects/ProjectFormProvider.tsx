@@ -90,7 +90,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     });
   };
 
-  const onSubmit: SubmitHandler<TFormInput> = (data) => {
+  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const preparedProject: TProjectReq = {
       ...prepareProject(data),
       teamMembers: extractMembersId(teamMemberData),
@@ -101,10 +101,8 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     }
 
     isEditMode
-      ? updateProject(projectId, preparedProject)
-      : createProject(preparedProject);
-
-    cancelAction();
+      ? await updateProject(projectId, preparedProject).then(cancelAction)
+      : await createProject(preparedProject).then(cancelAction);
   };
 
   // check fetched members for empty fields

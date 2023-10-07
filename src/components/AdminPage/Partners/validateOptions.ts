@@ -41,7 +41,7 @@ export const partnerValidateOptions = {
 
         return true;
       } else {
-        return 'Додайте зображення проєкту';
+        return 'Додайте логотип.';
       }
     },
   },

@@ -62,7 +62,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
 
   const cancelAction = () => router.replace('.');
 
-  const onSubmit: SubmitHandler<TMemberFormInput> = (data) => {
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const role = {
       name: {
         en: data.nameEn,
@@ -72,12 +72,10 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     };
 
     if (isEditMode) {
-      updateRole(roleId, role);
+      await updateRole(roleId, role).then(cancelAction);
     } else {
-      createRole(role);
+      await createRole(role).then(cancelAction);
     }
-
-    cancelAction();
   };
 
   return (
