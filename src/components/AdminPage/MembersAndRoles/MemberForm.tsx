@@ -98,14 +98,14 @@ export const MemberForm = ({
     }
 
     if (memberId) {
-      updateMember(memberId, member);
+      updateMember(memberId, member).then(cancelAction);
     } else {
       createMember(member)?.then((res) => {
         res && isProjectEditorMode && addMemberNComeback(res);
       });
     }
 
-    cancelAction();
+    // cancelAction();
   };
 
   return (

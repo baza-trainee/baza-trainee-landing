@@ -1,6 +1,7 @@
 import { TFormInput } from './types';
 
 import { SETTINGS } from '@/config/settings';
+import { formatBytes } from '@/utils/formatBytes';
 import { convertDate } from '@/utils/formatDate';
 
 const limitSize = SETTINGS.fileSizeLimits.projectCard;
@@ -44,7 +45,7 @@ export const projectValidateOptions = {
     },
   },
 
-  img: {
+  projectImg: {
     validate: (
       value: string | number | boolean | File | File[] | undefined
     ) => {
@@ -60,7 +61,7 @@ export const projectValidateOptions = {
         if (!checkType) return 'Виберіть коректне зображення';
 
         const checkSize = file.size <= limitSize;
-        if (!checkSize) return `Виберіть зображення до ${limitSize}Мб`;
+        if (!checkSize) return `Виберіть зображення до ${formatBytes(limitSize)}`;
 
         return true;
       } else {
@@ -73,6 +74,23 @@ export const projectValidateOptions = {
     pattern: {
       value: /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/,
       message: 'Введіть коректне посилання',
+    },
+  },
+
+  creationDate: {
+    required: 'Оберіть дату',
+    validate: (
+      _: string | number | boolean | File | File[] | undefined,
+      formValues: TFormInput
+    ) => {
+      if (!formValues.creationDate) return;
+
+      const creationDate = convertDate.toMsec(formValues.creationDate);
+      const currDate = new Date().getTime();
+
+      return (
+        creationDate! < currDate || 'Дата не може бути більшою ніж сьогодні.'
+      );
     },
   },
 

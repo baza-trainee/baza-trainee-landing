@@ -28,7 +28,6 @@ const ProjectForm = () => {
     control,
     errors,
   } = useProjectFormContext();
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid w-[109rem] grid-cols-3 gap-9">
@@ -80,7 +79,7 @@ const ProjectForm = () => {
         <div className={`${rowStyle} col-span-2`}>
           <DateInput
             name="creationDate"
-            rules={{ required: 'Оберіть дату' }}
+            rules={projectValidateOptions.creationDate}
             control={control}
             title="Старт проєкту"
             placeholder="Оберіть дату"
@@ -131,7 +130,7 @@ const ProjectForm = () => {
             name="projectImg"
             control={control}
             rules={{
-              ...projectValidateOptions.img,
+              ...projectValidateOptions.projectImg,
               required: isEditMode ? false : 'Додайте зображення проєкту',
             }}
             accept="image/*"

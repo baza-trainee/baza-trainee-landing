@@ -26,7 +26,7 @@ const ProjectPreview = () => {
       return createImgUrl(projectImg[0].name);
     }
 
-    const isValidImg = projectValidateOptions.img.validate(projectImg);
+    const isValidImg = projectValidateOptions.projectImg.validate(projectImg);
     if (typeof isValidImg !== 'string') {
       return URL.createObjectURL(projectImg[0]);
     }

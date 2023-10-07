@@ -1,4 +1,5 @@
 import { SETTINGS } from '@/config/settings';
+import { formatBytes } from '@/utils/formatBytes';
 
 const limitSize = SETTINGS.fileSizeLimits.partnerLogo;
 
@@ -35,7 +36,8 @@ export const partnerValidateOptions = {
         if (!checkType) return 'Виберіть коректне зображення';
 
         const checkSize = file.size <= limitSize;
-        if (!checkSize) return `Виберіть зображення до ${limitSize}Мб`;
+        if (!checkSize)
+          return `Виберіть зображення до ${formatBytes(limitSize)}`;
 
         return true;
       } else {

@@ -1,4 +1,4 @@
-export function formatBytes(bytes: number) {
+export const formatBytes = (bytes: number) => {
   if (bytes < 1024) {
     return bytes + ' B';
   } else if (bytes < 1024 * 1024) {
@@ -8,4 +8,4 @@ export function formatBytes(bytes: number) {
   } else {
     return (bytes / (1024 * 1024 * 1024)).toFixed(0) + 'Gb';
   }
-}
+};

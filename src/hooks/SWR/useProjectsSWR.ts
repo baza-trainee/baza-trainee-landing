@@ -24,11 +24,15 @@ const useProjectsSWR = () => {
   };
 
   const handleRequestError = (err: any) => {
+    const { status, response } = err;
+    const message = response?.data?.message || 'Помилка виконання запиту';
+    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
+
     errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[err?.status || 500],
-      textInfo: 'При запиті виникла помилка.',
+      title: networkStatusesUk[status || 500],
+      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
     });
   };
 
