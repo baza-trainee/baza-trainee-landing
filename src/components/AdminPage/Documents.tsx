@@ -82,7 +82,8 @@ export const Documents = () => {
         state: 'error',
         title: 'Перевищення розміру файлу',
         textInfo: `Максимальний розмір файлу не повинен перевищувати ${formatBytes(
-          { bytes: maxSize }        )}`,
+          maxSize
+        )}`,
       });
   };
 
