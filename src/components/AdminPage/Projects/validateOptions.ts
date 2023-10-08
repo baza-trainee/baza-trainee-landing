@@ -1,10 +1,14 @@
+import { ValidateResult } from 'react-hook-form';
+
 import { TFormInput } from './types';
 
 import { SETTINGS } from '@/config/settings';
 import { formatBytes } from '@/utils/formatBytes';
 import { convertDate } from '@/utils/formatDate';
+import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
 const limitSize = SETTINGS.fileSizeLimits.projectCard;
+const limitDimensions = SETTINGS.imgDimensions.projectImg;
 
 const commonOptions = {
   minLength: {
@@ -46,9 +50,9 @@ export const projectValidateOptions = {
   },
 
   projectImg: {
-    validate: (
+    validate: async (
       value: string | number | boolean | File | File[] | undefined
-    ) => {
+    ): Promise<ValidateResult> => {
       if (typeof value === 'object' && value !== null && value.length > 0) {
         const file = value[0];
 
@@ -61,9 +65,14 @@ export const projectValidateOptions = {
         if (!checkType) return 'Виберіть коректне зображення';
 
         const checkSize = file.size <= limitSize;
-        if (!checkSize) return `Виберіть зображення до ${formatBytes(limitSize)}`;
+        if (!checkSize)
+          return `Виберіть зображення до ${formatBytes(limitSize)}`;
 
-        return true;
+        return validateImgDimensions(
+          file,
+          limitDimensions.width,
+          limitDimensions.height
+        );
       } else {
         return 'Додайте зображення проєкту';
       }

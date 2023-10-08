@@ -76,7 +76,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     setValue,
     control,
     formState: { errors },
-  } = useForm<TFormInput>({ defaultValues });
+  } = useForm<TFormInput>({ defaultValues , mode:"onChange"});
 
   const translateToEn = () => {
     handleTranslate(watch().nameUk, 'en').then((res) => {

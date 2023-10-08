@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { useProjectFormContext } from './ProjectFormProvider';
 import { prepareProject } from './projectUtils';
 import { projectValidateOptions } from './validateOptions';
@@ -19,20 +21,24 @@ const ProjectPreview = () => {
   const currentValues = watch();
   const { projectImg } = currentValues;
 
-  const getCoverImgUrl = () => {
+  const [coverImgUrl, setCoverImgUrl] = useState<string>();
+
+  useEffect(() => {
     if (!projectImg?.length) return;
 
-    if (projectImg[0].type === 'for-url') {
-      return createImgUrl(projectImg[0].name);
-    }
+    (async () => {
+      if (projectImg[0].type === 'for-url') {
+        setCoverImgUrl(createImgUrl(projectImg[0].name));
+      } else {
+        const isValidImg =
+          await projectValidateOptions.projectImg.validate(projectImg);
 
-    const isValidImg = projectValidateOptions.projectImg.validate(projectImg);
-    if (typeof isValidImg !== 'string') {
-      return URL.createObjectURL(projectImg[0]);
-    }
-  };
-
-  const coverImgUrl = getCoverImgUrl();
+        if (typeof isValidImg !== 'string') {
+          setCoverImgUrl(URL.createObjectURL(projectImg[0]));
+        }
+      }
+    })();
+  }, [projectImg]);
 
   if (!coverImgUrl) {
     return <EmptyPreviewImg />;
@@ -51,7 +57,7 @@ const ProjectPreview = () => {
         <ProjectCard
           project={previewProject}
           coverImgUrl={coverImgUrl}
-          lang={'ua'}
+          lang="ua"
           isAdminMode={true}
         />
       </ul>
