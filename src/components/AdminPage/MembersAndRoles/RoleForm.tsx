@@ -22,11 +22,9 @@ const createOptions = (
   if (!role) return;
 
   return {
-    defaultValues: {
-      nameUk: role.name.ua,
-      nameEn: role.name.en,
-      namePl: role.name.pl,
-    },
+    nameUk: role.name.ua,
+    nameEn: role.name.en,
+    namePl: role.name.pl,
   };
 };
 
@@ -46,7 +44,10 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<TMemberFormInput>(valuesIfItEditedRole);
+  } = useForm<TMemberFormInput>({
+    defaultValues: valuesIfItEditedRole,
+    mode: 'onChange',
+  });
 
   const translateToEn = () => {
     handleTranslate(getValues().nameUk, 'en').then((res) => {

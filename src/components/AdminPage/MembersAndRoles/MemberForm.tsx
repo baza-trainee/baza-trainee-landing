@@ -24,12 +24,10 @@ const createOptions = (
   if (!member) return;
 
   return {
-    defaultValues: {
-      nameUk: member.name.ua,
-      nameEn: member.name.en,
-      namePl: member.name.pl,
-      linkedin: member.profileUrl,
-    },
+    nameUk: member.name.ua,
+    nameEn: member.name.en,
+    namePl: member.name.pl,
+    linkedin: member.profileUrl,
   };
 };
 
@@ -54,7 +52,10 @@ export const MemberForm = ({
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<TMemberFormInput>(valuesIfItEditedMember);
+  } = useForm<TMemberFormInput>({
+    defaultValues: valuesIfItEditedMember,
+    mode: 'onChange',
+  });
 
   const translateToEn = () => {
     handleTranslate(getValues().nameUk, 'en').then((res) => {

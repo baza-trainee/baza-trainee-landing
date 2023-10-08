@@ -22,7 +22,7 @@ export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<TPartnerFormInputs>();
+  } = useForm<TPartnerFormInputs>({ mode: 'onChange' });
 
   const cancelAction = () => router.back();
 
