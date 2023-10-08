@@ -1,5 +1,3 @@
-import { ValidateResult } from 'react-hook-form';
-
 import { TFormInput } from './types';
 
 import { SETTINGS } from '@/config/settings';
@@ -26,7 +24,7 @@ export const projectValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’-]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’!"№:?*()_+\-@#$]+$/,
       message: 'Введіть коректну назву',
     },
   },
@@ -35,7 +33,7 @@ export const projectValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-Z\s\d'’-]+$/,
+      value: /^[a-zA-Z\s\d'’!"№:?*()_+\-@#$]+$/,
       message: 'Введіть коректну назву',
     },
   },
@@ -44,7 +42,7 @@ export const projectValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\d'’-]+$/,
+      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\d'’!"№:?*()_+\-@#$]+$/,
       message: 'Введіть коректну назву',
     },
   },

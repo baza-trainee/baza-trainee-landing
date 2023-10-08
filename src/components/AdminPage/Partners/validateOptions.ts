@@ -1,7 +1,9 @@
 import { SETTINGS } from '@/config/settings';
 import { formatBytes } from '@/utils/formatBytes';
+import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
 const limitSize = SETTINGS.fileSizeLimits.partnerLogo;
+const limitDimensions = SETTINGS.imgDimensions.partnerLogo;
 
 export const partnerValidateOptions = {
   name: {
@@ -39,7 +41,11 @@ export const partnerValidateOptions = {
         if (!checkSize)
           return `Виберіть зображення до ${formatBytes(limitSize)}`;
 
-        return true;
+        return validateImgDimensions(
+          file,
+          limitDimensions.width,
+          limitDimensions.height
+        );
       } else {
         return 'Додайте логотип.';
       }
