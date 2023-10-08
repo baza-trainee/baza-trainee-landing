@@ -50,9 +50,9 @@ export const projectValidateOptions = {
   },
 
   projectImg: {
-    validate: async (
+    validate: (
       value: string | number | boolean | File | File[] | undefined
-    ): Promise<ValidateResult> => {
+    ) => {
       if (typeof value === 'object' && value !== null && value.length > 0) {
         const file = value[0];
 
