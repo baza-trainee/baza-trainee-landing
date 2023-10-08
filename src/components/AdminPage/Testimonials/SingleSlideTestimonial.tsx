@@ -2,10 +2,12 @@ import Link from 'next/link';
 
 import { DeleteTestimonialsButton } from './DeleteTestimonialsButton';
 
+import { TSlideReview } from '@/types';
+
+import { TLandingLanguage } from '@/store/globalContext';
+
 import { DeleteIcon, PenIcon } from '@/components/common/icons';
 import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
-import { TLandingLanguage } from '@/store/globalContext';
-import { TSlideReview } from '@/types';
 
 export const SingleSlideTestimonial = ({
   slideData,

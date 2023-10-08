@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { TMemberBioReq, TResponseMembers } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import { membersApi, membersEndpoint } from '@/utils/API/members';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 

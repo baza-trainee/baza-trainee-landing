@@ -4,12 +4,15 @@ import Link from 'next/link';
 
 import { ButtonsOverlay } from './ButtonsOverlay';
 
+import { TProjectResp } from '@/types';
+
+import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
+
+import { createImgUrl } from '@/utils/imageHandler';
+
 import { AdminPanelButton } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import { ProjectCard } from '@/components/ProjectCard';
-import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
-import { TProjectResp } from '@/types';
-import { createImgUrl } from '@/utils/imageHandler';
 
 export const AdminProjects = () => {
   const { projectsData, deleteProject } = useProjectsSWR();

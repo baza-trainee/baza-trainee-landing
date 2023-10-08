@@ -1,7 +1,9 @@
 import Image from 'next/image';
 
-import { TLandingLanguage } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
+
+import { TLandingLanguage } from '@/store/globalContext';
+
 import { formatDate } from '@/utils/formatDate';
 
 interface SingleSlideProps {
@@ -19,6 +21,8 @@ export const SingleSlide = ({
 }: SingleSlideProps) => {
   const { role, date, review, imageUrl, name } = slideData;
   const formattedDate = formatDate(date, 'nouns', lang);
+
+  console.log(slideData)
 
   return (
     <div className="min-h-48 flex-center m-auto w-4/5 flex-col gap-[3.2rem] text-neutral-700 md:flex-row md:gap-[2rem] xl:w-[95rem] xl:gap-[4.8rem]">

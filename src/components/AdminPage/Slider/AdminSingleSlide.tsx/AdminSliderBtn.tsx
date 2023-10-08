@@ -1,6 +1,7 @@
 import { ReactElement, useEffect } from 'react';
 
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+
 import { useGlobalContext } from '@/store/globalContext';
 
 type Props = {

@@ -5,16 +5,18 @@ import Slider from 'react-slick';
 
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
+import { slides } from './slides';
+
+import { TSlideReview } from '@/types';
+
+import { dictionaries } from '@/locales/dictionaries';
+
+import { TLandingLanguage } from '@/store/globalContext';
 
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
-import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-import { dictionaries } from '@/locales/dictionaries';
-import { TLandingLanguage } from '@/store/globalContext';
-import { TSlideReview } from '@/types';
 
 export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { testimonialsData } = useTestimonialsSWR();
 
   const sliderSettings = {
     dots: true,
@@ -28,11 +30,6 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const { title } = dictionaries[lang].reviews || {};
   const customPaging = (i: number) => Dot(i, currentSlide);
 
-  const imgEndpoint =
-    process.env.NEXT_PUBLIC_PROXY_URL! +
-    process.env.NEXT_PUBLIC_SERVER_URL +
-    '/files/';
-
   return (
     <section>
       <ContainerMaxW1200>
@@ -44,12 +41,12 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
             afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
-            {testimonialsData?.map((review: TSlideReview, index: number) => (
+            {slides?.map((review: TSlideReview, index: number) => (
               <SingleSlide
                 slideData={review}
                 key={index + 'key'}
                 lang={lang}
-                src={imgEndpoint + review.imageUrl}
+                src={review.imageUrl}
                 isImage={review?.imageUrl.split('.')[0] !== 'undefined'}
               />
             ))}

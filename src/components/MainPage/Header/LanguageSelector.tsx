@@ -3,8 +3,9 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { MultiArrow } from '@/components/common/icons';
 import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
+
+import { MultiArrow } from '@/components/common/icons';
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 

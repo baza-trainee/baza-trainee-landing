@@ -6,14 +6,13 @@
   "plugins": ["simple-import-sort"],
   "rules": {
     "no-unused-vars": [1, { "args": "after-used", "argsIgnorePattern": "^_" }],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "import/first": "error",
-    "import/newline-after-import": "error",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "import/first": "warn",
+    "import/newline-after-import": "warn",
     "import/no-duplicates": "error"
   },
   "overrides": [
-    // override "simple-import-sort" config
     {
       "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "rules": {
@@ -21,17 +20,17 @@
           "error",
           {
             "groups": [
-              // Packages `react` related packages come first.
-              ["^react$", "^next", "^[a-z]"],
-              // Side effect imports.
+              ["^react$", "^next", "^@?\\w"],
               ["^\\u0000"],
-              // Other relative imports. Put same-folder imports and `.` last.
               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-              // Parent imports. Put `..` last.
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-              // Internal packages.
-              ["^(@|components)(/.*|$)"],
-              // Style imports.
+              ["^(@/types)(/.*|$)"],
+              ["^(@/config)(/.*|$)"],
+              ["^(@/locales)(/.*|$)"],
+              ["^(@/hooks)(/.*|$)"],
+              ["^(@/store)(/.*|$)"],
+              ["^(@/utils)(/.*|$)"],
+              ["^(@/components)(/.*|$)"],
               ["^.+\\.s?css$"]
             ]
           }

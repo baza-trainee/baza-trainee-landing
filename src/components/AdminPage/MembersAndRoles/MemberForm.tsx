@@ -8,10 +8,12 @@ import { MembersAndRolesList } from './MembersAndRolesList';
 import { TMemberFormInput, TMemberFormProps } from './types';
 import { memberValidateOptions } from './validateOptions';
 
-import { FormBtns, TextInputField } from '@/components/atomic';
+import { TMemberBioReq, TMemberBioResp } from '@/types';
+
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { TMemberBioReq, TMemberBioResp } from '@/types';
+
+import { FormBtns, TextInputField } from '@/components/atomic';
 
 const createOptions = (
   id: string | undefined,

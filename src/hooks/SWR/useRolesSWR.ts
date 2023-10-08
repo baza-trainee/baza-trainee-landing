@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { TMemberRoleReq, TResponseRoles } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import { rolesApi, rolesEndpoint } from '@/utils/API/roles';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 

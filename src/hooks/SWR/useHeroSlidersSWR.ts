@@ -2,8 +2,10 @@
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { IHeroSlider, THeroSliderData } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 

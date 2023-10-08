@@ -3,8 +3,9 @@ import Link from 'next/link';
 
 import { SliderDeleteButton } from './AdminSliderBtn';
 
-import { DeleteIcon, PenIcon } from '@/components/common/icons';
 import { createImgUrl } from '@/utils/imageHandler';
+
+import { DeleteIcon, PenIcon } from '@/components/common/icons';
 
 export const AdminSingleSlide = ({ slideData, lang }: any) => {
   const { imageUrl, title, subtitle, _id } = slideData;

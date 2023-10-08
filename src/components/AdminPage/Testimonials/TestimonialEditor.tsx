@@ -7,6 +7,16 @@ import { testimonialDefaultValues } from './defaultValues';
 import { testimonialValidateOptions } from './testimonialValidateOptions';
 import { TTestimonialFormInput } from './types';
 
+import { ITestimonialRequest } from '@/types/typesAPI';
+
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+
+import { useGlobalContext } from '@/store/globalContext';
+
+import { convertDate } from '@/utils/formatDate';
+import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
+
 import {
   AdminTitle,
   DateInput,
@@ -17,12 +27,6 @@ import {
 } from '@/components/atomic';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
-import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { useGlobalContext } from '@/store/globalContext';
-import { ITestimonialRequest } from '@/types/typesAPI';
-import { convertDate } from '@/utils/formatDate';
-import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
 
 export const TestimonialEditor = ({
   testimonialId,
@@ -68,6 +72,7 @@ export const TestimonialEditor = ({
   }, [testimonialId, setValue, itemData]);
 
   const currentValues = watch();
+  console.log(currentValues.authorImg);
 
   const translateNameToEn = () => {
     handleTranslate(currentValues.name.ua, 'en').then((res) => {
@@ -151,6 +156,8 @@ export const TestimonialEditor = ({
       date: new Date(values.date).getTime(),
     };
 
+   
+
     if (testimonialId) {
       if (values.authorImg?.length && values.authorImg[0]?.size === 0) {
         const downloadedImage = await downloadImage(
@@ -176,7 +183,7 @@ export const TestimonialEditor = ({
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6  shadow-md lg:justify-start">
             <Controller
               name="name.ua"
-              rules={testimonialValidateOptions.name}
+              rules={testimonialValidateOptions.nameUa}
               control={control}
               render={({ field }) => (
                 <TextInputField
@@ -190,7 +197,7 @@ export const TestimonialEditor = ({
             />
             <Controller
               name="name.en"
-              rules={testimonialValidateOptions.name}
+              rules={testimonialValidateOptions.nameEn}
               control={control}
               render={({ field }) => (
                 <TextInputField
@@ -204,7 +211,7 @@ export const TestimonialEditor = ({
             />
             <Controller
               name="name.pl"
-              rules={testimonialValidateOptions.name}
+              rules={testimonialValidateOptions.namePl}
               control={control}
               render={({ field }) => (
                 <TextInputField
@@ -251,7 +258,7 @@ export const TestimonialEditor = ({
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6 shadow-md lg:justify-start ">
             <Controller
               name="review.ua"
-              rules={testimonialValidateOptions.review}
+              rules={testimonialValidateOptions.reviewUa}
               control={control}
               render={({ field }) => (
                 <TextAreaField
@@ -264,7 +271,7 @@ export const TestimonialEditor = ({
             />
             <Controller
               name="review.en"
-              rules={testimonialValidateOptions.review}
+              rules={testimonialValidateOptions.reviewEn}
               control={control}
               render={({ field }) => (
                 <TextAreaField
@@ -277,7 +284,7 @@ export const TestimonialEditor = ({
             />
             <Controller
               name="review.pl"
-              rules={testimonialValidateOptions.review}
+              rules={testimonialValidateOptions.reviewPl}
               control={control}
               render={({ field }) => (
                 <TextAreaField

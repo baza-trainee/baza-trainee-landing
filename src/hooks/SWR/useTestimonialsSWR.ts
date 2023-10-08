@@ -1,8 +1,10 @@
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { ITestimonialRequest, TTestimonialResp } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import {
   testimonialsApi,
   testimonialsEndPoint,

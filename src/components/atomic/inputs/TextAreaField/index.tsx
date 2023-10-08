@@ -6,8 +6,9 @@ import {
   useId,
 } from 'react';
 
-import { TranslatorIcon } from '@/components/common/icons';
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
+
+import { TranslatorIcon } from '@/components/common/icons';
 
 interface TextAreaFieldProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;

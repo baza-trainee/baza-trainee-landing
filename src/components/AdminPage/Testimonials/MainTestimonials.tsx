@@ -4,12 +4,15 @@ import Link from 'next/link';
 
 import { SingleSlideTestimonial } from './SingleSlideTestimonial';
 
+import { TSlideReview } from '@/types';
+
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import { AdminPanelButton, AdminTitle } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-import { useGlobalContext } from '@/store/globalContext';
-import { TSlideReview } from '@/types';
 
 export default function MainTestimonials() {
   const { testimonialsData } = useTestimonialsSWR();

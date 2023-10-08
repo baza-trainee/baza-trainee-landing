@@ -7,15 +7,18 @@ import {
   errorsSample,
 } from './contactsValidationHandler';
 
+import { TContactsInfo } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
+import { contactsApi } from '@/utils/API/contacts';
+import { useAPI } from '@/utils/hooks/useAPI';
+
 import {
   AdminPanelButton,
   AdminTitle,
   TextInputField,
 } from '@/components/atomic';
-import { useGlobalContext } from '@/store/globalContext';
-import { TContactsInfo } from '@/types';
-import { contactsApi } from '@/utils/API/contacts';
-import { useAPI } from '@/utils/hooks/useAPI';
 
 export const Contacts = () => {
   const { setAlertInfo } = useGlobalContext();

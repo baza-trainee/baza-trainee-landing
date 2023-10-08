@@ -6,10 +6,12 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { TMemberFormInput } from './types';
 import { roleValidateOptions } from './validateOptions';
 
-import { FormBtns, TextInputField } from '@/components/atomic';
+import { TMemberRoleResp } from '@/types';
+
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { TMemberRoleResp } from '@/types';
+
+import { FormBtns, TextInputField } from '@/components/atomic';
 
 const createOptions = (
   id: string | undefined,

@@ -1,5 +1,6 @@
-import { SETTINGS } from '@/config/settings';
 import { TMemberRoleResp } from '@/types';
+
+import { SETTINGS } from '@/config/settings';
 
 const orderList = SETTINGS.specsOrderList;
 

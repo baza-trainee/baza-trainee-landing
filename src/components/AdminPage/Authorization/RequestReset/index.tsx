@@ -3,11 +3,13 @@
 import { useCallback,useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { AdminTitle, FormBtns, InputField } from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
+
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { validateEmail } from '@/utils/InputValidations';
+
+import { AdminTitle, FormBtns, InputField } from '@/components/atomic';
 
 const RequestReset = () => {
   const [email, setEmail] = useState<string>('');

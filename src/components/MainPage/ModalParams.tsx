@@ -10,6 +10,7 @@ import { PDFView } from './PdfView';
 import { CloseIcon } from '../common/icons';
 
 import { useBodyScrollLockSimple } from '@/hooks/useBodyScrollLockSimple';
+
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const ModalParams = ({ lang }: { lang: TLandingLanguage }) => {

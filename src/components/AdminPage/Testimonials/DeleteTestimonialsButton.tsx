@@ -1,10 +1,8 @@
-import { ReactNode } from 'react';
-
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   id: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const DeleteTestimonialsButton = ({ id, children }: Props) => {

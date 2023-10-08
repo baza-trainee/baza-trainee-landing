@@ -3,11 +3,13 @@
 import { MembersAndRolesList } from './MembersAndRolesList';
 import { TEntity } from './types';
 
-import { SearchBar } from '@/components/atomic';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
+
 import { roleSorter } from '@/utils/roleSorter';
+
+import { SearchBar } from '@/components/atomic';
+import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 
 export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
   const { membersData, searchMember, deleteMember } = useMembersSWR();

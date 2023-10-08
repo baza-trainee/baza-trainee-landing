@@ -1,8 +1,9 @@
 // import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { TSlide } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
 
 export const SingleSlide = ({
   slideData,

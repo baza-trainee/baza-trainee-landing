@@ -6,15 +6,17 @@ import { useRouter } from 'next/navigation';
 
 import { sidebarSectionsList } from '../SideBar/sidebarSectionsList';
 
+import { useGlobalContext } from '@/store/globalContext';
+
+import auth from '@/utils/API/auth';
+import { useAPI } from '@/utils/hooks/useAPI';
+
 import {
   AdminPanelButton,
   AdminTitle,
   InputField,
   PasswordInput,
 } from '@/components/atomic';
-import { useGlobalContext } from '@/store/globalContext';
-import auth from '@/utils/API/auth';
-import { useAPI } from '@/utils/hooks/useAPI';
 
 const recoverLink = 'login/request-reset';
 

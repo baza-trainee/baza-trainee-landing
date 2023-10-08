@@ -9,11 +9,14 @@ import { slides } from './slides';
 
 import { Modal } from '../Modal';
 
+import { TSlide } from '@/types';
+
+import { dictionaries } from '@/locales/dictionaries';
+
+import { TLandingLanguage } from '@/store/globalContext';
+
 import { ContainerMaxW1200, PrimaryButton } from '@/components/atomic';
 import { MultiArrow } from '@/components/common/icons';
-import { dictionaries } from '@/locales/dictionaries';
-import { TLandingLanguage } from '@/store/globalContext';
-import { TSlide } from '@/types';
 
 const settings = {
   infinite: true,

@@ -5,9 +5,11 @@ import Slider from 'react-slick';
 
 import { partners } from './partners';
 
-import { ContainerMaxW1200 } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
+
 import { TLandingLanguage } from '@/store/globalContext';
+
+import { ContainerMaxW1200 } from '@/components/atomic';
 
 const sliderSettings = {
   dots: false,

@@ -2,13 +2,16 @@
 
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { AdminPanelButton, InputField } from '@/components/atomic';
-import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { SETTINGS } from '@/config/settings';
+
 import { useGlobalContext } from '@/store/globalContext';
+
 import { documentsApi } from '@/utils/API/documents';
 import { formatBytes } from '@/utils/formatBytes';
 import { useAPI } from '@/utils/hooks/useAPI';
+
+import { AdminPanelButton, InputField } from '@/components/atomic';
+import { AdminTitle } from '@/components/atomic/AdminTitle';
 
 type TFormData = {
   [key: string]: File | null;

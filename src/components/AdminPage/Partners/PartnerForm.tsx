@@ -6,10 +6,12 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { partnerValidateOptions } from './validateOptions';
 
+import { TPartnerFormInputs, TPartnerReq } from '@/types';
+
+import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
+
 import { FileInput, FormBtns } from '@/components/atomic';
 import { TextInputField } from '@/components/atomic/inputs/TextInputField';
-import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
-import { TPartnerFormInputs, TPartnerReq } from '@/types';
 
 export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
   const isEditMode = !!partnerId;

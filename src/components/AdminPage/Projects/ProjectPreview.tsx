@@ -2,11 +2,13 @@ import { useProjectFormContext } from './ProjectFormProvider';
 import { prepareProject } from './projectUtils';
 import { projectValidateOptions } from './validateOptions';
 
+import { TProjectResp } from '@/types';
+
+import { createImgUrl } from '@/utils/imageHandler';
+
 import { LogoMain } from '@/components/common/icons';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { ProjectCard } from '@/components/ProjectCard';
-import { TProjectResp } from '@/types';
-import { createImgUrl } from '@/utils/imageHandler';
 
 const EmptyPreviewImg = () => (
   <div className="flex-center h-[46.4rem] rounded-md bg-neutral-75">

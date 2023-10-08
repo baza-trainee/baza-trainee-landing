@@ -1,4 +1,5 @@
 import { dictionaries } from '@/locales/dictionaries';
+
 import { TLandingLanguage } from '@/store/globalContext';
 
 export const formatDate = (

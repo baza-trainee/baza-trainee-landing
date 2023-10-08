@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 
 import { projects } from './projects';
 
+import { TProjectResp } from '@/types';
+
+import { dictionaries } from '@/locales/dictionaries';
+
+import { TLandingLanguage } from '@/store/globalContext';
+
 import {
     ContainerMaxW1200,
     MoreProjectsButton
 } from '@/components/atomic';
 import { ProjectCard } from '@/components/ProjectCard';
-import { dictionaries } from '@/locales/dictionaries';
-import { TLandingLanguage } from '@/store/globalContext';
-import { TProjectResp } from '@/types';
 
 /*const getProjects = async () => {
   const response = await fetch(

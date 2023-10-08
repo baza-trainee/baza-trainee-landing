@@ -9,11 +9,13 @@ import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
 
+import { IHeroSlider } from '@/types';
+
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+
 import { FileInput, TextInputField } from '@/components/atomic';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
-import { IHeroSlider } from '@/types';
 
 export const SliderForm = ({
   id,

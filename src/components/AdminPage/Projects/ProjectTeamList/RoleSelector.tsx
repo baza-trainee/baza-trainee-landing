@@ -2,8 +2,10 @@ import { ChangeEvent, useMemo, useState } from 'react';
 
 import { useProjectFormContext } from '../ProjectFormProvider';
 
-import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { TMemberResp } from '@/types';
+
+import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
+
 import { roleSorter } from '@/utils/roleSorter';
 
 export const RoleSelector = ({ member }: { member: TMemberResp }) => {
