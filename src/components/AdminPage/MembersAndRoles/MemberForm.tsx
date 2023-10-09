@@ -44,8 +44,6 @@ export const MemberForm = ({
     useMembersSWR();
   const members = membersData?.results;
 
-  const valuesIfItEditedMember = createOptions(memberId, members);
-
   const {
     control,
     handleSubmit,
@@ -53,19 +51,13 @@ export const MemberForm = ({
     setValue,
     formState: { errors },
   } = useForm<TMemberFormInput>({
-    defaultValues: valuesIfItEditedMember,
+    defaultValues: createOptions(memberId, members), // To create default values if it is edited member
     mode: 'onChange',
   });
 
-  const translateToEn = () => {
-    handleTranslate(getValues().nameUk, 'en').then((res) => {
-      setValue('nameEn', res);
-    });
-  };
-
-  const translateToPl = () => {
-    handleTranslate(getValues().nameUk, 'pl').then((res) => {
-      setValue('namePl', res);
+  const translateField = (field: keyof TMemberFormInput, lang: 'en' | 'pl') => {
+    handleTranslate(getValues().nameUk, lang).then((res) => {
+      setValue(field, res);
     });
   };
 
@@ -91,7 +83,6 @@ export const MemberForm = ({
         pl: data.namePl,
         ua: data.nameUk,
       },
-      // profileUrl: data.linkedin ? data.linkedin : undefined,
     };
 
     if (data.linkedin) {
@@ -138,7 +129,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="en"
-              handleTranslate={translateToEn}
+              handleTranslate={() => translateField('nameEn', 'en')}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -152,7 +143,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="pl"
-              handleTranslate={translateToPl}
+              handleTranslate={() => translateField('nameEn', 'pl')}
               errorText={errors.namePl?.message}
             />
           )}

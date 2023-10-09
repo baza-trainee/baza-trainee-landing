@@ -23,11 +23,11 @@ const ProjectForm = () => {
     handleSubmit,
     onSubmit,
     cancelAction,
-    translateToEn,
-    translateToPl,
+    translateField,
     control,
     errors,
   } = useProjectFormContext();
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid w-[109rem] grid-cols-3 gap-9">
@@ -53,9 +53,8 @@ const ProjectForm = () => {
             render={({ field }) => (
               <TextInputField
                 {...field}
-                // translateValue={watch().nameUk}
                 inputType="en"
-                handleTranslate={translateToEn}
+                handleTranslate={() => translateField('nameEn', 'en')}
                 errorText={errors.nameEn?.message}
               />
             )}
@@ -68,8 +67,7 @@ const ProjectForm = () => {
               <TextInputField
                 {...field}
                 inputType="pl"
-                // translateValue={watch().nameUk}
-                handleTranslate={translateToPl}
+                handleTranslate={() => translateField('nameEn', 'pl')}
                 errorText={errors.namePl?.message}
               />
             )}
