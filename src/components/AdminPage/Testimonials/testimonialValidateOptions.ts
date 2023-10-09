@@ -1,4 +1,13 @@
+import { TTestimonialFormInput } from './types';
+
 import { SETTINGS } from '@/config/settings';
+
+import { formatBytes } from '@/utils/formatBytes';
+import { convertDate } from '@/utils/formatDate';
+import { validateImgDimensions } from '@/utils/validateImgDimensions';
+
+const limitDimensions = SETTINGS.imgDimensions.testimonialImg;
+const sizeLimit = SETTINGS.fileSizeLimits.testimonialPhoto;
 
 export const testimonialValidateOptions = {
   nameUa: {
@@ -111,25 +120,52 @@ export const testimonialValidateOptions = {
     },
   },
 
+  date: {
+    required: 'Оберіть дату',
+    validate: (
+      _:
+        | string
+        | { ua: string; en: string; pl: string }
+        | { ua: string; en: string; pl: string }
+        | File
+        | File[],
+      formValues: TTestimonialFormInput
+    ) => {
+      if (!formValues.date) return;
+
+      const creationDate = convertDate.toMsec(formValues.date);
+      const currentDate = new Date().getTime();
+
+      return (
+        creationDate! < currentDate || 'Дата не може бути більшою ніж сьогодні.'
+      );
+    },
+  },
+
   img: {
-    validate: (value: any) => {
-      if (typeof value === 'object' && value !== null && value.length > 0) {
-        const checkSize =
-          value[0]?.size <= SETTINGS.fileSizeLimits.testimonialPhoto;
-        const checkType =
-          value[0]?.type === 'image/jpeg' ||
-          value[0]?.type === 'image/png' ||
-          value[0]?.type === 'image/webp' ||
-          value[0]?.type === 'for-url';
-        if (!checkSize) {
-          return 'Максимальний розмір зображення 500kb';
+    authorImg: {
+      validate: (value: any) => {
+        if (typeof value === 'object' && value !== null && value.length > 0) {
+          const checkSize = value[0]?.size <= sizeLimit;
+          const checkType =
+            value[0]?.type === 'image/jpeg' ||
+            value[0]?.type === 'image/png' ||
+            value[0]?.type === 'image/webp' ||
+            value[0]?.type === 'for-url';
+          if (!checkSize) {
+            return `Максимальний розмір зображення ${formatBytes(sizeLimit)}`;
+          }
+          if (!checkType)
+            return 'Зображення має бути в форматі .jpg, .png або .webp';
+          return validateImgDimensions(
+            value[0],
+            limitDimensions.width,
+            limitDimensions.height
+          );
+        } else {
+          return 'Додайте зображення';
         }
-        if (!checkType)
-          return 'Зображення має бути в форматі .jpg, .png або .webp';
-        return true;
-      } else {
-        return 'Додайте зображення';
-      }
+      },
     },
   },
 };

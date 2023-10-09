@@ -72,7 +72,6 @@ export const TestimonialEditor = ({
   }, [testimonialId, setValue, itemData]);
 
   const currentValues = watch();
-  console.log(currentValues.authorImg);
 
   const translateNameToEn = () => {
     handleTranslate(currentValues.name.ua, 'en').then((res) => {
@@ -102,7 +101,7 @@ export const TestimonialEditor = ({
       return createImgUrl(currentValues.authorImg[0].name);
     }
 
-    const isValidImg = testimonialValidateOptions.img.validate(
+    const isValidImg = testimonialValidateOptions.img.authorImg.validate(
       currentValues.authorImg
     );
     if (isValidImg) {
@@ -155,8 +154,6 @@ export const TestimonialEditor = ({
       role: values.role,
       date: new Date(values.date).getTime(),
     };
-
-   
 
     if (testimonialId) {
       if (values.authorImg?.length && values.authorImg[0]?.size === 0) {
@@ -237,11 +234,10 @@ export const TestimonialEditor = ({
                 />
               )}
             />
-
             <DateInput
               name="date"
               control={control}
-              rules={{ required: 'Оберіть дату' }}
+              rules={testimonialValidateOptions.date}
               title="Дата"
               placeholder="Оберіть дату"
             />
@@ -249,7 +245,11 @@ export const TestimonialEditor = ({
             <FileInput
               control={control}
               name="authorImg"
-              rules={testimonialValidateOptions.img}
+              rules={{
+                ...testimonialValidateOptions.img,
+                ...testimonialValidateOptions.img.authorImg,
+                required: 'Додайте зображення',
+              }}
               accept="image/*"
               placeholder={!testimonialId ? 'Завантажте зображення' : imageUrl}
               title="Фото"

@@ -8,6 +8,11 @@ export const SETTINGS = {
     testimonialPhoto: 500 * 1024,
     heroSliderPhoto: 1 * 1024 * 1024,
   },
+  imgDimensions: {
+    partnerLogo: { width: 214, height: 100 },
+    projectImg: { width: 378, height: 464 },
+    testimonialImg: { width: 114, height: 120 },
+  },
   textToTranslateMaxLength: 700,
   delayRevalidation: 120,
   specsOrderList: [
