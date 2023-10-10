@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import Slider from 'react-slick';
 
+import { partners } from './partners';
+
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
 import { dictionaries } from '@/locales/dictionaries';
@@ -51,8 +53,8 @@ const sliderSettings = {
 
 export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
   const { title } = dictionaries[lang].partners || {};
-  const { partnersData } = usePartnersSWR();
-  const partners: TPartnerResp[] = partnersData?.results || [];
+  // const { partnersData } = usePartnersSWR();
+  // const partners: TPartnerResp[] = partnersData?.results || [];
 
   return (
     <section id="partners">
