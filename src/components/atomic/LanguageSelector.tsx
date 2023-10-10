@@ -1,10 +1,14 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 import { MultiArrow } from '@/components/common/icons';
-import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
+import { TLandingLanguage } from '@/store/globalContext';
+
+type TProps = {
+  currLang: TLandingLanguage;
+  changeComponentLang: (lang: TLandingLanguage) => void;
+};
 
 const languageOptions: TLandingLanguage[] = ['ua', 'en', 'pl'];
 
@@ -14,21 +18,19 @@ const btnStyle =
 const underLineStyle =
   "relative after:absolute after:bottom-0 after:left-0 after:w-full after:scale-x-0 after:border-b after:transition-all after:content-[''] after:hover:scale-100";
 
-const LanguageSelector = () => {
+const LanguageSelector = ({ currLang, changeComponentLang }: TProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { landingLanguage, setLandingLanguage } = useGlobalContext();
-  const { push } = useRouter();
-
-  const handleLanguageClick = (e: FormEvent, lang: TLandingLanguage) => {
-    e.preventDefault();
-    setLandingLanguage(lang);
-    handleMenuClick();
-    localStorage.setItem('landingLanguage', lang);
-    push(`/${lang}/`);
-  };
 
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
+  };
+
+  const handleLanguageClick = (lang: TLandingLanguage) => {
+    if (changeComponentLang) {
+      changeComponentLang(lang);
+    }
+
+    handleMenuClick();
   };
 
   const menuStyle = `absolute left-0 top-[3.5rem] z-10 flex w-20 transform flex-col gap-[1.2rem] rounded-md bg-yellow-500 py-[1.2rem] ${
@@ -40,19 +42,19 @@ const LanguageSelector = () => {
   return (
     <div className="relative">
       <button className={btnStyle} id="active-lang" onClick={handleMenuClick}>
-        {landingLanguage.toUpperCase()}
+        {currLang.toUpperCase()}
 
         <MultiArrow direction="bottom" open={isMenuOpen} />
       </button>
 
       <ul className={menuStyle} id="lang-list">
         {languageOptions
-          .filter((lang) => lang !== landingLanguage)
+          .filter((lang) => lang !== currLang)
           .map((lang) => (
             <li key={`key_${lang}`}>
               <button
                 className={btnStyle}
-                onClick={(e) => handleLanguageClick(e, lang)}
+                onClick={() => handleLanguageClick(lang)}
               >
                 <span className={underLineStyle}>{lang.toUpperCase()}</span>
               </button>
@@ -63,4 +65,4 @@ const LanguageSelector = () => {
   );
 };
 
-export default LanguageSelector;
+export { LanguageSelector };

@@ -4,11 +4,10 @@ import Link from 'next/link';
 
 import { SingleSlideTestimonial } from './SingleSlideTestimonial';
 
-import { AdminPanelButton, AdminTitle } from '@/components/atomic';
+import { AdminPanelButton, AdminTitle, LanguageSelector } from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-import { useGlobalContext } from '@/store/globalContext';
+import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
 import { TSlideReview } from '@/types';
 
 export default function MainTestimonials() {
@@ -20,7 +19,9 @@ export default function MainTestimonials() {
       <div className="flex justify-between">
         <AdminTitle>Відгуки</AdminTitle>
         <div className="h-[64px] w-[71px] rounded-md bg-yellow-500 py-[12px]">
-          <LanguageSelector />
+          <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
+            throw new Error('Function not implemented.');
+          } } />
         </div>
       </div>
 

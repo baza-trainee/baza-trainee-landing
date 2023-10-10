@@ -12,14 +12,13 @@ import {
   DateInput,
   FileInput,
   FormBtns,
+  LanguageSelector,
   TextAreaField,
-  TextInputField,
-} from '@/components/atomic';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+  TextInputField} from '@/components/atomic';
 import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { useGlobalContext } from '@/store/globalContext';
+import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
 import { ITestimonialRequest } from '@/types/typesAPI';
 import { convertDate } from '@/utils/formatDate';
 import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
@@ -290,7 +289,7 @@ export const TestimonialEditor = ({
             />
           </div>
           <FormBtns
-            isEditMode={testimonialId ? true : false}
+            isEditMode={!!testimonialId}
             cancelAction={handleResetForm}
           />
         </div>
@@ -298,7 +297,9 @@ export const TestimonialEditor = ({
       {currentValues.name.ua && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
-            <LanguageSelector />
+            <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
+              throw new Error('Function not implemented.');
+            } } />
           </div>
           <SingleSlide
             slideData={previewData}

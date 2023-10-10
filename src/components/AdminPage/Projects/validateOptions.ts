@@ -1,9 +1,12 @@
 import { TFormInput } from './types';
 
 import { SETTINGS } from '@/config/settings';
+import { formatBytes } from '@/utils/formatBytes';
 import { convertDate } from '@/utils/formatDate';
+import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
 const limitSize = SETTINGS.fileSizeLimits.projectCard;
+const limitDimensions = SETTINGS.imgDimensions.projectImg;
 
 const commonOptions = {
   minLength: {
@@ -21,7 +24,7 @@ export const projectValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’-]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’!"№:?*()_+\-@#$]+$/,
       message: 'Введіть коректну назву',
     },
   },
@@ -30,7 +33,7 @@ export const projectValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-Z\s\d'’-]+$/,
+      value: /^[a-zA-Z\s\d'’!"№:?*()_+\-@#$]+$/,
       message: 'Введіть коректну назву',
     },
   },
@@ -39,12 +42,12 @@ export const projectValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\d'’-]+$/,
+      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\d'’!"№:?*()_+\-@#$]+$/,
       message: 'Введіть коректну назву',
     },
   },
 
-  img: {
+  projectImg: {
     validate: (
       value: string | number | boolean | File | File[] | undefined
     ) => {
@@ -60,9 +63,14 @@ export const projectValidateOptions = {
         if (!checkType) return 'Виберіть коректне зображення';
 
         const checkSize = file.size <= limitSize;
-        if (!checkSize) return `Виберіть зображення до ${limitSize}Мб`;
+        if (!checkSize)
+          return `Виберіть зображення до ${formatBytes(limitSize)}`;
 
-        return true;
+        return validateImgDimensions(
+          file,
+          limitDimensions.width,
+          limitDimensions.height
+        );
       } else {
         return 'Додайте зображення проєкту';
       }
@@ -73,6 +81,23 @@ export const projectValidateOptions = {
     pattern: {
       value: /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/,
       message: 'Введіть коректне посилання',
+    },
+  },
+
+  creationDate: {
+    required: 'Оберіть дату',
+    validate: (
+      _: string | number | boolean | File | File[] | undefined,
+      formValues: TFormInput
+    ) => {
+      if (!formValues.creationDate) return;
+
+      const creationDate = convertDate.toMsec(formValues.creationDate);
+      const currDate = new Date().getTime();
+
+      return (
+        creationDate! < currDate || 'Дата не може бути більшою ніж сьогодні.'
+      );
     },
   },
 

@@ -54,8 +54,7 @@ export interface IFormContext {
     newRole: TMemberRoleResp
   ) => void;
   deleteMember: (memberId: string) => void;
-  translateToEn: () => void;
-  translateToPl: () => void;
+  translateField: (field: keyof TFormInput, lang: 'en' | 'pl') => void;
   watch: UseFormWatch<TFormInput>;
   control: Control<TFormInput, any>;
   errors: FieldErrors<TFormInput>;

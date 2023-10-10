@@ -9,11 +9,11 @@ import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 
 const usePartnersSWR = () => {
   const { setAlertInfo } = useGlobalContext();
-  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
   const [page, setPage] = useState<number>();
   const [limit, setLimit] = useState<number>(); // is this param necessary ?
 
-  const swrKey = `${partnersEndpoint}?search=${search}`;
+  const swrKey = `${partnersEndpoint}?query=${query}`;
 
   const setSuccess = (textInfo: string) => {
     setAlertInfo({
@@ -24,19 +24,23 @@ const usePartnersSWR = () => {
   };
 
   const handleRequestError = (err: any) => {
+    const { status, response } = err;
+    const message = response?.data?.message || 'Помилка виконання запиту';
+    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
+
     errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[err?.status || 500],
-      textInfo: 'Не вдалося виконати запит.',
+      title: networkStatusesUk[status || 500],
+      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
     });
   };
 
   const { data, error, mutate } = useSWR<TResponsePartners, AxiosError>(
     swrKey,
-    () => partnersApi.getAll({ page, query: search, limit }),
+    () => partnersApi.getAll({ page, query, limit }),
     {
-      keepPreviousData: !!search,
+      keepPreviousData: !!query,
       onError: handleRequestError,
     }
   );
@@ -70,8 +74,8 @@ const usePartnersSWR = () => {
     }
   };
 
-  const searchPartner = (search: string) => {
-    setSearch(search);
+  const searchPartner = (query: string) => {
+    setQuery(query);
     // setPage(1);
   };
 

@@ -22,7 +22,7 @@ export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<TPartnerFormInputs>();
+  } = useForm<TPartnerFormInputs>({ mode: 'onChange' });
 
   const cancelAction = () => router.back();
 
@@ -41,16 +41,14 @@ export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
     const partnerBody: TPartnerReq = {
       name: data.name,
       homeUrl: data.homeUrl,
-      file: data.partnerImg[0],
+      file: data.partnerImg[0], // TODO: when upd item ??
     };
 
     if (isEditMode) {
-      await updatePartner(partnerId, partnerBody);
+      await updatePartner(partnerId, partnerBody).then(cancelAction);
     } else {
-      await createPartner(partnerBody);
+      await createPartner(partnerBody).then(cancelAction);
     }
-
-    cancelAction();
   };
 
   return (
@@ -89,7 +87,7 @@ export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
               render={({ field }) => (
                 <TextInputField
                   {...field}
-                  inputType="uk"
+                  inputType="en"
                   title="Сайт партнера"
                   placeholder="Додайте посилання"
                   errorText={errors.homeUrl?.message}

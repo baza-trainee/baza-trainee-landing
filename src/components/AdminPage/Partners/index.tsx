@@ -24,7 +24,7 @@ export const PartnersPage = () => {
       totalResults: 0,
     };
 
-  const partnerData: TPartnerResp[] = partnersData?.results || [];
+  const partners: TPartnerResp[] = partnersData?.results || [];
 
   const handleDeleteWithConfirm = (id: string) => {
     setAlertInfo({
@@ -54,24 +54,20 @@ export const PartnersPage = () => {
           </Link>
         </li>
 
-        {partnersData &&
-          partnerData.map((partner: any) => (
-            <PartnerItem
-              key={partner._id}
-              partner={partner}
-              handleDelete={() => handleDeleteWithConfirm(partner._id)}
-            />
-          ))}
+        {partners.map((partner: any) => (
+          <PartnerItem
+            key={partner._id}
+            partner={partner}
+            handleDelete={() => handleDeleteWithConfirm(partner._id)}
+          />
+        ))}
       </ul>
 
-      {partnersData && (
-        <PaginationBar
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={changePage}
-          // className="mt-[8.5rem]"
-        />
-      )}
+      <PaginationBar
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={changePage}
+      />
     </div>
   );
 };

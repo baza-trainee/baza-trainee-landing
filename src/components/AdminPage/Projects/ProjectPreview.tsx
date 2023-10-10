@@ -1,10 +1,13 @@
+import { useEffect, useState } from 'react';
+
 import { useProjectFormContext } from './ProjectFormProvider';
 import { prepareProject } from './projectUtils';
 import { projectValidateOptions } from './validateOptions';
 
+import { LanguageSelector } from '@/components/atomic';
 import { LogoMain } from '@/components/common/icons';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { ProjectCard } from '@/components/ProjectCard';
+import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
 
@@ -19,20 +22,29 @@ const ProjectPreview = () => {
   const currentValues = watch();
   const { projectImg } = currentValues;
 
-  const getCoverImgUrl = () => {
-    if (!projectImg?.length) return;
+  const [coverImgUrl, setCoverImgUrl] = useState<string>();
+  const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
 
-    if (projectImg[0].type === 'for-url') {
-      return createImgUrl(projectImg[0].name);
-    }
-
-    const isValidImg = projectValidateOptions.img.validate(projectImg);
-    if (typeof isValidImg !== 'string') {
-      return URL.createObjectURL(projectImg[0]);
-    }
+  const changeComponentLang = (lang: TLandingLanguage) => {
+    setComponentLang(lang);
   };
 
-  const coverImgUrl = getCoverImgUrl();
+  useEffect(() => {
+    if (!projectImg?.length) return;
+
+    (async () => {
+      if (projectImg[0].type === 'for-url') {
+        setCoverImgUrl(createImgUrl(projectImg[0].name));
+      } else {
+        const isValidImg =
+          await projectValidateOptions.projectImg.validate(projectImg);
+
+        if (typeof isValidImg !== 'string') {
+          setCoverImgUrl(URL.createObjectURL(projectImg[0]));
+        }
+      }
+    })();
+  }, [projectImg]);
 
   if (!coverImgUrl) {
     return <EmptyPreviewImg />;
@@ -51,16 +63,20 @@ const ProjectPreview = () => {
         <ProjectCard
           project={previewProject}
           coverImgUrl={coverImgUrl}
-          lang={'ua'}
+          lang={componentLang}
           isAdminMode={true}
         />
       </ul>
 
       <div className="absolute right-0 top-0 rounded-md bg-yellow-500 py-5">
-        <LanguageSelector />
+        <LanguageSelector
+          currLang={componentLang}
+          changeComponentLang={changeComponentLang}
+        />
       </div>
     </div>
   );
 };
 
 export { ProjectPreview };
+

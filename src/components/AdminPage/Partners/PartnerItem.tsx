@@ -11,14 +11,14 @@ export const PartnerItem = ({
   handleDelete,
 }: PartnerItemProps) => {
   return (
-    <li className="relative h-40 w-[27.6rem] bg-[#CECECE]">
+    <li className="relative h-40 w-[27.6rem] rounded-lg border">
       <a className="cursor-pointer" href={homeUrl} target="_blank">
         <Image
           src={createImgUrl(imageUrl)}
           alt={name || 'Partner logo'}
           fill
           sizes="100%"
-          className="object-cover"
+          className="rounded-lg object-contain"
         />
       </a>
 

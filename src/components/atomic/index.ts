@@ -19,4 +19,5 @@ export * from './inputs/InputField';
 export * from './inputs/PasswordInput';
 export * from './inputs/TextAreaField';
 export * from './inputs/TextInputField';
+export * from './LanguageSelector';
 export * from './SearchBar';
