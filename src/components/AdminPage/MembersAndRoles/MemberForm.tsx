@@ -167,6 +167,7 @@ export const MemberForm = ({
         <div className="mb-11 h-96 overflow-y-auto rounded-md border">
           {members?.length && (
             <MembersAndRolesList
+              currLang="ua"
               {...{ isProjectEditorMode, selectMember }}
               entity="members"
               showedData={members}

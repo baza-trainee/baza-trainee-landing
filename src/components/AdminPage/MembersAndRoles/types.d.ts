@@ -1,3 +1,4 @@
+import { TLandingLanguage } from '@/store/globalContext';
 import { TMemberBioResp, TMemberRoleResp } from '@/types';
 
 export type TEntity = 'members' | 'roles';
@@ -8,6 +9,7 @@ export type TMemberAndRoleEditor = {
 };
 
 type TMembersAndRolesListBase = {
+  currLang: TLandingLanguage;
   isProjectEditorMode?: boolean;
   entity: TEntity;
   handleDelete?: (id: string) => void;

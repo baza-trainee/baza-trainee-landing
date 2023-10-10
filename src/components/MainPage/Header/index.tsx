@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { HeaderDropdownMenu } from './HeaderDropdownMenu';
 import { HeaderLinks } from './HeaderLinks';
-import LanguageSelector from './LanguageSelector';
+import { LanguageMainPage } from './LanguageMainPage';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { LogoMain } from '@/components/common/icons';
@@ -37,7 +37,7 @@ export const Header = ({ lang }: { lang: TLandingLanguage }) => {
         />
 
         <div className="mr-20 sm:ml-auto sm:mr-20 lg:mx-0">
-          <LanguageSelector />
+          <LanguageMainPage />
         </div>
       </ContainerMaxW1200>
 

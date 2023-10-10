@@ -4,9 +4,10 @@ import { useProjectFormContext } from './ProjectFormProvider';
 import { prepareProject } from './projectUtils';
 import { projectValidateOptions } from './validateOptions';
 
+import { LanguageSelector } from '@/components/atomic';
 import { LogoMain } from '@/components/common/icons';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { ProjectCard } from '@/components/ProjectCard';
+import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
 
@@ -22,6 +23,11 @@ const ProjectPreview = () => {
   const { projectImg } = currentValues;
 
   const [coverImgUrl, setCoverImgUrl] = useState<string>();
+  const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
+
+  const changeComponentLang = (lang: TLandingLanguage) => {
+    setComponentLang(lang);
+  };
 
   useEffect(() => {
     if (!projectImg?.length) return;
@@ -57,16 +63,20 @@ const ProjectPreview = () => {
         <ProjectCard
           project={previewProject}
           coverImgUrl={coverImgUrl}
-          lang="ua"
+          lang={componentLang}
           isAdminMode={true}
         />
       </ul>
 
       <div className="absolute right-0 top-0 rounded-md bg-yellow-500 py-5">
-        <LanguageSelector />
+        <LanguageSelector
+          currLang={componentLang}
+          changeComponentLang={changeComponentLang}
+        />
       </div>
     </div>
   );
 };
 
 export { ProjectPreview };
+

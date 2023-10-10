@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -9,10 +10,10 @@ import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
 
-import { FileInput, TextInputField } from '@/components/atomic';
+import { FileInput, LanguageSelector, TextInputField } from '@/components/atomic';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { TLandingLanguage } from '@/store/globalContext';
 import { IHeroSlider } from '@/types';
 
 export const SliderForm = ({
@@ -186,7 +187,9 @@ export const SliderForm = ({
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
           <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
-            <LanguageSelector />
+            <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
+              throw new Error('Function not implemented.');
+            } } />
           </div>
         </div>
         <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">
