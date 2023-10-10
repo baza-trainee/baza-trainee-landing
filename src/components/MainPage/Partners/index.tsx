@@ -77,7 +77,8 @@ export const Partners = ({ lang }: { lang: TLandingLanguage }) => {
                   fill
                   sizes="100%"
                   className="m-auto object-contain contrast-50 grayscale hover:contrast-100 hover:grayscale-0"
-                  src={createImgUrl(partner.imageUrl)}
+                  src={partner.imageUrl}
+                  // src={createImgUrl(partner.imageUrl)}
                   alt={partner.name}
                 />
               </a>
