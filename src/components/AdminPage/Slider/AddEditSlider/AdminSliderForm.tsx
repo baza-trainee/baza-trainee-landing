@@ -13,6 +13,7 @@ import { TFormInputs, TFormSlideRequest } from '../types';
 import { FileInput, LanguageSelector, TextInputField } from '@/components/atomic';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 import { TLandingLanguage } from '@/store/globalContext';
 import { IHeroSlider } from '@/types';
 
@@ -41,6 +42,8 @@ export const SliderForm = ({
     mode: 'onSubmit',
     defaultValues: async () => await DefaultValuesState(slideData),
   });
+
+  const { handleTranslate } = useTranslator();
 
   const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
     const slide: TFormSlideRequest = {
@@ -85,6 +88,30 @@ export const SliderForm = ({
     reset(emptyFields);
   };
 
+  const translateTitleToEn = () => {
+    handleTranslate(currentValues.titleUa, 'en').then((res) => {
+      setValue('titleEn', res);
+    });
+  };
+
+  const translateTitleToPl = () => {
+    handleTranslate(currentValues.titleUa, 'pl').then((res) => {
+      setValue('titlePl', res);
+    });
+  };
+
+  const translateSubtitleToEn = () => {
+    handleTranslate(currentValues.subtitleUa, 'en').then((res) => {
+      setValue('subtitleEn', res);
+    });
+  };
+
+  const translateSubtitleToPl = () => {
+    handleTranslate(currentValues.subtitleUa, 'pl').then((res) => {
+      setValue('subtitlePl', res);
+    });
+  };
+
   return (
     <div className="h-full">
       <form
@@ -123,6 +150,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть назву"
+                handleTranslate={translateTitleToEn}
                 errorText={errors.titleEn?.message}
                 inputType="en"
               />
@@ -136,6 +164,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть назву"
+                handleTranslate={translateTitleToPl}
                 errorText={errors.titlePl?.message}
                 inputType="pl"
               />
@@ -165,6 +194,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть текст"
+                handleTranslate={translateSubtitleToEn}
                 errorText={errors.subtitleEn?.message}
                 inputType="en"
               />
@@ -178,6 +208,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть текст"
+                handleTranslate={translateSubtitleToPl}
                 errorText={errors.subtitlePl?.message}
                 inputType="pl"
               />
