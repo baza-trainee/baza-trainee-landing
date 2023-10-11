@@ -21,6 +21,7 @@ import {
   TProjectReq,
 } from '@/types';
 import { convertDate } from '@/utils/formatDate';
+import { createImgUrl } from '@/utils/imageHandler';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
@@ -32,6 +33,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
   const isEditMode = !!projectId;
 
+  const [coverImgUrl, setCoverImgUrl] = useState<string>();
   const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>(
     initProjectData.teamMembers
   );
@@ -68,9 +70,8 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const cancelAction = () => router.replace('.');
 
   const {
-    register,
     handleSubmit,
-    watch,
+    getValues,
     setFocus,
     setValue,
     control,
@@ -78,7 +79,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   } = useForm<TFormInput>({ defaultValues, mode: 'onChange' });
 
   const translateField = (field: keyof TFormInput, lang: 'en' | 'pl') => {
-    handleTranslate(watch().nameUk, lang).then((res) => {
+    handleTranslate(getValues().nameUk, lang).then((res) => {
       setValue(field, res);
     });
   };
@@ -133,25 +134,26 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     setValue('nameUk', title.ua);
     setValue('nameEn', title.en);
     setValue('namePl', title.pl);
-    setValue('projectImg', [new File([], imageUrl, { type: 'for-url' })]);
+    // setValue('projectImg', [new File([], imageUrl, { type: 'for-url' })]);
     setValue('deployUrl', deployUrl);
     setValue('isTeamRequired', isTeamRequired);
     setValue('creationDate', convertDate.toYYYYMMDD(creationDate));
     setValue('launchDate', convertDate.toYYYYMMDD(launchDate));
     setValue('complexity', +complexity);
+
+    // setCoverImgUrl(createImgUrl(imageUrl));
   }, []);
 
   const contextValue: IFormContext = {
+    projectId,
     isEditMode,
     teamMemberData,
-    register,
     handleSubmit,
     onSubmit,
     cancelAction,
     addTeamMember,
     updTeamMemberRole,
     deleteMember,
-    watch,
     translateField,
     control,
     errors,

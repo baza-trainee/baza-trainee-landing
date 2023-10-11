@@ -9,7 +9,8 @@ export const extractMembersId = (members: TMemberResp[]): TProjectMemberReq[] =>
     teamMemberRole: item.teamMemberRole._id,
   }));
 
-export const prepareProject = (formData: TFormInput) => {
+// export const prepareProject = (formData: TFormInput) => {
+export const prepareProject = (formData: any) => {
   const {
     nameEn,
     namePl,
