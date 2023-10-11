@@ -127,9 +127,7 @@ const ProjectForm = () => {
           <FileInput
             name="projectImg"
             control={control}
-            rules={projectValidateOptions.projectImg(isEditMode)
-             
-            }
+            rules={projectValidateOptions.projectImg(isEditMode)}
             accept="image/*"
             placeholder="Завантажте зображення"
             title="Обкладинка"

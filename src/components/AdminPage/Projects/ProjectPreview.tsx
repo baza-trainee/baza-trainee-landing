@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 
+import { defaultValues } from './initFormData';
 import { useProjectFormContext } from './ProjectFormProvider';
 import { prepareProject } from './projectUtils';
 import { projectValidateOptions } from './validateOptions';
@@ -30,8 +31,6 @@ const ProjectPreview = () => {
 
   const [coverImgUrl, setCoverImgUrl] = useState<string>();
   const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
-  console.log(coverImgUrl);
-  
 
   const changeComponentLang = (lang: TLandingLanguage) => {
     setComponentLang(lang);
@@ -40,27 +39,23 @@ const ProjectPreview = () => {
   useEffect(() => {
     if (projectId) {
       const projectDataById = getProjectById(projectId);
-      console.log("projectDataById",projectDataById);
       projectDataById && setCoverImgUrl(createImgUrl(projectDataById.imageUrl));
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (!projectImg?.length) return;
+  useEffect(() => {
+    if (!projectImg?.length) return;
 
-  //   (async () => {
-  //     if (projectImg[0].type === 'for-url') {
-  //       setCoverImgUrl(createImgUrl(projectImg[0].name));
-  //     } else {
-  //       const isValidImg =
-  //         await projectValidateOptions.projectImg.validate(projectImg);
+    (async () => {
+      const isValidImg = await projectValidateOptions
+        .projectImg()
+        .validate(projectImg);
 
-  //       if (typeof isValidImg !== 'string') {
-  //         setCoverImgUrl(URL.createObjectURL(projectImg[0]));
-  //       }
-  //     }
-  //   })();
-  // }, [projectImg]);
+      if (typeof isValidImg !== 'string') {
+        setCoverImgUrl(URL.createObjectURL(projectImg[0]));
+      }
+    })();
+  }, [projectImg]);
 
   if (!coverImgUrl) {
     return <EmptyPreviewImg />;
@@ -69,7 +64,7 @@ const ProjectPreview = () => {
   const previewProject: TProjectResp = {
     _id: '',
     imageUrl: '',
-    ...prepareProject(currentValues),
+    ...prepareProject({ ...defaultValues, ...currentValues }),
     teamMembers: teamMemberData,
   };
 

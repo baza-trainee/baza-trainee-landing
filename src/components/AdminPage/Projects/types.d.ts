@@ -44,7 +44,6 @@ export interface IFormContext {
   projectId: string | undefined;
   isEditMode: boolean;
   teamMemberData: TMemberResp[];
-  // register: UseFormRegister<TFormInput>;
   handleSubmit: UseFormHandleSubmit<TFormInput, undefined>;
   onSubmit: SubmitHandler<TFormInput>;
   cancelAction: () => void;
@@ -56,7 +55,6 @@ export interface IFormContext {
   ) => void;
   deleteMember: (memberId: string) => void;
   translateField: (field: keyof TFormInput, lang: 'en' | 'pl') => void;
-  // watch: UseFormWatch<TFormInput>;
   control: Control<TFormInput, any>;
   errors: FieldErrors<TFormInput>;
 }

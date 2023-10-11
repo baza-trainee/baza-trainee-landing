@@ -21,7 +21,6 @@ import {
   TProjectReq,
 } from '@/types';
 import { convertDate } from '@/utils/formatDate';
-import { createImgUrl } from '@/utils/imageHandler';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
@@ -33,10 +32,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
   const isEditMode = !!projectId;
 
-  const [coverImgUrl, setCoverImgUrl] = useState<string>();
-  const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>(
-    initProjectData.teamMembers
-  );
+  const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>([]);
 
   const addTeamMember = (newMember: TMemberBioResp) => {
     const updatedTeamMembers = [
@@ -84,7 +80,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     });
   };
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<TFormInput> = async (data, e) => {
     const preparedProject: TProjectReq = {
       ...prepareProject(data),
       teamMembers: extractMembersId(teamMemberData),
@@ -123,7 +119,6 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
     const {
       title,
-      imageUrl,
       deployUrl,
       isTeamRequired,
       creationDate,
@@ -134,14 +129,11 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     setValue('nameUk', title.ua);
     setValue('nameEn', title.en);
     setValue('namePl', title.pl);
-    // setValue('projectImg', [new File([], imageUrl, { type: 'for-url' })]);
     setValue('deployUrl', deployUrl);
     setValue('isTeamRequired', isTeamRequired);
     setValue('creationDate', convertDate.toYYYYMMDD(creationDate));
     setValue('launchDate', convertDate.toYYYYMMDD(launchDate));
     setValue('complexity', +complexity);
-
-    // setCoverImgUrl(createImgUrl(imageUrl));
   }, []);
 
   const contextValue: IFormContext = {

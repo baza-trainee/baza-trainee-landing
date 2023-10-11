@@ -60,7 +60,6 @@ export const projectValidateOptions = {
             'image/jpeg',
             'image/png',
             'image/webp',
-            'for-url',
           ].includes(file.type);
           if (!checkType) return 'Виберіть коректне зображення';
 
