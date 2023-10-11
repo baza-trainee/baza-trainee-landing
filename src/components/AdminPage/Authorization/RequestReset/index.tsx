@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback,useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useGlobalContext } from '@/store/globalContext';
@@ -76,7 +76,12 @@ const RequestReset = () => {
           errorText={errorsData}
         />
 
-        <FormBtns disabled={!email} cancelAction={resetHandler} isResetPass />
+        <FormBtns
+          disabled={!email}
+          cancelAction={resetHandler}
+          okBtnName="Підтвердити"
+          verticalBtns
+        />
       </div>
     </form>
   );

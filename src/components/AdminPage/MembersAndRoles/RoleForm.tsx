@@ -24,11 +24,9 @@ const createOptions = (
   if (!role) return;
 
   return {
-    defaultValues: {
-      nameUk: role.name.ua,
-      nameEn: role.name.en,
-      namePl: role.name.pl,
-    },
+    nameUk: role.name.ua,
+    nameEn: role.name.en,
+    namePl: role.name.pl,
   };
 };
 
@@ -40,31 +38,26 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
   const { rolesData, createRole, updateRole } = useRolesSWR();
   const roles = rolesData?.results;
 
-  const valuesIfItEditedRole = createOptions(roleId, roles);
-
   const {
     control,
     handleSubmit,
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<TMemberFormInput>(valuesIfItEditedRole);
+  } = useForm<TMemberFormInput>({
+    defaultValues: createOptions(roleId, roles), // To create default values if it is edited role,
+    mode: 'onChange',
+  });
 
-  const translateToEn = () => {
-    handleTranslate(getValues().nameUk, 'en').then((res) => {
-      setValue('nameEn', res);
-    });
-  };
-
-  const translateToPl = () => {
-    handleTranslate(getValues().nameUk, 'pl').then((res) => {
-      setValue('namePl', res);
+  const translateField = (field: keyof TMemberFormInput, lang: 'en' | 'pl') => {
+    handleTranslate(getValues().nameUk, lang).then((res) => {
+      setValue(field, res);
     });
   };
 
   const cancelAction = () => router.replace('.');
 
-  const onSubmit: SubmitHandler<TMemberFormInput> = (data) => {
+  const onSubmit: SubmitHandler<TMemberFormInput> = async (data) => {
     const role = {
       name: {
         en: data.nameEn,
@@ -74,12 +67,10 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
     };
 
     if (isEditMode) {
-      updateRole(roleId, role);
+      await updateRole(roleId, role).then(cancelAction);
     } else {
-      createRole(role);
+      await createRole(role).then(cancelAction);
     }
-
-    cancelAction();
   };
 
   return (
@@ -108,7 +99,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
             <TextInputField
               {...field}
               inputType="en"
-              handleTranslate={translateToEn}
+              handleTranslate={() => translateField('nameEn', 'en')}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -122,7 +113,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
             <TextInputField
               {...field}
               inputType="pl"
-              handleTranslate={translateToPl}
+              handleTranslate={() => translateField('nameEn', 'pl')}
               errorText={errors.namePl?.message}
             />
           )}

@@ -16,12 +16,15 @@ const useMembersSWR = () => {
   const swrKey = `${membersEndpoint}?search=${search}`;
 
   const handleRequestError = (err: any) => {
+    const { status, response } = err;
+    const message = response?.data?.message || 'Помилка виконання запиту';
+    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
+
     errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[err?.status || 500],
-      textInfo:
-        'Не вдалося отримати перелік учасників. Спробуйте трохи пізніше.',
+      title: networkStatusesUk[status || 500],
+      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
     });
   };
 
@@ -29,7 +32,7 @@ const useMembersSWR = () => {
     TResponseMembers,
     AxiosError
   >(swrKey, membersApi.getAll, {
-    keepPreviousData: true,
+    keepPreviousData: !!search,
     onError: handleRequestError,
   });
 

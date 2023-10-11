@@ -32,8 +32,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const { createProject, getProjectById, updateProject } = useProjectsSWR();
   const { handleTranslate } = useTranslator();
 
-  const projectDataById = projectId ? getProjectById(projectId) : undefined;
-  const isEditMode = !!projectId && !!projectDataById;
+  const isEditMode = !!projectId;
 
   const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>(
     initProjectData.teamMembers
@@ -78,21 +77,15 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     setValue,
     control,
     formState: { errors },
-  } = useForm<TFormInput>({ defaultValues });
+  } = useForm<TFormInput>({ defaultValues, mode: 'onChange' });
 
-  const translateToEn = () => {
-    handleTranslate(watch().nameUk, 'en').then((res) => {
-      setValue('nameEn', res);
+  const translateField = (field: keyof TFormInput, lang: 'en' | 'pl') => {
+    handleTranslate(watch().nameUk, lang).then((res) => {
+      setValue(field, res);
     });
   };
 
-  const translateToPl = () => {
-    handleTranslate(watch().nameUk, 'pl').then((res) => {
-      setValue('namePl', res);
-    });
-  };
-
-  const onSubmit: SubmitHandler<TFormInput> = (data) => {
+  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
     const preparedProject: TProjectReq = {
       ...prepareProject(data),
       teamMembers: extractMembersId(teamMemberData),
@@ -103,45 +96,52 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     }
 
     isEditMode
-      ? updateProject(projectId, preparedProject)
-      : createProject(preparedProject);
-
-    cancelAction();
+      ? await updateProject(projectId, preparedProject).then(cancelAction)
+      : await createProject(preparedProject).then(cancelAction);
   };
 
   // check fetched members for empty fields
   useEffect(() => {
-    if (projectDataById) {
-      const checkedData = projectDataById.teamMembers.filter(
-        (item) => item.teamMember && item.teamMemberRole
-      );
-      setTeamMemberData(checkedData);
-    }
-  }, [projectDataById]);
+    if (!isEditMode) return;
+
+    const projectDataById = getProjectById(projectId);
+    if (!projectDataById) return;
+
+    const checkedData = projectDataById.teamMembers.filter(
+      (item) => item.teamMember && item.teamMemberRole
+    );
+
+    setTeamMemberData(checkedData);
+  }, []);
 
   useEffect(() => {
-    if (isEditMode) {
-      setValue('nameUk', projectDataById.title.ua);
-      setValue('nameEn', projectDataById.title.en);
-      setValue('namePl', projectDataById.title.pl);
-      setValue('projectImg', [
-        new File([], projectDataById.imageUrl, { type: 'for-url' }),
-      ]);
-      setValue('deployUrl', projectDataById.deployUrl);
-      setValue('isTeamRequired', projectDataById.isTeamRequired);
-      setValue(
-        'creationDate',
-        convertDate.toYYYYMMDD(projectDataById.creationDate)
-      );
-      setValue(
-        'launchDate',
-        convertDate.toYYYYMMDD(projectDataById.launchDate)
-      );
-      setValue('complexity', +projectDataById.complexity);
-    }
-
     setFocus('nameUk');
-  }, [isEditMode]);
+
+    if (!isEditMode) return;
+
+    const projectDataById = getProjectById(projectId);
+    if (!projectDataById) return;
+
+    const {
+      title,
+      imageUrl,
+      deployUrl,
+      isTeamRequired,
+      creationDate,
+      launchDate,
+      complexity,
+    } = projectDataById;
+
+    setValue('nameUk', title.ua);
+    setValue('nameEn', title.en);
+    setValue('namePl', title.pl);
+    setValue('projectImg', [new File([], imageUrl, { type: 'for-url' })]);
+    setValue('deployUrl', deployUrl);
+    setValue('isTeamRequired', isTeamRequired);
+    setValue('creationDate', convertDate.toYYYYMMDD(creationDate));
+    setValue('launchDate', convertDate.toYYYYMMDD(launchDate));
+    setValue('complexity', +complexity);
+  }, []);
 
   const contextValue: IFormContext = {
     isEditMode,
@@ -154,8 +154,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     updTeamMemberRole,
     deleteMember,
     watch,
-    translateToEn,
-    translateToPl,
+    translateField,
     control,
     errors,
   };

@@ -1,34 +1,42 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { SingleSlideTestimonial } from './SingleSlideTestimonial';
 
-import { TSlideReview } from '@/types';
-
-import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-
-import { useGlobalContext } from '@/store/globalContext';
-
-import { AdminPanelButton, AdminTitle } from '@/components/atomic';
+import {
+  AdminPanelButton,
+  AdminTitle,
+  LanguageSelector,
+} from '@/components/atomic';
 import { PlusIcon } from '@/components/common/icons';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
+import { TLandingLanguage } from '@/store/globalContext';
+import { TSlideReview } from '@/types';
 
 export default function MainTestimonials() {
   const { testimonialsData } = useTestimonialsSWR();
-  const curLang = useGlobalContext().landingLanguage;
+  const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
+
+  const changeComponentLang = (lang: TLandingLanguage) => {
+    setComponentLang(lang);
+  };
 
   return (
     <section className="max-h-screen w-full overflow-y-auto bg-base-light px-10 py-[32px]">
       <div className="flex justify-between">
         <AdminTitle>Відгуки</AdminTitle>
-        <div className="h-[64px] w-[71px] rounded-md bg-yellow-500 py-[12px]">
-          <LanguageSelector />
+        <div className="rounded-md bg-yellow-500 py-[12px]">
+          <LanguageSelector
+            currLang={componentLang}
+            changeComponentLang={changeComponentLang}
+          />
         </div>
       </div>
 
       <div className="mt-[18px] rounded-[4px] py-[70px] shadow">
-        <Link href={'/admin/testimonials/add'}>
+        <Link href={'/admin/testimonials/add'} className="mx-auto block w-fit">
           <AdminPanelButton
             icon={<PlusIcon />}
             variant="secondary"
@@ -46,7 +54,7 @@ export default function MainTestimonials() {
             <li key={item._id}>
               <SingleSlideTestimonial
                 slideData={item}
-                lang={curLang}
+                lang={componentLang}
                 isImage={item?.imageUrl.split('.')[0] !== 'undefined'}
               />
             </li>

@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -9,13 +10,12 @@ import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
 
-import { IHeroSlider } from '@/types';
-
-import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
-
-import { FileInput, TextInputField } from '@/components/atomic';
+import { FileInput, LanguageSelector, TextInputField } from '@/components/atomic';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+import { TLandingLanguage } from '@/store/globalContext';
+import { IHeroSlider } from '@/types';
 
 export const SliderForm = ({
   id,
@@ -42,6 +42,8 @@ export const SliderForm = ({
     mode: 'onSubmit',
     defaultValues: async () => await DefaultValuesState(slideData),
   });
+
+  const { handleTranslate } = useTranslator();
 
   const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
     const slide: TFormSlideRequest = {
@@ -86,6 +88,30 @@ export const SliderForm = ({
     reset(emptyFields);
   };
 
+  const translateTitleToEn = () => {
+    handleTranslate(currentValues.titleUa, 'en').then((res) => {
+      setValue('titleEn', res);
+    });
+  };
+
+  const translateTitleToPl = () => {
+    handleTranslate(currentValues.titleUa, 'pl').then((res) => {
+      setValue('titlePl', res);
+    });
+  };
+
+  const translateSubtitleToEn = () => {
+    handleTranslate(currentValues.subtitleUa, 'en').then((res) => {
+      setValue('subtitleEn', res);
+    });
+  };
+
+  const translateSubtitleToPl = () => {
+    handleTranslate(currentValues.subtitleUa, 'pl').then((res) => {
+      setValue('subtitlePl', res);
+    });
+  };
+
   return (
     <div className="h-full">
       <form
@@ -124,6 +150,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть назву"
+                handleTranslate={translateTitleToEn}
                 errorText={errors.titleEn?.message}
                 inputType="en"
               />
@@ -137,6 +164,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть назву"
+                handleTranslate={translateTitleToPl}
                 errorText={errors.titlePl?.message}
                 inputType="pl"
               />
@@ -166,6 +194,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть текст"
+                handleTranslate={translateSubtitleToEn}
                 errorText={errors.subtitleEn?.message}
                 inputType="en"
               />
@@ -179,6 +208,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть текст"
+                handleTranslate={translateSubtitleToPl}
                 errorText={errors.subtitlePl?.message}
                 inputType="pl"
               />
@@ -188,7 +218,9 @@ export const SliderForm = ({
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
           <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
-            <LanguageSelector />
+            <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
+              throw new Error('Function not implemented.');
+            } } />
           </div>
         </div>
         <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">

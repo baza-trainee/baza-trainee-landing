@@ -16,12 +16,15 @@ const useRolesSWR = () => {
   const swrKey = `${rolesEndpoint}?search=${search}`;
 
   const handleRequestError = (err: any) => {
+    const { status, response } = err;
+    const message = response?.data?.message || 'Помилка виконання запиту';
+    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
+
     errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[err?.status || 500],
-      textInfo:
-        'Не вдалося отримати перелік спеціалізацій. Спробуйте трохи пізніше.',
+      title: networkStatusesUk[status || 500],
+      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
     });
   };
 

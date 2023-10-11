@@ -1,15 +1,14 @@
 'use client';
 
-import { ChangeEvent,useCallback, useEffect, useMemo, useState } from 'react';
-import { useRouter,useSearchParams  } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
+import { AdminTitle, FormBtns, PasswordInput } from '@/components/atomic';
 import { useGlobalContext } from '@/store/globalContext';
 
 import auth from '@/utils/API/auth';
 import { useAPI } from '@/utils/hooks/useAPI';
 import { validatePassword } from '@/utils/InputValidations';
-
-import { AdminTitle, FormBtns,PasswordInput } from '@/components/atomic';
 
 const PasswordReset = () => {
   const searchParams = useSearchParams();
@@ -127,7 +126,8 @@ const PasswordReset = () => {
           <FormBtns
             disabled={!isFormValid}
             cancelAction={resetHandler}
-            isEditModeNoWrap
+            okBtnName="Зберегти зміни"
+            verticalBtns
           />
         </div>
       </div>

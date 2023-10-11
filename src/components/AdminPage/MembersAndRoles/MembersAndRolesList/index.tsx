@@ -4,6 +4,7 @@ import { ListRow } from './ListRow';
 import { TMembersAndRolesListProps } from '../types';
 
 export const MembersAndRolesList = ({
+  currLang,
   entity,
   showedData,
   handleDelete,
@@ -19,8 +20,13 @@ export const MembersAndRolesList = ({
           showedData.length > 0 &&
           showedData.map((item) => (
             <ListRow
-              {...{ isProjectEditorMode, handleDelete, selectMember }}
-              entity={entity}
+              {...{
+                currLang,
+                entity,
+                isProjectEditorMode,
+                handleDelete,
+                selectMember,
+              }}
               key={item._id}
               showedData={item}
             />

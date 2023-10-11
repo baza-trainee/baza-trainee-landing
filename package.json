@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix",
+    "lint": "next lint",
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "ts-check": "tsc --project tsconfig.json --pretty --noEmit && echo "
@@ -36,7 +36,6 @@
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.14",
     "eslint-config-next": "^13.5.4",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.1",

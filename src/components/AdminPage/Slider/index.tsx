@@ -1,15 +1,12 @@
 'use client';
+
 import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 import { AddSlideButton } from './AddSlideBtn';
 
-import { IHeroSlider } from '@/types';
-
+import { AdminTitle, LanguageSelector } from '@/components/atomic';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
-
-import { useGlobalContext } from '@/store/globalContext';
-
-import { AdminTitle } from '@/components/atomic';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
+import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
+import { IHeroSlider } from '@/types';
 
 export const AdminHeroSlider = () => {
   const { data } = useHeroSliderSWR();
@@ -20,7 +17,9 @@ export const AdminHeroSlider = () => {
       <header className="slider-header mb-4 flex h-[10.4rem] w-full basis-1 items-center justify-between">
         <AdminTitle>Слайдер</AdminTitle>
         <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
-          <LanguageSelector />
+          <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
+            throw new Error('Function not implemented.');
+          } } />
         </div>
       </header>
       <ul className="slider-main flex h-auto flex-col gap-y-28">

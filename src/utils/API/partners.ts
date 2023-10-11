@@ -3,7 +3,11 @@ import { bazaAPI } from './config';
 import { TPartnerReq, TPartnerResp } from '@/types';
 import { TResponsePartners } from '@/types/typesAPI';
 
-type TGetAll = { page?: number; query?: string; limit?: number };
+type TGetAll = {
+  page?: number;
+  query?: string;
+  limit?: number;
+};
 
 const partnersEndpoint = '/partners';
 

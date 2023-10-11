@@ -39,7 +39,7 @@ export const memberValidateOptions = {
 
   linkedinOptions: {
     pattern: {
-      value: /^(https:\/\/(www\.)?)?linkedin\.com/i,
+      value: /^(https?:\/\/(www\.)?linkedin\.com\/[^\s/$.?#][^\s]*)$/i,
       message: 'Введіть коректне посилання на профіль Linkedin',
     },
   },
@@ -59,7 +59,7 @@ export const roleValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-Z\s\d'’-]+$/,
+      value: /^[a-zA-Z\s'’-]+$/,
       message: 'Введіть коректну назву',
     },
   },
@@ -68,7 +68,7 @@ export const roleValidateOptions = {
     required: 'Введіть назву',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\d'’-]+$/,
+      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s'’-]+$/,
       message: 'Введіть коректну назву',
     },
   },

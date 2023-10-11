@@ -6,6 +6,7 @@ const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';
 
 export const ListRow = ({
+  currLang,
   entity,
   showedData,
   handleDelete,
@@ -28,7 +29,7 @@ export const ListRow = ({
             onClick={handleRowClick}
             className={isProjectEditorMode ? 'cursor-pointer' : ''}
           >
-            {showedData.name.ua}
+            {showedData.name[currLang]}
           </span>
         </div>
       </td>

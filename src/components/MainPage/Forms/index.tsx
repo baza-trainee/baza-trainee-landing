@@ -9,6 +9,7 @@ export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
   const { invite } = dict || {};
   const { bazaTraineeInvite, chooseRole, role } = invite || {};
   const { participant, partner, mentor, customer } = role || {};
+
   return (
     <section className="text-center" id="forms">
       <ContainerMaxW1200 className="flex-col">

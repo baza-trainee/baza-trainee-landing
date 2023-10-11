@@ -26,12 +26,10 @@ const createOptions = (
   if (!member) return;
 
   return {
-    defaultValues: {
-      nameUk: member.name.ua,
-      nameEn: member.name.en,
-      namePl: member.name.pl,
-      linkedin: member.profileUrl,
-    },
+    nameUk: member.name.ua,
+    nameEn: member.name.en,
+    namePl: member.name.pl,
+    linkedin: member.profileUrl,
   };
 };
 
@@ -48,25 +46,20 @@ export const MemberForm = ({
     useMembersSWR();
   const members = membersData?.results;
 
-  const valuesIfItEditedMember = createOptions(memberId, members);
-
   const {
     control,
     handleSubmit,
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<TMemberFormInput>(valuesIfItEditedMember);
+  } = useForm<TMemberFormInput>({
+    defaultValues: createOptions(memberId, members), // To create default values if it is edited member
+    mode: 'onChange',
+  });
 
-  const translateToEn = () => {
-    handleTranslate(getValues().nameUk, 'en').then((res) => {
-      setValue('nameEn', res);
-    });
-  };
-
-  const translateToPl = () => {
-    handleTranslate(getValues().nameUk, 'pl').then((res) => {
-      setValue('namePl', res);
+  const translateField = (field: keyof TMemberFormInput, lang: 'en' | 'pl') => {
+    handleTranslate(getValues().nameUk, lang).then((res) => {
+      setValue(field, res);
     });
   };
 
@@ -92,7 +85,6 @@ export const MemberForm = ({
         pl: data.namePl,
         ua: data.nameUk,
       },
-      // profileUrl: data.linkedin ? data.linkedin : undefined,
     };
 
     if (data.linkedin) {
@@ -100,14 +92,13 @@ export const MemberForm = ({
     }
 
     if (memberId) {
-      updateMember(memberId, member);
+      await updateMember(memberId, member).then(cancelAction);
     } else {
-      createMember(member)?.then((res) => {
+      await createMember(member).then((res) => {
         res && isProjectEditorMode && addMemberNComeback(res);
+        cancelAction();
       });
     }
-
-    cancelAction();
   };
 
   return (
@@ -140,7 +131,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="en"
-              handleTranslate={translateToEn}
+              handleTranslate={() => translateField('nameEn', 'en')}
               errorText={errors.nameEn?.message}
             />
           )}
@@ -154,7 +145,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="pl"
-              handleTranslate={translateToPl}
+              handleTranslate={() => translateField('nameEn', 'pl')}
               errorText={errors.namePl?.message}
             />
           )}
@@ -178,6 +169,7 @@ export const MemberForm = ({
         <div className="mb-11 h-96 overflow-y-auto rounded-md border">
           {members?.length && (
             <MembersAndRolesList
+              currLang="ua"
               {...{ isProjectEditorMode, selectMember }}
               entity="members"
               showedData={members}

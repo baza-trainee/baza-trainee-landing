@@ -39,6 +39,8 @@ const TextareaField = (
     handleTranslate && handleTranslate();
   };
 
+  console.log(errorText)
+
   const inputClassNames = `
     h-full  w-full overflow-hidden rounded-[0.4rem] border outline-0 placeholder:text-neutral-300
     ${icon ? 'py-[0.5rem] pl-[0.5rem]' : 'p-[0.5rem]'}

@@ -1,32 +1,28 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { testimonialDefaultValues } from './defaultValues';
 import { testimonialValidateOptions } from './testimonialValidateOptions';
 import { TTestimonialFormInput } from './types';
 
-import { ITestimonialRequest } from '@/types/typesAPI';
-
-import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
-import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-
-import { useGlobalContext } from '@/store/globalContext';
-
-import { convertDate } from '@/utils/formatDate';
-import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
-
+import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
 import {
   AdminTitle,
   DateInput,
   FileInput,
   FormBtns,
+  LanguageSelector,
   TextAreaField,
   TextInputField,
 } from '@/components/atomic';
-import LanguageSelector from '@/components/MainPage/Header/LanguageSelector';
-import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
+import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
+import { TLandingLanguage } from '@/store/globalContext';
+import { ITestimonialRequest } from '@/types/typesAPI';
+import { convertDate } from '@/utils/formatDate';
+import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
 
 export const TestimonialEditor = ({
   testimonialId,
@@ -34,14 +30,16 @@ export const TestimonialEditor = ({
   testimonialId?: string;
 }) => {
   const router = useRouter();
-  const curLang = useGlobalContext().landingLanguage;
+  const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
   const [imageUrl, setImageUrl] = useState('');
+
+  const changeComponentLang = (lang: TLandingLanguage) => {
+    setComponentLang(lang);
+  };
 
   const { handleTranslate } = useTranslator();
   const { getItemById, addNewTestimonial, updateTestimonial } =
     useTestimonialsSWR();
-
-  const itemData = getItemById(testimonialId!);
 
   const {
     handleSubmit,
@@ -55,21 +53,22 @@ export const TestimonialEditor = ({
   });
 
   useEffect(() => {
-    if (testimonialId && itemData) {
-      setValue('name.ua', itemData.name.ua);
-      setValue('name.en', itemData.name.en);
-      setValue('name.pl', itemData.name.pl);
-      setValue('review.ua', itemData.review.ua);
-      setValue('review.en', itemData.review.en);
-      setValue('review.pl', itemData.review.pl);
-      setValue('role', itemData.role);
-      setValue('date', convertDate.toYYYYMMDD(+itemData.date));
-      setValue('authorImg', [
-        new File([], itemData.imageUrl, { type: 'for-url' }),
-      ]);
-      setImageUrl(itemData.imageUrl);
-    }
-  }, [testimonialId, setValue, itemData]);
+    if (!testimonialId) return;
+    const itemData = getItemById(testimonialId!);
+    if (!itemData) return;
+    setValue('name.ua', itemData.name.ua);
+    setValue('name.en', itemData.name.en);
+    setValue('name.pl', itemData.name.pl);
+    setValue('review.ua', itemData.review.ua);
+    setValue('review.en', itemData.review.en);
+    setValue('review.pl', itemData.review.pl);
+    setValue('role', itemData.role);
+    setValue('date', convertDate.toYYYYMMDD(+itemData.date));
+    setValue('authorImg', [
+      new File([], itemData.imageUrl, { type: 'for-url' }),
+    ]);
+    setImageUrl(itemData.imageUrl);
+  }, []);
 
   const currentValues = watch();
 
@@ -101,7 +100,7 @@ export const TestimonialEditor = ({
       return createImgUrl(currentValues.authorImg[0].name);
     }
 
-    const isValidImg = testimonialValidateOptions.img.authorImg.validate(
+    const isValidImg = testimonialValidateOptions.img.validate(
       currentValues.authorImg
     );
     if (isValidImg) {
@@ -157,9 +156,7 @@ export const TestimonialEditor = ({
 
     if (testimonialId) {
       if (values.authorImg?.length && values.authorImg[0]?.size === 0) {
-        const downloadedImage = await downloadImage(
-          itemData?.imageUrl as string
-        );
+        const downloadedImage = await downloadImage(imageUrl as string);
         newItem.file = downloadedImage as File;
       }
       updateTestimonial(testimonialId, newItem);
@@ -246,12 +243,10 @@ export const TestimonialEditor = ({
               control={control}
               name="authorImg"
               rules={{
-                ...testimonialValidateOptions.img,
-                ...testimonialValidateOptions.img.authorImg,
-                required: 'Додайте зображення',
+                ...testimonialValidateOptions.img
               }}
               accept="image/*"
-              placeholder={!testimonialId ? 'Завантажте зображення' : imageUrl}
+              placeholder={imageUrl ? imageUrl : 'Завантажте зображення'}
               title="Фото"
             />
           </div>
@@ -297,7 +292,7 @@ export const TestimonialEditor = ({
             />
           </div>
           <FormBtns
-            isEditMode={testimonialId ? true : false}
+            isEditMode={!!testimonialId}
             cancelAction={handleResetForm}
           />
         </div>
@@ -305,11 +300,14 @@ export const TestimonialEditor = ({
       {currentValues.name.ua && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
-            <LanguageSelector />
+            <LanguageSelector
+              currLang={componentLang}
+              changeComponentLang={changeComponentLang}
+            />
           </div>
           <SingleSlide
             slideData={previewData}
-            lang={curLang}
+            lang={componentLang}
             isImage={isImageUrl}
           />
         </div>

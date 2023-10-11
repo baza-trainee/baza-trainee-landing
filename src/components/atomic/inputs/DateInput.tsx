@@ -35,8 +35,6 @@ export const DateInput = <T extends FieldValues>({
     formState.errors[name] as DeepMap<FieldValues, FieldError>
   )?.message;
 
-  console.log(errorMessage)
-
   const inputWrapperClasses = `
     relative w-full max-w-[32.6rem] ${errorMessage ? 'text-critic-light' : ''}
   `;

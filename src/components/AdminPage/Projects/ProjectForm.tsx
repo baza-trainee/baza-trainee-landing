@@ -23,8 +23,7 @@ const ProjectForm = () => {
     handleSubmit,
     onSubmit,
     cancelAction,
-    translateToEn,
-    translateToPl,
+    translateField,
     control,
     errors,
   } = useProjectFormContext();
@@ -54,9 +53,8 @@ const ProjectForm = () => {
             render={({ field }) => (
               <TextInputField
                 {...field}
-                // translateValue={watch().nameUk}
                 inputType="en"
-                handleTranslate={translateToEn}
+                handleTranslate={() => translateField('nameEn', 'en')}
                 errorText={errors.nameEn?.message}
               />
             )}
@@ -69,8 +67,7 @@ const ProjectForm = () => {
               <TextInputField
                 {...field}
                 inputType="pl"
-                // translateValue={watch().nameUk}
-                handleTranslate={translateToPl}
+                handleTranslate={() => translateField('nameEn', 'pl')}
                 errorText={errors.namePl?.message}
               />
             )}
@@ -80,7 +77,7 @@ const ProjectForm = () => {
         <div className={`${rowStyle} col-span-2`}>
           <DateInput
             name="creationDate"
-            rules={{ required: 'Оберіть дату' }}
+            rules={projectValidateOptions.creationDate}
             control={control}
             title="Старт проєкту"
             placeholder="Оберіть дату"
@@ -131,7 +128,7 @@ const ProjectForm = () => {
             name="projectImg"
             control={control}
             rules={{
-              ...projectValidateOptions.img,
+              ...projectValidateOptions.projectImg,
               required: isEditMode ? false : 'Додайте зображення проєкту',
             }}
             accept="image/*"

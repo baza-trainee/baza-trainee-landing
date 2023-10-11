@@ -12,12 +12,16 @@ import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 export const useHeroSliderSWR = () => {
   const { setAlertInfo } = useGlobalContext();
 
-  const handleRequestError = (err: AxiosError) => {
+  const handleRequestError = (err: any) => {
+    const { status, response } = err;
+    const message = response?.data?.message || 'Помилка виконання запиту';
+    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
+
     errorHandler(err);
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[err?.status || 500],
-      textInfo: 'При запиті виникла помилка. Спробуйте трохи пізніше.',
+      title: networkStatusesUk[status || 500],
+      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
     });
   };
 
