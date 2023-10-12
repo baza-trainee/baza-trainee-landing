@@ -41,7 +41,12 @@ const LanguageSelector = ({ currLang, changeComponentLang }: TProps) => {
 
   return (
     <div className="relative">
-      <button className={btnStyle} id="active-lang" onClick={handleMenuClick}>
+      <button
+        type="button"
+        className={btnStyle}
+        id="active-lang"
+        onClick={handleMenuClick}
+      >
         {currLang.toUpperCase()}
 
         <MultiArrow direction="bottom" open={isMenuOpen} />
@@ -53,6 +58,7 @@ const LanguageSelector = ({ currLang, changeComponentLang }: TProps) => {
           .map((lang) => (
             <li key={`key_${lang}`}>
               <button
+                type="button"
                 className={btnStyle}
                 onClick={() => handleLanguageClick(lang)}
               >

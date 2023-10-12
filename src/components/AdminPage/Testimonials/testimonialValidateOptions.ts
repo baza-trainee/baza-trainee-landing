@@ -3,7 +3,7 @@ import { SETTINGS } from '@/config/settings';
 import { formatBytes } from '@/utils/formatBytes';
 import { convertDate } from '@/utils/formatDate';
 import { validateImgDimensions } from '@/utils/validateImgDimensions';
-import { DateInputRegisterOprions, TTestimonialFormInput } from './types';
+import { DateInputRegisterOptions, TTestimonialFormInput } from './types';
 
 const limitDimensions = SETTINGS.imgDimensions.testimonialImg;
 const sizeLimit = SETTINGS.fileSizeLimits.testimonialPhoto;
@@ -122,7 +122,7 @@ export const testimonialValidateOptions = {
 
   date: {
     required: 'Оберіть дату',
-    validate: (_: DateInputRegisterOprions, values: TTestimonialFormInput) => {
+    validate: (_: DateInputRegisterOptions, values: TTestimonialFormInput) => {
       if (!values.date) return;
 
       const creationDate = convertDate.toMsec(values.date);
@@ -134,21 +134,23 @@ export const testimonialValidateOptions = {
     },
   },
 
-  img: {
+  image: {
     required: 'Додайте зображення',
-    validate: (value: any) => {
+    validate: (value: string | File | File[]) => {
       if (typeof value === 'object' && value !== null && value.length > 0) {
+        const file = value[0];
+
+        const checkType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+        if (!checkType)
+          return 'Зображення має бути в форматі .jpg, .png або .webp';
+
         const checkSize = value[0]?.size <= sizeLimit;
-        const checkType =
-          value[0]?.type === 'image/jpeg' ||
-          value[0]?.type === 'image/png' ||
-          value[0]?.type === 'image/webp' ||
-          value[0]?.type === 'for-url';
         if (!checkSize) {
           return `Максимальний розмір зображення ${formatBytes(sizeLimit)}`;
         }
-        if (!checkType)
-          return 'Зображення має бути в форматі .jpg, .png або .webp';
+
+        if (value[0]?.size === 0) return true;
+
         return validateImgDimensions(
           value[0],
           limitDimensions.width,

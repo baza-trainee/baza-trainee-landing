@@ -1,17 +1,13 @@
-import { TTestimonialFormInput } from "./types";
+import { TTestimonialFormInput } from './types';
 
 export const testimonialDefaultValues: TTestimonialFormInput = {
-    name: {
-      ua: '',
-      en: '',
-      pl: '',
-    },
-    review: {
-      ua: '',
-      en: '',
-      pl: '',
-    },
-    authorImg: [],
-    role: '',
-    date: new Date().toISOString().split('T')[0],
-  };
+  nameUa: '',
+  nameEn: '',
+  namePl: '',
+  reviewUa: '',
+  reviewEn: '',
+  reviewPl: '',
+  authorImg: [],
+  role: '',
+  date: new Date().toISOString().split('T')[0],
+};

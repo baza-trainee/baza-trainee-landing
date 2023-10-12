@@ -28,7 +28,7 @@ export const SingleSlide = ({
         {isImage && (
           <Image
             src={src || imageUrl}
-            alt={name.en}
+            alt={name[lang]}
             fill
             sizes="100%"
             className="object-cover"
