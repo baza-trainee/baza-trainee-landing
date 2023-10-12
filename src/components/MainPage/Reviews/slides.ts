@@ -1,6 +1,6 @@
 export const slides = [
   {
-    _id: 111,
+    _id: "111",
     name: {
       en: 'Olena',
       pl: 'Olena',
@@ -16,7 +16,7 @@ export const slides = [
     imageUrl: '/img/c_reviews.webp',
   },
   {
-    _id: 222,
+    _id: "222",
     name: {
       en: 'Vitaly',
       pl: 'Witalij',
@@ -32,7 +32,7 @@ export const slides = [
     imageUrl: '/img/a_reviews.webp',
   },
   {
-    _id: 333,
+    _id: "333",
     name: {
       en: 'Irina',
       pl: 'Irina',

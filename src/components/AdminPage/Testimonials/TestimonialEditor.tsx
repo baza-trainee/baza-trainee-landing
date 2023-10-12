@@ -31,7 +31,7 @@ export const TestimonialEditor = ({
 }) => {
   const router = useRouter();
   const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState<string>();
 
   const changeComponentLang = (lang: TLandingLanguage) => {
     setComponentLang(lang);
@@ -155,15 +155,22 @@ export const TestimonialEditor = ({
     };
 
     if (testimonialId) {
-      if (values.authorImg?.length && values.authorImg[0]?.size === 0) {
-        const downloadedImage = await downloadImage(imageUrl as string);
-        newItem.file = downloadedImage as File;
+      if (
+        values.authorImg?.length &&
+        values.authorImg[0]?.size === 0 &&
+        imageUrl
+      ) {
+        const downloadedImage = await downloadImage(imageUrl);
+        if (downloadedImage) {
+          newItem.file = downloadedImage;
+        }
       }
-      updateTestimonial(testimonialId, newItem);
-      router.replace('..');
+
+      updateTestimonial(testimonialId, newItem).then(() =>
+        router.replace('..')
+      );
     } else {
-      addNewTestimonial(newItem);
-      router.replace('.');
+      addNewTestimonial(newItem).then(() => router.replace('.'));
     }
   };
 
@@ -172,6 +179,7 @@ export const TestimonialEditor = ({
       <AdminTitle className="mb-[4.5rem] ml-[1.2rem]">
         {testimonialId ? 'Редагувати Відгук' : 'Додати Відгук'}
       </AdminTitle>
+
       <form className="flex flex-col gap-16" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6  shadow-md lg:justify-start">
@@ -238,18 +246,16 @@ export const TestimonialEditor = ({
               title="Дата"
               placeholder="Оберіть дату"
             />
-
             <FileInput
               control={control}
               name="authorImg"
-              rules={{
-                ...testimonialValidateOptions.img
-              }}
+              rules={testimonialValidateOptions.img}
               accept="image/*"
-              placeholder={imageUrl ? imageUrl : 'Завантажте зображення'}
+              placeholder={imageUrl || 'Завантажте зображення'}
               title="Фото"
             />
           </div>
+
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6 shadow-md lg:justify-start ">
             <Controller
               name="review.ua"
@@ -291,12 +297,14 @@ export const TestimonialEditor = ({
               )}
             />
           </div>
+
           <FormBtns
             isEditMode={!!testimonialId}
             cancelAction={handleResetForm}
           />
         </div>
       </form>
+
       {currentValues.name.ua && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
@@ -305,6 +313,7 @@ export const TestimonialEditor = ({
               changeComponentLang={changeComponentLang}
             />
           </div>
+
           <SingleSlide
             slideData={previewData}
             lang={componentLang}

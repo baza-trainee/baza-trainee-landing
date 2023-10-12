@@ -41,10 +41,10 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
             afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
-            {slides?.map((review: TSlideReview, index: number) => (
+            {slides?.map((review: TSlideReview) => (
               <SingleSlide
                 slideData={review}
-                key={index + 'key'}
+                key={review._id!}
                 lang={lang}
                 src={review.imageUrl}
                 isImage={review?.imageUrl.split('.')[0] !== 'undefined'}
