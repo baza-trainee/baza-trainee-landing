@@ -62,17 +62,10 @@ const ProjectCard = ({
         <div className="relative h-full p-[2.4rem] text-white">
           {isMembersVisible ? (
             <ProjectCardTeam
-              project={project}
-              lang={lang}
-              handleShowTeam={handleShowTeam}
-              isAdminMode={isAdminMode}
+              {...{ project, lang, handleShowTeam, isAdminMode }}
             />
           ) : (
-            <ProjectCardContent
-              project={project}
-              lang={lang}
-              handleShowTeam={handleShowTeam}
-            />
+            <ProjectCardContent {...{ project, lang, handleShowTeam }} />
           )}
         </div>
       </div>

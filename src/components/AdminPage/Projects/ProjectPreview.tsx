@@ -1,5 +1,9 @@
-import { useEffect, useState } from 'react';
+'use client';
 
+import { useEffect, useState } from 'react';
+import { useWatch } from 'react-hook-form';
+
+import { defaultValues } from './initFormData';
 import { useProjectFormContext } from './ProjectFormProvider';
 import { prepareProject } from './projectUtils';
 import { projectValidateOptions } from './validateOptions';
@@ -7,6 +11,7 @@ import { projectValidateOptions } from './validateOptions';
 import { LanguageSelector } from '@/components/atomic';
 import { LogoMain } from '@/components/common/icons';
 import { ProjectCard } from '@/components/ProjectCard';
+import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
@@ -18,8 +23,10 @@ const EmptyPreviewImg = () => (
 );
 
 const ProjectPreview = () => {
-  const { teamMemberData, watch } = useProjectFormContext();
-  const currentValues = watch();
+  const { projectId, teamMemberData, control } = useProjectFormContext();
+  const { getProjectById } = useProjectsSWR();
+
+  const currentValues = useWatch({ control });
   const { projectImg } = currentValues;
 
   const [coverImgUrl, setCoverImgUrl] = useState<string>();
@@ -30,18 +37,22 @@ const ProjectPreview = () => {
   };
 
   useEffect(() => {
+    if (projectId) {
+      const projectDataById = getProjectById(projectId);
+      projectDataById && setCoverImgUrl(createImgUrl(projectDataById.imageUrl));
+    }
+  }, []);
+
+  useEffect(() => {
     if (!projectImg?.length) return;
 
     (async () => {
-      if (projectImg[0].type === 'for-url') {
-        setCoverImgUrl(createImgUrl(projectImg[0].name));
-      } else {
-        const isValidImg =
-          await projectValidateOptions.projectImg.validate(projectImg);
+      const isValidImg = await projectValidateOptions
+        .projectImg()
+        .validate(projectImg);
 
-        if (typeof isValidImg !== 'string') {
-          setCoverImgUrl(URL.createObjectURL(projectImg[0]));
-        }
+      if (typeof isValidImg !== 'string') {
+        setCoverImgUrl(URL.createObjectURL(projectImg[0]));
       }
     })();
   }, [projectImg]);
@@ -53,7 +64,7 @@ const ProjectPreview = () => {
   const previewProject: TProjectResp = {
     _id: '',
     imageUrl: '',
-    ...prepareProject(currentValues),
+    ...prepareProject({ ...defaultValues, ...currentValues }),
     teamMembers: teamMemberData,
   };
 
@@ -64,7 +75,7 @@ const ProjectPreview = () => {
           project={previewProject}
           coverImgUrl={coverImgUrl}
           lang={componentLang}
-          isAdminMode={true}
+          isAdminMode
         />
       </ul>
 
@@ -79,4 +90,3 @@ const ProjectPreview = () => {
 };
 
 export { ProjectPreview };
-

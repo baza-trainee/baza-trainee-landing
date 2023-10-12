@@ -32,9 +32,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
   const isEditMode = !!projectId;
 
-  const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>(
-    initProjectData.teamMembers
-  );
+  const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>([]);
 
   const addTeamMember = (newMember: TMemberBioResp) => {
     const updatedTeamMembers = [
@@ -68,9 +66,8 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   const cancelAction = () => router.replace('.');
 
   const {
-    register,
     handleSubmit,
-    watch,
+    getValues,
     setFocus,
     setValue,
     control,
@@ -78,12 +75,12 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   } = useForm<TFormInput>({ defaultValues, mode: 'onChange' });
 
   const translateField = (field: keyof TFormInput, lang: 'en' | 'pl') => {
-    handleTranslate(watch().nameUk, lang).then((res) => {
+    handleTranslate(getValues().nameUk, lang).then((res) => {
       setValue(field, res);
     });
   };
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<TFormInput> = async (data, e) => {
     const preparedProject: TProjectReq = {
       ...prepareProject(data),
       teamMembers: extractMembersId(teamMemberData),
@@ -122,7 +119,6 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
     const {
       title,
-      imageUrl,
       deployUrl,
       isTeamRequired,
       creationDate,
@@ -133,7 +129,6 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     setValue('nameUk', title.ua);
     setValue('nameEn', title.en);
     setValue('namePl', title.pl);
-    setValue('projectImg', [new File([], imageUrl, { type: 'for-url' })]);
     setValue('deployUrl', deployUrl);
     setValue('isTeamRequired', isTeamRequired);
     setValue('creationDate', convertDate.toYYYYMMDD(creationDate));
@@ -142,16 +137,15 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
   }, []);
 
   const contextValue: IFormContext = {
+    projectId,
     isEditMode,
     teamMemberData,
-    register,
     handleSubmit,
     onSubmit,
     cancelAction,
     addTeamMember,
     updTeamMemberRole,
     deleteMember,
-    watch,
     translateField,
     control,
     errors,

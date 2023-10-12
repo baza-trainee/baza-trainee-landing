@@ -47,34 +47,36 @@ export const projectValidateOptions = {
     },
   },
 
-  projectImg: {
-    validate: (
-      value: string | number | boolean | File | File[] | undefined
-    ) => {
-      if (typeof value === 'object' && value !== null && value.length > 0) {
-        const file = value[0];
+  projectImg: (isEditMode?: boolean) => {
+    return {
+      required: isEditMode ? false : 'Додайте зображення проєкту',
+      validate: (
+        value: string | number | boolean | File | File[] | undefined
+      ) => {
+        if (typeof value === 'object' && value !== null && value.length > 0) {
+          const file = value[0];
 
-        const checkType = [
-          'image/jpeg',
-          'image/png',
-          'image/webp',
-          'for-url',
-        ].includes(file.type);
-        if (!checkType) return 'Виберіть коректне зображення';
+          const checkType = [
+            'image/jpeg',
+            'image/png',
+            'image/webp',
+          ].includes(file.type);
+          if (!checkType) return 'Виберіть коректне зображення';
 
-        const checkSize = file.size <= limitSize;
-        if (!checkSize)
-          return `Виберіть зображення до ${formatBytes(limitSize)}`;
+          const checkSize = file.size <= limitSize;
+          if (!checkSize)
+            return `Виберіть зображення до ${formatBytes(limitSize)}`;
 
-        return validateImgDimensions(
-          file,
-          limitDimensions.width,
-          limitDimensions.height
-        );
-      } else {
-        return 'Додайте зображення проєкту';
-      }
-    },
+          return validateImgDimensions(
+            file,
+            limitDimensions.width,
+            limitDimensions.height
+          );
+        } else {
+          return isEditMode || 'Додайте зображення проєкту';
+        }
+      },
+    };
   },
 
   deployUrl: {
