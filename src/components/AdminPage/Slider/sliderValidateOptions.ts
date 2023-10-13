@@ -1,6 +1,8 @@
 import { SETTINGS } from '@/config/settings';
+import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
 const limitSize = SETTINGS.fileSizeLimits.heroSliderPhoto;
+const limitDimensions = SETTINGS.imgDimensions.sliderImg;
 
 export const sliderValidateOptions = {
   title: {
@@ -33,7 +35,12 @@ export const sliderValidateOptions = {
       if (!checkType) return 'Виберіть коректне зображення';
       const checkSize = file.size <= limitSize;
       if (!checkSize) return `Виберіть зображення до ${limitSize} Мб`;
-      return true;
+
+      return validateImgDimensions(
+        file,
+        limitDimensions.width,
+        limitDimensions.height
+      );
     },
   },
 };
