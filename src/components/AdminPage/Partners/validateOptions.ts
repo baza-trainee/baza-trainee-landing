@@ -25,7 +25,7 @@ export const partnerValidateOptions = {
 
   partnerImg: {
     validate: (value: TFormFieldValue) => {
-      if (Array.isArray(value) && value.length > 0) {
+      if (typeof value === 'object' && 'length' in value && value.length > 0) {
         const file = value[0];
 
         const checkType = [

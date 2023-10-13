@@ -137,10 +137,15 @@ export const testimonialValidateOptions = {
   image: {
     required: 'Додайте зображення',
     validate: (value: DateInputRegisterOptions) => {
-      if (Array.isArray(value) && value.length > 0) {
+      if (typeof value === 'object' && 'length' in value && value.length > 0) {
         const file = value[0];
 
-        const checkType = ['image/jpeg', 'image/png', 'image/webp', 'for-url'].includes(file.type);
+        const checkType = [
+          'image/jpeg',
+          'image/png',
+          'image/webp',
+          'for-url',
+        ].includes(file.type);
         if (!checkType)
           return 'Зображення має бути в форматі .jpg, .png або .webp';
 

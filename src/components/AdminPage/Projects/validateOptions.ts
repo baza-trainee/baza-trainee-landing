@@ -53,7 +53,11 @@ export const projectValidateOptions = {
     return {
       required: isEditMode ? false : 'Додайте зображення проєкту',
       validate: (value: TFormFieldValue) => {
-        if (Array.isArray(value) && value.length > 0) {
+        if (
+          typeof value === 'object' &&
+          'length' in value &&
+          value.length > 0
+        ) {
           const file = value[0];
 
           const checkType = ['image/jpeg', 'image/png', 'image/webp'].includes(
