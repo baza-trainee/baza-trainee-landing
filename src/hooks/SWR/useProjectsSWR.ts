@@ -1,42 +1,19 @@
-import { useState } from 'react';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { TProjectReq, TResponseProjects } from '@/types';
 
-import { useGlobalContext } from '@/store/globalContext';
-
 import { projectsApi, projectsEndpoint } from '@/utils/API/projects';
-import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
+import { useRequestNotifiers } from './useRequestNotifiers';
 
 const useProjectsSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
+  const { setSuccess, handleRequestError } = useRequestNotifiers();
   const [search, setSearch] = useState('');
   const [page, setPage] = useState<number>();
   const [limit, setLimit] = useState<number>();
 
   const swrKey = `${projectsEndpoint}?search=${search}`;
-
-  const setSuccess = (textInfo: string) => {
-    setAlertInfo({
-      state: 'success',
-      title: 'Успіх',
-      textInfo,
-    });
-  };
-
-  const handleRequestError = (err: any) => {
-    const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
-
-    errorHandler(err);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[status || 500],
-      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
-    });
-  };
 
   const { data, error, isLoading, mutate } = useSWR<
     TResponseProjects,
@@ -70,7 +47,7 @@ const useProjectsSWR = () => {
         results: [createdProject, ...(data?.results || [])],
       };
 
-      setSuccess('Ваші дані успішно збережено.');
+      setSuccess('збережено');
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
@@ -85,7 +62,7 @@ const useProjectsSWR = () => {
       );
       const updData: TResponseProjects = { ...data!, results: updProjects! };
 
-      setSuccess('Оновлені дані успішно збережено.');
+      setSuccess('оновлено');
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
@@ -97,6 +74,7 @@ const useProjectsSWR = () => {
       const updProjects = data?.results.filter((project) => project._id !== id);
       const updData: TResponseProjects = { ...data!, results: updProjects! };
 
+      setSuccess('видалено');
       mutate(updData);
       await projectsApi.deleteById(id);
     } catch (err) {
@@ -119,3 +97,4 @@ const useProjectsSWR = () => {
 };
 
 export { useProjectsSWR };
+

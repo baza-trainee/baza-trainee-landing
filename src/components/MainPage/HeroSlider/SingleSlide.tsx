@@ -1,25 +1,22 @@
-// import { createImgUrl } from '@/utils/imageHandler';
 import Image from 'next/image';
 
 import { TSlide } from '@/types';
 
-import { useGlobalContext } from '@/store/globalContext';
+import { TLandingLanguage } from '@/store/globalContext';
 
-export const SingleSlide = ({
-  slideData,
-  index,
-}: {
+type TProps = {
   slideData: TSlide;
   index: number;
-}) => {
+  lang: TLandingLanguage;
+};
+
+export const SingleSlide = ({ slideData, index, lang }: TProps) => {
   const { imageUrl, title, subtitle } = slideData;
-  const lang = useGlobalContext().landingLanguage;
 
   return (
     <div className="relative flex h-[50.4rem] items-center justify-center">
       <Image
         fill
-        // src={createImgUrl(imageUrl)}
         src={imageUrl}
         priority={index === 0}
         alt={title[lang]}

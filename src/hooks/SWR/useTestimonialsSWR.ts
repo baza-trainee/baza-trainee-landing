@@ -3,37 +3,15 @@ import useSWR from 'swr';
 
 import { ITestimonialRequest, TTestimonialResp } from '@/types';
 
-import { useGlobalContext } from '@/store/globalContext';
-
 import {
   testimonialsApi,
   testimonialsEndPoint,
 } from '@/utils/API/testimonials';
-import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
+
+import { useRequestNotifiers } from './useRequestNotifiers';
 
 export const useTestimonialsSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
-
-  const handleRequestError = (err: any) => {
-    const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
-
-    errorHandler(err);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[status || 500],
-      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
-    });
-  };
-
-  const setSuccess = (textInfo: string) => {
-    setAlertInfo({
-      state: 'success',
-      title: 'Успіх',
-      textInfo,
-    });
-  };
+  const { setSuccess, handleRequestError } = useRequestNotifiers();
 
   const { data, error, isLoading, mutate } = useSWR<
     TTestimonialResp[],
@@ -51,9 +29,9 @@ export const useTestimonialsSWR = () => {
   const deleteTestimonial = async (id: string) => {
     try {
       const updTestimonials = data?.filter((item) => item._id !== id);
+      setSuccess('Відгук успішно видалено');
       mutate(updTestimonials);
       await testimonialsApi.deleteById(id);
-      setSuccess('Відгук успішно видалено.');
     } catch (error) {
       handleRequestError(error);
     }
@@ -63,8 +41,8 @@ export const useTestimonialsSWR = () => {
     try {
       const newTestimonial = await testimonialsApi.createNew(item);
       if (newTestimonial && data) {
+        setSuccess('Відгук успішно збережено');
         mutate([newTestimonial, ...data]);
-        setSuccess('Відгук успішно збережено.');
       }
     } catch (error) {
       handleRequestError(error);
@@ -76,9 +54,9 @@ export const useTestimonialsSWR = () => {
     testimonial: ITestimonialRequest
   ) => {
     try {
-      await testimonialsApi.updateById([id, testimonial]);
+      setSuccess('Відгук успішно оновлено');
       mutate();
-      setSuccess('Відгук успішно оновлено.');
+      await testimonialsApi.updateById([id, testimonial]);
     } catch (error) {
       handleRequestError(error);
     }

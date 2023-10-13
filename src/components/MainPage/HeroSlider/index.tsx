@@ -73,6 +73,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
               key={`key_${slide.title[lang]}`}
               slideData={slide}
               index={index}
+              lang={lang}
             />
           ))}
         </Slider>

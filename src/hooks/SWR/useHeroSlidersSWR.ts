@@ -4,26 +4,11 @@ import useSWR from 'swr';
 
 import { IHeroSlider, THeroSliderData } from '@/types';
 
-import { useGlobalContext } from '@/store/globalContext';
-
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
-import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
+import { useRequestNotifiers } from './useRequestNotifiers';
 
 export const useHeroSliderSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
-
-  const handleRequestError = (err: any) => {
-    const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
-
-    errorHandler(err);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[status || 500],
-      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
-    });
-  };
+  const { setSuccess, handleRequestError } = useRequestNotifiers();
 
   const { data, error, isLoading, mutate } = useSWR<
     THeroSliderData,
@@ -40,10 +25,11 @@ export const useHeroSliderSWR = () => {
       );
       const updData: THeroSliderData = { ...data!, results: updSliders! };
 
+      setSuccess('видалено');
       mutate(updData);
       await heroSliderApi.deleteById(id);
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
@@ -52,10 +38,11 @@ export const useHeroSliderSWR = () => {
       const updSliders = [...(data?.results || []), slider];
       const updData: THeroSliderData = { ...data!, results: updSliders! };
 
+      setSuccess('збережено');
       mutate(updData);
       await heroSliderApi.createNew(slider);
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
@@ -66,10 +53,11 @@ export const useHeroSliderSWR = () => {
       );
       const updData: THeroSliderData = { ...data!, results: updSliders! };
 
+      setSuccess('оновлено');
       mutate(updData);
       await heroSliderApi.updateById([id, slider]);
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 

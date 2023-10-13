@@ -1,32 +1,17 @@
-import { useState } from 'react';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { TMemberBioReq, TResponseMembers } from '@/types';
 
-import { useGlobalContext } from '@/store/globalContext';
-
 import { membersApi, membersEndpoint } from '@/utils/API/members';
-import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
+import { useRequestNotifiers } from './useRequestNotifiers';
 
 const useMembersSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
+  const { setSuccess, handleRequestError } = useRequestNotifiers();
   const [search, setSearch] = useState('');
 
   const swrKey = `${membersEndpoint}?search=${search}`;
-
-  const handleRequestError = (err: any) => {
-    const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
-
-    errorHandler(err);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[status || 500],
-      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
-    });
-  };
 
   const { data, error, isLoading, mutate } = useSWR<
     TResponseMembers,
@@ -45,6 +30,7 @@ const useMembersSWR = () => {
       const updMembers = data?.results.filter((member) => member._id !== id);
       const updData: TResponseMembers = { ...data!, results: updMembers! };
 
+      setSuccess('видалено');
       mutate(updData);
       await membersApi.deleteById(id);
     } catch (err) {
@@ -63,6 +49,7 @@ const useMembersSWR = () => {
         results: [createdMember, ...(data?.results || [])],
       };
 
+      setSuccess('збережено');
       mutate(updData);
 
       return createdMember;
@@ -83,6 +70,7 @@ const useMembersSWR = () => {
 
       const updData: TResponseMembers = { ...data!, results: updatedMembers };
 
+      setSuccess('оновлено');
       mutate(updData);
 
       return updatedMember;
@@ -103,3 +91,4 @@ const useMembersSWR = () => {
 };
 
 export { useMembersSWR };
+

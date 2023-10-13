@@ -4,8 +4,6 @@ import {
   FieldErrors,
   SubmitHandler,
   UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormWatch,
 } from 'react-hook-form';
 
 import { TMemberBioResp, TMemberResp, TMemberRoleResp } from '@/types';
