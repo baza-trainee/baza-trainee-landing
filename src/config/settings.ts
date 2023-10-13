@@ -10,6 +10,7 @@ export const SETTINGS = {
   imgDimensions: {
     partnerLogo: { width: 214, height: 100 },
     projectImg: { width: 378, height: 464 },
+    sliderImg: { width: 1440, height: 504 },
     testimonialImg: { width: 114, height: 120 },
   },
   textToTranslateMaxLength: 700,

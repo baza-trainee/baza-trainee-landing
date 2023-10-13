@@ -136,7 +136,7 @@ export const testimonialValidateOptions = {
 
   image: {
     required: 'Додайте зображення',
-    validate: (value: string | File | File[]) => {
+    validate: (value: DateInputRegisterOptions) => {
       if (typeof value === 'object' && value !== null && value.length > 0) {
         const file = value[0];
 

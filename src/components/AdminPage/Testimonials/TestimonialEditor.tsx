@@ -48,7 +48,7 @@ export const TestimonialEditor = ({
     control,
     formState: { errors },
   } = useForm<TTestimonialFormInput>({
-    mode: 'onSubmit',
+    mode: 'onChange',
     defaultValues: testimonialDefaultValues,
   });
 
@@ -72,24 +72,12 @@ export const TestimonialEditor = ({
 
   const currentValues = watch();
 
-  const translateNameToEn = () => {
-    handleTranslate(currentValues.nameUa, 'en').then((res) => {
-      setValue('nameEn', res);
-    });
-  };
-  const translateNameToPl = () => {
-    handleTranslate(currentValues.nameUa, 'pl').then((res) => {
-      setValue('namePl', res);
-    });
-  };
-  const translateReviewToEn = () => {
-    handleTranslate(currentValues.reviewUa, 'en').then((res) => {
-      setValue('reviewEn', res);
-    });
-  };
-  const translateReviewToPl = () => {
-    handleTranslate(currentValues.reviewUa, 'pl').then((res) => {
-      setValue('reviewPl', res);
+  const translateField = (fieldType: 'name' | 'review', lang: 'en' | 'pl') => {
+    const fieldName = lang === 'en' ? `${fieldType}En` : `${fieldType}Pl`;
+    const fieldValue = currentValues[`${fieldType}Ua`];
+
+    handleTranslate(fieldValue, lang).then((res) => {
+      setValue(fieldName as keyof TTestimonialFormInput, res);
     });
   };
 
@@ -111,9 +99,7 @@ export const TestimonialEditor = ({
 
   const authorImageUrl = getImageUrl();
 
-  const isImageUrl =
-    authorImageUrl !== undefined &&
-    authorImageUrl?.split('/files/')[1] !== 'undefined';
+  const isImageUrl = !!imageUrl && imageUrl.split('/files/')[1] !== 'undefined';
 
   const previewData = {
     name: {
@@ -131,9 +117,7 @@ export const TestimonialEditor = ({
     imageUrl: authorImageUrl!,
   };
 
-  const handleResetForm = () => {
-    router.replace('.');
-  };
+  const cancelAction = () => router.replace('.');
 
   const onSubmit: SubmitHandler<TTestimonialFormInput> = async (
     values: TTestimonialFormInput
@@ -162,9 +146,9 @@ export const TestimonialEditor = ({
       ) {
         newItem.file = (await downloadImageAsFile(imageUrl)) as File;
       }
-      updateTestimonial(testimonialId, newItem).then(() => router.replace('.'));
+      updateTestimonial(testimonialId, newItem).then(cancelAction);
     } else {
-      addNewTestimonial(newItem).then(() => router.replace('.'));
+      addNewTestimonial(newItem).then(cancelAction);
     }
   };
 
@@ -200,7 +184,7 @@ export const TestimonialEditor = ({
                   {...field}
                   inputType="en"
                   errorText={errors.nameEn?.message}
-                  handleTranslate={translateNameToEn}
+                  handleTranslate={() => translateField('name', 'en')}
                   placeholder="Введіть ім’я"
                 />
               )}
@@ -214,7 +198,7 @@ export const TestimonialEditor = ({
                   {...field}
                   inputType="pl"
                   errorText={errors.namePl?.message}
-                  handleTranslate={translateNameToPl}
+                  handleTranslate={() => translateField('name', 'pl')}
                   placeholder="Введіть ім’я"
                 />
               )}
@@ -240,7 +224,6 @@ export const TestimonialEditor = ({
               title="Дата"
               placeholder="Оберіть дату"
             />
-
             <FileInput
               control={control}
               name="authorImg"
@@ -274,7 +257,7 @@ export const TestimonialEditor = ({
                   {...field}
                   inputType="en"
                   errorText={errors.reviewEn?.message}
-                  handleTranslate={translateReviewToEn}
+                  handleTranslate={() => translateField('review', 'en')}
                 />
               )}
             />
@@ -287,17 +270,16 @@ export const TestimonialEditor = ({
                   {...field}
                   inputType="pl"
                   errorText={errors.reviewPl?.message}
-                  handleTranslate={translateReviewToPl}
+                  handleTranslate={() => translateField('review', 'pl')}
                 />
               )}
             />
           </div>
-          <FormBtns
-            isEditMode={!!testimonialId}
-            cancelAction={handleResetForm}
-          />
+
+          <FormBtns isEditMode={!!testimonialId} cancelAction={cancelAction} />
         </div>
       </form>
+
       {currentValues.nameUa && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
@@ -306,6 +288,7 @@ export const TestimonialEditor = ({
               changeComponentLang={changeComponentLang}
             />
           </div>
+
           <SingleSlide
             slideData={previewData}
             lang={componentLang}
