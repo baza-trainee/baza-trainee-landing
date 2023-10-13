@@ -140,7 +140,7 @@ export const testimonialValidateOptions = {
       if (typeof value === 'object' && value !== null && value.length > 0) {
         const file = value[0];
 
-        const checkType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+        const checkType = ['image/jpeg', 'image/png', 'image/webp', 'for-url'].includes(file.type);
         if (!checkType)
           return 'Зображення має бути в форматі .jpg, .png або .webp';
 
