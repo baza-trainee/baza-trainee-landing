@@ -1,4 +1,5 @@
 import { SETTINGS } from '@/config/settings';
+import { TFormFieldValue } from '@/types/fieldValidator';
 import { formatBytes } from '@/utils/formatBytes';
 import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
@@ -23,10 +24,8 @@ export const partnerValidateOptions = {
   },
 
   partnerImg: {
-    validate: (
-      value: string | number | boolean | File | File[] | undefined
-    ) => {
-      if (typeof value === 'object' && value !== null && value.length > 0) {
+    validate: (value: TFormFieldValue) => {
+      if (typeof value === 'object' && 'length' in value && value.length > 0) {
         const file = value[0];
 
         const checkType = [

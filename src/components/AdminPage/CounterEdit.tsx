@@ -2,14 +2,16 @@
 
 import { ChangeEvent, useEffect, useState } from 'react';
 
+import { useGlobalContext } from '@/store/globalContext';
+
+import achievementsApi from '@/utils/API/achievements';
+import { useAPI } from '@/utils/hooks/useAPI';
+
 import {
   AdminPanelButton,
   AdminTitle,
   TextInputField,
 } from '@/components/atomic';
-import { useGlobalContext } from '@/store/globalContext';
-import achievementsApi from '@/utils/API/achievements';
-import { useAPI } from '@/utils/hooks/useAPI';
 
 export const CounterEdit = () => {
   const { setAlertInfo } = useGlobalContext();

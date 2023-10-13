@@ -1,7 +1,8 @@
 import { Exo_2 } from 'next/font/google';
 
-import { AlertWindow } from '@/components/atomic';
 import { StoreProvider } from '@/store/globalContext';
+
+import { AlertWindow } from '@/components/atomic';
 
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';

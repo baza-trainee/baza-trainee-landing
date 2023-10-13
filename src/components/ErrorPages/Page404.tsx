@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-import { SupportBazaButton } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
+
 import { TLandingLanguage } from '@/store/globalContext';
+
+import { SupportBazaButton } from '@/components/atomic';
 
 const mockText = {
   button: '',

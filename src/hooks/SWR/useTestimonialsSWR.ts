@@ -1,8 +1,10 @@
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { ITestimonialRequest, TTestimonialResp } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import {
   testimonialsApi,
   testimonialsEndPoint,
@@ -25,6 +27,14 @@ export const useTestimonialsSWR = () => {
     });
   };
 
+  const setSuccess = (textInfo: string) => {
+    setAlertInfo({
+      state: 'success',
+      title: 'Успіх',
+      textInfo,
+    });
+  };
+
   const { data, error, isLoading, mutate } = useSWR<
     TTestimonialResp[],
     AxiosError
@@ -43,6 +53,7 @@ export const useTestimonialsSWR = () => {
       const updTestimonials = data?.filter((item) => item._id !== id);
       mutate(updTestimonials);
       await testimonialsApi.deleteById(id);
+      setSuccess('Відгук успішно видалено.');
     } catch (error) {
       handleRequestError(error);
     }
@@ -53,6 +64,7 @@ export const useTestimonialsSWR = () => {
       const newTestimonial = await testimonialsApi.createNew(item);
       if (newTestimonial && data) {
         mutate([newTestimonial, ...data]);
+        setSuccess('Відгук успішно збережено.');
       }
     } catch (error) {
       handleRequestError(error);
@@ -66,6 +78,7 @@ export const useTestimonialsSWR = () => {
     try {
       await testimonialsApi.updateById([id, testimonial]);
       mutate();
+      setSuccess('Відгук успішно оновлено.');
     } catch (error) {
       handleRequestError(error);
     }

@@ -1,12 +1,13 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { testimonialDefaultValues } from './defaultValues';
 import { testimonialValidateOptions } from './testimonialValidateOptions';
 import { TTestimonialFormInput } from './types';
 
+import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
 import {
   AdminTitle,
   DateInput,
@@ -14,11 +15,11 @@ import {
   FormBtns,
   LanguageSelector,
   TextAreaField,
-  TextInputField} from '@/components/atomic';
-import { SingleSlide } from '@/components/MainPage/Reviews/SingleSlide';
+  TextInputField,
+} from '@/components/atomic';
 import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
-import { TLandingLanguage, useGlobalContext } from '@/store/globalContext';
+import { TLandingLanguage } from '@/store/globalContext';
 import { ITestimonialRequest } from '@/types/typesAPI';
 import { convertDate } from '@/utils/formatDate';
 import { createImgUrl, downloadImageAsFile } from '@/utils/imageHandler';
@@ -29,14 +30,16 @@ export const TestimonialEditor = ({
   testimonialId?: string;
 }) => {
   const router = useRouter();
-  const curLang = useGlobalContext().landingLanguage;
-  const [imageUrl, setImageUrl] = useState('');
-
   const { handleTranslate } = useTranslator();
+  const [imageUrl, setImageUrl] = useState<string>();
+  const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
+
   const { getItemById, addNewTestimonial, updateTestimonial } =
     useTestimonialsSWR();
 
-  const itemData = getItemById(testimonialId!);
+  const changeComponentLang = (lang: TLandingLanguage) => {
+    setComponentLang(lang);
+  };
 
   const {
     handleSubmit,
@@ -45,47 +48,36 @@ export const TestimonialEditor = ({
     control,
     formState: { errors },
   } = useForm<TTestimonialFormInput>({
-    mode: 'onSubmit',
+    mode: 'onChange',
     defaultValues: testimonialDefaultValues,
   });
 
   useEffect(() => {
-    if (testimonialId && itemData) {
-      setValue('name.ua', itemData.name.ua);
-      setValue('name.en', itemData.name.en);
-      setValue('name.pl', itemData.name.pl);
-      setValue('review.ua', itemData.review.ua);
-      setValue('review.en', itemData.review.en);
-      setValue('review.pl', itemData.review.pl);
-      setValue('role', itemData.role);
-      setValue('date', convertDate.toYYYYMMDD(+itemData.date));
-      setValue('authorImg', [
-        new File([], itemData.imageUrl, { type: 'for-url' }),
-      ]);
-      setImageUrl(itemData.imageUrl);
-    }
-  }, [testimonialId, setValue, itemData]);
+    if (!testimonialId) return;
+    const itemData = getItemById(testimonialId!);
+    if (!itemData) return;
+    setValue('nameUa', itemData.name.ua);
+    setValue('nameEn', itemData.name.en);
+    setValue('namePl', itemData.name.pl);
+    setValue('reviewUa', itemData.review.ua);
+    setValue('reviewEn', itemData.review.en);
+    setValue('reviewPl', itemData.review.pl);
+    setValue('role', itemData.role);
+    setValue('date', convertDate.toYYYYMMDD(+itemData.date));
+    setValue('authorImg', [
+      new File([], itemData.imageUrl, { type: 'for-url' }),
+    ]);
+    setImageUrl(itemData.imageUrl);
+  }, []);
 
   const currentValues = watch();
 
-  const translateNameToEn = () => {
-    handleTranslate(currentValues.name.ua, 'en').then((res) => {
-      setValue('name.en', res);
-    });
-  };
-  const translateNameToPl = () => {
-    handleTranslate(currentValues.name.ua, 'pl').then((res) => {
-      setValue('name.pl', res);
-    });
-  };
-  const translateReviewToEn = () => {
-    handleTranslate(currentValues.review.ua, 'en').then((res) => {
-      setValue('review.en', res);
-    });
-  };
-  const translateReviewToPl = () => {
-    handleTranslate(currentValues.review.ua, 'pl').then((res) => {
-      setValue('review.pl', res);
+  const translateField = (fieldType: 'name' | 'review', lang: 'en' | 'pl') => {
+    const fieldName = lang === 'en' ? `${fieldType}En` : `${fieldType}Pl`;
+    const fieldValue = currentValues[`${fieldType}Ua`];
+
+    handleTranslate(fieldValue, lang).then((res) => {
+      setValue(fieldName as keyof TTestimonialFormInput, res);
     });
   };
 
@@ -96,9 +88,10 @@ export const TestimonialEditor = ({
       return createImgUrl(currentValues.authorImg[0].name);
     }
 
-    const isValidImg = testimonialValidateOptions.img.validate(
+    const isValidImg = testimonialValidateOptions.image.validate(
       currentValues.authorImg
     );
+
     if (isValidImg) {
       return URL.createObjectURL(currentValues.authorImg[0]);
     }
@@ -106,44 +99,39 @@ export const TestimonialEditor = ({
 
   const authorImageUrl = getImageUrl();
 
-  const isImageUrl =
-    authorImageUrl !== undefined &&
-    authorImageUrl?.split('/files/')[1] !== 'undefined';
-
-  const downloadImage = async (fileName: string) => {
-    const imageFile = await downloadImageAsFile(fileName);
-    return imageFile;
-  };
+  const isImageUrl = !!imageUrl && imageUrl.split('/files/')[1] !== 'undefined';
 
   const previewData = {
-    name: currentValues.name,
-    review: currentValues.review,
+    name: {
+      ua: currentValues.nameUa,
+      en: currentValues.nameEn,
+      pl: currentValues.namePl,
+    },
+    review: {
+      ua: currentValues.reviewUa,
+      en: currentValues.reviewEn,
+      pl: currentValues.reviewPl,
+    },
     role: currentValues.role,
     date: currentValues.date,
     imageUrl: authorImageUrl!,
   };
 
-  const handleResetForm = () => {
-    if (testimonialId) {
-      router.replace('..');
-    } else {
-      router.replace('.');
-    }
-  };
+  const cancelAction = () => router.replace('.');
 
   const onSubmit: SubmitHandler<TTestimonialFormInput> = async (
     values: TTestimonialFormInput
   ) => {
     const newItem: ITestimonialRequest = {
       name: {
-        ua: values.name.ua,
-        en: values.name.en,
-        pl: values.name.pl,
+        ua: values.nameUa,
+        en: values.nameEn,
+        pl: values.namePl,
       },
       review: {
-        ua: values.review.ua,
-        en: values.review.en,
-        pl: values.review.pl,
+        ua: values.reviewUa,
+        en: values.reviewEn,
+        pl: values.reviewPl,
       },
       file: values.authorImg[0],
       role: values.role,
@@ -151,17 +139,16 @@ export const TestimonialEditor = ({
     };
 
     if (testimonialId) {
-      if (values.authorImg?.length && values.authorImg[0]?.size === 0) {
-        const downloadedImage = await downloadImage(
-          itemData?.imageUrl as string
-        );
-        newItem.file = downloadedImage as File;
+      if (
+        values.authorImg?.length &&
+        values.authorImg[0]?.size === 0 &&
+        imageUrl
+      ) {
+        newItem.file = (await downloadImageAsFile(imageUrl)) as File;
       }
-      updateTestimonial(testimonialId, newItem);
-      router.replace('..');
+      updateTestimonial(testimonialId, newItem).then(cancelAction);
     } else {
-      addNewTestimonial(newItem);
-      router.replace('.');
+      addNewTestimonial(newItem).then(cancelAction);
     }
   };
 
@@ -170,47 +157,48 @@ export const TestimonialEditor = ({
       <AdminTitle className="mb-[4.5rem] ml-[1.2rem]">
         {testimonialId ? 'Редагувати Відгук' : 'Додати Відгук'}
       </AdminTitle>
+
       <form className="flex flex-col gap-16" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6  shadow-md lg:justify-start">
             <Controller
-              name="name.ua"
-              rules={testimonialValidateOptions.name}
+              name="nameUa"
+              rules={testimonialValidateOptions.nameUa}
               control={control}
               render={({ field }) => (
                 <TextInputField
                   {...field}
                   title="Ім’я"
                   inputType="uk"
-                  errorText={errors.name?.ua?.message}
+                  errorText={errors.nameUa?.message}
                   placeholder="Введіть ім’я"
                 />
               )}
             />
             <Controller
-              name="name.en"
-              rules={testimonialValidateOptions.name}
+              name="nameEn"
+              rules={testimonialValidateOptions.nameEn}
               control={control}
               render={({ field }) => (
                 <TextInputField
                   {...field}
                   inputType="en"
-                  errorText={errors.name?.en?.message}
-                  handleTranslate={translateNameToEn}
+                  errorText={errors.nameEn?.message}
+                  handleTranslate={() => translateField('name', 'en')}
                   placeholder="Введіть ім’я"
                 />
               )}
             />
             <Controller
-              name="name.pl"
-              rules={testimonialValidateOptions.name}
+              name="namePl"
+              rules={testimonialValidateOptions.namePl}
               control={control}
               render={({ field }) => (
                 <TextInputField
                   {...field}
                   inputType="pl"
-                  errorText={errors.name?.pl?.message}
-                  handleTranslate={translateNameToPl}
+                  errorText={errors.namePl?.message}
+                  handleTranslate={() => translateField('name', 'pl')}
                   placeholder="Введіть ім’я"
                 />
               )}
@@ -229,81 +217,81 @@ export const TestimonialEditor = ({
                 />
               )}
             />
-
             <DateInput
               name="date"
               control={control}
-              rules={{ required: 'Оберіть дату' }}
+              rules={testimonialValidateOptions.date}
               title="Дата"
               placeholder="Оберіть дату"
             />
-
             <FileInput
               control={control}
               name="authorImg"
-              rules={testimonialValidateOptions.img}
+              rules={testimonialValidateOptions.image}
               accept="image/*"
-              placeholder={!testimonialId ? 'Завантажте зображення' : imageUrl}
+              placeholder={imageUrl || 'Завантажте зображення'}
               title="Фото"
             />
           </div>
+
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6 shadow-md lg:justify-start ">
             <Controller
-              name="review.ua"
-              rules={testimonialValidateOptions.review}
+              name="reviewUa"
+              rules={testimonialValidateOptions.reviewUa}
               control={control}
               render={({ field }) => (
                 <TextAreaField
                   {...field}
                   title="Текст"
                   inputType="uk"
-                  errorText={errors.review?.ua?.message}
+                  errorText={errors.reviewUa?.message}
                 />
               )}
             />
             <Controller
-              name="review.en"
-              rules={testimonialValidateOptions.review}
+              name="reviewEn"
+              rules={testimonialValidateOptions.reviewEn}
               control={control}
               render={({ field }) => (
                 <TextAreaField
                   {...field}
                   inputType="en"
-                  errorText={errors.review?.en?.message}
-                  handleTranslate={translateReviewToEn}
+                  errorText={errors.reviewEn?.message}
+                  handleTranslate={() => translateField('review', 'en')}
                 />
               )}
             />
             <Controller
-              name="review.pl"
-              rules={testimonialValidateOptions.review}
+              name="reviewPl"
+              rules={testimonialValidateOptions.reviewPl}
               control={control}
               render={({ field }) => (
                 <TextAreaField
                   {...field}
                   inputType="pl"
-                  errorText={errors.review?.pl?.message}
-                  handleTranslate={translateReviewToPl}
+                  errorText={errors.reviewPl?.message}
+                  handleTranslate={() => translateField('review', 'pl')}
                 />
               )}
             />
           </div>
-          <FormBtns
-            isEditMode={!!testimonialId}
-            cancelAction={handleResetForm}
-          />
+
+          <FormBtns isEditMode={!!testimonialId} cancelAction={cancelAction} />
         </div>
       </form>
-      {currentValues.name.ua && (
+
+      {currentValues.nameUa && (
         <div className="relative mt-6 w-[88%] py-8 shadow-md">
           <div className="absolute right-0 top-0 flex h-20 items-center justify-center rounded-md bg-accent-light">
-            <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
-              throw new Error('Function not implemented.');
-            } } />
+            <LanguageSelector
+              currLang={componentLang}
+              changeComponentLang={changeComponentLang}
+            />
           </div>
+
           <SingleSlide
             slideData={previewData}
-            lang={curLang}
+            lang={componentLang}
             isImage={isImageUrl}
           />
         </div>

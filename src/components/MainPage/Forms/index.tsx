@@ -1,6 +1,8 @@
-import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
+
 import { TLandingLanguage } from '@/store/globalContext';
+
+import { ContainerMaxW1200, ParticipantButtonLink } from '@/components/atomic';
 
 export const Forms = async ({ lang }: { lang: TLandingLanguage }) => {
   const dict = dictionaries[lang];

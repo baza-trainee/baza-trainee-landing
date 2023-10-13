@@ -1,7 +1,8 @@
 import { InputHTMLAttributes, useId } from 'react';
 
-import { TranslatorIcon } from '@/components/common/icons';
 import { IdentifyInputFieldTypeSetting } from '@/utils/IdentifyInputFieldTypeSetting';
+
+import { TranslatorIcon } from '@/components/common/icons';
 
 export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;

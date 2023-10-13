@@ -7,6 +7,7 @@ import { partners } from './partners';
 import { ContainerMaxW1200 } from '@/components/atomic';
 import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
 import { dictionaries } from '@/locales/dictionaries';
+
 import { TLandingLanguage } from '@/store/globalContext';
 import { TPartnerResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';

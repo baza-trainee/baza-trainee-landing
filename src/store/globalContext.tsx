@@ -11,9 +11,11 @@ import {
 } from 'react';
 import { useParams } from 'next/navigation';
 
-import { TAlertInfoState } from '@/components/atomic/AlertWindow';
-import { dictionaries } from '@/locales/dictionaries';
 import { TDictionary } from '@/types';
+
+import { dictionaries } from '@/locales/dictionaries';
+
+import { TAlertInfoState } from '@/components/atomic/AlertWindow';
 
 export type TLandingLanguage = 'ua' | 'en' | 'pl';
 export type TAlertInfo = null | TAlertInfoState;

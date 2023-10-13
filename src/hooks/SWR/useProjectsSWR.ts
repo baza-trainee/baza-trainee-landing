@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { useGlobalContext } from '@/store/globalContext';
 import { TProjectReq, TResponseProjects } from '@/types';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import { projectsApi, projectsEndpoint } from '@/utils/API/projects';
 import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
 

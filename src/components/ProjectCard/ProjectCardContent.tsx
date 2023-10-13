@@ -3,15 +3,18 @@ import Link from 'next/link';
 import { ProjectComplexity } from './ProjectComplexity';
 import { ProjectStatusBar } from './ProjectStatusBar';
 
+import { ICardContent } from '@/types';
+
+import { dictionaries } from '@/locales/dictionaries';
+
+import { projectCycle } from '@/utils/developmentTimeCalculator';
+import { formatDate } from '@/utils/formatDate';
+
 import {
   ProjectComplexityIcon,
   ProjectDurationIcon,
   ProjectStartIcon,
 } from '@/components/common/icons';
-import { dictionaries } from '@/locales/dictionaries';
-import { ICardContent } from '@/types';
-import { projectCycle } from '@/utils/developmentTimeCalculator';
-import { formatDate } from '@/utils/formatDate';
 
 const ProjectCardContent = ({
   handleShowTeam,

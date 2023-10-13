@@ -1,7 +1,9 @@
+import { TFormFieldValue } from '@/types/fieldValidator';
 import { TFormInput } from './types';
 
 import { SETTINGS } from '@/config/settings';
 import { formatBytes } from '@/utils/formatBytes';
+
 import { convertDate } from '@/utils/formatDate';
 import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
@@ -50,17 +52,17 @@ export const projectValidateOptions = {
   projectImg: (isEditMode?: boolean) => {
     return {
       required: isEditMode ? false : 'Додайте зображення проєкту',
-      validate: (
-        value: string | number | boolean | File | File[] | undefined
-      ) => {
-        if (typeof value === 'object' && value !== null && value.length > 0) {
+      validate: (value: TFormFieldValue) => {
+        if (
+          typeof value === 'object' &&
+          'length' in value &&
+          value.length > 0
+        ) {
           const file = value[0];
 
-          const checkType = [
-            'image/jpeg',
-            'image/png',
-            'image/webp',
-          ].includes(file.type);
+          const checkType = ['image/jpeg', 'image/png', 'image/webp'].includes(
+            file.type
+          );
           if (!checkType) return 'Виберіть коректне зображення';
 
           const checkSize = file.size <= limitSize;
@@ -88,10 +90,7 @@ export const projectValidateOptions = {
 
   creationDate: {
     required: 'Оберіть дату',
-    validate: (
-      _: string | number | boolean | File | File[] | undefined,
-      formValues: TFormInput
-    ) => {
+    validate: (_: TFormFieldValue, formValues: TFormInput) => {
       if (!formValues.creationDate) return;
 
       const creationDate = convertDate.toMsec(formValues.creationDate);
@@ -104,10 +103,7 @@ export const projectValidateOptions = {
   },
 
   launchDate: {
-    validate: (
-      _: string | number | boolean | File | File[] | undefined,
-      formValues: TFormInput
-    ) => {
+    validate: (_: TFormFieldValue, formValues: TFormInput) => {
       if (!formValues.launchDate) return;
 
       const creationDate = convertDate.toMsec(formValues.creationDate);

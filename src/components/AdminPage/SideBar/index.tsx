@@ -6,10 +6,11 @@ import { useRouter } from 'next/navigation';
 import { SideBarMenuItem } from './SideBarMenuItem';
 import { sidebarSectionsList } from './sidebarSectionsList';
 
-import { AdminPanelButton } from '@/components/atomic';
-import { LogoMain, LogOutIcon, MultiArrow } from '@/components/common/icons';
 import { localStorageHandler } from '@/utils/localStorageHandler';
 import { deleteTokenCookie } from '@/utils/serverActions/deleteCookie';
+
+import { AdminPanelButton } from '@/components/atomic';
+import { LogoMain, LogOutIcon, MultiArrow } from '@/components/common/icons';
 
 const Sidebar = () => {
   const { push } = useRouter();

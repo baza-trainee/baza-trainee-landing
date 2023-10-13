@@ -11,9 +11,11 @@ import { createPortal } from 'react-dom';
 
 import { ContentDonate } from './ContentDonate';
 
-import { CloseIcon } from '@/components/common/icons';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+
 import { TLandingLanguage } from '@/store/globalContext';
+
+import { CloseIcon } from '@/components/common/icons';
 
 type Props = {
   children: ReactElement;

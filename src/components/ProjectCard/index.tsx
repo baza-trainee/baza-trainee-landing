@@ -6,8 +6,9 @@ import Image from 'next/image';
 import { ProjectCardContent } from './ProjectCardContent';
 import { ProjectCardTeam } from './ProjectCardTeam';
 
-import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
+
+import { TLandingLanguage } from '@/store/globalContext';
 
 import styles from './styles.module.css';
 

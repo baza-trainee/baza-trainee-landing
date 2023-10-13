@@ -2,8 +2,9 @@ import { RoleSelector } from './RoleSelector';
 
 import { useProjectFormContext } from '../ProjectFormProvider';
 
-import { ActionBtns } from '@/components/atomic';
 import { TMemberResp } from '@/types';
+
+import { ActionBtns } from '@/components/atomic';
 
 const cellStyle = 'border-none p-0';
 const bgStyle = 'mb-3 flex h-[6.4rem] items-center bg-neutral-50';

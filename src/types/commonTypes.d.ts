@@ -1,35 +1,31 @@
+import { TTitleLanguagesTypes } from './typesAPI';
+
 export type TSlide = {
-  title: {
-    ua: string;
-    en: string;
-    pl: string;
-  };
+  title: TTitleLanguagesTypes;
   specialization?: string;
-  subtitle: {
-    ua: string;
-    en: string;
-    pl: string;
-  };
+  subtitle: TTitleLanguagesTypes;
   imageUrl: string;
   _id: string;
   _v: number;
 };
 
 export type TSlideReview = {
-  name: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
+  name: TTitleLanguagesTypes;
   date: string | number;
   role: string;
   imageUrl: string;
-  review: {
-    en: string;
-    pl: string;
-    ua: string;
-  };
-  _id?: string | number;
+  review: TTitleLanguagesTypes;
+  _id?: string;
+};
+
+export type TAdminSlide = {
+  title: TTitleLanguagesTypes;
+  subtitle: TTitleLanguagesTypes;
+  imageUrl?: string;
+  __v: number;
+  _id: string;
+  key: string;
+  slideData: never;
 };
 
 export type TDictionary = {
@@ -115,20 +111,4 @@ export type TDictionary = {
     loading: string;
     error: string;
   };
-};
-
-type TAdminSlideTitle = {
-  ua: string;
-  pl: string;
-  en: string;
-};
-
-export type TAdminSlide = {
-  title: TAdminSlideTitle;
-  subtitle: TAdminSlideTitle;
-  imageUrl?: string;
-  __v: number;
-  _id: string;
-  key: string;
-  slideData: never;
 };

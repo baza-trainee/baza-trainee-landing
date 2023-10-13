@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
-import { ContainerMaxW1200 } from '@/components/atomic';
 import { dictionaries } from '@/locales/dictionaries';
+
 import { TLandingLanguage } from '@/store/globalContext';
+
+import { ContainerMaxW1200 } from '@/components/atomic';
 
 export const Statistics = async ({ lang }: { lang: TLandingLanguage }) => {
   const { teamsWaitForYou } = dictionaries[lang].invite || {};

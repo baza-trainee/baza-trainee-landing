@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 
+import { TLandingLanguage } from '@/store/globalContext';
+
 import { Achievements } from '@/components/MainPage/Achievements';
 import { Footer } from '@/components/MainPage/Footer';
 import { Forms } from '@/components/MainPage/Forms';
@@ -11,7 +13,6 @@ import { Projects } from '@/components/MainPage/Projects';
 import { Reviews } from '@/components/MainPage/Reviews';
 import { Statistics } from '@/components/MainPage/Statistics';
 import { SupportBaza } from '@/components/MainPage/SupportBaza';
-import { TLandingLanguage } from '@/store/globalContext';
 
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'pl' }, { lang: 'ua' }];

@@ -1,7 +1,10 @@
-import { CloseIcon } from '@/components/common/icons';
-import { SETTINGS } from '@/config/settings';
-import { dictionaries } from '@/locales/dictionaries';
 import { ICardContent, TMemberBioResp } from '@/types';
+
+import { SETTINGS } from '@/config/settings';
+
+import { dictionaries } from '@/locales/dictionaries';
+
+import { CloseIcon } from '@/components/common/icons';
 
 const orderList = SETTINGS.specsOrderList;
 

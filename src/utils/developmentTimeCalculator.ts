@@ -1,5 +1,6 @@
-import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
+
+import { TLandingLanguage } from '@/store/globalContext';
 
 export const projectCycle = (project: TProjectResp, lang: TLandingLanguage) => {
   const launchDate = project.launchDate ? project.launchDate : Date.now();

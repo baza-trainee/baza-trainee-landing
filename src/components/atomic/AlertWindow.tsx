@@ -9,6 +9,7 @@ import {
 } from '../common/icons';
 
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+
 import { useGlobalContext } from '@/store/globalContext';
 
 const options = {

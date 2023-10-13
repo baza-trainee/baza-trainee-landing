@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 
-import { ActionBtns } from '@/components/atomic';
 import { PartnerItemProps } from '@/types';
+
 import { createImgUrl } from '@/utils/imageHandler';
+
+import { ActionBtns } from '@/components/atomic';
 
 export const PartnerItem = ({
   partner: { _id, name, imageUrl, homeUrl },

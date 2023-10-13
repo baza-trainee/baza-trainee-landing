@@ -4,13 +4,16 @@ import Link from 'next/link';
 
 import { PartnerItem } from './PartnerItem';
 
+import { TPagination, TPartnerResp } from '@/types';
+
+import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
+
+import { useGlobalContext } from '@/store/globalContext';
+
 import { AdminPanelButton, SearchBar } from '@/components/atomic';
 import { AdminTitle } from '@/components/atomic/AdminTitle';
 import { PaginationBar } from '@/components/atomic/PaginationBar';
 import { PlusIcon } from '@/components/common/icons';
-import { usePartnersSWR } from '@/hooks/SWR/usePartnersSWR';
-import { useGlobalContext } from '@/store/globalContext';
-import { TPagination, TPartnerResp } from '@/types';
 
 export const PartnersPage = () => {
   const { setAlertInfo } = useGlobalContext();
