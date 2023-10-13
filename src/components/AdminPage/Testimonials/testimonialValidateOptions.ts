@@ -137,19 +137,19 @@ export const testimonialValidateOptions = {
   image: {
     required: 'Додайте зображення',
     validate: (value: DateInputRegisterOptions) => {
-      if (typeof value === 'object' && value !== null && value.length > 0) {
+      if (Array.isArray(value) && value.length > 0) {
         const file = value[0];
 
         const checkType = ['image/jpeg', 'image/png', 'image/webp', 'for-url'].includes(file.type);
         if (!checkType)
           return 'Зображення має бути в форматі .jpg, .png або .webp';
 
-        const checkSize = value[0]?.size <= sizeLimit;
+        const checkSize = file.size <= sizeLimit;
         if (!checkSize) {
           return `Максимальний розмір зображення ${formatBytes(sizeLimit)}`;
         }
 
-        if (value[0]?.size === 0) return true;
+        if (file.size === 0) return true;
 
         return validateImgDimensions(
           value[0],
