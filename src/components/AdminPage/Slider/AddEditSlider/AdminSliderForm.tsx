@@ -1,7 +1,8 @@
+/* eslint-disable simple-import-sort/imports */
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { DefaultValuesState, emptyFields } from './DefaultValues';
@@ -10,7 +11,11 @@ import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
 import { TFormInputs, TFormSlideRequest } from '../types';
 
-import { FileInput, LanguageSelector, TextInputField } from '@/components/atomic';
+import {
+  FileInput,
+  LanguageSelector,
+  TextInputField,
+} from '@/components/atomic';
 import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
@@ -26,10 +31,14 @@ export const SliderForm = ({
 }) => {
   const router = useRouter();
   const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
-  const [curLang, setCurLang] = useState<string>('ua');
+  const [curLang, setCurLang] = useState<TLandingLanguage>('ua');
   const slideData = data?.results.find(
     (slide: IHeroSlider) => slide._id === id
   );
+
+  const changeComponentLang = (lang: TLandingLanguage) => {
+    setCurLang(lang);
+  };
 
   const {
     handleSubmit,
@@ -78,7 +87,7 @@ export const SliderForm = ({
   const currentValues = watch();
 
   useEffect(() => {
-    setCurLang(localStorage.getItem('landingLanguage') || 'ua');
+    // setCurLang(localStorage.getItem('landingLanguage') || 'ua');
     if (currentValues.file?.length && currentValues.file[0]?.size > 0) {
       setValue('imageUrl', currentValues.file[0].name);
     }
@@ -218,9 +227,10 @@ export const SliderForm = ({
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
           <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
-            <LanguageSelector currLang={'ua'} changeComponentLang={function (lang: TLandingLanguage): void {
-              throw new Error('Function not implemented.');
-            } } />
+            <LanguageSelector
+              currLang={curLang}
+              changeComponentLang={changeComponentLang}
+            />
           </div>
         </div>
         <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">
