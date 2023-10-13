@@ -1,4 +1,3 @@
-/* eslint-disable simple-import-sort/imports */
 'use client';
 
 import { useRouter } from 'next/navigation';
