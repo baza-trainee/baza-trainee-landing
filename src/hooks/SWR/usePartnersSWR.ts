@@ -27,8 +27,8 @@ const usePartnersSWR = () => {
   const deletePartner = async (id: string) => {
     try {
       setSuccess('видалено');
-      mutate();
       await partnersApi.deleteById(id);
+      mutate();
     } catch (err) {
       handleRequestError(err);
     }
@@ -37,8 +37,8 @@ const usePartnersSWR = () => {
   const createPartner = async (newPartner: TPartnerReq) => {
     try {
       setSuccess('збережено');
-      mutate();
       await partnersApi.createNew(newPartner);
+      mutate();
     } catch (err) {
       handleRequestError(err);
     }
@@ -47,8 +47,8 @@ const usePartnersSWR = () => {
   const updatePartner = async (id: string, updPartner: TPartnerReq) => {
     try {
       setSuccess('оновлено');
-      mutate();
       await partnersApi.updateById(id, updPartner);
+      mutate();
     } catch (err) {
       handleRequestError(err);
     }

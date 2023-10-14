@@ -1,6 +1,7 @@
 'use client';
+
 import { FC } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { SliderForm } from './AdminSliderForm';
 
@@ -9,15 +10,13 @@ import { CloseIcon } from '@/components/common/icons';
 
 export interface IAddEditSlideProps {
   title: string;
-  isEdit: boolean;
+  slideId?: string;
 }
 
 export const AddEditAdminSlider: FC<IAddEditSlideProps> = ({
   title,
-  isEdit,
+  slideId,
 }) => {
-  const { id } = useParams();
-  const checkedId = typeof id === 'string' ? id : undefined;
   const router = useRouter();
 
   return (
@@ -30,8 +29,9 @@ export const AddEditAdminSlider: FC<IAddEditSlideProps> = ({
           </button>
         </div>
       </header>
+
       <div>
-        <SliderForm isEdit={isEdit} id={checkedId} />
+        <SliderForm slideId={slideId} />
       </div>
     </div>
   );

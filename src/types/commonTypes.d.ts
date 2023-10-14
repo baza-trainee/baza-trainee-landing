@@ -1,12 +1,17 @@
 import { TTitleLanguagesTypes } from './typesAPI';
 
-export type TSlide = {
+type TSlideBase = {
   title: TTitleLanguagesTypes;
-  specialization?: string;
   subtitle: TTitleLanguagesTypes;
+};
+
+export type TSlideReq = TSlideBase & {
+  file?: File;
+};
+
+export type TSlideResp = TSlideBase & {
   imageUrl: string;
   _id: string;
-  _v: number;
 };
 
 export type TSlideReview = {
@@ -18,15 +23,15 @@ export type TSlideReview = {
   _id?: string;
 };
 
-export type TAdminSlide = {
-  title: TTitleLanguagesTypes;
-  subtitle: TTitleLanguagesTypes;
-  imageUrl?: string;
-  __v: number;
-  _id: string;
-  key: string;
-  slideData: never;
-};
+// export type TAdminSlide = {
+//   title: TTitleLanguagesTypes;
+//   subtitle: TTitleLanguagesTypes;
+//   imageUrl?: string;
+//   __v: number;
+//   _id: string;
+//   key: string;
+//   slideData: never;
+// };
 
 export type TDictionary = {
   navbar: {

@@ -29,26 +29,23 @@ export type TProjectMemberReq = {
   teamMemberRole: string;
 };
 
-export type TProjectReq = {
+type TProjectBase = {
   title: TTitleLanguagesTypes;
-  file?: File;
   deployUrl?: string;
   isTeamRequired: boolean;
   creationDate: number;
   launchDate?: number;
   complexity: number;
+};
+
+export type TProjectReq = TProjectBase & {
+  file?: File;
   teamMembers?: TProjectMemberReq[];
 };
 
-export type TProjectResp = {
+export type TProjectResp = TProjectBase & {
   _id: string;
-  title: TTitleLanguagesTypes;
   imageUrl: string;
-  deployUrl?: string;
-  isTeamRequired: boolean;
-  creationDate: number;
-  launchDate?: number;
-  complexity: number;
   teamMembers: TMemberResp[];
 };
 

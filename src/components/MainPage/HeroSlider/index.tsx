@@ -9,7 +9,7 @@ import { slides } from './slides';
 
 import { Modal } from '../Modal';
 
-import { TSlide } from '@/types';
+import { TSlideResp } from '@/types';
 
 import { dictionaries } from '@/locales/dictionaries';
 
@@ -68,7 +68,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           ref={slickRef}
           className="h-[50.4rem]"
         >
-          {slides.map((slide: TSlide, index: any) => (
+          {slides.map((slide: TSlideResp, index: any) => (
             <SingleSlide
               key={`key_${slide.title[lang]}`}
               slideData={slide}
@@ -112,3 +112,4 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
 };
 
 export { HeroSlider };
+

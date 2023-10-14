@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-import { TSlide } from '@/types';
+import { TSlideResp } from '@/types';
 
 import { TLandingLanguage } from '@/store/globalContext';
 
 type TProps = {
-  slideData: TSlide;
+  slideData: TSlideResp;
   index: number;
   lang: TLandingLanguage;
 };
@@ -14,7 +14,7 @@ export const SingleSlide = ({ slideData, index, lang }: TProps) => {
   const { imageUrl, title, subtitle } = slideData;
 
   return (
-    <div className="relative flex h-[50.4rem] items-center justify-center">
+    <div className="flex-center relative h-[50.4rem] w-full">
       <Image
         fill
         src={imageUrl}

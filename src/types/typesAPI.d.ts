@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { TPartnerResp } from './partnersTypes';
 import { TMemberBioResp, TMemberRoleResp, TProjectResp } from './projectsTypes';
+import { TSlideResp } from './commonTypes';
 
 export interface IErrorResponse {
   message: string;
@@ -61,24 +62,24 @@ export type TContactsInfo = {
   };
 };
 
-export interface IHeroSlider extends CommonResponseBase {
-  title: TTitleLanguagesTypes;
-  subtitle: TTitleLanguagesTypes;
-  imageUrl?: string;
-}
+// export interface IHeroSlider extends CommonResponseBase {
+//   title: TTitleLanguagesTypes;
+//   subtitle: TTitleLanguagesTypes;
+//   imageUrl?: string;
+// }
 
 // export interface IPartner extends CommonResponseBase {
 //   homeUrl?: String;
 //   imageUrl: String;
 //   name: String;
 // }
-export type IHeroSliderData = {
-  results: IHeroSlider[];
-  info: {
-    totalSlides: number;
-    maxSlides: number;
-  };
-};
+// export type IHeroSliderData = {
+//   results: IHeroSlider[];
+//   info: {
+//     totalSlides: number;
+//     maxSlides: number;
+//   };
+// };
 
 // export interface IPartner extends CommonResponseBase {
 //   homeUrl?: string;
@@ -141,7 +142,7 @@ export type responseDataType =
   | any
   // | IUser
   // | IAchievement
-  | IHeroSlider
+  // | IHeroSlider
   // | IPartner
   // | IProject
   // | IRole
@@ -150,7 +151,7 @@ export type responseDataType =
   | TTestimonialResp
   | IErrorResponse
   | Array<
-      | IHeroSlider
+      // | IHeroSlider
       // | IPartner
       // | IProject
       // | IRole
@@ -180,8 +181,8 @@ export type TResponseRoles = {
   pagination: TPagination;
 };
 
-export type THeroSliderData = {
-  results: IHeroSlider[];
+export type TResponseSliders = {
+  results: TSlideResp[];
   info: {
     totalSlides: number;
     maxSlides: number;

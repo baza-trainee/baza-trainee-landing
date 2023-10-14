@@ -26,7 +26,7 @@
 //   },
 // ];
 
-import { TSlide } from '@/types';
+import { TSlideResp } from '@/types';
 
 export const slides = [
   {
@@ -94,4 +94,4 @@ export const slides = [
       pl: 'Przeszkolenie uczestnika w obszarze technologii, które są mu już znane i ułatwienie mu zatrudnienia. Podczas realizacji projektu zastosuj technologie, w których uczestnik chce dalej się rozwijać. Najistotniejsze będzie dostarczenie klientowi rozwiązania wysokiej jakości.',
     },
   },
-] as TSlide[];
+] as TSlideResp[];

@@ -55,8 +55,8 @@ export const useTestimonialsSWR = () => {
   ) => {
     try {
       setSuccess('Відгук успішно оновлено');
-      mutate();
       await testimonialsApi.updateById([id, testimonial]);
+      mutate();
     } catch (error) {
       handleRequestError(error);
     }

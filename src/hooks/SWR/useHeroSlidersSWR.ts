@@ -1,8 +1,9 @@
 'use client';
+
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { IHeroSlider, THeroSliderData } from '@/types';
+import { TResponseSliders, TSlideReq, TSlideResp } from '@/types';
 
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
 import { useRequestNotifiers } from './useRequestNotifiers';
@@ -11,19 +12,19 @@ export const useHeroSliderSWR = () => {
   const { setSuccess, handleRequestError } = useRequestNotifiers();
 
   const { data, error, isLoading, mutate } = useSWR<
-    THeroSliderData,
+    TResponseSliders,
     AxiosError
   >(slidersEndPoint, heroSliderApi.getAll, { onError: handleRequestError });
 
-  const getByIdSlider = (id: string) =>
-    data?.results.filter((slide: IHeroSlider) => slide._id == id);
+  const getByIdSlide = (id: string) =>
+    data?.results.find((slide: TSlideResp) => slide._id == id);
 
   const delByIdSlider = async (id: string) => {
     try {
       const updSliders = data?.results.filter(
-        (slide: IHeroSlider) => slide._id !== id
+        (slide: TSlideResp) => slide._id !== id
       );
-      const updData: THeroSliderData = { ...data!, results: updSliders! };
+      const updData: TResponseSliders = { ...data!, results: updSliders! };
 
       setSuccess('видалено');
       mutate(updData);
@@ -33,29 +34,21 @@ export const useHeroSliderSWR = () => {
     }
   };
 
-  const addNewSlider = async (slider: IHeroSlider) => {
+  const addNewSlider = async (slide: TSlideReq) => {
     try {
-      const updSliders = [...(data?.results || []), slider];
-      const updData: THeroSliderData = { ...data!, results: updSliders! };
-
       setSuccess('збережено');
-      mutate(updData);
-      await heroSliderApi.createNew(slider);
+      await heroSliderApi.createNew(slide);
+      mutate();
     } catch (error) {
       handleRequestError(error);
     }
   };
 
-  const updateSlider = async (id: string, slider: IHeroSlider) => {
+  const updateSlider = async (id: string, slide: TSlideReq) => {
     try {
-      const updSliders = data?.results.map((slide: IHeroSlider) =>
-        slide._id === id ? slider : slide
-      );
-      const updData: THeroSliderData = { ...data!, results: updSliders! };
-
       setSuccess('оновлено');
-      mutate(updData);
-      await heroSliderApi.updateById([id, slider]);
+      await heroSliderApi.updateById(id, slide);
+      mutate();
     } catch (error) {
       handleRequestError(error);
     }
@@ -65,7 +58,7 @@ export const useHeroSliderSWR = () => {
     data,
     isLoading,
     isError: error,
-    getByIdSlider,
+    getByIdSlide,
     delByIdSlider,
     updateSlider,
     addNewSlider,

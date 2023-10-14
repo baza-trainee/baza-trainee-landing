@@ -7,16 +7,16 @@ type Props = {
   handleDelete: (id: string) => void;
 };
 
-export const ButtonsOverlay = ({ children, handleDelete }: Props) => {
-  const id = children.props.project._id;
+export const BtnsOverlay = ({ children, handleDelete }: Props) => {
+  const id = children.props.slideData._id;
 
   return (
-    <div className="group relative w-full max-w-[37.8rem]">
+    <div className="group relative w-full">
       {children}
 
       <div className="absolute right-8 top-8">
         <ActionBtns
-          entity="projects"
+          entity="slider"
           id={id}
           handleDelete={() => handleDelete(id)}
         />

@@ -3,15 +3,17 @@
 import { useState } from 'react';
 
 import { AddSlideButton } from './AddSlideBtn';
-import { AdminSingleSlide } from './AdminSingleSlide.tsx/AdminSingleSlide';
 
+import { SingleSlide } from '@/components/MainPage/HeroSlider/SingleSlide';
 import { AdminTitle, LanguageSelector } from '@/components/atomic';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { TLandingLanguage } from '@/store/globalContext';
-import { IHeroSlider } from '@/types';
+import { TSlideResp } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
+import { BtnsOverlay } from './BtnsOverlay';
 
 export const AdminHeroSlider = () => {
-  const { data } = useHeroSliderSWR();
+  const { data, delByIdSlider } = useHeroSliderSWR();
   const [curLang, setCurLang] = useState<TLandingLanguage>('ua');
 
   const changeComponentLang = (lang: TLandingLanguage) => {
@@ -37,8 +39,14 @@ export const AdminHeroSlider = () => {
         </li>
 
         {data &&
-          data.results.map((item: IHeroSlider) => (
-            <AdminSingleSlide key={item._id} slideData={item} lang={curLang} />
+          data.results.map((slide: TSlideResp) => (
+            <BtnsOverlay key={slide._id} handleDelete={delByIdSlider}>
+              <SingleSlide
+                slideData={{ ...slide, imageUrl: createImgUrl(slide.imageUrl) }}
+                lang={curLang}
+                index={0}
+              />
+            </BtnsOverlay>
           ))}
       </ul>
     </div>

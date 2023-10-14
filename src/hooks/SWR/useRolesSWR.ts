@@ -23,8 +23,8 @@ const useRolesSWR = () => {
     try {
       // const updRoles = data?.results.filter((role) => role._id !== id);
       setSuccess('видалено');
-      mutate();
       await rolesApi.deleteById(id);
+      mutate();
     } catch (err) {
       handleRequestError(err);
     }
@@ -33,8 +33,8 @@ const useRolesSWR = () => {
   const createRole = async (newRole: TMemberRoleReq) => {
     try {
       setSuccess('збережено');
-      mutate();
       await rolesApi.createNew(newRole);
+      mutate();
     } catch (err) {
       handleRequestError(err);
     }
@@ -46,8 +46,8 @@ const useRolesSWR = () => {
       //   role._id === id ? { ...updRole, _id: id } : role
       // );
       setSuccess('оновлено');
-      mutate();
       await rolesApi.updateById(id, updRole);
+      mutate();
     } catch (err) {
       handleRequestError(err);
     }
