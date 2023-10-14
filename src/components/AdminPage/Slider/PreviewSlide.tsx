@@ -27,8 +27,15 @@ const EmptyPreview = () => (
 export default function PreviewSlide({ lang, control, slideId }: TProps) {
   const { getByIdSlide } = useHeroSliderSWR();
   const [slideImgUrl, setSlideImgUrl] = useState<string>();
-  const currentValues = useWatch({ control });
-  const { file } = currentValues;
+  const {
+    titleUa,
+    titleEn,
+    titlePl,
+    subtitleUa,
+    subtitleEn,
+    subtitlePl,
+    file,
+  } = useWatch({ control });
 
   useEffect(() => {
     if (slideId) {
@@ -56,14 +63,14 @@ export default function PreviewSlide({ lang, control, slideId }: TProps) {
   const slidePreview: TSlideResp = {
     _id: '',
     title: {
-      ua: currentValues.titleUa || '',
-      en: currentValues.titleEn || '',
-      pl: currentValues.titlePl || '',
+      ua: titleUa || '',
+      en: titleEn || '',
+      pl: titlePl || '',
     },
     subtitle: {
-      ua: currentValues.subtitleUa || '',
-      en: currentValues.subtitleEn || '',
-      pl: currentValues.subtitlePl || '',
+      ua: subtitleUa || '',
+      en: subtitleEn || '',
+      pl: subtitlePl || '',
     },
     imageUrl: slideImgUrl,
   };
