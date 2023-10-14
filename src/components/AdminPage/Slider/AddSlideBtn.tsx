@@ -28,7 +28,7 @@ export const AddSlideButton: FC<TSlideBtn> = ({ totalSlides, maxSlides }) => {
       {isDisabled ? (
         <AddBtn />
       ) : (
-        <Link href="/admin/slider/add-slider">
+        <Link href="/admin/slider/add">
           <AddBtn />
         </Link>
       )}
