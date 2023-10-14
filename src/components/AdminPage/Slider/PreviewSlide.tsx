@@ -30,8 +30,6 @@ export default function PreviewSlide({ lang, control, slideId }: TProps) {
   const currentValues = useWatch({ control });
   const { file } = currentValues;
 
-  console.log(slideImgUrl, slideId);
-
   useEffect(() => {
     if (slideId) {
       const projectDataById = getByIdSlide(slideId);

@@ -33,7 +33,6 @@ export const PartnerForm = ({ partnerId }: { partnerId?: string }) => {
 
     const currPartner = getPartnerById(partnerId);
     if (!currPartner) return;
-    console.log(currPartner);
 
     setValue('name', currPartner.name);
     setValue('homeUrl', currPartner.homeUrl);
