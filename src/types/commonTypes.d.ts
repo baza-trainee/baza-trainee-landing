@@ -23,16 +23,6 @@ export type TSlideReview = {
   _id?: string;
 };
 
-// export type TAdminSlide = {
-//   title: TTitleLanguagesTypes;
-//   subtitle: TTitleLanguagesTypes;
-//   imageUrl?: string;
-//   __v: number;
-//   _id: string;
-//   key: string;
-//   slideData: never;
-// };
-
 export type TDictionary = {
   navbar: {
     projects: string;

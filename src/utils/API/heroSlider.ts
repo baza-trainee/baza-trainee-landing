@@ -1,6 +1,6 @@
 import { bazaAPI } from './config';
 
-import { TResponseSliders, updateByIdRequest } from '@/types/typesAPI';
+import { TResponseSliders } from '@/types/typesAPI';
 import { TSlideReq } from '@/types/commonTypes';
 
 export const slidersEndPoint = '/heroslider';

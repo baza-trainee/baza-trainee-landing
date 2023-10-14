@@ -6,14 +6,14 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
-import { TFormInputs,  } from '../types';
+import { TFormInputs } from '../types';
 
 import {
   FileInput,
+  FormBtns,
   LanguageSelector,
   TextInputField,
 } from '@/components/atomic';
-import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 import { TLandingLanguage } from '@/store/globalContext';

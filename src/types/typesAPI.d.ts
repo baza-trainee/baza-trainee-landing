@@ -38,12 +38,6 @@ export interface IRegisterRequest extends ILoginRequest {
   name: string;
 }
 
-// export interface IAchievement extends CommonResponseBase {
-//   projects: number;
-//   members: number;
-//   employed: number;
-// }
-
 export interface IUpdateEmployedRequest {
   employed: number;
 }
@@ -61,30 +55,6 @@ export type TContactsInfo = {
     telegram?: string;
   };
 };
-
-// export interface IHeroSlider extends CommonResponseBase {
-//   title: TTitleLanguagesTypes;
-//   subtitle: TTitleLanguagesTypes;
-//   imageUrl?: string;
-// }
-
-// export interface IPartner extends CommonResponseBase {
-//   homeUrl?: String;
-//   imageUrl: String;
-//   name: String;
-// }
-// export type IHeroSliderData = {
-//   results: IHeroSlider[];
-//   info: {
-//     totalSlides: number;
-//     maxSlides: number;
-//   };
-// };
-
-// export interface IPartner extends CommonResponseBase {
-//   homeUrl?: string;
-//   imageUrl: string;
-// }
 
 export interface IStack extends CommonResponseBase {
   name: string;
@@ -104,11 +74,6 @@ export interface IDocuments<T> extends CommonResponseBase {
   };
 }
 
-// export interface IMember extends CommonResponseBase {
-//   name: TTitleLanguagesTypes;
-//   profileUrl?: string;
-// }
-
 type TTestimonialBase = {
   name: TTitleLanguagesTypes;
   review: TTitleLanguagesTypes;
@@ -124,13 +89,6 @@ export type TTestimonialResp = TTestimonialBase & {
 export type ITestimonialRequest = TTestimonialBase & {
   file: File;
 };
-
-// export interface IUser extends CommonResponseBase {
-//   name: string;
-//   email: string;
-//   passwordHash: string;
-//   token: string;
-// }
 
 export type id = string | number;
 export type updateByIdRequest = [id: id, payload: Object];

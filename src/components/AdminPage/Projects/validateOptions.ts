@@ -1,4 +1,4 @@
-import { TFormFieldValue } from '@/types/fieldValidator';
+import { TFormFieldValue } from '@/types';
 import { TFormInput } from './types';
 
 import { SETTINGS } from '@/config/settings';

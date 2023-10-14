@@ -1,5 +1,5 @@
 import { SETTINGS } from '@/config/settings';
-import { TFormFieldValue } from '@/types/fieldValidator';
+import { TFormFieldValue } from '@/types';
 import { formatBytes } from '@/utils/formatBytes';
 import { validateImgDimensions } from '@/utils/validateImgDimensions';
 

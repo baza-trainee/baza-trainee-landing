@@ -1,15 +1,16 @@
-import { sliderValidateOptions } from './sliderValidateOptions';
-import { TFormInputs } from './types';
+import { useEffect, useState } from 'react';
+import { Control, useWatch } from 'react-hook-form';
 
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { TLandingLanguage } from '@/store/globalContext';
 import { createImgUrl } from '@/utils/imageHandler';
+import { sliderValidateOptions } from './sliderValidateOptions';
 
 import { LogoMain } from '@/components/common/icons';
-import { Control, useWatch } from 'react-hook-form';
-import { useEffect, useState } from 'react';
-import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
-import { TSlideResp } from '@/types';
 import { SingleSlide } from '@/components/MainPage/HeroSlider/SingleSlide';
-import { TLandingLanguage } from '@/store/globalContext';
+
+import { TSlideResp } from '@/types';
+import { TFormInputs } from './types';
 
 type TProps = {
   lang: TLandingLanguage;
