@@ -11,7 +11,7 @@ type TSlideBtn = {
 
 export const AddSlideButton: FC<TSlideBtn> = ({ totalSlides, maxSlides }) => {
   const isDisabled = !(totalSlides && maxSlides) || totalSlides >= maxSlides;
-  const tooltipText = `Максимальна кількість слайдів ${maxSlides}`;
+  const tooltipText = `Слот ${totalSlides} із ${maxSlides} слайдів`;
 
   const AddBtn = () => (
     <AdminPanelButton
@@ -23,14 +23,16 @@ export const AddSlideButton: FC<TSlideBtn> = ({ totalSlides, maxSlides }) => {
     </AdminPanelButton>
   );
 
-  return isDisabled ? (
-    <div className="flex flex-col items-center gap-4">
-      <AddBtn />
+  return (
+    <div className="flex flex-col items-center gap-8">
+      {isDisabled ? (
+        <AddBtn />
+      ) : (
+        <Link href="/admin/slider/add-slider">
+          <AddBtn />
+        </Link>
+      )}
       <p>{tooltipText}</p>
     </div>
-  ) : (
-    <Link href="/admin/slider/add-slider">
-      <AddBtn />
-    </Link>
   );
 };
