@@ -5,18 +5,17 @@ import Slider from 'react-slick';
 
 import { Dot } from './Dot';
 import { SingleSlide } from './SingleSlide';
-import { slides } from './slides';
 
 import { TSlideReview } from '@/types';
-
 import { dictionaries } from '@/locales/dictionaries';
-
 import { TLandingLanguage } from '@/store/globalContext';
-
+import { useTestimonialsSWR } from '@/hooks/SWR/useTestimonialsSWR';
 import { ContainerMaxW1200, SlickArrow } from '@/components/atomic';
+import { createImgUrl } from '@/utils/imageHandler';
 
 export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { testimonialsData } = useTestimonialsSWR();
 
   const sliderSettings = {
     dots: true,
@@ -41,12 +40,12 @@ export const Reviews = ({ lang }: { lang: TLandingLanguage }) => {
             afterChange={setCurrentSlide}
             lazyLoad="progressive"
           >
-            {slides?.map((review: TSlideReview) => (
+            {testimonialsData?.map((review: TSlideReview) => (
               <SingleSlide
                 slideData={review}
                 key={review._id!}
                 lang={lang}
-                src={review.imageUrl}
+                src={createImgUrl(review.imageUrl)}
                 isImage={review?.imageUrl.split('.')[0] !== 'undefined'}
               />
             ))}
