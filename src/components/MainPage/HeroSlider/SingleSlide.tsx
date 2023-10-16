@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { TSlideResp } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
 
 import { TLandingLanguage } from '@/store/globalContext';
 
@@ -17,7 +18,7 @@ export const SingleSlide = ({ slideData, index, lang }: TProps) => {
     <div className="flex-center relative h-[50.4rem] w-full">
       <Image
         fill
-        src={imageUrl}
+        src={createImgUrl(imageUrl)}
         priority={index === 0}
         alt={title[lang]}
         className="object-cover"

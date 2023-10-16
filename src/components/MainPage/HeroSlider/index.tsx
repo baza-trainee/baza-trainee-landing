@@ -3,6 +3,7 @@
 import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
@@ -42,7 +43,7 @@ const MemoizedModal = memo(ModalComponent);
 const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slickRef = useRef<Slider | null>(null);
-  // const { data } = useHeroSliderSWR();
+  const { data } = useHeroSliderSWR();
 
   const goToSlide = (slideIndex: number) => {
     if (slickRef.current) {
@@ -68,7 +69,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           ref={slickRef}
           className="h-[50.4rem]"
         >
-          {slides.map((slide: TSlideResp, index: any) => (
+          {data?.results.map((slide: TSlideResp, index: any) => (
             <SingleSlide
               key={`key_${slide.title[lang]}`}
               slideData={slide}
@@ -112,4 +113,3 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
 };
 
 export { HeroSlider };
-
