@@ -1,11 +1,22 @@
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Control, useWatch } from 'react-hook-form';
 
-import { sliderValidateOptions } from './sliderValidateOptions';
-import { TFormInputs } from './types';
-
+import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { TLandingLanguage } from '@/store/globalContext';
 import { createImgUrl } from '@/utils/imageHandler';
+import { sliderValidateOptions } from './sliderValidateOptions';
 
 import { LogoMain } from '@/components/common/icons';
+import { SingleSlide } from '@/components/MainPage/HeroSlider/SingleSlide';
+
+import { TSlideResp } from '@/types';
+import { TFormInputs } from './types';
+
+type TProps = {
+  lang: TLandingLanguage;
+  control: Control<TFormInputs, any>;
+  slideId?: string;
+};
 
 const EmptyPreview = () => (
   <div className="flex-center w-full rounded-md bg-neutral-75 py-[10.2rem]">
@@ -13,58 +24,60 @@ const EmptyPreview = () => (
   </div>
 );
 
-export default function PreviewSlide({
-  lang,
-  currentValues,
-}: {
-  lang: string;
-  currentValues: TFormInputs;
-}) {
-  const { file } = currentValues;
+export default function PreviewSlide({ lang, control, slideId }: TProps) {
+  const { getByIdSlide } = useHeroSliderSWR();
+  const [slideImgUrl, setSlideImgUrl] = useState<string>();
+  const {
+    titleUa,
+    titleEn,
+    titlePl,
+    subtitleUa,
+    subtitleEn,
+    subtitlePl,
+    file,
+  } = useWatch({ control });
 
-  const getImgUrl = () => {
+  useEffect(() => {
+    if (slideId) {
+      const projectDataById = getByIdSlide(slideId);
+      projectDataById && setSlideImgUrl(createImgUrl(projectDataById.imageUrl));
+    }
+  }, []);
+
+  useEffect(() => {
     if (!file?.length) return;
-    if (file[0].type === 'for-url') {
-      return createImgUrl(file[0].name);
-    }
-    const isValidImg = sliderValidateOptions.img.validate(file);
-    if (isValidImg) {
-      return URL.createObjectURL(file[0]);
-    }
-  };
 
-  const photoUrl = getImgUrl();
+    (async () => {
+      const isValidImg = await sliderValidateOptions.img().validate(file);
 
-  if (!photoUrl) {
+      if (typeof isValidImg !== 'string') {
+        setSlideImgUrl(URL.createObjectURL(file[0]));
+      }
+    })();
+  }, [file]);
+
+  if (!slideImgUrl) {
     return <EmptyPreview />;
   }
 
-  const curText = {
-    title:
-      lang === 'ua'
-        ? currentValues?.titleUa
-        : lang === 'en'
-        ? currentValues?.titleEn
-        : currentValues?.titlePl,
-    subtitle:
-      lang === 'ua'
-        ? currentValues?.subtitleUa
-        : lang === 'en'
-        ? currentValues?.subtitleEn
-        : currentValues?.subtitlePl,
+  const slidePreview: TSlideResp = {
+    _id: '',
+    title: {
+      ua: titleUa || '',
+      en: titleEn || '',
+      pl: titlePl || '',
+    },
+    subtitle: {
+      ua: subtitleUa || '',
+      en: subtitleEn || '',
+      pl: subtitlePl || '',
+    },
+    imageUrl: slideImgUrl,
   };
 
   return (
-    <div className="flex-center relative h-[38.4rem] w-full overflow-hidden rounded-md bg-neutral-75">
-      <Image src={photoUrl} alt="Preview image" fill className="object-cover" />
-      <div className="flex-column z-10 w-2/3 max-w-[44.6rem] items-center justify-center text-white">
-        <h2 className="z-10 mb-5 break-words text-center text-[3.8rem] font-bold">
-          {curText.title}
-        </h2>
-        <p className="break-words font-medium leading-[1.6] md:text-center md:text-[2rem]">
-          {curText.subtitle}
-        </p>
-      </div>
+    <div className="flex-center h-[38.4rem] w-full overflow-hidden rounded-md">
+      <SingleSlide slideData={slidePreview} lang={lang} index={0} />
     </div>
   );
 }

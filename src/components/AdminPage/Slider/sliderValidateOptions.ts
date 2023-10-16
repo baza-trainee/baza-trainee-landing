@@ -1,4 +1,5 @@
 import { SETTINGS } from '@/config/settings';
+import { formatBytes } from '@/utils/formatBytes';
 import { validateImgDimensions } from '@/utils/validateImgDimensions';
 
 const limitSize = SETTINGS.fileSizeLimits.heroSliderPhoto;
@@ -12,6 +13,7 @@ export const sliderValidateOptions = {
       message: 'мінімальна довжина поля 5 символів',
     },
   },
+
   subtitle: {
     required: 'Введіть назву',
     minLength: {
@@ -23,24 +25,36 @@ export const sliderValidateOptions = {
       message: 'максимальна довжина поля 320 символів',
     },
   },
-  img: {
-    validate: (value: File[]) => {
-      const file = value[0];
-      const checkType = [
-        'image/jpeg',
-        'image/png',
-        'image/webp',
-        'for-url',
-      ].includes(file.type);
-      if (!checkType) return 'Виберіть коректне зображення';
-      const checkSize = file.size <= limitSize;
-      if (!checkSize) return `Виберіть зображення до ${limitSize} Мб`;
 
-      return validateImgDimensions(
-        file,
-        limitDimensions.width,
-        limitDimensions.height
-      );
-    },
+  img: (isEditMode?: boolean) => {
+    return {
+      required: isEditMode ? false : 'Додайте зображення слайду',
+      validate: (value: string | File | File[]) => {
+        if (
+          typeof value === 'object' &&
+          'length' in value &&
+          value.length > 0
+        ) {
+          const file = value[0];
+
+          const checkType = ['image/jpeg', 'image/png', 'image/webp'].includes(
+            file.type
+          );
+          if (!checkType) return 'Виберіть коректне зображення';
+
+          const checkSize = file.size <= limitSize;
+          if (!checkSize)
+            return `Виберіть зображення до ${formatBytes(limitSize)}`;
+
+          return validateImgDimensions(
+            file,
+            limitDimensions.width,
+            limitDimensions.height
+          );
+        } else {
+          return isEditMode || 'Додайте зображення слайду';
+        }
+      },
+    };
   },
 };

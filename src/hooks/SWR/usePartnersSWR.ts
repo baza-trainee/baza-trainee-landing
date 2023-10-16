@@ -1,42 +1,19 @@
-import { useState } from 'react';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { TPartnerReq, TResponsePartners } from '@/types';
 
-import { useGlobalContext } from '@/store/globalContext';
-
 import { partnersApi, partnersEndpoint } from '@/utils/API/partners';
-import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
+import { useRequestNotifiers } from './useRequestNotifiers';
 
 const usePartnersSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
+  const { setSuccess, handleRequestError } = useRequestNotifiers();
   const [query, setQuery] = useState('');
   const [page, setPage] = useState<number>();
   const [limit, setLimit] = useState<number>(); // is this param necessary ?
 
   const swrKey = `${partnersEndpoint}?query=${query}`;
-
-  const setSuccess = (textInfo: string) => {
-    setAlertInfo({
-      state: 'success',
-      title: 'Успіх',
-      textInfo,
-    });
-  };
-
-  const handleRequestError = (err: any) => {
-    const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
-
-    errorHandler(err);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[status || 500],
-      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
-    });
-  };
 
   const { data, error, mutate } = useSWR<TResponsePartners, AxiosError>(
     swrKey,
@@ -49,6 +26,7 @@ const usePartnersSWR = () => {
 
   const deletePartner = async (id: string) => {
     try {
+      setSuccess('видалено');
       await partnersApi.deleteById(id);
       mutate();
     } catch (err) {
@@ -58,8 +36,8 @@ const usePartnersSWR = () => {
 
   const createPartner = async (newPartner: TPartnerReq) => {
     try {
+      setSuccess('збережено');
       await partnersApi.createNew(newPartner);
-      setSuccess('Ваші дані успішно збережено.');
       mutate();
     } catch (err) {
       handleRequestError(err);
@@ -68,8 +46,8 @@ const usePartnersSWR = () => {
 
   const updatePartner = async (id: string, updPartner: TPartnerReq) => {
     try {
+      setSuccess('оновлено');
       await partnersApi.updateById(id, updPartner);
-      setSuccess('Оновлені дані успішно збережено.');
       mutate();
     } catch (err) {
       handleRequestError(err);

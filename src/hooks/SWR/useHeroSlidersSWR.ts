@@ -1,75 +1,56 @@
 'use client';
+
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
-import { IHeroSlider, THeroSliderData } from '@/types';
-
-import { useGlobalContext } from '@/store/globalContext';
+import { TResponseSliders, TSlideReq, TSlideResp } from '@/types';
 
 import { heroSliderApi, slidersEndPoint } from '@/utils/API/heroSlider';
-import { errorHandler, networkStatusesUk } from '@/utils/errorHandler';
+import { useRequestNotifiers } from './useRequestNotifiers';
 
 export const useHeroSliderSWR = () => {
-  const { setAlertInfo } = useGlobalContext();
-
-  const handleRequestError = (err: any) => {
-    const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
-
-    errorHandler(err);
-    setAlertInfo({
-      state: 'error',
-      title: networkStatusesUk[status || 500],
-      textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
-    });
-  };
+  const { setSuccess, handleRequestError } = useRequestNotifiers();
 
   const { data, error, isLoading, mutate } = useSWR<
-    THeroSliderData,
+    TResponseSliders,
     AxiosError
   >(slidersEndPoint, heroSliderApi.getAll, { onError: handleRequestError });
 
-  const getByIdSlider = (id: string) =>
-    data?.results.filter((slide: IHeroSlider) => slide._id == id);
+  const getByIdSlide = (id: string) =>
+    data?.results.find((slide: TSlideResp) => slide._id == id);
 
   const delByIdSlider = async (id: string) => {
     try {
       const updSliders = data?.results.filter(
-        (slide: IHeroSlider) => slide._id !== id
+        (slide: TSlideResp) => slide._id !== id
       );
-      const updData: THeroSliderData = { ...data!, results: updSliders! };
+      const updData: TResponseSliders = { ...data!, results: updSliders! };
 
+      setSuccess('видалено');
       mutate(updData);
       await heroSliderApi.deleteById(id);
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
-  const addNewSlider = async (slider: IHeroSlider) => {
+  const addNewSlider = async (slide: TSlideReq) => {
     try {
-      const updSliders = [...(data?.results || []), slider];
-      const updData: THeroSliderData = { ...data!, results: updSliders! };
-
-      mutate(updData);
-      await heroSliderApi.createNew(slider);
+      setSuccess('збережено');
+      await heroSliderApi.createNew(slide);
+      mutate();
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
-  const updateSlider = async (id: string, slider: IHeroSlider) => {
+  const updateSlider = async (id: string, slide: TSlideReq) => {
     try {
-      const updSliders = data?.results.map((slide: IHeroSlider) =>
-        slide._id === id ? slider : slide
-      );
-      const updData: THeroSliderData = { ...data!, results: updSliders! };
-
-      mutate(updData);
-      await heroSliderApi.updateById([id, slider]);
+      setSuccess('оновлено');
+      await heroSliderApi.updateById(id, slide);
+      mutate();
     } catch (error) {
-      errorHandler(error);
+      handleRequestError(error);
     }
   };
 
@@ -77,7 +58,7 @@ export const useHeroSliderSWR = () => {
     data,
     isLoading,
     isError: error,
-    getByIdSlider,
+    getByIdSlide,
     delByIdSlider,
     updateSlider,
     addNewSlider,

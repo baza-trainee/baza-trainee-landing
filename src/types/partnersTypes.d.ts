@@ -1,6 +1,3 @@
-
-
-
 type TPartnerBase = {
   homeUrl: string;
   name: string;

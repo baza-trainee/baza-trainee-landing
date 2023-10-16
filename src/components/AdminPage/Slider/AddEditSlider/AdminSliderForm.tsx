@@ -4,57 +4,47 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { DefaultValuesState, emptyFields } from './DefaultValues';
-
 import PreviewSlide from '../PreviewSlide';
 import { sliderValidateOptions } from '../sliderValidateOptions';
-import { TFormInputs, TFormSlideRequest } from '../types';
+import { TFormInputs } from '../types';
 
 import {
   FileInput,
+  FormBtns,
   LanguageSelector,
   TextInputField,
 } from '@/components/atomic';
-import { FormBtns } from '@/components/atomic/buttons/FormBtns';
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 import { TLandingLanguage } from '@/store/globalContext';
-import { IHeroSlider } from '@/types';
+import { TSlideReq } from '@/types';
 
-export const SliderForm = ({
-  id,
-  isEdit,
-}: {
-  id?: string;
-  isEdit: boolean;
-}) => {
+export const SliderForm = ({ slideId }: { slideId?: string }) => {
+  const isEditMode = !!slideId;
   const router = useRouter();
-  const { addNewSlider, updateSlider, data } = useHeroSliderSWR();
+  const { addNewSlider, updateSlider, getByIdSlide } = useHeroSliderSWR();
   const [curLang, setCurLang] = useState<TLandingLanguage>('ua');
-  const slideData = data?.results.find(
-    (slide: IHeroSlider) => slide._id === id
-  );
+  const { handleTranslate } = useTranslator();
 
   const changeComponentLang = (lang: TLandingLanguage) => {
     setCurLang(lang);
   };
 
+  const cancelAction = () => router.replace('.');
+
   const {
     handleSubmit,
-    watch,
     setValue,
+    getValues,
     control,
     reset,
     formState: { errors },
   } = useForm<TFormInputs>({
-    mode: 'onSubmit',
-    defaultValues: async () => await DefaultValuesState(slideData),
+    mode: 'onChange',
   });
 
-  const { handleTranslate } = useTranslator();
-
   const onSubmitForm: SubmitHandler<TFormInputs> = async (dataForm) => {
-    const slide: TFormSlideRequest = {
+    const slide: TSlideReq = {
       title: {
         ua: dataForm.titleUa,
         en: dataForm.titleEn,
@@ -65,60 +55,47 @@ export const SliderForm = ({
         en: dataForm.subtitleEn,
         pl: dataForm.subtitlePl,
       },
-      // file: dataForm.file[0],
-      imageUrl: dataForm.imageUrl,
     };
 
     if (dataForm.file?.length && dataForm.file[0]?.size > 0) {
       slide.file = dataForm.file[0];
-      slide.imageUrl = dataForm.file[0].name;
     }
 
-    if (id) {
-      await updateSlider(id, slide);
-      router.replace('..');
+    if (isEditMode) {
+      await updateSlider(slideId, slide).then(cancelAction);
     } else {
-      await addNewSlider(slide);
-      router.replace('.');
+      await addNewSlider(slide).then(cancelAction);
     }
   };
 
-  const currentValues = watch();
+  const translateField = (
+    fieldType: 'title' | 'subtitle',
+    lang: 'en' | 'pl'
+  ) => {
+    const fieldName = lang === 'en' ? `${fieldType}En` : `${fieldType}Pl`;
+    const currentValues = getValues();
+    const fieldValue = currentValues[`${fieldType}Ua`];
+
+    handleTranslate(fieldValue, lang).then((res) => {
+      setValue(fieldName as keyof TFormInputs, res);
+    });
+  };
 
   useEffect(() => {
-    // setCurLang(localStorage.getItem('landingLanguage') || 'ua');
-    if (currentValues.file?.length && currentValues.file[0]?.size > 0) {
-      setValue('imageUrl', currentValues.file[0].name);
-    }
-  }, [currentValues.file, setValue]);
+    if (!isEditMode) return;
 
-  const handleResetForm = () => {
-    reset(emptyFields);
-  };
+    const slideDataById = getByIdSlide(slideId);
+    if (!slideDataById) return;
 
-  const translateTitleToEn = () => {
-    handleTranslate(currentValues.titleUa, 'en').then((res) => {
-      setValue('titleEn', res);
-    });
-  };
+    const { title, subtitle } = slideDataById;
 
-  const translateTitleToPl = () => {
-    handleTranslate(currentValues.titleUa, 'pl').then((res) => {
-      setValue('titlePl', res);
-    });
-  };
-
-  const translateSubtitleToEn = () => {
-    handleTranslate(currentValues.subtitleUa, 'en').then((res) => {
-      setValue('subtitleEn', res);
-    });
-  };
-
-  const translateSubtitleToPl = () => {
-    handleTranslate(currentValues.subtitleUa, 'pl').then((res) => {
-      setValue('subtitlePl', res);
-    });
-  };
+    setValue('titleUa', title.ua);
+    setValue('titleEn', title.en);
+    setValue('titlePl', title.pl);
+    setValue('subtitleUa', subtitle.ua);
+    setValue('subtitleEn', subtitle.en);
+    setValue('subtitlePl', subtitle.pl);
+  }, []);
 
   return (
     <div className="h-full">
@@ -128,6 +105,7 @@ export const SliderForm = ({
       >
         <FileInput
           name="file"
+          rules={sliderValidateOptions.img(isEditMode)}
           title="Зображення"
           control={control}
           accept="image/*"
@@ -158,7 +136,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть назву"
-                handleTranslate={translateTitleToEn}
+                handleTranslate={() => translateField('title', 'en')}
                 errorText={errors.titleEn?.message}
                 inputType="en"
               />
@@ -172,13 +150,14 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть назву"
-                handleTranslate={translateTitleToPl}
+                handleTranslate={() => translateField('title', 'pl')}
                 errorText={errors.titlePl?.message}
                 inputType="pl"
               />
             )}
           />
         </div>
+
         <div className="flex flex-wrap gap-[2.4rem]">
           <Controller
             name="subtitleUa"
@@ -202,7 +181,7 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть текст"
-                handleTranslate={translateSubtitleToEn}
+                handleTranslate={() => translateField('subtitle', 'en')}
                 errorText={errors.subtitleEn?.message}
                 inputType="en"
               />
@@ -216,15 +195,17 @@ export const SliderForm = ({
               <TextInputField
                 {...field}
                 placeholder="Введіть текст"
-                handleTranslate={translateSubtitleToPl}
+                handleTranslate={() => translateField('subtitle', 'pl')}
                 errorText={errors.subtitlePl?.message}
                 inputType="pl"
               />
             )}
           />
         </div>
+
         <div className="mb-[1.5rem] flex items-baseline justify-between gap-2">
-          <FormBtns isEditMode={isEdit} cancelAction={handleResetForm} />
+          <FormBtns isEditMode={isEditMode} cancelAction={reset} />
+
           <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
             <LanguageSelector
               currLang={curLang}
@@ -232,8 +213,9 @@ export const SliderForm = ({
             />
           </div>
         </div>
+
         <div className="flex-center mb-[5rem] h-[38.4rem] w-full rounded-md bg-neutral-75">
-          <PreviewSlide currentValues={currentValues} lang={curLang} />
+          <PreviewSlide slideId={slideId} control={control} lang={curLang} />
         </div>
       </form>
     </div>
