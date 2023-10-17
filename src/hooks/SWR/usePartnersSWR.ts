@@ -16,18 +16,13 @@ const usePartnersSWR = () => {
   const swrKey = `${partnersEndpoint}?query=${query}`;
 
   const { data, error, mutate } = useSWR<TResponsePartners, AxiosError>(
-    swrKey,
+    [swrKey, query],
     () => partnersApi.getAll({ page, query, limit }),
     {
       keepPreviousData: !!query,
       onError: handleRequestError,
     }
   );
-
-  // This is needed to reinitialize keepPreviousData if we use the search logic;
-  useEffect(() => {
-    query && mutate(undefined, { revalidate: false });
-  }, [query]);
 
   const deletePartner = async (id: string) => {
     try {

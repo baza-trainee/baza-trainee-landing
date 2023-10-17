@@ -14,15 +14,10 @@ const useRolesSWR = () => {
   const swrKey = `${rolesEndpoint}?search=${search}`;
 
   const { data, error, isLoading, mutate } = useSWR<TResponseRoles, AxiosError>(
-    swrKey,
-    rolesApi.getAll,
+    [swrKey, search],
+    () => rolesApi.getAll(swrKey),
     { keepPreviousData: true, onError: handleRequestError }
   );
-
-  // This is needed to reinitialize keepPreviousData if we use the search logic;
-  useEffect(() => {
-    search && mutate(undefined, { revalidate: false });
-  }, [search]);
 
   const deleteRole = async (id: string) => {
     try {
