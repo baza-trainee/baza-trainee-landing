@@ -20,7 +20,7 @@ export const testimonialValidateOptions = {
       message: 'Максимальна довжина поля 25 символів',
     },
     pattern: {
-      value: /^[а-яА-ЯҐґЄєІіЇї\s'’-]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s'’-]+$/,
       message: 'Введіть коректне ім’я',
     },
   },
