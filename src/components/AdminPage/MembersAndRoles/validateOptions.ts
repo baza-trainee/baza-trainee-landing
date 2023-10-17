@@ -14,7 +14,7 @@ export const memberValidateOptions = {
     required: 'Введіть прізвище та ім’я',
     ...commonOptions,
     pattern: {
-      value: /^[а-яА-ЯҐґЄєІіЇї\s'’-]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s'’-]+$/,
       message: 'Введіть прізвище та ім’я українською мовою.',
     },
   },
