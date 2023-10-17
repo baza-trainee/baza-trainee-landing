@@ -18,15 +18,10 @@ const useProjectsSWR = () => {
   const { data, error, isLoading, mutate } = useSWR<
     TResponseProjects,
     AxiosError
-  >(swrKey, () => projectsApi.getAll({ page, search, limit }), {
+  >([swrKey, search], () => projectsApi.getAll({ page, search, limit }), {
     keepPreviousData: !!search,
     onError: handleRequestError,
   });
-
-  // This is needed to reinitialize keepPreviousData if we use the search logic;
-  useEffect(() => {
-    search && mutate(undefined, { revalidate: false });
-  }, [search]);
 
   const searchProject = (search: string) => {
     setSearch(search);

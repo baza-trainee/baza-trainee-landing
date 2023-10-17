@@ -16,15 +16,10 @@ const useMembersSWR = () => {
   const { data, error, isLoading, mutate } = useSWR<
     TResponseMembers,
     AxiosError
-  >(swrKey, membersApi.getAll, {
+  >([swrKey, search], () => membersApi.getAll(swrKey), {
     keepPreviousData: !!search,
     onError: handleRequestError,
   });
-
-  // This is needed to reinitialize keepPreviousData if we use the search logic;
-  useEffect(() => {
-    search && mutate(undefined, { revalidate: false });
-  }, [search]);
 
   const searchMember = (search: string) => {
     setSearch(search);
@@ -96,4 +91,3 @@ const useMembersSWR = () => {
 };
 
 export { useMembersSWR };
-
