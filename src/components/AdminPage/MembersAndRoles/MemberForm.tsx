@@ -145,7 +145,7 @@ export const MemberForm = ({
             <TextInputField
               {...field}
               inputType="pl"
-              handleTranslate={() => translateField('nameEn', 'pl')}
+              handleTranslate={() => translateField('namePl', 'pl')}
               errorText={errors.namePl?.message}
             />
           )}
