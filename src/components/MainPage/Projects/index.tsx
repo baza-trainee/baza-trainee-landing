@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 import { projects } from './projects';
 
-
 import {
   ContainerMaxW1200,
   MoreProjectsButton,
@@ -15,6 +14,7 @@ import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { dictionaries } from '@/locales/dictionaries';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
+import { createImgUrl } from '@/utils/imageHandler';
 
 let ProjectsCountOnFirstLoad = 9;
 let ProjectsLoadMore = 3;
@@ -81,21 +81,24 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
           <SearchBar handleSearch={searchProject} />
         </div>
 
-        {filteredProjects.length === 0 && (
+        {filteredProjects.length === 0 ? (
           <h3 className="text-[3.8rem]">{noProjects}</h3>
+        ) : (
+          <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
+            {projectsData?.results.map(
+              (project: TProjectResp, index: number) => (
+                <ProjectCard
+                  lang={lang}
+                  key={project._id}
+                  project={project}
+                  animationDelay={animateDelay(index)}
+                  coverImgUrl={createImgUrl(project.imageUrl)}
+                />
+              )
+            )}
+          </ul>
         )}
 
-        <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-          {visibleProjects.map((project: TProjectResp, index: number) => (
-            <ProjectCard
-              lang={lang}
-              key={project._id}
-              project={project}
-              animationDelay={animateDelay(index)}
-              coverImgUrl={project.imageUrl}
-            />
-          ))}
-        </ul>
         {projects.length > visibleProjects.length && (
           <MoreProjectsButton lang={lang} onClick={loadMore} />
         )}

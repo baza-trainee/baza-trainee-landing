@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import { TProjectReq, TResponseProjects } from '@/types';
@@ -22,6 +22,11 @@ const useProjectsSWR = () => {
     keepPreviousData: !!search,
     onError: handleRequestError,
   });
+
+  // This is needed to reinitialize keepPreviousData if we use the search logic;
+  useEffect(() => {
+    search && mutate(undefined, { revalidate: false });
+  }, [search]);
 
   const searchProject = (search: string) => {
     setSearch(search);
@@ -97,4 +102,3 @@ const useProjectsSWR = () => {
 };
 
 export { useProjectsSWR };
-

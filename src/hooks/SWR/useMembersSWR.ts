@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import { TMemberBioReq, TResponseMembers } from '@/types';
@@ -20,6 +20,11 @@ const useMembersSWR = () => {
     keepPreviousData: !!search,
     onError: handleRequestError,
   });
+
+  // This is needed to reinitialize keepPreviousData if we use the search logic;
+  useEffect(() => {
+    search && mutate(undefined, { revalidate: false });
+  }, [search]);
 
   const searchMember = (search: string) => {
     setSearch(search);

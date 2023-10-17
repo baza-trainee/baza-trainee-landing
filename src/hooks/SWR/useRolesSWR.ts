@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
@@ -18,6 +18,11 @@ const useRolesSWR = () => {
     rolesApi.getAll,
     { keepPreviousData: true, onError: handleRequestError }
   );
+
+  // This is needed to reinitialize keepPreviousData if we use the search logic;
+  useEffect(() => {
+    search && mutate(undefined, { revalidate: false });
+  }, [search]);
 
   const deleteRole = async (id: string) => {
     try {
