@@ -4,6 +4,7 @@ import { memo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 
 import { useHeroSliderSWR } from '@/hooks/SWR/useHeroSlidersSWR';
+import { createImgUrl } from '@/utils/imageHandler';
 import { Dots } from './Dots';
 import { SingleSlide } from './SingleSlide';
 import { slides } from './slides';
@@ -72,7 +73,7 @@ const HeroSlider = ({ lang }: { lang: TLandingLanguage }) => {
           {data?.results.map((slide: TSlideResp, index: any) => (
             <SingleSlide
               key={`key_${slide.title[lang]}`}
-              slideData={slide}
+              slideData={{ ...slide, imageUrl: createImgUrl(slide.imageUrl) }}
               index={index}
               lang={lang}
             />
