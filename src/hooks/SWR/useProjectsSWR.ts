@@ -22,7 +22,7 @@ const useProjectsSWR = () => {
     [swrKey, search, page, limit],
     () => projectsApi.getAll({ page, search, limit }),
     {
-      keepPreviousData: !!search,
+      keepPreviousData: true,
       onError: handleRequestError,
     }
   );
@@ -32,11 +32,13 @@ const useProjectsSWR = () => {
   };
 
   const changePage = (newPage: number) => {
+    setSearch('');
     setPage(newPage);
   };
 
   const changeLimit = (newLimit: number) => {
-    setPage(newLimit);
+    // setSearch('');
+    setLimit(newLimit);
   };
 
   const getProjectById = (id: string) => {

@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-import { projects } from './projects';
-
 import {
   ContainerMaxW1200,
   MoreProjectsButton,
@@ -16,35 +14,72 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
 
-let ProjectsCountOnFirstLoad = 9;
-let ProjectsLoadMore = 3;
-
-const handleResize = () => {
+const calculateLimits = () => {
   if (typeof window !== 'undefined') {
     const width = window.innerWidth;
+
     if (width < 768) {
-      ProjectsCountOnFirstLoad = 3;
-      ProjectsLoadMore = 2;
+      return { limit: 6, loadMore: 1 };
     } else if (width >= 768 && width < 1280) {
-      ProjectsCountOnFirstLoad = 4;
-      ProjectsLoadMore = 2;
+      return { limit: 8, loadMore: 2 };
     } else {
-      ProjectsCountOnFirstLoad = 9;
-      ProjectsLoadMore = 3;
+      return { limit: 9, loadMore: 3 };
     }
   }
-  return ProjectsCountOnFirstLoad;
 };
 
 export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
-  const { projectsData, searchProject, changePage, changeLimit } =
-    useProjectsSWR();
+  const { navbar, noProjects } = dictionaries[lang];
+  const { projectsData, searchProject, changeLimit } = useProjectsSWR();
+  const [currentLimits, setCurrentLimits] = useState(calculateLimits());
+  // const [projectsStore, setProjectsStore] = useState<TProjectResp[]>([]);
+  const [visibleProjects, setVisibleProjects] = useState<TProjectResp[]>([]);
 
-  const [visibleProjects, setVisibleProjects] = useState<TProjectResp[]>(
-    projects.slice(0, handleResize())
-  );
+  // useEffect(() => {
+  //   if (projectsData) {
+  //     setProjectsStore((prev) => [...prev, ...projectsData.results]);
+  //   }
+  // }, [projectsData]);
+
+  // First init
+  useEffect(() => {
+    if (projectsData && visibleProjects.length === 0) {
+      if (currentLimits) {
+        const { limit } = currentLimits;
+        const limitedProjects = projectsData.results.slice(0, limit);
+        setVisibleProjects(limitedProjects);
+      }
+    }
+  }, [projectsData]);
+
+  // useEffect(() => {
+  //   if (
+  //     projectsData &&
+  //     currentLimits &&
+  //     projectsStore.length !== 0 &&
+  //     visibleProjects.length + currentLimits.loadMore >= projectsStore.length
+  //   ) {
+  //     changePage(projectsData.pagination.currentPage + 1);
+  //   }
+  // }, [visibleProjects]);
 
   useEffect(() => {
+    const handleResize = () => {
+      const currentLimits = calculateLimits();
+      setCurrentLimits(currentLimits);
+
+      // if (currentLimits) {
+      //   setVisibleProjects((prev) => {
+      //     const loadMore = currentLimits.loadMore;
+      //     const croppedItems = prev.length % loadMore;
+      //     const limit = prev.length - croppedItems;
+      //     const visibleProjects = prev.slice(0, limit);
+
+      //     return visibleProjects;
+      //   });
+      // }
+    };
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -52,25 +87,40 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
   }, []);
 
   const loadMore = () => {
-    const nextProjects = projects.slice(
-      visibleProjects.length,
-      visibleProjects.length + ProjectsLoadMore
-    );
-    setVisibleProjects([...visibleProjects, ...nextProjects]);
+    if (projectsData && currentLimits) {
+      // const nextProjects = projectsStore.slice(
+      //   visibleProjects.length,
+      //   visibleProjects.length + currentLimits.loadMore
+      // );
+      // setVisibleProjects([...visibleProjects, ...nextProjects]);
+      changeLimit(currentLimits.limit + 3);
+
+      setCurrentLimits({
+        ...currentLimits,
+        limit: currentLimits.limit + currentLimits.loadMore,
+      });
+    }
   };
 
   const animateDelay = (index: number) => {
-    const delay =
-      visibleProjects.length > ProjectsCountOnFirstLoad
-        ? index - visibleProjects.length + ProjectsLoadMore
+    if (currentLimits) {
+      return visibleProjects.length > currentLimits.limit
+        ? index - visibleProjects.length + currentLimits.loadMore
         : index;
-    return delay;
+    }
   };
-  const filteredProjects = projects;
-  const dict = dictionaries[lang];
 
-  const { navbar } = dict || {};
-  const { noProjects } = dict || {};
+  const showData = projectsData?.results
+    .slice(0, currentLimits?.limit)
+    .map((project: TProjectResp, index: number) => (
+      <ProjectCard
+        lang={lang}
+        key={project._id}
+        project={project}
+        animationDelay={animateDelay(index)}
+        coverImgUrl={createImgUrl(project.imageUrl)}
+      />
+    ));
 
   return (
     <section id="projects">
@@ -81,27 +131,18 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
           <SearchBar handleSearch={searchProject} />
         </div>
 
-        {filteredProjects.length === 0 ? (
+        {!projectsData ? (
           <h3 className="text-[3.8rem]">{noProjects}</h3>
         ) : (
           <ul className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2rem] xl:w-full xl:grid-cols-3 xl:gap-[3.2rem]">
-            {projectsData?.results.map(
-              (project: TProjectResp, index: number) => (
-                <ProjectCard
-                  lang={lang}
-                  key={project._id}
-                  project={project}
-                  animationDelay={animateDelay(index)}
-                  coverImgUrl={createImgUrl(project.imageUrl)}
-                />
-              )
-            )}
+            {showData}
           </ul>
         )}
 
-        {projects.length > visibleProjects.length && (
-          <MoreProjectsButton lang={lang} onClick={loadMore} />
-        )}
+        {projectsData &&
+          projectsData.pagination.totalResults > visibleProjects.length && (
+            <MoreProjectsButton lang={lang} onClick={loadMore} />
+          )}
       </ContainerMaxW1200>
     </section>
   );
