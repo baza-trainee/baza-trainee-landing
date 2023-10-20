@@ -42,7 +42,7 @@ const projectsApi = {
 
   async updateById(id: string, project: TProjectReq) {
     return await bazaAPI
-      .put(`asd${projectsEndpoint}/${id}`, project, {
+      .put(`${projectsEndpoint}/${id}`, project, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then<TProjectResp>((res) => res.data);
