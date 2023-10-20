@@ -13,12 +13,11 @@ export const MembersAndRolesList = ({
 }: TMembersAndRolesListProps) => {
   return (
     <table className="w-full table-fixed border-collapse truncate">
-      {!isProjectEditorMode && <ListHeader entity={entity} />}
+      {!isProjectEditorMode ? <ListHeader entity={entity} /> : <thead />}
 
-      <tbody>
-        {showedData?.length &&
-          showedData.length > 0 &&
-          showedData.map((item) => (
+      {showedData?.length && showedData.length > 0 ? (
+        <tbody>
+          {showedData.map((item) => (
             <ListRow
               {...{
                 currLang,
@@ -31,7 +30,10 @@ export const MembersAndRolesList = ({
               showedData={item}
             />
           ))}
-      </tbody>
+        </tbody>
+      ) : (
+        <tbody />
+      )}
     </table>
   );
 };

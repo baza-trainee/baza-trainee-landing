@@ -42,7 +42,7 @@ export const RoleSelector = ({ member }: { member: TMemberResp }) => {
         roles.length > 0 &&
         roles.map((item) => (
           <option key={item._id} className="rounded-md py-3" value={item._id}>
-            {item.name.ua}
+            {item.name.en}
           </option>
         ))}
     </select>

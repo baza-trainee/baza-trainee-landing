@@ -14,7 +14,7 @@ export const memberValidateOptions = {
     required: 'Введіть прізвище та ім’я',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s'’-]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s'’()-]+$/,
       message: 'Введіть прізвище та ім’я українською мовою.',
     },
   },
@@ -23,7 +23,7 @@ export const memberValidateOptions = {
     required: 'Введіть прізвище та ім’я',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-Z\s'’-]+$/,
+      value: /^[a-zA-Z\s'’()-]+$/,
       message: 'Введіть прізвище та ім’я англійською мовою.',
     },
   },
@@ -32,7 +32,7 @@ export const memberValidateOptions = {
     required: 'Введіть прізвище та ім’я',
     ...commonOptions,
     pattern: {
-      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s'’-]+$/,
+      value: /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s'’()-]+$/,
       message: 'Введіть прізвище та ім’я польською мовою.',
     },
   },

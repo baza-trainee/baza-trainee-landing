@@ -16,7 +16,7 @@ const usePartnersSWR = () => {
   const swrKey = `${partnersEndpoint}?query=${query}`;
 
   const { data, error, mutate } = useSWR<TResponsePartners, AxiosError>(
-    [swrKey, query],
+    [swrKey, query, page, limit],
     () => partnersApi.getAll({ page, query, limit }),
     {
       keepPreviousData: !!query,
