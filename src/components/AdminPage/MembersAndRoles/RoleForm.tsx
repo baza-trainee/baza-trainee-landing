@@ -113,7 +113,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
             <TextInputField
               {...field}
               inputType="pl"
-              handleTranslate={() => translateField('nameEn', 'pl')}
+              handleTranslate={() => translateField('namePl', 'pl')}
               errorText={errors.namePl?.message}
             />
           )}

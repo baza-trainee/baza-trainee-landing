@@ -46,6 +46,7 @@ export const useTestimonialsSWR = () => {
       }
     } catch (error) {
       handleRequestError(error);
+      throw Promise.reject();
     }
   };
 
@@ -59,6 +60,7 @@ export const useTestimonialsSWR = () => {
       mutate();
     } catch (error) {
       handleRequestError(error);
+      throw Promise.reject();
     }
   };
 

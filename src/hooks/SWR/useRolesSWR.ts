@@ -11,7 +11,7 @@ const useRolesSWR = () => {
   const { setSuccess, handleRequestError } = useRequestNotifiers();
   const [search, setSearch] = useState('');
 
-  const swrKey = `${rolesEndpoint}?search=${search}`;
+  const swrKey = `${rolesEndpoint}?search=${search}&limit=20`;
 
   const { data, error, isLoading, mutate } = useSWR<TResponseRoles, AxiosError>(
     [swrKey, search],
@@ -37,6 +37,7 @@ const useRolesSWR = () => {
       mutate();
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
@@ -50,6 +51,7 @@ const useRolesSWR = () => {
       mutate();
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 

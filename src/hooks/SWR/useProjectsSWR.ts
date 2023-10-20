@@ -18,14 +18,17 @@ const useProjectsSWR = () => {
   const { data, error, isLoading, mutate } = useSWR<
     TResponseProjects,
     AxiosError
-  >([swrKey, search], () => projectsApi.getAll({ page, search, limit }), {
-    keepPreviousData: !!search,
-    onError: handleRequestError,
-  });
+  >(
+    [swrKey, search, page, limit],
+    () => projectsApi.getAll({ page, search, limit }),
+    {
+      keepPreviousData: !!search,
+      onError: handleRequestError,
+    }
+  );
 
   const searchProject = (search: string) => {
     setSearch(search);
-    // setPage(1);
   };
 
   const changePage = (newPage: number) => {
@@ -51,6 +54,7 @@ const useProjectsSWR = () => {
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
@@ -66,6 +70,7 @@ const useProjectsSWR = () => {
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 

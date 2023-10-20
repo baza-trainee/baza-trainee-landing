@@ -12,7 +12,9 @@ import { TLandingLanguage } from '@/store/globalContext';
 import { roleSorter } from '@/utils/roleSorter';
 
 export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
-  const [componentLang, setComponentLang] = useState<TLandingLanguage>('ua');
+  const [componentLang, setComponentLang] = useState<TLandingLanguage>(
+    entity === 'roles' ? 'en' : 'ua'
+  );
 
   const changeComponentLang = (lang: TLandingLanguage) => {
     setComponentLang(lang);
@@ -43,10 +45,10 @@ export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
         </div>
 
         <div className="h-[5.6rem] rounded-md bg-yellow-500 py-5">
-        <LanguageSelector
-          currLang={componentLang}
-          changeComponentLang={changeComponentLang}
-        />
+          <LanguageSelector
+            currLang={componentLang}
+            changeComponentLang={changeComponentLang}
+          />
         </div>
       </div>
 

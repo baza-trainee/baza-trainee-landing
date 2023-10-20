@@ -25,5 +25,6 @@ export const SETTINGS = {
     'Front-end',
     'Back-end',
     'Quality Assurance',
+    'Full Stack',
   ],
 };
