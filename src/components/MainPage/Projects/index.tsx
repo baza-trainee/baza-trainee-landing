@@ -33,33 +33,6 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
   const { projectsData, searchProject, changeLimit } = useProjectsSWR();
   const [currentLimits, setCurrentLimits] = useState(calculateLimits());
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newLimits = calculateLimits();
-
-      if (
-        !currentLimits ||
-        (newLimits && currentLimits.loadMore !== newLimits.loadMore)
-      ) {
-        setCurrentLimits(newLimits);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const loadMore = () => {
-    if (projectsData && currentLimits) {
-      const newLimit = currentLimits.limit + currentLimits.loadMore;
-      changeLimit(newLimit);
-      setCurrentLimits({ ...currentLimits, limit: newLimit });
-    }
-  };
-
   const showData = projectsData?.results
     .slice(0, currentLimits?.limit)
     .map((project: TProjectResp, i: number) => (
@@ -71,6 +44,37 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
         coverImgUrl={createImgUrl(project.imageUrl)}
       />
     ));
+
+  const loadMore = () => {
+    if (projectsData && currentLimits) {
+      const newLimit = currentLimits.limit + currentLimits.loadMore;
+      changeLimit(newLimit);
+      setCurrentLimits({ ...currentLimits, limit: newLimit });
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newLimits = calculateLimits();
+
+      setCurrentLimits((prevLimits) => {
+        if (
+          prevLimits &&
+          newLimits &&
+          newLimits.loadMore !== prevLimits.loadMore
+        ) {
+          return newLimits;
+        }
+        return prevLimits;
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <section id="projects">
