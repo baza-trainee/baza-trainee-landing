@@ -32,12 +32,10 @@ const useProjectsSWR = () => {
   };
 
   const changePage = (newPage: number) => {
-    setSearch('');
     setPage(newPage);
   };
 
   const changeLimit = (newLimit: number) => {
-    // setSearch('');
     setLimit(newLimit);
   };
 
