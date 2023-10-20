@@ -4,11 +4,11 @@ import { TPartnerResp } from './partnersTypes';
 import { TMemberBioResp, TMemberRoleResp, TProjectResp } from './projectsTypes';
 import { TSlideResp } from './commonTypes';
 
-export interface IErrorResponse {
-  message: string;
-  status: number;
-  statusText?: string;
-}
+export type TGetAll = {
+  page?: number;
+  search?: string;
+  limit?: number;
+};
 
 interface CommonResponseBase {
   _id?: string;
@@ -107,7 +107,7 @@ export type responseDataType =
   | IStack
   // | IMember
   | TTestimonialResp
-  | IErrorResponse
+  // | IErrorResponse
   | Array<
       // | IHeroSlider
       // | IPartner

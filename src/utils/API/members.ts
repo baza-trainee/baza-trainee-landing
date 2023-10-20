@@ -1,13 +1,20 @@
 import { bazaAPI } from './config';
 
-import { TMemberBioReq, TMemberBioResp } from '@/types';
+import { TMemberBioReq, TMemberBioResp, TGetAll } from '@/types';
 import { TResponseMembers } from '@/types/typesAPI';
 
 const membersEndpoint = '/members';
 
 const membersApi = {
-  async getAll(uri: string) {
-    return await bazaAPI.get<TResponseMembers>(uri).then((res) => res.data);
+  async getAll({ page, search, limit }: TGetAll) {
+    const params = new URLSearchParams();
+    if (page) params.append('page', page.toString());
+    if (search) params.append('search', search);
+    if (limit) params.append('limit', limit.toString());
+
+    return await bazaAPI
+      .get(`${membersEndpoint}?${params.toString()}`)
+      .then<TResponseMembers>((res) => res.data);
   },
 
   async createNew(member: TMemberBioReq) {

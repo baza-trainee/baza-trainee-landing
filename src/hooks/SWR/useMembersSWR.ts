@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { TMemberBioReq, TResponseMembers } from '@/types';
@@ -10,19 +10,29 @@ import { useRequestNotifiers } from './useRequestNotifiers';
 const useMembersSWR = () => {
   const { setSuccess, handleRequestError } = useRequestNotifiers();
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState<number>();
+  const [limit, setLimit] = useState<number>();
 
   const swrKey = `${membersEndpoint}?search=${search}`;
 
   const { data, error, isLoading, mutate } = useSWR<
     TResponseMembers,
     AxiosError
-  >([swrKey, search], () => membersApi.getAll(swrKey), {
-    keepPreviousData: !!search,
-    onError: handleRequestError,
-  });
+  >(
+    [swrKey, search, page, limit],
+    () => membersApi.getAll({ page, search, limit }),
+    {
+      keepPreviousData: !!search,
+      onError: handleRequestError,
+    }
+  );
 
   const searchMember = (search: string) => {
     setSearch(search);
+  };
+
+  const changePage = (newPage: number) => {
+    setPage(newPage);
   };
 
   const deleteMember = async (id: string) => {
@@ -31,8 +41,8 @@ const useMembersSWR = () => {
       const updData: TResponseMembers = { ...data!, results: updMembers! };
 
       setSuccess('видалено');
-      mutate(updData);
       await membersApi.deleteById(id);
+      mutate(updData);
     } catch (err) {
       handleRequestError(err);
     }
@@ -89,6 +99,7 @@ const useMembersSWR = () => {
     updateMember,
     deleteMember,
     searchMember,
+    changePage,
   };
 };
 

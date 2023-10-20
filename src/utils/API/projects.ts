@@ -1,12 +1,6 @@
 import { bazaAPI } from './config';
 
-import { TProjectReq, TProjectResp, TResponseProjects } from '@/types';
-
-export type TGetAll = {
-  page?: number;
-  search?: string;
-  limit?: number;
-};
+import { TProjectReq, TProjectResp, TResponseProjects, TGetAll } from '@/types';
 
 const projectsEndpoint = '/projects';
 
