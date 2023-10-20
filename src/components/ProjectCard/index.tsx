@@ -36,7 +36,7 @@ const ProjectCard = ({
   return (
     <li
       className={styles.animate}
-      style={{ animationDelay: `${animationDelay! / 8}s` }}
+      style={{ animationDelay: `${animationDelay! / 16}s` }}
     >
       <div className="group relative h-[46.4rem] w-full max-w-[37.8rem] cursor-default overflow-hidden rounded-md">
         <Image

@@ -32,55 +32,21 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
   const { navbar, noProjects } = dictionaries[lang];
   const { projectsData, searchProject, changeLimit } = useProjectsSWR();
   const [currentLimits, setCurrentLimits] = useState(calculateLimits());
-  // const [projectsStore, setProjectsStore] = useState<TProjectResp[]>([]);
-  const [visibleProjects, setVisibleProjects] = useState<TProjectResp[]>([]);
-
-  // useEffect(() => {
-  //   if (projectsData) {
-  //     setProjectsStore((prev) => [...prev, ...projectsData.results]);
-  //   }
-  // }, [projectsData]);
-
-  // First init
-  useEffect(() => {
-    if (projectsData && visibleProjects.length === 0) {
-      if (currentLimits) {
-        const { limit } = currentLimits;
-        const limitedProjects = projectsData.results.slice(0, limit);
-        setVisibleProjects(limitedProjects);
-      }
-    }
-  }, [projectsData]);
-
-  // useEffect(() => {
-  //   if (
-  //     projectsData &&
-  //     currentLimits &&
-  //     projectsStore.length !== 0 &&
-  //     visibleProjects.length + currentLimits.loadMore >= projectsStore.length
-  //   ) {
-  //     changePage(projectsData.pagination.currentPage + 1);
-  //   }
-  // }, [visibleProjects]);
 
   useEffect(() => {
     const handleResize = () => {
-      const currentLimits = calculateLimits();
-      setCurrentLimits(currentLimits);
+      const newLimits = calculateLimits();
 
-      // if (currentLimits) {
-      //   setVisibleProjects((prev) => {
-      //     const loadMore = currentLimits.loadMore;
-      //     const croppedItems = prev.length % loadMore;
-      //     const limit = prev.length - croppedItems;
-      //     const visibleProjects = prev.slice(0, limit);
-
-      //     return visibleProjects;
-      //   });
-      // }
+      if (
+        !currentLimits ||
+        (newLimits && currentLimits.loadMore !== newLimits.loadMore)
+      ) {
+        setCurrentLimits(newLimits);
+      }
     };
 
     window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -88,36 +54,20 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
 
   const loadMore = () => {
     if (projectsData && currentLimits) {
-      // const nextProjects = projectsStore.slice(
-      //   visibleProjects.length,
-      //   visibleProjects.length + currentLimits.loadMore
-      // );
-      // setVisibleProjects([...visibleProjects, ...nextProjects]);
-      changeLimit(currentLimits.limit + 3);
-
-      setCurrentLimits({
-        ...currentLimits,
-        limit: currentLimits.limit + currentLimits.loadMore,
-      });
-    }
-  };
-
-  const animateDelay = (index: number) => {
-    if (currentLimits) {
-      return visibleProjects.length > currentLimits.limit
-        ? index - visibleProjects.length + currentLimits.loadMore
-        : index;
+      const newLimit = currentLimits.limit + currentLimits.loadMore;
+      changeLimit(newLimit);
+      setCurrentLimits({ ...currentLimits, limit: newLimit });
     }
   };
 
   const showData = projectsData?.results
     .slice(0, currentLimits?.limit)
-    .map((project: TProjectResp, index: number) => (
+    .map((project: TProjectResp, i: number) => (
       <ProjectCard
         lang={lang}
         key={project._id}
         project={project}
-        animationDelay={animateDelay(index)}
+        animationDelay={i + (currentLimits?.loadMore || 0)}
         coverImgUrl={createImgUrl(project.imageUrl)}
       />
     ));
@@ -140,7 +90,8 @@ export const Projects = ({ lang }: { lang: TLandingLanguage }) => {
         )}
 
         {projectsData &&
-          projectsData.pagination.totalResults > visibleProjects.length && (
+          currentLimits &&
+          projectsData.pagination.totalResults > currentLimits.limit && (
             <MoreProjectsButton lang={lang} onClick={loadMore} />
           )}
       </ContainerMaxW1200>
