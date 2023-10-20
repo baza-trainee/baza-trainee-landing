@@ -9,18 +9,11 @@ import { PaginationBar } from '@/components/atomic/PaginationBar';
 import { PlusIcon } from '@/components/common/icons';
 import { ProjectCard } from '@/components/ProjectCard';
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
-import { TPagination, TProjectResp } from '@/types';
+import { TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
 
 export const AdminProjects = () => {
   const { projectsData, deleteProject, changePage } = useProjectsSWR();
-
-  const { currentPage, totalPages, totalResults }: TPagination =
-    projectsData?.pagination || {
-      currentPage: 1,
-      totalPages: 1,
-      totalResults: 0,
-    };
 
   const projects: TProjectResp[] = projectsData?.results || [];
 
@@ -54,8 +47,8 @@ export const AdminProjects = () => {
       <div className="mt-auto">
         <PaginationBar
           className="mt-20"
-          currentPage={currentPage}
-          totalPages={totalPages}
+          currentPage={projectsData?.pagination.currentPage || 1}
+          totalPages={projectsData?.pagination.totalPages || 1}
           onPageChange={changePage}
         />
       </div>

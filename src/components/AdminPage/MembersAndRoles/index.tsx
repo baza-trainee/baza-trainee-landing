@@ -10,30 +10,32 @@ import { useMembersSWR } from '@/hooks/SWR/useMembersSWR';
 import { useRolesSWR } from '@/hooks/SWR/useRolesSWR';
 import { TLandingLanguage } from '@/store/globalContext';
 import { roleSorter } from '@/utils/roleSorter';
+import { PaginationBar } from '@/components/atomic/PaginationBar';
 
 export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
+  const isMemberEntity = entity === 'members';
   const [componentLang, setComponentLang] = useState<TLandingLanguage>(
-    entity === 'roles' ? 'en' : 'ua'
+    isMemberEntity ? 'ua' : 'en'
   );
 
   const changeComponentLang = (lang: TLandingLanguage) => {
     setComponentLang(lang);
   };
 
-  const { membersData, searchMember, deleteMember } = useMembersSWR();
+  const { membersData, searchMember, deleteMember, changePage } =
+    useMembersSWR();
 
   const { rolesData, deleteRole, searchRole } = useRolesSWR();
 
-  const title = entity === 'members' ? 'Учасники' : 'Спеціалізація';
+  const title = isMemberEntity ? 'Учасники' : 'Спеціалізація';
 
-  const showedData =
-    entity === 'members'
-      ? membersData?.results || []
-      : roleSorter(rolesData?.results) || [];
+  const showedData = isMemberEntity
+    ? membersData?.results || []
+    : roleSorter(rolesData?.results) || [];
 
-  const handleDelete = entity === 'members' ? deleteMember : deleteRole;
+  const handleDelete = isMemberEntity ? deleteMember : deleteRole;
 
-  const handleSearch = entity === 'members' ? searchMember : searchRole;
+  const handleSearch = isMemberEntity ? searchMember : searchRole;
 
   return (
     <section className="mx-[2.4rem] my-[3.2rem] w-full">
@@ -58,6 +60,17 @@ export const MembersAndRoles = ({ entity }: { entity: TEntity }) => {
         showedData={showedData}
         handleDelete={handleDelete}
       />
+
+      {isMemberEntity && membersData && (
+        <div className="mt-auto">
+          <PaginationBar
+            className="mt-20"
+            currentPage={membersData.pagination.currentPage}
+            totalPages={membersData.pagination.totalPages}
+            onPageChange={changePage}
+          />
+        </div>
+      )}
     </section>
   );
 };

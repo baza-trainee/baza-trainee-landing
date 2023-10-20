@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { TProjectReq, TResponseProjects } from '@/types';
@@ -34,6 +34,7 @@ const useProjectsSWR = () => {
   const changePage = (newPage: number) => {
     setPage(newPage);
   };
+
   const changeLimit = (newLimit: number) => {
     setPage(newLimit);
   };
