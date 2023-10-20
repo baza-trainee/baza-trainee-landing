@@ -37,6 +37,7 @@ const useRolesSWR = () => {
       mutate();
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
@@ -50,6 +51,7 @@ const useRolesSWR = () => {
       mutate();
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 

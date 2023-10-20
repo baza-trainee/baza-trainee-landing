@@ -41,6 +41,7 @@ export const useHeroSliderSWR = () => {
       mutate();
     } catch (error) {
       handleRequestError(error);
+      throw Promise.reject();
     }
   };
 
@@ -51,6 +52,7 @@ export const useHeroSliderSWR = () => {
       mutate();
     } catch (error) {
       handleRequestError(error);
+      throw Promise.reject();
     }
   };
 

@@ -14,14 +14,23 @@ export const useRequestNotifiers = () => {
 
   const handleRequestError = (err: any) => {
     const { status, response } = err;
-    const message = response?.data?.message || 'Помилка виконання запиту';
-    const codeName = response?.data?.error?.codeName || 'Невідома помилка';
+
+    const message =
+      response?.data?.message ||
+      response?.message ||
+      err.message ||
+      'Помилка виконання запиту';
+
+    const codeName =
+      response?.data?.error?.codeName ||
+      response?.statusText ||
+      'Невідома помилка';
 
     errorHandler(err);
 
     setAlertInfo({
       state: 'error',
-      title: networkStatusesUk[status || 500],
+      title: networkStatusesUk[status || response?.status || 500],
       textInfo: `Не вдалося виконати запит (${message} / ${codeName})`,
     });
   };

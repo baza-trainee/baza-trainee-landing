@@ -41,6 +41,7 @@ const usePartnersSWR = () => {
       mutate();
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
@@ -51,6 +52,7 @@ const usePartnersSWR = () => {
       mutate();
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 

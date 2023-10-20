@@ -55,6 +55,7 @@ const useMembersSWR = () => {
       return createdMember;
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
@@ -76,6 +77,7 @@ const useMembersSWR = () => {
       return updatedMember;
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 

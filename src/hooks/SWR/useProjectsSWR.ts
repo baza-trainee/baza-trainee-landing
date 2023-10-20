@@ -54,6 +54,7 @@ const useProjectsSWR = () => {
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
@@ -69,6 +70,7 @@ const useProjectsSWR = () => {
       mutate(updData);
     } catch (err) {
       handleRequestError(err);
+      throw Promise.reject();
     }
   };
 
