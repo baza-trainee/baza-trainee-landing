@@ -6,13 +6,8 @@ import { dictionaries } from '@/locales/dictionaries';
 
 import { TLandingLanguage } from '@/store/globalContext';
 
-import counterHandler from '@/utils/counterHandler';
-
 import { ContainerMaxW1200 } from '@/components/atomic';
-
-const projects = 25;
-const members = 1230;
-const haveJob = 32;
+import counterHandler from '@/utils/counterHandler';
 
 export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const componentRef = useRef(null);
@@ -20,6 +15,19 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
   const [membersCount, setMembersCount] = useState(0);
   const [haveJobCount, setHaveJobCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false);
+  const [data, setData] = useState<any>();
+  const [isLoading, setIsloading] = useState(true);
+
+  useEffect(() => {
+    fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/achievements')
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res);
+        setIsloading(false);
+      });
+  }, []);
+
+  console.log(data);
 
   const dict = dictionaries[lang];
   const { stats } = dict || {};
@@ -40,28 +48,30 @@ export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
       threshold: 0.2,
     };
 
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      if (entries[0].isIntersecting) {
-        counterHandler(projectsCount, projects, setProjectsCount, () =>
-          setIsCountFinish(true)
-        );
-        counterHandler(membersCount, members, setMembersCount);
-        counterHandler(haveJobCount, haveJob, setHaveJobCount);
+    if (!isLoading) {
+      const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+        if (entries[0].isIntersecting) {
+          counterHandler(projectsCount, data?.projects, setProjectsCount, () =>
+            setIsCountFinish(true)
+          );
+          counterHandler(membersCount, data?.members, setMembersCount);
+          counterHandler(haveJobCount, data?.employed, setHaveJobCount);
+        }
+      };
+
+      const observer = new IntersectionObserver(handleIntersection, options);
+
+      if (componentRef.current && data && !isLoading) {
+        observer.observe(componentRef.current);
       }
-    };
 
-    const observer = new IntersectionObserver(handleIntersection, options);
-
-    if (componentRef.current) {
-      observer.observe(componentRef.current);
+      return () => {
+        if (componentRef.current) {
+          observer.unobserve(componentRef.current);
+        }
+      };
     }
-
-    return () => {
-      if (componentRef.current) {
-        observer.unobserve(componentRef.current);
-      }
-    };
-  }, [isCountFinish]);
+  }, [projectsCount]);
 
   return (
     <section className="bg-yellow-500 py-[5.2rem]" ref={componentRef}>
