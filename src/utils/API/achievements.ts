@@ -4,7 +4,8 @@ import { IUpdateEmployedRequest } from '@/types/typesAPI';
 
 const achievementsApi = {
   async getData() {
-    return await bazaAPI.get('/achievements');
+    const res = await bazaAPI.get('/achievements');
+    return res;
   },
   async updateEmployed(employed: IUpdateEmployedRequest) {
     return await bazaAPI.patch('/achievements', employed);
