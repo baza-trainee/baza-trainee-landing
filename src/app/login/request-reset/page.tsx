@@ -1,4 +1,4 @@
-import RequestReset from '@/components/AdminPage/Authorization/RequestReset';
+import { RequestReset } from '@/components/AdminPage/Authorization/RequestReset';
 
 const RequestResetPage = () => {
   return <RequestReset />;

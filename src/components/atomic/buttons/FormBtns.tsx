@@ -22,7 +22,7 @@ export const FormBtns = ({
   }
 
   return (
-    <div className={`flex gap-7 ${verticalBtns ? 'flex-col' : ''}`}>
+    <div className={`flex gap-7 ${verticalBtns ? 'w-full flex-col' : ''}`}>
       <AdminPanelButton disabled={disabled} type="submit">
         {okBtnName}
       </AdminPanelButton>
