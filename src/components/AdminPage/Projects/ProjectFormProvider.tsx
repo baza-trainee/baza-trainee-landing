@@ -90,7 +90,7 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     });
   };
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data, e) => {
+  const onValidSubmit: SubmitHandler<TFormInput> = async (data) => {
     const preparedProject: TProjectReq = {
       ...prepareProject(data),
       teamMembers: extractMembersId(teamMemberData),
@@ -104,6 +104,8 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
       ? await updateProject(projectId, preparedProject).then(cancelAction)
       : await createProject(preparedProject).then(cancelAction);
   };
+
+  const onSubmit = handleSubmit(onValidSubmit);
 
   // check fetched members for empty fields
   useEffect(() => {
@@ -144,7 +146,6 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
     projectId,
     isEditMode,
     teamMemberData,
-    handleSubmit,
     onSubmit,
     cancelAction,
     addTeamMember,
