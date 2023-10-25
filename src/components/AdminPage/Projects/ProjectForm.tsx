@@ -29,7 +29,7 @@ const ProjectForm = () => {
   } = useProjectFormContext();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="grid w-[109rem] grid-cols-3 gap-9">
         <div className={`${rowStyle} col-span-3`}>
           <Controller

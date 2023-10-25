@@ -1,7 +1,7 @@
 'use client';
 
-import { ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import { ChangeEvent } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { MembersAndRolesList } from './MembersAndRolesList';
@@ -102,7 +102,7 @@ export const MemberForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
