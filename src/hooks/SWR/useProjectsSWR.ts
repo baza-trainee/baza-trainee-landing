@@ -39,9 +39,9 @@ const useProjectsSWR = () => {
     setLimit(newLimit);
   };
 
-  const getProjectById = (id: string) => {
-    return data?.results.find((project) => project._id === id);
-  };
+  // const getProjectById = (id: string) => {
+  //   return data?.results.find((project) => project._id === id);
+  // };
 
   const createProject = async (newProject: TProjectReq) => {
     try {
@@ -93,7 +93,7 @@ const useProjectsSWR = () => {
     isLoading,
     isError: error,
     searchProject,
-    getProjectById,
+    // getProjectById,
     createProject,
     updateProject,
     deleteProject,

@@ -1,6 +1,6 @@
 import { TFormInput } from "./types";
 
-import { TProjectResp } from "@/types";
+// import { TProjectResp } from "@/types";
 
 export const defaultValues: TFormInput = {
   nameUk: '',
@@ -16,14 +16,14 @@ export const defaultValues: TFormInput = {
 
 export const emptyLngs = { ua: '', en: '', pl: '' };
 
-export const initProjectData: TProjectResp = { //TODO:  del?
-  _id: '',
-  title: emptyLngs,
-  imageUrl: '',
-  deployUrl: '',
-  isTeamRequired: false,
-  creationDate: 0,
-  launchDate: 0,
-  complexity: 1,
-  teamMembers: [],
-};
+// export const initProjectData: TProjectResp = { //TODO:  del?
+//   _id: '',
+//   title: emptyLngs,
+//   imageUrl: '',
+//   deployUrl: '',
+//   isTeamRequired: false,
+//   creationDate: 0,
+//   launchDate: 0,
+//   complexity: 1,
+//   teamMembers: [],
+// };

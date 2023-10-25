@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import { useWatch } from 'react-hook-form';
 
 import { defaultValues } from './initFormData';
@@ -11,10 +12,12 @@ import { projectValidateOptions } from './validateOptions';
 import { LanguageSelector } from '@/components/atomic';
 import { LogoMain } from '@/components/common/icons';
 import { ProjectCard } from '@/components/ProjectCard';
-import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { TLandingLanguage } from '@/store/globalContext';
 import { TProjectResp } from '@/types';
 import { createImgUrl } from '@/utils/imageHandler';
+import { projectsApi } from '@/utils/API/projects';
+import { AxiosError } from 'axios';
+import { useRequestNotifiers } from '@/hooks/SWR/useRequestNotifiers';
 
 const EmptyPreviewImg = () => (
   <div className="flex-center h-[46.4rem] rounded-md bg-neutral-75">
@@ -24,7 +27,13 @@ const EmptyPreviewImg = () => (
 
 const ProjectPreview = () => {
   const { projectId, teamMemberData, control } = useProjectFormContext();
-  const { getProjectById } = useProjectsSWR();
+  const { handleRequestError } = useRequestNotifiers();
+
+  const { data: projectDataById } = useSWR<TProjectResp, AxiosError>(
+    projectId ? projectId : null,
+    () => projectsApi.getById(projectId!),
+    { onError: handleRequestError }
+  );
 
   const currentValues = useWatch({ control });
   const { projectImg } = currentValues;
@@ -37,11 +46,10 @@ const ProjectPreview = () => {
   };
 
   useEffect(() => {
-    if (projectId) {
-      const projectDataById = getProjectById(projectId);
-      projectDataById && setCoverImgUrl(createImgUrl(projectDataById.imageUrl));
+    if (projectId && projectDataById) {
+      setCoverImgUrl(createImgUrl(projectDataById.imageUrl));
     }
-  }, []);
+  }, [projectId, projectDataById]);
 
   useEffect(() => {
     if (!projectImg?.length) return;
