@@ -74,7 +74,7 @@ export const RoleForm = ({ roleId }: { roleId?: string }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="grid w-[105rem] grid-cols-3 gap-10 px-5 py-11">
         <Controller
           name="nameUk"
