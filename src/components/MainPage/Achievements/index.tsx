@@ -8,22 +8,22 @@ import { TLandingLanguage } from '@/store/globalContext';
 
 import { ContainerMaxW1200 } from '@/components/atomic';
 
-type TAchievments = {
+type TAchievements = {
   projects: number;
   members: number;
   employed: number;
 };
 
 export const Achievements = ({ lang }: { lang: TLandingLanguage }) => {
-  const [data, setData] = useState<TAchievments>();
-  const [isLoading, setIsloading] = useState(true);
+  const [data, setData] = useState<TAchievements>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch(process.env.NEXT_PUBLIC_SERVER_URL + '/achievements')
       .then((res) => res.json())
       .then((res) => {
         setData(res);
-        setIsloading(false);
+        setIsLoading(false);
       });
   }, []);
 

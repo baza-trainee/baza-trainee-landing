@@ -1,38 +1,46 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import {
-  defaultValues,
-  emptyLngs,
-  initProjectData, // TODO:  del?
-} from './initFormData';
+import { defaultValues, emptyLngs } from './initFormData';
 import { extractMembersId, prepareProject } from './projectUtils';
 import { IFormContext, TFormInput, TProvider } from './types';
+import { AxiosError } from 'axios';
 
 import {
   TMemberBioResp,
   TMemberResp,
   TMemberRoleResp,
   TProjectReq,
+  TProjectResp,
 } from '@/types';
 
 import { useProjectsSWR } from '@/hooks/SWR/useProjectsSWR';
 import { useTranslator } from '@/hooks/SWR/useTranslatorSWR';
 
 import { convertDate } from '@/utils/formatDate';
+import { useRequestNotifiers } from '@/hooks/SWR/useRequestNotifiers';
+import { projectsApi } from '@/utils/API/projects';
 
 const ProjectFormContext = createContext<IFormContext>({} as IFormContext);
 
 export const useProjectFormContext = () => useContext(ProjectFormContext);
 
 export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
-  const { createProject, getProjectById, updateProject } = useProjectsSWR();
+  const { createProject, updateProject } = useProjectsSWR();
   const { handleTranslate } = useTranslator();
+  const { handleRequestError } = useRequestNotifiers();
 
   const isEditMode = !!projectId;
+
+  const { data: projectDataById } = useSWR<TProjectResp, AxiosError>(
+    isEditMode ? projectId : null,
+    () => projectsApi.getById(projectId!),
+    { onError: handleRequestError }
+  );
 
   const [teamMemberData, setTeamMemberData] = useState<TMemberResp[]>([]);
 
@@ -99,44 +107,38 @@ export const ProjectFormProvider = ({ children, projectId }: TProvider) => {
 
   // check fetched members for empty fields
   useEffect(() => {
-    if (!isEditMode) return;
+    if (isEditMode && projectDataById) {
+      const checkedData = projectDataById.teamMembers.filter(
+        (item) => item.teamMember && item.teamMemberRole
+      );
 
-    const projectDataById = getProjectById(projectId);
-    if (!projectDataById) return;
-
-    const checkedData = projectDataById.teamMembers.filter(
-      (item) => item.teamMember && item.teamMemberRole
-    );
-
-    setTeamMemberData(checkedData);
-  }, []);
+      setTeamMemberData(checkedData);
+    }
+  }, [isEditMode, projectDataById]);
 
   useEffect(() => {
     setFocus('nameUk');
 
-    if (!isEditMode) return;
+    if (isEditMode && projectDataById) {
+      const {
+        title,
+        deployUrl,
+        isTeamRequired,
+        creationDate,
+        launchDate,
+        complexity,
+      } = projectDataById;
 
-    const projectDataById = getProjectById(projectId);
-    if (!projectDataById) return;
-
-    const {
-      title,
-      deployUrl,
-      isTeamRequired,
-      creationDate,
-      launchDate,
-      complexity,
-    } = projectDataById;
-
-    setValue('nameUk', title.ua);
-    setValue('nameEn', title.en);
-    setValue('namePl', title.pl);
-    setValue('deployUrl', deployUrl);
-    setValue('isTeamRequired', isTeamRequired);
-    setValue('creationDate', convertDate.toYYYYMMDD(creationDate));
-    setValue('launchDate', convertDate.toYYYYMMDD(launchDate));
-    setValue('complexity', +complexity);
-  }, []);
+      setValue('nameUk', title.ua);
+      setValue('nameEn', title.en);
+      setValue('namePl', title.pl);
+      setValue('deployUrl', deployUrl);
+      setValue('isTeamRequired', isTeamRequired);
+      setValue('creationDate', convertDate.toYYYYMMDD(creationDate));
+      setValue('launchDate', convertDate.toYYYYMMDD(launchDate));
+      setValue('complexity', +complexity);
+    }
+  }, [isEditMode, projectDataById]);
 
   const contextValue: IFormContext = {
     projectId,
