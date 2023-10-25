@@ -158,7 +158,11 @@ export const TestimonialEditor = ({
         {testimonialId ? 'Редагувати Відгук' : 'Додати Відгук'}
       </AdminTitle>
 
-      <form className="flex flex-col gap-16" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="flex flex-col gap-16"
+        onSubmit={handleSubmit(onSubmit)}
+        autoComplete="off"
+      >
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
           <div className="flex flex-wrap justify-center gap-[2.4rem] p-6  shadow-md lg:justify-start">
             <Controller

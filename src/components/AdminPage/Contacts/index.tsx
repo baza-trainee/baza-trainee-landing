@@ -93,7 +93,11 @@ export const Contacts = () => {
     <div className="w-full bg-base-light px-[2.4rem] py-[3.2rem]">
       <AdminTitle className="mb-[4.5rem] ml-[1.2rem]">Контакти</AdminTitle>
 
-      <form className="flex flex-col gap-16" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col gap-16"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
         <div className="flex w-full flex-col gap-10 bg-base-dark px-[1.2rem] py-8">
           <div className="flex flex-wrap gap-[2.4rem]">
             <TextInputField

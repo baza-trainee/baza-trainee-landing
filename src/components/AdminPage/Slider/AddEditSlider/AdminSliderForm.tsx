@@ -102,6 +102,7 @@ export const SliderForm = ({ slideId }: { slideId?: string }) => {
       <form
         className="flex h-2 flex-col gap-1"
         onSubmit={handleSubmit(onSubmitForm)}
+        autoComplete="off"
       >
         <FileInput
           name="file"
