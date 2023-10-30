@@ -1,10 +1,5 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
-import {
-  Control,
-  FieldErrors,
-  SubmitHandler,
-  UseFormHandleSubmit,
-} from 'react-hook-form';
+import { BaseSyntheticEvent, Dispatch, ReactNode, SetStateAction } from 'react';
+import { Control, FieldErrors } from 'react-hook-form';
 
 import { TMemberBioResp, TMemberResp, TMemberRoleResp } from '@/types';
 
@@ -42,8 +37,9 @@ export interface IFormContext {
   projectId: string | undefined;
   isEditMode: boolean;
   teamMemberData: TMemberResp[];
-  handleSubmit: UseFormHandleSubmit<TFormInput, undefined>;
-  onSubmit: SubmitHandler<TFormInput>;
+  onSubmit: (
+    e?: BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
   cancelAction: () => void;
   addTeamMember: (newMember: TMemberBioResp) => void;
   updTeamMemberRole: (
