@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply text-[62.5%]; /* 10px */
+  @apply min-w-[300px];
+}
+
+body {
+  @apply text-[1.6rem] text-neutral-800;
+  @apply bg-white;
+  @apply min-h-screen;
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .block-center {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply rounded-md bg-white;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-yellow-200;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-yellow-300;
+  }
+}
+
+input[type='file']::file-selector-button {
+  @apply hidden;
+}
+
+.calendar-picker-icon::-webkit-calendar-picker-indicator {
+  @apply absolute left-0 top-0 h-full w-full cursor-pointer;
+}
